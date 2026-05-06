@@ -1,0 +1,19 @@
+version: 1
+subjects:
+  - id: operating-systems
+    title: 운영체제
+    sources:
+      - id: past-exams-2019
+        title: 2019 기출
+        path: subjects/operating-systems/past-exams-2019.json
+        kind: exam
+        year: 2019
+  - id: discrete-math
+    title: 이산수학
+    sources: []
+  - id: algorithms
+    title: 알고리즘
+    sources: []
+  - id: java-programming
+    title: Java프로그래밍
+    sources: []

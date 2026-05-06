@@ -6,17 +6,25 @@
   "packageManager": "pnpm@10.11.0",
   "scripts": {
     "dev": "vite",
+    "predev": "pnpm data:build",
     "build": "tsc && vite build",
+    "prebuild": "pnpm data:build",
     "preview": "vite preview",
+    "data:build": "tsx scripts/build-data.ts",
+    "test": "vitest run",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },
   "dependencies": {
+    "js-yaml": "^4.1.1",
     "vite": "^7.0.0"
   },
   "devDependencies": {
+    "@types/js-yaml": "^4.0.9",
     "prettier": "^3.5.3",
-    "typescript": "^5.8.3"
+    "tsx": "^4.21.0",
+    "typescript": "^5.8.3",
+    "vitest": "^4.1.5"
   },
   "pnpm": {
     "onlyBuiltDependencies": [

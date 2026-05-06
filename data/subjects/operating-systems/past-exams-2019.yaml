@@ -1,0 +1,94 @@
+subjectId: operating-systems
+sourceId: past-exams-2019
+title: 운영체제 2019 기출
+kind: exam
+year: 2019
+
+passages:
+  - id: g19-scheduler-01
+    type: code
+    language: text
+    body: |
+      프로세스 A, B, C가 준비 큐에 순서대로 도착했다.
+      각 CPU burst time은 A=6, B=3, C=1이다.
+
+questions:
+  - id: e19-01
+    type: multiple-choice
+    prompt: 운영체제의 주된 역할로 가장 적절한 것은?
+    choices:
+      - id: '1'
+        text: 사용자와 하드웨어 사이의 인터페이스 제공
+      - id: '2'
+        text: 문서 편집 기능 제공
+      - id: '3'
+        text: 웹 검색 결과 제공
+      - id: '4'
+        text: 전자우편 송수신 전용 기능 제공
+    answers: ['1']
+    explanation: 운영체제는 자원을 관리하고 사용자와 하드웨어 사이의 인터페이스를 제공한다.
+    tags: [intro, role]
+
+  - id: e19-02
+    type: ox
+    prompt: 프로세스와 스레드는 동일한 개념이다.
+    choices:
+      - id: O
+        text: O
+      - id: X
+        text: X
+    answers: [X]
+    explanation: 프로세스는 독립된 자원 소유 단위이고, 스레드는 프로세스 안의 실행 흐름이다.
+    tags: [process, thread]
+
+  - id: e19-03
+    type: multi-answer
+    allowMultiple: true
+    prompt: 다음 중 운영체제의 핵심 기능으로 옳은 것을 모두 고르시오.
+    choices:
+      - id: '1'
+        text: 프로세스 관리
+      - id: '2'
+        text: 메모리 관리
+      - id: '3'
+        text: 장치 관리
+      - id: '4'
+        text: 전자결제 처리
+    answers: ['1', '2', '3']
+    answerKey: E
+    explanation: 운영체제는 프로세스, 메모리, 장치 등 컴퓨터 시스템 자원을 관리한다.
+    tags: [resource-management]
+
+  - id: e19-04
+    type: multiple-choice
+    passageRefs: [g19-scheduler-01]
+    prompt: 위 상황에서 FCFS 스케줄링을 적용할 때 두 번째로 실행되는 프로세스는?
+    choices:
+      - id: '1'
+        text: A
+      - id: '2'
+        text: B
+      - id: '3'
+        text: C
+      - id: '4'
+        text: 도착 순서와 무관하게 CPU burst time이 가장 짧은 프로세스
+    answers: ['2']
+    explanation: FCFS는 먼저 도착한 순서대로 실행하므로 A 다음에는 B가 실행된다.
+    tags: [scheduling, fcfs]
+
+  - id: e19-05
+    type: multiple-choice
+    passageRefs: [g19-scheduler-01]
+    prompt: 위 상황에서 SJF 비선점 스케줄링을 적용할 때 가장 먼저 선택될 수 있는 프로세스는?
+    choices:
+      - id: '1'
+        text: A
+      - id: '2'
+        text: B
+      - id: '3'
+        text: C
+      - id: '4'
+        text: 준비 큐에 도착하지 않은 프로세스
+    answers: ['3']
+    explanation: 모든 프로세스가 준비 큐에 있다면 CPU burst time이 가장 짧은 C가 먼저 선택된다.
+    tags: [scheduling, sjf]
