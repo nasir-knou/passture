@@ -1,0 +1,26 @@
+subjectId: algorithms
+sourceId: past-exams-2019
+title: 알고리즘 2019 기출
+kind: exam
+year: 2019
+
+passages:
+  - id: g19-origin-page-01
+    type: image
+    image:
+      path: images/subjects/algorithms/past-exams/2019/page-1.png
+      alt: 2019년 알고리즘 기출 1쪽 원본
+
+questions:
+  - id: e19-01
+    type: multiple-choice
+    passageRefs: [g19-origin-page-01]
+    prompt: 탐욕 알고리즘의 설명으로 가장 적절한 것은?
+    choices:
+      - { id: '1', text: '각 단계에서 현재 가장 좋아 보이는 선택을 한다.' }
+      - { id: '2', text: '항상 모든 부분집합을 완전 탐색한다.' }
+      - { id: '3', text: '정렬된 배열에서만 동작한다.' }
+      - { id: '4', text: '재귀 호출을 금지하는 알고리즘이다.' }
+    answers: ['1']
+    explanation: 탐욕 알고리즘은 매 단계의 국소 최적 선택을 통해 전체 해를 구성한다. 항상 최적해를 보장하려면 탐욕 선택 속성과 최적 부분 구조가 필요하다.
+    tags: [greedy]

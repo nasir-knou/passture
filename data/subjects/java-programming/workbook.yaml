@@ -1,0 +1,17 @@
+subjectId: java-programming
+sourceId: workbook
+title: Java프로그래밍 교재 워크북 샘플
+kind: workbook
+
+questions:
+  - id: b01-01
+    type: multiple-choice
+    prompt: Java의 기본형이 아닌 것은?
+    choices:
+      - { id: '1', text: 'String' }
+      - { id: '2', text: 'int' }
+      - { id: '3', text: 'boolean' }
+      - { id: '4', text: 'double' }
+    answers: ['1']
+    explanation: String은 클래스 타입이고, int, boolean, double은 Java 기본형이다.
+    tags: [type]

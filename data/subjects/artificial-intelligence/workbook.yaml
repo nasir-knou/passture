@@ -1,0 +1,17 @@
+subjectId: artificial-intelligence
+sourceId: workbook
+title: 인공지능 교재 워크북 샘플
+kind: workbook
+
+questions:
+  - id: b01-01
+    type: multiple-choice
+    prompt: A* 탐색에서 평가 함수 f(n)의 일반적인 구성은?
+    choices:
+      - { id: '1', text: 'g(n) + h(n)' }
+      - { id: '2', text: 'n^2 + n' }
+      - { id: '3', text: 'CPU 시간 + 입출력 시간' }
+      - { id: '4', text: '페이지 수 + 프레임 수' }
+    answers: ['1']
+    explanation: A*는 시작 상태에서 현재 노드까지의 실제 비용 g(n)과 목표까지의 추정 비용 h(n)을 합산해 노드를 평가한다.
+    tags: [search, a-star]

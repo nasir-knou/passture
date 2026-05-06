@@ -1,0 +1,15 @@
+subjectId: algorithms
+sourceId: lecture-exercises
+title: 알고리즘 강의 연습문제 샘플
+kind: lecture
+
+questions:
+  - id: l01-01
+    type: ox
+    prompt: 동적 계획법은 중복되는 부분 문제가 있을 때 계산 결과를 저장해 재사용할 수 있다.
+    choices:
+      - { id: 'O', text: 'O' }
+      - { id: 'X', text: 'X' }
+    answers: ['O']
+    explanation: 동적 계획법은 중복 부분 문제와 최적 부분 구조를 활용해 하위 문제의 답을 저장하고 재사용한다.
+    tags: [dynamic-programming]

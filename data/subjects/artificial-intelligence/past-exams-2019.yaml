@@ -1,0 +1,26 @@
+subjectId: artificial-intelligence
+sourceId: past-exams-2019
+title: 인공지능 2019 기출
+kind: exam
+year: 2019
+
+passages:
+  - id: g19-origin-page-01
+    type: image
+    image:
+      path: images/subjects/artificial-intelligence/past-exams/2019/page-1.png
+      alt: 2019년 인공지능 기출 1쪽 원본
+
+questions:
+  - id: e19-01
+    type: multiple-choice
+    passageRefs: [g19-origin-page-01]
+    prompt: 지도학습에 대한 설명으로 가장 적절한 것은?
+    choices:
+      - { id: '1', text: '입력과 정답 레이블 쌍을 이용해 모델을 학습한다.' }
+      - { id: '2', text: '보상 신호만으로 행동 정책을 학습한다.' }
+      - { id: '3', text: '정렬된 배열에서만 값을 찾는다.' }
+      - { id: '4', text: '운영체제의 장치 드라이버를 교체한다.' }
+    answers: ['1']
+    explanation: 지도학습은 레이블이 주어진 학습 데이터로 입력과 출력의 관계를 추정한다.
+    tags: [machine-learning, supervised-learning]

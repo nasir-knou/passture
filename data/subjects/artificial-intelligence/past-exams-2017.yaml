@@ -1,0 +1,26 @@
+subjectId: artificial-intelligence
+sourceId: past-exams-2017
+title: 인공지능 2017 기출
+kind: exam
+year: 2017
+
+passages:
+  - id: g17-origin-page-01
+    type: image
+    image:
+      path: images/subjects/artificial-intelligence/past-exams/2017/page-1.png
+      alt: 2017년 인공지능 기출 1쪽 원본
+
+questions:
+  - id: e17-01
+    type: multiple-choice
+    passageRefs: [g17-origin-page-01]
+    prompt: 상태 공간 탐색에서 목표 상태까지의 추정 비용을 사용하는 탐색 방법은?
+    choices:
+      - { id: '1', text: '휴리스틱 탐색' }
+      - { id: '2', text: '무조건 무작위 선택' }
+      - { id: '3', text: '파일 순차 접근' }
+      - { id: '4', text: '디스크 스케줄링' }
+    answers: ['1']
+    explanation: 휴리스틱 탐색은 목표에 가까운 정도나 남은 비용 추정치를 이용해 탐색 순서를 정한다.
+    tags: [search, heuristic]

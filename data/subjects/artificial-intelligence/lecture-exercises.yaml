@@ -1,0 +1,15 @@
+subjectId: artificial-intelligence
+sourceId: lecture-exercises
+title: 인공지능 강의 연습문제 샘플
+kind: lecture
+
+questions:
+  - id: l01-01
+    type: ox
+    prompt: 비지도학습은 정답 레이블 없이 데이터의 구조나 패턴을 찾는 데 사용될 수 있다.
+    choices:
+      - { id: 'O', text: 'O' }
+      - { id: 'X', text: 'X' }
+    answers: ['O']
+    explanation: 군집화처럼 레이블이 없는 데이터에서 유사한 사례를 묶거나 잠재 구조를 찾는 방법이 비지도학습에 속한다.
+    tags: [machine-learning, unsupervised-learning]

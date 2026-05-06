@@ -1,0 +1,26 @@
+subjectId: algorithms
+sourceId: past-exams-2017
+title: 알고리즘 2017 기출
+kind: exam
+year: 2017
+
+passages:
+  - id: g17-origin-page-01
+    type: image
+    image:
+      path: images/subjects/algorithms/past-exams/2017/page-1.png
+      alt: 2017년 알고리즘 기출 1쪽 원본
+
+questions:
+  - id: e17-01
+    type: multiple-choice
+    passageRefs: [g17-origin-page-01]
+    prompt: 입력 크기 n에 대해 수행 시간이 n log n에 비례하는 정렬 알고리즘으로 가장 적절한 것은?
+    choices:
+      - { id: '1', text: '합병 정렬' }
+      - { id: '2', text: '순차 탐색' }
+      - { id: '3', text: '삽입 정렬의 최악 경우' }
+      - { id: '4', text: '버블 정렬의 최악 경우' }
+    answers: ['1']
+    explanation: 합병 정렬은 분할과 병합을 반복하며 최악의 경우에도 O(n log n) 시간에 정렬한다.
+    tags: [sorting, complexity]

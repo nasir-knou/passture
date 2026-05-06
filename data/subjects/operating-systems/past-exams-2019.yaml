@@ -5,81 +5,349 @@ kind: exam
 year: 2019
 
 passages:
-  - id: g19-scheduler-01
+  - id: g19-producer-code-01
     type: code
     language: text
     body: |
-      프로세스 A, B, C가 준비 큐에 순서대로 도착했다.
-      각 CPU burst time은 A=6, B=3, C=1이다.
+      repeat
+        nextp에 데이터 항목을 생산
+        P(empty);
+        P(mutex);
+        nextp를 버퍼에 넣음
+        V(mutex);
+        V(full);
+      until false;
+
+  - id: g19-rag-01
+    type: text
+    body: |
+      자원할당 그래프:
+      p1은 r2와 r3을 요청하고, r1은 p1에 할당되어 있다.
+      r2는 p2에 할당되어 있고, p2는 r1을 요청한다.
+      r3은 단위자원 2개를 가지며 p2와 p3에 할당되어 있다.
+      간선 표기: (ㄱ) r1 -> p1, (ㄴ) p1 -> r3, (ㄷ) r3 -> p2, (ㄹ) r3 -> p3
+
+  - id: g19-transformed-rag-01
+    type: text
+    body: |
+      변형된 자원할당 그래프:
+      r1, r2, r3은 각각 단위자원이 하나인 자원 유형이다.
+      실선은 현재 할당/요청 간선, 점선은 선언간선을 나타낸다.
+      보기의 요청 중 수용하면 불안전상태가 되는 요청을 판단한다.
+
+  - id: g19-free-list-01
+    type: text
+    body: |
+      빈 공간 리스트:
+      공백 1: 50MB
+      공백 2: 25MB
+      공백 3: 15MB
+      공백 4: 70MB
+      16MB의 기억장소 요구가 발생했다.
+
+  - id: g19-page-reference-01
+    type: text
+    body: |
+      시간별 페이지 참조:
+      시간 1 2 3 4 5
+      페이지 참조 A B A C D
+      페이지 프레임은 2개이고 현재 시간 3까지 진행되었다.
 
 questions:
-  - id: e19-01
+  - id: e19-36
     type: multiple-choice
-    prompt: 운영체제의 주된 역할로 가장 적절한 것은?
+    prompt: 병행성에 대한 설명으로 바르지 않은 것은?
     choices:
       - id: '1'
-        text: 사용자와 하드웨어 사이의 인터페이스 제공
+        text: 여러 개의 프로세스 또는 쓰레드가 동시에 실행되는 시스템의 특성
       - id: '2'
-        text: 문서 편집 기능 제공
+        text: 동시에 실행되는 여러 개의 프로세스 또는 쓰레드를 병행 프로세스라 부름
       - id: '3'
-        text: 웹 검색 결과 제공
+        text: 하나의 CPU에서는 병행 프로세스가 인터리빙 형식으로 실행
       - id: '4'
-        text: 전자우편 송수신 전용 기능 제공
-    answers: ['1']
-    explanation: 운영체제는 자원을 관리하고 사용자와 하드웨어 사이의 인터페이스를 제공한다.
-    tags: [intro, role]
+        text: 분산 메모리 구조에서는 병행 프로세스 처리가 불가
+    answers: ['4']
+    explanation: 분산 메모리 구조에서도 메시지 전달 등을 통해 병행 프로세스 처리가 가능하다.
+    tags: [concurrency]
 
-  - id: e19-02
-    type: ox
-    prompt: 프로세스와 스레드는 동일한 개념이다.
-    choices:
-      - id: O
-        text: O
-      - id: X
-        text: X
-    answers: [X]
-    explanation: 프로세스는 독립된 자원 소유 단위이고, 스레드는 프로세스 안의 실행 흐름이다.
-    tags: [process, thread]
-
-  - id: e19-03
-    type: multi-answer
-    allowMultiple: true
-    prompt: 다음 중 운영체제의 핵심 기능으로 옳은 것을 모두 고르시오.
-    choices:
-      - id: '1'
-        text: 프로세스 관리
-      - id: '2'
-        text: 메모리 관리
-      - id: '3'
-        text: 장치 관리
-      - id: '4'
-        text: 전자결제 처리
-    answers: ['1', '2', '3']
-    answerKey: E
-    explanation: 운영체제는 프로세스, 메모리, 장치 등 컴퓨터 시스템 자원을 관리한다.
-    tags: [resource-management]
-
-  - id: e19-04
+  - id: e19-37
     type: multiple-choice
-    passageRefs: [g19-scheduler-01]
-    prompt: 위 상황에서 FCFS 스케줄링을 적용할 때 두 번째로 실행되는 프로세스는?
+    prompt: 2개 이상의 프로세스가 동시에 공유자원을 액세스하는 코드 영역에 진입하지 못하도록 하는 것은?
     choices:
       - id: '1'
-        text: A
+        text: 임계영역
       - id: '2'
-        text: B
+        text: 상호배제
       - id: '3'
-        text: C
+        text: 교착상태
       - id: '4'
-        text: 도착 순서와 무관하게 CPU burst time이 가장 짧은 프로세스
+        text: 기아상태
     answers: ['2']
-    explanation: FCFS는 먼저 도착한 순서대로 실행하므로 A 다음에는 B가 실행된다.
-    tags: [scheduling, fcfs]
+    explanation: 상호배제는 둘 이상의 프로세스가 동시에 임계영역에 들어가지 못하도록 보장하는 조건이다.
+    tags: [concurrency, mutual-exclusion]
 
-  - id: e19-05
+  - id: e19-38
     type: multiple-choice
-    passageRefs: [g19-scheduler-01]
-    prompt: 위 상황에서 SJF 비선점 스케줄링을 적용할 때 가장 먼저 선택될 수 있는 프로세스는?
+    prompt: 세마포어에 대한 설명으로 바르지 않은 것은?
+    choices:
+      - id: '1'
+        text: Busy waiting을 이용하여 CPU 사이클을 낭비
+      - id: '2'
+        text: Dijkstra가 제안한 동기화 도구
+      - id: '3'
+        text: 세마포어는 정수형 공유변수
+      - id: '4'
+        text: 세마포어는 두 표준단위 연산 P와 V에 의해서만 접근됨
+    answers: ['1']
+    explanation: 세마포어는 구현 방식에 따라 대기 큐와 block/wakeup을 사용해 busy waiting을 줄일 수 있다.
+    tags: [semaphore]
+
+  - id: e19-39
+    type: multiple-choice
+    passageRefs: [g19-producer-code-01]
+    prompt: 생산자/소비자 문제를 해결하기 위해서는 상호배제와 동기화가 모두 필요하다. 세마포어를 이용하여 생산자 프로세스를 다음과 같이 구현하였을 때, 상호배제를 위한 세마포어의 이름은?
+    choices:
+      - id: '1'
+        text: empty
+      - id: '2'
+        text: mutex
+      - id: '3'
+        text: nextp
+      - id: '4'
+        text: full
+    answers: ['2']
+    explanation: mutex는 버퍼에 접근하는 임계영역을 상호배제하기 위한 세마포어이다.
+    tags: [semaphore, producer-consumer]
+
+  - id: e19-40
+    type: multiple-choice
+    prompt: 다음 중 판독기/기록기 문제가 발생하지 않는 것은?
+    choices:
+      - id: '1'
+        text: 기록기가 다른 기록기와 동시에 공유 데이터 객체에 접근
+      - id: '2'
+        text: 기록기가 판독기와 동시에 공유 데이터 객체에 접근
+      - id: '3'
+        text: 판독기가 기록기와 동시에 공유 데이터 객체에 접근
+      - id: '4'
+        text: 판독기가 다른 판독기와 동시에 공유 데이터 객체에 접근
+    answers: ['4']
+    explanation: 판독기끼리는 데이터를 변경하지 않으므로 동시에 접근해도 판독기/기록기 충돌이 발생하지 않는다.
+    tags: [readers-writers]
+
+  - id: e19-41
+    type: multiple-choice
+    prompt: 교착상태의 필요조건에 포함되는 것은?
+    choices:
+      - id: '1'
+        text: 상호호환
+      - id: '2'
+        text: 비점유 대기
+      - id: '3'
+        text: 선점
+      - id: '4'
+        text: 환형 대기
+    answers: ['4']
+    explanation: 교착상태의 필요조건에는 상호배제, 점유와 대기, 비선점, 환형 대기가 포함된다.
+    tags: [deadlock]
+
+  - id: e19-42
+    type: multiple-choice
+    passageRefs: [g19-rag-01]
+    prompt: 위 자원할당 그래프에 대한 설명으로 바른 것은?
+    images:
+      - path: images/subjects/operating-systems/past-exams/2019/page-1.png
+        alt: 2019년 운영체제 기출 42~43번 자원할당 그래프
+    choices:
+      - id: '1'
+        text: p2는 자원을 나타냄
+      - id: '2'
+        text: r2는 프로세스를 나타냄
+      - id: '3'
+        text: r3 위의 숫자는 할당되고 남은 단위자원을 나타냄
+      - id: '4'
+        text: r2는 p2에 할당됨
+    answers: ['4']
+    explanation: 자원할당 그래프에서 사각형은 자원, 원은 프로세스이며 r2에서 p2로 향하는 간선은 r2가 p2에 할당되었음을 나타낸다.
+    tags: [deadlock, resource-allocation-graph]
+
+  - id: e19-43
+    type: multiple-choice
+    passageRefs: [g19-rag-01]
+    prompt: 위 자원할당 그래프는 교착상태를 나타낸다. 간선을 하나만 제거했을 때 교착상태가 해소되는 간선은?
+    choices:
+      - id: '1'
+        text: (ㄱ)
+      - id: '2'
+        text: (ㄴ)
+      - id: '3'
+        text: (ㄷ)
+      - id: '4'
+        text: (ㄹ)
+    answers: ['1']
+    explanation: p1, r2, p2, r1로 이어지는 순환 대기를 끊으려면 r1에서 p1로 향하는 할당 간선 (ㄱ)을 제거하면 된다.
+    tags: [deadlock, resource-allocation-graph]
+
+  - id: e19-44
+    type: multiple-choice
+    passageRefs: [g19-transformed-rag-01]
+    prompt: 각 자원 유형의 단위자원이 하나밖에 없는 경우 변형된 자원할당 그래프를 활용하여 교착상태를 회피할 수 있다. 그래프가 아래와 같을 때 다음 중 운영체제가 수용할 경우 불안전상태가 되는 요청은? 단, 점선 화살표는 선언간선을 나타낸다.
+    images:
+      - path: images/subjects/operating-systems/past-exams/2019/page-1.png
+        alt: 2019년 운영체제 기출 44번 변형된 자원할당 그래프
+    choices:
+      - id: '1'
+        text: p1이 r1을 요구
+      - id: '2'
+        text: p1이 r2를 요구
+      - id: '3'
+        text: p2가 r3을 요구
+      - id: '4'
+        text: p3이 r2를 요구
+    answers: ['4']
+    explanation: p3의 r2 요청을 수용하면 기존 할당/요청 관계와 함께 순환 가능성이 생겨 불안전상태가 된다.
+    tags: [deadlock, avoidance]
+
+  - id: e19-45
+    type: multiple-choice
+    prompt: 용량에 따라 기억장치를 계층적으로 바르게 구성한 것은?
+    choices:
+      - id: '1'
+        text: 레지스터, 캐시 기억장치, 메모리, 보조기억장치
+      - id: '2'
+        text: 보조기억장치, 레지스터, 메모리, 캐시 기억장치
+      - id: '3'
+        text: 보조기억장치, 메모리, 캐시 기억장치, 레지스터
+      - id: '4'
+        text: 캐시 기억장치, 레지스터, 메모리, 보조기억장치
+    answers: ['1']
+    explanation: 가장 빠르고 용량이 작은 레지스터에서 캐시, 메모리, 보조기억장치 순으로 계층을 이룬다.
+    tags: [memory-hierarchy]
+
+  - id: e19-46
+    type: multiple-choice
+    prompt: 다중 프로그래밍 환경에서 여러 프로세스에 메모리를 적재하기 위한 메모리 분할 기법에 대한 설명으로 바르지 않은 것은?
+    choices:
+      - id: '1'
+        text: 고정 분할은 메모리를 여러 개의 고정된 크기의 영역으로 분할함
+      - id: '2'
+        text: 동적 분할은 각 프로세스에게 필요한 만큼의 메모리만을 할당
+      - id: '3'
+        text: 동적 분할은 내부 단편화가 발생할 수 있음
+      - id: '4'
+        text: 고정 분할에서 분할마다 큐를 두는 방법은 메모리 효율성이 낮음
+    answers: ['3']
+    explanation: 동적 분할은 필요한 크기만큼 할당하므로 내부 단편화보다 외부 단편화가 문제가 된다.
+    tags: [memory-management, partitioning]
+
+  - id: e19-47
+    type: multiple-choice
+    passageRefs: [g19-free-list-01]
+    prompt: 최적 적합을 이용할 때 할당되는 위치는?
+    images:
+      - path: images/subjects/operating-systems/past-exams/2019/page-2.png
+        alt: 2019년 운영체제 기출 47~48번 빈 공간 리스트
+    choices:
+      - id: '1'
+        text: 공백 1
+      - id: '2'
+        text: 공백 2
+      - id: '3'
+        text: 공백 3
+      - id: '4'
+        text: 공백 4
+    answers: ['2']
+    explanation: 16MB를 수용할 수 있는 공간 중 가장 작은 공간은 25MB인 공백 2이다.
+    tags: [memory-management, allocation]
+
+  - id: e19-48
+    type: multiple-choice
+    passageRefs: [g19-free-list-01]
+    prompt: 최악 적합을 이용할 때 할당되는 위치는?
+    choices:
+      - id: '1'
+        text: 공백 1
+      - id: '2'
+        text: 공백 2
+      - id: '3'
+        text: 공백 3
+      - id: '4'
+        text: 공백 4
+    answers: ['4']
+    explanation: 최악 적합은 요구를 수용할 수 있는 공간 중 가장 큰 공간을 선택하므로 70MB인 공백 4에 할당한다.
+    tags: [memory-management, allocation]
+
+  - id: e19-49
+    type: multiple-choice
+    prompt: 가상 메모리 관리기법 중 세그먼테이션 기법에 대한 설명으로 가장 바른 것은?
+    choices:
+      - id: '1'
+        text: 세그먼트의 크기는 모두 동일
+      - id: '2'
+        text: 세그먼트의 크기는 하드웨어적인 측면과 관련 있음
+      - id: '3'
+        text: 사상표에 세그먼트 길이를 저장함
+      - id: '4'
+        text: 외부 단편화와 내부 단편화 모두 발생하지 않음
+    answers: ['3']
+    explanation: 세그먼테이션에서는 각 세그먼트의 기준 주소와 길이 정보를 세그먼트 사상표에 저장한다.
+    tags: [virtual-memory, segmentation]
+
+  - id: e19-50
+    type: multiple-choice
+    prompt: 페이지 호출기법에 대한 설명으로 바르지 않은 것은?
+    choices:
+      - id: '1'
+        text: 요구 페이지 호출기법은 실제 요구가 있을 때 메모리로 이동
+      - id: '2'
+        text: 요구 페이지 호출기법은 옮길 페이지 결정에 오버헤드가 큼
+      - id: '3'
+        text: 예상 페이지 호출기법은 프로세스 시작 시점에 적용하면 성능이 개선됨
+      - id: '4'
+        text: 예상 페이지 호출기법은 예상이 잘못된 경우 메모리 낭비
+    answers: ['2']
+    explanation: 요구 페이지 호출기법은 요구된 페이지만 적재하므로 옮길 페이지 예측 자체의 오버헤드가 큰 방식은 아니다.
+    tags: [virtual-memory, paging]
+
+  - id: e19-51
+    type: multiple-choice
+    prompt: 앞으로 가장 오랫동안 사용되지 않을 페이지를 교체 대상으로 선택하면 최선이지만 미래를 예측할 수 없어 실현 불가능한 원칙은?
+    choices:
+      - id: '1'
+        text: 최적화의 원칙
+      - id: '2'
+        text: 최대화의 원칙
+      - id: '3'
+        text: Belady의 원칙
+      - id: '4'
+        text: Moore의 원칙
+    answers: ['3']
+    explanation: 최적 페이지 교체는 Belady의 최적 알고리즘으로 알려져 있지만 실제 미래 참조를 알 수 없으므로 구현할 수 없다.
+    tags: [virtual-memory, page-replacement]
+
+  - id: e19-52
+    type: multiple-choice
+    prompt: 장치의 구성에 대한 설명으로 바른 것은?
+    choices:
+      - id: '1'
+        text: 장치제어기는 소프트웨어임
+      - id: '2'
+        text: 장치제어기는 장치에서 발생하는 데이터를 기계적인 움직임으로 변환함
+      - id: '3'
+        text: 장치 드라이버는 하드웨어임
+      - id: '4'
+        text: 장치 드라이버는 응용 프로그램의 입출력 요청을 해당 장치에 맞도록 변환함
+    answers: ['4']
+    explanation: 장치 드라이버는 운영체제와 장치 사이에서 응용 프로그램의 입출력 요청을 장치별 명령으로 변환하는 소프트웨어이다.
+    tags: [io, device]
+
+  - id: e19-53
+    type: multiple-choice
+    passageRefs: [g19-page-reference-01]
+    prompt: FIFO 페이지 교체기법에서 시간 4에 교체 대상으로 선택하는 페이지 프레임 안의 페이지는?
+    images:
+      - path: images/subjects/operating-systems/past-exams/2019/page-2.png
+        alt: 2019년 운영체제 기출 53~54번 페이지 참조 표
     choices:
       - id: '1'
         text: A
@@ -88,7 +356,120 @@ questions:
       - id: '3'
         text: C
       - id: '4'
-        text: 준비 큐에 도착하지 않은 프로세스
+        text: 교체할 필요 없음
+    answers: ['1']
+    explanation: 시간 1에 A, 시간 2에 B가 적재되고 시간 3의 A는 적중이다. FIFO에서는 가장 먼저 들어온 A가 교체된다.
+    tags: [virtual-memory, page-replacement, fifo]
+
+  - id: e19-54
+    type: multiple-choice
+    passageRefs: [g19-page-reference-01]
+    prompt: LFU 페이지 교체기법에서 시간 4에 교체 대상으로 선택하는 페이지 프레임 안의 페이지는?
+    choices:
+      - id: '1'
+        text: A
+      - id: '2'
+        text: B
+      - id: '3'
+        text: C
+      - id: '4'
+        text: 교체할 필요 없음
+    answers: ['2']
+    explanation: 시간 4 직전까지 A는 두 번, B는 한 번 참조되었으므로 LFU는 참조 횟수가 가장 적은 B를 교체한다.
+    tags: [virtual-memory, page-replacement, lfu]
+
+  - id: e19-55
+    type: multiple-choice
+    prompt: CPU의 데이터 처리 속도와 입출력장치의 데이터 전송 속도의 차이로 인한 문제를 임시 저장 장소를 이용하여 해결하는 입출력 관리 방법은?
+    choices:
+      - id: '1'
+        text: 인터럽트
+      - id: '2'
+        text: DMA
+      - id: '3'
+        text: 버퍼링
+      - id: '4'
+        text: 폴링
     answers: ['3']
-    explanation: 모든 프로세스가 준비 큐에 있다면 CPU burst time이 가장 짧은 C가 먼저 선택된다.
-    tags: [scheduling, sjf]
+    explanation: 버퍼링은 속도가 다른 장치 사이에서 임시 저장 공간을 두어 데이터 전송 속도 차이를 완화한다.
+    tags: [io, buffering]
+
+  - id: e19-56
+    type: multiple-choice
+    prompt: 디스크 스케줄링에서 일반적으로 가장 중요하게 고려하는 시간은?
+    choices:
+      - id: '1'
+        text: 대기시간
+      - id: '2'
+        text: 전송시간
+      - id: '3'
+        text: 탐구시간
+      - id: '4'
+        text: 회전지연시간
+    answers: ['3']
+    explanation: 디스크 스케줄링은 일반적으로 헤드 이동에 걸리는 탐구시간을 줄이는 것을 중요하게 고려한다.
+    tags: [io, disk-scheduling]
+
+  - id: e19-57
+    type: multiple-choice
+    prompt: 현재 5번 트랙에 디스크의 헤드가 위치해 있다. 트랙 접근 요구가 9 -> 8 -> 7 -> 2의 순서로 큐에 들어와 있을 때, FCFS 스케줄링에 의해 요구가 서비스되는 순서는?
+    choices:
+      - id: '1'
+        text: 2 -> 7 -> 8 -> 9
+      - id: '2'
+        text: 7 -> 2 -> 8 -> 9
+      - id: '3'
+        text: 7 -> 8 -> 9 -> 2
+      - id: '4'
+        text: 9 -> 8 -> 7 -> 2
+    answers: ['4']
+    explanation: FCFS는 큐에 들어온 순서대로 요청을 처리하므로 9, 8, 7, 2 순서로 서비스한다.
+    tags: [io, disk-scheduling, fcfs]
+
+  - id: e19-58
+    type: multiple-choice
+    prompt: 현재 5번 트랙에 디스크의 헤드가 위치해 있고 0번 트랙을 향해 요구를 서비스하며 움직이고 있다. 트랙 접근 요구가 9 -> 8 -> 7 -> 2의 순서로 큐에 들어와 있을 때, SCAN 스케줄링에 의해 요구가 서비스되는 순서는?
+    choices:
+      - id: '1'
+        text: 2 -> 7 -> 8 -> 9
+      - id: '2'
+        text: 7 -> 2 -> 8 -> 9
+      - id: '3'
+        text: 7 -> 8 -> 9 -> 2
+      - id: '4'
+        text: 9 -> 8 -> 7 -> 2
+    answers: ['1']
+    explanation: SCAN은 현재 이동 방향인 0번 트랙 쪽의 요청 2를 먼저 처리한 뒤 방향을 바꾸어 7, 8, 9를 처리한다.
+    tags: [io, disk-scheduling, scan]
+
+  - id: e19-59
+    type: multiple-choice
+    prompt: 운영체제 보안의 기본 목표와 거리가 먼 것은?
+    choices:
+      - id: '1'
+        text: 효율성
+      - id: '2'
+        text: 무결성
+      - id: '3'
+        text: 기밀성
+      - id: '4'
+        text: 가용성
+    answers: ['1']
+    explanation: 보안의 기본 목표는 일반적으로 기밀성, 무결성, 가용성이다.
+    tags: [security]
+
+  - id: e19-60
+    type: multiple-choice
+    prompt: 벨-라파듈라(BLP) 모델에 대한 설명으로 바르지 않은 것은?
+    choices:
+      - id: '1'
+        text: 기밀성 유지에 초점을 둠
+      - id: '2'
+        text: 벨과 라파듈라가 개발한 수학적 모델
+      - id: '3'
+        text: 비바(Biba) 모델에 불법 수정 방지를 추가로 정의
+      - id: '4'
+        text: 보안 시스템 내에서 허용되는 정보의 흐름을 설명하는 모델
+    answers: ['3']
+    explanation: BLP는 기밀성 중심의 보안 모델이고, Biba 모델은 무결성 중심의 별도 모델이다.
+    tags: [security, blp]

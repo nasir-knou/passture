@@ -1,0 +1,17 @@
+subjectId: operating-systems
+sourceId: workbook
+title: 운영체제 교재 워크북 샘플
+kind: workbook
+
+questions:
+  - id: b01-01
+    type: multiple-choice
+    prompt: 사용자 모드와 커널 모드를 구분하는 주된 이유는?
+    choices:
+      - { id: '1', text: '보호가 필요한 명령과 자원 접근을 통제하기 위해' }
+      - { id: '2', text: '모든 명령을 응용 프로그램에서 직접 실행하기 위해' }
+      - { id: '3', text: '입출력 장치를 제거하기 위해' }
+      - { id: '4', text: '프로세스 생성을 금지하기 위해' }
+    answers: ['1']
+    explanation: 커널 모드는 특권 명령과 핵심 자원 접근을 담당하고, 사용자 모드는 제한된 권한으로 실행되어 시스템 보호를 돕는다.
+    tags: [intro, protection]

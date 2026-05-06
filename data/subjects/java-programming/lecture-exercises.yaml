@@ -1,0 +1,15 @@
+subjectId: java-programming
+sourceId: lecture-exercises
+title: Java프로그래밍 강의 연습문제 샘플
+kind: lecture
+
+questions:
+  - id: l01-01
+    type: ox
+    prompt: Java에서 생성자는 클래스 이름과 같고 반환 타입을 명시하지 않는다.
+    choices:
+      - { id: 'O', text: 'O' }
+      - { id: 'X', text: 'X' }
+    answers: ['O']
+    explanation: 생성자는 객체 초기화를 담당하며 클래스 이름과 동일하고 void를 포함한 반환 타입을 쓰지 않는다.
+    tags: [constructor]

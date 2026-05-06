@@ -1,0 +1,17 @@
+subjectId: algorithms
+sourceId: workbook
+title: 알고리즘 교재 워크북 샘플
+kind: workbook
+
+questions:
+  - id: b01-01
+    type: multiple-choice
+    prompt: O(n^2) 알고리즘과 O(n log n) 알고리즘을 큰 입력에서 비교할 때 일반적으로 더 빠르게 증가하는 것은?
+    choices:
+      - { id: '1', text: 'O(n^2)' }
+      - { id: '2', text: 'O(n log n)' }
+      - { id: '3', text: '둘은 항상 같다.' }
+      - { id: '4', text: '입력과 무관하게 O(1)이 가장 크다.' }
+    answers: ['1']
+    explanation: n이 충분히 커지면 n^2은 n log n보다 빠르게 증가한다.
+    tags: [complexity]
