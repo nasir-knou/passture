@@ -4,17 +4,9 @@ title: 인공지능 2018 기출
 kind: exam
 year: 2018
 
-passages:
-  - id: g18-origin-page-01
-    type: image
-    image:
-      path: images/subjects/artificial-intelligence/past-exams/2018/page-1.png
-      alt: 2018년 인공지능 기출 1쪽 원본
-
 questions:
   - id: e18-01
     type: multiple-choice
-    passageRefs: [g18-origin-page-01]
     prompt: 전문가 시스템에서 지식을 저장하는 구성 요소는?
     choices:
       - { id: '1', text: '지식베이스' }

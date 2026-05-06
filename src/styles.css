@@ -347,6 +347,11 @@ h1 {
   background: #ffffff;
 }
 
+.question-images {
+  display: grid;
+  gap: 12px;
+}
+
 .choice-list {
   display: grid;
   gap: 10px;

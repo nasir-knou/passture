@@ -4,17 +4,9 @@ title: 알고리즘 2019 기출
 kind: exam
 year: 2019
 
-passages:
-  - id: g19-origin-page-01
-    type: image
-    image:
-      path: images/subjects/algorithms/past-exams/2019/page-1.png
-      alt: 2019년 알고리즘 기출 1쪽 원본
-
 questions:
   - id: e19-01
     type: multiple-choice
-    passageRefs: [g19-origin-page-01]
     prompt: 탐욕 알고리즘의 설명으로 가장 적절한 것은?
     choices:
       - { id: '1', text: '각 단계에서 현재 가장 좋아 보이는 선택을 한다.' }

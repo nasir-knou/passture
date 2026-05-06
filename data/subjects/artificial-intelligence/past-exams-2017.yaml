@@ -4,17 +4,9 @@ title: 인공지능 2017 기출
 kind: exam
 year: 2017
 
-passages:
-  - id: g17-origin-page-01
-    type: image
-    image:
-      path: images/subjects/artificial-intelligence/past-exams/2017/page-1.png
-      alt: 2017년 인공지능 기출 1쪽 원본
-
 questions:
   - id: e17-01
     type: multiple-choice
-    passageRefs: [g17-origin-page-01]
     prompt: 상태 공간 탐색에서 목표 상태까지의 추정 비용을 사용하는 탐색 방법은?
     choices:
       - { id: '1', text: '휴리스틱 탐색' }

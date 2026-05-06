@@ -4,17 +4,9 @@ title: 인공지능 2019 기출
 kind: exam
 year: 2019
 
-passages:
-  - id: g19-origin-page-01
-    type: image
-    image:
-      path: images/subjects/artificial-intelligence/past-exams/2019/page-1.png
-      alt: 2019년 인공지능 기출 1쪽 원본
-
 questions:
   - id: e19-01
     type: multiple-choice
-    passageRefs: [g19-origin-page-01]
     prompt: 지도학습에 대한 설명으로 가장 적절한 것은?
     choices:
       - { id: '1', text: '입력과 정답 레이블 쌍을 이용해 모델을 학습한다.' }

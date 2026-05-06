@@ -4,17 +4,9 @@ title: Java프로그래밍 2017 기출
 kind: exam
 year: 2017
 
-passages:
-  - id: g17-origin-page-01
-    type: image
-    image:
-      path: images/subjects/java-programming/past-exams/2017/page-1.png
-      alt: 2017년 Java프로그래밍 기출 1쪽 원본
-
 questions:
   - id: e17-01
     type: multiple-choice
-    passageRefs: [g17-origin-page-01]
     prompt: Java에서 클래스 상속을 나타내는 키워드는?
     choices:
       - { id: '1', text: 'extends' }

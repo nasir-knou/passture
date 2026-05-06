@@ -4,17 +4,9 @@ title: Java프로그래밍 2018 기출
 kind: exam
 year: 2018
 
-passages:
-  - id: g18-origin-page-01
-    type: image
-    image:
-      path: images/subjects/java-programming/past-exams/2018/page-1.png
-      alt: 2018년 Java프로그래밍 기출 1쪽 원본
-
 questions:
   - id: e18-01
     type: multiple-choice
-    passageRefs: [g18-origin-page-01]
     prompt: Java 인터페이스를 구현할 때 사용하는 키워드는?
     choices:
       - { id: '1', text: 'implements' }

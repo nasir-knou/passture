@@ -90,6 +90,7 @@ function renderSession(session: QuizSession): HTMLElement {
     <article class="question-card">
       ${renderPassages(current.passages)}
       <p class="question-prompt">${escapeHtml(current.question.prompt)}</p>
+      ${renderQuestionImages(current.question.images ?? [])}
       <fieldset class="choice-list">
         <legend class="sr-only">선택지</legend>
         ${current.choices
@@ -206,6 +207,18 @@ function renderImage(image: QuestionImage): string {
       alt="${escapeHtml(image.alt)}"
       loading="lazy"
     />
+  `;
+}
+
+function renderQuestionImages(images: readonly QuestionImage[]): string {
+  if (images.length === 0) {
+    return '';
+  }
+
+  return `
+    <div class="question-images">
+      ${images.map(renderImage).join('')}
+    </div>
   `;
 }
 

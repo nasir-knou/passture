@@ -11,6 +11,7 @@
     "prebuild": "pnpm data:build",
     "preview": "vite preview",
     "data:build": "tsx scripts/build-data.ts",
+    "image:crop": "node scripts/crop-png.mjs",
     "test": "vitest run",
     "format": "prettier --write .",
     "format:check": "prettier --check ."

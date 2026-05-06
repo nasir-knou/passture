@@ -4,17 +4,9 @@ title: 알고리즘 2017 기출
 kind: exam
 year: 2017
 
-passages:
-  - id: g17-origin-page-01
-    type: image
-    image:
-      path: images/subjects/algorithms/past-exams/2017/page-1.png
-      alt: 2017년 알고리즘 기출 1쪽 원본
-
 questions:
   - id: e17-01
     type: multiple-choice
-    passageRefs: [g17-origin-page-01]
     prompt: 입력 크기 n에 대해 수행 시간이 n log n에 비례하는 정렬 알고리즘으로 가장 적절한 것은?
     choices:
       - { id: '1', text: '합병 정렬' }

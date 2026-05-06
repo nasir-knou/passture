@@ -54,7 +54,7 @@ passages:
       페이지 프레임은 2개이고 현재 시간 3까지 진행되었다.
 
 questions:
-  - id: e19-36
+  - id: e19-01
     type: multiple-choice
     prompt: 병행성에 대한 설명으로 바르지 않은 것은?
     choices:
@@ -70,7 +70,7 @@ questions:
     explanation: 분산 메모리 구조에서도 메시지 전달 등을 통해 병행 프로세스 처리가 가능하다.
     tags: [concurrency]
 
-  - id: e19-37
+  - id: e19-02
     type: multiple-choice
     prompt: 2개 이상의 프로세스가 동시에 공유자원을 액세스하는 코드 영역에 진입하지 못하도록 하는 것은?
     choices:
@@ -86,7 +86,7 @@ questions:
     explanation: 상호배제는 둘 이상의 프로세스가 동시에 임계영역에 들어가지 못하도록 보장하는 조건이다.
     tags: [concurrency, mutual-exclusion]
 
-  - id: e19-38
+  - id: e19-03
     type: multiple-choice
     prompt: 세마포어에 대한 설명으로 바르지 않은 것은?
     choices:
@@ -102,7 +102,7 @@ questions:
     explanation: 세마포어는 구현 방식에 따라 대기 큐와 block/wakeup을 사용해 busy waiting을 줄일 수 있다.
     tags: [semaphore]
 
-  - id: e19-39
+  - id: e19-04
     type: multiple-choice
     passageRefs: [g19-producer-code-01]
     prompt: 생산자/소비자 문제를 해결하기 위해서는 상호배제와 동기화가 모두 필요하다. 세마포어를 이용하여 생산자 프로세스를 다음과 같이 구현하였을 때, 상호배제를 위한 세마포어의 이름은?
@@ -119,7 +119,7 @@ questions:
     explanation: mutex는 버퍼에 접근하는 임계영역을 상호배제하기 위한 세마포어이다.
     tags: [semaphore, producer-consumer]
 
-  - id: e19-40
+  - id: e19-05
     type: multiple-choice
     prompt: 다음 중 판독기/기록기 문제가 발생하지 않는 것은?
     choices:
@@ -135,7 +135,7 @@ questions:
     explanation: 판독기끼리는 데이터를 변경하지 않으므로 동시에 접근해도 판독기/기록기 충돌이 발생하지 않는다.
     tags: [readers-writers]
 
-  - id: e19-41
+  - id: e19-06
     type: multiple-choice
     prompt: 교착상태의 필요조건에 포함되는 것은?
     choices:
@@ -151,12 +151,12 @@ questions:
     explanation: 교착상태의 필요조건에는 상호배제, 점유와 대기, 비선점, 환형 대기가 포함된다.
     tags: [deadlock]
 
-  - id: e19-42
+  - id: e19-07
     type: multiple-choice
     passageRefs: [g19-rag-01]
     prompt: 위 자원할당 그래프에 대한 설명으로 바른 것은?
     images:
-      - path: images/subjects/operating-systems/past-exams/2019/page-1.png
+      - path: images/subjects/operating-systems/past-exams/2019/e19-rag.png
         alt: 2019년 운영체제 기출 42~43번 자원할당 그래프
     choices:
       - id: '1'
@@ -171,7 +171,7 @@ questions:
     explanation: 자원할당 그래프에서 사각형은 자원, 원은 프로세스이며 r2에서 p2로 향하는 간선은 r2가 p2에 할당되었음을 나타낸다.
     tags: [deadlock, resource-allocation-graph]
 
-  - id: e19-43
+  - id: e19-08
     type: multiple-choice
     passageRefs: [g19-rag-01]
     prompt: 위 자원할당 그래프는 교착상태를 나타낸다. 간선을 하나만 제거했을 때 교착상태가 해소되는 간선은?
@@ -188,12 +188,12 @@ questions:
     explanation: p1, r2, p2, r1로 이어지는 순환 대기를 끊으려면 r1에서 p1로 향하는 할당 간선 (ㄱ)을 제거하면 된다.
     tags: [deadlock, resource-allocation-graph]
 
-  - id: e19-44
+  - id: e19-09
     type: multiple-choice
     passageRefs: [g19-transformed-rag-01]
     prompt: 각 자원 유형의 단위자원이 하나밖에 없는 경우 변형된 자원할당 그래프를 활용하여 교착상태를 회피할 수 있다. 그래프가 아래와 같을 때 다음 중 운영체제가 수용할 경우 불안전상태가 되는 요청은? 단, 점선 화살표는 선언간선을 나타낸다.
     images:
-      - path: images/subjects/operating-systems/past-exams/2019/page-1.png
+      - path: images/subjects/operating-systems/past-exams/2019/e19-transformed-rag.png
         alt: 2019년 운영체제 기출 44번 변형된 자원할당 그래프
     choices:
       - id: '1'
@@ -208,7 +208,7 @@ questions:
     explanation: p3의 r2 요청을 수용하면 기존 할당/요청 관계와 함께 순환 가능성이 생겨 불안전상태가 된다.
     tags: [deadlock, avoidance]
 
-  - id: e19-45
+  - id: e19-10
     type: multiple-choice
     prompt: 용량에 따라 기억장치를 계층적으로 바르게 구성한 것은?
     choices:
@@ -224,7 +224,7 @@ questions:
     explanation: 가장 빠르고 용량이 작은 레지스터에서 캐시, 메모리, 보조기억장치 순으로 계층을 이룬다.
     tags: [memory-hierarchy]
 
-  - id: e19-46
+  - id: e19-11
     type: multiple-choice
     prompt: 다중 프로그래밍 환경에서 여러 프로세스에 메모리를 적재하기 위한 메모리 분할 기법에 대한 설명으로 바르지 않은 것은?
     choices:
@@ -240,12 +240,12 @@ questions:
     explanation: 동적 분할은 필요한 크기만큼 할당하므로 내부 단편화보다 외부 단편화가 문제가 된다.
     tags: [memory-management, partitioning]
 
-  - id: e19-47
+  - id: e19-12
     type: multiple-choice
     passageRefs: [g19-free-list-01]
     prompt: 최적 적합을 이용할 때 할당되는 위치는?
     images:
-      - path: images/subjects/operating-systems/past-exams/2019/page-2.png
+      - path: images/subjects/operating-systems/past-exams/2019/e19-free-list.png
         alt: 2019년 운영체제 기출 47~48번 빈 공간 리스트
     choices:
       - id: '1'
@@ -260,7 +260,7 @@ questions:
     explanation: 16MB를 수용할 수 있는 공간 중 가장 작은 공간은 25MB인 공백 2이다.
     tags: [memory-management, allocation]
 
-  - id: e19-48
+  - id: e19-13
     type: multiple-choice
     passageRefs: [g19-free-list-01]
     prompt: 최악 적합을 이용할 때 할당되는 위치는?
@@ -277,7 +277,7 @@ questions:
     explanation: 최악 적합은 요구를 수용할 수 있는 공간 중 가장 큰 공간을 선택하므로 70MB인 공백 4에 할당한다.
     tags: [memory-management, allocation]
 
-  - id: e19-49
+  - id: e19-14
     type: multiple-choice
     prompt: 가상 메모리 관리기법 중 세그먼테이션 기법에 대한 설명으로 가장 바른 것은?
     choices:
@@ -293,7 +293,7 @@ questions:
     explanation: 세그먼테이션에서는 각 세그먼트의 기준 주소와 길이 정보를 세그먼트 사상표에 저장한다.
     tags: [virtual-memory, segmentation]
 
-  - id: e19-50
+  - id: e19-15
     type: multiple-choice
     prompt: 페이지 호출기법에 대한 설명으로 바르지 않은 것은?
     choices:
@@ -309,7 +309,7 @@ questions:
     explanation: 요구 페이지 호출기법은 요구된 페이지만 적재하므로 옮길 페이지 예측 자체의 오버헤드가 큰 방식은 아니다.
     tags: [virtual-memory, paging]
 
-  - id: e19-51
+  - id: e19-16
     type: multiple-choice
     prompt: 앞으로 가장 오랫동안 사용되지 않을 페이지를 교체 대상으로 선택하면 최선이지만 미래를 예측할 수 없어 실현 불가능한 원칙은?
     choices:
@@ -325,7 +325,7 @@ questions:
     explanation: 최적 페이지 교체는 Belady의 최적 알고리즘으로 알려져 있지만 실제 미래 참조를 알 수 없으므로 구현할 수 없다.
     tags: [virtual-memory, page-replacement]
 
-  - id: e19-52
+  - id: e19-17
     type: multiple-choice
     prompt: 장치의 구성에 대한 설명으로 바른 것은?
     choices:
@@ -341,12 +341,12 @@ questions:
     explanation: 장치 드라이버는 운영체제와 장치 사이에서 응용 프로그램의 입출력 요청을 장치별 명령으로 변환하는 소프트웨어이다.
     tags: [io, device]
 
-  - id: e19-53
+  - id: e19-18
     type: multiple-choice
     passageRefs: [g19-page-reference-01]
     prompt: FIFO 페이지 교체기법에서 시간 4에 교체 대상으로 선택하는 페이지 프레임 안의 페이지는?
     images:
-      - path: images/subjects/operating-systems/past-exams/2019/page-2.png
+      - path: images/subjects/operating-systems/past-exams/2019/e19-page-reference.png
         alt: 2019년 운영체제 기출 53~54번 페이지 참조 표
     choices:
       - id: '1'
@@ -361,7 +361,7 @@ questions:
     explanation: 시간 1에 A, 시간 2에 B가 적재되고 시간 3의 A는 적중이다. FIFO에서는 가장 먼저 들어온 A가 교체된다.
     tags: [virtual-memory, page-replacement, fifo]
 
-  - id: e19-54
+  - id: e19-19
     type: multiple-choice
     passageRefs: [g19-page-reference-01]
     prompt: LFU 페이지 교체기법에서 시간 4에 교체 대상으로 선택하는 페이지 프레임 안의 페이지는?
@@ -378,7 +378,7 @@ questions:
     explanation: 시간 4 직전까지 A는 두 번, B는 한 번 참조되었으므로 LFU는 참조 횟수가 가장 적은 B를 교체한다.
     tags: [virtual-memory, page-replacement, lfu]
 
-  - id: e19-55
+  - id: e19-20
     type: multiple-choice
     prompt: CPU의 데이터 처리 속도와 입출력장치의 데이터 전송 속도의 차이로 인한 문제를 임시 저장 장소를 이용하여 해결하는 입출력 관리 방법은?
     choices:
@@ -394,7 +394,7 @@ questions:
     explanation: 버퍼링은 속도가 다른 장치 사이에서 임시 저장 공간을 두어 데이터 전송 속도 차이를 완화한다.
     tags: [io, buffering]
 
-  - id: e19-56
+  - id: e19-21
     type: multiple-choice
     prompt: 디스크 스케줄링에서 일반적으로 가장 중요하게 고려하는 시간은?
     choices:
@@ -410,7 +410,7 @@ questions:
     explanation: 디스크 스케줄링은 일반적으로 헤드 이동에 걸리는 탐구시간을 줄이는 것을 중요하게 고려한다.
     tags: [io, disk-scheduling]
 
-  - id: e19-57
+  - id: e19-22
     type: multiple-choice
     prompt: 현재 5번 트랙에 디스크의 헤드가 위치해 있다. 트랙 접근 요구가 9 -> 8 -> 7 -> 2의 순서로 큐에 들어와 있을 때, FCFS 스케줄링에 의해 요구가 서비스되는 순서는?
     choices:
@@ -426,7 +426,7 @@ questions:
     explanation: FCFS는 큐에 들어온 순서대로 요청을 처리하므로 9, 8, 7, 2 순서로 서비스한다.
     tags: [io, disk-scheduling, fcfs]
 
-  - id: e19-58
+  - id: e19-23
     type: multiple-choice
     prompt: 현재 5번 트랙에 디스크의 헤드가 위치해 있고 0번 트랙을 향해 요구를 서비스하며 움직이고 있다. 트랙 접근 요구가 9 -> 8 -> 7 -> 2의 순서로 큐에 들어와 있을 때, SCAN 스케줄링에 의해 요구가 서비스되는 순서는?
     choices:
@@ -442,7 +442,7 @@ questions:
     explanation: SCAN은 현재 이동 방향인 0번 트랙 쪽의 요청 2를 먼저 처리한 뒤 방향을 바꾸어 7, 8, 9를 처리한다.
     tags: [io, disk-scheduling, scan]
 
-  - id: e19-59
+  - id: e19-24
     type: multiple-choice
     prompt: 운영체제 보안의 기본 목표와 거리가 먼 것은?
     choices:
@@ -458,7 +458,7 @@ questions:
     explanation: 보안의 기본 목표는 일반적으로 기밀성, 무결성, 가용성이다.
     tags: [security]
 
-  - id: e19-60
+  - id: e19-25
     type: multiple-choice
     prompt: 벨-라파듈라(BLP) 모델에 대한 설명으로 바르지 않은 것은?
     choices:

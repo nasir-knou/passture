@@ -4,17 +4,9 @@ title: 운영체제 2017 기출
 kind: exam
 year: 2017
 
-passages:
-  - id: g17-origin-page-01
-    type: image
-    image:
-      path: images/subjects/operating-systems/past-exams/2017/page-1.png
-      alt: 2017년 운영체제 기출 1쪽 원본
-
 questions:
   - id: e17-01
     type: multiple-choice
-    passageRefs: [g17-origin-page-01]
     prompt: 운영체제의 핵심 기능으로 가장 적절한 것은?
     choices:
       - { id: '1', text: '프로세스, 메모리, 장치 등 시스템 자원 관리' }
