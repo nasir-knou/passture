@@ -6,9 +6,16 @@ import { recordWrongAnswer } from './storage';
 
 const selectedSourcesKey = 'pt.selectedSources';
 const practiceScopeKey = 'pt.practiceScope';
+const practiceOptionsKey = 'pt.practiceOptions';
 const sessionKey = 'pt.currentSession';
 
 export type PracticeScope = 'all' | 'bookmarked' | 'wrong';
+export type OrderMode = 'default' | 'random';
+
+export interface PracticeOptions {
+  questionOrder: OrderMode;
+  choiceOrder: OrderMode;
+}
 
 export interface SelectedSource {
   subjectId: string;
@@ -63,9 +70,31 @@ export function savePracticeScope(scope: PracticeScope): void {
   sessionStorage.removeItem(sessionKey);
 }
 
+export function savePracticeOptions(options: PracticeOptions): void {
+  sessionStorage.setItem(practiceOptionsKey, JSON.stringify(options));
+  sessionStorage.removeItem(sessionKey);
+}
+
 export function loadPracticeScope(): PracticeScope {
   const scope = sessionStorage.getItem(practiceScopeKey);
   return scope === 'bookmarked' || scope === 'wrong' ? scope : 'all';
+}
+
+export function loadPracticeOptions(): PracticeOptions {
+  const raw = sessionStorage.getItem(practiceOptionsKey);
+  if (!raw) {
+    return defaultPracticeOptions();
+  }
+
+  try {
+    const parsed = JSON.parse(raw) as Partial<PracticeOptions>;
+    return {
+      questionOrder: parsed.questionOrder === 'random' ? 'random' : 'default',
+      choiceOrder: parsed.choiceOrder === 'random' ? 'random' : 'default',
+    };
+  } catch {
+    return defaultPracticeOptions();
+  }
 }
 
 export function loadSelectedSources(): SelectedSource[] {
@@ -74,8 +103,14 @@ export function loadSelectedSources(): SelectedSource[] {
     return [];
   }
 
-  const parsed = JSON.parse(raw) as SelectedSource[];
-  return Array.isArray(parsed) ? parsed : [];
+  try {
+    const parsed = JSON.parse(raw) as unknown;
+    return Array.isArray(parsed) ? parsed.filter(isSelectedSource) : [];
+  } catch {
+    sessionStorage.removeItem(selectedSourcesKey);
+    sessionStorage.removeItem(sessionKey);
+    return [];
+  }
 }
 
 export function defaultSelectedSources(
@@ -113,6 +148,7 @@ export function clearSession(): void {
 export function createQuizSession(
   sources: LoadedQuestionSource[],
   includeQuestion: (key: string) => boolean = () => true,
+  options: PracticeOptions = defaultPracticeOptions(),
 ): QuizSession {
   const questions = sources.flatMap((source) => {
     const passagesById = new Map(source.file.passages?.map((passage) => [passage.id, passage]));
@@ -130,7 +166,7 @@ export function createQuizSession(
         sourceTitle: source.sourceTitle,
         question,
         passages: question.passageRefs?.flatMap((id) => passagesById.get(id) ?? []) ?? [],
-        choices: shuffled(question.choices),
+        choices: options.choiceOrder === 'random' ? shuffled(question.choices) : question.choices,
       };
     });
   });
@@ -140,7 +176,7 @@ export function createQuizSession(
     createdAt: new Date().toISOString(),
     sourceSignature: sourceSignature(sources),
     currentIndex: 0,
-    questions: shuffled(questions),
+    questions: options.questionOrder === 'random' ? shuffled(questions) : questions,
     responses: {},
   };
 }
@@ -149,16 +185,17 @@ export function getOrCreateSession(
   sources: LoadedQuestionSource[],
   scope: PracticeScope = 'all',
   includeQuestion: (key: string) => boolean = () => true,
+  options: PracticeOptions = defaultPracticeOptions(),
 ): QuizSession {
   const existing = loadSession();
-  const signature = `${sourceSignature(sources)}|scope:${scope}`;
+  const signature = `${sourceSignature(sources)}|scope:${scope}|question:${options.questionOrder}|choice:${options.choiceOrder}`;
 
   if (existing && existing.sourceSignature === signature && existing.questions.length > 0) {
     return existing;
   }
 
   const session = {
-    ...createQuizSession(sources, includeQuestion),
+    ...createQuizSession(sources, includeQuestion, options),
     sourceSignature: signature,
   };
   saveSession(session);
@@ -215,4 +252,29 @@ export function scoreSession(session: QuizSession): QuizScore {
 
 function sourceSignature(sources: readonly SelectedSource[]): string {
   return sources.map((source) => `${source.subjectId}:${source.sourceId}:${source.path}`).join('|');
+}
+
+function defaultPracticeOptions(): PracticeOptions {
+  return {
+    questionOrder: 'default',
+    choiceOrder: 'default',
+  };
+}
+
+function isSelectedSource(value: unknown): value is SelectedSource {
+  if (typeof value !== 'object' || value === null || Array.isArray(value)) {
+    return false;
+  }
+
+  const source = value as Partial<Record<keyof SelectedSource, unknown>>;
+  return (
+    typeof source.subjectId === 'string' &&
+    source.subjectId.length > 0 &&
+    typeof source.sourceId === 'string' &&
+    source.sourceId.length > 0 &&
+    typeof source.sourceTitle === 'string' &&
+    source.sourceTitle.length > 0 &&
+    typeof source.path === 'string' &&
+    source.path.endsWith('.json')
+  );
 }

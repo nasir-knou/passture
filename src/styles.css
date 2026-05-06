@@ -85,6 +85,24 @@ a {
   text-transform: uppercase;
 }
 
+.brand-word {
+  color: #164a37;
+  font-weight: 800;
+  text-transform: none;
+}
+
+.brand-word strong {
+  color: #0f3326;
+  font-size: 1.12em;
+  font-weight: 950;
+}
+
+.home-title,
+.home-lead {
+  max-width: none;
+  white-space: nowrap;
+}
+
 h1 {
   margin: 0;
   color: #111827;
@@ -238,6 +256,103 @@ h1 {
   background: #ffffff;
   color: #1f2933;
   font: inherit;
+}
+
+.settings-grid {
+  display: grid;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.subject-switcher {
+  margin: 0 0 16px;
+}
+
+.subject-switcher label {
+  display: grid;
+  gap: 6px;
+  width: min(100%, 360px);
+  color: #43515f;
+  font-weight: 800;
+}
+
+.subject-switcher select {
+  min-height: 42px;
+  padding: 0 10px;
+  border: 1px solid #c7d1c9;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #1f2933;
+  font: inherit;
+}
+
+.segmented-field {
+  min-width: 0;
+  margin: 0;
+  padding: 16px;
+  border: 1px solid #d8dfd8;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.segmented-field legend {
+  padding: 0 4px;
+  color: #43515f;
+  font-weight: 800;
+}
+
+.source-field {
+  padding-top: 12px;
+}
+
+.segmented-control {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  overflow: hidden;
+  margin-top: 10px;
+  border: 1px solid #c7d1c9;
+  border-radius: 6px;
+  background: #ffffff;
+}
+
+.segmented-control.three {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.segmented-control label {
+  min-width: 0;
+}
+
+.segmented-control input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.segmented-control span {
+  display: flex;
+  min-height: 42px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px;
+  color: #43515f;
+  font-weight: 800;
+  text-align: center;
+}
+
+.segmented-control label + label span {
+  border-left: 1px solid #c7d1c9;
+}
+
+.segmented-control input:checked + span {
+  background: #1f6b4f;
+  color: #ffffff;
+}
+
+.segmented-control input:focus-visible + span {
+  outline: 3px solid #9fd5be;
+  outline-offset: -3px;
 }
 
 .check-row {
@@ -510,6 +625,11 @@ h1 {
 
   h1 {
     font-size: 2.5rem;
+  }
+
+  .home-title,
+  .home-lead {
+    white-space: normal;
   }
 
   .quiz-header,

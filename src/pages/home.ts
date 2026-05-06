@@ -34,9 +34,9 @@ export function renderHomePage(catalog: Catalog): HTMLElement {
       <a href="#/backup">백업</a>
     </nav>
     <section class="page-header">
-      <p class="eyebrow">passture</p>
-      <h1>방통대 기말고사 대비 문제풀이</h1>
-      <p class="lead">과목과 출처를 골라 정적 데이터 기반 문제풀이 세션을 시작합니다.</p>
+      <p class="eyebrow brand-word"><span aria-hidden="true">🐑</span> <strong>PASS</strong>ture</p>
+      <h1 class="home-title">개념보단 문제풀이가 중요한, 진짜 양치기들의 초원</h1>
+      <p class="lead home-lead">기출/교재/강의 문제들을 모아놓은 Pasture에서 시험감각을 익히고 Pass하세요</p>
     </section>
     <section class="grid" aria-label="과목 목록">
       ${subjectCards}

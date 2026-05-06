@@ -4,6 +4,7 @@ import {
   answerCurrentQuestion,
   defaultSelectedSources,
   getOrCreateSession,
+  loadPracticeOptions,
   loadPracticeScope,
   loadSelectedSources,
   moveQuestion,
@@ -32,6 +33,7 @@ export async function renderQuizPage(catalog: Catalog): Promise<HTMLElement> {
   );
 
   const scope = loadPracticeScope();
+  const options = loadPracticeOptions();
   const allowedKeys =
     scope === 'bookmarked'
       ? new Set(loadBookmarks())
@@ -42,6 +44,7 @@ export async function renderQuizPage(catalog: Catalog): Promise<HTMLElement> {
     loadedSources,
     scope,
     allowedKeys ? (key) => allowedKeys.has(key) : undefined,
+    options,
   );
   return renderSession(session);
 }
@@ -111,7 +114,7 @@ function renderSession(session: QuizSession): HTMLElement {
           .join('')}
       </fieldset>
       <p class="form-message" data-quiz-message></p>
-      ${response ? renderExplanation(response.correct, current.question.answers, current.question.explanation) : ''}
+      ${response ? renderExplanation(current.key, response.correct, current.question.answers, current.question.explanation) : ''}
       <div class="action-row split">
         <button class="secondary-button" type="button" data-prev ${session.currentIndex === 0 ? 'disabled' : ''}>이전</button>
         ${
@@ -223,6 +226,7 @@ function renderQuestionImages(images: readonly QuestionImage[]): string {
 }
 
 function renderExplanation(
+  questionKey: string,
   correct: boolean,
   answers: readonly string[],
   explanation: string,
@@ -230,6 +234,7 @@ function renderExplanation(
   return `
     <section class="explanation ${correct ? 'correct' : 'incorrect'}">
       <h2>${correct ? '정답' : '오답'}</h2>
+      <p>문제 ID: ${escapeHtml(questionKey)}</p>
       <p>정답: ${answers.map(escapeHtml).join(', ')}</p>
       <p>${escapeHtml(explanation)}</p>
     </section>

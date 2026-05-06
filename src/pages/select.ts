@@ -1,7 +1,10 @@
 import type { Catalog } from '../types/catalog';
 import {
+  savePracticeOptions,
   savePracticeScope,
   saveSelectedSources,
+  type OrderMode,
+  type PracticeOptions,
   type PracticeScope,
   type SelectedSource,
 } from '../lib/quiz-session';
@@ -11,15 +14,11 @@ export function renderSelectPage(catalog: Catalog): HTMLElement {
   const page = document.createElement('main');
   page.className = 'app-shell';
   let firstSourceRendered = false;
-  const years = [
-    ...new Set(
-      catalog.subjects.flatMap((subject) =>
-        subject.sources.flatMap((source) => (source.year ? [source.year] : [])),
-      ),
-    ),
-  ].sort((a, b) => a - b);
+  const selectedSubjectId = readSubjectId(catalog);
+  const visibleSubjects = catalog.subjects.filter((subject) => subject.id === selectedSubjectId);
+  const selectedSubject = visibleSubjects[0];
 
-  const subjects = catalog.subjects
+  const subjects = visibleSubjects
     .map((subject) => {
       const sources = subject.sources.length
         ? subject.sources
@@ -52,10 +51,10 @@ export function renderSelectPage(catalog: Catalog): HTMLElement {
         : '<p class="muted">아직 등록된 출처가 없습니다.</p>';
 
       return `
-        <article class="panel">
-          <h2>${subject.title}</h2>
+        <fieldset class="segmented-field source-field">
+          <legend>출처 선택</legend>
           <div class="check-list">${sources}</div>
-        </article>
+        </fieldset>
       `;
     })
     .join('');
@@ -64,44 +63,37 @@ export function renderSelectPage(catalog: Catalog): HTMLElement {
     ${renderNav()}
     <section class="page-header">
       <p class="eyebrow">select</p>
-      <h1>문제 선택</h1>
-      <p class="lead">선택한 출처의 문제를 섞어 하나의 풀이 세션으로 시작합니다.</p>
+      <h1>${escapeHtml(selectedSubject?.title ?? '문제 선택')}</h1>
+      <p class="lead">선택한 과목의 문제 출처와 풀이 방식을 정합니다.</p>
     </section>
-    <section class="filter-bar" aria-label="출처 필터">
+    <section class="subject-switcher" aria-label="과목 변경">
       <label>
-        <span>출처</span>
-        <select data-kind-filter>
-          <option value="all">전체</option>
-          <option value="exam">기출</option>
-          <option value="workbook">교재 워크북</option>
-          <option value="lecture">강의</option>
-        </select>
-      </label>
-      <label>
-        <span>연도</span>
-        <select data-year-filter>
-          <option value="all">전체</option>
-          ${years.map((year) => `<option value="${year}">${year}</option>`).join('')}
-        </select>
-      </label>
-      <label>
-        <span>문제 범위</span>
-        <select data-scope>
-          <option value="all">전체 문제</option>
-          <option value="bookmarked">북마크만</option>
-          <option value="wrong">오답만</option>
+        <span>과목</span>
+        <select data-subject-switcher>
+          ${catalog.subjects
+            .map(
+              (subject) => `
+                <option value="${escapeHtml(subject.id)}" ${subject.id === selectedSubject?.id ? 'selected' : ''}>
+                  ${escapeHtml(subject.title)}
+                </option>
+              `,
+            )
+            .join('')}
         </select>
       </label>
     </section>
     <section class="stack">${subjects}</section>
+    <section class="settings-grid" aria-label="풀이 설정">
+      ${renderScopeSetting()}
+      ${renderOrderSetting('문제순서 설정', 'question-order', 'questionOrder')}
+      ${renderOrderSetting('선지순서 설정', 'choice-order', 'choiceOrder')}
+    </section>
     <p class="form-message" data-select-message></p>
     <div class="action-row">
       <button class="primary-button" type="button" data-start-quiz>풀이 시작</button>
     </div>
     ${renderFooter()}
   `;
-
-  bindFilters(page);
 
   page.querySelector<HTMLButtonElement>('[data-start-quiz]')?.addEventListener('click', () => {
     const selectedSources = Array.from(
@@ -124,35 +116,85 @@ export function renderSelectPage(catalog: Catalog): HTMLElement {
 
     saveSelectedSources(selectedSources);
     savePracticeScope(readPracticeScope(page));
+    savePracticeOptions(readPracticeOptions(page));
     window.location.hash = '#/quiz';
+  });
+
+  page.querySelector<HTMLSelectElement>('[data-subject-switcher]')?.addEventListener('change', () => {
+    const select = page.querySelector<HTMLSelectElement>('[data-subject-switcher]');
+    if (!select) {
+      return;
+    }
+
+    window.location.hash = `#/select?subject=${encodeURIComponent(select.value)}`;
   });
 
   return page;
 }
 
-function bindFilters(page: HTMLElement): void {
-  const applyFilters = () => {
-    const kind = page.querySelector<HTMLSelectElement>('[data-kind-filter]')?.value ?? 'all';
-    const year = page.querySelector<HTMLSelectElement>('[data-year-filter]')?.value ?? 'all';
-
-    page.querySelectorAll<HTMLElement>('.check-row').forEach((row) => {
-      const input = row.querySelector<HTMLInputElement>('input[name="source"]');
-      const matchesKind = kind === 'all' || input?.dataset.kind === kind;
-      const matchesYear = year === 'all' || input?.dataset.year === year;
-      row.hidden = !matchesKind || !matchesYear;
-      if (row.hidden && input) {
-        input.checked = false;
-      }
-    });
-  };
-
-  page.querySelector<HTMLSelectElement>('[data-kind-filter]')?.addEventListener('change', applyFilters);
-  page.querySelector<HTMLSelectElement>('[data-year-filter]')?.addEventListener('change', applyFilters);
+function readSubjectId(catalog: Catalog): string | undefined {
+  const query = window.location.hash.split('?')[1] ?? '';
+  const subjectId = new URLSearchParams(query).get('subject');
+  const requestedSubject = catalog.subjects.find((subject) => subject.id === subjectId);
+  const firstAvailableSubject = catalog.subjects.find((subject) => subject.sources.length > 0);
+  return requestedSubject?.id ?? firstAvailableSubject?.id;
 }
 
 function readPracticeScope(page: HTMLElement): PracticeScope {
-  const value = page.querySelector<HTMLSelectElement>('[data-scope]')?.value;
+  const value = page.querySelector<HTMLInputElement>('input[name="scope"]:checked')?.value;
   return value === 'bookmarked' || value === 'wrong' ? value : 'all';
+}
+
+function readPracticeOptions(page: HTMLElement): PracticeOptions {
+  return {
+    questionOrder: readOrderMode(page, 'questionOrder'),
+    choiceOrder: readOrderMode(page, 'choiceOrder'),
+  };
+}
+
+function readOrderMode(page: HTMLElement, name: keyof PracticeOptions): OrderMode {
+  const checked = page.querySelector<HTMLInputElement>(`input[name="${name}"]:checked`);
+  return checked?.value === 'random' ? 'random' : 'default';
+}
+
+function renderOrderSetting(label: string, groupLabel: string, name: keyof PracticeOptions): string {
+  return `
+    <fieldset class="segmented-field">
+      <legend>${label}</legend>
+      <div class="segmented-control" aria-label="${groupLabel}">
+        <label>
+          <input type="radio" name="${name}" value="default" checked />
+          <span>기본</span>
+        </label>
+        <label>
+          <input type="radio" name="${name}" value="random" />
+          <span>순서 무작위</span>
+        </label>
+      </div>
+    </fieldset>
+  `;
+}
+
+function renderScopeSetting(): string {
+  return `
+    <fieldset class="segmented-field">
+      <legend>문제 범위 설정</legend>
+      <div class="segmented-control three" aria-label="practice-scope">
+        <label>
+          <input type="radio" name="scope" value="all" checked />
+          <span>전체</span>
+        </label>
+        <label>
+          <input type="radio" name="scope" value="bookmarked" />
+          <span>북마크만</span>
+        </label>
+        <label>
+          <input type="radio" name="scope" value="wrong" />
+          <span>오답만</span>
+        </label>
+      </div>
+    </fieldset>
+  `;
 }
 
 function renderNav(): string {
