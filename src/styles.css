@@ -29,15 +29,51 @@ a {
   color: inherit;
 }
 
+.app-shell,
+.shell {
+  width: min(100%, 1120px);
+  margin: 0 auto;
+  padding: 32px;
+}
+
 .shell {
   display: grid;
   min-height: 100vh;
-  padding: 32px;
   place-items: center;
 }
 
 .hero {
   width: min(100%, 720px);
+}
+
+.top-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 56px;
+}
+
+.top-nav a,
+.text-link {
+  min-height: 36px;
+  color: #1f6b4f;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.top-nav a {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 12px;
+  border: 1px solid #ced8cf;
+  border-radius: 6px;
+  background: #ffffff;
+}
+
+.page-header {
+  max-width: 760px;
+  margin-bottom: 32px;
 }
 
 .eyebrow {
@@ -65,6 +101,12 @@ h1 {
   line-height: 1.7;
 }
 
+.muted {
+  margin: 0;
+  color: #667483;
+  line-height: 1.6;
+}
+
 .primary-link {
   display: inline-flex;
   min-height: 44px;
@@ -79,15 +121,106 @@ h1 {
   text-decoration: none;
 }
 
-.primary-link:focus-visible {
+.primary-link:focus-visible,
+.top-nav a:focus-visible,
+.text-link:focus-visible,
+.check-row:focus-within {
   outline: 3px solid #9fd5be;
   outline-offset: 3px;
 }
 
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.stack {
+  display: grid;
+  gap: 16px;
+}
+
+.card,
+.panel {
+  border: 1px solid #d8dfd8;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.card {
+  display: grid;
+  gap: 20px;
+  align-content: start;
+  min-height: 220px;
+  padding: 20px;
+}
+
+.panel {
+  padding: 20px;
+}
+
+.card h2,
+.panel h2 {
+  margin: 0 0 8px;
+  color: #111827;
+  font-size: 1.125rem;
+  letter-spacing: 0;
+}
+
+.compact-list {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding-left: 18px;
+  color: #43515f;
+  line-height: 1.5;
+}
+
+.check-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.check-row {
+  display: grid;
+  grid-template-columns: 20px 1fr;
+  gap: 12px;
+  align-items: start;
+  min-height: 48px;
+  padding: 12px;
+  border: 1px solid #e2e7e2;
+  border-radius: 6px;
+  background: #fbfcfa;
+}
+
+.check-row input {
+  width: 18px;
+  height: 18px;
+  margin: 2px 0 0;
+}
+
+.check-row small {
+  display: block;
+  margin-top: 4px;
+  color: #667483;
+}
+
+.action-row {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 24px;
+}
+
 @media (max-width: 640px) {
+  .app-shell,
   .shell {
     align-items: start;
     padding: 28px 20px;
+  }
+
+  .top-nav {
+    margin-bottom: 40px;
   }
 
   h1 {
