@@ -9,6 +9,7 @@ import {
   type LoadedQuestionSource,
   type QuizSession,
 } from '../lib/quiz-session';
+import { isBookmarked, toggleBookmark } from '../lib/storage';
 import { escapeHtml } from './shared';
 
 export async function renderQuizPage(catalog: Catalog): Promise<HTMLElement> {
@@ -56,6 +57,7 @@ function renderSession(session: QuizSession): HTMLElement {
   const inputType = multiple ? 'checkbox' : 'radio';
   const progress = `${session.currentIndex + 1} / ${session.questions.length}`;
   const selected = new Set(response?.selected ?? []);
+  const bookmarked = isBookmarked(current.key);
 
   page.innerHTML = `
     ${renderNav()}
@@ -64,7 +66,12 @@ function renderSession(session: QuizSession): HTMLElement {
         <p class="eyebrow">${escapeHtml(current.sourceTitle)}</p>
         <h1>문제 ${progress}</h1>
       </div>
-      <a class="text-link" href="#/result">결과 보기</a>
+      <div class="quiz-actions">
+        <button class="secondary-button" type="button" data-bookmark>
+          ${bookmarked ? '북마크 해제' : '북마크'}
+        </button>
+        <a class="text-link" href="#/result">결과 보기</a>
+      </div>
     </section>
     <article class="question-card">
       ${renderPassages(current.passages)}
@@ -135,6 +142,16 @@ function bindQuizEvents(page: HTMLElement, session: QuizSession): void {
     }
 
     moveQuestion(session, session.currentIndex + 1);
+    refreshRoute();
+  });
+
+  page.querySelector<HTMLButtonElement>('[data-bookmark]')?.addEventListener('click', () => {
+    const current = session.questions[session.currentIndex];
+    if (!current) {
+      return;
+    }
+
+    toggleBookmark(current.key);
     refreshRoute();
   });
 }

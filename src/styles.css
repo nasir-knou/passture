@@ -266,6 +266,14 @@ h1 {
   margin-bottom: 24px;
 }
 
+.quiz-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  justify-content: flex-end;
+}
+
 .quiz-header h1 {
   font-size: 2rem;
 }
@@ -397,6 +405,16 @@ h1 {
   justify-content: space-between;
 }
 
+.file-input {
+  width: 100%;
+  margin-top: 16px;
+  padding: 12px;
+  border: 1px solid #d8dfd8;
+  border-radius: 6px;
+  background: #fbfcfa;
+  color: #1f2933;
+}
+
 .status-correct,
 .status-incorrect {
   flex: 0 0 auto;
@@ -438,6 +456,7 @@ h1 {
   }
 
   .quiz-header,
+  .quiz-actions,
   .result-item {
     display: grid;
   }
