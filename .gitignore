@@ -27,3 +27,6 @@ dist/
 
 # Generated runtime data
 public/data/
+
+# Local source materials for content entry
+*.pdf
