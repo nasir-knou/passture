@@ -19,3 +19,11 @@ Gemfile.lock
 
 # OMC (oh-my-claudecode) local agent state
 .omc/
+
+# Node / Vite
+node_modules/
+dist/
+.vite/
+
+# Generated runtime data
+public/data/
