@@ -11,7 +11,7 @@ export function startApp(root: HTMLElement): void {
   const router = createRouter(root, {
     '/': async () => renderHomePage(await loadCatalog()),
     '/select': async () => renderSelectPage(await loadCatalog()),
-    '/quiz': async () => renderQuizPage(),
+    '/quiz': async () => renderQuizPage(await loadCatalog()),
     '/result': async () => renderResultPage(),
     '/bookmarks': async () => renderBookmarksPage(),
     '/backup': async () => renderBackupPage(),

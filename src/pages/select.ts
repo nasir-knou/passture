@@ -1,25 +1,39 @@
 import type { Catalog } from '../types/catalog';
-import { sourceKindLabel } from './shared';
+import { saveSelectedSources, type SelectedSource } from '../lib/quiz-session';
+import { escapeHtml, sourceKindLabel } from './shared';
 
 export function renderSelectPage(catalog: Catalog): HTMLElement {
   const page = document.createElement('main');
   page.className = 'app-shell';
+  let firstSourceRendered = false;
 
   const subjects = catalog.subjects
     .map((subject) => {
       const sources = subject.sources.length
         ? subject.sources
-            .map(
-              (source) => `
+            .map((source) => {
+              const checked = !firstSourceRendered ? ' checked' : '';
+              firstSourceRendered = true;
+
+              return `
                 <label class="check-row">
-                  <input type="checkbox" name="source" value="${subject.id}:${source.id}" />
+                  <input
+                    type="checkbox"
+                    name="source"
+                    value="${subject.id}:${source.id}"
+                    data-subject-id="${subject.id}"
+                    data-source-id="${source.id}"
+                    data-source-title="${escapeHtml(source.title)}"
+                    data-source-path="${source.path}"
+                    ${checked}
+                  />
                   <span>
                     <strong>${source.title}</strong>
                     <small>${sourceKindLabel(source.kind)}${source.year ? ` · ${source.year}` : ''}</small>
                   </span>
                 </label>
-              `,
-            )
+              `;
+            })
             .join('')
         : '<p class="muted">아직 등록된 출처가 없습니다.</p>';
 
@@ -37,13 +51,37 @@ export function renderSelectPage(catalog: Catalog): HTMLElement {
     <section class="page-header">
       <p class="eyebrow">select</p>
       <h1>문제 선택</h1>
-      <p class="lead">M4에서 선택된 출처를 세션으로 묶고 셔플·채점 흐름으로 연결합니다.</p>
+      <p class="lead">선택한 출처의 문제를 섞어 하나의 풀이 세션으로 시작합니다.</p>
     </section>
     <section class="stack">${subjects}</section>
+    <p class="form-message" data-select-message></p>
     <div class="action-row">
-      <a class="primary-link" href="#/quiz">풀이 골격 보기</a>
+      <button class="primary-button" type="button" data-start-quiz>풀이 시작</button>
     </div>
   `;
+
+  page.querySelector<HTMLButtonElement>('[data-start-quiz]')?.addEventListener('click', () => {
+    const selectedSources = Array.from(
+      page.querySelectorAll<HTMLInputElement>('input[name="source"]:checked'),
+    ).map<SelectedSource>((input) => ({
+      subjectId: input.dataset.subjectId ?? '',
+      sourceId: input.dataset.sourceId ?? '',
+      sourceTitle: input.dataset.sourceTitle ?? '',
+      path: input.dataset.sourcePath ?? '',
+    }));
+
+    const message = page.querySelector<HTMLElement>('[data-select-message]');
+
+    if (selectedSources.length === 0) {
+      if (message) {
+        message.textContent = '출처를 하나 이상 선택해야 합니다.';
+      }
+      return;
+    }
+
+    saveSelectedSources(selectedSources);
+    window.location.hash = '#/quiz';
+  });
 
   return page;
 }
