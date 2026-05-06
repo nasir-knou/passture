@@ -240,7 +240,9 @@ function validateImage(value: unknown, fieldPath: string, root: string): void {
   const imagePath = expectString(image.path, `${fieldPath}.path`);
   expectString(image.alt, `${fieldPath}.alt`);
 
-  if (!fs.existsSync(path.join(root, imagePath))) {
+  const repoPath = path.join(root, imagePath);
+  const publicPath = path.join(root, 'public', imagePath);
+  if (!fs.existsSync(repoPath) && !fs.existsSync(publicPath)) {
     throw new Error(`${fieldPath}.path file does not exist: ${imagePath}`);
   }
 }
