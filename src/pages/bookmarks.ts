@@ -1,5 +1,5 @@
 import { loadBookmarks, removeBookmark } from '../lib/storage';
-import { escapeHtml } from './shared';
+import { escapeHtml, renderFooter } from './shared';
 
 export function renderBookmarksPage(): HTMLElement {
   const page = document.createElement('main');
@@ -22,6 +22,7 @@ export function renderBookmarksPage(): HTMLElement {
         ? '<section class="panel"><p class="muted">아직 북마크한 문제가 없습니다.</p></section>'
         : `<section class="stack">${bookmarks.map(renderBookmark).join('')}</section>`
     }
+    ${renderFooter()}
   `;
 
   page.querySelectorAll<HTMLButtonElement>('[data-remove-bookmark]').forEach((button) => {

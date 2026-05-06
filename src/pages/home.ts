@@ -1,5 +1,5 @@
 import type { Catalog } from '../types/catalog';
-import { sourceKindLabel } from './shared';
+import { renderFooter, sourceKindLabel } from './shared';
 
 export function renderHomePage(catalog: Catalog): HTMLElement {
   const page = document.createElement('main');
@@ -41,6 +41,7 @@ export function renderHomePage(catalog: Catalog): HTMLElement {
     <section class="grid" aria-label="과목 목록">
       ${subjectCards}
     </section>
+    ${renderFooter()}
   `;
 
   return page;

@@ -4,13 +4,15 @@ import {
   answerCurrentQuestion,
   defaultSelectedSources,
   getOrCreateSession,
+  loadPracticeScope,
   loadSelectedSources,
   moveQuestion,
   type LoadedQuestionSource,
   type QuizSession,
 } from '../lib/quiz-session';
-import { isBookmarked, toggleBookmark } from '../lib/storage';
-import { escapeHtml } from './shared';
+import { isBookmarked, loadBookmarks, loadWrongAnswers, toggleBookmark } from '../lib/storage';
+import { escapeHtml, renderFooter } from './shared';
+import type { Passage, QuestionImage } from '../types/question';
 
 export async function renderQuizPage(catalog: Catalog): Promise<HTMLElement> {
   const selectedSources = loadSelectedSources();
@@ -29,7 +31,18 @@ export async function renderQuizPage(catalog: Catalog): Promise<HTMLElement> {
     })),
   );
 
-  const session = getOrCreateSession(loadedSources);
+  const scope = loadPracticeScope();
+  const allowedKeys =
+    scope === 'bookmarked'
+      ? new Set(loadBookmarks())
+      : scope === 'wrong'
+        ? new Set(Object.keys(loadWrongAnswers()))
+        : undefined;
+  const session = getOrCreateSession(
+    loadedSources,
+    scope,
+    allowedKeys ? (key) => allowedKeys.has(key) : undefined,
+  );
   return renderSession(session);
 }
 
@@ -48,6 +61,7 @@ function renderSession(session: QuizSession): HTMLElement {
         <p class="lead">문제 선택 화면에서 출처를 선택해 주세요.</p>
       </section>
       <a class="primary-link" href="#/select">문제 선택</a>
+      ${renderFooter()}
     `;
     return page;
   }
@@ -106,6 +120,7 @@ function renderSession(session: QuizSession): HTMLElement {
         }
       </div>
     </article>
+    ${renderFooter()}
   `;
 
   bindQuizEvents(page, session);
@@ -166,9 +181,7 @@ function renderNav(): string {
   `;
 }
 
-function renderPassages(
-  passages: readonly { id: string; body?: string; language?: string }[],
-): string {
+function renderPassages(passages: readonly Passage[]): string {
   if (passages.length === 0) {
     return '';
   }
@@ -178,11 +191,22 @@ function renderPassages(
       (passage) => `
         <section class="passage">
           <p class="muted">${escapeHtml(passage.id)}${passage.language ? ` · ${escapeHtml(passage.language)}` : ''}</p>
-          <pre><code>${escapeHtml(passage.body ?? '')}</code></pre>
+          ${passage.image ? renderImage(passage.image) : `<pre><code>${escapeHtml(passage.body ?? '')}</code></pre>`}
         </section>
       `,
     )
     .join('');
+}
+
+function renderImage(image: QuestionImage): string {
+  return `
+    <img
+      class="question-image"
+      src="${escapeHtml(image.path)}"
+      alt="${escapeHtml(image.alt)}"
+      loading="lazy"
+    />
+  `;
 }
 
 function renderExplanation(

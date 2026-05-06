@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { isBookmarked, loadBookmarks, toggleBookmark } from '../src/lib/storage';
+import { isBookmarked, loadBookmarks, loadWrongAnswers, recordWrongAnswer, toggleBookmark } from '../src/lib/storage';
 
 describe('bookmark storage', () => {
   beforeEach(() => {
@@ -14,6 +14,18 @@ describe('bookmark storage', () => {
 
     expect(toggleBookmark('operating-systems:past-exams-2019:e19-01')).toBe(false);
     expect(loadBookmarks()).toEqual([]);
+  });
+
+  it('records wrong answer counts under pt.wrongAnswers', () => {
+    const key = 'operating-systems:past-exams-2019:e19-01';
+
+    recordWrongAnswer(key, new Date('2026-05-06T00:00:00.000Z'));
+    recordWrongAnswer(key, new Date('2026-05-06T00:01:00.000Z'));
+
+    expect(loadWrongAnswers()[key]).toEqual({
+      wrongCount: 2,
+      lastWrongAt: '2026-05-06T00:01:00.000Z',
+    });
   });
 });
 

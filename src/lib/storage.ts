@@ -54,6 +54,18 @@ export function saveWrongAnswers(wrongAnswers: Record<string, WrongAnswerRecord>
   localStorage.setItem(wrongAnswersKey, JSON.stringify(wrongAnswers));
 }
 
+export function recordWrongAnswer(key: string, now = new Date()): void {
+  const wrongAnswers = loadWrongAnswers();
+  const previous = wrongAnswers[key];
+
+  wrongAnswers[key] = {
+    wrongCount: (previous?.wrongCount ?? 0) + 1,
+    lastWrongAt: now.toISOString(),
+  };
+
+  saveWrongAnswers(wrongAnswers);
+}
+
 function readStringArray(key: string): string[] {
   const raw = localStorage.getItem(key);
   if (!raw) {

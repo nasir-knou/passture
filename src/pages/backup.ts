@@ -4,6 +4,7 @@ import {
   importUserData,
   type ImportMode,
 } from '../lib/backup';
+import { renderFooter } from './shared';
 
 export function renderBackupPage(): HTMLElement {
   const page = document.createElement('main');
@@ -37,6 +38,7 @@ export function renderBackupPage(): HTMLElement {
         <p class="form-message" data-backup-message></p>
       </article>
     </section>
+    ${renderFooter()}
   `;
 
   page.querySelector<HTMLButtonElement>('[data-export]')?.addEventListener('click', () => {

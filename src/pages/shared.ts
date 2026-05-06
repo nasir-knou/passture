@@ -11,6 +11,15 @@ export function sourceKindLabel(kind: SourceKind): string {
   }
 }
 
+export function renderFooter(): string {
+  return `
+    <footer class="site-footer">
+      <p>비영리 학습 목적의 문제풀이 도구입니다. 기출·교재 관련 권리는 각 권리자에게 있으며, 권리자 요청 시 관련 자료를 삭제합니다.</p>
+      <p>Code MIT License.</p>
+    </footer>
+  `;
+}
+
 export function escapeHtml(value: string): string {
   return value
     .replaceAll('&', '&amp;')

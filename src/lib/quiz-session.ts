@@ -2,9 +2,13 @@ import type { CatalogSource } from '../types/catalog';
 import type { Choice, Passage, Question, QuestionFile } from '../types/question';
 import { isCorrectAnswer } from './scorer';
 import { shuffled } from './shuffle';
+import { recordWrongAnswer } from './storage';
 
 const selectedSourcesKey = 'pt.selectedSources';
+const practiceScopeKey = 'pt.practiceScope';
 const sessionKey = 'pt.currentSession';
+
+export type PracticeScope = 'all' | 'bookmarked' | 'wrong';
 
 export interface SelectedSource {
   subjectId: string;
@@ -54,6 +58,16 @@ export function saveSelectedSources(sources: SelectedSource[]): void {
   sessionStorage.removeItem(sessionKey);
 }
 
+export function savePracticeScope(scope: PracticeScope): void {
+  sessionStorage.setItem(practiceScopeKey, scope);
+  sessionStorage.removeItem(sessionKey);
+}
+
+export function loadPracticeScope(): PracticeScope {
+  const scope = sessionStorage.getItem(practiceScopeKey);
+  return scope === 'bookmarked' || scope === 'wrong' ? scope : 'all';
+}
+
 export function loadSelectedSources(): SelectedSource[] {
   const raw = sessionStorage.getItem(selectedSourcesKey);
   if (!raw) {
@@ -96,19 +110,29 @@ export function clearSession(): void {
   sessionStorage.removeItem(sessionKey);
 }
 
-export function createQuizSession(sources: LoadedQuestionSource[]): QuizSession {
+export function createQuizSession(
+  sources: LoadedQuestionSource[],
+  includeQuestion: (key: string) => boolean = () => true,
+): QuizSession {
   const questions = sources.flatMap((source) => {
     const passagesById = new Map(source.file.passages?.map((passage) => [passage.id, passage]));
 
-    return source.file.questions.map<QuizSessionQuestion>((question) => ({
-      key: `${source.subjectId}:${source.sourceId}:${question.id}`,
-      subjectId: source.subjectId,
-      sourceId: source.sourceId,
-      sourceTitle: source.sourceTitle,
-      question,
-      passages: question.passageRefs?.flatMap((id) => passagesById.get(id) ?? []) ?? [],
-      choices: shuffled(question.choices),
-    }));
+    return source.file.questions.flatMap<QuizSessionQuestion>((question) => {
+      const key = `${source.subjectId}:${source.sourceId}:${question.id}`;
+      if (!includeQuestion(key)) {
+        return [];
+      }
+
+      return {
+        key,
+        subjectId: source.subjectId,
+        sourceId: source.sourceId,
+        sourceTitle: source.sourceTitle,
+        question,
+        passages: question.passageRefs?.flatMap((id) => passagesById.get(id) ?? []) ?? [],
+        choices: shuffled(question.choices),
+      };
+    });
   });
 
   return {
@@ -121,15 +145,22 @@ export function createQuizSession(sources: LoadedQuestionSource[]): QuizSession 
   };
 }
 
-export function getOrCreateSession(sources: LoadedQuestionSource[]): QuizSession {
+export function getOrCreateSession(
+  sources: LoadedQuestionSource[],
+  scope: PracticeScope = 'all',
+  includeQuestion: (key: string) => boolean = () => true,
+): QuizSession {
   const existing = loadSession();
-  const signature = sourceSignature(sources);
+  const signature = `${sourceSignature(sources)}|scope:${scope}`;
 
   if (existing && existing.sourceSignature === signature && existing.questions.length > 0) {
     return existing;
   }
 
-  const session = createQuizSession(sources);
+  const session = {
+    ...createQuizSession(sources, includeQuestion),
+    sourceSignature: signature,
+  };
   saveSession(session);
   return session;
 }
@@ -140,13 +171,19 @@ export function answerCurrentQuestion(session: QuizSession, selected: string[]):
     return session;
   }
 
+  const correct = isCorrectAnswer(selected, current.question.answers);
+
+  if (!correct) {
+    recordWrongAnswer(current.key);
+  }
+
   const nextSession = {
     ...session,
     responses: {
       ...session.responses,
       [current.key]: {
         selected,
-        correct: isCorrectAnswer(selected, current.question.answers),
+        correct,
         checkedAt: new Date().toISOString(),
       },
     },

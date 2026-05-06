@@ -1,5 +1,5 @@
 import { clearSession, loadSession, scoreSession } from '../lib/quiz-session';
-import { escapeHtml } from './shared';
+import { escapeHtml, renderFooter } from './shared';
 
 export function renderResultPage(): HTMLElement {
   const page = document.createElement('main');
@@ -15,6 +15,7 @@ export function renderResultPage(): HTMLElement {
         <p class="lead">문제 선택 화면에서 새 풀이 세션을 시작해 주세요.</p>
       </section>
       <a class="primary-link" href="#/select">문제 선택</a>
+      ${renderFooter()}
     `;
     return page;
   }
@@ -65,6 +66,7 @@ export function renderResultPage(): HTMLElement {
       <a class="secondary-link" href="#/quiz">풀이로 돌아가기</a>
       <button class="primary-button" type="button" data-new-session>새 세션 시작</button>
     </div>
+    ${renderFooter()}
   `;
 
   page.querySelector<HTMLButtonElement>('[data-new-session]')?.addEventListener('click', () => {
