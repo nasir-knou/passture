@@ -28,6 +28,7 @@ export function buildData(root = repoRoot): BuildResult {
       const questionPath = path.join(root, 'data', source.path.replace(/\.json$/, '.yaml'));
       const questionFile = readYamlFile<QuestionFile>(questionPath, root);
       validateQuestionFile(questionFile, subject.id, source, root);
+      source.questionCount = questionFile.questions.length;
 
       const outputPath = path.join(publicDataDir, source.path);
       writeJson(outputPath, questionFile);
@@ -139,8 +140,8 @@ function validatePassage(
   }
 
   const type = expectString(passage.type, `${fieldPath}.type`);
-  if (!['text', 'code', 'image'].includes(type)) {
-    throw new Error(`${fieldPath}.type must be text, code, or image`);
+  if (!['text', 'code', 'image', 'diagram'].includes(type)) {
+    throw new Error(`${fieldPath}.type must be text, code, image, or diagram`);
   }
 
   if (passage.language !== undefined) {
@@ -153,6 +154,10 @@ function validatePassage(
 
   if (passage.image !== undefined) {
     validateImage(passage.image, `${fieldPath}.image`, root);
+  }
+
+  if (passage.diagram !== undefined) {
+    validateChoiceDiagram(passage.diagram, `${fieldPath}.diagram`);
   }
 }
 
@@ -236,6 +241,169 @@ function validateChoice(value: unknown, fieldPath: string, root: string): assert
   if (choice.image !== undefined) {
     validateImage(choice.image, `${fieldPath}.image`, root);
   }
+
+  if (choice.diagram !== undefined) {
+    validateChoiceDiagram(choice.diagram, `${fieldPath}.diagram`);
+  }
+}
+
+function validateChoiceDiagram(value: unknown, fieldPath: string): void {
+  const diagram = expectRecord(value, fieldPath);
+  const type = expectString(diagram.type, `${fieldPath}.type`);
+
+  if (
+    ![
+      'resource-allocation-graph',
+      'memory-free-list',
+      'data-table',
+      'clock-page-replacement',
+    ].includes(type)
+  ) {
+    throw new Error(
+      `${fieldPath}.type must be resource-allocation-graph, memory-free-list, data-table, or clock-page-replacement`,
+    );
+  }
+
+  if (type === 'memory-free-list') {
+    validateMemoryFreeListDiagram(diagram, fieldPath);
+    return;
+  }
+
+  if (type === 'data-table') {
+    validateDataTableDiagram(diagram, fieldPath);
+    return;
+  }
+
+  if (type === 'clock-page-replacement') {
+    validateClockPageReplacementDiagram(diagram, fieldPath);
+    return;
+  }
+
+  expectNumber(diagram.width, `${fieldPath}.width`);
+  expectNumber(diagram.height, `${fieldPath}.height`);
+
+  const nodes = expectArray(diagram.nodes, `${fieldPath}.nodes`);
+  const nodeIds = new Set<string>();
+
+  for (const [nodeIndex, rawNode] of nodes.entries()) {
+    const node = expectRecord(rawNode, `${fieldPath}.nodes[${nodeIndex}]`);
+    const id = expectString(node.id, `${fieldPath}.nodes[${nodeIndex}].id`);
+    expectUnique(nodeIds, id, `${fieldPath}.nodes[${nodeIndex}].id`);
+
+    const kind = expectString(node.kind, `${fieldPath}.nodes[${nodeIndex}].kind`);
+    if (!['process', 'resource'].includes(kind)) {
+      throw new Error(`${fieldPath}.nodes[${nodeIndex}].kind must be process or resource`);
+    }
+
+    expectString(node.label, `${fieldPath}.nodes[${nodeIndex}].label`);
+    expectNumber(node.x, `${fieldPath}.nodes[${nodeIndex}].x`);
+    expectNumber(node.y, `${fieldPath}.nodes[${nodeIndex}].y`);
+
+    if (node.units !== undefined) {
+      expectNumber(node.units, `${fieldPath}.nodes[${nodeIndex}].units`);
+    }
+  }
+
+  const edges = expectArray(diagram.edges, `${fieldPath}.edges`);
+  for (const [edgeIndex, rawEdge] of edges.entries()) {
+    const edge = expectRecord(rawEdge, `${fieldPath}.edges[${edgeIndex}]`);
+    const from = expectString(edge.from, `${fieldPath}.edges[${edgeIndex}].from`);
+    const to = expectString(edge.to, `${fieldPath}.edges[${edgeIndex}].to`);
+
+    if (edge.style !== undefined) {
+      const style = expectString(edge.style, `${fieldPath}.edges[${edgeIndex}].style`);
+      if (!['solid', 'dashed'].includes(style)) {
+        throw new Error(`${fieldPath}.edges[${edgeIndex}].style must be solid or dashed`);
+      }
+    }
+
+    if (!nodeIds.has(from)) {
+      throw new Error(`${fieldPath}.edges[${edgeIndex}].from references missing node`);
+    }
+
+    if (!nodeIds.has(to)) {
+      throw new Error(`${fieldPath}.edges[${edgeIndex}].to references missing node`);
+    }
+  }
+}
+
+function validateMemoryFreeListDiagram(diagram: Record<string, unknown>, fieldPath: string): void {
+  expectNumber(diagram.width, `${fieldPath}.width`);
+  expectNumber(diagram.height, `${fieldPath}.height`);
+
+  const blocks = expectArray(diagram.blocks, `${fieldPath}.blocks`);
+  const blockIds = new Set<string>();
+
+  for (const [blockIndex, rawBlock] of blocks.entries()) {
+    const block = expectRecord(rawBlock, `${fieldPath}.blocks[${blockIndex}]`);
+    const id = expectString(block.id, `${fieldPath}.blocks[${blockIndex}].id`);
+    expectUnique(blockIds, id, `${fieldPath}.blocks[${blockIndex}].id`);
+
+    const kind = expectString(block.kind, `${fieldPath}.blocks[${blockIndex}].kind`);
+    if (!['os', 'allocated', 'free'].includes(kind)) {
+      throw new Error(`${fieldPath}.blocks[${blockIndex}].kind must be os, allocated, or free`);
+    }
+
+    expectString(block.label, `${fieldPath}.blocks[${blockIndex}].label`);
+
+    if (block.size !== undefined) {
+      expectNumber(block.size, `${fieldPath}.blocks[${blockIndex}].size`);
+    }
+  }
+}
+
+function validateDataTableDiagram(diagram: Record<string, unknown>, fieldPath: string): void {
+  const columns = expectArray(diagram.columns, `${fieldPath}.columns`);
+  if (columns.length === 0) {
+    throw new Error(`${fieldPath}.columns must not be empty`);
+  }
+
+  for (const [columnIndex, column] of columns.entries()) {
+    expectString(column, `${fieldPath}.columns[${columnIndex}]`);
+  }
+
+  const rows = expectArray(diagram.rows, `${fieldPath}.rows`);
+  if (rows.length === 0) {
+    throw new Error(`${fieldPath}.rows must not be empty`);
+  }
+
+  for (const [rowIndex, rawRow] of rows.entries()) {
+    const row = expectArray(rawRow, `${fieldPath}.rows[${rowIndex}]`);
+    if (row.length !== columns.length) {
+      throw new Error(`${fieldPath}.rows[${rowIndex}] must have ${columns.length} cells`);
+    }
+
+    for (const [cellIndex, cell] of row.entries()) {
+      expectString(cell, `${fieldPath}.rows[${rowIndex}][${cellIndex}]`);
+    }
+  }
+}
+
+function validateClockPageReplacementDiagram(
+  diagram: Record<string, unknown>,
+  fieldPath: string,
+): void {
+  expectNumber(diagram.width, `${fieldPath}.width`);
+  expectNumber(diagram.height, `${fieldPath}.height`);
+
+  const entries = expectArray(diagram.entries, `${fieldPath}.entries`);
+  if (entries.length === 0) {
+    throw new Error(`${fieldPath}.entries must not be empty`);
+  }
+
+  for (const [entryIndex, rawEntry] of entries.entries()) {
+    const entry = expectRecord(rawEntry, `${fieldPath}.entries[${entryIndex}]`);
+    expectString(entry.page, `${fieldPath}.entries[${entryIndex}].page`);
+
+    if (entry.referenceBit !== 0 && entry.referenceBit !== 1) {
+      throw new Error(`${fieldPath}.entries[${entryIndex}].referenceBit must be 0 or 1`);
+    }
+  }
+
+  const pointerIndex = expectNumber(diagram.pointerIndex, `${fieldPath}.pointerIndex`);
+  if (pointerIndex < 0 || pointerIndex >= entries.length || !Number.isInteger(pointerIndex)) {
+    throw new Error(`${fieldPath}.pointerIndex must point to an entry index`);
+  }
 }
 
 function validateImage(value: unknown, fieldPath: string, root: string): void {
@@ -276,6 +444,10 @@ function validateQuestionId(
 
   if (kind === 'lecture' && !/^l\d{2}-\d{2}$/.test(id)) {
     throw new Error(`${fieldPath} must match l{lecture}-{nn} for lecture sources`);
+  }
+
+  if (kind === 'intensive' && !/^i\d{2}-\d{2}$/.test(id)) {
+    throw new Error(`${fieldPath} must match i{unit}-{nn} for intensive sources`);
   }
 }
 
@@ -346,8 +518,8 @@ function expectUnique(seen: Set<string>, value: string, fieldPath: string): void
 }
 
 function expectSourceKind(value: string, fieldPath: string): asserts value is SourceKind {
-  if (!['exam', 'textbook', 'workbook', 'lecture'].includes(value)) {
-    throw new Error(`${fieldPath} must be exam, textbook, workbook, or lecture`);
+  if (!['exam', 'textbook', 'workbook', 'lecture', 'intensive'].includes(value)) {
+    throw new Error(`${fieldPath} must be exam, textbook, workbook, lecture, or intensive`);
   }
 }
 

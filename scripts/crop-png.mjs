@@ -8,15 +8,18 @@ const pngSignature = Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]);
 function cropPng(inputPath, outputPath, crop) {
   const image = readPng(inputPath);
 
-  if (image.bitDepth !== 8 || image.colorType !== 3) {
-    throw new Error(`Only 8-bit indexed PNG is supported: ${inputPath}`);
+  if (image.bitDepth !== 8 || ![2, 3].includes(image.colorType)) {
+    throw new Error(`Only 8-bit RGB or indexed PNG is supported: ${inputPath}`);
   }
 
   const x = clamp(crop.x, 0, image.width - 1);
   const y = clamp(crop.y, 0, image.height - 1);
   const width = clamp(crop.width, 1, image.width - x);
   const height = clamp(crop.height, 1, image.height - y);
-  const rows = image.rows.slice(y, y + height).map((row) => row.subarray(x, x + width));
+  const bytesPerPixel = getBytesPerPixel(image.colorType);
+  const rows = image.rows
+    .slice(y, y + height)
+    .map((row) => row.subarray(x * bytesPerPixel, (x + width) * bytesPerPixel));
 
   fs.mkdirSync(path.dirname(outputPath), { recursive: true });
   fs.writeFileSync(outputPath, writePng({ ...image, width, height, rows }));
@@ -61,17 +64,19 @@ function readPng(filePath) {
   const height = ihdr.readUInt32BE(4);
   const bitDepth = ihdr[8];
   const colorType = ihdr[9];
+  const bytesPerPixel = getBytesPerPixel(colorType);
+  const rowLength = width * bytesPerPixel;
   const inflated = zlib.inflateSync(Buffer.concat(idatParts));
   const rows = [];
-  let previous = Buffer.alloc(width);
+  let previous = Buffer.alloc(rowLength);
   let cursor = 0;
 
   for (let rowIndex = 0; rowIndex < height; rowIndex += 1) {
     const filter = inflated[cursor];
     cursor += 1;
-    const row = Buffer.from(inflated.subarray(cursor, cursor + width));
-    cursor += width;
-    unfilterRow(row, previous, filter);
+    const row = Buffer.from(inflated.subarray(cursor, cursor + rowLength));
+    cursor += rowLength;
+    unfilterRow(row, previous, filter, bytesPerPixel);
     rows.push(row);
     previous = row;
   }
@@ -88,11 +93,11 @@ function readPng(filePath) {
   };
 }
 
-function unfilterRow(row, previous, filter) {
+function unfilterRow(row, previous, filter, bytesPerPixel) {
   for (let index = 0; index < row.length; index += 1) {
-    const left = index > 0 ? row[index - 1] : 0;
+    const left = index >= bytesPerPixel ? row[index - bytesPerPixel] : 0;
     const up = previous[index] ?? 0;
-    const upLeft = index > 0 ? previous[index - 1] : 0;
+    const upLeft = index >= bytesPerPixel ? previous[index - bytesPerPixel] : 0;
 
     if (filter === 1) {
       row[index] = (row[index] + left) & 0xff;
@@ -167,6 +172,18 @@ function paeth(left, up, upLeft) {
 
 function clamp(value, min, max) {
   return Math.min(Math.max(value, min), max);
+}
+
+function getBytesPerPixel(colorType) {
+  if (colorType === 2) {
+    return 3;
+  }
+
+  if (colorType === 3) {
+    return 1;
+  }
+
+  throw new Error(`Unsupported PNG color type: ${colorType}`);
 }
 
 function parseNumber(value, name) {

@@ -545,6 +545,15 @@ h1 {
   padding-top: 12px;
 }
 
+.source-count {
+  display: inline-block;
+  margin-left: 4px;
+  color: #43515f;
+  font-size: 0.92em;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
 .segmented-control {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -668,9 +677,13 @@ h1 {
 .quiz-header {
   display: flex;
   gap: 16px;
-  align-items: start;
+  align-items: end;
   justify-content: space-between;
   margin-bottom: 24px;
+}
+
+.quiz-progress-panel {
+  min-width: min(100%, 420px);
 }
 
 .quiz-actions {
@@ -681,12 +694,45 @@ h1 {
   justify-content: flex-end;
 }
 
+.quiz-option-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  justify-content: flex-end;
+  margin: 0 0 2px;
+}
+
+.quiz-option-summary div {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding: 10px 12px;
+  border: 1px solid #d8dfd8;
+  border-radius: 6px;
+  background: #ffffff;
+}
+
+.quiz-option-summary dt {
+  color: #667483;
+  font-size: 0.8rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.quiz-option-summary dd {
+  margin: 0;
+  color: #111827;
+  font-weight: 900;
+}
+
 .quiz-header h1 {
   font-size: 2rem;
 }
 
 .progress-track {
-  width: min(100%, 420px);
+  width: 100%;
+  max-width: 420px;
   height: 10px;
   overflow: hidden;
   margin-top: 14px;
@@ -714,6 +760,30 @@ h1 {
   border: 1px solid #d8dfd8;
   border-radius: 8px;
   background: #ffffff;
+}
+
+.question-map-header {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.text-button {
+  min-height: 34px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #1f6b4f;
+  font: inherit;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.text-button:focus-visible {
+  border-radius: 4px;
+  outline: 3px solid #9fd5be;
+  outline-offset: 3px;
 }
 
 .question-map-grid {
@@ -883,6 +953,16 @@ h1 {
   line-height: 1.6;
 }
 
+.question-card-tools {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -6px;
+}
+
+.bookmark-button {
+  min-width: 112px;
+}
+
 .passage {
   display: grid;
   gap: 8px;
@@ -914,6 +994,13 @@ h1 {
   border: 1px solid #d8dfd8;
   border-radius: 6px;
   background: #ffffff;
+}
+
+.passage .question-image {
+  width: auto;
+  max-width: 100%;
+  max-height: none;
+  margin-inline: auto;
 }
 
 .question-images {
@@ -955,7 +1042,6 @@ h1 {
 
 .choice-text {
   min-width: 0;
-  overflow-x: auto;
   line-height: 1.6;
 }
 
@@ -967,6 +1053,175 @@ h1 {
   border: 1px solid #d8dfd8;
   border-radius: 6px;
   background: #ffffff;
+}
+
+.choice-diagram {
+  display: block;
+  width: min(100%, 360px);
+  height: auto;
+  border: 1px solid #d8dfd8;
+  border-radius: 6px;
+  background: #ffffff;
+}
+
+.passage-diagram {
+  display: block;
+  width: min(100%, 680px);
+  height: auto;
+  margin-inline: auto;
+  border: 1px solid #d8dfd8;
+  border-radius: 6px;
+  background: #ffffff;
+}
+
+.resource-allocation-graph {
+  color: #111827;
+}
+
+.resource-allocation-graph .rag-edge {
+  stroke: currentColor;
+  stroke-width: 2;
+}
+
+.resource-allocation-graph .rag-edge-dashed {
+  stroke-dasharray: 6 5;
+}
+
+.resource-allocation-graph marker path {
+  fill: currentColor;
+}
+
+.resource-allocation-graph .rag-process circle,
+.resource-allocation-graph .rag-resource rect {
+  fill: #f3f4f6;
+  stroke: #6b7280;
+  stroke-width: 2;
+}
+
+.resource-allocation-graph text {
+  fill: #111827;
+  font-family: 'KaTeX_Math', 'Times New Roman', serif;
+  font-size: 18px;
+}
+
+.resource-allocation-graph .rag-units {
+  font-family: inherit;
+  font-size: 14px;
+}
+
+.memory-free-list {
+  color: #111827;
+}
+
+.memory-free-list .memory-free-list-title,
+.memory-free-list text {
+  fill: currentColor;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.memory-free-list .memory-free-list-head {
+  fill: #c7ccd3;
+  stroke: #6b7280;
+  stroke-width: 1.5;
+}
+
+.memory-free-list .memory-free-list-arrow {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+}
+
+.memory-free-list marker path {
+  fill: currentColor;
+}
+
+.memory-free-list .memory-block {
+  stroke: #4b5563;
+  stroke-width: 1.5;
+}
+
+.memory-free-list .memory-os,
+.memory-free-list .memory-allocated {
+  fill: #d1d5db;
+}
+
+.memory-free-list .memory-free {
+  fill: #6b7280;
+}
+
+.memory-free-list .memory-free + text {
+  fill: #ffffff;
+}
+
+.data-table-diagram {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  margin-inline: auto;
+  overflow-x: auto;
+  border: 0;
+  background: transparent;
+}
+
+.data-table-diagram table {
+  min-width: 420px;
+  border-collapse: collapse;
+  background: #ffffff;
+  color: #111827;
+  font-size: 15px;
+}
+
+.data-table-diagram th,
+.data-table-diagram td {
+  min-width: 120px;
+  padding: 10px 18px;
+  border: 1px solid #6b7280;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.data-table-diagram th {
+  background: #d1d5db;
+  font-weight: 700;
+}
+
+.data-table-diagram td {
+  background: #ffffff;
+}
+
+.clock-page-replacement {
+  color: #111827;
+}
+
+.clock-page-replacement .clock-ring {
+  fill: #e5e7eb;
+  stroke: #4b5563;
+  stroke-width: 2;
+}
+
+.clock-page-replacement .clock-center {
+  fill: #ffffff;
+  stroke: #4b5563;
+  stroke-width: 1.5;
+}
+
+.clock-page-replacement .clock-divider,
+.clock-page-replacement .clock-pointer,
+.clock-page-replacement .clock-rotation {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+}
+
+.clock-page-replacement marker path {
+  fill: currentColor;
+}
+
+.clock-page-replacement text {
+  fill: currentColor;
+  font-size: 16px;
+  font-weight: 700;
 }
 
 .katex-display {
@@ -1058,6 +1313,8 @@ h1 {
 }
 
 .explanation-body {
+  display: grid;
+  gap: 12px;
   overflow-x: auto;
   white-space: normal;
 }

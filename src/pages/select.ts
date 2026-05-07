@@ -1,4 +1,4 @@
-import type { Catalog } from '../types/catalog';
+import type { Catalog, CatalogSource } from '../types/catalog';
 import {
   savePracticeOptions,
   savePracticeScope,
@@ -8,13 +8,13 @@ import {
   type PracticeScope,
   type SelectedSource,
 } from '../lib/quiz-session';
+import { loadQuestionFile } from '../lib/data-loader';
 import { loadBookmarks, loadWrongAnswers } from '../lib/storage';
-import { escapeHtml, renderFooter, renderTopNav, sourceKindLabel } from './shared';
+import { escapeHtml, renderFooter, renderTopNav } from './shared';
 
 export function renderSelectPage(catalog: Catalog): HTMLElement {
   const page = document.createElement('main');
   page.className = 'app-shell';
-  let firstSourceRendered = false;
   const selectedSubjectId = readSubjectId(catalog);
   const visibleSubjects = catalog.subjects.filter((subject) => subject.id === selectedSubjectId);
   const selectedSubject = visibleSubjects[0];
@@ -23,32 +23,8 @@ export function renderSelectPage(catalog: Catalog): HTMLElement {
   const subjects = visibleSubjects
     .map((subject) => {
       const sources = subject.sources.length
-        ? subject.sources
-            .map((source) => {
-              const checked = !firstSourceRendered ? ' checked' : '';
-              firstSourceRendered = true;
-
-              return `
-                <label class="check-row">
-                  <input
-                    type="checkbox"
-                    name="source"
-                    value="${subject.id}:${source.id}"
-                    data-subject-id="${subject.id}"
-                    data-source-id="${source.id}"
-                    data-source-title="${escapeHtml(source.title)}"
-                    data-source-path="${source.path}"
-                    data-kind="${source.kind}"
-                    data-year="${source.year ?? ''}"
-                    ${checked}
-                  />
-                  <span>
-                    <strong>${source.title}</strong>
-                    <small>${sourceKindLabel(source.kind)}${source.year ? ` · ${source.year}` : ''}</small>
-                  </span>
-                </label>
-              `;
-            })
+        ? sortSourcesForSelect(subject.sources)
+            .map((source) => renderSourceRow(source, subject.id, subject.title))
             .join('')
         : '<p class="muted">아직 등록된 출처가 없습니다.</p>';
 
@@ -104,11 +80,14 @@ export function renderSelectPage(catalog: Catalog): HTMLElement {
     ${renderFooter()}
   `;
 
+  hydrateMissingQuestionCounts(page);
+
   page.querySelector<HTMLButtonElement>('[data-start-quiz]')?.addEventListener('click', () => {
     const selectedSources = Array.from(
       page.querySelectorAll<HTMLInputElement>('input[name="source"]:checked'),
     ).map<SelectedSource>((input) => ({
       subjectId: input.dataset.subjectId ?? '',
+      subjectTitle: input.dataset.subjectTitle ?? '',
       sourceId: input.dataset.sourceId ?? '',
       sourceTitle: input.dataset.sourceTitle ?? '',
       path: input.dataset.sourcePath ?? '',
@@ -141,6 +120,86 @@ export function renderSelectPage(catalog: Catalog): HTMLElement {
     });
 
   return page;
+}
+
+function renderSourceRow(source: CatalogSource, subjectId: string, subjectTitle: string): string {
+  return `
+    <label class="check-row">
+      <input
+        type="checkbox"
+        name="source"
+        value="${escapeHtml(`${subjectId}:${source.id}`)}"
+        data-subject-id="${escapeHtml(subjectId)}"
+        data-subject-title="${escapeHtml(subjectTitle)}"
+        data-source-id="${escapeHtml(source.id)}"
+        data-source-title="${escapeHtml(source.title)}"
+        data-source-path="${escapeHtml(source.path)}"
+        data-kind="${source.kind}"
+        data-year="${source.year ?? ''}"
+      />
+      <span>
+        <strong>
+          ${escapeHtml(source.title)}
+          <span class="source-count" data-source-count data-source-path="${escapeHtml(source.path)}">${renderQuestionCountText(source.questionCount)}</span>
+        </strong>
+        <small>${sourceDetailLabel(source)}</small>
+      </span>
+    </label>
+  `;
+}
+
+function sortSourcesForSelect(sources: CatalogSource[]): CatalogSource[] {
+  return [...sources].sort((left, right) => {
+    if (left.kind === 'exam' && right.kind === 'exam') {
+      return (right.year ?? 0) - (left.year ?? 0);
+    }
+
+    if (left.kind === 'exam') {
+      return -1;
+    }
+
+    if (right.kind === 'exam') {
+      return 1;
+    }
+
+    return 0;
+  });
+}
+
+function renderQuestionCountText(questionCount: number | undefined): string {
+  return typeof questionCount === 'number' ? `(${questionCount}문제)` : '';
+}
+
+function hydrateMissingQuestionCounts(page: HTMLElement): void {
+  page.querySelectorAll<HTMLElement>('[data-source-count]').forEach((element) => {
+    if (element.textContent?.trim()) {
+      return;
+    }
+
+    const path = element.dataset.sourcePath;
+    if (!path) {
+      return;
+    }
+
+    void loadQuestionFile(path).then((file) => {
+      element.textContent = renderQuestionCountText(file.questions.length);
+    });
+  });
+}
+
+function sourceDetailLabel(source: CatalogSource): string {
+  switch (source.kind) {
+    case 'exam':
+      return '기말시험';
+    case 'textbook':
+      return '기본서';
+    case 'workbook':
+      return '워크북';
+    case 'lecture':
+      return '강의';
+    case 'intensive':
+      return '특강';
+  }
 }
 
 function readSubjectId(catalog: Catalog): string | undefined {

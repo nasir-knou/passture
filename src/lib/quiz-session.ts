@@ -19,10 +19,14 @@ export interface PracticeOptions {
 
 export interface SelectedSource {
   subjectId: string;
+  subjectTitle: string;
   sourceId: string;
   sourceTitle: string;
   path: string;
 }
+
+type StoredSelectedSource = Omit<SelectedSource, 'subjectTitle'> &
+  Partial<Pick<SelectedSource, 'subjectTitle'>>;
 
 export interface LoadedQuestionSource extends SelectedSource {
   file: QuestionFile;
@@ -41,6 +45,7 @@ export interface QuizSession {
 export interface QuizSessionQuestion {
   key: string;
   subjectId: string;
+  subjectTitle: string;
   sourceId: string;
   sourceTitle: string;
   question: Question;
@@ -106,7 +111,7 @@ export function loadSelectedSources(): SelectedSource[] {
 
   try {
     const parsed = JSON.parse(raw) as unknown;
-    return Array.isArray(parsed) ? parsed.filter(isSelectedSource) : [];
+    return Array.isArray(parsed) ? parsed.filter(isStoredSelectedSource).map(normalizeSelectedSource) : [];
   } catch {
     sessionStorage.removeItem(selectedSourcesKey);
     sessionStorage.removeItem(sessionKey);
@@ -116,6 +121,7 @@ export function loadSelectedSources(): SelectedSource[] {
 
 export function defaultSelectedSources(
   subjectId: string,
+  subjectTitle: string,
   sources: CatalogSource[],
 ): SelectedSource[] {
   const firstSource = sources[0];
@@ -126,6 +132,7 @@ export function defaultSelectedSources(
   return [
     {
       subjectId,
+      subjectTitle,
       sourceId: firstSource.id,
       sourceTitle: firstSource.title,
       path: firstSource.path,
@@ -170,6 +177,7 @@ export function createQuizSession(
       return {
         key,
         subjectId: source.subjectId,
+        subjectTitle: source.subjectTitle,
         sourceId: source.sourceId,
         sourceTitle: source.sourceTitle,
         question,
@@ -311,7 +319,9 @@ export function scoreSession(session: QuizSession): QuizScore {
 }
 
 function sourceSignature(sources: readonly SelectedSource[]): string {
-  return sources.map((source) => `${source.subjectId}:${source.sourceId}:${source.path}`).join('|');
+  return sources
+    .map((source) => `${source.subjectId}:${source.subjectTitle}:${source.sourceId}:${source.path}`)
+    .join('|');
 }
 
 function defaultPracticeOptions(): PracticeOptions {
@@ -333,7 +343,14 @@ function normalizeSession(value: Partial<QuizSession>): QuizSession {
   };
 }
 
-function isSelectedSource(value: unknown): value is SelectedSource {
+function normalizeSelectedSource(source: StoredSelectedSource): SelectedSource {
+  return {
+    ...source,
+    subjectTitle: source.subjectTitle ?? source.subjectId,
+  };
+}
+
+function isStoredSelectedSource(value: unknown): value is StoredSelectedSource {
   if (typeof value !== 'object' || value === null || Array.isArray(value)) {
     return false;
   }
@@ -342,6 +359,8 @@ function isSelectedSource(value: unknown): value is SelectedSource {
   return (
     typeof source.subjectId === 'string' &&
     source.subjectId.length > 0 &&
+    (source.subjectTitle === undefined ||
+      (typeof source.subjectTitle === 'string' && source.subjectTitle.length > 0)) &&
     typeof source.sourceId === 'string' &&
     source.sourceId.length > 0 &&
     typeof source.sourceTitle === 'string' &&

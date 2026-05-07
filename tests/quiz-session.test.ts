@@ -28,9 +28,9 @@ describe('quiz session', () => {
     const session = createQuizSession([source()]);
 
     expect(session.questions).toHaveLength(2);
-    expect(session.questions[0]?.sourceTitle).toBe('2019 기출');
+    expect(session.questions[0]?.sourceTitle).toBe('2019 기말');
     expect(session.sourceSignature).toBe(
-      'operating-systems:past-exams-2019:subjects/operating-systems/past-exams-2019.json',
+      'operating-systems:운영체제:past-exams-2019:subjects/operating-systems/past-exams-2019.json',
     );
   });
 
@@ -76,8 +76,9 @@ describe('quiz session', () => {
     const selectedSources = [
       {
         subjectId: 'operating-systems',
+        subjectTitle: '운영체제',
         sourceId: 'past-exams-2019',
-        sourceTitle: '2019 기출',
+        sourceTitle: '2019 기말',
         path: 'subjects/operating-systems/past-exams-2019.json',
       },
     ];
@@ -98,13 +99,14 @@ describe('quiz session', () => {
 function source(): LoadedQuestionSource {
   return {
     subjectId: 'operating-systems',
+    subjectTitle: '운영체제',
     sourceId: 'past-exams-2019',
-    sourceTitle: '2019 기출',
+    sourceTitle: '2019 기말',
     path: 'subjects/operating-systems/past-exams-2019.json',
     file: {
       subjectId: 'operating-systems',
       sourceId: 'past-exams-2019',
-      title: '운영체제 2019 기출',
+      title: '운영체제 2019 기말',
       kind: 'exam',
       year: 2019,
       questions: [

@@ -1,5 +1,5 @@
 import type { Catalog } from '../types/catalog';
-import { renderFooter, renderTopNav, sourceKindLabel } from './shared';
+import { escapeHtml, renderFooter, renderTopNav, sourceKindLabel } from './shared';
 
 export function renderHomePage(catalog: Catalog): HTMLElement {
   const page = document.createElement('main');
@@ -9,18 +9,21 @@ export function renderHomePage(catalog: Catalog): HTMLElement {
     .map((subject) => {
       const sources = subject.sources.length
         ? subject.sources
-            .map((source) => `<li>${source.title} · ${sourceKindLabel(source.kind)}</li>`)
+            .map(
+              (source) =>
+                `<li>${escapeHtml(source.title)} · ${sourceKindLabel(source.kind)}</li>`,
+            )
             .join('')
         : '<li>등록된 출처 없음</li>';
 
       return `
         <article class="card">
           <div>
-            <h2>${subject.title}</h2>
+            <h2>${escapeHtml(subject.title)}</h2>
             <p class="muted">${subject.sources.length}개 출처</p>
           </div>
           <ul class="compact-list">${sources}</ul>
-          <a class="text-link card-action" href="#/select?subject=${subject.id}">선택</a>
+          <a class="text-link card-action" href="#/select?subject=${escapeHtml(subject.id)}">선택</a>
         </article>
       `;
     })

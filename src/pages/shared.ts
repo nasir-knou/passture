@@ -20,9 +20,11 @@ export function sourceKindLabel(kind: SourceKind): string {
     case 'textbook':
       return '교재';
     case 'workbook':
-      return '워크북';
+      return '교재';
     case 'lecture':
       return '강의';
+    case 'intensive':
+      return '특강';
   }
 }
 

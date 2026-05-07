@@ -9,15 +9,16 @@ import {
   loadPracticeScope,
   loadSelectedSources,
   moveQuestion,
-  saveSession,
   saveDraftAnswer,
+  saveSession,
   type LoadedQuestionSource,
   type QuizSession,
 } from '../lib/quiz-session';
 import { isBookmarked, loadBookmarks, loadWrongAnswers, toggleBookmark } from '../lib/storage';
 import { escapeHtml, renderFooter, renderTopNav } from './shared';
 import {
-  renderBlockRichText,
+  formatAnswerSummary,
+  renderAnswerExplanationBody,
   renderChoiceContent,
   renderPassages,
   renderQuestionImages,
@@ -29,9 +30,9 @@ export async function renderQuizPage(catalog: Catalog): Promise<HTMLElement> {
   const fallbackSubject = catalog.subjects.find((subject) => subject.sources.length > 0);
   const effectiveSources =
     selectedSources.length > 0
-      ? selectedSources
+      ? selectedSources.map((source) => withSubjectTitle(source, catalog))
       : fallbackSubject
-        ? defaultSelectedSources(fallbackSubject.id, fallbackSubject.sources)
+        ? defaultSelectedSources(fallbackSubject.id, fallbackSubject.title, fallbackSubject.sources)
         : [];
 
   const loadedSources = await Promise.all(
@@ -95,29 +96,31 @@ function renderSession(session: QuizSession): HTMLElement {
     session.questions.length === 0
       ? 0
       : Math.round((answeredCount / session.questions.length) * 100);
+  const options = loadPracticeOptions();
 
   page.innerHTML = `
     ${renderNav()}
     <section class="quiz-header">
-      <div>
-        <p class="eyebrow">${escapeHtml(current.sourceTitle)}</p>
+      <div class="quiz-progress-panel">
+        <p class="eyebrow">${escapeHtml(sourceDisplayLabel(current.subjectTitle, current.sourceTitle))}</p>
         <h1>문제 ${progress}</h1>
         <div class="progress-track" aria-label="답안 체크 진행률 ${progressPercent}%">
           <span style="width: ${progressPercent}%"></span>
         </div>
         <p class="muted progress-summary">답안 체크 ${answeredCount}/${session.questions.length} (${progressPercent}%) · 정답 확인 ${checkedCount}/${session.questions.length}</p>
       </div>
-      <div class="quiz-actions">
-        <button class="secondary-button" type="button" data-bookmark>
-          ${bookmarked ? '북마크 해제' : '북마크'}
-        </button>
-      </div>
+      ${renderQuizOptionSummary(options)}
     </section>
     ${renderQuestionNavigator(session)}
     <article class="question-card">
       ${renderPassages(current.passages)}
       <p class="question-prompt">${renderRichText(current.question.prompt)}</p>
       ${renderQuestionImages(current.question.images ?? [])}
+      <div class="question-card-tools">
+        <button class="secondary-button bookmark-button" type="button" data-bookmark>
+          ${bookmarked ? '북마크 해제' : '북마크'}
+        </button>
+      </div>
       <fieldset class="choice-list">
         <legend class="sr-only">선택지</legend>
         ${current.choices
@@ -137,7 +140,7 @@ function renderSession(session: QuizSession): HTMLElement {
           .join('')}
       </fieldset>
       <p class="form-message" data-quiz-message></p>
-      ${response ? renderExplanation(current.key, response.correct, current.question.answers, current.question.explanation) : ''}
+      ${response ? renderExplanation(current.key, response.correct, current.choices, current.question.answers, current.question.explanation) : ''}
       <div class="quiz-control-row">
         <button class="secondary-button" type="button" data-prev ${session.currentIndex === 0 ? 'disabled' : ''}>이전</button>
         <button class="primary-button" type="button" data-check>${response ? '다시 확인' : '정답 확인'}</button>
@@ -195,6 +198,11 @@ function bindQuizEvents(page: HTMLElement, session: QuizSession): void {
     });
   });
 
+  page.querySelector<HTMLButtonElement>('[data-toggle-question-map]')?.addEventListener('click', () => {
+    sessionStorage.setItem(questionMapExpandedKey, isQuestionMapExpanded() ? 'false' : 'true');
+    refreshRoute();
+  });
+
   page.querySelector<HTMLButtonElement>('[data-prev]')?.addEventListener('click', () => {
     moveQuestion(session, session.currentIndex - 1);
     refreshRoute();
@@ -211,7 +219,7 @@ function bindQuizEvents(page: HTMLElement, session: QuizSession): void {
   });
 
   page.querySelector<HTMLButtonElement>('[data-fill-ones]')?.addEventListener('click', () => {
-    saveSession(fillAllWithFirstChoice(session));
+    fillAllWithFirstChoice(session);
     refreshRoute();
   });
 
@@ -226,26 +234,70 @@ function bindQuizEvents(page: HTMLElement, session: QuizSession): void {
   });
 }
 
-function fillAllWithFirstChoice(session: QuizSession): QuizSession {
+const questionMapExpandedKey = 'passture.questionMapExpanded';
+const questionMapRowSize = 26;
+
+function optionModeLabel(mode: 'default' | 'random'): string {
+  return mode === 'random' ? '무작위' : '기본';
+}
+
+function sourceDisplayLabel(subjectTitle: string, sourceTitle: string): string {
+  return `${subjectTitle} - ${sourceTitle}`;
+}
+
+function withSubjectTitle(
+  source: LoadedQuestionSource | ReturnType<typeof loadSelectedSources>[number],
+  catalog: Catalog,
+): ReturnType<typeof loadSelectedSources>[number] {
+  if (source.subjectTitle && source.subjectTitle !== source.subjectId) {
+    return source;
+  }
+
+  const subject = catalog.subjects.find((item) => item.id === source.subjectId);
   return {
-    ...session,
-    draftAnswers: {
-      ...session.draftAnswers,
-      ...Object.fromEntries(
-        session.questions.flatMap((question) =>
-          question.choices.some((choice) => choice.id === '1') ? [[question.key, ['1']]] : [],
-        ),
-      ),
-    },
+    ...source,
+    subjectTitle: subject?.title ?? source.subjectId,
   };
 }
 
-function renderQuestionNavigator(session: QuizSession): string {
+function renderQuizOptionSummary(options: ReturnType<typeof loadPracticeOptions>): string {
   return `
-    <section class="question-map quiz-map" aria-label="문제 바로가기">
+    <dl class="quiz-option-summary" aria-label="풀이 옵션 상태">
+      <div>
+        <dt>문제 순서</dt>
+        <dd>${optionModeLabel(options.questionOrder)}</dd>
+      </div>
+      <div>
+        <dt>선지 순서</dt>
+        <dd>${optionModeLabel(options.choiceOrder)}</dd>
+      </div>
+    </dl>
+  `;
+}
+
+function renderQuestionNavigator(session: QuizSession): string {
+  const expanded = isQuestionMapExpanded();
+  const collapsedWindowStart = centeredQuestionMapStart(
+    session.currentIndex,
+    session.questions.length,
+  );
+  const visibleQuestions = expanded
+    ? session.questions.map((question, index) => ({ question, index }))
+    : session.questions
+        .slice(collapsedWindowStart, collapsedWindowStart + questionMapRowSize)
+        .map((question, offset) => ({ question, index: collapsedWindowStart + offset }));
+
+  return `
+    <section class="question-map quiz-map ${expanded ? 'is-expanded' : 'is-collapsed'}" aria-label="문제 바로가기">
+      <div class="question-map-header">
+        <strong>문제 이동</strong>
+        <button class="text-button" type="button" data-toggle-question-map>
+          ${expanded ? '접기' : '전체 보기'}
+        </button>
+      </div>
       <div class="question-map-grid">
-        ${session.questions
-          .map((question, index) => {
+        ${visibleQuestions
+          .map(({ question, index }) => {
             const bookmarked = isBookmarked(question.key);
             const response = session.responses[question.key];
             const selected = session.draftAnswers[question.key] ?? response?.selected ?? [];
@@ -268,15 +320,31 @@ function renderQuestionNavigator(session: QuizSession): string {
           })
           .join('')}
       </div>
-      <div class="question-map-legend" aria-label="문제 상태 범례">
-        <span><i class="legend-current"></i>현재</span>
-        <span><i class="legend-unanswered"></i>답안체크안함</span>
-        <span><i class="legend-answered"></i>답안체크함</span>
-        <span><i class="legend-checked"></i>정답확인</span>
-        <span><i class="legend-bookmarked"></i>북마크</span>
-      </div>
+      ${
+        expanded
+          ? `
+            <div class="question-map-legend" aria-label="문제 상태 범례">
+              <span><i class="legend-current"></i>현재</span>
+              <span><i class="legend-unanswered"></i>답안체크안함</span>
+              <span><i class="legend-answered"></i>답안체크함</span>
+              <span><i class="legend-checked"></i>정답확인</span>
+              <span><i class="legend-bookmarked"></i>북마크</span>
+            </div>
+          `
+          : ''
+      }
     </section>
   `;
+}
+
+function isQuestionMapExpanded(): boolean {
+  return sessionStorage.getItem(questionMapExpandedKey) === 'true';
+}
+
+function centeredQuestionMapStart(currentIndex: number, total: number): number {
+  const maxStart = Math.max(total - questionMapRowSize, 0);
+  const centeredStart = currentIndex - Math.floor(questionMapRowSize / 2);
+  return Math.min(Math.max(centeredStart, 0), maxStart);
 }
 
 function statusLabel(status: 'checked' | 'answered' | 'unanswered'): string {
@@ -296,6 +364,23 @@ function readSelectedAnswers(page: HTMLElement): string[] {
   );
 }
 
+function fillAllWithFirstChoice(session: QuizSession): QuizSession {
+  const nextSession = {
+    ...session,
+    draftAnswers: {
+      ...session.draftAnswers,
+      ...Object.fromEntries(
+        session.questions.flatMap((question) =>
+          question.choices.some((choice) => choice.id === '1') ? [[question.key, ['1']]] : [],
+        ),
+      ),
+    },
+  };
+
+  saveSession(nextSession);
+  return nextSession;
+}
+
 function renderNav(): string {
   return renderTopNav('quiz', [
     { href: '#/select', label: '문제 선택', id: 'select' },
@@ -309,6 +394,7 @@ function renderNav(): string {
 function renderExplanation(
   questionKey: string,
   correct: boolean,
+  choices: QuizSession['questions'][number]['choices'],
   answers: readonly string[],
   explanation: string,
 ): string {
@@ -316,8 +402,8 @@ function renderExplanation(
     <section class="explanation ${correct ? 'correct' : 'incorrect'}">
       <h2>${correct ? '정답' : '오답'}</h2>
       <p>문제 ID: ${escapeHtml(questionKey)}</p>
-      <p>정답: ${answers.map(escapeHtml).join(', ')}</p>
-      ${renderBlockRichText(explanation, 'explanation-body')}
+      <p>정답: ${escapeHtml(formatAnswerSummary(choices, answers))}</p>
+      ${renderAnswerExplanationBody(choices, answers, explanation)}
     </section>
   `;
 }

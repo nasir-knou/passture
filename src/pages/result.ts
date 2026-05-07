@@ -8,7 +8,8 @@ import {
 } from '../lib/quiz-session';
 import { escapeHtml, renderFooter, renderTopNav } from './shared';
 import {
-  renderBlockRichText,
+  formatAnswerSummary,
+  renderAnswerExplanationBody,
   renderChoiceContent,
   renderPassages,
   renderQuestionImages,
@@ -166,7 +167,7 @@ function renderReviewCard(
   return `
     <article class="question-card result-review-card">
       <div>
-        <p class="eyebrow">${escapeHtml(question.sourceTitle)}</p>
+        <p class="eyebrow">${escapeHtml(sourceDisplayLabel(question.subjectTitle, question.sourceTitle))}</p>
         <p class="question-prompt">${renderRichText(question.question.prompt)}</p>
       </div>
       ${renderPassages(question.passages)}
@@ -195,10 +196,11 @@ function renderReviewCard(
           ? renderExplanation(
               question.key,
               response.correct,
+              question.choices,
               question.question.answers,
               question.question.explanation,
             )
-          : `<section class="explanation unanswered"><h2>미응답</h2><p>문제 ID: ${escapeHtml(question.key)}</p><p>정답: ${question.question.answers.map(escapeHtml).join(', ')}</p>${renderBlockRichText(question.question.explanation, 'explanation-body')}</section>`
+          : `<section class="explanation unanswered"><h2>미응답</h2><p>문제 ID: ${escapeHtml(question.key)}</p><p>정답: ${escapeHtml(formatAnswerSummary(question.choices, question.question.answers))}</p>${renderAnswerExplanationBody(question.choices, question.question.answers, question.question.explanation)}</section>`
       }
     </article>
   `;
@@ -207,6 +209,7 @@ function renderReviewCard(
 function renderExplanation(
   questionKey: string,
   correct: boolean,
+  choices: QuizSessionQuestion['choices'],
   answers: readonly string[],
   explanation: string,
 ): string {
@@ -214,10 +217,14 @@ function renderExplanation(
     <section class="explanation ${correct ? 'correct' : 'incorrect'}">
       <h2>${correct ? '정답' : '오답'}</h2>
       <p>문제 ID: ${escapeHtml(questionKey)}</p>
-      <p>정답: ${answers.map(escapeHtml).join(', ')}</p>
-      ${renderBlockRichText(explanation, 'explanation-body')}
+      <p>정답: ${escapeHtml(formatAnswerSummary(choices, answers))}</p>
+      ${renderAnswerExplanationBody(choices, answers, explanation)}
     </section>
   `;
+}
+
+function sourceDisplayLabel(subjectTitle: string, sourceTitle: string): string {
+  return `${subjectTitle} - ${sourceTitle}`;
 }
 
 function choiceClass(id: string, answers: readonly string[], selected: Set<string>): string {
