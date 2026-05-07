@@ -9,6 +9,7 @@
 - 배포: GitHub Pages (Actions로 자동 배포), 커스텀 도메인 `passture.logonme.click`
 - 데이터 저장: 저장소 내 정적 JSON 파일 (YAML 원본을 빌드 시 변환)
 - 사용자 개인 상태 저장: 브라우저 `localStorage`
+- 현재 풀이 세션/선택 옵션 저장: 브라우저 `sessionStorage`
 - 서버 API: 사용하지 않음
 
 ### 프론트엔드
@@ -19,16 +20,16 @@
 - Vite: 빠른 개발 서버, 정적 빌드 산출물이 GitHub Pages와 호환
 - TypeScript: 문제 데이터 타입 안정성, IDE 자동완성, 빌드 단계 정합성 검증
 - 라우팅: 자체 미니 해시 라우터 (`window.location.hash` listener + 페이지 매핑). 정적 호스팅에서 새로고침/딥링크 안전
-- 스타일: 단일 `src/styles.css`로 시작, 화면 ≥6개가 되면 CSS Modules 검토
+- 스타일: 단일 `src/styles.css`
 - 코드 스타일: Prettier만 (eslint 보류)
-- 마크다운/수식/코드: `marked` + `katex` + `highlight.js` (해설 렌더링)
+- 마크다운/수식/코드: 아직 별도 렌더러 없음. 현재는 문제/해설 문자열을 HTML escape 후 표시한다.
 
 ### 빌드 도구 (문제 데이터)
 
 - `js-yaml`: YAML 파싱
-- `tsx` 또는 `vite-node`: 빌드 스크립트 실행
-- `zod` 또는 직접 작성한 TS 검증기: 스키마 검증
-- `vitest`: 빌드 스크립트 검증 로직 단위 테스트
+- `tsx`: 빌드 스크립트 실행
+- 직접 작성한 TS 검증기: 스키마 검증
+- `vitest`: 데이터 빌드, 라우터, 채점, 세션, 저장소, 백업 단위 테스트
 
 ## 2. 디렉토리 구조
 
@@ -51,21 +52,16 @@
       select.ts
       quiz.ts
       result.ts
-      bookmarks.ts
+      history.ts
+      mock-exam.ts
       backup.ts
-    components/
-      question-card.ts
-      choice-list.ts
-      explanation.ts
-      passage-view.ts
     lib/
       data-loader.ts
-      quiz-engine.ts
+      quiz-session.ts
       shuffle.ts
       scorer.ts
       storage.ts
       backup.ts
-      markdown.ts
     types/
       question.ts
       catalog.ts
@@ -79,15 +75,9 @@
         past-exams-2019.yaml
         workbook.yaml
         lecture-exercises.yaml
-      discrete-math/
       algorithms/
+      artificial-intelligence/
       java-programming/
-  images/                               # 문제 첨부 이미지 (commit)
-    subjects/
-      operating-systems/
-        past-exams/
-        workbook/
-        lecture-exercises/
   public/                               # Vite가 dist 루트로 자동 복사
     CNAME                               # passture.logonme.click
     data/                               # 빌드 산출물 (gitignore)
@@ -98,16 +88,23 @@
           ...
   scripts/
     build-data.ts
-    validate-data.ts
+    crop-png.mjs
   tests/                                # vitest
     build-data.test.ts
+    backup.test.ts
+    quiz-session.test.ts
+    router.test.ts
+    scorer.test.ts
+    storage.test.ts
   .github/
     workflows/
       deploy.yml
       validate.yml
 ```
 
-`catalog.yaml`이 사이트 전체의 과목·출처 목록을 담는다. 새 과목 추가 시 앱 코드를 건드리지 않고 `catalog.yaml`과 문제 YAML만 추가하면 UI에 반영된다. 빌드 시 `public/data/`로 JSON이 출력되고 Vite가 dist 루트로 그대로 복사하므로, 브라우저는 `/data/...` 경로로 JSON만 fetch 한다.
+`catalog.yaml`이 사이트 전체의 과목·출처 목록을 담는다. 새 과목 추가 시 앱 코드를 건드리지 않고 `catalog.yaml`과 문제 YAML만 추가하면 UI에 반영된다. 빌드 시 `public/data/`로 JSON이 출력되고 Vite가 dist 루트로 그대로 복사하므로, 브라우저는 `/data/...` 경로로 JSON만 fetch 한다. 개발 서버에서 JSON 산출물이 없고 Vite HTML fallback을 받은 경우에만 원본 YAML을 직접 읽는 fallback이 있다.
+
+현재 해시 라우트는 `#/`, `#/select`, `#/mock-exam`, `#/quiz`, `#/result`, `#/history`, `#/backup`이다. 과거 `#/bookmarks` 라우트는 호환용으로 남겨 두고 `#/history`로 이동시킨다.
 
 ## 3. 데이터 빌드 파이프라인
 
@@ -120,6 +117,7 @@
    - `passageRefs`가 실제 `passages`에 존재
    - `answers` 항목이 `choices.id` 안에 존재
    - `images.path` 파일이 저장소에 실제 존재
+   - 출처 종류별 문제 ID 형식 검증 (`e{yy}-{nn}`, `b{chapter}-{nn}`, `l{lecture}-{nn}`)
 4. `public/data/{subject}/{source}.json` 산출
 5. `public/data/catalog.json` 산출
 6. 실패 시 빌드 중단, GitHub Actions에서도 동일 실행
@@ -142,8 +140,8 @@ pnpm format               # Prettier
 
 1. `actions/setup-node@v4` (Node 22) + `pnpm/action-setup@v4`
 2. `pnpm install --frozen-lockfile`
-3. `pnpm data:build` (검증 실패 시 중단)
-4. `pnpm build` (Vite 정적 빌드, `public/data/`가 dist로 복사됨)
+3. `pnpm build` (`prebuild`가 `pnpm data:build`를 먼저 실행)
+4. Vite 정적 빌드 (`public/data/`가 dist로 복사됨)
 5. `actions/deploy-pages`로 GitHub Pages 배포 (`public/CNAME`이 도메인을 결정)
 
 ### validate.yml (PR)

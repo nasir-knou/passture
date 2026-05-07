@@ -52,18 +52,41 @@ subjects:
         title: 강의 연습문제
         path: subjects/operating-systems/lecture-exercises.json
         kind: lecture
-  - id: discrete-math
-    title: 이산수학
-    sources: []
   - id: algorithms
     title: 알고리즘
-    sources: []
+    sources:
+      - id: past-exams-2019
+        title: 2019 기출
+        path: subjects/algorithms/past-exams-2019.json
+        kind: exam
+        year: 2019
+      - id: workbook
+        title: 교재 워크북
+        path: subjects/algorithms/workbook.json
+        kind: workbook
+      - id: lecture-exercises
+        title: 강의 연습문제
+        path: subjects/algorithms/lecture-exercises.json
+        kind: lecture
+  - id: artificial-intelligence
+    title: 인공지능
+    sources:
+      - id: past-exams-2019
+        title: 2019 기출
+        path: subjects/artificial-intelligence/past-exams-2019.json
+        kind: exam
+        year: 2019
   - id: java-programming
     title: Java프로그래밍
-    sources: []
+    sources:
+      - id: past-exams-2019
+        title: 2019 기출
+        path: subjects/java-programming/past-exams-2019.json
+        kind: exam
+        year: 2019
 ```
 
-`kind` 값(`exam` | `workbook` | `lecture`)으로 출처별 UI 그룹핑(기출 탭, 교재 탭 등)을 결정한다.
+`kind` 값(`exam` | `workbook` | `lecture`)은 출처 라벨과 ID 검증에 사용한다. 현재 UI는 탭이 아니라 선택된 과목의 출처 체크리스트를 표시한다.
 
 ## 3. 문제 파일 구조 (YAML 저작 기준)
 
@@ -95,15 +118,15 @@ questions:
     prompt: 운영체제의 주된 역할로 가장 적절한 것은?
     images: []
     choices:
-      - id: "1"
+      - id: '1'
         text: 사용자와 하드웨어 사이의 인터페이스 제공
-      - id: "2"
+      - id: '2'
         text: 문서 편집 기능 제공
-      - id: "3"
+      - id: '3'
         text: 웹 검색 결과 제공
-      - id: "4"
+      - id: '4'
         text: 전자우편 송수신 전용 기능 제공
-    answers: ["1"]
+    answers: ['1']
     explanation: |
       운영체제는 사용자와 하드웨어 사이에서 자원을 관리하고 인터페이스를 제공한다.
     tags: [intro, role]
@@ -113,33 +136,33 @@ questions:
     passageRefs: [g19-code-01]
     prompt: 위 코드의 출력 결과는?
     choices:
-      - { id: "1", text: "0" }
-      - { id: "2", text: "1" }
-      - { id: "3", text: "2" }
-      - { id: "4", text: "컴파일 오류" }
-    answers: ["2"]
+      - { id: '1', text: '0' }
+      - { id: '2', text: '1' }
+      - { id: '3', text: '2' }
+      - { id: '4', text: '컴파일 오류' }
+    answers: ['2']
     explanation: 변수 `a`의 값 1이 출력된다.
 
   - id: e19-03
     type: ox
     prompt: 프로세스와 스레드는 동일한 개념이다.
     choices:
-      - { id: "O", text: "O" }
-      - { id: "X", text: "X" }
-    answers: ["X"]
+      - { id: 'O', text: 'O' }
+      - { id: 'X', text: 'X' }
+    answers: ['X']
     explanation: 프로세스와 스레드는 자원 공유 범위와 독립성에서 다르다.
 
   - id: e19-04
-    type: multi-answer            # 복수정답 문제
+    type: multi-answer # 복수정답 문제
     allowMultiple: true
     prompt: 다음 중 운영체제의 기능으로 옳은 것을 모두 고르시오.
     choices:
-      - { id: "1", text: "프로세스 관리" }
-      - { id: "2", text: "메모리 관리" }
-      - { id: "3", text: "전자결제 처리" }
-      - { id: "4", text: "장치 관리" }
-    answers: ["1", "2", "4"]
-    answerKey: F                  # 출제표기 보존(선택)
+      - { id: '1', text: '프로세스 관리' }
+      - { id: '2', text: '메모리 관리' }
+      - { id: '3', text: '전자결제 처리' }
+      - { id: '4', text: '장치 관리' }
+    answers: ['1', '2', '4']
+    answerKey: F # 출제표기 보존(선택)
     explanation: 운영체제 핵심 기능은 프로세스/메모리/장치 관리이다.
 ```
 
@@ -207,11 +230,11 @@ answers: ["O"]            # OX
 
 문제 타입별 처리:
 
-| `type` | UI | 정답 판정 |
-|---|---|---|
-| `multiple-choice` | 라디오 버튼 | 사용자 선택 1개가 `answers[0]`과 일치하면 정답 |
-| `multi-answer` | 체크박스 | 사용자 선택 집합이 `answers` 집합과 정확히 일치하면 정답 |
-| `ox` | 라디오 버튼 (O/X 두 개) | `multiple-choice`와 동일 |
+| `type`            | UI                      | 정답 판정                                                |
+| ----------------- | ----------------------- | -------------------------------------------------------- |
+| `multiple-choice` | 라디오 버튼             | 사용자 선택 1개가 `answers[0]`과 일치하면 정답           |
+| `multi-answer`    | 체크박스                | 사용자 선택 집합이 `answers` 집합과 정확히 일치하면 정답 |
+| `ox`              | 라디오 버튼 (O/X 두 개) | `multiple-choice`와 동일                                 |
 
 `allowMultiple: true`가 명시되거나 `answers.length > 1`이면 자동으로 체크박스 UI를 사용한다.
 
@@ -233,4 +256,6 @@ images:
 
 - 파일명에 문제 ID를 포함해 추적성을 확보한다 (`e19-01.png`, `b03-07-fig1.png`).
 - 빌드 단계에서 `path` 파일이 실제 존재하는지 검증한다.
+- 시험지 전체 이미지는 공개 자산으로 쓰지 않고 필요한 코드·도표·표만 잘라 저장한다.
+- `scripts/crop-png.mjs`는 원본 이미지에서 필요한 영역을 PNG로 잘라내는 보조 도구다.
 - 이미지 최적화는 초기에는 적용하지 않는다. 용량 이슈 발생 시 빌드 단계에서 WebP 변환을 추가한다.
