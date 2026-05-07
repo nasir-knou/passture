@@ -12,4 +12,4 @@ questions:
       - { id: 'X', text: 'X' }
     answers: ['O']
     explanation: 동적 계획법은 중복 부분 문제와 최적 부분 구조를 활용해 하위 문제의 답을 저장하고 재사용한다.
-    tags: [dynamic-programming]
+    tags: [chapter:01, dynamic-programming]

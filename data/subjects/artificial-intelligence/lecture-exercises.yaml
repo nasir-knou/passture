@@ -12,4 +12,4 @@ questions:
       - { id: 'X', text: 'X' }
     answers: ['O']
     explanation: 군집화처럼 레이블이 없는 데이터에서 유사한 사례를 묶거나 잠재 구조를 찾는 방법이 비지도학습에 속한다.
-    tags: [machine-learning, unsupervised-learning]
+    tags: [chapter:01, machine-learning, unsupervised-learning]

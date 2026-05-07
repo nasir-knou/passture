@@ -12,4 +12,4 @@ questions:
       - { id: 'X', text: 'X' }
     answers: ['O']
     explanation: 생성자는 객체 초기화를 담당하며 클래스 이름과 동일하고 void를 포함한 반환 타입을 쓰지 않는다.
-    tags: [constructor]
+    tags: [chapter:01, constructor]

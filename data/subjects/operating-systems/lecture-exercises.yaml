@@ -12,4 +12,4 @@ questions:
       - { id: 'X', text: 'X' }
     answers: ['O']
     explanation: 선점형 스케줄링은 타이머 인터럽트나 우선순위 변화 등에 따라 실행 중인 프로세스를 중단시키고 다른 프로세스에 CPU를 배정할 수 있다.
-    tags: [scheduling]
+    tags: [chapter:01, scheduling]

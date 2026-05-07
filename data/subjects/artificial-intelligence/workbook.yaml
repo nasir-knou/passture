@@ -14,4 +14,4 @@ questions:
       - { id: '4', text: '페이지 수 + 프레임 수' }
     answers: ['1']
     explanation: A*는 시작 상태에서 현재 노드까지의 실제 비용 g(n)과 목표까지의 추정 비용 h(n)을 합산해 노드를 평가한다.
-    tags: [search, a-star]
+    tags: [chapter:01, search, a-star]
