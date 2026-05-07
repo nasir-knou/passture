@@ -22,7 +22,9 @@
 - 라우팅: 자체 미니 해시 라우터 (`window.location.hash` listener + 페이지 매핑). 정적 호스팅에서 새로고침/딥링크 안전
 - 스타일: 단일 `src/styles.css`
 - 코드 스타일: Prettier만 (eslint 보류)
-- 마크다운/수식/코드: 아직 별도 렌더러 없음. 현재는 문제/해설 문자열을 HTML escape 후 표시한다.
+- 수식: KaTeX 기반 인라인/블록 수식 렌더링. 문제 본문, 선택지, 텍스트 지문, 해설에 적용한다.
+- 코드 지문: `passages.type: code`를 `<pre><code>`로 렌더링한다.
+- 이미지/다이어그램: 구조화 가능한 도표는 `diagram` 데이터에서 SVG/HTML로 렌더링하고, diagram으로 재현하기 어려운 이미지에 한해 crop 이미지를 `image`로 렌더링한다.
 
 ### 빌드 도구 (문제 데이터)
 
@@ -117,7 +119,8 @@
    - `passageRefs`가 실제 `passages`에 존재
    - `answers` 항목이 `choices.id` 안에 존재
    - `images.path` 파일이 저장소에 실제 존재
-   - 출처 종류별 문제 ID 형식 검증 (`e{yy}-{nn}`, `b{chapter}-{nn}`, `l{lecture}-{nn}`)
+   - `diagram` 타입별 필수 필드와 참조 무결성이 맞음
+   - 출처 종류별 문제 ID 형식 검증 (`e{yy}-{nn}`, `t{chapter}-{nn}`, `b{chapter}-{nn}`, `l{lecture}-{nn}`, `i{unit}-{nn}`)
 4. `public/data/{subject}/{source}.json` 산출
 5. `public/data/catalog.json` 산출
 6. 실패 시 빌드 중단, GitHub Actions에서도 동일 실행

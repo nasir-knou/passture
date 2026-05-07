@@ -30,38 +30,38 @@ subjects:
     title: 운영체제
     sources:
       - id: past-exams-2017
-        title: 2017 기출
+        title: 2017 기말
         path: subjects/operating-systems/past-exams-2017.json
         kind: exam
         year: 2017
       - id: past-exams-2018
-        title: 2018 기출
+        title: 2018 기말
         path: subjects/operating-systems/past-exams-2018.json
         kind: exam
         year: 2018
       - id: past-exams-2019
-        title: 2019 기출
+        title: 2019 기말
         path: subjects/operating-systems/past-exams-2019.json
         kind: exam
         year: 2019
       - id: workbook
-        title: 교재 워크북
+        title: 워크북 문제
         path: subjects/operating-systems/workbook.json
         kind: workbook
       - id: lecture-exercises
-        title: 강의 연습문제
+        title: 연습문제
         path: subjects/operating-systems/lecture-exercises.json
         kind: lecture
   - id: algorithms
     title: 알고리즘
     sources:
       - id: past-exams-2019
-        title: 2019 기출
+        title: 2019 기말
         path: subjects/algorithms/past-exams-2019.json
         kind: exam
         year: 2019
       - id: textbook
-        title: 교재 문제
+        title: 기본서 문제
         path: subjects/algorithms/textbook.json
         kind: textbook
       - id: workbook
@@ -69,14 +69,14 @@ subjects:
         path: subjects/algorithms/workbook.json
         kind: workbook
       - id: lecture-exercises
-        title: 강의 연습문제
+        title: 연습문제
         path: subjects/algorithms/lecture-exercises.json
         kind: lecture
   - id: artificial-intelligence
     title: 인공지능
     sources:
       - id: past-exams-2019
-        title: 2019 기출
+        title: 2019 기말
         path: subjects/artificial-intelligence/past-exams-2019.json
         kind: exam
         year: 2019
@@ -84,13 +84,23 @@ subjects:
     title: Java프로그래밍
     sources:
       - id: past-exams-2019
-        title: 2019 기출
+        title: 2019 기말
         path: subjects/java-programming/past-exams-2019.json
         kind: exam
         year: 2019
 ```
 
-`kind` 값(`exam` | `textbook` | `workbook` | `lecture`)은 출처 라벨과 ID 검증에 사용한다. 현재 UI는 탭이 아니라 선택된 과목의 출처 체크리스트를 표시한다.
+런타임용 `public/data/catalog.json`에는 빌드 시 각 출처의 `questions.length`를 계산한 `questionCount`가 추가된다. 선택 화면과 홈의 출처 목록은 이를 사용해 `2019 기말 (25문제)`처럼 표시한다. 원본 `catalog.yaml`에는 수동으로 문제 수를 적지 않는다.
+
+화면의 큰 분류는 `기출 / 교재 / 강의` 3개로 유지한다.
+
+- `kind: exam` → 기출 분류, 출처명은 `2019 기말`처럼 표시한다.
+- `kind: textbook` → 교재 분류, 출처명은 `기본서 문제`를 사용한다.
+- `kind: workbook` → 교재 분류, 출처명은 `워크북 문제`를 사용한다.
+- `kind: lecture` → 강의 분류, 출처명은 `연습문제`를 사용한다.
+- `kind: intensive` → 강의 분류, 출처명은 `특강 문제`를 사용한다.
+
+`kind` 값(`exam` | `textbook` | `workbook` | `lecture` | `intensive`)은 출처 라벨과 ID 검증에 사용한다. 현재 UI는 탭이 아니라 선택된 과목의 출처 체크리스트를 표시한다.
 
 ## 3. 문제 파일 구조 (YAML 저작 기준)
 
@@ -101,7 +111,7 @@ subjects:
 ```yaml
 subjectId: operating-systems
 sourceId: past-exams-2019
-title: 운영체제 2019 기출
+title: 운영체제 2019 기말
 kind: exam
 year: 2019
 
@@ -177,9 +187,10 @@ questions:
 문제 `id`는 파일 안에서 유일해야 한다. 출처 종류별 접두사를 명시적으로 둔다.
 
 - 기출: `e{yy}-{nn}` → `e17-01`, `e18-25`, `e19-23`
-- 교재 문제: `t{chapter}-{nn}` → `t01-03`, `t07-08`
+- 기본서 문제: `t{chapter}-{nn}` → `t01-03`, `t07-08`
 - 워크북: `b{chapter}-{nn}` → `b01-03`, `b07-08`
-- 강의 연습문제: `l{lecture}-{nn}` → `l01-03`, `l07-08`
+- 강의 문제: `l{lecture}-{nn}` → `l01-03`, `l07-08`
+- 특강 문제: `i{unit}-{nn}` → `i01-03`, `i07-08`
 
 기출에 `e` 접두를 붙이는 이유:
 
@@ -208,13 +219,13 @@ algorithms:workbook:b03-07
 
 ## 4.1 챕터 태그
 
-교재(`kind: textbook`), 워크북(`kind: workbook`), 강의(`kind: lecture`) 출처의 문제는 `tags`에 챕터 정보를 반드시 포함한다.
+교재(`kind: textbook`), 워크북(`kind: workbook`), 강의(`kind: lecture`), 특강(`kind: intensive`) 출처의 문제는 `tags`에 챕터 정보를 반드시 포함한다.
 
 - 형식: `chapter:NN` (2자리 숫자)
 - 예: `chapter:01`, `chapter:07`
 - 개념 태그를 대체하지 않는다. 챕터 태그와 개념 태그를 함께 둔다.
 - 문제 `id`에 장/강 번호가 있더라도 `tags`에 별도로 기록한다.
-- 강의 문제는 강의 회차가 아니라 해당 문제가 다루는 교재 장 기준으로 태그를 붙인다.
+- 강의/특강 문제는 강의 회차가 아니라 해당 문제가 다루는 교재 장 기준으로 태그를 붙인다.
 - 기출(`kind: exam`)은 연도/회차 기준 출처이므로 챕터 태그를 필수로 두지 않는다.
 
 ```yaml
@@ -264,9 +275,9 @@ choices:
 
 YAML 큰따옴표 안에서는 `\` 이스케이프가 필요하므로, 복잡한 수식은 작은따옴표 또는 블록 문자열(`|`)을 우선 사용한다.
 
-## 4.3 선택지 이미지
+## 4.3 선택지 이미지/다이어그램
 
-선택지 자체가 그림인 문제는 `choices[].image`에 선택지별 crop 이미지를 연결한다. 선택지 텍스트는 접근성과 정답 표시를 위해 비워두지 않고 `①`, `그래프 1`처럼 짧게 유지한다.
+선택지 자체가 그림인 문제도 도표화/코드화가 가능하면 `choices[].diagram`으로 작성한다. diagram으로 재현하기 어려운 경우에만 `choices[].image`에 선택지별 crop 이미지를 연결한다. 선택지 텍스트는 접근성과 정답 표시를 위해 비워두지 않고 `①`, `그래프 1`처럼 짧게 유지한다.
 
 ```yaml
 choices:
@@ -282,7 +293,24 @@ choices:
       alt: 알고리즘 교재 4장 7번 선택지 2 그래프
 ```
 
-도표가 문제 본문에만 필요한 경우에는 기존 `question.images` 또는 `passages.type: image`를 사용하고, 선택지마다 다른 그림을 골라야 하는 경우에만 `choices[].image`를 사용한다.
+선택지 도표가 구조화 렌더링 가능한 형태라면 `choices[].diagram`을 사용한다. 예를 들어 자원할당 그래프 선택지는 crop 이미지 대신 `resource-allocation-graph` 데이터로 작성한다.
+
+```yaml
+choices:
+  - id: '1'
+    text: 그래프 1
+    diagram:
+      type: resource-allocation-graph
+      width: 260
+      height: 190
+      nodes:
+        - { id: p1, kind: process, label: p_1, x: 45, y: 95 }
+        - { id: r1, kind: resource, label: r_1, x: 88, y: 35 }
+      edges:
+        - { from: p1, to: r1 }
+```
+
+도표가 문제 본문에만 필요한 경우에는 `question.images`, `passages.type: image`, 또는 `passages.type: diagram`을 사용한다. 선택지마다 다른 그림을 골라야 하는 경우에는 `choices[].image`나 `choices[].diagram`을 사용한다.
 
 ## 5. 공통 지문 처리
 
@@ -292,9 +320,11 @@ choices:
 
 - 같은 지문이 여러 문제에 반복 저장되는 것을 피할 수 있다.
 - 지문 수정 시 한 곳만 고치면 된다.
-- 코드 지문, 이미지 지문, 긴 설명을 구조화하기 쉽다.
+- 코드 지문, 이미지 지문, 다이어그램 지문, 긴 설명을 구조화하기 쉽다.
 - 문제 1개에 여러 지문이 함께 묶이는 경우(코드 + 입출력 표)도 배열이라 자연스럽게 처리된다.
-- 도표, 그래프, 표처럼 원본 이미지가 의미를 갖는 공통 지문은 텍스트로 해석해 `body`에 옮기지 않고 `type: image`와 `image.path`로 원본 crop 이미지를 참조한다.
+- 도표, 그래프, 표처럼 원본 이미지가 의미를 갖는 공통 지문은 텍스트로 해석해 `body`에 옮기지 않는다.
+- 브라우저에서 구조적으로 그릴 수 있는 도표는 `type: diagram`과 `diagram` 필드를 사용해 이미지 대신 코드 렌더링한다.
+- diagram으로 재현하기 어렵거나 원본의 세부 시각 형태 자체가 문제 조건인 불가피한 경우에만 `type: image`와 `image.path`로 원본 crop 이미지를 참조한다.
 - `passages.id`는 데이터 참조용 식별자이며, 실제 문제 화면에는 노출하지 않는다.
 
 `passageRefs`가 비어있거나 없으면 단독 문제로 취급한다.
@@ -314,6 +344,74 @@ questions:
     passageRefs: [g17-rag-01]
     prompt: 다음 자원할당 그래프에 대한 설명으로 바른 것은?
 ```
+
+다이어그램 공통 지문 예:
+
+```yaml
+passages:
+  - id: g07-avoidance-rag-04
+    type: diagram
+    diagram:
+      type: resource-allocation-graph
+      width: 520
+      height: 180
+      nodes:
+        - { id: p1, kind: process, label: p_1, x: 170, y: 90 }
+        - { id: p2, kind: process, label: p_2, x: 350, y: 90 }
+        - { id: r1, kind: resource, label: r_1, x: 260, y: 38 }
+        - { id: r2, kind: resource, label: r_2, x: 260, y: 142 }
+      edges:
+        - { from: r1, to: p1 }
+        - { from: p1, to: r2, style: dashed }
+        - { from: p2, to: r1, style: dashed }
+        - { from: p2, to: r2, style: dashed }
+
+questions:
+  - id: b07-04
+    passageRefs: [g07-avoidance-rag-04]
+    prompt: 변형된 자원할당 그래프에서 운영체제가 수용할 경우 불안전상태가 되는 요청은?
+```
+
+현재 지원하는 `diagram.type`:
+
+- `resource-allocation-graph`: 운영체제 자원할당 그래프
+- `memory-free-list`: 운영체제 빈 공간 리스트
+- `data-table`: 표 형태의 공통 지문
+- `clock-page-replacement`: 클럭 페이지 교체 알고리즘의 원형 큐
+
+`resource-allocation-graph` 필드:
+
+- `width`, `height`: SVG `viewBox` 크기
+- `nodes`: 프로세스/자원 노드 배열
+- `nodes[].kind`: `process` 또는 `resource`
+- `nodes[].label`: 화면에 표시할 라벨. `p_1`, `r_2`처럼 `_1`, `_2`, `_3` 하첨자 표기를 사용할 수 있다.
+- `nodes[].x`, `nodes[].y`: 다이어그램 내부 좌표
+- `nodes[].units`: 자원 노드 위에 표시할 단위자원 개수. 필요할 때만 둔다.
+- `edges`: 방향 간선 배열
+- `edges[].from`, `edges[].to`: `nodes[].id`를 참조한다.
+- `edges[].style`: 생략하면 실선, `dashed`를 주면 점선으로 렌더링한다.
+
+`memory-free-list` 필드:
+
+- `width`, `height`: SVG `viewBox` 크기
+- `blocks`: 위에서 아래 순서로 표시할 메모리 블록 배열
+- `blocks[].kind`: `os`, `allocated`, `free`
+- `blocks[].label`: 화면에 표시할 라벨
+- `blocks[].size`: 빈 공간 블록의 상대 높이를 계산할 때 사용하는 MB 크기. 필요할 때만 둔다.
+
+`data-table` 필드:
+
+- `columns`: 표 머리글 배열
+- `rows`: 행 배열. 각 행의 셀 개수는 `columns` 개수와 같아야 한다.
+- 셀 문자열에는 일반 텍스트와 KaTeX 인라인 수식을 사용할 수 있다.
+
+`clock-page-replacement` 필드:
+
+- `width`, `height`: SVG `viewBox` 크기
+- `pointerIndex`: 포인터가 가리키는 `entries` 배열 인덱스
+- `entries`: 원형 큐 항목 배열
+- `entries[].page`: 페이지 라벨
+- `entries[].referenceBit`: 참조 비트. `0` 또는 `1`
 
 빌드 시 검증 규칙:
 
@@ -367,7 +465,8 @@ answers: ["O"]            # OX
 작성 기준:
 
 - 각 선택지별로 왜 정답 또는 오답인지 이유를 정리한다.
-- 정답 선택지는 핵심 판단 근거를 명확히 적고, 오답 선택지는 어떤 개념 오해나 조건 불일치 때문에 틀렸는지 적는다.
+- 정답 선택지는 핵심 판단 근거를 명확히 적는다.
+- 오답 선택지는 단순히 "틀렸다"가 아니라, 해당 선택지가 가리키는 개념이 무엇인지 설명하고 왜 문제의 조건 또는 질문과 맞지 않는지 적는다.
 - 문항의 핵심 개념에 대해 4~5줄 분량의 요약 설명을 함께 제공한다.
 - 공식 정답 검증 전 임시 해설도 같은 구조로 작성하고, M10에서 공식 정답 대조 후 필요한 경우 보정한다.
 
@@ -398,7 +497,9 @@ images:
 
 - 파일명에 문제 ID를 포함해 추적성을 확보한다 (`e19-01.png`, `b03-07-fig1.png`).
 - 빌드 단계에서 `path` 파일이 실제 존재하는지 검증한다.
-- 시험지 전체 이미지는 공개 자산으로 쓰지 않고 필요한 코드·도표·표만 잘라 저장한다.
-- 이미지 지문은 OCR/해석 텍스트로 대체하지 않는다. 원문 시각 정보가 필요한 경우 crop 이미지 경로를 저장하고 앱에서 이미지를 렌더링한다.
+- 시험지 전체 이미지는 공개 자산으로 쓰지 않는다.
+- 이미지 지문은 OCR/해석 텍스트로 대체하지 않는다.
+- 자원할당 그래프처럼 앱의 다이어그램 렌더러가 지원하는 구조화 도표는 `passages.type: diagram`으로 작성한다.
+- 도표화/코드화가 불가능하거나 원본 이미지의 세부 시각 정보 자체가 채점 단서인 불가피한 경우에만 crop 이미지 경로를 저장하고 앱에서 이미지를 렌더링한다.
 - `scripts/crop-png.mjs`는 원본 이미지에서 필요한 영역을 PNG로 잘라내는 보조 도구다.
 - 이미지 최적화는 초기에는 적용하지 않는다. 용량 이슈 발생 시 빌드 단계에서 WebP 변환을 추가한다.
