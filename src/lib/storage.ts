@@ -66,6 +66,11 @@ export function recordWrongAnswer(key: string, now = new Date()): void {
   saveWrongAnswers(wrongAnswers);
 }
 
+export function clearUserData(): void {
+  localStorage.removeItem(bookmarksKey);
+  localStorage.removeItem(wrongAnswersKey);
+}
+
 function readStringArray(key: string): string[] {
   const raw = localStorage.getItem(key);
   if (!raw) {

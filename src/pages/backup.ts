@@ -4,21 +4,20 @@ import {
   importUserData,
   type ImportMode,
 } from '../lib/backup';
-import { renderFooter } from './shared';
+import { clearPracticeState } from '../lib/quiz-session';
+import { clearUserData } from '../lib/storage';
+import { renderFooter, renderTopNav } from './shared';
 
 export function renderBackupPage(): HTMLElement {
   const page = document.createElement('main');
   page.className = 'app-shell';
   page.innerHTML = `
-    <nav class="top-nav" aria-label="주요 메뉴">
-      <a href="#/">홈</a>
-      <a href="#/bookmarks">북마크</a>
-      <a href="#/select">문제 선택</a>
-    </nav>
-    <section class="page-header">
-      <p class="eyebrow">backup</p>
-      <h1>백업 / 복원</h1>
-      <p class="lead">북마크와 오답 기록을 JSON 파일로 내보내고 가져옵니다.</p>
+    ${renderTopNav('backup')}
+    <section class="page-header backup-header">
+      <p class="eyebrow">data</p>
+      <h1>데이터 관리</h1>
+      <p class="lead backup-lead">Passture는 별도의 서버/데이터베이스를 사용하지 않고 데이터를 로컬 브라우저에만 저장합니다.</p>
+      <p class="lead backup-lead">북마크와 오답 기록을 백업·복원하고, 현재 풀이 상태나 학습 기록을 초기화합니다.</p>
     </section>
     <section class="stack">
       <article class="panel">
@@ -37,6 +36,17 @@ export function renderBackupPage(): HTMLElement {
         </div>
         <p class="form-message" data-backup-message></p>
       </article>
+      <article class="panel">
+        <h2>초기화</h2>
+        <p class="muted">현재 풀이 세션만 지우거나, 브라우저에 저장된 북마크와 오답 기록을 모두 지웁니다.</p>
+        <div class="action-row">
+          <button class="secondary-button" type="button" data-reset-practice>현재 풀이 초기화</button>
+          <button class="secondary-button danger-button" type="button" data-reset-user-data>
+            학습 기록 초기화
+          </button>
+        </div>
+        <p class="form-message" data-reset-message></p>
+      </article>
     </section>
     ${renderFooter()}
   `;
@@ -50,6 +60,31 @@ export function renderBackupPage(): HTMLElement {
       const mode = button.dataset.import as ImportMode;
       void importSelectedFile(page, mode);
     });
+  });
+
+  page.querySelector<HTMLButtonElement>('[data-reset-practice]')?.addEventListener('click', () => {
+    if (!window.confirm('현재 풀이 세션과 선택 옵션을 초기화할까요?')) {
+      return;
+    }
+
+    clearPracticeState();
+    setMessage(
+      page.querySelector<HTMLElement>('[data-reset-message]'),
+      '현재 풀이를 초기화했습니다.',
+    );
+  });
+
+  page.querySelector<HTMLButtonElement>('[data-reset-user-data]')?.addEventListener('click', () => {
+    if (!window.confirm('북마크와 오답 기록을 모두 초기화할까요? 이 작업은 되돌릴 수 없습니다.')) {
+      return;
+    }
+
+    clearUserData();
+    clearPracticeState();
+    setMessage(
+      page.querySelector<HTMLElement>('[data-reset-message]'),
+      '북마크와 오답 기록을 초기화했습니다.',
+    );
   });
 
   return page;

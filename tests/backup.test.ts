@@ -1,6 +1,11 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { createUserDataExport, importUserData, validateUserDataExport } from '../src/lib/backup';
+import {
+  createBackupFilename,
+  createUserDataExport,
+  importUserData,
+  validateUserDataExport,
+} from '../src/lib/backup';
 
 describe('backup', () => {
   beforeEach(() => {
@@ -19,6 +24,12 @@ describe('backup', () => {
       exportedAt: '2026-05-06T00:00:00.000Z',
       bookmarks: ['operating-systems:past-exams-2019:e19-01'],
     });
+  });
+
+  it('creates filenames with date and time', () => {
+    expect(createBackupFilename(new Date('2026-05-06T01:02:03.000Z'))).toBe(
+      'passture-user-data-20260506-010203.json',
+    );
   });
 
   it('merges imported bookmarks without duplicates', () => {

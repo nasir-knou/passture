@@ -18,7 +18,12 @@ export function createUserDataExport(now = new Date()): UserDataExport {
 }
 
 export function createBackupFilename(now = new Date()): string {
-  return `passture-user-data-${now.toISOString().slice(0, 10)}.json`;
+  const timestamp = now
+    .toISOString()
+    .replace(/[-:]/g, '')
+    .replace(/\.\d{3}Z$/, '')
+    .replace('T', '-');
+  return `passture-user-data-${timestamp}.json`;
 }
 
 export function importUserData(value: unknown, mode: ImportMode): UserDataExport {

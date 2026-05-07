@@ -1,6 +1,13 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { isBookmarked, loadBookmarks, loadWrongAnswers, recordWrongAnswer, toggleBookmark } from '../src/lib/storage';
+import {
+  clearUserData,
+  isBookmarked,
+  loadBookmarks,
+  loadWrongAnswers,
+  recordWrongAnswer,
+  toggleBookmark,
+} from '../src/lib/storage';
 
 describe('bookmark storage', () => {
   beforeEach(() => {
@@ -26,6 +33,17 @@ describe('bookmark storage', () => {
       wrongCount: 2,
       lastWrongAt: '2026-05-06T00:01:00.000Z',
     });
+  });
+
+  it('clears bookmarks and wrong answers', () => {
+    const key = 'operating-systems:past-exams-2019:e19-01';
+
+    toggleBookmark(key);
+    recordWrongAnswer(key, new Date('2026-05-06T00:00:00.000Z'));
+    clearUserData();
+
+    expect(loadBookmarks()).toEqual([]);
+    expect(loadWrongAnswers()).toEqual({});
   });
 });
 
