@@ -34,6 +34,7 @@ export interface QuizSession {
   sourceSignature: string;
   currentIndex: number;
   questions: QuizSessionQuestion[];
+  draftAnswers: Record<string, string[]>;
   responses: Record<string, QuizResponse>;
 }
 
@@ -134,7 +135,7 @@ export function defaultSelectedSources(
 
 export function loadSession(): QuizSession | undefined {
   const raw = sessionStorage.getItem(sessionKey);
-  return raw ? (JSON.parse(raw) as QuizSession) : undefined;
+  return raw ? normalizeSession(JSON.parse(raw) as Partial<QuizSession>) : undefined;
 }
 
 export function saveSession(session: QuizSession): void {
@@ -142,6 +143,13 @@ export function saveSession(session: QuizSession): void {
 }
 
 export function clearSession(): void {
+  sessionStorage.removeItem(sessionKey);
+}
+
+export function clearPracticeState(): void {
+  sessionStorage.removeItem(selectedSourcesKey);
+  sessionStorage.removeItem(practiceScopeKey);
+  sessionStorage.removeItem(practiceOptionsKey);
   sessionStorage.removeItem(sessionKey);
 }
 
@@ -177,6 +185,7 @@ export function createQuizSession(
     sourceSignature: sourceSignature(sources),
     currentIndex: 0,
     questions: options.questionOrder === 'random' ? shuffled(questions) : questions,
+    draftAnswers: {},
     responses: {},
   };
 }
@@ -208,14 +217,54 @@ export function answerCurrentQuestion(session: QuizSession, selected: string[]):
     return session;
   }
 
-  const correct = isCorrectAnswer(selected, current.question.answers);
+  return answerQuestion(session, current.key, selected);
+}
 
-  if (!correct) {
+export function saveDraftAnswer(
+  session: QuizSession,
+  questionKey: string,
+  selected: string[],
+): QuizSession {
+  const nextDraftAnswers = { ...session.draftAnswers };
+
+  if (selected.length === 0) {
+    delete nextDraftAnswers[questionKey];
+  } else {
+    nextDraftAnswers[questionKey] = selected;
+  }
+
+  const nextSession = {
+    ...session,
+    draftAnswers: nextDraftAnswers,
+  };
+
+  saveSession(nextSession);
+  return nextSession;
+}
+
+export function answerQuestion(
+  session: QuizSession,
+  questionKey: string,
+  selected: string[],
+): QuizSession {
+  const current = session.questions.find((question) => question.key === questionKey);
+  if (!current) {
+    return session;
+  }
+
+  const correct = isCorrectAnswer(selected, current.question.answers);
+  const previousResponse = session.responses[current.key];
+
+  if (!correct && previousResponse === undefined) {
     recordWrongAnswer(current.key);
   }
 
   const nextSession = {
     ...session,
+    draftAnswers: {
+      ...session.draftAnswers,
+      [current.key]: selected,
+    },
     responses: {
       ...session.responses,
       [current.key]: {
@@ -228,6 +277,17 @@ export function answerCurrentQuestion(session: QuizSession, selected: string[]):
 
   saveSession(nextSession);
   return nextSession;
+}
+
+export function answerAllDraftQuestions(session: QuizSession): QuizSession {
+  return session.questions.reduce((nextSession, question) => {
+    if (nextSession.responses[question.key]) {
+      return nextSession;
+    }
+
+    const selected = nextSession.draftAnswers[question.key] ?? [];
+    return selected.length > 0 ? answerQuestion(nextSession, question.key, selected) : nextSession;
+  }, session);
 }
 
 export function moveQuestion(session: QuizSession, nextIndex: number): QuizSession {
@@ -258,6 +318,18 @@ function defaultPracticeOptions(): PracticeOptions {
   return {
     questionOrder: 'default',
     choiceOrder: 'default',
+  };
+}
+
+function normalizeSession(value: Partial<QuizSession>): QuizSession {
+  return {
+    id: value.id ?? '',
+    createdAt: value.createdAt ?? '',
+    sourceSignature: value.sourceSignature ?? '',
+    currentIndex: value.currentIndex ?? 0,
+    questions: value.questions ?? [],
+    draftAnswers: value.draftAnswers ?? {},
+    responses: value.responses ?? {},
   };
 }
 
