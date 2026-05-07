@@ -1,5 +1,5 @@
 import type { Catalog } from '../types/catalog';
-import { renderFooter, sourceKindLabel } from './shared';
+import { renderFooter, renderTopNav, sourceKindLabel } from './shared';
 
 export function renderHomePage(catalog: Catalog): HTMLElement {
   const page = document.createElement('main');
@@ -20,22 +20,16 @@ export function renderHomePage(catalog: Catalog): HTMLElement {
             <p class="muted">${subject.sources.length}개 출처</p>
           </div>
           <ul class="compact-list">${sources}</ul>
-          <a class="text-link" href="#/select?subject=${subject.id}">선택</a>
+          <a class="text-link card-action" href="#/select?subject=${subject.id}">선택</a>
         </article>
       `;
     })
     .join('');
 
   page.innerHTML = `
-    <nav class="top-nav" aria-label="주요 메뉴">
-      <a href="#/">홈</a>
-      <a href="#/select">문제 선택</a>
-      <a href="#/bookmarks">북마크</a>
-      <a href="#/backup">백업</a>
-    </nav>
+    ${renderTopNav('home')}
     <section class="page-header">
-      <p class="eyebrow brand-word"><span aria-hidden="true">🐑</span> <strong>PASS</strong>ture</p>
-      <h1 class="home-title">개념보단 문제풀이가 중요한, 진짜 양치기들의 초원</h1>
+      <h1 class="home-title">문제풀이로 달리는 양치기들의 초원</h1>
       <p class="lead home-lead">기출/교재/강의 문제들을 모아놓은 Pasture에서 시험감각을 익히고 Pass하세요</p>
     </section>
     <section class="grid" aria-label="과목 목록">

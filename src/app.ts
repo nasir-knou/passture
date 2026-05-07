@@ -1,8 +1,9 @@
 import { loadCatalog } from './lib/data-loader';
 import { createRouter } from './router';
 import { renderBackupPage } from './pages/backup';
-import { renderBookmarksPage } from './pages/bookmarks';
+import { renderHistoryPage } from './pages/history';
 import { renderHomePage } from './pages/home';
+import { renderMockExamPage } from './pages/mock-exam';
 import { renderQuizPage } from './pages/quiz';
 import { renderResultPage } from './pages/result';
 import { renderSelectPage } from './pages/select';
@@ -11,9 +12,14 @@ export function startApp(root: HTMLElement): void {
   const router = createRouter(root, {
     '/': async () => renderHomePage(await loadCatalog()),
     '/select': async () => renderSelectPage(await loadCatalog()),
+    '/mock-exam': async () => renderMockExamPage(),
     '/quiz': async () => renderQuizPage(await loadCatalog()),
     '/result': async () => renderResultPage(),
-    '/bookmarks': async () => renderBookmarksPage(),
+    '/history': async () => renderHistoryPage(await loadCatalog()),
+    '/bookmarks': async () => {
+      window.location.hash = '#/history';
+      return renderHistoryPage(await loadCatalog());
+    },
     '/backup': async () => renderBackupPage(),
   });
 

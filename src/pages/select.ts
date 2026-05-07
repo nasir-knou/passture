@@ -8,7 +8,8 @@ import {
   type PracticeScope,
   type SelectedSource,
 } from '../lib/quiz-session';
-import { escapeHtml, renderFooter, sourceKindLabel } from './shared';
+import { loadBookmarks, loadWrongAnswers } from '../lib/storage';
+import { escapeHtml, renderFooter, renderTopNav, sourceKindLabel } from './shared';
 
 export function renderSelectPage(catalog: Catalog): HTMLElement {
   const page = document.createElement('main');
@@ -17,6 +18,7 @@ export function renderSelectPage(catalog: Catalog): HTMLElement {
   const selectedSubjectId = readSubjectId(catalog);
   const visibleSubjects = catalog.subjects.filter((subject) => subject.id === selectedSubjectId);
   const selectedSubject = visibleSubjects[0];
+  const learningStatus = readLearningStatus(selectedSubject?.id);
 
   const subjects = visibleSubjects
     .map((subject) => {
@@ -60,27 +62,30 @@ export function renderSelectPage(catalog: Catalog): HTMLElement {
     .join('');
 
   page.innerHTML = `
-    ${renderNav()}
+    ${renderTopNav('select')}
     <section class="page-header">
       <p class="eyebrow">select</p>
       <h1>${escapeHtml(selectedSubject?.title ?? '문제 선택')}</h1>
       <p class="lead">선택한 과목의 문제 출처와 풀이 방식을 정합니다.</p>
     </section>
-    <section class="subject-switcher" aria-label="과목 변경">
-      <label>
-        <span>과목</span>
-        <select data-subject-switcher>
-          ${catalog.subjects
-            .map(
-              (subject) => `
-                <option value="${escapeHtml(subject.id)}" ${subject.id === selectedSubject?.id ? 'selected' : ''}>
-                  ${escapeHtml(subject.title)}
-                </option>
-              `,
-            )
-            .join('')}
-        </select>
-      </label>
+    <section class="subject-switcher panel" aria-label="과목 변경">
+      <div>
+        <label>
+          <span>과목</span>
+          <select data-subject-switcher>
+            ${catalog.subjects
+              .map(
+                (subject) => `
+                  <option value="${escapeHtml(subject.id)}" ${subject.id === selectedSubject?.id ? 'selected' : ''}>
+                    ${escapeHtml(subject.title)}
+                  </option>
+                `,
+              )
+              .join('')}
+          </select>
+        </label>
+      </div>
+      ${renderLearningStatus(learningStatus, selectedSubject?.id)}
     </section>
     <section class="stack">${subjects}</section>
     <section class="settings-grid" aria-label="풀이 설정">
@@ -88,10 +93,14 @@ export function renderSelectPage(catalog: Catalog): HTMLElement {
       ${renderOrderSetting('문제순서 설정', 'question-order', 'questionOrder')}
       ${renderOrderSetting('선지순서 설정', 'choice-order', 'choiceOrder')}
     </section>
-    <p class="form-message" data-select-message></p>
-    <div class="action-row">
+    <section class="start-panel" aria-label="풀이 시작">
+      <div>
+        <strong>설정한 조건으로 풀이를 시작합니다.</strong>
+        <p class="muted">출처를 하나 이상 선택하면 선택한 범위와 순서 옵션이 세션에 저장됩니다.</p>
+        <p class="form-message" data-select-message></p>
+      </div>
       <button class="primary-button" type="button" data-start-quiz>풀이 시작</button>
-    </div>
+    </section>
     ${renderFooter()}
   `;
 
@@ -120,14 +129,16 @@ export function renderSelectPage(catalog: Catalog): HTMLElement {
     window.location.hash = '#/quiz';
   });
 
-  page.querySelector<HTMLSelectElement>('[data-subject-switcher]')?.addEventListener('change', () => {
-    const select = page.querySelector<HTMLSelectElement>('[data-subject-switcher]');
-    if (!select) {
-      return;
-    }
+  page
+    .querySelector<HTMLSelectElement>('[data-subject-switcher]')
+    ?.addEventListener('change', () => {
+      const select = page.querySelector<HTMLSelectElement>('[data-subject-switcher]');
+      if (!select) {
+        return;
+      }
 
-    window.location.hash = `#/select?subject=${encodeURIComponent(select.value)}`;
-  });
+      window.location.hash = `#/select?subject=${encodeURIComponent(select.value)}`;
+    });
 
   return page;
 }
@@ -138,6 +149,81 @@ function readSubjectId(catalog: Catalog): string | undefined {
   const requestedSubject = catalog.subjects.find((subject) => subject.id === subjectId);
   const firstAvailableSubject = catalog.subjects.find((subject) => subject.sources.length > 0);
   return requestedSubject?.id ?? firstAvailableSubject?.id;
+}
+
+interface LearningStatus {
+  bookmarkCount: number;
+  wrongQuestionCount: number;
+  wrongAttemptCount: number;
+}
+
+function readLearningStatus(subjectId: string | undefined): LearningStatus {
+  if (!subjectId) {
+    return {
+      bookmarkCount: 0,
+      wrongQuestionCount: 0,
+      wrongAttemptCount: 0,
+    };
+  }
+
+  const subjectPrefix = `${subjectId}:`;
+  const bookmarkCount = loadBookmarks().filter((key) => key.startsWith(subjectPrefix)).length;
+  const wrongAnswerRecords = Object.entries(loadWrongAnswers()).filter(([key]) =>
+    key.startsWith(subjectPrefix),
+  );
+  const wrongAttemptCount = wrongAnswerRecords.reduce(
+    (total, [, record]) => total + record.wrongCount,
+    0,
+  );
+  return {
+    bookmarkCount,
+    wrongQuestionCount: wrongAnswerRecords.length,
+    wrongAttemptCount,
+  };
+}
+
+function renderLearningStatus(status: LearningStatus, subjectId: string | undefined): string {
+  if (
+    status.bookmarkCount === 0 &&
+    status.wrongQuestionCount === 0 &&
+    status.wrongAttemptCount === 0
+  ) {
+    return `
+      <div class="subject-summary-empty" aria-label="최근 학습 상태">
+        풀이 기록 없음
+      </div>
+    `;
+  }
+
+  return `
+    <dl class="subject-summary learning-summary" aria-label="최근 학습 상태">
+      <div>
+        <dt>북마크</dt>
+        <dd>${status.bookmarkCount}</dd>
+      </div>
+      <div>
+        <dt>오답 문항</dt>
+        <dd>${status.wrongQuestionCount}</dd>
+      </div>
+      <div>
+        <dt>오답 누적</dt>
+        <dd>${status.wrongAttemptCount}</dd>
+      </div>
+      <div>
+        <dt>복습</dt>
+        <dd><a class="subject-summary-link" href="${createWrongHistoryLink(subjectId)}">오답 보기</a></dd>
+      </div>
+    </dl>
+  `;
+}
+
+function createWrongHistoryLink(subjectId: string | undefined): string {
+  const params = new URLSearchParams({ filter: 'wrong' });
+  if (subjectId) {
+    params.set('subject', subjectId);
+  }
+
+  return `#/history?${params.toString()}`;
 }
 
 function readPracticeScope(page: HTMLElement): PracticeScope {
@@ -157,7 +243,11 @@ function readOrderMode(page: HTMLElement, name: keyof PracticeOptions): OrderMod
   return checked?.value === 'random' ? 'random' : 'default';
 }
 
-function renderOrderSetting(label: string, groupLabel: string, name: keyof PracticeOptions): string {
+function renderOrderSetting(
+  label: string,
+  groupLabel: string,
+  name: keyof PracticeOptions,
+): string {
   return `
     <fieldset class="segmented-field">
       <legend>${label}</legend>
@@ -194,16 +284,5 @@ function renderScopeSetting(): string {
         </label>
       </div>
     </fieldset>
-  `;
-}
-
-function renderNav(): string {
-  return `
-    <nav class="top-nav" aria-label="주요 메뉴">
-      <a href="#/">홈</a>
-      <a href="#/select">문제 선택</a>
-      <a href="#/bookmarks">북마크</a>
-      <a href="#/backup">백업</a>
-    </nav>
   `;
 }
