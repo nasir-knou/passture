@@ -16,7 +16,13 @@ import {
 } from '../lib/quiz-session';
 import { isBookmarked, loadBookmarks, loadWrongAnswers, toggleBookmark } from '../lib/storage';
 import { escapeHtml, renderFooter, renderTopNav } from './shared';
-import type { Passage, QuestionImage } from '../types/question';
+import {
+  renderBlockRichText,
+  renderChoiceContent,
+  renderPassages,
+  renderQuestionImages,
+  renderRichText,
+} from './rendering';
 
 export async function renderQuizPage(catalog: Catalog): Promise<HTMLElement> {
   const selectedSources = loadSelectedSources();
@@ -110,7 +116,7 @@ function renderSession(session: QuizSession): HTMLElement {
     ${renderQuestionNavigator(session)}
     <article class="question-card">
       ${renderPassages(current.passages)}
-      <p class="question-prompt">${escapeHtml(current.question.prompt)}</p>
+      <p class="question-prompt">${renderRichText(current.question.prompt)}</p>
       ${renderQuestionImages(current.question.images ?? [])}
       <fieldset class="choice-list">
         <legend class="sr-only">선택지</legend>
@@ -124,7 +130,7 @@ function renderSession(session: QuizSession): HTMLElement {
                   value="${escapeHtml(choice.id)}"
                   ${selected.has(choice.id) ? 'checked' : ''}
                 />
-                <span>${escapeHtml(choice.text)}</span>
+                ${renderChoiceContent(choice)}
               </label>
             `,
           )
@@ -236,7 +242,7 @@ function fillAllWithFirstChoice(session: QuizSession): QuizSession {
 
 function renderQuestionNavigator(session: QuizSession): string {
   return `
-    <section class="question-map" aria-label="문제 바로가기">
+    <section class="question-map quiz-map" aria-label="문제 바로가기">
       <div class="question-map-grid">
         ${session.questions
           .map((question, index) => {
@@ -300,46 +306,6 @@ function renderNav(): string {
   ]);
 }
 
-function renderPassages(passages: readonly Passage[]): string {
-  if (passages.length === 0) {
-    return '';
-  }
-
-  return passages
-    .map(
-      (passage) => `
-        <section class="passage">
-          <p class="muted">${escapeHtml(passage.id)}${passage.language ? ` · ${escapeHtml(passage.language)}` : ''}</p>
-          ${passage.image ? renderImage(passage.image) : `<pre><code>${escapeHtml(passage.body ?? '')}</code></pre>`}
-        </section>
-      `,
-    )
-    .join('');
-}
-
-function renderImage(image: QuestionImage): string {
-  return `
-    <img
-      class="question-image"
-      src="${escapeHtml(image.path)}"
-      alt="${escapeHtml(image.alt)}"
-      loading="lazy"
-    />
-  `;
-}
-
-function renderQuestionImages(images: readonly QuestionImage[]): string {
-  if (images.length === 0) {
-    return '';
-  }
-
-  return `
-    <div class="question-images">
-      ${images.map(renderImage).join('')}
-    </div>
-  `;
-}
-
 function renderExplanation(
   questionKey: string,
   correct: boolean,
@@ -351,7 +317,7 @@ function renderExplanation(
       <h2>${correct ? '정답' : '오답'}</h2>
       <p>문제 ID: ${escapeHtml(questionKey)}</p>
       <p>정답: ${answers.map(escapeHtml).join(', ')}</p>
-      <p>${escapeHtml(explanation)}</p>
+      ${renderBlockRichText(explanation, 'explanation-body')}
     </section>
   `;
 }

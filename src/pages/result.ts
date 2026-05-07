@@ -7,7 +7,13 @@ import {
   type QuizSessionQuestion,
 } from '../lib/quiz-session';
 import { escapeHtml, renderFooter, renderTopNav } from './shared';
-import type { Passage, QuestionImage } from '../types/question';
+import {
+  renderBlockRichText,
+  renderChoiceContent,
+  renderPassages,
+  renderQuestionImages,
+  renderRichText,
+} from './rendering';
 
 export function renderResultPage(): HTMLElement {
   const page = document.createElement('main');
@@ -161,7 +167,7 @@ function renderReviewCard(
     <article class="question-card result-review-card">
       <div>
         <p class="eyebrow">${escapeHtml(question.sourceTitle)}</p>
-        <p class="question-prompt">${escapeHtml(question.question.prompt)}</p>
+        <p class="question-prompt">${renderRichText(question.question.prompt)}</p>
       </div>
       ${renderPassages(question.passages)}
       ${renderQuestionImages(question.question.images ?? [])}
@@ -178,7 +184,7 @@ function renderReviewCard(
                   ${selected.has(choice.id) ? 'checked' : ''}
                   disabled
                 />
-                <span>${escapeHtml(choice.text)}</span>
+                ${renderChoiceContent(choice)}
               </label>
             `,
           )
@@ -192,49 +198,9 @@ function renderReviewCard(
               question.question.answers,
               question.question.explanation,
             )
-          : `<section class="explanation unanswered"><h2>미응답</h2><p>문제 ID: ${escapeHtml(question.key)}</p><p>정답: ${question.question.answers.map(escapeHtml).join(', ')}</p><p>${escapeHtml(question.question.explanation)}</p></section>`
+          : `<section class="explanation unanswered"><h2>미응답</h2><p>문제 ID: ${escapeHtml(question.key)}</p><p>정답: ${question.question.answers.map(escapeHtml).join(', ')}</p>${renderBlockRichText(question.question.explanation, 'explanation-body')}</section>`
       }
     </article>
-  `;
-}
-
-function renderPassages(passages: readonly Passage[]): string {
-  if (passages.length === 0) {
-    return '';
-  }
-
-  return passages
-    .map(
-      (passage) => `
-        <section class="passage">
-          <p class="muted">${escapeHtml(passage.id)}${passage.language ? ` · ${escapeHtml(passage.language)}` : ''}</p>
-          ${passage.image ? renderImage(passage.image) : `<pre><code>${escapeHtml(passage.body ?? '')}</code></pre>`}
-        </section>
-      `,
-    )
-    .join('');
-}
-
-function renderImage(image: QuestionImage): string {
-  return `
-    <img
-      class="question-image"
-      src="${escapeHtml(image.path)}"
-      alt="${escapeHtml(image.alt)}"
-      loading="lazy"
-    />
-  `;
-}
-
-function renderQuestionImages(images: readonly QuestionImage[]): string {
-  if (images.length === 0) {
-    return '';
-  }
-
-  return `
-    <div class="question-images">
-      ${images.map(renderImage).join('')}
-    </div>
   `;
 }
 
@@ -249,7 +215,7 @@ function renderExplanation(
       <h2>${correct ? '정답' : '오답'}</h2>
       <p>문제 ID: ${escapeHtml(questionKey)}</p>
       <p>정답: ${answers.map(escapeHtml).join(', ')}</p>
-      <p>${escapeHtml(explanation)}</p>
+      ${renderBlockRichText(explanation, 'explanation-body')}
     </section>
   `;
 }

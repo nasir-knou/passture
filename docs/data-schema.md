@@ -60,8 +60,12 @@ subjects:
         path: subjects/algorithms/past-exams-2019.json
         kind: exam
         year: 2019
+      - id: textbook
+        title: 교재 문제
+        path: subjects/algorithms/textbook.json
+        kind: textbook
       - id: workbook
-        title: 교재 워크북
+        title: 워크북 문제
         path: subjects/algorithms/workbook.json
         kind: workbook
       - id: lecture-exercises
@@ -86,7 +90,7 @@ subjects:
         year: 2019
 ```
 
-`kind` 값(`exam` | `workbook` | `lecture`)은 출처 라벨과 ID 검증에 사용한다. 현재 UI는 탭이 아니라 선택된 과목의 출처 체크리스트를 표시한다.
+`kind` 값(`exam` | `textbook` | `workbook` | `lecture`)은 출처 라벨과 ID 검증에 사용한다. 현재 UI는 탭이 아니라 선택된 과목의 출처 체크리스트를 표시한다.
 
 ## 3. 문제 파일 구조 (YAML 저작 기준)
 
@@ -173,7 +177,8 @@ questions:
 문제 `id`는 파일 안에서 유일해야 한다. 출처 종류별 접두사를 명시적으로 둔다.
 
 - 기출: `e{yy}-{nn}` → `e17-01`, `e18-25`, `e19-23`
-- 교재 워크북: `b{chapter}-{nn}` → `b01-03`, `b07-08`
+- 교재 문제: `t{chapter}-{nn}` → `t01-03`, `t07-08`
+- 워크북: `b{chapter}-{nn}` → `b01-03`, `b07-08`
 - 강의 연습문제: `l{lecture}-{nn}` → `l01-03`, `l07-08`
 
 기출에 `e` 접두를 붙이는 이유:
@@ -197,8 +202,59 @@ questions:
 
 ```text
 operating-systems:past-exams-2019:e19-01
+algorithms:textbook:t03-07
 algorithms:workbook:b03-07
 ```
+
+## 4.1 수식 렌더링
+
+문제 본문, 선택지, 텍스트 지문, 해설은 KaTeX 문법의 인라인/블록 수식을 지원한다.
+
+- 인라인 수식: `$T(n)=O(n\log n)$`
+- 블록 수식: `$$ ... $$`
+- 수식이 없는 일반 텍스트는 HTML escape 후 그대로 표시한다.
+- 수식 렌더링 실패 시 원문 수식 문자열을 안전하게 표시한다.
+- 긴 수식은 모바일에서 가로 스크롤될 수 있도록 UI에서 처리한다.
+
+수식 선택지 예:
+
+```yaml
+choices:
+  - id: '1'
+    text: '$T(n)=T(n/2)+\Theta(1),\ T(1)=\Theta(1)$'
+  - id: '2'
+    text: |
+      $$
+      LCS(i,j)=
+      \begin{cases}
+      0 & i=0 \text{ 또는 } j=0 \\
+      LCS(i-1,j-1)+1 & x_i=y_j \\
+      \max\{LCS(i,j-1), LCS(i-1,j)\} & x_i \ne y_j
+      \end{cases}
+      $$
+```
+
+YAML 큰따옴표 안에서는 `\` 이스케이프가 필요하므로, 복잡한 수식은 작은따옴표 또는 블록 문자열(`|`)을 우선 사용한다.
+
+## 4.2 선택지 이미지
+
+선택지 자체가 그림인 문제는 `choices[].image`에 선택지별 crop 이미지를 연결한다. 선택지 텍스트는 접근성과 정답 표시를 위해 비워두지 않고 `①`, `그래프 1`처럼 짧게 유지한다.
+
+```yaml
+choices:
+  - id: '1'
+    text: '①'
+    image:
+      path: images/subjects/algorithms/textbook/ch04/q07-choice-1.png
+      alt: 알고리즘 교재 4장 7번 선택지 1 그래프
+  - id: '2'
+    text: '②'
+    image:
+      path: images/subjects/algorithms/textbook/ch04/q07-choice-2.png
+      alt: 알고리즘 교재 4장 7번 선택지 2 그래프
+```
+
+도표가 문제 본문에만 필요한 경우에는 기존 `question.images` 또는 `passages.type: image`를 사용하고, 선택지마다 다른 그림을 골라야 하는 경우에만 `choices[].image`를 사용한다.
 
 ## 5. 공통 지문 처리
 
@@ -210,8 +266,26 @@ algorithms:workbook:b03-07
 - 지문 수정 시 한 곳만 고치면 된다.
 - 코드 지문, 이미지 지문, 긴 설명을 구조화하기 쉽다.
 - 문제 1개에 여러 지문이 함께 묶이는 경우(코드 + 입출력 표)도 배열이라 자연스럽게 처리된다.
+- 도표, 그래프, 표처럼 원본 이미지가 의미를 갖는 공통 지문은 텍스트로 해석해 `body`에 옮기지 않고 `type: image`와 `image.path`로 원본 crop 이미지를 참조한다.
+- `passages.id`는 데이터 참조용 식별자이며, 실제 문제 화면에는 노출하지 않는다.
 
 `passageRefs`가 비어있거나 없으면 단독 문제로 취급한다.
+
+이미지 공통 지문 예:
+
+```yaml
+passages:
+  - id: g17-rag-01
+    type: image
+    image:
+      path: images/subjects/operating-systems/past-exams/2017/e17-rag.png
+      alt: 2017년 운영체제 기출 40번 자원할당 그래프
+
+questions:
+  - id: e17-05
+    passageRefs: [g17-rag-01]
+    prompt: 다음 자원할당 그래프에 대한 설명으로 바른 것은?
+```
 
 빌드 시 검증 규칙:
 
@@ -240,11 +314,51 @@ answers: ["O"]            # OX
 
 `answerKey`(예: A, B, C, F)는 출제 원본 표기를 보존하기 위한 선택 필드이며, 채점에는 사용하지 않는다.
 
+중복정답 대조표에서 알파벳 표기가 사용되는 경우 `answerKey`는 원본 알파벳을 보존하고, `answers`에는 실제 선택지 ID 배열을 기록한다.
+
+| `answerKey` | `answers`              |
+| ----------- | ---------------------- |
+| A           | `["1", "2"]`           |
+| B           | `["1", "3"]`           |
+| C           | `["1", "4"]`           |
+| D           | `["2", "3"]`           |
+| E           | `["2", "4"]`           |
+| F           | `["3", "4"]`           |
+| G           | `["1", "2", "3"]`      |
+| H           | `["1", "2", "4"]`      |
+| I           | `["1", "3", "4"]`      |
+| J           | `["2", "3", "4"]`      |
+| K           | `["1", "2", "3", "4"]` |
+
 콘텐츠 입력 단계에서 공식 정오표/정답표를 아직 확인하지 못한 경우에도 `answers`는 비워두지 않는다. 문제 이미지 또는 원문을 판독해 직접 풀이한 임시 정답을 기재하고, 풀이 근거를 `explanation`에 남긴다. 공식 정답 대조는 M10 정답 검증 단계에서 수행한다.
 
-## 7. 이미지 처리
+## 7. 해설 작성
 
-문제 이미지는 저장소에 파일로 두고, 데이터에는 상대 경로를 기록한다.
+`explanation`은 단순 정답 문장이 아니라 학습자가 다시 풀 때 판단 근거를 확인할 수 있는 형태로 작성한다.
+
+작성 기준:
+
+- 각 선택지별로 왜 정답 또는 오답인지 이유를 정리한다.
+- 정답 선택지는 핵심 판단 근거를 명확히 적고, 오답 선택지는 어떤 개념 오해나 조건 불일치 때문에 틀렸는지 적는다.
+- 문항의 핵심 개념에 대해 4~5줄 분량의 요약 설명을 함께 제공한다.
+- 공식 정답 검증 전 임시 해설도 같은 구조로 작성하고, M10에서 공식 정답 대조 후 필요한 경우 보정한다.
+
+권장 형식:
+
+```yaml
+explanation: |
+  선택지 1: ...
+  선택지 2: ...
+  선택지 3: ...
+  선택지 4: ...
+
+  핵심 개념:
+  ...
+```
+
+## 8. 이미지 처리
+
+문제 이미지는 저장소에 파일로 두고, 데이터에는 상대 경로를 기록한다. 문제 1개에만 붙는 이미지는 `questions[].images`에 두고, 여러 문제가 공유하는 도표/표 이미지는 `passages[].image`에 둔다.
 
 ```yaml
 images:
@@ -257,5 +371,6 @@ images:
 - 파일명에 문제 ID를 포함해 추적성을 확보한다 (`e19-01.png`, `b03-07-fig1.png`).
 - 빌드 단계에서 `path` 파일이 실제 존재하는지 검증한다.
 - 시험지 전체 이미지는 공개 자산으로 쓰지 않고 필요한 코드·도표·표만 잘라 저장한다.
+- 이미지 지문은 OCR/해석 텍스트로 대체하지 않는다. 원문 시각 정보가 필요한 경우 crop 이미지 경로를 저장하고 앱에서 이미지를 렌더링한다.
 - `scripts/crop-png.mjs`는 원본 이미지에서 필요한 영역을 PNG로 잘라내는 보조 도구다.
 - 이미지 최적화는 초기에는 적용하지 않는다. 용량 이슈 발생 시 빌드 단계에서 WebP 변환을 추가한다.

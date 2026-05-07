@@ -724,6 +724,11 @@ h1 {
   padding: 2px;
 }
 
+.quiz-map .question-map-grid {
+  grid-template-columns: repeat(26, 32px);
+  gap: 6px;
+}
+
 .question-map-item {
   position: relative;
   display: grid;
@@ -738,6 +743,13 @@ h1 {
   font: inherit;
   font-weight: 800;
   cursor: pointer;
+}
+
+.quiz-map .question-map-item {
+  width: 32px;
+  min-height: 32px;
+  border-radius: 7px;
+  font-size: 0.95rem;
 }
 
 .question-map-item.is-current {
@@ -888,6 +900,12 @@ h1 {
   white-space: pre-wrap;
 }
 
+.passage-text {
+  overflow-x: auto;
+  color: #111827;
+  line-height: 1.7;
+}
+
 .question-image {
   display: block;
   width: 100%;
@@ -927,6 +945,41 @@ h1 {
   width: 18px;
   height: 18px;
   margin: 2px 0 0;
+}
+
+.choice-content {
+  display: grid;
+  min-width: 0;
+  gap: 8px;
+}
+
+.choice-text {
+  min-width: 0;
+  overflow-x: auto;
+  line-height: 1.6;
+}
+
+.choice-image {
+  display: block;
+  width: min(100%, 520px);
+  max-height: 360px;
+  object-fit: contain;
+  border: 1px solid #d8dfd8;
+  border-radius: 6px;
+  background: #ffffff;
+}
+
+.katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 2px 0;
+}
+
+.question-prompt .katex-display,
+.choice-text .katex-display,
+.explanation-body .katex-display,
+.passage-text .katex-display {
+  margin: 0.35rem 0;
 }
 
 .choice-row.is-answer {
@@ -1002,6 +1055,11 @@ h1 {
 
 .explanation p + p {
   margin-top: 8px;
+}
+
+.explanation-body {
+  overflow-x: auto;
+  white-space: normal;
 }
 
 .explanation.correct {

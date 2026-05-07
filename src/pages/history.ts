@@ -1,5 +1,5 @@
 import type { Catalog } from '../types/catalog';
-import type { Choice, Passage, Question, QuestionImage } from '../types/question';
+import type { Choice, Passage, Question } from '../types/question';
 import { loadQuestionFile } from '../lib/data-loader';
 import {
   loadBookmarks,
@@ -8,6 +8,7 @@ import {
   type WrongAnswerRecord,
 } from '../lib/storage';
 import { escapeHtml, renderFooter, renderTopNav, sourceKindLabel } from './shared';
+import { renderChoiceContent, renderPassages, renderRichText } from './rendering';
 
 type HistoryFilter = 'all' | 'bookmarked' | 'wrong';
 
@@ -287,7 +288,7 @@ function renderHistoryEntry(entry: HistoryEntry): string {
             ${entry.wrongAnswer ? `<span class="history-badge is-wrong">오답 ${entry.wrongAnswer.wrongCount}회</span>` : ''}
           </div>
         </div>
-        <p class="question-prompt">${escapeHtml(entry.question.prompt)}</p>
+        <p class="question-prompt">${renderRichText(entry.question.prompt)}</p>
       </summary>
       <div class="history-item-body">
         ${renderPassages(entry.passages)}
@@ -303,7 +304,7 @@ function renderHistoryEntry(entry: HistoryEntry): string {
                     value="${escapeHtml(choice.id)}"
                     disabled
                   />
-                  <span>${escapeHtml(choice.text)}</span>
+                  ${renderChoiceContent(choice)}
                 </label>
               `,
             )
@@ -316,34 +317,6 @@ function renderHistoryEntry(entry: HistoryEntry): string {
         }
       </div>
     </details>
-  `;
-}
-
-function renderPassages(passages: readonly Passage[]): string {
-  if (passages.length === 0) {
-    return '';
-  }
-
-  return passages
-    .map(
-      (passage) => `
-        <section class="passage">
-          <p class="muted">${escapeHtml(passage.id)}${passage.language ? ` · ${escapeHtml(passage.language)}` : ''}</p>
-          ${passage.image ? renderImage(passage.image) : `<pre><code>${escapeHtml(passage.body ?? '')}</code></pre>`}
-        </section>
-      `,
-    )
-    .join('');
-}
-
-function renderImage(image: QuestionImage): string {
-  return `
-    <img
-      class="question-image"
-      src="${escapeHtml(image.path)}"
-      alt="${escapeHtml(image.alt)}"
-      loading="lazy"
-    />
   `;
 }
 
