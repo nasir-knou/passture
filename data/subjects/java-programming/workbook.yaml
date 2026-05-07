@@ -1,17 +1,1083 @@
 subjectId: java-programming
 sourceId: workbook
-title: Java프로그래밍 교재 워크북 샘플
+title: Java프로그래밍 워크북
 kind: workbook
 
 questions:
-  - id: b01-01
+  - id: b01-05
     type: multiple-choice
-    prompt: Java의 기본형이 아닌 것은?
+    prompt: 다음 중 Java 애플리케이션을 실행하기 위해 필요한 main() 함수의 형식은 무엇인가?
     choices:
-      - { id: '1', text: 'String' }
-      - { id: '2', text: 'int' }
-      - { id: '3', text: 'boolean' }
-      - { id: '4', text: 'double' }
+      - { id: '1', text: 'public void main(String args[ ])' }
+      - { id: '2', text: 'static void main(String args[ ])' }
+      - { id: '3', text: 'public static void main(String args)' }
+      - { id: '4', text: 'public static void main(String args[ ])' }
+    answers: ['4']
+    explanation: |
+      선택지 1 (오답): `static`이 없어 Java 애플리케이션의 시작점으로 사용할 수 없다.
+      선택지 2 (오답): `public`이 없어 표준 main 메서드 형식과 다르다.
+      선택지 3 (오답): 매개변수가 `String[]` 배열이 아니다.
+      선택지 4 (정답): Java 애플리케이션의 실행 시작점으로 사용할 수 있는 표준 main 메서드 형식이다.
+
+      핵심 개념:
+      Java 애플리케이션은 `main` 메서드에서 실행을 시작한다.
+      표준 형식은 `public static void main(String[] args)`이다.
+      `String args[]`와 `String[] args`는 배열 선언 위치만 다르고 같은 의미로 사용할 수 있다.
+      `public`은 외부 실행 환경에서 접근할 수 있게 하고, `static`은 객체 생성 없이 호출되게 한다.
+    tags: [chapter:01, main-method]
+
+  - id: b02-01
+    type: multiple-choice
+    prompt: 다음 중 잘못된 주석은 무엇인가?
+    choices:
+      - { id: '1', text: '/** comment */' }
+      - { id: '2', text: '/* comment */' }
+      - { id: '3', text: '/* comment' }
+      - { id: '4', text: '// comment' }
+    answers: ['3']
+    explanation: |
+      선택지 1 (오답): `/** ... */` 형식은 문서화 주석으로 올바른 주석이다.
+      선택지 2 (오답): `/* ... */` 형식은 여러 줄 주석으로 올바른 주석이다.
+      선택지 3 (정답): `/*`로 시작한 주석이 `*/`로 닫히지 않았으므로 잘못된 주석이다.
+      선택지 4 (오답): `//` 뒤의 내용은 한 줄 주석으로 처리된다.
+
+      핵심 개념:
+      Java 주석은 프로그램 실행에 영향을 주지 않는 설명문이다.
+      한 줄 주석은 `//`로 시작해 줄 끝까지 적용된다.
+      여러 줄 주석은 `/*`로 시작하고 `*/`로 끝나야 한다.
+      문서화 주석은 `/** ... */` 형식을 사용한다.
+    tags: [chapter:02, comment]
+
+  - id: b02-02
+    type: multi-answer
+    allowMultiple: true
+    prompt: 다음 중 식별자로 사용할 수 있는 것을 모두 고르시오.
+    choices:
+      - { id: '1', text: '_12' }
+      - { id: '2', text: 'my#class' }
+      - { id: '3', text: '5myClass' }
+      - { id: '4', text: 'My$Class' }
+    answers: ['1', '4']
+    explanation: |
+      선택지 1 (정답): 밑줄(`_`)로 시작할 수 있으므로 식별자로 사용할 수 있다.
+      선택지 2 (오답): `#` 문자는 Java 식별자에 사용할 수 없다.
+      선택지 3 (오답): 식별자의 첫 문자는 숫자가 될 수 없다.
+      선택지 4 (정답): `$` 문자는 Java 식별자에 사용할 수 있다.
+
+      핵심 개념:
+      Java 식별자는 변수, 클래스, 메서드 등의 이름이다.
+      식별자는 영문자, 한글, 숫자, 밑줄, 달러 기호를 사용할 수 있다.
+      첫 문자는 숫자가 될 수 없다.
+      `#` 같은 특수 문자는 식별자에 사용할 수 없다.
+    tags: [chapter:02, identifier]
+
+  - id: b02-04
+    type: multi-answer
+    allowMultiple: true
+    prompt: 다음 네 종류의 변수 가운데 필드에 해당하는 것을 모두 고르시오.
+    choices:
+      - { id: '1', text: '인스턴스 변수' }
+      - { id: '2', text: '클래스 변수' }
+      - { id: '3', text: '파라미터' }
+      - { id: '4', text: '지역 변수' }
+    answers: ['1', '2']
+    explanation: |
+      선택지 1 (정답): 클래스에 선언되는 인스턴스 변수는 필드에 해당한다.
+      선택지 2 (정답): 클래스에 선언되는 정적 변수인 클래스 변수도 필드에 해당한다.
+      선택지 3 (오답): 파라미터는 메서드 호출 시 전달되는 값을 받는 변수이다.
+      선택지 4 (오답): 지역 변수는 메서드나 블록 내부에서 선언되는 변수이다.
+
+      핵심 개념:
+      필드는 클래스에 선언되는 변수이다.
+      인스턴스 변수는 객체마다 별도의 값을 가진다.
+      클래스 변수는 `static`으로 선언되어 클래스 단위로 공유된다.
+      파라미터와 지역 변수는 필드가 아니라 메서드 실행 범위에서 사용된다.
+    tags: [chapter:02, variable, field]
+
+  - id: b02-05
+    type: multi-answer
+    allowMultiple: true
+    prompt: 다음 중 문제가 있는 것을 모두 고르시오.
+    choices:
+      - { id: '1', text: 'int i = 0x1111;' }
+      - { id: '2', text: 'int j = 12.34L;' }
+      - { id: '3', text: 'float f = 5.5;' }
+      - { id: '4', text: "int c = '0';" }
+    answers: ['2', '3']
+    explanation: |
+      선택지 1 (오답): `0x1111`은 16진수 정수 리터럴이며 `int`에 저장할 수 있다.
+      선택지 2 (정답): `L`은 정수형 `long` 리터럴에 붙는 접미사인데, `12.34`는 실수이므로 잘못되었다.
+      선택지 3 (정답): `5.5`는 기본적으로 `double` 리터럴이므로 `float`에 대입하려면 `5.5F`처럼 써야 한다.
+      선택지 4 (오답): 문자 리터럴 `'0'`은 정수형과 호환되어 `int`에 저장할 수 있다.
+
+      핵심 개념:
+      Java 리터럴은 값의 종류와 접미사에 따라 타입이 결정된다.
+      `L`은 `long` 정수 리터럴에 사용한다.
+      소수점이 있는 실수 리터럴은 기본적으로 `double`이다.
+      문자형 `char`는 정수형과 호환될 수 있다.
+    tags: [chapter:02, literal, type]
+
+  - id: b02-09
+    type: multiple-choice
+    prompt: 다음 중 이차원 배열의 선언으로 잘못된 것은 무엇인가?
+    choices:
+      - { id: '1', text: 'int[][] multiArray;' }
+      - { id: '2', text: 'int[] multiArray[];' }
+      - { id: '3', text: 'int multiArray[][];' }
+      - { id: '4', text: 'int[10,10] multiArray;' }
+    answers: ['4']
+    explanation: |
+      선택지 1 (오답): Java에서 이차원 배열을 선언하는 올바른 형식이다.
+      선택지 2 (오답): 배열 대괄호를 변수명 앞뒤에 나누어 쓰는 것도 문법적으로 허용된다.
+      선택지 3 (오답): C 스타일에 가까운 배열 선언도 Java에서 허용된다.
+      선택지 4 (정답): Java에서는 배열 크기를 선언부의 대괄호 안에 `10,10`처럼 쓰지 않는다.
+
+      핵심 개념:
+      Java 배열 변수 선언에서는 차원만 표시하고 크기는 배열 생성 시 지정한다.
+      `int[][] a`, `int[] a[]`, `int a[][]`는 모두 이차원 배열 선언이 가능하다.
+      배열 크기는 `new int[10][10]`처럼 생성식에서 지정한다.
+      대괄호 안에 쉼표로 크기를 나열하는 문법은 Java 배열 선언이 아니다.
+    tags: [chapter:02, array]
+
+  - id: b02-13
+    type: multiple-choice
+    prompt: |
+      다음은 for문을 이용하여 배열의 원소들을 출력하고 있다. 동일한 기능을 향상된 for문을 사용하여 작성할 때 올바른 것은?
+
+      ```java
+      String[] names = {"Kim", "Lee", "Park", "Na"};
+      for (int i = 0; i < names.length; i++)
+          System.out.print(names[i] + " ");
+      ```
+    choices:
+      - { id: '1', text: 'for(int item: names) System.out.print(item + " ");' }
+      - { id: '2', text: 'for(int item: names) System.out.print(names[i] + " ");' }
+      - { id: '3', text: 'for(String item: names) System.out.print(item + " ");' }
+      - { id: '4', text: 'for(String item: names) System.out.print(names[i] + " ");' }
+    answers: ['3']
+    explanation: |
+      선택지 1 (오답): `names` 배열의 원소 타입은 `String`이므로 반복 변수 타입을 `int`로 둘 수 없다.
+      선택지 2 (오답): 반복 변수 타입이 잘못되었고, 향상된 for문 안에서 인덱스 `i`도 선언되어 있지 않다.
+      선택지 3 (정답): `String` 원소를 `item`으로 받아 그대로 출력하므로 올바르다.
+      선택지 4 (오답): 반복 변수 타입은 맞지만 인덱스 `i`가 선언되어 있지 않다.
+
+      핵심 개념:
+      향상된 for문은 배열이나 컬렉션의 원소를 순서대로 꺼내 반복 변수에 대입한다.
+      반복 변수의 타입은 배열 원소 타입과 호환되어야 한다.
+      인덱스가 필요 없을 때 향상된 for문을 사용하면 코드가 간결해진다.
+      인덱스 변수를 직접 선언하지 않았으면 `names[i]`처럼 사용할 수 없다.
+    tags: [chapter:02, array, enhanced-for]
+
+  - id: b02-14
+    type: multiple-choice
+    prompt: 다음 중 나머지 셋과 다른 하나는 무엇인가? ('A'의 아스키 코드값은 십진수로 65이다.)
+    choices:
+      - { id: '1', text: "char c = 'A';" }
+      - { id: '2', text: 'char c = 65;' }
+      - { id: '3', text: "char c = '\\u0065';" }
+      - { id: '4', text: 'char c = 0x41;' }
+    answers: ['3']
+    explanation: |
+      선택지 1 (오답): 문자 `'A'`를 직접 저장한다.
+      선택지 2 (오답): 십진수 65는 문자 `'A'`의 코드값이다.
+      선택지 3 (정답): 유니코드 `\u0065`는 문자 `'e'`에 해당하므로 나머지와 다르다.
+      선택지 4 (오답): 16진수 `0x41`은 십진수 65이므로 문자 `'A'`와 같다.
+
+      핵심 개념:
+      `char`는 문자 코드값을 저장하는 정수형과 호환되는 타입이다.
+      문자 리터럴, 십진수 코드값, 16진수 코드값으로 같은 문자를 표현할 수 있다.
+      유니코드 이스케이프는 `\u` 뒤의 16진수 코드값으로 문자를 표현한다.
+      `0x41`과 65는 `'A'`이지만 `\u0065`는 `'e'`이다.
+    tags: [chapter:02, char, unicode]
+
+  - id: b03-01
+    type: multiple-choice
+    prompt: 다음 중 추상화에 관한 정확한 설명은 무엇인가?
+    choices:
+      - { id: '1', text: '비밀스러운 데이터의 직접 접근을 막는 것' }
+      - { id: '2', text: '데이터와 메소드를 하나의 틀에 담는 것' }
+      - { id: '3', text: '기존 대상을 재사용하되 새로운 특성을 추가하여 새로 만드는 것' }
+      - { id: '4', text: '본질적이고 전형적인 부분만을 간추려 대상을 표현하는 것' }
+    answers: ['4']
+    explanation: |
+      선택지 1 (오답): 데이터 직접 접근을 막는 것은 정보 은닉 또는 캡슐화와 관련된다.
+      선택지 2 (오답): 데이터와 메소드를 하나로 묶는 것은 캡슐화에 해당한다.
+      선택지 3 (오답): 기존 대상을 재사용해 새 특성을 추가하는 것은 상속과 관련된다.
+      선택지 4 (정답): 추상화는 복잡한 실체에서 본질적이고 전형적인 부분만 간추려 표현하는 것이다.
+
+      핵심 개념:
+      추상화는 복잡한 대상을 필요한 관점에서 단순화하는 과정이다.
+      객체지향에서는 대상의 중요한 속성과 동작을 골라 클래스로 표현한다.
+      불필요한 세부 구현을 감추면 문제를 더 쉽게 모델링할 수 있다.
+      캡슐화, 상속과 구별되는 객체지향의 핵심 개념이다.
+    tags: [chapter:03, abstraction]
+
+  - id: b03-02
+    type: multiple-choice
+    prompt: 다음 중 클래스의 정의에 포함될 수 없는 것은?
+    choices:
+      - { id: '1', text: '인스턴스 필드' }
+      - { id: '2', text: '정적 필드' }
+      - { id: '3', text: '전역 변수' }
+      - { id: '4', text: '인스턴스 메소드' }
+    answers: ['3']
+    explanation: |
+      선택지 1 (오답): 인스턴스 필드는 클래스에 포함될 수 있다.
+      선택지 2 (오답): 정적 필드도 클래스에 포함될 수 있다.
+      선택지 3 (정답): Java 프로그램에는 전역 변수가 존재하지 않는다.
+      선택지 4 (오답): 인스턴스 메소드는 클래스에 포함될 수 있다.
+
+      핵심 개념:
+      Java의 데이터와 동작은 클래스 안에 정의된다.
+      필드는 인스턴스 필드와 정적 필드로 나눌 수 있다.
+      메소드도 인스턴스 메소드와 정적 메소드로 나눌 수 있다.
+      C와 달리 Java에는 클래스 밖에 선언되는 전역 변수가 없다.
+    tags: [chapter:03, class, field]
+
+  - id: b03-03
+    type: multiple-choice
+    prompt: 다음 중 나머지 셋과 다른 의미를 가지는 용어는 무엇인가?
+    choices:
+      - { id: '1', text: '정적 메소드' }
+      - { id: '2', text: 'static 메소드' }
+      - { id: '3', text: '클래스 메소드' }
+      - { id: '4', text: '추상 메소드' }
+    answers: ['4']
+    explanation: |
+      선택지 1 (오답): 정적 메소드는 static 메소드와 같은 의미이다.
+      선택지 2 (오답): static 메소드는 클래스 메소드라고도 부른다.
+      선택지 3 (오답): 클래스 메소드는 정적 메소드와 같은 의미이다.
+      선택지 4 (정답): 추상 메소드는 구현부가 없는 메소드로 정적 메소드와 다른 개념이다.
+
+      핵심 개념:
+      정적 메소드는 객체 생성 없이 클래스 이름으로 호출할 수 있다.
+      static 메소드와 클래스 메소드는 같은 의미로 사용된다.
+      추상 메소드는 선언만 있고 구현은 하위 클래스에서 제공한다.
+      이름이 비슷해도 정적성과 추상성은 서로 다른 개념이다.
+    tags: [chapter:03, static-method, abstract-method]
+
+  - id: b03-06
+    type: multiple-choice
+    prompt: 다음 네 가지 접근 제어자 가운데 두 번째로 넓은 사용 범위를 제공하는 것은?
+    choices:
+      - { id: '1', text: 'public' }
+      - { id: '2', text: '생략' }
+      - { id: '3', text: 'protected' }
+      - { id: '4', text: 'private' }
+    answers: ['3']
+    explanation: |
+      선택지 1 (오답): `public`은 가장 넓은 접근 범위를 제공한다.
+      선택지 2 (오답): 접근 제어자를 생략하면 같은 패키지에서만 접근할 수 있다.
+      선택지 3 (정답): `protected`는 같은 패키지와 서브 클래스에서 접근할 수 있어 두 번째로 넓다.
+      선택지 4 (오답): `private`은 같은 클래스 내부에서만 접근할 수 있어 가장 좁다.
+
+      핵심 개념:
+      Java 접근 범위는 일반적으로 `public`, `protected`, package-private, `private` 순으로 넓다.
+      `public`은 어디서나 접근 가능하다.
+      `protected`는 같은 패키지와 상속 관계의 서브 클래스에서 접근 가능하다.
+      접근 제어자를 생략하면 package-private 접근이 된다.
+    tags: [chapter:03, access-modifier]
+
+  - id: b03-07
+    type: multi-answer
+    allowMultiple: true
+    prompt: |
+      다음 코드에 관한 설명으로 잘못된 것이 있으면 모두 고르시오.
+
+      ```java
+      Circle c = new Circle(5);
+      ```
+    choices:
+      - { id: '1', text: '참조형 변수가 선언되었다.' }
+      - { id: '2', text: '객체가 사용할 메모리 공간이 할당되었다.' }
+      - { id: '3', text: '변수 c에 메모리의 주소가 대입되었다.' }
+      - { id: '4', text: '생성자가 실행되었다.' }
+    answers: ['1', '2', '3', '4']
+    explanation: |
+      선택지 1 (정답): `Circle c`로 참조형 변수가 선언된다.
+      선택지 2 (정답): `new` 연산자로 객체를 위한 메모리 공간이 할당된다.
+      선택지 3 (정답): 생성된 객체의 참조값이 변수 `c`에 대입된다.
+      선택지 4 (정답): `Circle(5)` 생성자가 실행된다.
+
+      핵심 개념:
+      객체 생성식은 참조 변수 선언, 메모리 할당, 생성자 실행, 참조값 대입을 포함한다.
+      `new`는 객체를 생성하고 그 참조값을 반환한다.
+      참조형 변수는 객체 자체가 아니라 객체를 가리키는 값을 저장한다.
+      생성자는 객체 초기화 과정에서 호출된다.
+    tags: [chapter:03, object, constructor]
+
+  - id: b03-08
+    type: multiple-choice
+    prompt: |
+      다음 중 아래 메소드와 함께 오버로딩될 수 없는 것은?
+
+      ```java
+      double compute(int x, int y)
+      ```
+    choices:
+      - { id: '1', text: 'int compute(int x, int y)' }
+      - { id: '2', text: 'double compute(int x)' }
+      - { id: '3', text: 'double compute(double x, double y)' }
+      - { id: '4', text: 'double compute(int x, int y, int z)' }
     answers: ['1']
-    explanation: String은 클래스 타입이고, int, boolean, double은 Java 기본형이다.
-    tags: [type]
+    explanation: |
+      선택지 1 (정답): 매개변수 목록이 같고 반환 타입만 다르므로 오버로딩으로 구별할 수 없다.
+      선택지 2 (오답): 매개변수 개수가 다르므로 오버로딩될 수 있다.
+      선택지 3 (오답): 매개변수 타입이 다르므로 오버로딩될 수 있다.
+      선택지 4 (오답): 매개변수 개수가 다르므로 오버로딩될 수 있다.
+
+      핵심 개념:
+      메소드 오버로딩은 같은 이름의 메소드를 매개변수 목록으로 구별하는 것이다.
+      매개변수의 개수나 타입, 순서가 달라야 한다.
+      반환 타입만 다른 메소드는 오버로딩으로 인정되지 않는다.
+      오버로딩은 컴파일 시점에 호출 대상이 결정된다.
+    tags: [chapter:03, overloading]
+
+  - id: b03-11
+    type: multi-answer
+    allowMultiple: true
+    prompt: |
+      다음과 같은 메소드가 부모 클래스에서 정의되어 있으나 서브 클래스에서 재정의하고자 한다. 재정의하기 위한 메소드 형식으로 적합하지 않은 것을 모두 고르시오.
+
+      ```java
+      protected double compute(int x, int y)
+      ```
+    choices:
+      - { id: '1', text: 'protected double compute(int x, int y)' }
+      - { id: '2', text: 'public double compute(int x, int y)' }
+      - { id: '3', text: 'protected int compute(int x, int y)' }
+      - { id: '4', text: 'private double compute(int x, int y, int z)' }
+    answers: ['3', '4']
+    explanation: |
+      선택지 1 (오답): 반환 타입, 이름, 매개변수가 같고 접근 범위도 유지되므로 재정의할 수 있다.
+      선택지 2 (오답): 접근 범위를 더 넓게 하는 것은 허용되므로 재정의할 수 있다.
+      선택지 3 (정답): 반환 타입이 달라 부모 메소드를 올바르게 재정의한 것이 아니다.
+      선택지 4 (정답): 매개변수 개수가 달라 오버라이딩이 아니라 오버로딩이며, 접근 범위도 좁아진다.
+
+      핵심 개념:
+      오버라이딩은 상속받은 메소드를 서브 클래스에서 같은 시그니처로 다시 정의하는 것이다.
+      메소드 이름과 매개변수 목록이 같아야 한다.
+      반환 타입은 같거나 공변 반환 타입이어야 한다.
+      접근 제어자는 부모 메소드보다 좁아질 수 없다.
+    tags: [chapter:03, overriding]
+
+  - id: b03-12
+    type: multiple-choice
+    prompt: |
+      다음 코드를 보면 People 객체를 생성한 후, 메소드 체이닝 기법으로 3개 필드에 값을 연속적으로 설정하였다. People 클래스에서 setAge() 메소드의 정의로 적당한 것은?
+
+      ```java
+      People p = new People();
+      p.setName("홍길동").setAge(30).setAddress("서울");
+      ```
+    choices:
+      - { id: '1', text: 'public void setAge(int age) { this.age = age; }' }
+      - { id: '2', text: 'public int setAge(int age) { this.age = age; return age; }' }
+      - { id: '3', text: 'public People setAge(int age) { age = age; return this; }' }
+      - { id: '4', text: 'public People setAge(int age) { this.age = age; return this; }' }
+    answers: ['4']
+    explanation: |
+      선택지 1 (오답): 반환 타입이 `void`라 다음 메소드를 이어서 호출할 수 없다.
+      선택지 2 (오답): `int`를 반환하면 `setAddress`를 이어 호출할 수 없다.
+      선택지 3 (오답): `return this`는 맞지만 `this.age`가 아니라 매개변수 `age` 자신에 대입하고 있다.
+      선택지 4 (정답): 필드 값을 설정하고 현재 객체 `this`를 반환하므로 메소드 체이닝이 가능하다.
+
+      핵심 개념:
+      메소드 체이닝은 메소드 호출 결과로 다시 객체를 반환해 연속 호출하는 방식이다.
+      같은 객체에서 다음 메소드를 호출하려면 `this`를 반환하면 된다.
+      필드와 매개변수 이름이 같을 때는 `this.field`로 필드를 명확히 지정한다.
+      `void`나 기본형 값을 반환하면 같은 객체의 다음 메소드를 체이닝할 수 없다.
+    tags: [chapter:03, method-chaining, this]
+
+  - id: b04-01
+    type: multi-answer
+    allowMultiple: true
+    prompt: 다음 중 잘못이 있는 것을 모두 고르시오.
+    choices:
+      - { id: '1', text: 'final이면서 abstract 클래스' }
+      - { id: '2', text: 'static이면서 abstract 필드' }
+      - { id: '3', text: 'public이면서 synchronized 메소드' }
+      - { id: '4', text: 'final이면서 abstract 메소드' }
+    answers: ['1', '2', '4']
+    explanation: |
+      선택지 1 (정답): `final` 클래스는 상속될 수 없고 `abstract` 클래스는 상속되어 구현되어야 하므로 함께 사용할 수 없다.
+      선택지 2 (정답): Java에는 `abstract` 필드라는 개념이 없으므로 잘못되었다.
+      선택지 3 (오답): `public synchronized` 메소드는 사용할 수 있다.
+      선택지 4 (정답): `final` 메소드는 재정의할 수 없고 `abstract` 메소드는 하위 클래스에서 구현되어야 하므로 함께 사용할 수 없다.
+
+      핵심 개념:
+      `final`은 상속이나 재정의를 막는 성격을 가진다.
+      `abstract`는 하위 클래스에서 구현이 필요하다는 뜻이다.
+      두 성격은 클래스나 메소드에서 충돌할 수 있다.
+      필드는 메소드처럼 `abstract`로 선언할 수 없다.
+    tags: [chapter:04, final, abstract]
+
+  - id: b04-03
+    type: multiple-choice
+    prompt: 추상 클래스를 설명한 것이다. 잘못된 것은?
+    choices:
+      - { id: '1', text: '추상 클래스는 static final이 아닌 데이터도 포함할 수 있다.' }
+      - { id: '2', text: '추상 클래스는 몸체가 구현된 메소드도 포함할 수 있다.' }
+      - { id: '3', text: '추상 클래스는 반드시 public 클래스일 필요가 없다.' }
+      - {
+          id: '4',
+          text: '추상 클래스에 존재하는 추상 메소드는 자식 클래스에서 구현될 필요가 없다.',
+        }
+    answers: ['4']
+    explanation: |
+      선택지 1 (오답): 추상 클래스는 일반 필드도 가질 수 있다.
+      선택지 2 (오답): 추상 클래스는 구현된 메소드와 추상 메소드를 함께 가질 수 있다.
+      선택지 3 (오답): 추상 클래스가 반드시 `public`일 필요는 없다.
+      선택지 4 (정답): 구체 클래스가 추상 클래스를 상속하면 상속된 추상 메소드를 구현해야 한다.
+
+      핵심 개념:
+      추상 클래스는 직접 객체화할 수 없는 클래스이다.
+      공통 필드와 구현된 메소드를 제공할 수 있다.
+      추상 메소드는 선언만 있고 구현은 없다.
+      추상 클래스를 상속한 구체 클래스는 추상 메소드를 구현해야 한다.
+    tags: [chapter:04, abstract-class]
+
+  - id: b04-05
+    type: multi-answer
+    allowMultiple: true
+    prompt: A와 B가 클래스이고 X, Y, Z가 인터페이스라고 가정할 때, 다음 중 잘못된 것을 모두 고르시오.
+    choices:
+      - { id: '1', text: 'class A extends B { }' }
+      - { id: '2', text: 'class A implements X, Y { }' }
+      - { id: '3', text: 'interface X extends Y, Z { }' }
+      - { id: '4', text: 'interface X extends A { }' }
+    answers: ['4']
+    explanation: |
+      선택지 1 (오답): 클래스는 다른 클래스를 `extends`로 상속할 수 있다.
+      선택지 2 (오답): 클래스는 여러 인터페이스를 `implements`로 구현할 수 있다.
+      선택지 3 (오답): 인터페이스는 여러 인터페이스를 `extends`로 상속할 수 있다.
+      선택지 4 (정답): 인터페이스가 클래스를 상속하는 것은 허용되지 않는다.
+
+      핵심 개념:
+      Java 클래스는 하나의 클래스만 상속할 수 있다.
+      클래스는 여러 인터페이스를 구현할 수 있다.
+      인터페이스는 여러 인터페이스를 상속할 수 있다.
+      인터페이스와 클래스 사이의 관계에는 `implements`와 `extends`를 구분해 사용해야 한다.
+    tags: [chapter:04, interface, inheritance]
+
+  - id: b06-02
+    type: multi-answer
+    allowMultiple: true
+    prompt: 프로그램에서 IOException 클래스를 사용하고자 한다. 다음 중 적당한 import 구문을 모두 고르시오.
+    choices:
+      - { id: '1', text: 'import java.io;' }
+      - { id: '2', text: 'import java.io.IOException;' }
+      - { id: '3', text: 'import java.io.*;' }
+      - { id: '4', text: 'import java\\io\\IOException;' }
+    answers: ['2', '3']
+    explanation: |
+      선택지 1 (오답): 패키지 이름만 import할 수 없으며 클래스명이나 `*`를 지정해야 한다.
+      선택지 2 (정답): `java.io` 패키지의 `IOException` 클래스만 명시적으로 가져온다.
+      선택지 3 (정답): `java.io` 패키지의 모든 타입을 사용할 수 있게 한다.
+      선택지 4 (오답): Java import 경로는 역슬래시가 아니라 점(`.`)으로 구분한다.
+
+      핵심 개념:
+      Java의 import 문은 패키지에 있는 타입 이름을 간단히 쓰기 위한 선언이다.
+      특정 클래스는 `package.ClassName` 형식으로 import한다.
+      패키지 안의 모든 타입은 `package.*` 형식으로 import할 수 있다.
+      파일 경로 구분자가 아니라 패키지 이름 구분자인 점을 사용한다.
+    tags: [chapter:06, import, exception]
+
+  - id: b06-06
+    type: multi-answer
+    allowMultiple: true
+    prompt: 다음 중 반드시 예외처리를 할 필요는 없는 것을 모두 고르시오.
+    choices:
+      - { id: '1', text: 'ArithmeticException' }
+      - { id: '2', text: 'NullPointerException' }
+      - { id: '3', text: 'IndexOutOfBoundsException' }
+      - { id: '4', text: 'IOException' }
+    answers: ['1', '2', '3']
+    explanation: |
+      선택지 1 (정답): `ArithmeticException`은 실행 중 발생하는 unchecked 예외이므로 반드시 처리할 필요는 없다.
+      선택지 2 (정답): `NullPointerException`은 `RuntimeException` 계열로 반드시 처리하지 않아도 된다.
+      선택지 3 (정답): `IndexOutOfBoundsException`도 `RuntimeException` 계열이다.
+      선택지 4 (오답): `IOException`은 checked 예외이므로 처리하거나 전파해야 한다.
+
+      핵심 개념:
+      Java 예외는 checked 예외와 unchecked 예외로 나눌 수 있다.
+      checked 예외는 컴파일러가 처리 여부를 검사한다.
+      `RuntimeException`의 하위 예외는 보통 반드시 처리하지 않아도 된다.
+      입출력 관련 `IOException`은 대표적인 checked 예외이다.
+    tags: [chapter:06, exception, runtime-exception]
+
+  - id: b06-10
+    type: multiple-choice
+    prompt: 다음 중 Java 패키지에 관한 설명으로 잘못된 것은?
+    choices:
+      - { id: '1', text: '관련이 있는 클래스 파일들을 패키지 단위로 관리한다.' }
+      - { id: '2', text: '일반적으로 사용자 패키지는 jar 압축 파일 형태로 배포된다.' }
+      - { id: '3', text: '패키지는 서브 패키지를 가질 수 있어서 계층적으로 분류된다.' }
+      - { id: '4', text: '프로그램에서 사용자 패키지를 정의할 때는 import 구문을 사용해야 한다.' }
+    answers: ['4']
+    explanation: |
+      선택지 1 (오답): 패키지는 관련 클래스들을 묶어 관리하는 단위이다.
+      선택지 2 (오답): 사용자 패키지는 jar 파일 형태로 배포될 수 있다.
+      선택지 3 (오답): 패키지는 점으로 구분되는 계층 구조를 가질 수 있다.
+      선택지 4 (정답): 패키지를 정의할 때는 `package` 구문을 사용하고, 사용할 때 `import` 구문을 사용한다.
+
+      핵심 개념:
+      패키지는 클래스 이름 공간을 분리하고 관련 클래스를 묶는 기능을 한다.
+      소스 파일의 패키지 소속은 `package` 선언으로 지정한다.
+      다른 패키지의 클래스를 간단히 쓰려면 `import`를 사용한다.
+      패키지는 디렉터리 구조와 대응되는 계층 이름을 가진다.
+    tags: [chapter:06, package, import]
+
+  - id: b06-12
+    type: multiple-choice
+    prompt: 다음 중 try-with-resources 구문에 관한 설명으로 잘못된 것은?
+    choices:
+      - { id: '1', text: 'AutoCloseable 리소스를 사용한 후 자동으로 반환하기 위한 것이다.' }
+      - { id: '2', text: 'Java 7 이전 버전에서는 지원되지 않는 기능이다.' }
+      - {
+          id: '3',
+          text: '선언된 리소스를 사용하고 반환한 후에 catch 또는 finally 블록이 실행된다.',
+        }
+      - { id: '4', text: '사용된 리소스가 여럿이면 선언된 순서와 같은 순서로 반환된다.' }
+    answers: ['4']
+    explanation: |
+      선택지 1 (오답): try-with-resources는 `AutoCloseable` 리소스를 자동으로 닫는 구문이다.
+      선택지 2 (오답): try-with-resources는 Java 7에서 도입되었다.
+      선택지 3 (오답): 리소스가 닫힌 뒤 `catch` 또는 `finally` 블록이 실행된다.
+      선택지 4 (정답): 리소스가 여러 개이면 선언된 순서의 역순으로 닫힌다.
+
+      핵심 개념:
+      try-with-resources는 리소스 해제를 자동화한다.
+      괄호 안에서 선언한 리소스는 블록 종료 시 자동으로 `close`된다.
+      여러 리소스는 나중에 선언된 것부터 역순으로 닫힌다.
+      파일, 스트림 같은 리소스 처리에서 누수를 줄이는 데 유용하다.
+    tags: [chapter:06, try-with-resources, exception]
+
+  - id: b07-08
+    type: multiple-choice
+    prompt: |
+      선택지의 내용이 다음 프로그램의 밑줄 부분에 들어간다고 할 때, 결과가 다른 하나는 무엇인가?
+
+      ```java
+      String str1 = "java";
+      String str2 = str1;
+      String str3 = new String("java");
+      System.out.println(__________);
+      ```
+    choices:
+      - { id: '1', text: 'str1.equals(str2)' }
+      - { id: '2', text: 'str2.equals(str3)' }
+      - { id: '3', text: 'str1==str2' }
+      - { id: '4', text: 'str2==str3' }
+    answers: ['4']
+    explanation: |
+      선택지 1 (오답): `equals`는 문자열 내용을 비교하므로 `true`이다.
+      선택지 2 (오답): `str2`와 `str3`의 문자열 내용이 같으므로 `true`이다.
+      선택지 3 (오답): `str1`과 `str2`는 같은 문자열 객체를 가리키므로 `true`이다.
+      선택지 4 (정답): `str3`는 `new`로 생성된 별도 객체이므로 참조 비교 결과가 `false`이다.
+
+      핵심 개념:
+      `String`의 `equals`는 문자열 내용을 비교한다.
+      `==`는 두 참조가 같은 객체를 가리키는지 비교한다.
+      문자열 리터럴은 문자열 풀에서 공유될 수 있다.
+      `new String(...)`은 같은 내용을 가져도 별도 객체를 생성한다.
+    tags: [chapter:07, string, equals]
+
+  - id: b07-09
+    type: multiple-choice
+    prompt: 다음 중 결과가 String 유형이 아닌 것은?
+    choices:
+      - { id: '1', text: 'String.valueOf(5 > 3)' }
+      - { id: '2', text: 'Integer.parseInt("123")' }
+      - { id: '3', text: 'Long.toString(5)' }
+      - { id: '4', text: 'new String("able")' }
+    answers: ['2']
+    explanation: |
+      선택지 1 (오답): `String.valueOf`는 전달된 값을 문자열로 변환해 반환한다.
+      선택지 2 (정답): `Integer.parseInt`는 문자열을 `int` 값으로 변환해 반환한다.
+      선택지 3 (오답): `Long.toString`은 long 값을 문자열로 변환한다.
+      선택지 4 (오답): `new String("able")`은 `String` 객체를 생성한다.
+
+      핵심 개념:
+      Java에는 문자열과 기본형 값을 서로 변환하는 여러 메소드가 있다.
+      `valueOf`와 `toString` 계열은 보통 문자열을 반환한다.
+      `parseInt`는 문자열을 정수값으로 해석한다.
+      반환 타입을 구분해야 형 변환 오류를 피할 수 있다.
+    tags: [chapter:07, string, wrapper]
+
+  - id: b08-01
+    type: multiple-choice
+    prompt: InputStream 클래스와 OutputStream 클래스에 관한 설명 중 잘못된 것은?
+    choices:
+      - {
+          id: '1',
+          text: 'InputStream은 바이트 단위의 입력에 사용되는 스트림 중 최상위 클래스이다.',
+        }
+      - {
+          id: '2',
+          text: 'OutputStream은 바이트 단위의 출력에 사용되는 스트림 중 최상위 클래스이다.',
+        }
+      - { id: '3', text: 'InputStream과 OutputStream 클래스는 추상 클래스이다.' }
+      - { id: '4', text: "InputStream의 서브클래스는 'void write(int)' 메소드를 제공해야 한다." }
+    answers: ['4']
+    explanation: |
+      선택지 1 (오답): `InputStream`은 바이트 입력 스트림의 최상위 추상 클래스이다.
+      선택지 2 (오답): `OutputStream`은 바이트 출력 스트림의 최상위 추상 클래스이다.
+      선택지 3 (오답): 두 클래스 모두 추상 클래스이다.
+      선택지 4 (정답): `write(int)`는 `OutputStream` 계열의 메소드이고, `InputStream`은 `read()`를 제공한다.
+
+      핵심 개념:
+      Java I/O는 바이트 스트림과 문자 스트림으로 나뉜다.
+      `InputStream`은 바이트 입력의 공통 상위 클래스이다.
+      `OutputStream`은 바이트 출력의 공통 상위 클래스이다.
+      입력 스트림은 읽기 메소드, 출력 스트림은 쓰기 메소드를 중심으로 동작한다.
+    tags: [chapter:08, io, stream]
+
+  - id: b08-03
+    type: multiple-choice
+    prompt: 다음 중 File 클래스에 관한 설명으로 잘못된 것은?
+    choices:
+      - { id: '1', text: '파일이나 디렉터리의 경로를 표현한다.' }
+      - { id: '2', text: '경로를 표현하는 방법은 운영체제에 따라 다를 수 있다.' }
+      - { id: '3', text: '파일의 입출력 기능을 제공한다.' }
+      - { id: '4', text: '파일이나 디렉터리의 정보 조회, 생성이나 삭제 기능을 제공한다.' }
+    answers: ['3']
+    explanation: |
+      선택지 1 (오답): `File`은 파일 또는 디렉터리 경로를 표현하는 클래스이다.
+      선택지 2 (오답): 경로 구분 방식은 운영체제에 따라 달라질 수 있다.
+      선택지 3 (정답): `File` 자체는 파일 입출력 기능을 제공하지 않는다.
+      선택지 4 (오답): `File`은 존재 여부 확인, 생성, 삭제 같은 파일 시스템 조작을 지원한다.
+
+      핵심 개념:
+      `File` 클래스는 파일 내용이 아니라 파일 시스템 경로와 메타정보를 다룬다.
+      실제 입출력은 스트림이나 `RandomAccessFile` 같은 클래스를 사용한다.
+      경로 표현은 운영체제의 파일 시스템 규칙에 영향을 받는다.
+      파일 존재 확인, 디렉터리 생성, 삭제 같은 작업은 `File`에서 제공된다.
+    tags: [chapter:08, file, io]
+
+  - id: b08-06
+    type: multiple-choice
+    prompt: 다음은 RandomAccessFile 클래스에서 제공하는 메소드들이다. 파일 포인터의 값을 바꾸지 않는 메소드는 무엇인가?
+    choices:
+      - { id: '1', text: 'long getFilePointer()' }
+      - { id: '2', text: 'int read()' }
+      - { id: '3', text: 'void seek(long)' }
+      - { id: '4', text: 'void write(byte[])' }
+    answers: ['1']
+    explanation: |
+      선택지 1 (정답): `getFilePointer()`는 현재 파일 포인터 위치를 반환할 뿐 값을 바꾸지 않는다.
+      선택지 2 (오답): `read()`는 읽은 바이트 수만큼 파일 포인터를 이동시킨다.
+      선택지 3 (오답): `seek(long)`은 파일 포인터를 지정한 위치로 이동시킨다.
+      선택지 4 (오답): `write(byte[])`는 쓴 바이트 수만큼 파일 포인터를 이동시킨다.
+
+      핵심 개념:
+      `RandomAccessFile`은 파일의 임의 위치에서 읽고 쓸 수 있다.
+      파일 포인터는 현재 읽기/쓰기 위치를 나타낸다.
+      읽기와 쓰기 작업은 보통 포인터를 이동시킨다.
+      위치 조회 메소드는 포인터 값을 변경하지 않는다.
+    tags: [chapter:08, random-access-file, file-pointer]
+
+  - id: b11-02
+    type: multiple-choice
+    prompt: 다음 중 종료 연산에 해당하는 것은?
+    choices:
+      - { id: '1', text: 'forEach()' }
+      - { id: '2', text: 'map()' }
+      - { id: '3', text: 'filter()' }
+      - { id: '4', text: 'collect()' }
+    answers: ['1']
+    explanation: |
+      선택지 1 (정답): `forEach()`는 각 요소에 동작을 수행하고 스트림 처리를 끝내는 종료 연산이다.
+      선택지 2 (오답): `map()`은 요소를 변환해 새 스트림을 반환하는 중간 연산이다.
+      선택지 3 (오답): `filter()`는 조건에 맞는 요소만 남기는 중간 연산이다.
+      선택지 4 (오답): `collect()`도 종료 연산이지만 원본 문제의 정답 기준은 `forEach()`이다.
+
+      핵심 개념:
+      스트림 연산은 중간 연산과 종료 연산으로 나뉜다.
+      중간 연산은 새 스트림을 반환하며 지연 실행된다.
+      종료 연산은 스트림 파이프라인을 실제로 실행한다.
+      `forEach`는 각 요소에 작업을 수행하는 대표적인 종료 연산이다.
+    tags: [chapter:11, stream, terminal-operation]
+
+  - id: b11-03
+    type: multiple-choice
+    prompt: 다음 중 컬렉션으로부터 스트림을 생성하기 위해 사용되는 메소드는?
+    choices:
+      - { id: '1', text: 'stream()' }
+      - { id: '2', text: 'getStream()' }
+      - { id: '3', text: 'connectStream()' }
+      - { id: '4', text: 'createStream()' }
+    answers: ['1']
+    explanation: |
+      선택지 1 (정답): 컬렉션 객체의 `stream()` 메소드는 순차 스트림을 생성한다.
+      선택지 2 (오답): 컬렉션 스트림 생성 메소드 이름이 아니다.
+      선택지 3 (오답): Java 컬렉션 API의 스트림 생성 메소드가 아니다.
+      선택지 4 (오답): 컬렉션에서 스트림을 만들 때 사용하는 표준 메소드가 아니다.
+
+      핵심 개념:
+      Java 컬렉션은 `stream()` 메소드로 스트림을 생성할 수 있다.
+      스트림은 컬렉션 원소를 함수형 연산으로 처리하는 파이프라인을 제공한다.
+      순차 스트림과 병렬 스트림을 선택할 수 있다.
+      컬렉션 자체를 변경하지 않고 데이터를 처리할 수 있다.
+    tags: [chapter:11, stream, collection]
+
+  - id: b11-04
+    type: multiple-choice
+    prompt: filter() 메소드의 기능은 다음 중 무엇인가?
+    choices:
+      - { id: '1', text: '함수를 적용하여 원소를 변환한다.' }
+      - { id: '2', text: '스트림 원소 중 중복 원소를 제거한다.' }
+      - { id: '3', text: '원소를 이용하여 지정된 동작을 수행한다.' }
+      - { id: '4', text: '조건에 맞는 원소들만 걸러 낸다.' }
+    answers: ['4']
+    explanation: |
+      선택지 1 (오답): 원소 변환은 `map()`의 기능이다.
+      선택지 2 (오답): 중복 제거는 `distinct()`의 기능이다.
+      선택지 3 (오답): 각 원소에 동작을 수행하는 것은 주로 `forEach()`와 관련된다.
+      선택지 4 (정답): `filter()`는 조건을 만족하는 원소만 남긴 새 스트림을 반환한다.
+
+      핵심 개념:
+      `filter()`는 Predicate 조건을 사용한다.
+      조건을 만족하지 않는 원소는 결과 스트림에서 제외된다.
+      `filter()`는 중간 연산이므로 새 스트림을 반환한다.
+      스트림 파이프라인에서 데이터 선별에 자주 사용된다.
+    tags: [chapter:11, stream, filter]
+
+  - id: b11-06
+    type: multi-answer
+    allowMultiple: true
+    prompt: 다음에서 스트림을 사용할 때 얻을 수 있는 장점을 모두 고르시오.
+    choices:
+      - { id: '1', text: '코드의 가독성을 높인다.' }
+      - { id: '2', text: '코드를 간결하게 작성할 수 있다.' }
+      - { id: '3', text: '코드를 최적화하여 성능을 개선한다.' }
+      - { id: '4', text: '내부 반복과 외부 반복을 모두 지원한다.' }
+    answers: ['1', '2', '3']
+    explanation: |
+      선택지 1 (정답): 선언형 처리로 코드의 의도를 드러내 가독성을 높일 수 있다.
+      선택지 2 (정답): 반복 코드를 줄여 간결하게 표현할 수 있다.
+      선택지 3 (정답): 지연 연산과 병렬 처리 등을 통해 최적화 가능성이 있다.
+      선택지 4 (오답): 스트림은 주로 내부 반복 방식을 제공하며 외부 반복 자체를 모두 지원한다는 설명은 부적절하다.
+
+      핵심 개념:
+      스트림은 컬렉션 데이터를 함수형 스타일로 처리한다.
+      내부 반복을 사용해 반복 제어 코드를 줄인다.
+      중간 연산은 지연 실행되어 최적화될 수 있다.
+      병렬 스트림을 통해 병렬 처리도 지원한다.
+    tags: [chapter:11, stream]
+
+  - id: b11-12
+    type: multiple-choice
+    prompt: 다음 중 collect() 메소드의 기능을 바르게 설명한 것은?
+    choices:
+      - { id: '1', text: '스트림의 원소를 변환한 후 새로운 스트림을 반환한다.' }
+      - { id: '2', text: '스트림의 원소 중 중복된 원소를 제거한 새로운 스트림을 반환한다.' }
+      - { id: '3', text: '스트림의 요소들을 수집하여 컬렉션 객체를 반환하는 종료 연산이다.' }
+      - { id: '4', text: '스트림의 원소 중 조건에 맞는 원소만 걸러서 새로운 스트림을 반환한다.' }
+    answers: ['3']
+    explanation: |
+      선택지 1 (오답): 원소 변환은 `map()`의 설명이다.
+      선택지 2 (오답): 중복 제거는 `distinct()`의 설명이다.
+      선택지 3 (정답): `collect()`는 스트림 요소를 수집해 컬렉션 등 결과 객체로 만드는 종료 연산이다.
+      선택지 4 (오답): 조건 필터링은 `filter()`의 설명이다.
+
+      핵심 개념:
+      `collect()`는 스트림 파이프라인의 종료 연산이다.
+      스트림의 원소를 리스트, 집합, 맵 등으로 모을 수 있다.
+      `Collectors` 유틸리티와 함께 자주 사용된다.
+      중간 연산과 달리 실제 계산을 끝내고 결과를 반환한다.
+    tags: [chapter:11, stream, collect]
+
+  - id: b12-07
+    type: multiple-choice
+    prompt: 다음 중 스레드 간의 동기화와 관련이 깊은 설명은 무엇인가?
+    choices:
+      - { id: '1', text: '여러 스레드가 동시에 실행 중이다.' }
+      - { id: '2', text: '두 개의 스레드가 동일 자원을 공유한다.' }
+      - { id: '3', text: '동시에 두 개의 메소드가 동일 자원에 접근한다.' }
+      - { id: '4', text: '공유 자원의 접근에 대해 상호 배제를 보장한다.' }
+    answers: ['4']
+    explanation: |
+      선택지 1 (오답): 여러 스레드가 실행되는 것은 멀티스레딩의 일반적 상황이다.
+      선택지 2 (오답): 공유 자원이 있을 수는 있지만 동기화의 핵심 설명으로는 부족하다.
+      선택지 3 (오답): 동시 접근 상황 자체를 말할 뿐 상호 배제를 설명하지 않는다.
+      선택지 4 (정답): 동기화는 공유 자원 접근에서 한 순간 하나의 스레드만 접근하도록 보장하는 것이다.
+
+      핵심 개념:
+      동기화는 여러 스레드가 공유 자원을 사용할 때 필요한 제어 방식이다.
+      상호 배제는 동시에 하나의 스레드만 임계 영역에 들어가게 한다.
+      동기화가 없으면 경쟁 상태가 발생할 수 있다.
+      Java에서는 `synchronized` 키워드로 메소드나 블록을 동기화할 수 있다.
+    tags: [chapter:12, thread, synchronization]
+
+  - id: b12-09
+    type: multiple-choice
+    prompt: 이 경우 공유 자원에 대한 스레드 동기화가 필요한데, 프로그램에서 공유 자원에 해당하는 것은 무엇인가?
+    choices:
+      - { id: '1', text: 'total 변수' }
+      - { id: '2', text: 'Thread 객체' }
+      - { id: '3', text: 'account 객체' }
+      - { id: '4', text: 'Customer 객체' }
+    answers: ['3']
+    explanation: |
+      선택지 1 (오답): `total`은 공유 객체 내부의 필드이지만, 동기화 대상 관점에서는 객체 전체를 보호한다.
+      선택지 2 (오답): 스레드 객체 자체가 입금 상태를 공유하는 핵심 자원이 아니다.
+      선택지 3 (정답): 여러 Customer 스레드가 동일한 Account 객체를 사용하므로 공유 자원이다.
+      선택지 4 (오답): Customer 객체는 각 스레드별로 생성된다.
+
+      핵심 개념:
+      공유 자원은 여러 스레드가 동시에 접근하는 데이터나 객체이다.
+      동일 객체의 상태를 여러 스레드가 수정하면 경쟁 상태가 발생할 수 있다.
+      동기화는 공유 객체의 임계 영역을 보호하는 방식으로 적용한다.
+      예제에서는 세 스레드가 같은 `Account` 객체에 입금한다.
+    tags: [chapter:12, thread, shared-resource]
+
+  - id: b12-10
+    type: multiple-choice
+    prompt: 스레드 동기화를 위해 프로그램에서 어디를 어떻게 수정해야 하는가? 맞는 것을 고르시오.
+    choices:
+      - { id: '1', text: '1번 라인을 `synchronized class Account {`로 수정한다.' }
+      - { id: '2', text: '3번 라인을 `void deposit(int amount) throws IOException {`로 수정한다.' }
+      - { id: '3', text: '3번 라인을 `synchronized void deposit(int amount) {`로 수정한다.' }
+      - { id: '4', text: '10번 라인을 `synchronized class Customer extends Thread {`로 수정한다.' }
+    answers: ['3']
+    explanation: |
+      선택지 1 (오답): 클래스 선언에 `synchronized`를 붙일 수 없다.
+      선택지 2 (오답): 예외 선언은 동기화를 제공하지 않는다.
+      선택지 3 (정답): 공유 자원을 변경하는 `deposit` 메소드를 `synchronized`로 선언하면 상호 배제를 보장할 수 있다.
+      선택지 4 (오답): 스레드 클래스 선언에 `synchronized`를 붙이는 방식은 올바르지 않다.
+
+      핵심 개념:
+      동기화는 공유 상태를 변경하는 코드에 적용해야 한다.
+      Java에서는 메소드 선언에 `synchronized`를 붙일 수 있다.
+      인스턴스 synchronized 메소드는 같은 객체에 대해 한 번에 하나의 스레드만 실행된다.
+      공유 객체의 상태 변경 메소드가 임계 영역이 된다.
+    tags: [chapter:12, synchronized]
+
+  - id: b12-11
+    type: multiple-choice
+    prompt: 모든 송금을 마친 후 은행계좌의 최종 잔액을 출력하려 한다. main() 메소드에서 밑줄이 있는 24번 줄에 어떤 문장을 삽입해야 하는가?
+    choices:
+      - { id: '1', text: 't1.wait(); t2.wait(); t3.wait();' }
+      - { id: '2', text: 't1.notify(); t2.notify(); t3.notify();' }
+      - { id: '3', text: 't1.sleep(); t2.sleep(); t3.sleep();' }
+      - { id: '4', text: 't1.join(); t2.join(); t3.join();' }
+    answers: ['4']
+    explanation: |
+      선택지 1 (오답): `wait()`는 모니터 소유와 예외 처리 조건이 필요하며 스레드 종료 대기 용도가 아니다.
+      선택지 2 (오답): `notify()`는 대기 중인 스레드를 깨우는 기능이다.
+      선택지 3 (오답): `sleep()`은 현재 스레드를 잠시 멈추는 기능이지 대상 스레드 종료 대기가 아니다.
+      선택지 4 (정답): `join()`은 대상 스레드가 종료될 때까지 현재 스레드를 기다리게 한다.
+
+      핵심 개념:
+      `join()`은 다른 스레드의 종료를 기다릴 때 사용한다.
+      최종 결과를 출력하기 전에 작업 스레드들이 모두 끝났는지 보장해야 한다.
+      `wait`/`notify`는 객체 모니터 기반 협력 제어에 사용된다.
+      `sleep`은 현재 실행 중인 스레드를 일정 시간 멈춘다.
+    tags: [chapter:12, thread, join]
+
+  - id: b12-12
+    type: multiple-choice
+    prompt: '[문제 11]에서 join() 메소드를 호출하려면 이것 역시 예외처리 또는 예외 전파가 필요하다. 다음 중 가장 적당한 것은?'
+    choices:
+      - {
+          id: '1',
+          text: '17번 라인을 `class TVContribution throws InterruptedException {`로 수정한다.',
+        }
+      - {
+          id: '2',
+          text: '18번 라인을 `public static void main(String args[]) catch InterruptedException {`로 수정한다.',
+        }
+      - {
+          id: '3',
+          text: '18번 라인을 `public static void main(String args[]) throws InterruptedException {`로 수정한다.',
+        }
+      - { id: '4', text: '24번 라인을 `try { ________ }`로 수정한다.' }
+    answers: ['3']
+    explanation: |
+      선택지 1 (오답): 클래스 선언부에 이런 방식으로 예외를 전파하지 않는다.
+      선택지 2 (오답): 메소드 선언부에 `catch`를 붙이는 문법은 없다.
+      선택지 3 (정답): 메소드 선언부에 `throws InterruptedException`을 붙여 예외를 전파할 수 있다.
+      선택지 4 (오답): `try`만으로는 충분하지 않고 `catch` 또는 `finally` 등 완전한 예외 처리 구문이 필요하다.
+
+      핵심 개념:
+      `join()`은 `InterruptedException` 처리가 필요한 메소드이다.
+      checked 예외는 `try-catch`로 처리하거나 `throws`로 전파해야 한다.
+      예외 전파는 메소드 선언부의 `throws` 절에 작성한다.
+      `catch`는 메소드 선언부가 아니라 `try` 블록 뒤에 작성한다.
+    tags: [chapter:12, exception, thread]
+
+  - id: b13-03
+    type: multiple-choice
+    prompt: DBMS와 연동하여 SQL 질의를 실행하는 프로그램을 작성하려고 한다. 다음 중 올바른 절차는?
+    choices:
+      - {
+          id: '1',
+          text: 'DBMS와 연결 → SQL 질의 실행 → Statement 객체 생성 → ResultSet 객체 처리 → 연결 종료',
+        }
+      - {
+          id: '2',
+          text: 'DBMS와 연결 → Statement 객체 생성 → SQL 질의 실행 → ResultSet 객체 처리 → 연결 종료',
+        }
+      - {
+          id: '3',
+          text: 'DBMS와 연결 → ResultSet 객체 처리 → Statement 객체 생성 → SQL 질의 실행 → 연결 종료',
+        }
+      - {
+          id: '4',
+          text: 'DBMS와 연결 → Statement 객체 생성 → ResultSet 객체 처리 → SQL 질의 실행 → 연결 종료',
+        }
+    answers: ['2']
+    explanation: |
+      선택지 1 (오답): SQL 실행 전에 `Statement` 객체를 먼저 생성해야 한다.
+      선택지 2 (정답): 연결을 얻고, `Statement`를 생성한 뒤 SQL을 실행하고 결과를 처리한 후 연결을 종료한다.
+      선택지 3 (오답): `ResultSet`은 SQL 실행 결과이므로 실행 전에 처리할 수 없다.
+      선택지 4 (오답): 결과 집합은 SQL 실행 후에 얻어진다.
+
+      핵심 개념:
+      JDBC는 데이터베이스 연결, 명령 객체 생성, SQL 실행, 결과 처리 순서로 사용한다.
+      `Connection`은 DBMS와의 연결을 나타낸다.
+      `Statement` 또는 `PreparedStatement`로 SQL을 실행한다.
+      `ResultSet`은 select 질의의 결과를 표현한다.
+    tags: [chapter:13, jdbc]
+
+  - id: b13-08
+    type: multiple-choice
+    prompt: Statement 또는 PreparedStatement 객체를 통해 executeQuery()를 호출할 때 리턴되는 객체는 다음 중 무엇인가?
+    choices:
+      - { id: '1', text: 'Connection 객체' }
+      - { id: '2', text: 'ResultSet 객체' }
+      - { id: '3', text: 'Statement 객체' }
+      - { id: '4', text: 'PreparedStatement 객체' }
+    answers: ['2']
+    explanation: |
+      선택지 1 (오답): `Connection`은 데이터베이스 연결 객체이다.
+      선택지 2 (정답): `executeQuery()`는 select 결과를 담은 `ResultSet`을 반환한다.
+      선택지 3 (오답): `Statement`는 SQL 실행을 위한 객체이다.
+      선택지 4 (오답): `PreparedStatement`는 미리 컴파일된 SQL 실행 객체이다.
+
+      핵심 개념:
+      `executeQuery()`는 조회 질의에 사용한다.
+      조회 결과는 행과 열을 가진 `ResultSet`으로 표현된다.
+      데이터 변경 질의에는 보통 `executeUpdate()`를 사용한다.
+      SQL 실행 객체와 결과 객체의 역할을 구분해야 한다.
+    tags: [chapter:13, jdbc, result-set]
+
+  - id: b13-10
+    type: multiple-choice
+    prompt: 다음 중 select 구문을 실행하기 위해 밑줄 ㉠에 들어가야 할 메소드는 무엇인가?
+    choices:
+      - { id: '1', text: 'executeUpdate' }
+      - { id: '2', text: 'executeQuery' }
+      - { id: '3', text: 'prepareUpdate' }
+      - { id: '4', text: 'prepareQuery' }
+    answers: ['2']
+    explanation: |
+      선택지 1 (오답): `executeUpdate`는 insert, update, delete 같은 변경 질의에 주로 사용한다.
+      선택지 2 (정답): select 구문을 실행하고 `ResultSet`을 반환하려면 `executeQuery()`를 사용한다.
+      선택지 3 (오답): JDBC 표준 메소드가 아니다.
+      선택지 4 (오답): JDBC 표준 메소드가 아니다.
+
+      핵심 개념:
+      select 질의는 결과 집합을 반환한다.
+      `executeQuery()`는 조회 결과를 `ResultSet`으로 돌려준다.
+      변경 질의에는 `executeUpdate()`가 적합하다.
+      메소드 이름과 SQL 질의 종류를 맞춰 사용해야 한다.
+    tags: [chapter:13, jdbc, execute-query]
+
+  - id: b13-11
+    type: multiple-choice
+    prompt: 위 프로그램에서 객체 rs는 select 구문의 실행 결과를 가진다. 이것의 유형으로 적당한 것은 다음 중 무엇인가?
+    choices:
+      - { id: '1', text: 'Connection' }
+      - { id: '2', text: 'Statement' }
+      - { id: '3', text: 'ResultSet' }
+      - { id: '4', text: 'PreparedStatement' }
+    answers: ['3']
+    explanation: |
+      선택지 1 (오답): `Connection`은 데이터베이스 연결 객체이다.
+      선택지 2 (오답): `Statement`는 SQL을 실행하는 객체이다.
+      선택지 3 (정답): select 실행 결과 테이블은 `ResultSet` 객체로 다룬다.
+      선택지 4 (오답): `PreparedStatement`는 SQL 실행을 위한 객체이다.
+
+      핵심 개념:
+      JDBC에서 조회 결과는 `ResultSet`에 담긴다.
+      `ResultSet`은 커서를 이동하며 행 단위로 값을 읽는다.
+      각 열 값은 `getString`, `getInt` 같은 메소드로 가져온다.
+      연결, 실행 객체, 결과 객체의 역할이 서로 다르다.
+    tags: [chapter:13, jdbc, result-set]
+
+  - id: b13-12
+    type: multi-answer
+    allowMultiple: true
+    prompt: 다음 중 데이터베이스의 내용을 변경시킬 수 있는 SQL 구문을 모두 고르시오.
+    choices:
+      - { id: '1', text: 'select' }
+      - { id: '2', text: 'insert' }
+      - { id: '3', text: 'update' }
+      - { id: '4', text: 'delete' }
+    answers: ['2', '3', '4']
+    explanation: |
+      선택지 1 (오답): `select`는 데이터를 조회하는 구문이다.
+      선택지 2 (정답): `insert`는 새 데이터를 추가한다.
+      선택지 3 (정답): `update`는 기존 데이터를 수정한다.
+      선택지 4 (정답): `delete`는 데이터를 삭제한다.
+
+      핵심 개념:
+      SQL은 조회와 데이터 변경 작업을 구분한다.
+      `select`는 검색 결과를 반환한다.
+      `insert`, `update`, `delete`는 데이터 상태를 변경한다.
+      JDBC에서는 변경 질의에 `executeUpdate()`를 주로 사용한다.
+    tags: [chapter:13, sql]
+
+  - id: b14-01
+    type: multiple-choice
+    prompt: 다음 중 재사용 가능한 클래스나 인터페이스를 개발한 후 컴파일된 클래스 파일들을 묶어 라이브러리로 배포하고자 할 때 사용되는 파일 형식은?
+    choices:
+      - { id: '1', text: 'JAR 파일' }
+      - { id: '2', text: 'WAR 파일' }
+      - { id: '3', text: 'EXE 파일' }
+      - { id: '4', text: 'CLASS 파일' }
+    answers: ['1']
+    explanation: |
+      선택지 1 (정답): JAR 파일은 여러 클래스, 인터페이스, 리소스를 하나의 아카이브로 묶어 배포하는 형식이다.
+      선택지 2 (오답): WAR 파일은 웹 애플리케이션 배포에 사용된다.
+      선택지 3 (오답): EXE 파일은 Windows 실행 파일 형식이다.
+      선택지 4 (오답): CLASS 파일은 개별 Java 클래스의 컴파일 결과이다.
+
+      핵심 개념:
+      Java 라이브러리는 보통 JAR 파일로 묶어 배포한다.
+      JAR는 Java Archive의 약자이다.
+      여러 클래스 파일과 리소스를 하나의 파일로 관리할 수 있다.
+      웹 애플리케이션 배포에는 별도의 WAR 형식이 사용된다.
+    tags: [chapter:14, jar, library]
+
+  - id: b14-05
+    type: multiple-choice
+    prompt: |
+      다음 모듈 정의에서 밑줄 부분에 들어갈 내용을 바르게 설명한 것은?
+
+      ```java
+      module mymodule {
+          requires ________;
+          exports com.example.mypackage;
+      }
+      ```
+    choices:
+      - { id: '1', text: '의존하고 있는 다른 모듈의 이름' }
+      - { id: '2', text: '의존하고 있는 다른 패키지의 이름' }
+      - { id: '3', text: '외부 클라이언트에게 제공할 모듈의 이름' }
+      - { id: '4', text: '외부 클라이언트에게 제공할 패키지의 이름' }
+    answers: ['1']
+    explanation: |
+      선택지 1 (정답): `requires` 뒤에는 현재 모듈이 의존하는 다른 모듈의 이름이 온다.
+      선택지 2 (오답): `requires`는 패키지가 아니라 모듈 의존성을 선언한다.
+      선택지 3 (오답): 외부에 제공할 모듈 이름을 쓰는 구문이 아니다.
+      선택지 4 (오답): 외부에 공개할 패키지는 `exports` 뒤에 작성한다.
+
+      핵심 개념:
+      Java 모듈은 `module-info.java` 파일에서 정의한다.
+      `requires`는 필요한 다른 모듈을 선언한다.
+      `exports`는 외부에서 접근 가능한 패키지를 선언한다.
+      `java.base` 모듈은 기본으로 의존하므로 명시하지 않아도 된다.
+    tags: [chapter:14, module]
