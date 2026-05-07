@@ -4,125 +4,121 @@ subjects:
     title: 운영체제
     sources:
       - id: past-exams-2017
-        title: 2017 기출
+        title: 2017 기말
         path: subjects/operating-systems/past-exams-2017.json
         kind: exam
         year: 2017
       - id: past-exams-2018
-        title: 2018 기출
+        title: 2018 기말
         path: subjects/operating-systems/past-exams-2018.json
         kind: exam
         year: 2018
       - id: past-exams-2019
-        title: 2019 기출
+        title: 2019 기말
         path: subjects/operating-systems/past-exams-2019.json
         kind: exam
         year: 2019
       - id: workbook
-        title: 교재 워크북
+        title: 워크북 문제
         path: subjects/operating-systems/workbook.json
         kind: workbook
-      - id: lecture-exercises
-        title: 강의 연습문제
-        path: subjects/operating-systems/lecture-exercises.json
-        kind: lecture
   - id: discrete-math
     title: 이산수학
     sources:
       - id: past-exams-2017
-        title: 2017 기출
+        title: 2017 기말
         path: subjects/discrete-math/past-exams-2017.json
         kind: exam
         year: 2017
       - id: past-exams-2018
-        title: 2018 기출
+        title: 2018 기말
         path: subjects/discrete-math/past-exams-2018.json
         kind: exam
         year: 2018
       - id: past-exams-2019
-        title: 2019 기출
+        title: 2019 기말
         path: subjects/discrete-math/past-exams-2019.json
         kind: exam
         year: 2019
+      - id: basic-intensive
+        title: 기초특강
+        path: subjects/discrete-math/basic-intensive.json
+        kind: intensive
   - id: algorithms
     title: 알고리즘
     sources:
       - id: past-exams-2017
-        title: 2017 기출
+        title: 2017 기말
         path: subjects/algorithms/past-exams-2017.json
         kind: exam
         year: 2017
       - id: past-exams-2018
-        title: 2018 기출
+        title: 2018 기말
         path: subjects/algorithms/past-exams-2018.json
         kind: exam
         year: 2018
       - id: past-exams-2019
-        title: 2019 기출
+        title: 2019 기말
         path: subjects/algorithms/past-exams-2019.json
         kind: exam
         year: 2019
       - id: textbook
-        title: 교재 문제
+        title: 기본서 문제
         path: subjects/algorithms/textbook.json
         kind: textbook
       - id: workbook
         title: 워크북 문제
         path: subjects/algorithms/workbook.json
         kind: workbook
-      - id: lecture-exercises
-        title: 강의 연습문제
-        path: subjects/algorithms/lecture-exercises.json
-        kind: lecture
   - id: artificial-intelligence
     title: 인공지능
     sources:
       - id: past-exams-2017
-        title: 2017 기출
+        title: 2017 기말
         path: subjects/artificial-intelligence/past-exams-2017.json
         kind: exam
         year: 2017
       - id: past-exams-2018
-        title: 2018 기출
+        title: 2018 기말
         path: subjects/artificial-intelligence/past-exams-2018.json
         kind: exam
         year: 2018
       - id: past-exams-2019
-        title: 2019 기출
+        title: 2019 기말
         path: subjects/artificial-intelligence/past-exams-2019.json
         kind: exam
         year: 2019
       - id: workbook
-        title: 교재 워크북
+        title: 워크북 문제
         path: subjects/artificial-intelligence/workbook.json
         kind: workbook
       - id: lecture-exercises
-        title: 강의 연습문제
+        title: 연습문제
         path: subjects/artificial-intelligence/lecture-exercises.json
         kind: lecture
   - id: java-programming
     title: Java프로그래밍
     sources:
       - id: past-exams-2017
-        title: 2017 기출
+        title: 2017 기말
         path: subjects/java-programming/past-exams-2017.json
         kind: exam
         year: 2017
       - id: past-exams-2018
-        title: 2018 기출
+        title: 2018 기말
         path: subjects/java-programming/past-exams-2018.json
         kind: exam
         year: 2018
       - id: past-exams-2019
-        title: 2019 기출
+        title: 2019 기말
         path: subjects/java-programming/past-exams-2019.json
         kind: exam
         year: 2019
       - id: workbook
-        title: 교재 워크북
+        title: 워크북 문제
         path: subjects/java-programming/workbook.json
         kind: workbook
       - id: lecture-exercises
-        title: 강의 연습문제
+        title: 연습문제
         path: subjects/java-programming/lecture-exercises.json
         kind: lecture

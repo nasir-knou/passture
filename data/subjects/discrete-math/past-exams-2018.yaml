@@ -1,631 +1,440 @@
 subjectId: discrete-math
 sourceId: past-exams-2018
-title: 이산수학 2018 기출
+title: 이산수학 2018 기말
 kind: exam
 year: 2018
 
 questions:
   - id: e18-01
     type: multiple-choice
-    prompt: '원본 이미지의 1번 문제를 풀어주세요.'
+    prompt: 다음 내용과 가장 관련이 깊은 것은?
     images:
-      - path: images/subjects/discrete-math/past-exams/2018/page-1.png
-        alt: 2018년 이산수학 기출 1번 원본 페이지
+      - path: images/subjects/discrete-math/past-exams/2018/questions/q36.png
+        alt: 2018년 이산수학 기말 36번 문항 이미지
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '기법' }
+      - { id: '2', text: '방법론' }
+      - { id: '3', text: '도구' }
+      - { id: '4', text: '추상화' }
     answers: ['4']
     explanation: |
-      선택지 1 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 2 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 3 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 4 (정답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
+      선택지 4: 철수와 영희의 나이를 각각 $x$, $y$로 두고 실제 상황을 연립방정식으로 표현했으므로 추상화에 해당한다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      추상화는 현실의 세부 사항을 변수, 식, 구조 같은 수학적 모델로 단순화해 표현하는 과정이다.
+    tags: [abstraction, modeling]
 
   - id: e18-02
     type: multiple-choice
-    prompt: '원본 이미지의 2번 문제를 풀어주세요.'
-    images:
-      - path: images/subjects/discrete-math/past-exams/2018/page-1.png
-        alt: 2018년 이산수학 기출 2번 원본 페이지
+    prompt: 다음 중 명제인 것은?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '$2x - 6 = 0$' }
+      - { id: '2', text: '교실 안이 참 덥다.' }
+      - { id: '3', text: '해는 동쪽에서 뜬다.' }
+      - { id: '4', text: '오늘 기말시험 잘 보세요.' }
     answers: ['3']
     explanation: |
-      선택지 1 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 2 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 3 (정답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 4 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
+      선택지 3: 참 또는 거짓을 명확히 판정할 수 있는 평서문이다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      명제는 참과 거짓 중 하나로 판정할 수 있는 문장이다. 변수식, 주관적 표현, 명령문은 명제가 아니다.
+    tags: [proposition]
 
   - id: e18-03
     type: multiple-choice
-    prompt: '원본 이미지의 3번 문제를 풀어주세요.'
-    images:
-      - path: images/subjects/discrete-math/past-exams/2018/page-1.png
-        alt: 2018년 이산수학 기출 3번 원본 페이지
+    prompt: 다음 중 거짓인 명제는?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '한국의 수도가 서울이라면, 영국의 수도는 동경이다.' }
+      - { id: '2', text: '물이 섭씨 0도에서 끓는다면, 지구는 달을 공전한다.' }
+      - { id: '3', text: '오늘 날씨는 비가 오거나 비가 오지 않는다.' }
+      - { id: '4', text: '$1 + 2 + 3 + 4 = 10$' }
     answers: ['1']
     explanation: |
-      선택지 1 (정답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 2 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 3 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 4 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
+      선택지 1: 전건은 참이고 후건은 거짓이므로 조건명제 전체가 거짓이다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      조건명제 $p \to q$는 $p$가 참이고 $q$가 거짓일 때에만 거짓이다.
+    tags: [proposition, implication]
 
   - id: e18-04
     type: multiple-choice
-    prompt: '원본 이미지의 4번 문제를 풀어주세요.'
-    images:
-      - path: images/subjects/discrete-math/past-exams/2018/page-1.png
-        alt: 2018년 이산수학 기출 4번 원본 페이지
+    prompt: 명제 $p$에 대해서 다음 중 항진명제인 것은?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '$p$' }
+      - { id: '2', text: '$p \lor \sim p$' }
+      - { id: '3', text: '$p \lor F$' }
+      - { id: '4', text: '$p \land T$' }
     answers: ['2']
     explanation: |
-      선택지 1 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 2 (정답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 3 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 4 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
+      선택지 2: 배중률에 의해 $p$가 참이든 거짓이든 $p \lor \sim p$는 항상 참이다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      항진명제는 구성 명제의 진리값과 무관하게 항상 참인 명제이다.
+    tags: [tautology, logic]
 
   - id: e18-05
     type: multiple-choice
-    prompt: '원본 이미지의 5번 문제를 풀어주세요.'
-    images:
-      - path: images/subjects/discrete-math/past-exams/2018/page-1.png
-        alt: 2018년 이산수학 기출 5번 원본 페이지
+    prompt: 명제함수 $P(x)$가 $x > 2$이고 $x$의 정의구역 $D = \{1, 2, 3\}$일 때, $\forall x P(x)$와 $\exists x P(x)$의 진리값을 순서대로 적은 것은?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: 'F, F' }
+      - { id: '2', text: 'F, T' }
+      - { id: '3', text: 'T, F' }
+      - { id: '4', text: 'T, T' }
     answers: ['2']
     explanation: |
-      선택지 1 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 2 (정답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 3 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 4 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
+      선택지 2: $1,2$는 $x>2$를 만족하지 않으므로 전칭명제는 거짓이고, $3$은 만족하므로 존재명제는 참이다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      전칭명제는 정의구역의 모든 원소가 조건을 만족해야 참이고, 존재명제는 하나 이상만 만족해도 참이다.
+    tags: [predicate-logic, quantifier]
 
   - id: e18-06
     type: multiple-choice
-    prompt: '원본 이미지의 6번 문제를 풀어주세요.'
-    images:
-      - path: images/subjects/discrete-math/past-exams/2018/page-1.png
-        alt: 2018년 이산수학 기출 6번 원본 페이지
+    prompt: 모든 실수 $x, y$에 대해 $x > y$이면 $x^2 > y^2$에 대한 반례를 보이고자 한다. 올바른 반례는 어느 것인가?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '$x = 1, y = 0$' }
+      - { id: '2', text: '$x = 0, y = 1$' }
+      - { id: '3', text: '$x = -1, y = 0$' }
+      - { id: '4', text: '$x = 0, y = -1$' }
     answers: ['4']
     explanation: |
-      선택지 1 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 2 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 3 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 4 (정답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
+      선택지 4: $0>-1$이지만 $0^2=0$은 $(-1)^2=1$보다 크지 않으므로 반례이다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      전칭명제의 반례는 전건은 참이지만 결론이 거짓이 되는 하나의 사례이다.
+    tags: [counterexample]
 
   - id: e18-07
     type: multiple-choice
-    prompt: '원본 이미지의 7번 문제를 풀어주세요.'
+    prompt: 다음 증명에서 사용된 증명 방법은 무엇인가?
     images:
-      - path: images/subjects/discrete-math/past-exams/2018/page-1.png
-        alt: 2018년 이산수학 기출 7번 원본 페이지
+      - path: images/subjects/discrete-math/past-exams/2018/questions/q42.png
+        alt: 2018년 이산수학 기말 42번 문항 이미지
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '모순증명법' }
+      - { id: '2', text: '반례증명법' }
+      - { id: '3', text: '직접증명법' }
+      - { id: '4', text: '수학적 귀납법' }
     answers: ['1']
     explanation: |
-      선택지 1 (정답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 2 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 3 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 4 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
+      선택지 1: 결론의 부정인 $x \ne 0$을 가정한 뒤 $2=1$이라는 모순을 이끌어 낸다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      모순증명법은 결론이 거짓이라고 가정하여 불가능한 결과를 도출함으로써 원래 결론을 증명한다.
+    tags: [proof, contradiction]
 
   - id: e18-08
     type: multiple-choice
-    prompt: '원본 이미지의 8번 문제를 풀어주세요.'
-    images:
-      - path: images/subjects/discrete-math/past-exams/2018/page-1.png
-        alt: 2018년 이산수학 기출 8번 원본 페이지
+    prompt: 집합 $A = \{a, b\}$, $B = \{c, d, e\}$에 대해 다음 서술 중 부적절한 것은?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '$A$와 $B$는 서로소이다.' }
+      - { id: '2', text: '$\{\{c, d\}, \{e\}\}$는 $B$의 분할이다.' }
+      - { id: '3', text: "$A$의 멱집합 $P(A)$는 $P(A)=\\{\\{a\\}, \\{b\\}, \\{a,b\\}\\}$이다." }
+      - { id: '4', text: '$B$의 멱집합 $P(B)$는 원소가 $2^{|B|}=2^3=8$개다.' }
     answers: ['3']
     explanation: |
-      선택지 1 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 2 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 3 (정답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 4 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
+      선택지 3: 멱집합에는 공집합도 포함되어야 하므로 $P(A)$에는 $\emptyset$이 빠져 있다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      원소 수가 $n$인 집합의 멱집합은 $2^n$개의 부분집합을 가지며, 공집합과 자기 자신을 포함한다.
+    tags: [set, power-set]
 
   - id: e18-09
     type: multiple-choice
-    prompt: '원본 이미지의 9번 문제를 풀어주세요.'
-    images:
-      - path: images/subjects/discrete-math/past-exams/2018/page-1.png
-        alt: 2018년 이산수학 기출 9번 원본 페이지
+    prompt: 전체집합 $U=\{1,2,3,4,5\}$와 $U$의 부분집합 $A=\{1,2,3\}$, $B=\{2,3,4\}$일 때 다음 서술 중 옳은 것은?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '$A \cup B = \{2,3\}$' }
+      - { id: '2', text: '$A \cap B = \{1,2,3,4\}$' }
+      - { id: '3', text: '$A^C = \{4\}$' }
+      - { id: '4', text: '$A \oplus B = \{1,4\}$' }
     answers: ['4']
     explanation: |
-      선택지 1 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 2 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 3 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 4 (정답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
+      선택지 4: 대칭차 $A \oplus B$는 두 집합 중 한쪽에만 속하는 원소들의 집합이므로 $\{1,4\}$이다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      합집합은 $\{1,2,3,4\}$, 교집합은 $\{2,3\}$, $A^C$는 $\{4,5\}$이다.
+    tags: [set, symmetric-difference]
 
   - id: e18-10
     type: multiple-choice
-    prompt: '원본 이미지의 10번 문제를 풀어주세요.'
-    images:
-      - path: images/subjects/discrete-math/past-exams/2018/page-1.png
-        alt: 2018년 이산수학 기출 10번 원본 페이지
+    prompt: $U$가 전체집합이고 $A, B, C$가 $U$의 부분집합이라고 할 때 다음 중 옳은 것은?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '$A \cup (A \cap B) = A$' }
+      - { id: '2', text: '$(A^c)^c = A^c$' }
+      - { id: '3', text: '$A \cap A^c = U$' }
+      - { id: '4', text: '$A \cup (B \cap C) = (A \cup B) \cap C$' }
     answers: ['1']
     explanation: |
-      선택지 1 (정답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 2 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 3 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 4 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
+      선택지 1: 흡수법칙에 의해 $A \cup (A \cap B)=A$이다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      여집합의 여집합은 원래 집합이고, 집합과 그 여집합의 교집합은 공집합이다.
+    tags: [set, set-law]
 
   - id: e18-11
     type: multiple-choice
-    prompt: '원본 이미지의 11번 문제를 풀어주세요.'
+    prompt: 다음 행렬 $A$를 나타내는 용어로서 부적절한 것은?
     images:
-      - path: images/subjects/discrete-math/past-exams/2018/page-1.png
-        alt: 2018년 이산수학 기출 11번 원본 페이지
+      - path: images/subjects/discrete-math/past-exams/2018/questions/q46.png
+        alt: 2018년 이산수학 기말 46번 문항 이미지
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '대칭행렬' }
+      - { id: '2', text: '단위행렬' }
+      - { id: '3', text: '스칼라행렬' }
+      - { id: '4', text: '상삼각행렬' }
     answers: ['2']
     explanation: |
-      선택지 1 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 2 (정답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 3 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 4 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
+      선택지 2: $A$는 대각성분이 모두 5인 스칼라행렬이지만, 단위행렬은 대각성분이 모두 1이어야 한다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      스칼라행렬은 $cI$ 꼴의 대각행렬이며, 단위행렬은 그중 $c=1$인 경우이다.
+    tags: [matrix]
 
   - id: e18-12
     type: multiple-choice
-    prompt: '원본 이미지의 12번 문제를 풀어주세요.'
+    prompt: 다음 행렬 $A$와 $B$에 대해서 옳은 것은?
     images:
-      - path: images/subjects/discrete-math/past-exams/2018/page-1.png
-        alt: 2018년 이산수학 기출 12번 원본 페이지
+      - path: images/subjects/discrete-math/past-exams/2018/questions/q47.png
+        alt: 2018년 이산수학 기말 47번 문항 이미지
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '$A + B = 2A$' }
+      - { id: '2', text: '$A - B = O$' }
+      - { id: '3', text: '$AB = A$' }
+      - { id: '4', text: '$B^T = A$' }
     answers: ['3']
     explanation: |
-      선택지 1 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 2 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 3 (정답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 4 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
+      선택지 3: $B$는 단위행렬이므로 $AB=A$이다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      단위행렬 $I$는 곱셈의 항등원 역할을 하므로 임의의 적합한 행렬 $A$에 대해 $AI=A$이다.
+    tags: [matrix, identity-matrix]
 
   - id: e18-13
     type: multiple-choice
-    prompt: '원본 이미지의 13번 문제를 풀어주세요.'
+    prompt: 관계 $R$을 순서쌍의 집합으로 나타낸 것은?
     images:
-      - path: images/subjects/discrete-math/past-exams/2018/page-1.png
-        alt: 2018년 이산수학 기출 13번 원본 페이지
+      - path: images/subjects/discrete-math/past-exams/2018/questions/q48.png
+        alt: 2018년 이산수학 기말 48번 문항 이미지
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '$R=\{(1,1),(1,2),(1,3),(2,1),(2,2),(2,3),(3,1),(3,3)\}$' }
+      - { id: '2', text: '$R=\{(1,1),(1,2),(2,1),(2,2),(3,1),(3,2),(3,3)\}$' }
+      - { id: '3', text: '$R=\{(1,1),(1,2),(1,3),(2,1),(2,2),(3,1),(3,3)\}$' }
+      - { id: '4', text: '$R=\{(1,1),(1,2),(2,2),(2,3),(3,3)\}$' }
     answers: ['3']
     explanation: |
-      선택지 1 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 2 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 3 (정답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 4 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
+      선택지 3: 그래프의 루프와 방향간선을 읽으면 $(1,1),(1,2),(1,3),(2,1),(2,2),(3,1),(3,3)$이다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      방향 그래프에서 정점 $a$에서 $b$로 향하는 간선은 관계의 순서쌍 $(a,b)$에 대응한다.
+    tags: [relation, directed-graph]
 
   - id: e18-14
     type: multiple-choice
-    prompt: '원본 이미지의 14번 문제를 풀어주세요.'
+    prompt: 관계 $R$을 부울행렬로 나타낸 것은?
     images:
-      - path: images/subjects/discrete-math/past-exams/2018/page-2.png
-        alt: 2018년 이산수학 기출 14번 원본 페이지
+      - path: images/subjects/discrete-math/past-exams/2018/questions/q49.png
+        alt: 2018년 이산수학 기말 49번 문항 이미지
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '$M_R=\begin{pmatrix}1&1&1\\0&1&1\\0&0&1\end{pmatrix}$' }
+      - { id: '2', text: '$M_R=\begin{pmatrix}1&2&3\\0&1&2\\0&0&1\end{pmatrix}$' }
+      - { id: '3', text: '$M_R=\begin{pmatrix}1&1&1\\0&1&1\\1&0&1\end{pmatrix}$' }
+      - { id: '4', text: '$M_R=\begin{pmatrix}1&1&1\\1&1&0\\1&0&1\end{pmatrix}$' }
     answers: ['4']
     explanation: |
-      선택지 1 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 2 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 3 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 4 (정답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
+      선택지 4: 48번에서 얻은 관계의 순서쌍에 해당하는 위치만 1로 표시하면 해당 부울행렬이 된다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      부울행렬 $M_R$의 $i,j$ 성분은 $(i,j)\in R$이면 1, 아니면 0이다.
+    tags: [relation, boolean-matrix]
 
   - id: e18-15
     type: multiple-choice
-    prompt: '원본 이미지의 15번 문제를 풀어주세요.'
-    images:
-      - path: images/subjects/discrete-math/past-exams/2018/page-2.png
-        alt: 2018년 이산수학 기출 15번 원본 페이지
+    prompt: 관계 $R$에 대한 설명으로 옳은 것은?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '동치관계이다.' }
+      - { id: '2', text: '반사적이고 대칭적이나 추이적이지 않다.' }
+      - { id: '3', text: '반사적이고 추이적이나 대칭적이지 않다.' }
+      - { id: '4', text: '반사적이지만 대칭적이지도 추이적이지도 않다.' }
     answers: ['2']
     explanation: |
-      선택지 1 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 2 (정답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 3 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 4 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
+      선택지 2: 모든 루프가 있어 반사적이고, 서로 다른 정점 사이의 연결은 양방향으로 대응되어 대칭적이나 추이성은 성립하지 않는다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      동치관계가 되려면 반사성, 대칭성, 추이성을 모두 만족해야 한다.
+    tags: [relation, equivalence-relation]
 
   - id: e18-16
     type: multiple-choice
-    prompt: '원본 이미지의 16번 문제를 풀어주세요.'
-    images:
-      - path: images/subjects/discrete-math/past-exams/2018/page-2.png
-        alt: 2018년 이산수학 기출 16번 원본 페이지
+    prompt: $A=\{1,2,3\}$, $B=\{a,b,c\}$일 때, $A$에서 $B$로의 관계 $R=\{(1,a),(2,a),(3,b)\}$에 관한 설명으로 옳은 것은?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
-    answers: ['1', '2', '3', '4']
+      - { id: '1', text: '$R$은 $A$에서 $B$로의 단사함수이다.' }
+      - { id: '2', text: '$R$은 $A$에서 $B$로의 전사함수이다.' }
+      - { id: '3', text: '$R$은 $A$에서 $B$로의 전단사함수이다.' }
+      - { id: '4', text: '$R$은 $A$에서 $B$로의 상수함수이다.' }
+      - { id: '5', text: '정답 없음' }
+    answers: ['5']
     explanation: |
-      선택지 1 (정답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 2 (정답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 3 (정답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 4 (정답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
+      선택지 5 (정답): 원문 정답표의 K 표시는 보기 1~4 중 정답이 없음을 뜻한다. $R$은 함수이지만 단사도 전사도 전단사도 상수함수도 아니다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      $1$과 $2$가 모두 $a$로 대응하므로 단사가 아니고, $c$로 가는 원소가 없으므로 전사가 아니다.
+    tags: [function, relation]
 
   - id: e18-17
     type: multiple-choice
-    prompt: '원본 이미지의 17번 문제를 풀어주세요.'
-    images:
-      - path: images/subjects/discrete-math/past-exams/2018/page-2.png
-        alt: 2018년 이산수학 기출 17번 원본 페이지
+    prompt: 다음 중 옳은 것은?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '$\lceil 1.23 \rceil = 1$' }
+      - { id: '2', text: '$\lfloor -0.917 \rfloor = -1$' }
+      - { id: '3', text: '$4! = 10$' }
+      - { id: '4', text: '$97 \bmod 5 = 3$' }
     answers: ['2']
     explanation: |
-      선택지 1 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 2 (정답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 3 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 4 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
+      선택지 2: 바닥함수는 주어진 수보다 작거나 같은 가장 큰 정수이므로 $\lfloor -0.917 \rfloor=-1$이다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      $\lceil 1.23\rceil=2$, $4!=24$, $97\bmod 5=2$이다.
+    tags: [floor-ceiling, modulo]
 
   - id: e18-18
     type: multiple-choice
-    prompt: '원본 이미지의 18번 문제를 풀어주세요.'
-    images:
-      - path: images/subjects/discrete-math/past-exams/2018/page-2.png
-        alt: 2018년 이산수학 기출 18번 원본 페이지
+    prompt: 다음 부울식 중 옳은 것은?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '$X + 0 = 0$' }
+      - { id: '2', text: '$X + \overline{X} = 0$' }
+      - { id: '3', text: '$X(X+Y)=Y$' }
+      - { id: '4', text: '$X + YZ = (X+Y)(X+Z)$' }
     answers: ['4']
     explanation: |
-      선택지 1 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 2 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 3 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 4 (정답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
+      선택지 4: 분배법칙에 의해 $X+YZ=(X+Y)(X+Z)$가 성립한다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      부울대수에서 $X+0=X$, $X+\overline{X}=1$, $X(X+Y)=X$이다.
+    tags: [boolean-algebra]
 
   - id: e18-19
     type: multiple-choice
-    prompt: '원본 이미지의 19번 문제를 풀어주세요.'
+    prompt: 그래프 $G$와 관련된 서술 중 부적절한 것은?
     images:
-      - path: images/subjects/discrete-math/past-exams/2018/page-2.png
-        alt: 2018년 이산수학 기출 19번 원본 페이지
+      - path: images/subjects/discrete-math/past-exams/2018/questions/q54.png
+        alt: 2018년 이산수학 기말 54번 문항 이미지
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '$G$는 $V=\{a,b,c\}$를 꼭지점의 집합으로 갖는다.' }
+      - { id: '2', text: '$G$는 방향그래프가 아니다.' }
+      - { id: '3', text: '$G$는 단순그래프이다.' }
+      - { id: '4', text: '$c$의 차수는 3이다.' }
     answers: ['3']
     explanation: |
-      선택지 1 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 2 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 3 (정답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 4 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
+      선택지 3: 그래프 $G$에는 루프와 평행간선이 있으므로 단순그래프가 아니다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      단순그래프는 루프와 평행간선을 허용하지 않는다.
+    tags: [graph, simple-graph]
 
   - id: e18-20
     type: multiple-choice
-    prompt: '원본 이미지의 20번 문제를 풀어주세요.'
+    prompt: 그래프 $G$를 인접행렬로 표현한 것은?
     images:
-      - path: images/subjects/discrete-math/past-exams/2018/page-2.png
-        alt: 2018년 이산수학 기출 20번 원본 페이지
+      - path: images/subjects/discrete-math/past-exams/2018/questions/q55.png
+        alt: 2018년 이산수학 기말 55번 문항 이미지
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '$\begin{pmatrix}1&1&2\\1&0&1\\2&1&0\end{pmatrix}$' }
+      - { id: '2', text: '$\begin{pmatrix}2&1&3\\1&0&1\\3&1&2\end{pmatrix}$' }
+      - { id: '3', text: '$\begin{pmatrix}1&0&0\\1&0&1\\2&1&0\end{pmatrix}$' }
+      - { id: '4', text: '$\begin{pmatrix}5&0&0\\0&2&0\\0&0&3\end{pmatrix}$' }
     answers: ['1']
     explanation: |
-      선택지 1 (정답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 2 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 3 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 4 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
+      선택지 1: $a$에는 루프 1개가 있고, $a$와 $c$ 사이에는 평행간선 2개, 나머지 연결은 각각 1개이다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      다중그래프의 인접행렬 성분은 두 꼭지점 사이의 간선 개수를 나타낸다.
+    tags: [graph, adjacency-matrix]
 
   - id: e18-21
     type: multiple-choice
-    prompt: '원본 이미지의 21번 문제를 풀어주세요.'
+    prompt: 다음 그래프 $G$에 관한 설명으로 부적절한 것은?
     images:
-      - path: images/subjects/discrete-math/past-exams/2018/page-2.png
-        alt: 2018년 이산수학 기출 21번 원본 페이지
+      - path: images/subjects/discrete-math/past-exams/2018/questions/q56.png
+        alt: 2018년 이산수학 기말 56번 문항 이미지
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '$G$는 완전그래프이다.' }
+      - { id: '2', text: '$G$는 정규그래프이다.' }
+      - { id: '3', text: '$G$에는 오일러 투어가 존재한다.' }
+      - { id: '4', text: '$G$에는 해밀턴 사이클이 존재한다.' }
     answers: ['3']
     explanation: |
-      선택지 1 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 2 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 3 (정답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 4 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
+      선택지 3: 그림의 그래프는 $K_4$로 각 꼭지점의 차수가 3인 홀수이므로 오일러 투어가 존재하지 않는다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      연결그래프에서 모든 꼭지점의 차수가 짝수일 때 오일러 투어가 존재한다.
+    tags: [graph, euler-tour, hamilton-cycle]
 
   - id: e18-22
     type: multiple-choice
-    prompt: '원본 이미지의 22번 문제를 풀어주세요.'
+    prompt: 다음 트리 $T$에 관한 설명으로 옳은 것은?
     images:
-      - path: images/subjects/discrete-math/past-exams/2018/page-2.png
-        alt: 2018년 이산수학 기출 22번 원본 페이지
+      - path: images/subjects/discrete-math/past-exams/2018/questions/q57.png
+        alt: 2018년 이산수학 기말 57번 문항 이미지
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: 'A는 B의 자식 노드이다.' }
+      - { id: '2', text: 'A, B, E, K, Q는 형제 노드들이다.' }
+      - { id: '3', text: '$T$의 차수는 17이다.' }
+      - { id: '4', text: '$T$의 높이는 4이다.' }
     answers: ['4']
     explanation: |
-      선택지 1 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 2 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 3 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 4 (정답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
+      선택지 4: 루트 A에서 가장 깊은 리프 O, P, Q까지의 간선 수가 4이므로 트리의 높이는 4이다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      트리의 높이는 루트에서 가장 깊은 노드까지의 최대 경로 길이로 계산한다.
+    tags: [tree]
 
   - id: e18-23
     type: multiple-choice
-    prompt: '원본 이미지의 23번 문제를 풀어주세요.'
-    images:
-      - path: images/subjects/discrete-math/past-exams/2018/page-2.png
-        alt: 2018년 이산수학 기출 23번 원본 페이지
+    prompt: 다음 설명 중 옳은 것은?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '높이가 2인 이진 트리의 최대 노드 개수는 8개이다.' }
+      - { id: '2', text: '4개의 노드를 가지는 이진 트리의 최대 높이는 3이다.' }
+      - { id: '3', text: '7개의 노드를 가지는 이진 트리의 최소 높이는 3이다.' }
+      - { id: '4', text: '높이가 3이고 16개의 노드를 가지는 완전 이진 트리가 존재한다.' }
     answers: ['2']
     explanation: |
-      선택지 1 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 2 (정답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 3 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 4 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
+      선택지 2: 4개 노드를 한쪽으로만 이어 붙이면 간선 수 기준 최대 높이는 3이다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      높이 $h$인 이진 트리의 최대 노드 수는 $2^{h+1}-1$이다.
+    tags: [binary-tree]
 
   - id: e18-24
     type: multiple-choice
-    prompt: '원본 이미지의 24번 문제를 풀어주세요.'
-    images:
-      - path: images/subjects/discrete-math/past-exams/2018/page-2.png
-        alt: 2018년 이산수학 기출 24번 원본 페이지
+    prompt: $x, y, z$가 자연수일 때 $x + y + z \le 5$를 만족하는 경우의 수는?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '8' }
+      - { id: '2', text: '9' }
+      - { id: '3', text: '10' }
+      - { id: '4', text: '11' }
     answers: ['3']
     explanation: |
-      선택지 1 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 2 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 3 (정답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 4 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
+      선택지 3: 자연수를 양의 정수로 보면 $x+y+z\le5$에서 합이 3, 4, 5인 경우를 더해 $1+3+6=10$이다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      양의 정수해의 개수는 별과 막대 방법으로 계산할 수 있다.
+    tags: [counting, stars-and-bars]
 
   - id: e18-25
     type: multiple-choice
-    prompt: '원본 이미지의 25번 문제를 풀어주세요.'
+    prompt: 다음 상태전이도는 결정적 유한 오토마타를 표현하고 있다. 입력문자열 10100에 대응하는 출력문자열을 구한 것은?
     images:
-      - path: images/subjects/discrete-math/past-exams/2018/page-2.png
-        alt: 2018년 이산수학 기출 25번 원본 페이지
+      - path: images/subjects/discrete-math/past-exams/2018/questions/q60.png
+        alt: 2018년 이산수학 기말 60번 문항 이미지
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: 'aabba' }
+      - { id: '2', text: 'ababb' }
+      - { id: '3', text: 'babaa' }
+      - { id: '4', text: 'aabab' }
     answers: ['1']
     explanation: |
-      선택지 1 (정답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 2 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 3 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
-      선택지 4 (오답): origin/정답.txt의 2018년 이산수학 정답표 기준이다.
+      선택지 1: $s_0$에서 시작하여 입력 1,0,1,0,0을 차례로 처리하면 출력은 a, a, b, b, a가 된다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      전이 간선의 입력/출력 표기를 한 문자씩 따라가며 상태와 출력 문자열을 갱신한다.
+    tags: [automata, finite-state-machine]

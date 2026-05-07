@@ -1,0 +1,1606 @@
+subjectId: discrete-math
+sourceId: basic-intensive
+title: 이산수학 기초특강
+kind: intensive
+
+questions:
+  - id: i02-01
+    type: multiple-choice
+    prompt: 이산수학 기초특강 02장 1번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i02-01.png
+        alt: 이산수학 기초특강 02장 1번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['3']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 3번이다.
+    tags: [chapter:02, basic-intensive]
+
+  - id: i02-02
+    type: multiple-choice
+    prompt: 이산수학 기초특강 02장 2번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i02-02.png
+        alt: 이산수학 기초특강 02장 2번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['3']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 3번이다.
+    tags: [chapter:02, basic-intensive]
+
+  - id: i02-03
+    type: multiple-choice
+    prompt: 이산수학 기초특강 02장 3번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i02-03.png
+        alt: 이산수학 기초특강 02장 3번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['4']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 4번이다.
+    tags: [chapter:02, basic-intensive]
+
+  - id: i02-04
+    type: multiple-choice
+    prompt: 이산수학 기초특강 02장 4번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i02-04.png
+        alt: 이산수학 기초특강 02장 4번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['4']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 4번이다.
+    tags: [chapter:02, basic-intensive]
+
+  - id: i02-05
+    type: multiple-choice
+    prompt: 이산수학 기초특강 02장 5번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i02-05.png
+        alt: 이산수학 기초특강 02장 5번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['2']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 2번이다.
+    tags: [chapter:02, basic-intensive]
+
+  - id: i02-06
+    type: multiple-choice
+    prompt: 이산수학 기초특강 02장 6번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i02-06.png
+        alt: 이산수학 기초특강 02장 6번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['4']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 4번이다.
+    tags: [chapter:02, basic-intensive]
+
+  - id: i02-07
+    type: multiple-choice
+    prompt: 이산수학 기초특강 02장 7번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i02-07.png
+        alt: 이산수학 기초특강 02장 7번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['4']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 4번이다.
+    tags: [chapter:02, basic-intensive]
+
+  - id: i02-08
+    type: multiple-choice
+    prompt: 이산수학 기초특강 02장 8번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i02-08.png
+        alt: 이산수학 기초특강 02장 8번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['3']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 3번이다.
+    tags: [chapter:02, basic-intensive]
+
+  - id: i02-09
+    type: multiple-choice
+    prompt: 이산수학 기초특강 02장 9번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i02-09.png
+        alt: 이산수학 기초특강 02장 9번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['3']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 3번이다.
+    tags: [chapter:02, basic-intensive]
+
+  - id: i02-10
+    type: multiple-choice
+    prompt: 이산수학 기초특강 02장 10번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i02-10.png
+        alt: 이산수학 기초특강 02장 10번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['2']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 2번이다.
+    tags: [chapter:02, basic-intensive]
+
+  - id: i02-11
+    type: multiple-choice
+    prompt: 이산수학 기초특강 02장 11번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i02-11.png
+        alt: 이산수학 기초특강 02장 11번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['4']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 4번이다.
+    tags: [chapter:02, basic-intensive]
+
+  - id: i02-12
+    type: multiple-choice
+    prompt: 이산수학 기초특강 02장 12번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i02-12.png
+        alt: 이산수학 기초특강 02장 12번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['4']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 4번이다.
+    tags: [chapter:02, basic-intensive]
+
+  - id: i02-13
+    type: multiple-choice
+    prompt: 이산수학 기초특강 02장 13번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i02-13.png
+        alt: 이산수학 기초특강 02장 13번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['1']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 1번이다.
+    tags: [chapter:02, basic-intensive]
+
+  - id: i02-14
+    type: multiple-choice
+    prompt: 이산수학 기초특강 02장 14번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i02-14.png
+        alt: 이산수학 기초특강 02장 14번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['1']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 1번이다.
+    tags: [chapter:02, basic-intensive]
+
+  - id: i02-15
+    type: multiple-choice
+    prompt: 이산수학 기초특강 02장 15번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i02-15.png
+        alt: 이산수학 기초특강 02장 15번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['4']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 4번이다.
+    tags: [chapter:02, basic-intensive]
+
+  - id: i02-16
+    type: multiple-choice
+    prompt: 이산수학 기초특강 02장 16번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i02-16.png
+        alt: 이산수학 기초특강 02장 16번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['1']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 1번이다.
+    tags: [chapter:02, basic-intensive]
+
+  - id: i02-17
+    type: multiple-choice
+    prompt: 이산수학 기초특강 02장 17번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i02-17.png
+        alt: 이산수학 기초특강 02장 17번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['1']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 1번이다.
+    tags: [chapter:02, basic-intensive]
+
+  - id: i02-18
+    type: multiple-choice
+    prompt: 이산수학 기초특강 02장 18번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i02-18.png
+        alt: 이산수학 기초특강 02장 18번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['4']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 4번이다.
+    tags: [chapter:02, basic-intensive]
+
+  - id: i02-19
+    type: multiple-choice
+    prompt: 이산수학 기초특강 02장 19번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i02-19.png
+        alt: 이산수학 기초특강 02장 19번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['3']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 3번이다.
+    tags: [chapter:02, basic-intensive]
+
+  - id: i02-20
+    type: multiple-choice
+    prompt: 이산수학 기초특강 02장 20번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i02-20.png
+        alt: 이산수학 기초특강 02장 20번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['1']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 1번이다.
+    tags: [chapter:02, basic-intensive]
+
+  - id: i02-21
+    type: multiple-choice
+    prompt: 이산수학 기초특강 02장 21번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i02-21.png
+        alt: 이산수학 기초특강 02장 21번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['2']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 2번이다.
+    tags: [chapter:02, basic-intensive]
+
+  - id: i02-22
+    type: multiple-choice
+    prompt: 이산수학 기초특강 02장 22번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i02-22.png
+        alt: 이산수학 기초특강 02장 22번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['4']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 4번이다.
+    tags: [chapter:02, basic-intensive]
+
+  - id: i02-23
+    type: multiple-choice
+    prompt: 이산수학 기초특강 02장 23번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i02-23.png
+        alt: 이산수학 기초특강 02장 23번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['3']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 3번이다.
+    tags: [chapter:02, basic-intensive]
+
+  - id: i02-24
+    type: multiple-choice
+    prompt: 이산수학 기초특강 02장 24번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i02-24.png
+        alt: 이산수학 기초특강 02장 24번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['1']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 1번이다.
+    tags: [chapter:02, basic-intensive]
+
+  - id: i02-25
+    type: multiple-choice
+    prompt: 이산수학 기초특강 02장 25번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i02-25.png
+        alt: 이산수학 기초특강 02장 25번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['1']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 1번이다.
+    tags: [chapter:02, basic-intensive]
+
+  - id: i02-26
+    type: multiple-choice
+    prompt: 이산수학 기초특강 02장 26번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i02-26.png
+        alt: 이산수학 기초특강 02장 26번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['2']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 2번이다.
+    tags: [chapter:02, basic-intensive]
+
+  - id: i02-27
+    type: multiple-choice
+    prompt: 이산수학 기초특강 02장 27번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i02-27.png
+        alt: 이산수학 기초특강 02장 27번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['4']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 4번이다.
+    tags: [chapter:02, basic-intensive]
+
+  - id: i02-28
+    type: multiple-choice
+    prompt: 이산수학 기초특강 02장 28번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i02-28.png
+        alt: 이산수학 기초특강 02장 28번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['3']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 3번이다.
+    tags: [chapter:02, basic-intensive]
+
+  - id: i02-29
+    type: multiple-choice
+    prompt: 이산수학 기초특강 02장 29번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i02-29.png
+        alt: 이산수학 기초특강 02장 29번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['4']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 4번이다.
+    tags: [chapter:02, basic-intensive]
+
+  - id: i02-30
+    type: multiple-choice
+    prompt: 이산수학 기초특강 02장 30번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i02-30.png
+        alt: 이산수학 기초특강 02장 30번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['2']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 2번이다.
+    tags: [chapter:02, basic-intensive]
+
+  - id: i02-31
+    type: multiple-choice
+    prompt: 이산수학 기초특강 02장 31번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i02-31.png
+        alt: 이산수학 기초특강 02장 31번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['2']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 2번이다.
+    tags: [chapter:02, basic-intensive]
+
+  - id: i02-32
+    type: multiple-choice
+    prompt: 이산수학 기초특강 02장 32번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i02-32.png
+        alt: 이산수학 기초특강 02장 32번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['3']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 3번이다.
+    tags: [chapter:02, basic-intensive]
+
+  - id: i02-33
+    type: multiple-choice
+    prompt: 이산수학 기초특강 02장 33번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i02-33.png
+        alt: 이산수학 기초특강 02장 33번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['3']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 3번이다.
+    tags: [chapter:02, basic-intensive]
+
+  - id: i02-34
+    type: multiple-choice
+    prompt: 이산수학 기초특강 02장 34번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i02-34.png
+        alt: 이산수학 기초특강 02장 34번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['3']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 3번이다.
+    tags: [chapter:02, basic-intensive]
+
+  - id: i02-35
+    type: multiple-choice
+    prompt: 이산수학 기초특강 02장 35번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i02-35.png
+        alt: 이산수학 기초특강 02장 35번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['2']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 2번이다.
+    tags: [chapter:02, basic-intensive]
+
+  - id: i02-36
+    type: multiple-choice
+    prompt: 이산수학 기초특강 02장 36번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i02-36.png
+        alt: 이산수학 기초특강 02장 36번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['2']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 2번이다.
+    tags: [chapter:02, basic-intensive]
+
+  - id: i02-37
+    type: multiple-choice
+    prompt: 이산수학 기초특강 02장 37번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i02-37.png
+        alt: 이산수학 기초특강 02장 37번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['3']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 3번이다.
+    tags: [chapter:02, basic-intensive]
+
+  - id: i02-38
+    type: multiple-choice
+    prompt: 이산수학 기초특강 02장 38번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i02-38.png
+        alt: 이산수학 기초특강 02장 38번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['3']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 3번이다.
+    tags: [chapter:02, basic-intensive]
+
+  - id: i02-39
+    type: multiple-choice
+    prompt: 이산수학 기초특강 02장 39번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i02-39.png
+        alt: 이산수학 기초특강 02장 39번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['1']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 1번이다.
+    tags: [chapter:02, basic-intensive]
+
+  - id: i02-40
+    type: multiple-choice
+    prompt: 이산수학 기초특강 02장 40번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i02-40.png
+        alt: 이산수학 기초특강 02장 40번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['2']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 2번이다.
+    tags: [chapter:02, basic-intensive]
+
+  - id: i02-41
+    type: multiple-choice
+    prompt: 이산수학 기초특강 02장 41번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i02-41.png
+        alt: 이산수학 기초특강 02장 41번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['2']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 2번이다.
+    tags: [chapter:02, basic-intensive]
+
+  - id: i02-42
+    type: multiple-choice
+    prompt: 이산수학 기초특강 02장 42번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i02-42.png
+        alt: 이산수학 기초특강 02장 42번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['4']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 4번이다.
+    tags: [chapter:02, basic-intensive]
+
+  - id: i02-43
+    type: multiple-choice
+    prompt: 이산수학 기초특강 02장 43번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i02-43.png
+        alt: 이산수학 기초특강 02장 43번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['2']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 2번이다.
+    tags: [chapter:02, basic-intensive]
+
+  - id: i02-44
+    type: multiple-choice
+    prompt: 이산수학 기초특강 02장 44번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i02-44.png
+        alt: 이산수학 기초특강 02장 44번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['4']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 4번이다.
+    tags: [chapter:02, basic-intensive]
+
+  - id: i02-45
+    type: multiple-choice
+    prompt: 이산수학 기초특강 02장 45번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i02-45.png
+        alt: 이산수학 기초특강 02장 45번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['2']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 2번이다.
+    tags: [chapter:02, basic-intensive]
+
+  - id: i02-46
+    type: multiple-choice
+    prompt: 이산수학 기초특강 02장 46번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i02-46.png
+        alt: 이산수학 기초특강 02장 46번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['3']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 3번이다.
+    tags: [chapter:02, basic-intensive]
+
+  - id: i06-01
+    type: multiple-choice
+    prompt: 이산수학 기초특강 06장 1번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i06-01.png
+        alt: 이산수학 기초특강 06장 1번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['3']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 3번이다.
+    tags: [chapter:06, basic-intensive]
+
+  - id: i06-02
+    type: multiple-choice
+    prompt: 이산수학 기초특강 06장 2번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i06-02.png
+        alt: 이산수학 기초특강 06장 2번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['4']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 4번이다.
+    tags: [chapter:06, basic-intensive]
+
+  - id: i06-03
+    type: multiple-choice
+    prompt: 이산수학 기초특강 06장 3번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i06-03.png
+        alt: 이산수학 기초특강 06장 3번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['4']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 4번이다.
+    tags: [chapter:06, basic-intensive]
+
+  - id: i06-04
+    type: multiple-choice
+    prompt: 이산수학 기초특강 06장 4번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i06-04.png
+        alt: 이산수학 기초특강 06장 4번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['4']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 4번이다.
+    tags: [chapter:06, basic-intensive]
+
+  - id: i06-05
+    type: multiple-choice
+    prompt: 이산수학 기초특강 06장 5번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i06-05.png
+        alt: 이산수학 기초특강 06장 5번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['3']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 3번이다.
+    tags: [chapter:06, basic-intensive]
+
+  - id: i06-06
+    type: multiple-choice
+    prompt: 이산수학 기초특강 06장 6번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i06-06.png
+        alt: 이산수학 기초특강 06장 6번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['3']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 3번이다.
+    tags: [chapter:06, basic-intensive]
+
+  - id: i06-07
+    type: multiple-choice
+    prompt: 이산수학 기초특강 06장 7번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i06-07.png
+        alt: 이산수학 기초특강 06장 7번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['2']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 2번이다.
+    tags: [chapter:06, basic-intensive]
+
+  - id: i06-08
+    type: multiple-choice
+    prompt: 이산수학 기초특강 06장 8번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i06-08.png
+        alt: 이산수학 기초특강 06장 8번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['3']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 3번이다.
+    tags: [chapter:06, basic-intensive]
+
+  - id: i06-09
+    type: multiple-choice
+    prompt: 이산수학 기초특강 06장 9번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i06-09.png
+        alt: 이산수학 기초특강 06장 9번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['1']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 1번이다.
+    tags: [chapter:06, basic-intensive]
+
+  - id: i06-10
+    type: multiple-choice
+    prompt: 이산수학 기초특강 06장 10번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i06-10.png
+        alt: 이산수학 기초특강 06장 10번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['3']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 3번이다.
+    tags: [chapter:06, basic-intensive]
+
+  - id: i06-11
+    type: multiple-choice
+    prompt: 이산수학 기초특강 06장 11번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i06-11.png
+        alt: 이산수학 기초특강 06장 11번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['1']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 1번이다.
+    tags: [chapter:06, basic-intensive]
+
+  - id: i06-12
+    type: multiple-choice
+    prompt: 이산수학 기초특강 06장 12번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i06-12.png
+        alt: 이산수학 기초특강 06장 12번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['3']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 3번이다.
+    tags: [chapter:06, basic-intensive]
+
+  - id: i06-13
+    type: multiple-choice
+    prompt: 이산수학 기초특강 06장 13번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i06-13.png
+        alt: 이산수학 기초특강 06장 13번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['4']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 4번이다.
+    tags: [chapter:06, basic-intensive]
+
+  - id: i06-14
+    type: multiple-choice
+    prompt: 이산수학 기초특강 06장 14번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i06-14.png
+        alt: 이산수학 기초특강 06장 14번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['2']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 2번이다.
+    tags: [chapter:06, basic-intensive]
+
+  - id: i06-15
+    type: multiple-choice
+    prompt: 이산수학 기초특강 06장 15번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i06-15.png
+        alt: 이산수학 기초특강 06장 15번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['3']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 3번이다.
+    tags: [chapter:06, basic-intensive]
+
+  - id: i06-16
+    type: multiple-choice
+    prompt: 이산수학 기초특강 06장 16번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i06-16.png
+        alt: 이산수학 기초특강 06장 16번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['2']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 2번이다.
+    tags: [chapter:06, basic-intensive]
+
+  - id: i06-17
+    type: multiple-choice
+    prompt: 이산수학 기초특강 06장 17번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i06-17.png
+        alt: 이산수학 기초특강 06장 17번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['4']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 4번이다.
+    tags: [chapter:06, basic-intensive]
+
+  - id: i06-18
+    type: multiple-choice
+    prompt: 이산수학 기초특강 06장 18번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i06-18.png
+        alt: 이산수학 기초특강 06장 18번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['4']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 4번이다.
+    tags: [chapter:06, basic-intensive]
+
+  - id: i06-19
+    type: multiple-choice
+    prompt: 이산수학 기초특강 06장 19번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i06-19.png
+        alt: 이산수학 기초특강 06장 19번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['3']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 3번이다.
+    tags: [chapter:06, basic-intensive]
+
+  - id: i06-20
+    type: multiple-choice
+    prompt: 이산수학 기초특강 06장 20번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i06-20.png
+        alt: 이산수학 기초특강 06장 20번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['1']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 1번이다.
+    tags: [chapter:06, basic-intensive]
+
+  - id: i06-21
+    type: multiple-choice
+    prompt: 이산수학 기초특강 06장 21번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i06-21.png
+        alt: 이산수학 기초특강 06장 21번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['3']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 3번이다.
+    tags: [chapter:06, basic-intensive]
+
+  - id: i06-22
+    type: multiple-choice
+    prompt: 이산수학 기초특강 06장 22번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i06-22.png
+        alt: 이산수학 기초특강 06장 22번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['3']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 3번이다.
+    tags: [chapter:06, basic-intensive]
+
+  - id: i06-23
+    type: multiple-choice
+    prompt: 이산수학 기초특강 06장 23번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i06-23.png
+        alt: 이산수학 기초특강 06장 23번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['4']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 4번이다.
+    tags: [chapter:06, basic-intensive]
+
+  - id: i06-24
+    type: multiple-choice
+    prompt: 이산수학 기초특강 06장 24번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i06-24.png
+        alt: 이산수학 기초특강 06장 24번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['1']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 1번이다.
+    tags: [chapter:06, basic-intensive]
+
+  - id: i06-25
+    type: multiple-choice
+    prompt: 이산수학 기초특강 06장 25번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i06-25.png
+        alt: 이산수학 기초특강 06장 25번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['2']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 2번이다.
+    tags: [chapter:06, basic-intensive]
+
+  - id: i06-26
+    type: multiple-choice
+    prompt: 이산수학 기초특강 06장 26번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i06-26.png
+        alt: 이산수학 기초특강 06장 26번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['4']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 4번이다.
+    tags: [chapter:06, basic-intensive]
+
+  - id: i06-27
+    type: multiple-choice
+    prompt: 이산수학 기초특강 06장 27번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i06-27.png
+        alt: 이산수학 기초특강 06장 27번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['3']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 3번이다.
+    tags: [chapter:06, basic-intensive]
+
+  - id: i06-28
+    type: multiple-choice
+    prompt: 이산수학 기초특강 06장 28번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i06-28.png
+        alt: 이산수학 기초특강 06장 28번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['2']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 2번이다.
+    tags: [chapter:06, basic-intensive]
+
+  - id: i06-29
+    type: multiple-choice
+    prompt: 이산수학 기초특강 06장 29번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i06-29.png
+        alt: 이산수학 기초특강 06장 29번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['2']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 2번이다.
+    tags: [chapter:06, basic-intensive]
+
+  - id: i06-30
+    type: multiple-choice
+    prompt: 이산수학 기초특강 06장 30번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i06-30.png
+        alt: 이산수학 기초특강 06장 30번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['1']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 1번이다.
+    tags: [chapter:06, basic-intensive]
+
+  - id: i07-01
+    type: multiple-choice
+    prompt: 이산수학 기초특강 07장 1번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i07-01.png
+        alt: 이산수학 기초특강 07장 1번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['1']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 1번이다.
+    tags: [chapter:07, basic-intensive]
+
+  - id: i07-02
+    type: multiple-choice
+    prompt: 이산수학 기초특강 07장 2번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i07-02.png
+        alt: 이산수학 기초특강 07장 2번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['3']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 3번이다.
+    tags: [chapter:07, basic-intensive]
+
+  - id: i07-03
+    type: multiple-choice
+    prompt: 이산수학 기초특강 07장 3번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i07-03.png
+        alt: 이산수학 기초특강 07장 3번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['3']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 3번이다.
+    tags: [chapter:07, basic-intensive]
+
+  - id: i07-04
+    type: multiple-choice
+    prompt: 이산수학 기초특강 07장 4번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i07-04.png
+        alt: 이산수학 기초특강 07장 4번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['1']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 1번이다.
+    tags: [chapter:07, basic-intensive]
+
+  - id: i07-05
+    type: multiple-choice
+    prompt: 이산수학 기초특강 07장 5번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i07-05.png
+        alt: 이산수학 기초특강 07장 5번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['1']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 1번이다.
+    tags: [chapter:07, basic-intensive]
+
+  - id: i07-06
+    type: multiple-choice
+    prompt: 이산수학 기초특강 07장 6번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i07-06.png
+        alt: 이산수학 기초특강 07장 6번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['4']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 4번이다.
+    tags: [chapter:07, basic-intensive]
+
+  - id: i07-07
+    type: multiple-choice
+    prompt: 이산수학 기초특강 07장 7번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i07-07.png
+        alt: 이산수학 기초특강 07장 7번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['4']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 4번이다.
+    tags: [chapter:07, basic-intensive]
+
+  - id: i07-08
+    type: multiple-choice
+    prompt: 이산수학 기초특강 07장 8번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i07-08.png
+        alt: 이산수학 기초특강 07장 8번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['4']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 4번이다.
+    tags: [chapter:07, basic-intensive]
+
+  - id: i07-09
+    type: multiple-choice
+    prompt: 이산수학 기초특강 07장 9번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i07-09.png
+        alt: 이산수학 기초특강 07장 9번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['1']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 1번이다.
+    tags: [chapter:07, basic-intensive]
+
+  - id: i07-10
+    type: multiple-choice
+    prompt: 이산수학 기초특강 07장 10번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i07-10.png
+        alt: 이산수학 기초특강 07장 10번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['4']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 4번이다.
+    tags: [chapter:07, basic-intensive]
+
+  - id: i07-11
+    type: multiple-choice
+    prompt: 이산수학 기초특강 07장 11번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i07-11.png
+        alt: 이산수학 기초특강 07장 11번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['2']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 2번이다.
+    tags: [chapter:07, basic-intensive]
+
+  - id: i07-12
+    type: multiple-choice
+    prompt: 이산수학 기초특강 07장 12번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i07-12.png
+        alt: 이산수학 기초특강 07장 12번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['2']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 2번이다.
+    tags: [chapter:07, basic-intensive]
+
+  - id: i07-13
+    type: multiple-choice
+    prompt: 이산수학 기초특강 07장 13번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i07-13.png
+        alt: 이산수학 기초특강 07장 13번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['4']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 4번이다.
+    tags: [chapter:07, basic-intensive]
+
+  - id: i07-14
+    type: multiple-choice
+    prompt: 이산수학 기초특강 07장 14번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i07-14.png
+        alt: 이산수학 기초특강 07장 14번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['4']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 4번이다.
+    tags: [chapter:07, basic-intensive]
+
+  - id: i07-15
+    type: multiple-choice
+    prompt: 이산수학 기초특강 07장 15번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i07-15.png
+        alt: 이산수학 기초특강 07장 15번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['3']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 3번이다.
+    tags: [chapter:07, basic-intensive]
+
+  - id: i07-16
+    type: multiple-choice
+    prompt: 이산수학 기초특강 07장 16번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i07-16.png
+        alt: 이산수학 기초특강 07장 16번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['2']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 2번이다.
+    tags: [chapter:07, basic-intensive]
+
+  - id: i07-17
+    type: multiple-choice
+    prompt: 이산수학 기초특강 07장 17번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i07-17.png
+        alt: 이산수학 기초특강 07장 17번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['2']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 2번이다.
+    tags: [chapter:07, basic-intensive]
+
+  - id: i07-18
+    type: multiple-choice
+    prompt: 이산수학 기초특강 07장 18번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i07-18.png
+        alt: 이산수학 기초특강 07장 18번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['2']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 2번이다.
+    tags: [chapter:07, basic-intensive]
+
+  - id: i07-19
+    type: multiple-choice
+    prompt: 이산수학 기초특강 07장 19번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i07-19.png
+        alt: 이산수학 기초특강 07장 19번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['4']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 4번이다.
+    tags: [chapter:07, basic-intensive]
+
+  - id: i07-20
+    type: multiple-choice
+    prompt: 이산수학 기초특강 07장 20번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i07-20.png
+        alt: 이산수학 기초특강 07장 20번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['3']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 3번이다.
+    tags: [chapter:07, basic-intensive]
+
+  - id: i07-21
+    type: multiple-choice
+    prompt: 이산수학 기초특강 07장 23번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i07-21.png
+        alt: 이산수학 기초특강 07장 23번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['4']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 4번이다.
+    tags: [chapter:07, basic-intensive]
+
+  - id: i07-22
+    type: multiple-choice
+    prompt: 이산수학 기초특강 07장 24번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i07-22.png
+        alt: 이산수학 기초특강 07장 24번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['1']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 1번이다.
+    tags: [chapter:07, basic-intensive]
+
+  - id: i07-23
+    type: multiple-choice
+    prompt: 이산수학 기초특강 07장 25번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i07-23.png
+        alt: 이산수학 기초특강 07장 25번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['4']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 4번이다.
+    tags: [chapter:07, basic-intensive]
+
+  - id: i07-24
+    type: multiple-choice
+    prompt: 이산수학 기초특강 07장 26번 문항을 보고 정답을 고르시오.
+    images:
+      - path: images/subjects/discrete-math/basic-intensive/questions/i07-24.png
+        alt: 이산수학 기초특강 07장 26번 문항 이미지
+    choices:
+      - { id: '1', text: '1번' }
+      - { id: '2', text: '2번' }
+      - { id: '3', text: '3번' }
+      - { id: '4', text: '4번' }
+    answers: ['1']
+    explanation: |
+      원본 기초특강 정답 표시 자료 기준 정답은 1번이다.
+    tags: [chapter:07, basic-intensive]
+

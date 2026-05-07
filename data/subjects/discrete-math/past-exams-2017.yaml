@@ -1,16 +1,29 @@
 subjectId: discrete-math
 sourceId: past-exams-2017
-title: 이산수학 2017 기출
+title: 이산수학 2017 기말
 kind: exam
 year: 2017
+
+passages:
+  - id: g17-relation-r
+    type: image
+    image:
+      path: images/subjects/discrete-math/past-exams/2017/e17-relation-r.png
+      alt: 2017년 이산수학 기출 49~51번 관계 R 방향 그래프
+
+  - id: g17-graph-g
+    type: image
+    image:
+      path: images/subjects/discrete-math/past-exams/2017/e17-graph-g.png
+      alt: 2017년 이산수학 기출 55~56번 그래프 G
 
 questions:
   - id: e17-01
     type: multiple-choice
-    prompt: '원본 이미지의 1번 문제를 풀어주세요.'
+    prompt: '2017년 이산수학 기말 36번 문항을 풀어주세요.'
     images:
-      - path: images/subjects/discrete-math/past-exams/2017/page-1.png
-        alt: 2017년 이산수학 기출 1번 원본 페이지
+      - path: images/subjects/discrete-math/past-exams/2017/questions/q36.png
+        alt: 2017년 이산수학 기말 36번 문항 이미지
     choices:
       - { id: '1', text: '1' }
       - { id: '2', text: '2' }
@@ -18,24 +31,24 @@ questions:
       - { id: '4', text: '4' }
     answers: ['2']
     explanation: |
-      선택지 1 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 2 (정답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 3 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 4 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
+      선택지 1: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 2: 2017년 이산수학 정답표 기준으로 정답.
+      선택지 3: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 4: 2017년 이산수학 정답표 기준으로 정답이 아니다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      이 문항은 원본 시험지에서 문항 단위로 분리한 이미지 기반 문항이다.
+      수식, 행렬, 그래프 등은 원본 문항 이미지를 기준으로 확인한다.
+      선택지는 이미지 안의 ①~④와 데이터의 선택지 1~4가 대응된다.
+      정답은 origin/정답.txt의 이산수학 정답표를 기준으로 입력했다.
+    tags: [past-exam, cropped-question]
 
   - id: e17-02
     type: multiple-choice
-    prompt: '원본 이미지의 2번 문제를 풀어주세요.'
+    prompt: '2017년 이산수학 기말 37번 문항을 풀어주세요.'
     images:
-      - path: images/subjects/discrete-math/past-exams/2017/page-1.png
-        alt: 2017년 이산수학 기출 2번 원본 페이지
+      - path: images/subjects/discrete-math/past-exams/2017/questions/q37.png
+        alt: 2017년 이산수학 기말 37번 문항 이미지
     choices:
       - { id: '1', text: '1' }
       - { id: '2', text: '2' }
@@ -43,24 +56,24 @@ questions:
       - { id: '4', text: '4' }
     answers: ['4']
     explanation: |
-      선택지 1 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 2 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 3 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 4 (정답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
+      선택지 1: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 2: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 3: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 4: 2017년 이산수학 정답표 기준으로 정답.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      이 문항은 원본 시험지에서 문항 단위로 분리한 이미지 기반 문항이다.
+      수식, 행렬, 그래프 등은 원본 문항 이미지를 기준으로 확인한다.
+      선택지는 이미지 안의 ①~④와 데이터의 선택지 1~4가 대응된다.
+      정답은 origin/정답.txt의 이산수학 정답표를 기준으로 입력했다.
+    tags: [past-exam, cropped-question]
 
   - id: e17-03
     type: multiple-choice
-    prompt: '원본 이미지의 3번 문제를 풀어주세요.'
+    prompt: '2017년 이산수학 기말 38번 문항을 풀어주세요.'
     images:
-      - path: images/subjects/discrete-math/past-exams/2017/page-1.png
-        alt: 2017년 이산수학 기출 3번 원본 페이지
+      - path: images/subjects/discrete-math/past-exams/2017/questions/q38.png
+        alt: 2017년 이산수학 기말 38번 문항 이미지
     choices:
       - { id: '1', text: '1' }
       - { id: '2', text: '2' }
@@ -68,24 +81,24 @@ questions:
       - { id: '4', text: '4' }
     answers: ['3']
     explanation: |
-      선택지 1 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 2 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 3 (정답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 4 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
+      선택지 1: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 2: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 3: 2017년 이산수학 정답표 기준으로 정답.
+      선택지 4: 2017년 이산수학 정답표 기준으로 정답이 아니다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      이 문항은 원본 시험지에서 문항 단위로 분리한 이미지 기반 문항이다.
+      수식, 행렬, 그래프 등은 원본 문항 이미지를 기준으로 확인한다.
+      선택지는 이미지 안의 ①~④와 데이터의 선택지 1~4가 대응된다.
+      정답은 origin/정답.txt의 이산수학 정답표를 기준으로 입력했다.
+    tags: [past-exam, cropped-question]
 
   - id: e17-04
     type: multiple-choice
-    prompt: '원본 이미지의 4번 문제를 풀어주세요.'
+    prompt: '2017년 이산수학 기말 39번 문항을 풀어주세요.'
     images:
-      - path: images/subjects/discrete-math/past-exams/2017/page-1.png
-        alt: 2017년 이산수학 기출 4번 원본 페이지
+      - path: images/subjects/discrete-math/past-exams/2017/questions/q39.png
+        alt: 2017년 이산수학 기말 39번 문항 이미지
     choices:
       - { id: '1', text: '1' }
       - { id: '2', text: '2' }
@@ -93,24 +106,24 @@ questions:
       - { id: '4', text: '4' }
     answers: ['1']
     explanation: |
-      선택지 1 (정답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 2 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 3 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 4 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
+      선택지 1: 2017년 이산수학 정답표 기준으로 정답.
+      선택지 2: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 3: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 4: 2017년 이산수학 정답표 기준으로 정답이 아니다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      이 문항은 원본 시험지에서 문항 단위로 분리한 이미지 기반 문항이다.
+      수식, 행렬, 그래프 등은 원본 문항 이미지를 기준으로 확인한다.
+      선택지는 이미지 안의 ①~④와 데이터의 선택지 1~4가 대응된다.
+      정답은 origin/정답.txt의 이산수학 정답표를 기준으로 입력했다.
+    tags: [past-exam, cropped-question]
 
   - id: e17-05
     type: multiple-choice
-    prompt: '원본 이미지의 5번 문제를 풀어주세요.'
+    prompt: '2017년 이산수학 기말 40번 문항을 풀어주세요.'
     images:
-      - path: images/subjects/discrete-math/past-exams/2017/page-1.png
-        alt: 2017년 이산수학 기출 5번 원본 페이지
+      - path: images/subjects/discrete-math/past-exams/2017/questions/q40.png
+        alt: 2017년 이산수학 기말 40번 문항 이미지
     choices:
       - { id: '1', text: '1' }
       - { id: '2', text: '2' }
@@ -118,24 +131,24 @@ questions:
       - { id: '4', text: '4' }
     answers: ['4']
     explanation: |
-      선택지 1 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 2 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 3 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 4 (정답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
+      선택지 1: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 2: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 3: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 4: 2017년 이산수학 정답표 기준으로 정답.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      이 문항은 원본 시험지에서 문항 단위로 분리한 이미지 기반 문항이다.
+      수식, 행렬, 그래프 등은 원본 문항 이미지를 기준으로 확인한다.
+      선택지는 이미지 안의 ①~④와 데이터의 선택지 1~4가 대응된다.
+      정답은 origin/정답.txt의 이산수학 정답표를 기준으로 입력했다.
+    tags: [past-exam, cropped-question]
 
   - id: e17-06
     type: multiple-choice
-    prompt: '원본 이미지의 6번 문제를 풀어주세요.'
+    prompt: '2017년 이산수학 기말 41번 문항을 풀어주세요.'
     images:
-      - path: images/subjects/discrete-math/past-exams/2017/page-1.png
-        alt: 2017년 이산수학 기출 6번 원본 페이지
+      - path: images/subjects/discrete-math/past-exams/2017/questions/q41.png
+        alt: 2017년 이산수학 기말 41번 문항 이미지
     choices:
       - { id: '1', text: '1' }
       - { id: '2', text: '2' }
@@ -143,24 +156,24 @@ questions:
       - { id: '4', text: '4' }
     answers: ['2']
     explanation: |
-      선택지 1 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 2 (정답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 3 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 4 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
+      선택지 1: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 2: 2017년 이산수학 정답표 기준으로 정답.
+      선택지 3: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 4: 2017년 이산수학 정답표 기준으로 정답이 아니다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      이 문항은 원본 시험지에서 문항 단위로 분리한 이미지 기반 문항이다.
+      수식, 행렬, 그래프 등은 원본 문항 이미지를 기준으로 확인한다.
+      선택지는 이미지 안의 ①~④와 데이터의 선택지 1~4가 대응된다.
+      정답은 origin/정답.txt의 이산수학 정답표를 기준으로 입력했다.
+    tags: [past-exam, cropped-question]
 
   - id: e17-07
     type: multiple-choice
-    prompt: '원본 이미지의 7번 문제를 풀어주세요.'
+    prompt: '2017년 이산수학 기말 42번 문항을 풀어주세요.'
     images:
-      - path: images/subjects/discrete-math/past-exams/2017/page-1.png
-        alt: 2017년 이산수학 기출 7번 원본 페이지
+      - path: images/subjects/discrete-math/past-exams/2017/questions/q42.png
+        alt: 2017년 이산수학 기말 42번 문항 이미지
     choices:
       - { id: '1', text: '1' }
       - { id: '2', text: '2' }
@@ -168,24 +181,24 @@ questions:
       - { id: '4', text: '4' }
     answers: ['1']
     explanation: |
-      선택지 1 (정답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 2 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 3 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 4 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
+      선택지 1: 2017년 이산수학 정답표 기준으로 정답.
+      선택지 2: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 3: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 4: 2017년 이산수학 정답표 기준으로 정답이 아니다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      이 문항은 원본 시험지에서 문항 단위로 분리한 이미지 기반 문항이다.
+      수식, 행렬, 그래프 등은 원본 문항 이미지를 기준으로 확인한다.
+      선택지는 이미지 안의 ①~④와 데이터의 선택지 1~4가 대응된다.
+      정답은 origin/정답.txt의 이산수학 정답표를 기준으로 입력했다.
+    tags: [past-exam, cropped-question]
 
   - id: e17-08
     type: multiple-choice
-    prompt: '원본 이미지의 8번 문제를 풀어주세요.'
+    prompt: '2017년 이산수학 기말 43번 문항을 풀어주세요.'
     images:
-      - path: images/subjects/discrete-math/past-exams/2017/page-1.png
-        alt: 2017년 이산수학 기출 8번 원본 페이지
+      - path: images/subjects/discrete-math/past-exams/2017/questions/q43.png
+        alt: 2017년 이산수학 기말 43번 문항 이미지
     choices:
       - { id: '1', text: '1' }
       - { id: '2', text: '2' }
@@ -193,24 +206,24 @@ questions:
       - { id: '4', text: '4' }
     answers: ['3']
     explanation: |
-      선택지 1 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 2 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 3 (정답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 4 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
+      선택지 1: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 2: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 3: 2017년 이산수학 정답표 기준으로 정답.
+      선택지 4: 2017년 이산수학 정답표 기준으로 정답이 아니다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      이 문항은 원본 시험지에서 문항 단위로 분리한 이미지 기반 문항이다.
+      수식, 행렬, 그래프 등은 원본 문항 이미지를 기준으로 확인한다.
+      선택지는 이미지 안의 ①~④와 데이터의 선택지 1~4가 대응된다.
+      정답은 origin/정답.txt의 이산수학 정답표를 기준으로 입력했다.
+    tags: [past-exam, cropped-question]
 
   - id: e17-09
     type: multiple-choice
-    prompt: '원본 이미지의 9번 문제를 풀어주세요.'
+    prompt: '2017년 이산수학 기말 44번 문항을 풀어주세요.'
     images:
-      - path: images/subjects/discrete-math/past-exams/2017/page-1.png
-        alt: 2017년 이산수학 기출 9번 원본 페이지
+      - path: images/subjects/discrete-math/past-exams/2017/questions/q44.png
+        alt: 2017년 이산수학 기말 44번 문항 이미지
     choices:
       - { id: '1', text: '1' }
       - { id: '2', text: '2' }
@@ -218,24 +231,24 @@ questions:
       - { id: '4', text: '4' }
     answers: ['3']
     explanation: |
-      선택지 1 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 2 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 3 (정답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 4 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
+      선택지 1: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 2: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 3: 2017년 이산수학 정답표 기준으로 정답.
+      선택지 4: 2017년 이산수학 정답표 기준으로 정답이 아니다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      이 문항은 원본 시험지에서 문항 단위로 분리한 이미지 기반 문항이다.
+      수식, 행렬, 그래프 등은 원본 문항 이미지를 기준으로 확인한다.
+      선택지는 이미지 안의 ①~④와 데이터의 선택지 1~4가 대응된다.
+      정답은 origin/정답.txt의 이산수학 정답표를 기준으로 입력했다.
+    tags: [past-exam, cropped-question]
 
   - id: e17-10
     type: multiple-choice
-    prompt: '원본 이미지의 10번 문제를 풀어주세요.'
+    prompt: '2017년 이산수학 기말 45번 문항을 풀어주세요.'
     images:
-      - path: images/subjects/discrete-math/past-exams/2017/page-1.png
-        alt: 2017년 이산수학 기출 10번 원본 페이지
+      - path: images/subjects/discrete-math/past-exams/2017/questions/q45.png
+        alt: 2017년 이산수학 기말 45번 문항 이미지
     choices:
       - { id: '1', text: '1' }
       - { id: '2', text: '2' }
@@ -243,24 +256,24 @@ questions:
       - { id: '4', text: '4' }
     answers: ['2']
     explanation: |
-      선택지 1 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 2 (정답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 3 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 4 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
+      선택지 1: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 2: 2017년 이산수학 정답표 기준으로 정답.
+      선택지 3: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 4: 2017년 이산수학 정답표 기준으로 정답이 아니다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      이 문항은 원본 시험지에서 문항 단위로 분리한 이미지 기반 문항이다.
+      수식, 행렬, 그래프 등은 원본 문항 이미지를 기준으로 확인한다.
+      선택지는 이미지 안의 ①~④와 데이터의 선택지 1~4가 대응된다.
+      정답은 origin/정답.txt의 이산수학 정답표를 기준으로 입력했다.
+    tags: [past-exam, cropped-question]
 
   - id: e17-11
     type: multiple-choice
-    prompt: '원본 이미지의 11번 문제를 풀어주세요.'
+    prompt: '2017년 이산수학 기말 46번 문항을 풀어주세요.'
     images:
-      - path: images/subjects/discrete-math/past-exams/2017/page-1.png
-        alt: 2017년 이산수학 기출 11번 원본 페이지
+      - path: images/subjects/discrete-math/past-exams/2017/questions/q46.png
+        alt: 2017년 이산수학 기말 46번 문항 이미지
     choices:
       - { id: '1', text: '1' }
       - { id: '2', text: '2' }
@@ -268,24 +281,24 @@ questions:
       - { id: '4', text: '4' }
     answers: ['1']
     explanation: |
-      선택지 1 (정답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 2 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 3 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 4 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
+      선택지 1: 2017년 이산수학 정답표 기준으로 정답.
+      선택지 2: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 3: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 4: 2017년 이산수학 정답표 기준으로 정답이 아니다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      이 문항은 원본 시험지에서 문항 단위로 분리한 이미지 기반 문항이다.
+      수식, 행렬, 그래프 등은 원본 문항 이미지를 기준으로 확인한다.
+      선택지는 이미지 안의 ①~④와 데이터의 선택지 1~4가 대응된다.
+      정답은 origin/정답.txt의 이산수학 정답표를 기준으로 입력했다.
+    tags: [past-exam, cropped-question]
 
   - id: e17-12
     type: multiple-choice
-    prompt: '원본 이미지의 12번 문제를 풀어주세요.'
+    prompt: '2017년 이산수학 기말 47번 문항을 풀어주세요.'
     images:
-      - path: images/subjects/discrete-math/past-exams/2017/page-1.png
-        alt: 2017년 이산수학 기출 12번 원본 페이지
+      - path: images/subjects/discrete-math/past-exams/2017/questions/q47.png
+        alt: 2017년 이산수학 기말 47번 문항 이미지
     choices:
       - { id: '1', text: '1' }
       - { id: '2', text: '2' }
@@ -293,24 +306,24 @@ questions:
       - { id: '4', text: '4' }
     answers: ['4']
     explanation: |
-      선택지 1 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 2 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 3 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 4 (정답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
+      선택지 1: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 2: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 3: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 4: 2017년 이산수학 정답표 기준으로 정답.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      이 문항은 원본 시험지에서 문항 단위로 분리한 이미지 기반 문항이다.
+      수식, 행렬, 그래프 등은 원본 문항 이미지를 기준으로 확인한다.
+      선택지는 이미지 안의 ①~④와 데이터의 선택지 1~4가 대응된다.
+      정답은 origin/정답.txt의 이산수학 정답표를 기준으로 입력했다.
+    tags: [past-exam, cropped-question]
 
   - id: e17-13
     type: multiple-choice
-    prompt: '원본 이미지의 13번 문제를 풀어주세요.'
+    prompt: '2017년 이산수학 기말 48번 문항을 풀어주세요.'
     images:
-      - path: images/subjects/discrete-math/past-exams/2017/page-1.png
-        alt: 2017년 이산수학 기출 13번 원본 페이지
+      - path: images/subjects/discrete-math/past-exams/2017/questions/q48.png
+        alt: 2017년 이산수학 기말 48번 문항 이미지
     choices:
       - { id: '1', text: '1' }
       - { id: '2', text: '2' }
@@ -318,24 +331,24 @@ questions:
       - { id: '4', text: '4' }
     answers: ['2']
     explanation: |
-      선택지 1 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 2 (정답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 3 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 4 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
+      선택지 1: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 2: 2017년 이산수학 정답표 기준으로 정답.
+      선택지 3: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 4: 2017년 이산수학 정답표 기준으로 정답이 아니다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      이 문항은 원본 시험지에서 문항 단위로 분리한 이미지 기반 문항이다.
+      수식, 행렬, 그래프 등은 원본 문항 이미지를 기준으로 확인한다.
+      선택지는 이미지 안의 ①~④와 데이터의 선택지 1~4가 대응된다.
+      정답은 origin/정답.txt의 이산수학 정답표를 기준으로 입력했다.
+    tags: [past-exam, cropped-question]
 
   - id: e17-14
     type: multiple-choice
-    prompt: '원본 이미지의 14번 문제를 풀어주세요.'
+    prompt: '2017년 이산수학 기말 49번 문항을 풀어주세요.'
     images:
-      - path: images/subjects/discrete-math/past-exams/2017/page-2.png
-        alt: 2017년 이산수학 기출 14번 원본 페이지
+      - path: images/subjects/discrete-math/past-exams/2017/questions/q49.png
+        alt: 2017년 이산수학 기말 49번 문항 이미지
     choices:
       - { id: '1', text: '1' }
       - { id: '2', text: '2' }
@@ -343,49 +356,52 @@ questions:
       - { id: '4', text: '4' }
     answers: ['4']
     explanation: |
-      선택지 1 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 2 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 3 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 4 (정답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
+      선택지 1: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 2: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 3: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 4: 2017년 이산수학 정답표 기준으로 정답.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      이 문항은 원본 시험지에서 문항 단위로 분리한 이미지 기반 문항이다.
+      수식, 행렬, 그래프 등은 원본 문항 이미지를 기준으로 확인한다.
+      선택지는 이미지 안의 ①~④와 데이터의 선택지 1~4가 대응된다.
+      정답은 origin/정답.txt의 이산수학 정답표를 기준으로 입력했다.
+    tags: [past-exam, cropped-question]
 
   - id: e17-15
     type: multiple-choice
-    prompt: '원본 이미지의 15번 문제를 풀어주세요.'
+    passageRefs: [g17-relation-r]
+    prompt: 관계 R에 대한 설명으로 옳은 것은?
     images:
-      - path: images/subjects/discrete-math/past-exams/2017/page-2.png
-        alt: 2017년 이산수학 기출 15번 원본 페이지
+      - path: images/subjects/discrete-math/past-exams/2017/questions/q50.png
+        alt: 2017년 이산수학 기말 50번 문항 이미지
     choices:
       - { id: '1', text: '1' }
       - { id: '2', text: '2' }
       - { id: '3', text: '3' }
       - { id: '4', text: '4' }
-    answers: ['1', '2', '3', '4']
+      - { id: K, text: '정답 없음' }
+    answers: [K]
     explanation: |
-      선택지 1 (정답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 2 (정답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 3 (정답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 4 (정답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
+      선택지 1: 관계 R은 모든 원소에 대한 자기 루프가 있으므로 반사적이다.
+      선택지 2: (1, 2)는 있지만 (2, 1)이 없어 대칭적이지 않다.
+      선택지 3: (1, 2), (2, 3)이 있지만 (1, 3)이 없어 추이적이지 않다.
+      선택지 4: 대칭성과 추이성이 성립하지 않으므로 동치관계가 아니다.
+      정답 없음 (정답): 2017년 이산수학 정답표의 K는 제시된 1~4번 중 정답이 없음을 의미한다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      49~51번은 같은 방향 그래프의 관계 R을 기준으로 판단한다.
+      반사성은 모든 원소의 자기 루프, 대칭성은 모든 순서쌍의 역순서쌍, 추이성은 연결된 두 관계의 합성 결과가 다시 R에 포함되는지로 판단한다.
+      정답은 origin/정답.txt의 이산수학 정답표를 기준으로 입력했다.
+    tags: [past-exam, cropped-question]
 
   - id: e17-16
     type: multiple-choice
-    prompt: '원본 이미지의 16번 문제를 풀어주세요.'
+    passageRefs: [g17-relation-r]
+    prompt: 관계 R을 부울행렬로 나타낸 것은?
     images:
-      - path: images/subjects/discrete-math/past-exams/2017/page-2.png
-        alt: 2017년 이산수학 기출 16번 원본 페이지
+      - path: images/subjects/discrete-math/past-exams/2017/questions/q51.png
+        alt: 2017년 이산수학 기말 51번 문항 이미지
     choices:
       - { id: '1', text: '1' }
       - { id: '2', text: '2' }
@@ -393,24 +409,24 @@ questions:
       - { id: '4', text: '4' }
     answers: ['1']
     explanation: |
-      선택지 1 (정답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 2 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 3 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 4 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
+      선택지 1: 2017년 이산수학 정답표 기준으로 정답.
+      선택지 2: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 3: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 4: 2017년 이산수학 정답표 기준으로 정답이 아니다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      이 문항은 원본 시험지에서 문항 단위로 분리한 이미지 기반 문항이다.
+      수식, 행렬, 그래프 등은 원본 문항 이미지를 기준으로 확인한다.
+      선택지는 이미지 안의 ①~④와 데이터의 선택지 1~4가 대응된다.
+      정답은 origin/정답.txt의 이산수학 정답표를 기준으로 입력했다.
+    tags: [past-exam, cropped-question]
 
   - id: e17-17
     type: multiple-choice
-    prompt: '원본 이미지의 17번 문제를 풀어주세요.'
+    prompt: '2017년 이산수학 기말 52번 문항을 풀어주세요.'
     images:
-      - path: images/subjects/discrete-math/past-exams/2017/page-2.png
-        alt: 2017년 이산수학 기출 17번 원본 페이지
+      - path: images/subjects/discrete-math/past-exams/2017/questions/q52.png
+        alt: 2017년 이산수학 기말 52번 문항 이미지
     choices:
       - { id: '1', text: '1' }
       - { id: '2', text: '2' }
@@ -418,24 +434,24 @@ questions:
       - { id: '4', text: '4' }
     answers: ['2']
     explanation: |
-      선택지 1 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 2 (정답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 3 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 4 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
+      선택지 1: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 2: 2017년 이산수학 정답표 기준으로 정답.
+      선택지 3: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 4: 2017년 이산수학 정답표 기준으로 정답이 아니다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      이 문항은 원본 시험지에서 문항 단위로 분리한 이미지 기반 문항이다.
+      수식, 행렬, 그래프 등은 원본 문항 이미지를 기준으로 확인한다.
+      선택지는 이미지 안의 ①~④와 데이터의 선택지 1~4가 대응된다.
+      정답은 origin/정답.txt의 이산수학 정답표를 기준으로 입력했다.
+    tags: [past-exam, cropped-question]
 
   - id: e17-18
     type: multiple-choice
-    prompt: '원본 이미지의 18번 문제를 풀어주세요.'
+    prompt: '2017년 이산수학 기말 53번 문항을 풀어주세요.'
     images:
-      - path: images/subjects/discrete-math/past-exams/2017/page-2.png
-        alt: 2017년 이산수학 기출 18번 원본 페이지
+      - path: images/subjects/discrete-math/past-exams/2017/questions/q53.png
+        alt: 2017년 이산수학 기말 53번 문항 이미지
     choices:
       - { id: '1', text: '1' }
       - { id: '2', text: '2' }
@@ -443,24 +459,24 @@ questions:
       - { id: '4', text: '4' }
     answers: ['4']
     explanation: |
-      선택지 1 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 2 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 3 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 4 (정답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
+      선택지 1: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 2: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 3: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 4: 2017년 이산수학 정답표 기준으로 정답.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      이 문항은 원본 시험지에서 문항 단위로 분리한 이미지 기반 문항이다.
+      수식, 행렬, 그래프 등은 원본 문항 이미지를 기준으로 확인한다.
+      선택지는 이미지 안의 ①~④와 데이터의 선택지 1~4가 대응된다.
+      정답은 origin/정답.txt의 이산수학 정답표를 기준으로 입력했다.
+    tags: [past-exam, cropped-question]
 
   - id: e17-19
     type: multiple-choice
-    prompt: '원본 이미지의 19번 문제를 풀어주세요.'
+    prompt: '2017년 이산수학 기말 54번 문항을 풀어주세요.'
     images:
-      - path: images/subjects/discrete-math/past-exams/2017/page-2.png
-        alt: 2017년 이산수학 기출 19번 원본 페이지
+      - path: images/subjects/discrete-math/past-exams/2017/questions/q54.png
+        alt: 2017년 이산수학 기말 54번 문항 이미지
     choices:
       - { id: '1', text: '1' }
       - { id: '2', text: '2' }
@@ -468,24 +484,25 @@ questions:
       - { id: '4', text: '4' }
     answers: ['3']
     explanation: |
-      선택지 1 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 2 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 3 (정답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 4 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
+      선택지 1: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 2: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 3: 2017년 이산수학 정답표 기준으로 정답.
+      선택지 4: 2017년 이산수학 정답표 기준으로 정답이 아니다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      이 문항은 원본 시험지에서 문항 단위로 분리한 이미지 기반 문항이다.
+      수식, 행렬, 그래프 등은 원본 문항 이미지를 기준으로 확인한다.
+      선택지는 이미지 안의 ①~④와 데이터의 선택지 1~4가 대응된다.
+      정답은 origin/정답.txt의 이산수학 정답표를 기준으로 입력했다.
+    tags: [past-exam, cropped-question]
 
   - id: e17-20
     type: multiple-choice
-    prompt: '원본 이미지의 20번 문제를 풀어주세요.'
+    passageRefs: [g17-graph-g]
+    prompt: G와 관련된 서술 중 부적절한 것은?
     images:
-      - path: images/subjects/discrete-math/past-exams/2017/page-2.png
-        alt: 2017년 이산수학 기출 20번 원본 페이지
+      - path: images/subjects/discrete-math/past-exams/2017/questions/q55.png
+        alt: 2017년 이산수학 기말 55번 문항 이미지
     choices:
       - { id: '1', text: '1' }
       - { id: '2', text: '2' }
@@ -493,24 +510,25 @@ questions:
       - { id: '4', text: '4' }
     answers: ['1']
     explanation: |
-      선택지 1 (정답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 2 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 3 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 4 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
+      선택지 1: 2017년 이산수학 정답표 기준으로 정답.
+      선택지 2: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 3: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 4: 2017년 이산수학 정답표 기준으로 정답이 아니다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      이 문항은 원본 시험지에서 문항 단위로 분리한 이미지 기반 문항이다.
+      수식, 행렬, 그래프 등은 원본 문항 이미지를 기준으로 확인한다.
+      선택지는 이미지 안의 ①~④와 데이터의 선택지 1~4가 대응된다.
+      정답은 origin/정답.txt의 이산수학 정답표를 기준으로 입력했다.
+    tags: [past-exam, cropped-question]
 
   - id: e17-21
     type: multiple-choice
-    prompt: '원본 이미지의 21번 문제를 풀어주세요.'
+    passageRefs: [g17-graph-g]
+    prompt: 그래프 G를 인접행렬로 표현한 것은?
     images:
-      - path: images/subjects/discrete-math/past-exams/2017/page-2.png
-        alt: 2017년 이산수학 기출 21번 원본 페이지
+      - path: images/subjects/discrete-math/past-exams/2017/questions/q56.png
+        alt: 2017년 이산수학 기말 56번 문항 이미지
     choices:
       - { id: '1', text: '1' }
       - { id: '2', text: '2' }
@@ -518,24 +536,24 @@ questions:
       - { id: '4', text: '4' }
     answers: ['1']
     explanation: |
-      선택지 1 (정답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 2 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 3 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 4 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
+      선택지 1: 2017년 이산수학 정답표 기준으로 정답.
+      선택지 2: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 3: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 4: 2017년 이산수학 정답표 기준으로 정답이 아니다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      이 문항은 원본 시험지에서 문항 단위로 분리한 이미지 기반 문항이다.
+      수식, 행렬, 그래프 등은 원본 문항 이미지를 기준으로 확인한다.
+      선택지는 이미지 안의 ①~④와 데이터의 선택지 1~4가 대응된다.
+      정답은 origin/정답.txt의 이산수학 정답표를 기준으로 입력했다.
+    tags: [past-exam, cropped-question]
 
   - id: e17-22
     type: multiple-choice
-    prompt: '원본 이미지의 22번 문제를 풀어주세요.'
+    prompt: '2017년 이산수학 기말 57번 문항을 풀어주세요.'
     images:
-      - path: images/subjects/discrete-math/past-exams/2017/page-2.png
-        alt: 2017년 이산수학 기출 22번 원본 페이지
+      - path: images/subjects/discrete-math/past-exams/2017/questions/q57.png
+        alt: 2017년 이산수학 기말 57번 문항 이미지
     choices:
       - { id: '1', text: '1' }
       - { id: '2', text: '2' }
@@ -543,24 +561,24 @@ questions:
       - { id: '4', text: '4' }
     answers: ['4']
     explanation: |
-      선택지 1 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 2 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 3 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 4 (정답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
+      선택지 1: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 2: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 3: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 4: 2017년 이산수학 정답표 기준으로 정답.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      이 문항은 원본 시험지에서 문항 단위로 분리한 이미지 기반 문항이다.
+      수식, 행렬, 그래프 등은 원본 문항 이미지를 기준으로 확인한다.
+      선택지는 이미지 안의 ①~④와 데이터의 선택지 1~4가 대응된다.
+      정답은 origin/정답.txt의 이산수학 정답표를 기준으로 입력했다.
+    tags: [past-exam, cropped-question]
 
   - id: e17-23
     type: multiple-choice
-    prompt: '원본 이미지의 23번 문제를 풀어주세요.'
+    prompt: '2017년 이산수학 기말 58번 문항을 풀어주세요.'
     images:
-      - path: images/subjects/discrete-math/past-exams/2017/page-2.png
-        alt: 2017년 이산수학 기출 23번 원본 페이지
+      - path: images/subjects/discrete-math/past-exams/2017/questions/q58.png
+        alt: 2017년 이산수학 기말 58번 문항 이미지
     choices:
       - { id: '1', text: '1' }
       - { id: '2', text: '2' }
@@ -568,24 +586,24 @@ questions:
       - { id: '4', text: '4' }
     answers: ['3']
     explanation: |
-      선택지 1 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 2 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 3 (정답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 4 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
+      선택지 1: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 2: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 3: 2017년 이산수학 정답표 기준으로 정답.
+      선택지 4: 2017년 이산수학 정답표 기준으로 정답이 아니다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      이 문항은 원본 시험지에서 문항 단위로 분리한 이미지 기반 문항이다.
+      수식, 행렬, 그래프 등은 원본 문항 이미지를 기준으로 확인한다.
+      선택지는 이미지 안의 ①~④와 데이터의 선택지 1~4가 대응된다.
+      정답은 origin/정답.txt의 이산수학 정답표를 기준으로 입력했다.
+    tags: [past-exam, cropped-question]
 
   - id: e17-24
     type: multiple-choice
-    prompt: '원본 이미지의 24번 문제를 풀어주세요.'
+    prompt: '2017년 이산수학 기말 59번 문항을 풀어주세요.'
     images:
-      - path: images/subjects/discrete-math/past-exams/2017/page-2.png
-        alt: 2017년 이산수학 기출 24번 원본 페이지
+      - path: images/subjects/discrete-math/past-exams/2017/questions/q59.png
+        alt: 2017년 이산수학 기말 59번 문항 이미지
     choices:
       - { id: '1', text: '1' }
       - { id: '2', text: '2' }
@@ -593,24 +611,24 @@ questions:
       - { id: '4', text: '4' }
     answers: ['4']
     explanation: |
-      선택지 1 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 2 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 3 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 4 (정답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
+      선택지 1: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 2: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 3: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 4: 2017년 이산수학 정답표 기준으로 정답.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      이 문항은 원본 시험지에서 문항 단위로 분리한 이미지 기반 문항이다.
+      수식, 행렬, 그래프 등은 원본 문항 이미지를 기준으로 확인한다.
+      선택지는 이미지 안의 ①~④와 데이터의 선택지 1~4가 대응된다.
+      정답은 origin/정답.txt의 이산수학 정답표를 기준으로 입력했다.
+    tags: [past-exam, cropped-question]
 
   - id: e17-25
     type: multiple-choice
-    prompt: '원본 이미지의 25번 문제를 풀어주세요.'
+    prompt: '2017년 이산수학 기말 60번 문항을 풀어주세요.'
     images:
-      - path: images/subjects/discrete-math/past-exams/2017/page-2.png
-        alt: 2017년 이산수학 기출 25번 원본 페이지
+      - path: images/subjects/discrete-math/past-exams/2017/questions/q60.png
+        alt: 2017년 이산수학 기말 60번 문항 이미지
     choices:
       - { id: '1', text: '1' }
       - { id: '2', text: '2' }
@@ -618,14 +636,14 @@ questions:
       - { id: '4', text: '4' }
     answers: ['2']
     explanation: |
-      선택지 1 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 2 (정답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 3 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
-      선택지 4 (오답): origin/정답.txt의 2017년 이산수학 정답표 기준이다.
+      선택지 1: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 2: 2017년 이산수학 정답표 기준으로 정답.
+      선택지 3: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 4: 2017년 이산수학 정답표 기준으로 정답이 아니다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      이 문항은 원본 시험지에서 문항 단위로 분리한 이미지 기반 문항이다.
+      수식, 행렬, 그래프 등은 원본 문항 이미지를 기준으로 확인한다.
+      선택지는 이미지 안의 ①~④와 데이터의 선택지 1~4가 대응된다.
+      정답은 origin/정답.txt의 이산수학 정답표를 기준으로 입력했다.
+    tags: [past-exam, cropped-question]

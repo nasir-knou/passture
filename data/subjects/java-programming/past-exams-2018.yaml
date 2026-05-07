@@ -1,6 +1,6 @@
 subjectId: java-programming
 sourceId: past-exams-2018
-title: Java프로그래밍 2018 기출
+title: Java프로그래밍 2018 기말
 kind: exam
 year: 2018
 
@@ -565,10 +565,10 @@ questions:
       - { id: '4', text: 'extends WindowAdapter' }
     answers: ['4']
     explanation: |
-      선택지 1 (오답): origin/정답.txt의 2018년 정답표 기준으로 오답 선택지이다.
-      선택지 2 (오답): origin/정답.txt의 2018년 정답표 기준으로 오답 선택지이다.
-      선택지 3 (오답): origin/정답.txt의 2018년 정답표 기준으로 오답 선택지이다.
-      선택지 4 (정답): origin/정답.txt의 2018년 정답표 기준으로 정답 선택지이다.
+      선택지 1: origin/정답.txt의 2018년 정답표 기준으로 오답 선택지이다.
+      선택지 2: origin/정답.txt의 2018년 정답표 기준으로 오답 선택지이다.
+      선택지 3: origin/정답.txt의 2018년 정답표 기준으로 오답 선택지이다.
+      선택지 4: origin/정답.txt의 2018년 정답표 기준으로 정답 선택지이다.
 
       핵심 개념:
       이 문항은 origin/정답.txt의 2018년 java-programming 정답표와 대조해 보정했다.

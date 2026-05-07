@@ -1,881 +1,574 @@
 subjectId: artificial-intelligence
 sourceId: past-exams-2019
-title: 인공지능 2019 기출
+title: 인공지능 2019 기말
 kind: exam
 year: 2019
+
+passages:
+  - id: g19-minimax-tree-01
+    type: image
+    image:
+      path: images/subjects/artificial-intelligence/past-exams/2019/e19-minimax-tree.png
+      alt: 2019년 인공지능 기출 1번 최대최소 탐색트리
 
 questions:
   - id: e19-01
     type: multiple-choice
-    prompt: '원본 이미지의 1번 문제를 풀어주세요.'
-    images:
-      - path: images/subjects/artificial-intelligence/past-exams/2019/page-1.png
-        alt: 2019년 인공지능 기출 1번 원본 페이지
+    passageRefs: [g19-minimax-tree-01]
+    prompt: 다음 최대최소 탐색트리의 A에서 다음 수로 D를 선택하게 되는 노드 L의 평가함수 값 (ㄱ)과 그 때의 A의 가치 (ㄴ)은? 리프의 값들은 그 노드에 대한 가치를 예측한 평가함수 값이다.
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '(ㄱ) 5, (ㄴ) 8' }
+      - { id: '2', text: '(ㄱ) 5, (ㄴ) 13' }
+      - { id: '3', text: '(ㄱ) 9, (ㄴ) 13' }
+      - { id: '4', text: '(ㄱ) 10, (ㄴ) 8' }
     answers: ['4']
     explanation: |
-      선택지 1 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 2 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 3 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 4 (정답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
+      선택지 4: D가 선택되려면 D의 최소값이 C의 값 7보다 커야 하며, 보기 중 L=10일 때 D의 값은 min(8,13,10)=8이 되어 A의 값도 8이 된다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      최대 노드는 자식 중 최댓값을, 최소 노드는 자식 중 최솟값을 선택한다.
+    tags: [game-tree, minimax]
 
   - id: e19-02
     type: multiple-choice
-    prompt: '원본 이미지의 2번 문제를 풀어주세요.'
-    images:
-      - path: images/subjects/artificial-intelligence/past-exams/2019/page-1.png
-        alt: 2019년 인공지능 기출 2번 원본 페이지
+    prompt: $\alpha$-$\beta$ 가지치기에 대한 설명으로 올바른 것은?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '최대최소 탐색트리에서 탐색이 불필요한 가지를 잘라 낸다.' }
+      - { id: '2', text: '최대최소 탐색트리를 확률적으로 탐색한다.' }
+      - { id: '3', text: '리프 노드의 평가함수를 계산하는 역할을 한다.' }
+      - { id: '4', text: '트리를 최대한 깊이 탐색하여 가치를 평가한다.' }
     answers: ['1']
     explanation: |
-      선택지 1 (정답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 2 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 3 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 4 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
+      선택지 1: $\alpha$-$\beta$ 가지치기는 최종 minimax 결정에 영향을 주지 않는 하위 가지의 탐색을 생략한다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      $\alpha$와 $\beta$는 현재까지 보장된 최대/최소 한계를 나타내며, 더 볼 필요가 없는 분기를 제거한다.
+    tags: [game-tree, alpha-beta-pruning]
 
   - id: e19-03
     type: multiple-choice
-    prompt: '원본 이미지의 3번 문제를 풀어주세요.'
-    images:
-      - path: images/subjects/artificial-intelligence/past-exams/2019/page-1.png
-        alt: 2019년 인공지능 기출 3번 원본 페이지
+    prompt: 몬테카를로 트리 탐색의 네 단계를 순서대로 나열한 것은?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '선택 -> 시뮬레이션 -> 확장 -> 역전파' }
+      - { id: '2', text: '선택 -> 확장 -> 시뮬레이션 -> 역전파' }
+      - { id: '3', text: '선택 -> 역전파 -> 시뮬레이션 -> 확장' }
+      - { id: '4', text: '선택 -> 역전파 -> 확장 -> 시뮬레이션' }
     answers: ['2']
     explanation: |
-      선택지 1 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 2 (정답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 3 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 4 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
+      선택지 2: MCTS는 선택, 확장, 시뮬레이션, 역전파 순서로 반복된다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      선택은 유망한 노드를 고르고, 확장은 새 노드를 만들며, 시뮬레이션은 결과를 추정하고, 역전파는 통계를 갱신한다.
+    tags: [monte-carlo-tree-search]
 
   - id: e19-04
     type: multiple-choice
-    prompt: '원본 이미지의 4번 문제를 풀어주세요.'
-    images:
-      - path: images/subjects/artificial-intelligence/past-exams/2019/page-1.png
-        alt: 2019년 인공지능 기출 4번 원본 페이지
+    prompt: 몬테카를로 트리 탐색의 선택 전략은 탐사와 활용의 균형을 이루도록 설계한다. 이때 활용은 무엇을 의미하는가?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '덜 유망한 것을 선택할 수 있게 한다.' }
+      - { id: '2', text: '시뮬레이션 결과에 따라 통계 정보를 업데이트한다.' }
+      - { id: '3', text: '선택된 노드로부터 게임이 끝날 때까지 무작위로 수를 선택하여 게임을 진행한다.' }
+      - { id: '4', text: '지금까지의 결과 중 가장 우수한 결과를 이끌어 내는 수를 선택한다.' }
     answers: ['4']
     explanation: |
-      선택지 1 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 2 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 3 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 4 (정답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
+      선택지 4: 활용은 이미 얻은 통계를 바탕으로 현재 가장 좋은 선택을 더 많이 이용하는 것이다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      탐사는 정보가 부족한 선택지를 시험하는 것이고, 활용은 현재 성능이 좋은 선택지를 선택하는 것이다.
+    tags: [monte-carlo-tree-search, exploration-exploitation]
 
   - id: e19-05
     type: multiple-choice
-    prompt: '원본 이미지의 5번 문제를 풀어주세요.'
-    images:
-      - path: images/subjects/artificial-intelligence/past-exams/2019/page-1.png
-        alt: 2019년 인공지능 기출 5번 원본 페이지
+    prompt: 다음 중 지식기반 시스템의 주요 특징을 설명한 것은?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '알고리즘 형태로 지식이 프로그램에 구현된다.' }
+      - { id: '2', text: '현장 전문가는 지식 공학자를 위해 추론기관을 설계한다.' }
+      - { id: '3', text: '문제 분야의 지식과 추론기관이 분리되어 있다.' }
+      - { id: '4', text: '일반 사용자가 직접 추론기관을 제공한다.' }
     answers: ['3']
     explanation: |
-      선택지 1 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 2 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 3 (정답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 4 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
+      선택지 3: 지식기반 시스템은 지식베이스와 추론기관을 분리해 지식을 표현하고 추론한다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      지식기반 시스템은 도메인 지식, 추론기관, 사용자 인터페이스 등으로 구성된다.
+    tags: [knowledge-based-system]
 
   - id: e19-06
     type: multiple-choice
-    prompt: '원본 이미지의 6번 문제를 풀어주세요.'
-    images:
-      - path: images/subjects/artificial-intelligence/past-exams/2019/page-1.png
-        alt: 2019년 인공지능 기출 6번 원본 페이지
+    prompt: 승용차를 표현하기 위한 속성을 ako, 승차인원, 배기량, 트렁크 용량으로 표현하였을 때 특성상속이 이루어지게 하는 속성은?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: 'ako' }
+      - { id: '2', text: '승차인원' }
+      - { id: '3', text: '배기량' }
+      - { id: '4', text: '트렁크 용량' }
     answers: ['1']
     explanation: |
-      선택지 1 (정답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 2 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 3 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 4 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
+      선택지 1: ako는 a-kind-of 관계를 나타내며 상위 개념의 특성을 하위 개념이 상속하게 한다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      프레임 표현에서 ako, is-a 같은 관계는 계층적 지식과 속성 상속에 사용된다.
+    tags: [knowledge-representation, frame]
 
   - id: e19-07
     type: multiple-choice
-    prompt: '원본 이미지의 7번 문제를 풀어주세요.'
-    images:
-      - path: images/subjects/artificial-intelligence/past-exams/2019/page-1.png
-        alt: 2019년 인공지능 기출 7번 원본 페이지
+    prompt: $\sim p \lor q$가 참인 명제이다. 다음 중 올바른 것은?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '$p$가 참일 경우 $q$도 참이다.' }
+      - { id: '2', text: '$p$가 거짓일 경우 $q$는 참이 될 수 없다.' }
+      - { id: '3', text: '$q$와 관계없이 $p$는 참이다.' }
+      - { id: '4', text: '$q$가 거짓일 경우 $p$는 참이다.' }
     answers: ['1']
     explanation: |
-      선택지 1 (정답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 2 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 3 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 4 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
+      선택지 1: $\sim p \lor q$는 $p \to q$와 동치이므로 $p$가 참이면 $q$도 참이어야 한다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      함의 $p \to q$는 $\sim p \lor q$로 바꾸어 표현할 수 있다.
+    tags: [logic, implication]
 
   - id: e19-08
     type: multiple-choice
-    prompt: '원본 이미지의 8번 문제를 풀어주세요.'
-    images:
-      - path: images/subjects/artificial-intelligence/past-exams/2019/page-1.png
-        alt: 2019년 인공지능 기출 8번 원본 페이지
+    prompt: 다음 중 연언 표준형에 해당되는 논리식은? 단, $p, q, r, s$는 기본명제이다.
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '$(p \lor q) \land \sim(\sim r \lor s)$' }
+      - { id: '2', text: '$(p \land \sim q) \lor (\sim p \land r)$' }
+      - { id: '3', text: '$(\sim p \lor q) \land (r \lor s)$' }
+      - { id: '4', text: '$\sim\{(p \lor q) \land (\sim q \lor r)\}$' }
     answers: ['3']
     explanation: |
-      선택지 1 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 2 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 3 (정답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 4 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
+      선택지 3: 리터럴들의 논리합 절들이 논리곱으로 연결된 형태이므로 연언 표준형이다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      CNF는 절(clause)들의 AND이며, 각 절은 리터럴들의 OR로 구성된다.
+    tags: [logic, cnf]
 
   - id: e19-09
     type: multiple-choice
-    prompt: '원본 이미지의 9번 문제를 풀어주세요.'
-    images:
-      - path: images/subjects/artificial-intelligence/past-exams/2019/page-1.png
-        alt: 2019년 인공지능 기출 9번 원본 페이지
+    prompt: 다음 술어논리식에서 (ㄱ) 부모절의 쌍과 (ㄴ) 도출절이 올바른 것은? 단, $P, Q, R$은 술어, $x$와 $y$는 객체 변수, $A$와 $B$는 객체 상수이다.
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '(ㄱ) $P(A)$와 $P(x) \lor Q(x)$, (ㄴ) $Q(A)$' }
+      - { id: '2', text: '(ㄱ) $P(A) \lor Q(x,A)$와 $\sim P(B) \lor Q(B,y)$, (ㄴ) $Q(B,A)$' }
+      - { id: '3', text: '(ㄱ) $\sim P(A)$와 $P(A)$, (ㄴ) $true$' }
+      - { id: '4', text: '(ㄱ) $\sim P(x) \lor Q(x)$와 $\sim Q(A) \lor R(B)$, (ㄴ) $\sim P(A) \lor R(B)$' }
     answers: ['4']
     explanation: |
-      선택지 1 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 2 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 3 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 4 (정답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
+      선택지 4: $x=A$로 단일화하면 $Q(A)$와 $\sim Q(A)$가 소거되어 $\sim P(A)\lor R(B)$가 도출된다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      도출은 상보 리터럴을 단일화한 뒤 제거하고 남은 절을 결합한다.
+    tags: [predicate-logic, resolution]
 
   - id: e19-10
     type: multiple-choice
-    prompt: '원본 이미지의 10번 문제를 풀어주세요.'
-    images:
-      - path: images/subjects/artificial-intelligence/past-exams/2019/page-1.png
-        alt: 2019년 인공지능 기출 10번 원본 페이지
+    prompt: 다음 중 퍼지집합에 대한 설명으로 올바른 것은?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '각각의 원소의 소속함수 값은 0 또는 1이다.' }
+      - { id: '2', text: '드모르간의 법칙이 성립한다.' }
+      - { id: '3', text: '퍼지집합에 속한 모든 원소의 소속함수의 합은 1이다.' }
+      - { id: '4', text: '두 퍼지집합의 합집합은 각 원소의 소속함수 값의 최솟값으로 정의된다.' }
     answers: ['2']
     explanation: |
-      선택지 1 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 2 (정답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 3 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 4 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
+      선택지 2: 표준 퍼지 연산에서도 여집합, 합집합, 교집합에 대해 드모르간 법칙이 성립한다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      퍼지집합의 소속도는 보통 0과 1 사이의 값이며, 합집합은 max, 교집합은 min으로 정의한다.
+    tags: [fuzzy-set]
 
   - id: e19-11
     type: multiple-choice
-    prompt: '원본 이미지의 11번 문제를 풀어주세요.'
-    images:
-      - path: images/subjects/artificial-intelligence/past-exams/2019/page-1.png
-        alt: 2019년 인공지능 기출 11번 원본 페이지
+    prompt: 다음 중 퍼지논리 연산자를 적절히 정의한 것은?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '$a \to b = a - b$' }
+      - { id: '2', text: '$a \land b = a + b$' }
+      - { id: '3', text: '$a \lor b = \max(a,b)$' }
+      - { id: '4', text: '$\sim a = \max(1,a)$' }
     answers: ['3']
     explanation: |
-      선택지 1 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 2 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 3 (정답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 4 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
+      선택지 3: 표준 퍼지논리에서 OR 연산은 두 소속도 중 큰 값인 $\max(a,b)$로 정의한다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      표준 퍼지 연산은 $\land=\min$, $\lor=\max$, $\sim a=1-a$로 정의한다.
+    tags: [fuzzy-logic]
 
   - id: e19-12
     type: multiple-choice
-    prompt: '원본 이미지의 12번 문제를 풀어주세요.'
-    images:
-      - path: images/subjects/artificial-intelligence/past-exams/2019/page-1.png
-        alt: 2019년 인공지능 기출 12번 원본 페이지
+    prompt: 다음 중 퍼지규칙 및 퍼지추론, 퍼지제어에 대한 설명으로 올바른 것은?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '규칙은 조건부가 정확히 만족할 경우에만 결론을 낸다.' }
+      - { id: '2', text: '규칙의 조건부 및 결론부에 언어적 변수를 포함할 수 있다.' }
+      - { id: '3', text: '추론의 결과는 참(1) 또는 거짓(0) 중 하나의 값이다.' }
+      - { id: '4', text: '퍼지 제어기의 출력을 퍼지화하여 제어 대상을 제어한다.' }
     answers: ['2']
     explanation: |
-      선택지 1 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 2 (정답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 3 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 4 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
+      선택지 2: 퍼지규칙은 "온도가 높다" 같은 언어적 변수를 조건부와 결론부에 사용할 수 있다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      퍼지추론은 부분적으로 만족되는 규칙도 정도에 따라 결론에 반영한다.
+    tags: [fuzzy-inference, fuzzy-control]
 
   - id: e19-13
     type: multiple-choice
-    prompt: '원본 이미지의 13번 문제를 풀어주세요.'
-    images:
-      - path: images/subjects/artificial-intelligence/past-exams/2019/page-1.png
-        alt: 2019년 인공지능 기출 13번 원본 페이지
+    prompt: 다음 중 컴퓨터 시각 시스템의 처리 단계를 올바르게 정의한 것은?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '전처리: 영상 내의 처리 대상을 적절한 데이터로 표현한다.' }
+      - { id: '2', text: '정규화: 취득한 영상을 처리하기 좋은 형태로 가공한다.' }
+      - { id: '3', text: '영상분할: 영상을 몇 개의 의미 있는 영역으로 나눈다.' }
+      - { id: '4', text: '영상 표현: 잡음을 제거하여 깨끗한 영상을 얻는다.' }
     answers: ['3']
     explanation: |
-      선택지 1 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 2 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 3 (정답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 4 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
+      선택지 3: 영상분할은 영상을 의미 있는 영역이나 객체 단위로 나누는 처리 단계이다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      전처리는 잡음 제거 등 초기 보정이고, 표현은 분할된 대상을 특징이나 구조로 나타내는 단계이다.
+    tags: [computer-vision, image-segmentation]
 
   - id: e19-14
     type: multiple-choice
-    prompt: '원본 이미지의 14번 문제를 풀어주세요.'
-    images:
-      - path: images/subjects/artificial-intelligence/past-exams/2019/page-1.png
-        alt: 2019년 인공지능 기출 14번 원본 페이지
+    prompt: 다음 중 아날로그 신호를 디지털 신호로 변환하여 디지털 영상을 입력하기 위해 거치는 처리에 해당되는 것은?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '표본화와 양자화' }
+      - { id: '2', text: '정규화' }
+      - { id: '3', text: '분할과 합병' }
+      - { id: '4', text: '평활화' }
     answers: ['1']
     explanation: |
-      선택지 1 (정답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 2 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 3 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 4 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
+      선택지 1: 아날로그 영상을 디지털 영상으로 바꾸려면 공간적으로 표본화하고 밝기 값을 양자화해야 한다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      표본화는 위치를 이산화하고, 양자화는 픽셀 값을 유한한 단계로 이산화한다.
+    tags: [computer-vision, sampling, quantization]
 
   - id: e19-15
     type: multiple-choice
-    prompt: '원본 이미지의 15번 문제를 풀어주세요.'
-    images:
-      - path: images/subjects/artificial-intelligence/past-exams/2019/page-1.png
-        alt: 2019년 인공지능 기출 15번 원본 페이지
+    prompt: 다음 중 중간값 필터에 대한 설명으로 올바른 것은?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '정해진 크기의 영역에 속한 픽셀들의 평균을 구한다.' }
+      - { id: '2', text: '점잡음(salt-and-pepper noise)의 제거에 효과적이다.' }
+      - { id: '3', text: '2차 미분을 구하여 처리한다.' }
+      - { id: '4', text: '영상 내의 급격한 변화가 발생하는 경계를 검출한다.' }
     answers: ['2']
     explanation: |
-      선택지 1 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 2 (정답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 3 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 4 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
+      선택지 2: 중간값 필터는 주변 픽셀의 중앙값으로 대체하므로 점잡음 제거에 효과적이다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      평균 필터는 평활화에 쓰이고, 라플라시안 같은 2차 미분은 경계 검출에 쓰인다.
+    tags: [computer-vision, median-filter]
 
   - id: e19-16
     type: multiple-choice
-    prompt: '원본 이미지의 16번 문제를 풀어주세요.'
-    images:
-      - path: images/subjects/artificial-intelligence/past-exams/2019/page-1.png
-        alt: 2019년 인공지능 기출 16번 원본 페이지
+    prompt: 다음 중 소벨 연산자로 구할 수 있는 것은?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '에지의 강도와 방향' }
+      - { id: '2', text: '정해진 영역 내의 픽셀 값들의 중간값' }
+      - { id: '3', text: '영상의 이진화를 위한 임계치' }
+      - { id: '4', text: '픽셀 사이의 연결성' }
     answers: ['1']
     explanation: |
-      선택지 1 (정답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 2 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 3 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 4 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
+      선택지 1: 소벨 연산자는 수평/수직 방향의 기울기를 계산하여 에지 강도와 방향을 구한다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      소벨 마스크는 영상의 1차 미분 근사를 통해 경계를 검출하는 데 사용된다.
+    tags: [computer-vision, sobel]
 
   - id: e19-17
     type: multiple-choice
-    prompt: '원본 이미지의 17번 문제를 풀어주세요.'
-    images:
-      - path: images/subjects/artificial-intelligence/past-exams/2019/page-1.png
-        alt: 2019년 인공지능 기출 17번 원본 페이지
+    prompt: 다음 중 주어진 표본 공간을 직교변환을 통해 특징요소 사이의 상관관계를 최소화하는 공간으로 변환한 후 식별에 도움이 되는 성분만으로 표현함으로써 차원 축소를 할 수 있는 기술을 일컫는 것은?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '라플라스 연산자' }
+      - { id: '2', text: '패턴의 정규화' }
+      - { id: '3', text: '주성분 분석(PCA)' }
+      - { id: '4', text: '이진화' }
     answers: ['3']
     explanation: |
-      선택지 1 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 2 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 3 (정답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 4 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
+      선택지 3: PCA는 직교변환으로 상관된 특징을 분산이 큰 주성분 축으로 변환해 차원을 줄인다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      PCA는 특징 추출과 차원 축소에 널리 사용된다.
+    tags: [pattern-recognition, pca]
 
   - id: e19-18
     type: multiple-choice
-    prompt: '원본 이미지의 18번 문제를 풀어주세요.'
-    images:
-      - path: images/subjects/artificial-intelligence/past-exams/2019/page-1.png
-        alt: 2019년 인공지능 기출 18번 원본 페이지
+    prompt: 다음 중 군집을 구성하는 표본들의 통계적 분포를 고려한 거리 측정자는?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '유클리드 거리' }
+      - { id: '2', text: '해밍 거리' }
+      - { id: '3', text: '도시블록 거리' }
+      - { id: '4', text: '마할라노비스 거리' }
     answers: ['4']
     explanation: |
-      선택지 1 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 2 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 3 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 4 (정답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
+      선택지 4: 마할라노비스 거리는 공분산을 반영하여 표본 분포의 방향성과 스케일을 고려한다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      유클리드 거리는 단순 직선 거리이고, 마할라노비스 거리는 분산-공분산 구조를 고려한다.
+    tags: [pattern-recognition, distance]
 
   - id: e19-19
     type: multiple-choice
-    prompt: '원본 이미지의 19번 문제를 풀어주세요.'
-    images:
-      - path: images/subjects/artificial-intelligence/past-exams/2019/page-2.png
-        alt: 2019년 인공지능 기출 19번 원본 페이지
+    prompt: 다음 중 학습표본이 관찰될 가능성이 최대가 될 수 있는 확률밀도함수의 매개변수를 추정하는 방식을 나타내는 것은?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '$k$-근접이웃' }
+      - { id: '2', text: '계량공간' }
+      - { id: '3', text: '평활화' }
+      - { id: '4', text: '최대가능도 추정(MLE)' }
     answers: ['4']
     explanation: |
-      선택지 1 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 2 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 3 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 4 (정답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
+      선택지 4: 최대가능도 추정은 주어진 표본이 관찰될 가능도를 최대화하는 모수를 찾는 방법이다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      MLE는 확률 모델의 매개변수 추정에 사용된다.
+    tags: [machine-learning, mle]
 
   - id: e19-20
     type: multiple-choice
-    prompt: '원본 이미지의 20번 문제를 풀어주세요.'
-    images:
-      - path: images/subjects/artificial-intelligence/past-exams/2019/page-2.png
-        alt: 2019년 인공지능 기출 20번 원본 페이지
+    prompt: 학습표본 집합에서 미지의 패턴과 가장 가까운 10개의 표본을 구했을 때 A클래스가 2개, B클래스가 4개, C클래스가 1개, D클래스가 3개였다면 $k$-근접이웃($k=10$)에서 이 패턴이 어느 클래스에 속하는 것으로 판정하는가?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: 'A' }
+      - { id: '2', text: 'B' }
+      - { id: '3', text: 'C' }
+      - { id: '4', text: 'D' }
     answers: ['2']
     explanation: |
-      선택지 1 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 2 (정답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 3 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 4 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
+      선택지 2: 가장 가까운 10개 이웃 중 B 클래스가 4개로 가장 많으므로 다수결에 따라 B로 분류한다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      $k$-NN은 가까운 $k$개 표본의 레이블을 기준으로 다수결 분류한다.
+    tags: [machine-learning, knn]
 
   - id: e19-21
     type: multiple-choice
-    prompt: '원본 이미지의 21번 문제를 풀어주세요.'
-    images:
-      - path: images/subjects/artificial-intelligence/past-exams/2019/page-2.png
-        alt: 2019년 인공지능 기출 21번 원본 페이지
+    prompt: 다음 중 자율학습에 대한 설명으로 올바른 것은?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '입력 값만 학습 데이터로 제공되며, 입력에 대한 출력 값은 제공되지 않는다.' }
+      - { id: '2', text: '입력에 대한 시스템의 출력이 기대하는 출력과 같아지도록 시스템을 변화시킨다.' }
+      - { id: '3', text: '일련의 행동에 따른 보상이 최대화되도록 학습을 진행한다.' }
+      - { id: '4', text: '학습 데이터는 (입력, 출력) 쌍의 집합이다.' }
     answers: ['1']
     explanation: |
-      선택지 1 (정답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 2 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 3 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 4 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
+      선택지 1: 자율학습은 정답 레이블 없이 입력 데이터의 구조를 찾는 학습이다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      지도학습은 입력-출력 쌍을, 강화학습은 보상을, 자율학습은 입력 데이터만 사용한다.
+    tags: [machine-learning, unsupervised-learning]
 
   - id: e19-22
     type: multiple-choice
-    prompt: '원본 이미지의 22번 문제를 풀어주세요.'
-    images:
-      - path: images/subjects/artificial-intelligence/past-exams/2019/page-2.png
-        alt: 2019년 인공지능 기출 22번 원본 페이지
+    prompt: 거짓 양성이 의미하는 것은?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '실제는 참인데 거짓으로 판단하는 오류' }
+      - { id: '2', text: '실제는 거짓인데 참으로 판단하는 오류' }
+      - { id: '3', text: '학습 데이터가 과다하여 학습이 진행되지 않는 오류' }
+      - { id: '4', text: '거짓인 상황을 정확히 판별할 수 있는 학습 결과' }
     answers: ['2']
     explanation: |
-      선택지 1 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 2 (정답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 3 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 4 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
+      선택지 2: 거짓 양성(false positive)은 실제 음성/거짓인 대상을 양성/참으로 잘못 판단하는 경우이다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      false positive는 실제로는 조건을 만족하지 않지만 만족한다고 판정하는 오류이다.
+    tags: [classification, confusion-matrix]
 
   - id: e19-23
     type: multiple-choice
-    prompt: '원본 이미지의 23번 문제를 풀어주세요.'
-    images:
-      - path: images/subjects/artificial-intelligence/past-exams/2019/page-2.png
-        alt: 2019년 인공지능 기출 23번 원본 페이지
+    prompt: 결정트리 학습에 대한 설명으로 올바른 것은?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '불순도가 높아지는 방향으로 노드를 분할한다.' }
+      - { id: '2', text: '루트 노드의 불순도는 0이다.' }
+      - { id: '3', text: '불순도가 큰 값을 갖는 노드는 단말노드가 된다.' }
+      - { id: '4', text: '엔트로피나 지니계수 등이 불순도 계산에 사용된다.' }
     answers: ['4']
     explanation: |
-      선택지 1 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 2 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 3 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 4 (정답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
+      선택지 4: 결정트리는 엔트로피, 정보이득, 지니계수 등으로 분할의 품질을 평가한다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      좋은 분할은 자식 노드의 불순도를 낮추는 방향으로 이루어진다.
+    tags: [machine-learning, decision-tree]
 
   - id: e19-24
     type: multiple-choice
-    prompt: '원본 이미지의 24번 문제를 풀어주세요.'
-    images:
-      - path: images/subjects/artificial-intelligence/past-exams/2019/page-2.png
-        alt: 2019년 인공지능 기출 24번 원본 페이지
+    prompt: 다음 중 독립변수와 종속변수 사이의 상관관계를 선형함수로 모델링하는 것을 일컫는 것은?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '선형회귀' }
+      - { id: '2', text: '군집화' }
+      - { id: '3', text: '결정트리 학습' }
+      - { id: '4', text: '주성분 분석' }
     answers: ['1']
     explanation: |
-      선택지 1 (정답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 2 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 3 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 4 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
+      선택지 1: 선형회귀는 입력 변수와 출력 변수의 관계를 선형식으로 모델링한다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      회귀는 연속적인 값을 예측하는 지도학습 문제에 사용된다.
+    tags: [machine-learning, linear-regression]
 
   - id: e19-25
     type: multiple-choice
-    prompt: '원본 이미지의 25번 문제를 풀어주세요.'
-    images:
-      - path: images/subjects/artificial-intelligence/past-exams/2019/page-2.png
-        alt: 2019년 인공지능 기출 25번 원본 페이지
+    prompt: 선형회귀에서 비용함수를 $C$로 정의하였다. 선형가설의 계수를 경사하강법으로 학습할 때 계수를 변화시키는 방법은? $\nabla C$는 비용함수의 미분을 나타내며, 학습률은 작은 크기의 양수이다.
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '$C$에 학습률을 곱한 값을 계수에서 뺀다.' }
+      - { id: '2', text: '$C$에 학습률을 곱한 값을 계수에 더한다.' }
+      - { id: '3', text: '$\nabla C$에 학습률을 곱한 값을 계수에서 뺀다.' }
+      - { id: '4', text: '$\nabla C$에 학습률을 곱한 값을 계수에 더한다.' }
     answers: ['3']
     explanation: |
-      선택지 1 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 2 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 3 (정답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 4 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
+      선택지 3: 경사하강법은 비용함수가 증가하는 방향인 기울기의 반대 방향으로 계수를 갱신한다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      매개변수 갱신식은 일반적으로 $\theta \leftarrow \theta - \alpha \nabla C$이다.
+    tags: [machine-learning, gradient-descent]
 
   - id: e19-26
     type: multiple-choice
-    prompt: '원본 이미지의 26번 문제를 풀어주세요.'
-    images:
-      - path: images/subjects/artificial-intelligence/past-exams/2019/page-2.png
-        alt: 2019년 인공지능 기출 26번 원본 페이지
+    prompt: 다음 중 로지스틱 회귀를 이용하여 학습할 수 있는 것은?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '독립변수와 종속변수 사이의 관계를 2차 함수로 나타낸다.' }
+      - { id: '2', text: '독립변수에 따라 군집화를 한다.' }
+      - { id: '3', text: '일련의 행동에 따른 보상이 최대화되도록 학습을 한다.' }
+      - { id: '4', text: '독립변수의 값에 따라 종속변수가 0 또는 1이라는 값을 낼 수 있는 가설을 학습한다.' }
     answers: ['4']
     explanation: |
-      선택지 1 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 2 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 3 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 4 (정답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
+      선택지 4: 로지스틱 회귀는 입력으로부터 0 또는 1 같은 이진 클래스 확률을 모델링한다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      로지스틱 회귀는 시그모이드 함수를 사용해 이진 분류 문제를 학습한다.
+    tags: [machine-learning, logistic-regression]
 
   - id: e19-27
     type: multiple-choice
-    prompt: '원본 이미지의 27번 문제를 풀어주세요.'
-    images:
-      - path: images/subjects/artificial-intelligence/past-exams/2019/page-2.png
-        alt: 2019년 인공지능 기출 27번 원본 페이지
+    prompt: 다음 중 $k$-평균 군집화에 대한 설명으로 올바른 것은?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '자율학습 방식으로 학습한다.' }
+      - { id: '2', text: '강화학습 방식으로 학습한다.' }
+      - { id: '3', text: '하나의 학습 표본은 $k$개의 데이터로 구성된다.' }
+      - { id: '4', text: '각각의 학습 표본은 (입력 벡터, 출력)의 쌍으로 구성된다.' }
     answers: ['1']
     explanation: |
-      선택지 1 (정답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 2 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 3 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 4 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
+      선택지 1: $k$-평균은 레이블 없이 데이터를 $k$개 군집으로 나누는 자율학습 알고리즘이다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      $k$-means는 군집 중심과 데이터 할당을 반복적으로 갱신한다.
+    tags: [machine-learning, k-means]
 
   - id: e19-28
     type: multiple-choice
-    prompt: '원본 이미지의 28번 문제를 풀어주세요.'
-    images:
-      - path: images/subjects/artificial-intelligence/past-exams/2019/page-2.png
-        alt: 2019년 인공지능 기출 28번 원본 페이지
+    prompt: 다음 중 신경회로망의 특성과 거리가 먼 것은?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '하나의 뉴런은 다른 뉴런과 방대한 연결을 유지한다.' }
+      - { id: '2', text: '뉴런은 매우 다양한 처리 능력을 갖는 다용도 처리기이다.' }
+      - { id: '3', text: '정보는 신경연접의 연결가중치 벡터를 통해 저장된다.' }
+      - { id: '4', text: '일부 뉴런에 고장이 발생해도 전체 시스템의 성능이 급격하게 저하되지 않는 결함내성을 갖는다.' }
     answers: ['2']
     explanation: |
-      선택지 1 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 2 (정답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 3 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 4 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
+      선택지 2: 인공신경망의 뉴런은 보통 단순한 계산 단위이며, 복잡한 처리는 많은 뉴런의 연결과 학습으로 나타난다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      신경망은 단순 처리 요소의 병렬 연결, 가중치 기반 지식 저장, 결함내성 등을 특징으로 한다.
+    tags: [neural-network]
 
   - id: e19-29
     type: multiple-choice
-    prompt: '원본 이미지의 29번 문제를 풀어주세요.'
-    images:
-      - path: images/subjects/artificial-intelligence/past-exams/2019/page-2.png
-        alt: 2019년 인공지능 기출 29번 원본 페이지
+    prompt: 다음 중 뉴런의 활성함수로 적합하지 않은 것은?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '$f(x)=\frac{1}{1+e^{-x}}$' }
+      - { id: '2', text: '$f(x)=\begin{cases}x,&x\ge0\\0,&x<0\end{cases}$' }
+      - { id: '3', text: '$f(x)=x$' }
+      - { id: '4', text: '$f(x)=\frac{e^x-e^{-x}}{e^x+e^{-x}}$' }
     answers: ['3']
     explanation: |
-      선택지 1 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 2 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 3 (정답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 4 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
+      선택지 3: 항등함수만 사용하면 여러 층을 쌓아도 전체가 선형변환으로 축약되므로 비선형 모델링 능력이 부족하다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      시그모이드, ReLU, tanh 같은 비선형 함수가 활성함수로 널리 사용된다.
+    tags: [neural-network, activation-function]
 
   - id: e19-30
     type: multiple-choice
-    prompt: '원본 이미지의 30번 문제를 풀어주세요.'
-    images:
-      - path: images/subjects/artificial-intelligence/past-exams/2019/page-2.png
-        alt: 2019년 인공지능 기출 30번 원본 페이지
+    prompt: 다음 중 단층 퍼셉트론에 대한 설명으로 올바른 것은?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '강화학습 방식으로 학습한다.' }
+      - { id: '2', text: 'XOR 문제를 풀이할 수 있도록 학습할 수 있다.' }
+      - { id: '3', text: '선형 결정경계를 형성할 수 있도록 학습할 수 있다.' }
+      - { id: '4', text: '군집화에 사용되는 신경회로망 모델이다.' }
     answers: ['3']
     explanation: |
-      선택지 1 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 2 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 3 (정답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 4 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
+      선택지 3: 단층 퍼셉트론은 선형 분리 가능한 문제에 대해 선형 결정경계를 학습한다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      XOR처럼 선형 분리되지 않는 문제는 단층 퍼셉트론으로 해결할 수 없다.
+    tags: [neural-network, perceptron]
 
   - id: e19-31
     type: multiple-choice
-    prompt: '원본 이미지의 31번 문제를 풀어주세요.'
-    images:
-      - path: images/subjects/artificial-intelligence/past-exams/2019/page-2.png
-        alt: 2019년 인공지능 기출 31번 원본 페이지
+    prompt: 오차 역전파 모델에서 경사하강법에 따라 연결 가중치 $W$를 학습할 때 사용할 수 있는 관성항의 용도는 무엇인가?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '단층 퍼셉트론으로 비선형 경계를 학습할 수 있게 한다.' }
+      - { id: '2', text: '자율학습 방식으로 학습하기 위해 사용한다.' }
+      - { id: '3', text: '활성함수를 제거할 수 있게 한다.' }
+      - { id: '4', text: '지역최소치 문제나 고원 문제를 개선한다.' }
     answers: ['4']
     explanation: |
-      선택지 1 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 2 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 3 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 4 (정답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
+      선택지 4: 관성항(momentum)은 이전 갱신 방향을 반영해 진동을 줄이고 지역최소치나 고원에서의 정체를 완화한다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      모멘텀은 경사하강법의 수렴 안정성과 속도를 개선하는 데 사용된다.
+    tags: [neural-network, backpropagation, momentum]
 
   - id: e19-32
     type: multiple-choice
-    prompt: '원본 이미지의 32번 문제를 풀어주세요.'
-    images:
-      - path: images/subjects/artificial-intelligence/past-exams/2019/page-2.png
-        alt: 2019년 인공지능 기출 32번 원본 페이지
+    prompt: 다음 중 자기조직화 지도 학습의 $t$번째 단계에서 학습표본 $x_j$에 대한 승자 노드 및 그 이웃집합에 속하는 노드의 가중치벡터 $w_m$을 조정하는 방법은? 단, 적응 이득 $\alpha(t)$는 양수이다.
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '$w_m(t+1)=w_m(t)$' }
+      - { id: '2', text: '$w_m(t+1)=x_j$' }
+      - { id: '3', text: '$w_m(t+1)=w_m(t)+\alpha(t)\{x_j-w_m(t)\}$' }
+      - { id: '4', text: '$w_m(t+1)=w_m(t)-\alpha(t)\{x_j-w_m(t)\}$' }
     answers: ['3']
     explanation: |
-      선택지 1 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 2 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 3 (정답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 4 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
+      선택지 3: SOM은 승자와 이웃 노드의 가중치를 입력 벡터 $x_j$ 쪽으로 이동시킨다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      업데이트는 현재 가중치와 입력 벡터의 차이에 양의 학습률을 곱해 더하는 방식이다.
+    tags: [neural-network, self-organizing-map]
 
   - id: e19-33
     type: multiple-choice
-    prompt: '원본 이미지의 33번 문제를 풀어주세요.'
-    images:
-      - path: images/subjects/artificial-intelligence/past-exams/2019/page-2.png
-        alt: 2019년 인공지능 기출 33번 원본 페이지
+    prompt: 다음 중 심층 신경망에서 출력층의 오차에 따른 연결가중치의 변화량이 입력층 방향으로 내려갈수록 크게 감소하여 학습이 진행되지 않는 문제를 일컫는 것은?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '지역 최소치 문제' }
+      - { id: '2', text: '경사 소멸 문제' }
+      - { id: '3', text: '과적합 문제' }
+      - { id: '4', text: '능선 문제' }
     answers: ['2']
     explanation: |
-      선택지 1 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 2 (정답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 3 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 4 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
+      선택지 2: 깊은 신경망에서 역전파되는 기울기가 앞쪽 층으로 갈수록 작아지는 현상이 경사 소멸 문제이다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      경사 소멸은 깊은 층의 학습을 어렵게 하며 활성함수, 초기화, 정규화 등과 관련된다.
+    tags: [deep-learning, vanishing-gradient]
 
   - id: e19-34
     type: multiple-choice
-    prompt: '원본 이미지의 34번 문제를 풀어주세요.'
-    images:
-      - path: images/subjects/artificial-intelligence/past-exams/2019/page-2.png
-        alt: 2019년 인공지능 기출 34번 원본 페이지
+    prompt: 제한 볼츠만 머신과 같은 자율학습 신경망을 여러 층 쌓은 모델로, 학습표본 집합의 확률 분포를 학습할 수 있는 확률적 심층 신경망 모델에 해당되는 것은?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '심층 신뢰망(deep belief nets)' }
+      - { id: '2', text: 'LVQ(Learning Vector Quantization)' }
+      - { id: '3', text: 'ReLU(Rectified Linear Unit)' }
+      - { id: '4', text: '볼츠만 머신(Boltzmann machine)' }
     answers: ['1']
     explanation: |
-      선택지 1 (정답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 2 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 3 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 4 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
+      선택지 1: 심층 신뢰망은 여러 RBM을 계층적으로 쌓아 데이터의 확률분포를 학습하는 생성 모델이다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      DBN은 확률적 심층 신경망의 대표적인 모델이다.
+    tags: [deep-learning, deep-belief-network]
 
   - id: e19-35
     type: multiple-choice
-    prompt: '원본 이미지의 35번 문제를 풀어주세요.'
-    images:
-      - path: images/subjects/artificial-intelligence/past-exams/2019/page-2.png
-        alt: 2019년 인공지능 기출 35번 원본 페이지
+    prompt: CNN 모델에서 필터를 적용함으로써 특징을 검출하는 역할을 하는 층은?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: 'ReLU 층' }
+      - { id: '2', text: '통합(pooling) 층' }
+      - { id: '3', text: '완전연결층' }
+      - { id: '4', text: '합성곱(convolution)층' }
     answers: ['4']
     explanation: |
-      선택지 1 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 2 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 3 (오답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
-      선택지 4 (정답): origin/정답.txt의 2019년 인공지능 정답표 기준이다.
+      선택지 4: 합성곱층은 필터 또는 커널을 입력에 적용하여 국소 특징맵을 생성한다.
 
       핵심 개념:
-      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
-      선택지는 원본 이미지의 번호와 동일하게 대응된다.
-      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-    tags: [past-exam, image-backed]
+      CNN에서 합성곱층은 특징 검출, 풀링층은 공간 크기 축소, 완전연결층은 최종 분류에 주로 쓰인다.
+    tags: [deep-learning, cnn, convolution]
