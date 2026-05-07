@@ -11,6 +11,13 @@ const examSource: CatalogSource = {
   year: 2019,
 };
 
+const textbookSource: CatalogSource = {
+  id: 'textbook',
+  title: '교재 문제',
+  path: 'subjects/algorithms/textbook.json',
+  kind: 'textbook',
+};
+
 describe('data validation', () => {
   it('rejects duplicate question IDs', () => {
     expect(() =>
@@ -103,6 +110,53 @@ describe('data validation', () => {
         ],
       }),
     ).not.toThrow();
+  });
+
+  it('accepts textbook IDs and choice images', () => {
+    expect(() =>
+      validateQuestionFile(
+        {
+          subjectId: 'algorithms',
+          sourceId: 'textbook',
+          title: '알고리즘 교재 문제',
+          kind: 'textbook',
+          questions: [
+            {
+              ...validQuestion('t01-01'),
+              choices: [
+                {
+                  id: '1',
+                  text: '①',
+                  image: {
+                    path: 'package.json',
+                    alt: '테스트 선택지 이미지',
+                  },
+                },
+                { id: '2', text: '②' },
+              ],
+            },
+          ],
+        },
+        'algorithms',
+        textbookSource,
+      ),
+    ).not.toThrow();
+  });
+
+  it('rejects malformed textbook IDs', () => {
+    expect(() =>
+      validateQuestionFile(
+        {
+          subjectId: 'algorithms',
+          sourceId: 'textbook',
+          title: '알고리즘 교재 문제',
+          kind: 'textbook',
+          questions: [validQuestion('b01-01')],
+        },
+        'algorithms',
+        textbookSource,
+      ),
+    ).toThrow(/t\{chapter\}-\{nn\}/);
   });
 });
 

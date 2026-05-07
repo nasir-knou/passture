@@ -17,8 +17,10 @@ export function sourceKindLabel(kind: SourceKind): string {
   switch (kind) {
     case 'exam':
       return '기출';
-    case 'workbook':
+    case 'textbook':
       return '교재';
+    case 'workbook':
+      return '워크북';
     case 'lecture':
       return '강의';
   }

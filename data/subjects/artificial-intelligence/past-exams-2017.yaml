@@ -7,12 +7,875 @@ year: 2017
 questions:
   - id: e17-01
     type: multiple-choice
-    prompt: 상태 공간 탐색에서 목표 상태까지의 추정 비용을 사용하는 탐색 방법은?
+    prompt: '원본 이미지의 1번 문제를 풀어주세요.'
+    images:
+      - path: images/subjects/artificial-intelligence/past-exams/2017/page-1.png
+        alt: 2017년 인공지능 기출 1번 원본 페이지
     choices:
-      - { id: '1', text: '휴리스틱 탐색' }
-      - { id: '2', text: '무조건 무작위 선택' }
-      - { id: '3', text: '파일 순차 접근' }
-      - { id: '4', text: '디스크 스케줄링' }
+      - { id: '1', text: '1' }
+      - { id: '2', text: '2' }
+      - { id: '3', text: '3' }
+      - { id: '4', text: '4' }
     answers: ['1']
-    explanation: 휴리스틱 탐색은 목표에 가까운 정도나 남은 비용 추정치를 이용해 탐색 순서를 정한다.
-    tags: [search, heuristic]
+    explanation: |
+      선택지 1 (정답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 2 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 3 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 4 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+
+      핵심 개념:
+      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
+      선택지는 원본 이미지의 번호와 동일하게 대응된다.
+      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
+      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
+    tags: [past-exam, image-backed]
+
+  - id: e17-02
+    type: multiple-choice
+    prompt: '원본 이미지의 2번 문제를 풀어주세요.'
+    images:
+      - path: images/subjects/artificial-intelligence/past-exams/2017/page-1.png
+        alt: 2017년 인공지능 기출 2번 원본 페이지
+    choices:
+      - { id: '1', text: '1' }
+      - { id: '2', text: '2' }
+      - { id: '3', text: '3' }
+      - { id: '4', text: '4' }
+    answers: ['4']
+    explanation: |
+      선택지 1 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 2 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 3 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 4 (정답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+
+      핵심 개념:
+      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
+      선택지는 원본 이미지의 번호와 동일하게 대응된다.
+      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
+      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
+    tags: [past-exam, image-backed]
+
+  - id: e17-03
+    type: multiple-choice
+    prompt: '원본 이미지의 3번 문제를 풀어주세요.'
+    images:
+      - path: images/subjects/artificial-intelligence/past-exams/2017/page-1.png
+        alt: 2017년 인공지능 기출 3번 원본 페이지
+    choices:
+      - { id: '1', text: '1' }
+      - { id: '2', text: '2' }
+      - { id: '3', text: '3' }
+      - { id: '4', text: '4' }
+    answers: ['2']
+    explanation: |
+      선택지 1 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 2 (정답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 3 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 4 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+
+      핵심 개념:
+      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
+      선택지는 원본 이미지의 번호와 동일하게 대응된다.
+      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
+      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
+    tags: [past-exam, image-backed]
+
+  - id: e17-04
+    type: multiple-choice
+    prompt: '원본 이미지의 4번 문제를 풀어주세요.'
+    images:
+      - path: images/subjects/artificial-intelligence/past-exams/2017/page-1.png
+        alt: 2017년 인공지능 기출 4번 원본 페이지
+    choices:
+      - { id: '1', text: '1' }
+      - { id: '2', text: '2' }
+      - { id: '3', text: '3' }
+      - { id: '4', text: '4' }
+    answers: ['2']
+    explanation: |
+      선택지 1 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 2 (정답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 3 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 4 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+
+      핵심 개념:
+      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
+      선택지는 원본 이미지의 번호와 동일하게 대응된다.
+      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
+      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
+    tags: [past-exam, image-backed]
+
+  - id: e17-05
+    type: multiple-choice
+    prompt: '원본 이미지의 5번 문제를 풀어주세요.'
+    images:
+      - path: images/subjects/artificial-intelligence/past-exams/2017/page-1.png
+        alt: 2017년 인공지능 기출 5번 원본 페이지
+    choices:
+      - { id: '1', text: '1' }
+      - { id: '2', text: '2' }
+      - { id: '3', text: '3' }
+      - { id: '4', text: '4' }
+    answers: ['3']
+    explanation: |
+      선택지 1 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 2 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 3 (정답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 4 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+
+      핵심 개념:
+      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
+      선택지는 원본 이미지의 번호와 동일하게 대응된다.
+      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
+      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
+    tags: [past-exam, image-backed]
+
+  - id: e17-06
+    type: multiple-choice
+    prompt: '원본 이미지의 6번 문제를 풀어주세요.'
+    images:
+      - path: images/subjects/artificial-intelligence/past-exams/2017/page-1.png
+        alt: 2017년 인공지능 기출 6번 원본 페이지
+    choices:
+      - { id: '1', text: '1' }
+      - { id: '2', text: '2' }
+      - { id: '3', text: '3' }
+      - { id: '4', text: '4' }
+    answers: ['4']
+    explanation: |
+      선택지 1 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 2 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 3 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 4 (정답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+
+      핵심 개념:
+      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
+      선택지는 원본 이미지의 번호와 동일하게 대응된다.
+      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
+      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
+    tags: [past-exam, image-backed]
+
+  - id: e17-07
+    type: multiple-choice
+    prompt: '원본 이미지의 7번 문제를 풀어주세요.'
+    images:
+      - path: images/subjects/artificial-intelligence/past-exams/2017/page-1.png
+        alt: 2017년 인공지능 기출 7번 원본 페이지
+    choices:
+      - { id: '1', text: '1' }
+      - { id: '2', text: '2' }
+      - { id: '3', text: '3' }
+      - { id: '4', text: '4' }
+    answers: ['1']
+    explanation: |
+      선택지 1 (정답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 2 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 3 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 4 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+
+      핵심 개념:
+      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
+      선택지는 원본 이미지의 번호와 동일하게 대응된다.
+      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
+      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
+    tags: [past-exam, image-backed]
+
+  - id: e17-08
+    type: multiple-choice
+    prompt: '원본 이미지의 8번 문제를 풀어주세요.'
+    images:
+      - path: images/subjects/artificial-intelligence/past-exams/2017/page-1.png
+        alt: 2017년 인공지능 기출 8번 원본 페이지
+    choices:
+      - { id: '1', text: '1' }
+      - { id: '2', text: '2' }
+      - { id: '3', text: '3' }
+      - { id: '4', text: '4' }
+    answers: ['2']
+    explanation: |
+      선택지 1 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 2 (정답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 3 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 4 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+
+      핵심 개념:
+      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
+      선택지는 원본 이미지의 번호와 동일하게 대응된다.
+      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
+      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
+    tags: [past-exam, image-backed]
+
+  - id: e17-09
+    type: multiple-choice
+    prompt: '원본 이미지의 9번 문제를 풀어주세요.'
+    images:
+      - path: images/subjects/artificial-intelligence/past-exams/2017/page-1.png
+        alt: 2017년 인공지능 기출 9번 원본 페이지
+    choices:
+      - { id: '1', text: '1' }
+      - { id: '2', text: '2' }
+      - { id: '3', text: '3' }
+      - { id: '4', text: '4' }
+    answers: ['1']
+    explanation: |
+      선택지 1 (정답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 2 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 3 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 4 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+
+      핵심 개념:
+      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
+      선택지는 원본 이미지의 번호와 동일하게 대응된다.
+      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
+      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
+    tags: [past-exam, image-backed]
+
+  - id: e17-10
+    type: multiple-choice
+    prompt: '원본 이미지의 10번 문제를 풀어주세요.'
+    images:
+      - path: images/subjects/artificial-intelligence/past-exams/2017/page-1.png
+        alt: 2017년 인공지능 기출 10번 원본 페이지
+    choices:
+      - { id: '1', text: '1' }
+      - { id: '2', text: '2' }
+      - { id: '3', text: '3' }
+      - { id: '4', text: '4' }
+    answers: ['3']
+    explanation: |
+      선택지 1 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 2 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 3 (정답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 4 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+
+      핵심 개념:
+      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
+      선택지는 원본 이미지의 번호와 동일하게 대응된다.
+      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
+      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
+    tags: [past-exam, image-backed]
+
+  - id: e17-11
+    type: multiple-choice
+    prompt: '원본 이미지의 11번 문제를 풀어주세요.'
+    images:
+      - path: images/subjects/artificial-intelligence/past-exams/2017/page-1.png
+        alt: 2017년 인공지능 기출 11번 원본 페이지
+    choices:
+      - { id: '1', text: '1' }
+      - { id: '2', text: '2' }
+      - { id: '3', text: '3' }
+      - { id: '4', text: '4' }
+    answers: ['3']
+    explanation: |
+      선택지 1 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 2 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 3 (정답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 4 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+
+      핵심 개념:
+      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
+      선택지는 원본 이미지의 번호와 동일하게 대응된다.
+      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
+      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
+    tags: [past-exam, image-backed]
+
+  - id: e17-12
+    type: multiple-choice
+    prompt: '원본 이미지의 12번 문제를 풀어주세요.'
+    images:
+      - path: images/subjects/artificial-intelligence/past-exams/2017/page-1.png
+        alt: 2017년 인공지능 기출 12번 원본 페이지
+    choices:
+      - { id: '1', text: '1' }
+      - { id: '2', text: '2' }
+      - { id: '3', text: '3' }
+      - { id: '4', text: '4' }
+    answers: ['2']
+    explanation: |
+      선택지 1 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 2 (정답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 3 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 4 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+
+      핵심 개념:
+      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
+      선택지는 원본 이미지의 번호와 동일하게 대응된다.
+      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
+      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
+    tags: [past-exam, image-backed]
+
+  - id: e17-13
+    type: multiple-choice
+    prompt: '원본 이미지의 13번 문제를 풀어주세요.'
+    images:
+      - path: images/subjects/artificial-intelligence/past-exams/2017/page-1.png
+        alt: 2017년 인공지능 기출 13번 원본 페이지
+    choices:
+      - { id: '1', text: '1' }
+      - { id: '2', text: '2' }
+      - { id: '3', text: '3' }
+      - { id: '4', text: '4' }
+    answers: ['4']
+    explanation: |
+      선택지 1 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 2 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 3 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 4 (정답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+
+      핵심 개념:
+      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
+      선택지는 원본 이미지의 번호와 동일하게 대응된다.
+      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
+      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
+    tags: [past-exam, image-backed]
+
+  - id: e17-14
+    type: multiple-choice
+    prompt: '원본 이미지의 14번 문제를 풀어주세요.'
+    images:
+      - path: images/subjects/artificial-intelligence/past-exams/2017/page-1.png
+        alt: 2017년 인공지능 기출 14번 원본 페이지
+    choices:
+      - { id: '1', text: '1' }
+      - { id: '2', text: '2' }
+      - { id: '3', text: '3' }
+      - { id: '4', text: '4' }
+    answers: ['1']
+    explanation: |
+      선택지 1 (정답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 2 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 3 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 4 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+
+      핵심 개념:
+      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
+      선택지는 원본 이미지의 번호와 동일하게 대응된다.
+      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
+      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
+    tags: [past-exam, image-backed]
+
+  - id: e17-15
+    type: multiple-choice
+    prompt: '원본 이미지의 15번 문제를 풀어주세요.'
+    images:
+      - path: images/subjects/artificial-intelligence/past-exams/2017/page-1.png
+        alt: 2017년 인공지능 기출 15번 원본 페이지
+    choices:
+      - { id: '1', text: '1' }
+      - { id: '2', text: '2' }
+      - { id: '3', text: '3' }
+      - { id: '4', text: '4' }
+    answers: ['2']
+    explanation: |
+      선택지 1 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 2 (정답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 3 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 4 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+
+      핵심 개념:
+      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
+      선택지는 원본 이미지의 번호와 동일하게 대응된다.
+      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
+      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
+    tags: [past-exam, image-backed]
+
+  - id: e17-16
+    type: multiple-choice
+    prompt: '원본 이미지의 16번 문제를 풀어주세요.'
+    images:
+      - path: images/subjects/artificial-intelligence/past-exams/2017/page-1.png
+        alt: 2017년 인공지능 기출 16번 원본 페이지
+    choices:
+      - { id: '1', text: '1' }
+      - { id: '2', text: '2' }
+      - { id: '3', text: '3' }
+      - { id: '4', text: '4' }
+    answers: ['4']
+    explanation: |
+      선택지 1 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 2 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 3 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 4 (정답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+
+      핵심 개념:
+      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
+      선택지는 원본 이미지의 번호와 동일하게 대응된다.
+      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
+      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
+    tags: [past-exam, image-backed]
+
+  - id: e17-17
+    type: multiple-choice
+    prompt: '원본 이미지의 17번 문제를 풀어주세요.'
+    images:
+      - path: images/subjects/artificial-intelligence/past-exams/2017/page-1.png
+        alt: 2017년 인공지능 기출 17번 원본 페이지
+    choices:
+      - { id: '1', text: '1' }
+      - { id: '2', text: '2' }
+      - { id: '3', text: '3' }
+      - { id: '4', text: '4' }
+    answers: ['1']
+    explanation: |
+      선택지 1 (정답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 2 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 3 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 4 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+
+      핵심 개념:
+      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
+      선택지는 원본 이미지의 번호와 동일하게 대응된다.
+      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
+      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
+    tags: [past-exam, image-backed]
+
+  - id: e17-18
+    type: multiple-choice
+    prompt: '원본 이미지의 18번 문제를 풀어주세요.'
+    images:
+      - path: images/subjects/artificial-intelligence/past-exams/2017/page-1.png
+        alt: 2017년 인공지능 기출 18번 원본 페이지
+    choices:
+      - { id: '1', text: '1' }
+      - { id: '2', text: '2' }
+      - { id: '3', text: '3' }
+      - { id: '4', text: '4' }
+    answers: ['4']
+    explanation: |
+      선택지 1 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 2 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 3 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 4 (정답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+
+      핵심 개념:
+      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
+      선택지는 원본 이미지의 번호와 동일하게 대응된다.
+      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
+      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
+    tags: [past-exam, image-backed]
+
+  - id: e17-19
+    type: multiple-choice
+    prompt: '원본 이미지의 19번 문제를 풀어주세요.'
+    images:
+      - path: images/subjects/artificial-intelligence/past-exams/2017/page-2.png
+        alt: 2017년 인공지능 기출 19번 원본 페이지
+    choices:
+      - { id: '1', text: '1' }
+      - { id: '2', text: '2' }
+      - { id: '3', text: '3' }
+      - { id: '4', text: '4' }
+    answers: ['1']
+    explanation: |
+      선택지 1 (정답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 2 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 3 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 4 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+
+      핵심 개념:
+      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
+      선택지는 원본 이미지의 번호와 동일하게 대응된다.
+      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
+      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
+    tags: [past-exam, image-backed]
+
+  - id: e17-20
+    type: multiple-choice
+    prompt: '원본 이미지의 20번 문제를 풀어주세요.'
+    images:
+      - path: images/subjects/artificial-intelligence/past-exams/2017/page-2.png
+        alt: 2017년 인공지능 기출 20번 원본 페이지
+    choices:
+      - { id: '1', text: '1' }
+      - { id: '2', text: '2' }
+      - { id: '3', text: '3' }
+      - { id: '4', text: '4' }
+    answers: ['2']
+    explanation: |
+      선택지 1 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 2 (정답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 3 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 4 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+
+      핵심 개념:
+      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
+      선택지는 원본 이미지의 번호와 동일하게 대응된다.
+      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
+      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
+    tags: [past-exam, image-backed]
+
+  - id: e17-21
+    type: multiple-choice
+    prompt: '원본 이미지의 21번 문제를 풀어주세요.'
+    images:
+      - path: images/subjects/artificial-intelligence/past-exams/2017/page-2.png
+        alt: 2017년 인공지능 기출 21번 원본 페이지
+    choices:
+      - { id: '1', text: '1' }
+      - { id: '2', text: '2' }
+      - { id: '3', text: '3' }
+      - { id: '4', text: '4' }
+    answers: ['3']
+    explanation: |
+      선택지 1 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 2 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 3 (정답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 4 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+
+      핵심 개념:
+      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
+      선택지는 원본 이미지의 번호와 동일하게 대응된다.
+      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
+      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
+    tags: [past-exam, image-backed]
+
+  - id: e17-22
+    type: multiple-choice
+    prompt: '원본 이미지의 22번 문제를 풀어주세요.'
+    images:
+      - path: images/subjects/artificial-intelligence/past-exams/2017/page-2.png
+        alt: 2017년 인공지능 기출 22번 원본 페이지
+    choices:
+      - { id: '1', text: '1' }
+      - { id: '2', text: '2' }
+      - { id: '3', text: '3' }
+      - { id: '4', text: '4' }
+    answers: ['3']
+    explanation: |
+      선택지 1 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 2 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 3 (정답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 4 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+
+      핵심 개념:
+      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
+      선택지는 원본 이미지의 번호와 동일하게 대응된다.
+      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
+      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
+    tags: [past-exam, image-backed]
+
+  - id: e17-23
+    type: multiple-choice
+    prompt: '원본 이미지의 23번 문제를 풀어주세요.'
+    images:
+      - path: images/subjects/artificial-intelligence/past-exams/2017/page-2.png
+        alt: 2017년 인공지능 기출 23번 원본 페이지
+    choices:
+      - { id: '1', text: '1' }
+      - { id: '2', text: '2' }
+      - { id: '3', text: '3' }
+      - { id: '4', text: '4' }
+    answers: ['4']
+    explanation: |
+      선택지 1 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 2 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 3 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 4 (정답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+
+      핵심 개념:
+      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
+      선택지는 원본 이미지의 번호와 동일하게 대응된다.
+      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
+      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
+    tags: [past-exam, image-backed]
+
+  - id: e17-24
+    type: multiple-choice
+    prompt: '원본 이미지의 24번 문제를 풀어주세요.'
+    images:
+      - path: images/subjects/artificial-intelligence/past-exams/2017/page-2.png
+        alt: 2017년 인공지능 기출 24번 원본 페이지
+    choices:
+      - { id: '1', text: '1' }
+      - { id: '2', text: '2' }
+      - { id: '3', text: '3' }
+      - { id: '4', text: '4' }
+    answers: ['1']
+    explanation: |
+      선택지 1 (정답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 2 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 3 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 4 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+
+      핵심 개념:
+      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
+      선택지는 원본 이미지의 번호와 동일하게 대응된다.
+      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
+      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
+    tags: [past-exam, image-backed]
+
+  - id: e17-25
+    type: multiple-choice
+    prompt: '원본 이미지의 25번 문제를 풀어주세요.'
+    images:
+      - path: images/subjects/artificial-intelligence/past-exams/2017/page-2.png
+        alt: 2017년 인공지능 기출 25번 원본 페이지
+    choices:
+      - { id: '1', text: '1' }
+      - { id: '2', text: '2' }
+      - { id: '3', text: '3' }
+      - { id: '4', text: '4' }
+    answers: ['2']
+    explanation: |
+      선택지 1 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 2 (정답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 3 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 4 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+
+      핵심 개념:
+      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
+      선택지는 원본 이미지의 번호와 동일하게 대응된다.
+      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
+      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
+    tags: [past-exam, image-backed]
+
+  - id: e17-26
+    type: multiple-choice
+    prompt: '원본 이미지의 26번 문제를 풀어주세요.'
+    images:
+      - path: images/subjects/artificial-intelligence/past-exams/2017/page-2.png
+        alt: 2017년 인공지능 기출 26번 원본 페이지
+    choices:
+      - { id: '1', text: '1' }
+      - { id: '2', text: '2' }
+      - { id: '3', text: '3' }
+      - { id: '4', text: '4' }
+    answers: ['3']
+    explanation: |
+      선택지 1 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 2 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 3 (정답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 4 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+
+      핵심 개념:
+      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
+      선택지는 원본 이미지의 번호와 동일하게 대응된다.
+      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
+      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
+    tags: [past-exam, image-backed]
+
+  - id: e17-27
+    type: multiple-choice
+    prompt: '원본 이미지의 27번 문제를 풀어주세요.'
+    images:
+      - path: images/subjects/artificial-intelligence/past-exams/2017/page-2.png
+        alt: 2017년 인공지능 기출 27번 원본 페이지
+    choices:
+      - { id: '1', text: '1' }
+      - { id: '2', text: '2' }
+      - { id: '3', text: '3' }
+      - { id: '4', text: '4' }
+    answers: ['3']
+    explanation: |
+      선택지 1 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 2 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 3 (정답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 4 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+
+      핵심 개념:
+      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
+      선택지는 원본 이미지의 번호와 동일하게 대응된다.
+      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
+      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
+    tags: [past-exam, image-backed]
+
+  - id: e17-28
+    type: multiple-choice
+    prompt: '원본 이미지의 28번 문제를 풀어주세요.'
+    images:
+      - path: images/subjects/artificial-intelligence/past-exams/2017/page-2.png
+        alt: 2017년 인공지능 기출 28번 원본 페이지
+    choices:
+      - { id: '1', text: '1' }
+      - { id: '2', text: '2' }
+      - { id: '3', text: '3' }
+      - { id: '4', text: '4' }
+    answers: ['2']
+    explanation: |
+      선택지 1 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 2 (정답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 3 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 4 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+
+      핵심 개념:
+      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
+      선택지는 원본 이미지의 번호와 동일하게 대응된다.
+      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
+      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
+    tags: [past-exam, image-backed]
+
+  - id: e17-29
+    type: multiple-choice
+    prompt: '원본 이미지의 29번 문제를 풀어주세요.'
+    images:
+      - path: images/subjects/artificial-intelligence/past-exams/2017/page-2.png
+        alt: 2017년 인공지능 기출 29번 원본 페이지
+    choices:
+      - { id: '1', text: '1' }
+      - { id: '2', text: '2' }
+      - { id: '3', text: '3' }
+      - { id: '4', text: '4' }
+    answers: ['4']
+    explanation: |
+      선택지 1 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 2 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 3 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 4 (정답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+
+      핵심 개념:
+      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
+      선택지는 원본 이미지의 번호와 동일하게 대응된다.
+      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
+      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
+    tags: [past-exam, image-backed]
+
+  - id: e17-30
+    type: multiple-choice
+    prompt: '원본 이미지의 30번 문제를 풀어주세요.'
+    images:
+      - path: images/subjects/artificial-intelligence/past-exams/2017/page-2.png
+        alt: 2017년 인공지능 기출 30번 원본 페이지
+    choices:
+      - { id: '1', text: '1' }
+      - { id: '2', text: '2' }
+      - { id: '3', text: '3' }
+      - { id: '4', text: '4' }
+    answers: ['2']
+    explanation: |
+      선택지 1 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 2 (정답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 3 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 4 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+
+      핵심 개념:
+      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
+      선택지는 원본 이미지의 번호와 동일하게 대응된다.
+      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
+      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
+    tags: [past-exam, image-backed]
+
+  - id: e17-31
+    type: multiple-choice
+    prompt: '원본 이미지의 31번 문제를 풀어주세요.'
+    images:
+      - path: images/subjects/artificial-intelligence/past-exams/2017/page-2.png
+        alt: 2017년 인공지능 기출 31번 원본 페이지
+    choices:
+      - { id: '1', text: '1' }
+      - { id: '2', text: '2' }
+      - { id: '3', text: '3' }
+      - { id: '4', text: '4' }
+    answers: ['1']
+    explanation: |
+      선택지 1 (정답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 2 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 3 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 4 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+
+      핵심 개념:
+      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
+      선택지는 원본 이미지의 번호와 동일하게 대응된다.
+      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
+      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
+    tags: [past-exam, image-backed]
+
+  - id: e17-32
+    type: multiple-choice
+    prompt: '원본 이미지의 32번 문제를 풀어주세요.'
+    images:
+      - path: images/subjects/artificial-intelligence/past-exams/2017/page-2.png
+        alt: 2017년 인공지능 기출 32번 원본 페이지
+    choices:
+      - { id: '1', text: '1' }
+      - { id: '2', text: '2' }
+      - { id: '3', text: '3' }
+      - { id: '4', text: '4' }
+    answers: ['4']
+    explanation: |
+      선택지 1 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 2 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 3 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 4 (정답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+
+      핵심 개념:
+      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
+      선택지는 원본 이미지의 번호와 동일하게 대응된다.
+      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
+      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
+    tags: [past-exam, image-backed]
+
+  - id: e17-33
+    type: multiple-choice
+    prompt: '원본 이미지의 33번 문제를 풀어주세요.'
+    images:
+      - path: images/subjects/artificial-intelligence/past-exams/2017/page-2.png
+        alt: 2017년 인공지능 기출 33번 원본 페이지
+    choices:
+      - { id: '1', text: '1' }
+      - { id: '2', text: '2' }
+      - { id: '3', text: '3' }
+      - { id: '4', text: '4' }
+    answers: ['1']
+    explanation: |
+      선택지 1 (정답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 2 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 3 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 4 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+
+      핵심 개념:
+      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
+      선택지는 원본 이미지의 번호와 동일하게 대응된다.
+      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
+      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
+    tags: [past-exam, image-backed]
+
+  - id: e17-34
+    type: multiple-choice
+    prompt: '원본 이미지의 34번 문제를 풀어주세요.'
+    images:
+      - path: images/subjects/artificial-intelligence/past-exams/2017/page-2.png
+        alt: 2017년 인공지능 기출 34번 원본 페이지
+    choices:
+      - { id: '1', text: '1' }
+      - { id: '2', text: '2' }
+      - { id: '3', text: '3' }
+      - { id: '4', text: '4' }
+    answers: ['3']
+    explanation: |
+      선택지 1 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 2 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 3 (정답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 4 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+
+      핵심 개념:
+      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
+      선택지는 원본 이미지의 번호와 동일하게 대응된다.
+      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
+      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
+    tags: [past-exam, image-backed]
+
+  - id: e17-35
+    type: multiple-choice
+    prompt: '원본 이미지의 35번 문제를 풀어주세요.'
+    images:
+      - path: images/subjects/artificial-intelligence/past-exams/2017/page-2.png
+        alt: 2017년 인공지능 기출 35번 원본 페이지
+    choices:
+      - { id: '1', text: '1' }
+      - { id: '2', text: '2' }
+      - { id: '3', text: '3' }
+      - { id: '4', text: '4' }
+    answers: ['3']
+    explanation: |
+      선택지 1 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 2 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 3 (정답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+      선택지 4 (오답): origin/정답.txt의 2017년 인공지능 정답표 기준이다.
+
+      핵심 개념:
+      이 문항은 원본 페이지 이미지를 함께 제공하는 1차 변환 문항이다.
+      선택지는 원본 이미지의 번호와 동일하게 대응된다.
+      정답은 origin/정답.txt의 과목별 정답표를 기준으로 입력했다.
+      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
+    tags: [past-exam, image-backed]

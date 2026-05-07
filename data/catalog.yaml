@@ -28,7 +28,22 @@ subjects:
         kind: lecture
   - id: discrete-math
     title: 이산수학
-    sources: []
+    sources:
+      - id: past-exams-2017
+        title: 2017 기출
+        path: subjects/discrete-math/past-exams-2017.json
+        kind: exam
+        year: 2017
+      - id: past-exams-2018
+        title: 2018 기출
+        path: subjects/discrete-math/past-exams-2018.json
+        kind: exam
+        year: 2018
+      - id: past-exams-2019
+        title: 2019 기출
+        path: subjects/discrete-math/past-exams-2019.json
+        kind: exam
+        year: 2019
   - id: algorithms
     title: 알고리즘
     sources:
@@ -47,8 +62,12 @@ subjects:
         path: subjects/algorithms/past-exams-2019.json
         kind: exam
         year: 2019
+      - id: textbook
+        title: 교재 문제
+        path: subjects/algorithms/textbook.json
+        kind: textbook
       - id: workbook
-        title: 교재 워크북
+        title: 워크북 문제
         path: subjects/algorithms/workbook.json
         kind: workbook
       - id: lecture-exercises

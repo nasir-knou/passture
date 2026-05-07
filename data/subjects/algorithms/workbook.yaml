@@ -1,17 +1,27 @@
 subjectId: algorithms
 sourceId: workbook
-title: 알고리즘 교재 워크북 샘플
+title: 알고리즘 워크북 문제 샘플
 kind: workbook
 
 questions:
   - id: b01-01
     type: multiple-choice
-    prompt: O(n^2) 알고리즘과 O(n log n) 알고리즘을 큰 입력에서 비교할 때 일반적으로 더 빠르게 증가하는 것은?
+    prompt: 워크북 확인 문제로, 정렬된 배열에서 탐색 범위를 절반씩 줄여 값을 찾는 알고리즘은?
     choices:
-      - { id: '1', text: 'O(n^2)' }
-      - { id: '2', text: 'O(n log n)' }
-      - { id: '3', text: '둘은 항상 같다.' }
-      - { id: '4', text: '입력과 무관하게 O(1)이 가장 크다.' }
-    answers: ['1']
-    explanation: n이 충분히 커지면 n^2은 n log n보다 빠르게 증가한다.
-    tags: [complexity]
+      - { id: '1', text: '순차 탐색' }
+      - { id: '2', text: '이진 탐색' }
+      - { id: '3', text: '깊이 우선 탐색' }
+      - { id: '4', text: '너비 우선 탐색' }
+    answers: ['2']
+    explanation: |
+      선택지 1 (오답): 순차 탐색은 앞에서부터 차례대로 확인한다.
+      선택지 2 (정답): 이진 탐색은 정렬된 배열에서 중간값을 기준으로 탐색 범위를 절반씩 줄인다.
+      선택지 3 (오답): 깊이 우선 탐색은 그래프나 트리 순회 방법이다.
+      선택지 4 (오답): 너비 우선 탐색은 가까운 정점부터 탐색하는 그래프 순회 방법이다.
+
+      핵심 개념:
+      이진 탐색은 정렬된 자료에 적용한다.
+      매 단계 탐색 범위를 절반으로 줄인다.
+      시간 복잡도는 O(log n)이다.
+      삽입과 삭제가 잦은 자료에는 배열 기반 이진 탐색이 항상 적합하지는 않다.
+    tags: [search, binary-search]

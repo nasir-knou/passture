@@ -180,7 +180,7 @@ function validateQuestion(
   const choiceIds = new Set<string>();
 
   for (const [choiceIndex, choice] of choices.entries()) {
-    validateChoice(choice, `${fieldPath}.choices[${choiceIndex}]`);
+    validateChoice(choice, `${fieldPath}.choices[${choiceIndex}]`, root);
     expectUnique(choiceIds, choice.id, `${fieldPath}.choices[${choiceIndex}].id`);
   }
 
@@ -229,10 +229,13 @@ function validateQuestion(
   }
 }
 
-function validateChoice(value: unknown, fieldPath: string): asserts value is Choice {
+function validateChoice(value: unknown, fieldPath: string, root: string): asserts value is Choice {
   const choice = expectRecord(value, fieldPath);
   expectString(choice.id, `${fieldPath}.id`);
   expectString(choice.text, `${fieldPath}.text`);
+  if (choice.image !== undefined) {
+    validateImage(choice.image, `${fieldPath}.image`, root);
+  }
 }
 
 function validateImage(value: unknown, fieldPath: string, root: string): void {
@@ -261,6 +264,10 @@ function validateQuestionId(
       throw new Error(`${fieldPath} must match e{yy}-{nn} for exam sources`);
     }
     return;
+  }
+
+  if (kind === 'textbook' && !/^t\d{2}-\d{2}$/.test(id)) {
+    throw new Error(`${fieldPath} must match t{chapter}-{nn} for textbook sources`);
   }
 
   if (kind === 'workbook' && !/^b\d{2}-\d{2}$/.test(id)) {
@@ -339,8 +346,8 @@ function expectUnique(seen: Set<string>, value: string, fieldPath: string): void
 }
 
 function expectSourceKind(value: string, fieldPath: string): asserts value is SourceKind {
-  if (!['exam', 'workbook', 'lecture'].includes(value)) {
-    throw new Error(`${fieldPath} must be exam, workbook, or lecture`);
+  if (!['exam', 'textbook', 'workbook', 'lecture'].includes(value)) {
+    throw new Error(`${fieldPath} must be exam, textbook, workbook, or lecture`);
   }
 }
 

@@ -1,4 +1,4 @@
-export type SourceKind = 'exam' | 'workbook' | 'lecture';
+export type SourceKind = 'exam' | 'textbook' | 'workbook' | 'lecture';
 
 export interface Catalog {
   version: number;

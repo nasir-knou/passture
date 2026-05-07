@@ -38,6 +38,7 @@ export interface Question {
 export interface Choice {
   id: string;
   text: string;
+  image?: QuestionImage;
 }
 
 export interface QuestionImage {

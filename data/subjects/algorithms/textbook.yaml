@@ -1,0 +1,27 @@
+subjectId: algorithms
+sourceId: textbook
+title: 알고리즘 교재 문제 샘플
+kind: textbook
+
+questions:
+  - id: t01-01
+    type: multiple-choice
+    prompt: O(n^2) 알고리즘과 O(n log n) 알고리즘을 큰 입력에서 비교할 때 일반적으로 더 빠르게 증가하는 것은?
+    choices:
+      - { id: '1', text: 'O(n^2)' }
+      - { id: '2', text: 'O(n log n)' }
+      - { id: '3', text: '둘은 항상 같다.' }
+      - { id: '4', text: '입력과 무관하게 O(1)이 가장 크다.' }
+    answers: ['1']
+    explanation: |
+      선택지 1 (정답): n이 충분히 커지면 n^2은 n log n보다 빠르게 증가한다.
+      선택지 2 (오답): n log n은 n^2보다 점근적으로 느리게 증가한다.
+      선택지 3 (오답): 두 함수는 입력 크기가 커질수록 증가율 차이가 커진다.
+      선택지 4 (오답): O(1)은 상수 시간으로 입력 크기에 따라 증가하지 않는다.
+
+      핵심 개념:
+      점근 표기법은 입력 크기가 충분히 커졌을 때의 증가율을 비교한다.
+      다항식 n^2은 n log n보다 빠르게 커진다.
+      O(1)은 상수 시간 복잡도를 뜻한다.
+      알고리즘 효율 비교에서는 낮은 증가 차수가 일반적으로 유리하다.
+    tags: [complexity]
