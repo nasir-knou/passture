@@ -14,8 +14,8 @@
 
 | 범위 | YAML ID | 원본 이미지 | 상태 | 메모 |
 | --- | --- | --- | --- | --- |
-| 36-45 | `e19-01`-`e19-10` | `19-운영체제-3학년-3교시-1.png` | 완료 | 문제/선택지/공통 코드 및 정답 일치. 39번 생산자 코드는 `code` passage로 구조화. 44번 변형 자원할당 그래프는 `resource-allocation-graph` diagram으로 전환. 42~43번 그래프는 간선 라벨 `(ㄱ)~(ㄹ)`이 채점 단서라 원본 crop 이미지를 유지. |
-| 46-55 | `e19-11`-`e19-20` | `19-운영체제-3학년-3교시-2.png` | 완료 | 문제/선택지/정답 일치. 47~48번 빈 공간 리스트는 `memory-free-list` diagram, 53~54번 페이지 참조 표는 `data-table` diagram으로 전환. |
+| 36-45 | `e19-01`-`e19-10` | `19-운영체제-3학년-3교시-1.png` | 완료 | 문제/선택지/공통 코드 및 정답 일치. 39번 생산자 코드는 `code` passage로 구조화. 42~44번 자원할당 그래프는 `resource-allocation-graph` diagram으로 전환. |
+| 46-55 | `e19-11`-`e19-20` | `19-운영체제-3학년-3교시-2.png` | 완료 | 문제/선택지/정답 일치. 47~48번 빈 공간 리스트는 `memory-free-list` diagram, 53~54번 페이지 참조는 현재 시간 3 경계 점선을 포함한 타임라인 `simple-graph` diagram으로 전환. |
 | 56-60 | `e19-21`-`e19-25` | `19-운영체제-3학년-3교시-2.png` | 완료 | 문제/선택지/정답 일치. 이미지 지문 불필요. 디스크 스케줄링과 보안 문항 해설은 선택지별 근거와 핵심 개념을 포함. |
 
 ## 검증 결과
@@ -25,14 +25,14 @@
 - 정답 대조: YAML 답안열 `4212444123324321412334113`, 공식 정답표와 일치.
 - passage 사용:
   - `g19-producer-code-01`: 코드 passage.
-  - `g19-rag-01`: 이미지 유지. 간선 라벨 `(ㄱ)~(ㄹ)`이 문제 조건이라 현 diagram 타입으로는 원본과 동일 재현이 어렵다.
+  - `g19-rag-01`: `resource-allocation-graph` diagram. 간선 라벨 `(ㄱ)~(ㄹ)` 포함.
   - `g19-transformed-rag-01`: `resource-allocation-graph` diagram.
   - `g19-free-list-image-01`: `memory-free-list` diagram.
-  - `g19-page-reference-image-01`: `data-table` diagram.
+  - `g19-page-reference-timeline-01`: `simple-graph` timeline diagram. 시간축 화살표와 현재 시간 3 이후 경계 점선을 포함.
 - 해설 구조: 25문항 모두 `선택지 1:`~`선택지 4:` 근거와 `핵심 개념:` 섹션 포함.
 - 빌드 검증: `pnpm data:build` 성공.
 
 ## 발견 사항
 
 - 추가 수정 필요한 원본 불일치는 발견하지 않았다.
-- 42~43번 자원할당 그래프는 이미지 사용이 불가피한 항목으로 남겼다.
+- 42~43번 자원할당 그래프는 간선 라벨을 포함한 diagram으로 전환하여 이미지 passage를 제거했다.

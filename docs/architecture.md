@@ -56,10 +56,13 @@
       result.ts
       history.ts
       mock-exam.ts
+      mock-exam-test.ts
+      mock-exam-result.ts
       backup.ts
     lib/
       data-loader.ts
       quiz-session.ts
+      mock-exam-session.ts
       shuffle.ts
       scorer.ts
       storage.ts
@@ -106,7 +109,7 @@
 
 `catalog.yaml`이 사이트 전체의 과목·출처 목록을 담는다. 새 과목 추가 시 앱 코드를 건드리지 않고 `catalog.yaml`과 문제 YAML만 추가하면 UI에 반영된다. 빌드 시 `public/data/`로 JSON이 출력되고 Vite가 dist 루트로 그대로 복사하므로, 브라우저는 `/data/...` 경로로 JSON만 fetch 한다. 개발 서버에서 JSON 산출물이 없고 Vite HTML fallback을 받은 경우에만 원본 YAML을 직접 읽는 fallback이 있다.
 
-현재 해시 라우트는 `#/`, `#/select`, `#/mock-exam`, `#/quiz`, `#/result`, `#/history`, `#/backup`이다. 과거 `#/bookmarks` 라우트는 호환용으로 남겨 두고 `#/history`로 이동시킨다.
+현재 해시 라우트는 `#/`, `#/select`, `#/mock-exam`, `#/mock-exam/test`, `#/mock-exam/result`, `#/quiz`, `#/result`, `#/history`, `#/backup`이다. 과거 `#/bookmarks` 라우트는 호환용으로 남겨 두고 `#/history`로 이동시킨다.
 
 ## 3. 데이터 빌드 파이프라인
 

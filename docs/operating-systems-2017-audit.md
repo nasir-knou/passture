@@ -15,7 +15,7 @@
 | 범위 | YAML ID | 원본 이미지 | 상태 | 메모 |
 | --- | --- | --- | --- | --- |
 | 36-45 | `e17-01`-`e17-10` | `17-운영체제-3학년-3교시-1.png` | 완료 | 문제/선택지/공통 mutex 코드 및 정답 일치. 37번 mutex 코드는 `code` passage. 40번 자원할당 그래프와 42번 변형 자원할당 그래프는 `resource-allocation-graph` diagram으로 전환. 45번 빈 공간 리스트는 `memory-free-list` diagram으로 전환. |
-| 46-55 | `e17-11`-`e17-20` | `17-운영체제-3학년-3교시-1.png`, `17-운영체제-3학년-3교시-2.png` | 완료 | 문제/선택지/정답 일치. 46번은 45번과 같은 빈 공간 리스트 diagram을 공유. 50~51번 페이지 참조 조건은 text passage와 `data-table` diagram으로 분리. |
+| 46-55 | `e17-11`-`e17-20` | `17-운영체제-3학년-3교시-1.png`, `17-운영체제-3학년-3교시-2.png` | 완료 | 문제/선택지/정답 일치. 46번은 45번과 같은 빈 공간 리스트 diagram을 공유. 50~51번 페이지 참조 조건은 text passage와 현재 시간 4 경계 점선을 포함한 타임라인 `simple-graph` diagram으로 분리. |
 | 56-60 | `e17-21`-`e17-25` | `17-운영체제-3학년-3교시-2.png` | 완료 | 문제/선택지/정답 일치. 디스크 스케줄링, 분산 시스템, 보안 문항은 이미지 지문 불필요. 해설은 선택지별 근거와 핵심 개념을 포함. |
 
 ## 검증 결과
@@ -29,7 +29,7 @@
   - `g17-transformed-rag-01`: `resource-allocation-graph` diagram.
   - `g17-free-list-image-01`: `memory-free-list` diagram.
   - `g17-page-reference-01`: 페이지 참조 조건 text passage.
-  - `g17-page-reference-table-01`: `data-table` diagram.
+  - `g17-page-reference-timeline-01`: `simple-graph` timeline diagram.
 - 해설 구조: 25문항 모두 `선택지 1:`~`선택지 4:` 근거와 `핵심 개념:` 섹션 포함.
 - 빌드 검증: `pnpm data:build` 성공.
 

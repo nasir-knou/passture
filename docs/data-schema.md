@@ -16,7 +16,7 @@
 
 - 브라우저에서 `fetch()` 후 즉시 파싱 가능 (런타임 의존성 0)
 - GitHub Pages 정적 배포와 완전 호환
-- TypeScript 타입과 JSON Schema로 빌드 시 검증 용이
+- TypeScript 타입과 직접 작성한 검증기로 빌드 시 검증 용이
 
 빌드 파이프라인 동작은 [architecture.md §3](./architecture.md) 참고.
 
@@ -174,7 +174,6 @@ questions:
 
   - id: e19-04
     type: multi-answer # 복수정답 문제
-    allowMultiple: true
     prompt: 다음 중 운영체제의 기능으로 옳은 것을 모두 고르시오.
     choices:
       - { id: '1', text: '프로세스 관리' }
@@ -223,33 +222,23 @@ algorithms:textbook:t03-07
 algorithms:workbook:b03-07
 ```
 
-## 4.1 챕터 태그
+## 4.1 모의시험 분산 기준
 
-교재(`kind: textbook`), 워크북(`kind: workbook`), 강의(`kind: lecture`), 특강(`kind: intensive`) 출처의 문제는 `tags`에 챕터 정보를 반드시 포함한다.
+모의시험은 과목별로 하나의 출처만 사용한다. 25문항 구성은 출처 종류에 따라 다르게 처리한다.
 
-- 형식: `chapter:NN` (2자리 숫자)
-- 예: `chapter:01`, `chapter:07`
-- 개념 태그를 대체하지 않는다. 챕터 태그와 개념 태그를 함께 둔다.
-- 문제 `id`에 장/강 번호가 있더라도 `tags`에 별도로 기록한다.
-- 강의/특강 문제는 강의 회차가 아니라 해당 문제가 다루는 교재 장 기준으로 태그를 붙인다.
-- 기출(`kind: exam`)은 연도/회차 기준 출처이므로 챕터 태그를 필수로 두지 않는다.
+- 기출(`kind: exam`): 출처가 25문항이면 그대로 사용하고, 35문항이면 무작위로 25문항을 추출한다.
+- 교재(`kind: textbook`), 워크북(`kind: workbook`), 강의(`kind: lecture`), 특강(`kind: intensive`): 문제 ID의 첫 숫자 그룹을 기준으로 전체 그룹 범위를 파악하고, 25문항을 가능한 균등하게 분산 추출한다.
 
-```yaml
-questions:
-  - id: t03-08
-    type: multiple-choice
-    prompt: 다음 중 동적 계획법 적용 조건으로 적절한 것은?
-    choices:
-      - { id: '1', text: '중복 부분 문제가 존재한다.' }
-      - { id: '2', text: '항상 모든 경우를 한 번만 탐색한다.' }
-      - { id: '3', text: '정렬된 배열에만 적용된다.' }
-      - { id: '4', text: '그래프 문제에는 적용할 수 없다.' }
-    answers: ['1']
-    explanation: 동적 계획법은 중복 부분 문제와 최적 부분 구조가 있을 때 효과적이다.
-    tags: [chapter:03, dynamic-programming]
+ID 그룹 예:
+
+```text
+t03-08 -> 03
+b07-12 -> 07
+l11-04 -> 11
+i02-03 -> 02
 ```
 
-챕터 태그는 이후 모의 시험 구성에서 문제 분포를 균일하게 잡기 위한 기준이다. 예를 들어 1장부터 7장까지 문제 풀이 대상이면, 25문항을 만들 때 가능한 한 각 장에서 비슷한 수의 문제를 뽑고 남는 문항은 보유 문제 수와 기존 배정 수를 고려해 분산한다.
+그룹 범위는 실제 존재하는 문제의 최대 그룹 번호를 기준으로 한다. 최대 그룹이 `07`이면 각 그룹에서 3~4문항, 최대 그룹이 `11`이면 2~3문항, 최대 그룹이 `15`이면 1~2문항을 배정한다. 특정 그룹의 보유 문항이 배정량보다 적으면 가능한 만큼만 뽑고, 부족분은 아직 선택되지 않은 전체 후보에서 무작위로 채운다.
 
 ## 4.2 수식 렌더링
 
@@ -482,7 +471,7 @@ answers: ["O"]            # OX
 | `multi-answer`    | 체크박스                | 사용자 선택 집합이 `answers` 집합과 정확히 일치하면 정답 |
 | `ox`              | 라디오 버튼 (O/X 두 개) | `multiple-choice`와 동일                                 |
 
-`allowMultiple: true`가 명시되거나 `answers.length > 1`이면 자동으로 체크박스 UI를 사용한다.
+`multi-answer`이거나 `answers.length > 1`이면 자동으로 체크박스 UI를 사용한다.
 
 `answerKey`(예: A, B, C, F)는 출제 원본 표기를 보존하기 위한 선택 필드이며, 채점에는 사용하지 않는다.
 
