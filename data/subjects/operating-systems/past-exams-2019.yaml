@@ -25,10 +25,26 @@ passages:
       alt: 2019년 운영체제 기출 42~43번 자원할당 그래프
 
   - id: g19-transformed-rag-01
-    type: image
-    image:
-      path: images/subjects/operating-systems/past-exams/2019/e19-transformed-rag.png
-      alt: 2019년 운영체제 기출 44번 변형된 자원할당 그래프
+    type: diagram
+    diagram:
+      type: resource-allocation-graph
+      width: 600
+      height: 260
+      nodes:
+        - { id: p1, kind: process, label: p_1, x: 90, y: 145 }
+        - { id: p2, kind: process, label: p_2, x: 300, y: 145 }
+        - { id: p3, kind: process, label: p_3, x: 510, y: 145 }
+        - { id: r1, kind: resource, label: r_1, x: 195, y: 58, units: 1 }
+        - { id: r2, kind: resource, label: r_2, x: 300, y: 220, units: 1 }
+        - { id: r3, kind: resource, label: r_3, x: 405, y: 58, units: 1 }
+      edges:
+        - { from: p1, to: r1, style: dashed }
+        - { from: p1, to: r2, style: dashed }
+        - { from: r1, to: p2 }
+        - { from: p2, to: r2, style: dashed }
+        - { from: p2, to: r3, style: dashed }
+        - { from: r3, to: p3 }
+        - { from: p3, to: r2, style: dashed }
 
   - id: g19-free-list-01
     type: text
@@ -36,10 +52,20 @@ passages:
       빈 공간 리스트가 아래 그림과 같을 때 16MB의 기억 장소 요구가 발생하였다. 다음 질문에 답하시오.
 
   - id: g19-free-list-image-01
-    type: image
-    image:
-      path: images/subjects/operating-systems/past-exams/2019/e19-free-list.png
-      alt: 2019년 운영체제 기출 47~48번 빈 공간 리스트
+    type: diagram
+    diagram:
+      type: memory-free-list
+      width: 620
+      height: 430
+      blocks:
+        - { id: os, kind: os, label: 운영체제 }
+        - { id: used1, kind: allocated, label: 사용 중 }
+        - { id: free1, kind: free, label: 공백 1 (50MB), size: 50 }
+        - { id: free2, kind: free, label: 공백 2 (25MB), size: 25 }
+        - { id: used2, kind: allocated, label: 사용 중 }
+        - { id: free3, kind: free, label: 공백 3 (15MB), size: 15 }
+        - { id: used3, kind: allocated, label: 사용 중 }
+        - { id: free4, kind: free, label: 공백 4 (70MB), size: 70 }
 
   - id: g19-page-reference-01
     type: text
@@ -47,10 +73,13 @@ passages:
       시간 별 페이지 참조가 아래와 같다. 2개의 페이지 프레임이 있고 현재 시간 3까지 진행이 되었을 때, 다음 질문에 답하시오.
 
   - id: g19-page-reference-image-01
-    type: image
-    image:
-      path: images/subjects/operating-systems/past-exams/2019/e19-page-reference.png
-      alt: 2019년 운영체제 기출 53~54번 페이지 참조 표
+    type: diagram
+    diagram:
+      type: data-table
+      columns: [구분, '1', '2', '3', '4', '5']
+      rows:
+        - [시간, '1', '2', '3', '4', '5']
+        - [페이지 참조, A, B, A, C, D]
 
 questions:
   - id: e19-01

@@ -33,10 +33,21 @@ passages:
       빈 공간 리스트가 아래 그림과 같을 때 11MB의 기억 장소 요구가 발생하였다. 다음 질문에 답하시오.
 
   - id: g18-free-list-image-01
-    type: image
-    image:
-      path: images/subjects/operating-systems/past-exams/2018/e18-free-list.png
-      alt: 2018년 운영체제 기출 45~46번 빈 공간 리스트
+    type: diagram
+    diagram:
+      type: memory-free-list
+      width: 620
+      height: 390
+      blocks:
+        - { id: os, kind: os, label: 운영체제 }
+        - { id: used1, kind: allocated, label: 사용 중 }
+        - { id: free1, kind: free, label: 공백 1 (20MB), size: 20 }
+        - { id: used2, kind: allocated, label: 사용 중 }
+        - { id: free2, kind: free, label: 공백 2 (15MB), size: 15 }
+        - { id: used3, kind: allocated, label: 사용 중 }
+        - { id: free3, kind: free, label: 공백 3 (10MB), size: 10 }
+        - { id: used4, kind: allocated, label: 사용 중 }
+        - { id: free4, kind: free, label: 공백 4 (30MB), size: 30 }
 
   - id: g18-page-reference-01
     type: text
@@ -44,10 +55,13 @@ passages:
       시간 별 페이지 참조가 아래와 같다. 3개의 페이지 프레임이 있고 현재 시간 4까지 진행이 되었을 때, 다음 질문에 답하시오.
 
   - id: g18-page-reference-image-01
-    type: image
-    image:
-      path: images/subjects/operating-systems/past-exams/2018/e18-page-reference.png
-      alt: 2018년 운영체제 기출 50~51번 페이지 참조 표
+    type: diagram
+    diagram:
+      type: data-table
+      columns: [구분, '1', '2', '3', '4', '5']
+      rows:
+        - [시간, '1', '2', '3', '4', '5']
+        - [페이지 참조, A, B, C, B, D]
 
 questions:
   - id: e18-01
