@@ -318,10 +318,25 @@ export function scoreSession(session: QuizSession): QuizScore {
   };
 }
 
-function sourceSignature(sources: readonly SelectedSource[]): string {
+function sourceSignature(
+  sources: readonly (SelectedSource & Partial<Pick<LoadedQuestionSource, 'file'>>)[],
+): string {
   return sources
-    .map((source) => `${source.subjectId}:${source.subjectTitle}:${source.sourceId}:${source.path}`)
+    .map((source) => {
+      const contentSignature = source.file ? `:${hashString(JSON.stringify(source.file))}` : '';
+      return `${source.subjectId}:${source.subjectTitle}:${source.sourceId}:${source.path}${contentSignature}`;
+    })
     .join('|');
+}
+
+function hashString(value: string): string {
+  let hash = 5381;
+
+  for (let index = 0; index < value.length; index += 1) {
+    hash = (hash * 33) ^ value.charCodeAt(index);
+  }
+
+  return (hash >>> 0).toString(36);
 }
 
 function defaultPracticeOptions(): PracticeOptions {

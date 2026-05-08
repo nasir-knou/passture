@@ -6,6 +6,10 @@ const questionFileCache = new Map<string, Promise<QuestionFile>>();
 let catalogCache: Promise<Catalog> | undefined;
 
 export function loadCatalog(): Promise<Catalog> {
+  if (import.meta.env.DEV) {
+    return fetchYaml<Catalog>('data/catalog.yaml');
+  }
+
   catalogCache ??= fetchJson<Catalog>(catalogPath).catch((error: unknown) => {
     if (isHtmlFallbackError(error) && import.meta.env.DEV) {
       return fetchYaml<Catalog>('data/catalog.yaml');
@@ -17,6 +21,10 @@ export function loadCatalog(): Promise<Catalog> {
 }
 
 export function loadQuestionFile(path: string): Promise<QuestionFile> {
+  if (import.meta.env.DEV) {
+    return fetchYaml<QuestionFile>(`data/${path.replace(/\.json$/, '.yaml')}`);
+  }
+
   const cached = questionFileCache.get(path);
 
   if (cached) {
@@ -37,7 +45,7 @@ export function loadQuestionFile(path: string): Promise<QuestionFile> {
 function fetchJson<T>(relativePath: string): Promise<T> {
   const url = new URL(relativePath, getBaseUrl()).toString();
 
-  return fetch(url).then(async (response) => {
+  return fetch(url, { cache: import.meta.env.DEV ? 'no-store' : 'default' }).then(async (response) => {
     if (!response.ok) {
       throw new Error(`${relativePath} 요청 실패 (${response.status})`);
     }
@@ -56,7 +64,7 @@ function fetchJson<T>(relativePath: string): Promise<T> {
 async function fetchYaml<T>(relativePath: string): Promise<T> {
   const yaml = await import('js-yaml');
   const url = new URL(relativePath, getBaseUrl()).toString();
-  const response = await fetch(url);
+  const response = await fetch(url, { cache: 'no-store' });
 
   if (!response.ok) {
     throw new Error(`${relativePath} 요청 실패 (${response.status})`);

@@ -5,6 +5,7 @@ import {
   answerCurrentQuestion,
   clearPracticeState,
   createQuizSession,
+  getOrCreateSession,
   loadPracticeOptions,
   loadPracticeScope,
   loadSelectedSources,
@@ -29,8 +30,8 @@ describe('quiz session', () => {
 
     expect(session.questions).toHaveLength(2);
     expect(session.questions[0]?.sourceTitle).toBe('2019 기말');
-    expect(session.sourceSignature).toBe(
-      'operating-systems:운영체제:past-exams-2019:subjects/operating-systems/past-exams-2019.json',
+    expect(session.sourceSignature).toMatch(
+      /^operating-systems:운영체제:past-exams-2019:subjects\/operating-systems\/past-exams-2019\.json:[a-z0-9]+$/,
     );
   });
 
@@ -54,6 +55,17 @@ describe('quiz session', () => {
 
     expect(updated.draftAnswers[current.key]).toEqual(['1']);
     expect(updated.responses[current.key]).toBeUndefined();
+  });
+
+  it('recreates the session when loaded question content changes', () => {
+    const firstSession = getOrCreateSession([source()]);
+    const changedSource = source();
+    changedSource.file.questions[0].explanation = '변경된 해설';
+    const nextSession = getOrCreateSession([changedSource]);
+
+    expect(nextSession.id).toBe('test-session');
+    expect(nextSession.sourceSignature).not.toBe(firstSession.sourceSignature);
+    expect(nextSession.questions[0]?.question.explanation).toBe('변경된 해설');
   });
 
   it('grades all draft answers at once', () => {
