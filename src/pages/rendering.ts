@@ -109,7 +109,7 @@ export function renderPassages(passages: readonly Passage[]): string {
                 ? renderDiagram(passage.diagram, 'passage-diagram')
                 : passage.type === 'text'
                 ? renderBlockRichText(passage.body ?? '', 'passage-text')
-                : `<pre><code>${escapeHtml(passage.body ?? '')}</code></pre>`
+                : `<pre><code>${renderCodeText(passage.body ?? '', passage.highlights ?? [])}</code></pre>`
           }
         </section>
       `,
@@ -175,6 +175,14 @@ function renderDiagram(diagram: ChoiceDiagram, className: string): string {
     `;
   }
 
+  if (diagram.type === 'simple-graph') {
+    return renderSimpleGraphDiagram(diagram, className);
+  }
+
+  if (diagram.type === 'ui-window') {
+    return renderUiWindowDiagram(diagram, className);
+  }
+
   if (diagram.type === 'memory-free-list') {
     return renderMemoryFreeListDiagram(diagram, className);
   }
@@ -188,6 +196,242 @@ function renderDiagram(diagram: ChoiceDiagram, className: string): string {
   }
 
   return '';
+}
+
+function renderCodeText(value: string, highlights: readonly string[]): string {
+  if (highlights.length === 0) {
+    return escapeHtml(value);
+  }
+
+  const sortedHighlights = [...highlights].filter(Boolean).sort((a, b) => b.length - a.length);
+  const ranges: { end: number; start: number }[] = [];
+
+  for (const highlight of sortedHighlights) {
+    let cursor = 0;
+    while (cursor < value.length) {
+      const start = value.indexOf(highlight, cursor);
+      if (start === -1) {
+        break;
+      }
+
+      const end = start + highlight.length;
+      if (!ranges.some((range) => start < range.end && end > range.start)) {
+        ranges.push({ start, end });
+      }
+      cursor = end;
+    }
+  }
+
+  if (ranges.length === 0) {
+    return escapeHtml(value);
+  }
+
+  ranges.sort((a, b) => a.start - b.start);
+
+  let html = '';
+  let cursor = 0;
+  for (const range of ranges) {
+    html += escapeHtml(value.slice(cursor, range.start));
+    html += `<mark class="code-highlight">${escapeHtml(value.slice(range.start, range.end))}</mark>`;
+    cursor = range.end;
+  }
+  html += escapeHtml(value.slice(cursor));
+
+  return html;
+}
+
+function renderUiWindowDiagram(diagram: ChoiceDiagram & { type: 'ui-window' }, className: string): string {
+  const chromeHeight = 34;
+  const contentY = chromeHeight;
+  const componentHtml = diagram.components
+    .map((component) => {
+      if (component.kind === 'label') {
+        return `<text class="ui-window-label" x="${component.x}" y="${component.y}" dominant-baseline="central">${renderMathText(component.label)}</text>`;
+      }
+
+      const size = component.kind === 'checkbox' ? 15 : 16;
+      const controlX = component.x;
+      const controlY = component.y - size / 2;
+      const labelX = component.x + size + 6;
+      const focusedWidth = Math.max(component.label.length * 8 + 6, 24);
+      const focusBox = component.focused
+        ? `<rect class="ui-window-focus" x="${labelX - 3}" y="${component.y - 12}" width="${focusedWidth}" height="22"></rect>`
+        : '';
+
+      if (component.kind === 'checkbox') {
+        return `
+          <g class="ui-window-control">
+            <rect class="ui-window-checkbox" x="${controlX}" y="${controlY}" width="${size}" height="${size}"></rect>
+            ${
+              component.checked
+                ? `<path class="ui-window-check" d="M ${controlX + 3} ${controlY + 8} L ${controlX + 7} ${controlY + 12} L ${controlX + 13} ${controlY + 4}"></path>`
+                : ''
+            }
+            ${focusBox}
+            <text x="${labelX}" y="${component.y}" dominant-baseline="central">${renderMathText(component.label)}</text>
+          </g>
+        `;
+      }
+
+      return `
+        <g class="ui-window-control">
+          <circle class="ui-window-radio" cx="${controlX + size / 2}" cy="${component.y}" r="${size / 2}"></circle>
+          ${
+            component.checked
+              ? `<circle class="ui-window-radio-dot" cx="${controlX + size / 2}" cy="${component.y}" r="4"></circle>`
+              : ''
+          }
+          ${focusBox}
+          <text x="${labelX}" y="${component.y}" dominant-baseline="central">${renderMathText(component.label)}</text>
+        </g>
+      `;
+    })
+    .join('');
+
+  return `
+    <svg
+      class="${className} ui-window"
+      viewBox="0 0 ${diagram.width} ${diagram.height}"
+      role="img"
+      aria-label="${escapeHtml([diagram.title, ...diagram.components.map((component) => component.label)].join(', '))}"
+    >
+      <rect class="ui-window-frame" x="1" y="1" width="${diagram.width - 2}" height="${diagram.height - 2}" rx="2"></rect>
+      <rect class="ui-window-titlebar" x="1" y="1" width="${diagram.width - 2}" height="${chromeHeight}"></rect>
+      <text class="ui-window-title" x="32" y="18" dominant-baseline="central">${renderMathText(diagram.title)}</text>
+      <rect class="ui-window-button" x="${diagram.width - 84}" y="8" width="22" height="16"></rect>
+      <rect class="ui-window-button" x="${diagram.width - 56}" y="8" width="22" height="16"></rect>
+      <rect class="ui-window-close" x="${diagram.width - 28}" y="8" width="22" height="16"></rect>
+      <rect class="ui-window-content" x="10" y="${contentY + 10}" width="${diagram.width - 20}" height="${diagram.height - chromeHeight - 20}"></rect>
+      ${componentHtml}
+    </svg>
+  `;
+}
+
+function renderSimpleGraphDiagram(diagram: ChoiceDiagram & { type: 'simple-graph' }, className: string): string {
+  const nodes = new Map(diagram.nodes.map((node) => [node.id, node]));
+  const markerId = `simple-graph-arrow-${hashDiagram(diagram)}`;
+
+  return `
+    <svg
+      class="${className} simple-graph"
+      viewBox="0 0 ${diagram.width} ${diagram.height}"
+      role="img"
+      aria-label="${escapeHtml(diagram.nodes.map((node) => node.label).join(', '))}"
+    >
+      <defs>
+        <marker id="${markerId}" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z"></path>
+        </marker>
+      </defs>
+      ${diagram.edges
+        .map((edge) => {
+          const from = nodes.get(edge.from);
+          const to = nodes.get(edge.to);
+
+          if (!from || !to) {
+            return '';
+          }
+
+          const directed = edge.directed ?? diagram.directed ?? false;
+          const points = simpleGraphEdgeEndpoint(from, to);
+          const marker = directed ? ` marker-end="url(#${markerId})"` : '';
+          const isLoop = edge.from === edge.to;
+          const edgeShape = isLoop
+            ? `<path class="simple-graph-edge" d="${simpleGraphLoopPath(from, edge.curve ?? 1)}"${marker}></path>`
+            : edge.curve && edge.curve !== 0
+              ? `<path class="simple-graph-edge" d="${simpleGraphCurvePath(points, edge.curve)}"${marker}></path>`
+              : `<line class="simple-graph-edge" x1="${points.x1}" y1="${points.y1}" x2="${points.x2}" y2="${points.y2}"${marker}></line>`;
+          const label = edge.label ? renderSimpleGraphEdgeLabel(edge.label, from, to, edge.curve ?? 0) : '';
+
+          return `${edgeShape}${label}`;
+        })
+        .join('')}
+      ${diagram.nodes
+        .map(
+          (node) => `
+            <g class="simple-graph-node">
+              ${node.hideNode ? '' : `<circle cx="${node.x}" cy="${node.y}" r="${node.radius ?? 20}"></circle>`}
+              ${
+                node.hideLabel
+                  ? ''
+                  : `<text x="${node.x + (node.labelDx ?? 0)}" y="${node.y + (node.labelDy ?? 0)}" text-anchor="${node.labelDx === undefined ? 'middle' : node.labelDx < 0 ? 'end' : 'start'}" dominant-baseline="central">${renderMathText(node.label)}</text>`
+              }
+            </g>
+          `,
+        )
+        .join('')}
+    </svg>
+  `;
+}
+
+function simpleGraphEdgeEndpoint(
+  from: { x: number; y: number; hideNode?: boolean; radius?: number },
+  to: { x: number; y: number; hideNode?: boolean; radius?: number },
+): { x1: number; y1: number; x2: number; y2: number } {
+  const fromRadius = from.hideNode ? 0 : (from.radius ?? 20);
+  const toRadius = to.hideNode ? 0 : (to.radius ?? 20);
+  const dx = to.x - from.x;
+  const dy = to.y - from.y;
+  const length = Math.hypot(dx, dy) || 1;
+
+  return {
+    x1: from.x + (dx / length) * fromRadius,
+    y1: from.y + (dy / length) * fromRadius,
+    x2: to.x - (dx / length) * toRadius,
+    y2: to.y - (dy / length) * toRadius,
+  };
+}
+
+function simpleGraphCurvePath(
+  points: { x1: number; y1: number; x2: number; y2: number },
+  curve: number,
+): string {
+  const midX = (points.x1 + points.x2) / 2;
+  const midY = (points.y1 + points.y2) / 2;
+  const dx = points.x2 - points.x1;
+  const dy = points.y2 - points.y1;
+  const length = Math.hypot(dx, dy) || 1;
+  const controlX = midX - (dy / length) * curve;
+  const controlY = midY + (dx / length) * curve;
+
+  return `M ${points.x1} ${points.y1} Q ${controlX} ${controlY} ${points.x2} ${points.y2}`;
+}
+
+function simpleGraphLoopPath(
+  node: { x: number; y: number },
+  curve: number,
+): string {
+  const side = curve < 0 ? -1 : 1;
+  const startX = node.x - side * 12;
+  const endX = node.x + side * 12;
+  const y = node.y - 18;
+  const control1X = node.x - side * 46;
+  const control2X = node.x + side * 46;
+  const controlY = node.y - 78;
+
+  return `M ${startX} ${y} C ${control1X} ${controlY}, ${control2X} ${controlY}, ${endX} ${y}`;
+}
+
+function renderSimpleGraphEdgeLabel(
+  label: string,
+  from: { x: number; y: number },
+  to: { x: number; y: number },
+  curve: number,
+): string {
+  if (from.x === to.x && from.y === to.y) {
+    return `<text class="simple-graph-edge-label" x="${from.x}" y="${from.y - 72}" text-anchor="middle">${renderMathText(label)}</text>`;
+  }
+
+  const midX = (from.x + to.x) / 2;
+  const midY = (from.y + to.y) / 2;
+  const dx = to.x - from.x;
+  const dy = to.y - from.y;
+  const length = Math.hypot(dx, dy) || 1;
+  const offset = curve || -18;
+  const labelX = midX - (dy / length) * offset;
+  const labelY = midY + (dx / length) * offset - 4;
+
+  return `<text class="simple-graph-edge-label" x="${labelX}" y="${labelY}" text-anchor="middle">${renderMathText(label)}</text>`;
 }
 
 function renderClockPageReplacementDiagram(
@@ -453,13 +697,38 @@ function renderMathText(value: string): string {
   while (cursor < value.length) {
     const token = findNextMathToken(value, cursor);
     if (!token) {
+      html += renderPlainRichText(value.slice(cursor));
+      break;
+    }
+
+    html += renderPlainRichText(value.slice(cursor, token.start));
+    html += renderMathToken(token.raw, token.displayMode);
+    cursor = token.end;
+  }
+
+  return html;
+}
+
+function renderPlainRichText(value: string): string {
+  let html = '';
+  let cursor = 0;
+
+  while (cursor < value.length) {
+    const start = value.indexOf('==', cursor);
+    if (start === -1) {
       html += escapeHtml(value.slice(cursor)).replaceAll('\n', '<br />');
       break;
     }
 
-    html += escapeHtml(value.slice(cursor, token.start)).replaceAll('\n', '<br />');
-    html += renderMathToken(token.raw, token.displayMode);
-    cursor = token.end;
+    const end = value.indexOf('==', start + 2);
+    if (end === -1) {
+      html += escapeHtml(value.slice(cursor)).replaceAll('\n', '<br />');
+      break;
+    }
+
+    html += escapeHtml(value.slice(cursor, start)).replaceAll('\n', '<br />');
+    html += `<mark class="text-highlight">${escapeHtml(value.slice(start + 2, end)).replaceAll('\n', '<br />')}</mark>`;
+    cursor = end + 2;
   }
 
   return html;

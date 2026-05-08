@@ -75,6 +75,11 @@ subjects:
   - id: artificial-intelligence
     title: 인공지능
     sources:
+      - id: past-exams-2018
+        title: 2018 기말
+        path: subjects/artificial-intelligence/past-exams-2018.json
+        kind: exam
+        year: 2018
       - id: past-exams-2019
         title: 2019 기말
         path: subjects/artificial-intelligence/past-exams-2019.json
@@ -119,6 +124,7 @@ passages:
   - id: g19-code-01
     type: code
     language: c
+    highlights: ['int main(void)'] # 선택. 코드 지문에서 강조할 문자열
     body: |
       int main(void) {
         int a = 1;
@@ -254,6 +260,7 @@ questions:
 - 수식이 없는 일반 텍스트는 HTML escape 후 그대로 표시한다.
 - 수식 렌더링 실패 시 원문 수식 문자열을 안전하게 표시한다.
 - 긴 수식은 모바일에서 가로 스크롤될 수 있도록 UI에서 처리한다.
+- 원본 문제에서 굵게 표시된 핵심 문구는 문제 본문, 선택지, 해설에서 `==강조==`로 감싸면 하이라이트로 렌더링한다.
 
 수식 선택지 예:
 
@@ -325,6 +332,7 @@ choices:
 - 도표, 그래프, 표처럼 원본 이미지가 의미를 갖는 공통 지문은 텍스트로 해석해 `body`에 옮기지 않는다.
 - 브라우저에서 구조적으로 그릴 수 있는 도표는 `type: diagram`과 `diagram` 필드를 사용해 이미지 대신 코드 렌더링한다.
 - diagram으로 재현하기 어렵거나 원본의 세부 시각 형태 자체가 문제 조건인 불가피한 경우에만 `type: image`와 `image.path`로 원본 crop 이미지를 참조한다.
+- 코드 지문에서 원본의 굵게 표시를 보존해야 하면 `highlights`에 강조할 원문 문자열을 기록한다.
 - `passages.id`는 데이터 참조용 식별자이며, 실제 문제 화면에는 노출하지 않는다.
 
 `passageRefs`가 비어있거나 없으면 단독 문제로 취급한다.
@@ -375,9 +383,19 @@ questions:
 현재 지원하는 `diagram.type`:
 
 - `resource-allocation-graph`: 운영체제 자원할당 그래프
+- `simple-graph`: 일반 그래프, 방향 그래프, 트리, 오토마타 등 노드/간선 도표
+- `ui-window`: Java AWT/Swing 실행 화면처럼 창과 단순 컨트롤 배치가 필요한 도표
 - `memory-free-list`: 운영체제 빈 공간 리스트
 - `data-table`: 표 형태의 공통 지문
 - `clock-page-replacement`: 클럭 페이지 교체 알고리즘의 원형 큐
+
+SVG 기반 `diagram` 라벨 작성 규칙:
+
+- `simple-graph.nodes[].label`, `simple-graph.edges[].label`처럼 SVG `<text>` 안에 직접 들어가는 라벨에는 KaTeX 수식 문자열을 넣지 않는다.
+- 예를 들어 노드 라벨은 `$v_1$` 대신 `v1`, `v2`처럼 일반 텍스트를 사용한다.
+- SVG 내부 텍스트는 HTML 기반 KaTeX 렌더링 대상이 아니므로 `$...$`, `\(...\)`, `\begin{...}` 같은 수식 문자열이 그대로 보이거나 렌더링이 깨질 수 있다.
+- 수식 표기가 반드시 필요하면 diagram 라벨에 넣지 말고, `passages.type: text`의 `body`, 문제 `prompt`, 선택지 `text`, 해설에 별도로 작성한다.
+- `data-table` 셀은 SVG가 아니라 HTML 표로 렌더링하므로 KaTeX 인라인 수식을 사용할 수 있다.
 
 `resource-allocation-graph` 필드:
 
@@ -390,6 +408,34 @@ questions:
 - `edges`: 방향 간선 배열
 - `edges[].from`, `edges[].to`: `nodes[].id`를 참조한다.
 - `edges[].style`: 생략하면 실선, `dashed`를 주면 점선으로 렌더링한다.
+
+`simple-graph` 필드:
+
+- `width`, `height`: SVG `viewBox` 크기
+- `directed`: 전체 그래프의 기본 방향성. 필요할 때만 둔다.
+- `nodes`: 일반 노드 배열
+- `nodes[].id`: 간선 참조용 노드 ID
+- `nodes[].label`: 화면에 표시할 라벨. KaTeX 수식 문자열은 넣지 않는다.
+- `nodes[].x`, `nodes[].y`: 다이어그램 내부 좌표
+- `nodes[].hideLabel`: 라벨을 숨길 때 사용한다. 필요할 때만 둔다.
+- `nodes[].hideNode`: 노드 도형을 숨기고 라벨만 표시할 때 사용한다. 필요할 때만 둔다.
+- `nodes[].labelDx`, `nodes[].labelDy`: 라벨 위치를 보정한다. 필요할 때만 둔다.
+- `edges`: 간선 배열
+- `edges[].from`, `edges[].to`: `nodes[].id`를 참조한다.
+- `edges[].label`: 간선 라벨. KaTeX 수식 문자열은 넣지 않는다. 필요할 때만 둔다.
+- `edges[].directed`: 개별 간선의 방향성을 지정한다. 필요할 때만 둔다.
+- `edges[].curve`: 간선 곡률을 조정한다. 필요할 때만 둔다.
+
+`ui-window` 필드:
+
+- `width`, `height`: SVG `viewBox` 크기
+- `title`: 창 제목
+- `components`: 창 내부에 표시할 컨트롤 배열
+- `components[].kind`: `checkbox`, `radio`, `label`
+- `components[].label`: 표시 텍스트
+- `components[].x`, `components[].y`: 컨트롤 좌표
+- `components[].checked`: 체크박스/라디오 선택 상태. 필요할 때만 둔다.
+- `components[].focused`: 키보드 포커스 표시. 필요할 때만 둔다.
 
 `memory-free-list` 필드:
 

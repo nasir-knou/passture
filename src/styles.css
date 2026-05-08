@@ -980,6 +980,24 @@ h1 {
   white-space: pre-wrap;
 }
 
+.code-highlight {
+  background: #fef08a;
+  border-radius: 2px;
+  color: inherit;
+  font-weight: 700;
+  padding: 0 2px;
+}
+
+.text-highlight {
+  background: #fef08a;
+  border-radius: 2px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  color: inherit;
+  font-weight: 700;
+  padding: 0 2px;
+}
+
 .passage-text {
   overflow-x: auto;
   color: #111827;
@@ -1107,6 +1125,110 @@ h1 {
 .resource-allocation-graph .rag-units {
   font-family: inherit;
   font-size: 14px;
+}
+
+.simple-graph {
+  color: #111827;
+}
+
+.simple-graph .simple-graph-edge {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-width: 2.5;
+}
+
+.simple-graph marker path {
+  fill: currentColor;
+}
+
+.simple-graph .simple-graph-node circle {
+  fill: #ffffff;
+  stroke: currentColor;
+  stroke-width: 2.5;
+}
+
+.simple-graph .simple-graph-node text {
+  fill: currentColor;
+  font-family: 'KaTeX_Math', 'Times New Roman', serif;
+  font-size: 22px;
+}
+
+.simple-graph .simple-graph-edge-label {
+  fill: currentColor;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.ui-window {
+  color: #111827;
+  max-width: 520px;
+}
+
+.ui-window-frame {
+  fill: #e5e7eb;
+  stroke: #6b7280;
+  stroke-width: 1.5;
+}
+
+.ui-window-titlebar {
+  fill: #dbeafe;
+}
+
+.ui-window-title {
+  fill: #111827;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.ui-window-button {
+  fill: #f9fafb;
+  stroke: #6b7280;
+  stroke-width: 1;
+}
+
+.ui-window-close {
+  fill: #ef4444;
+  stroke: #991b1b;
+  stroke-width: 1;
+}
+
+.ui-window-content {
+  fill: #ffffff;
+  stroke: #9ca3af;
+  stroke-width: 1.5;
+}
+
+.ui-window-control text,
+.ui-window-label {
+  fill: #111827;
+  font-size: 16px;
+}
+
+.ui-window-checkbox,
+.ui-window-radio {
+  fill: #ffffff;
+  stroke: #6b7280;
+  stroke-width: 1.8;
+}
+
+.ui-window-radio-dot {
+  fill: #111827;
+}
+
+.ui-window-check {
+  fill: none;
+  stroke: #111827;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+}
+
+.ui-window-focus {
+  fill: none;
+  stroke: #111827;
+  stroke-dasharray: 2 2;
+  stroke-width: 1;
 }
 
 .memory-free-list {

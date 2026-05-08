@@ -18,6 +18,7 @@ export interface Passage {
   type: PassageType;
   language?: string;
   body?: string;
+  highlights?: string[];
   image?: QuestionImage;
   diagram?: ChoiceDiagram;
 }
@@ -50,9 +51,57 @@ export interface QuestionImage {
 
 export type ChoiceDiagram =
   | ResourceAllocationGraphDiagram
+  | SimpleGraphDiagram
+  | UiWindowDiagram
   | MemoryFreeListDiagram
   | DataTableDiagram
   | ClockPageReplacementDiagram;
+
+export interface SimpleGraphDiagram {
+  type: 'simple-graph';
+  width: number;
+  height: number;
+  directed?: boolean;
+  nodes: SimpleGraphNode[];
+  edges: SimpleGraphEdge[];
+}
+
+export interface SimpleGraphNode {
+  id: string;
+  label: string;
+  hideLabel?: boolean;
+  hideNode?: boolean;
+  labelDx?: number;
+  labelDy?: number;
+  radius?: number;
+  x: number;
+  y: number;
+}
+
+export interface SimpleGraphEdge {
+  from: string;
+  to: string;
+  label?: string;
+  directed?: boolean;
+  curve?: number;
+}
+
+export interface UiWindowDiagram {
+  type: 'ui-window';
+  width: number;
+  height: number;
+  title: string;
+  components: UiWindowComponent[];
+}
+
+export interface UiWindowComponent {
+  kind: 'checkbox' | 'radio' | 'label';
+  label: string;
+  x: number;
+  y: number;
+  checked?: boolean;
+  focused?: boolean;
+}
 
 export interface ResourceAllocationGraphDiagram {
   type: 'resource-allocation-graph';

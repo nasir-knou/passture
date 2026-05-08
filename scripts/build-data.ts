@@ -152,6 +152,13 @@ function validatePassage(
     expectString(passage.body, `${fieldPath}.body`);
   }
 
+  if (passage.highlights !== undefined) {
+    const highlights = expectArray(passage.highlights, `${fieldPath}.highlights`);
+    for (const [highlightIndex, highlight] of highlights.entries()) {
+      expectString(highlight, `${fieldPath}.highlights[${highlightIndex}]`);
+    }
+  }
+
   if (passage.image !== undefined) {
     validateImage(passage.image, `${fieldPath}.image`, root);
   }
@@ -237,7 +244,14 @@ function validateQuestion(
 function validateChoice(value: unknown, fieldPath: string, root: string): asserts value is Choice {
   const choice = expectRecord(value, fieldPath);
   expectString(choice.id, `${fieldPath}.id`);
-  expectString(choice.text, `${fieldPath}.text`);
+  if (typeof choice.text !== 'string') {
+    throw new Error(`${fieldPath}.text must be a string`);
+  }
+
+  if (choice.text.length === 0 && choice.image === undefined && choice.diagram === undefined) {
+    throw new Error(`${fieldPath}.text must be non-empty when image or diagram is missing`);
+  }
+
   if (choice.image !== undefined) {
     validateImage(choice.image, `${fieldPath}.image`, root);
   }
@@ -254,14 +268,26 @@ function validateChoiceDiagram(value: unknown, fieldPath: string): void {
   if (
     ![
       'resource-allocation-graph',
+      'simple-graph',
+      'ui-window',
       'memory-free-list',
       'data-table',
       'clock-page-replacement',
     ].includes(type)
   ) {
     throw new Error(
-      `${fieldPath}.type must be resource-allocation-graph, memory-free-list, data-table, or clock-page-replacement`,
+      `${fieldPath}.type must be resource-allocation-graph, simple-graph, ui-window, memory-free-list, data-table, or clock-page-replacement`,
     );
+  }
+
+  if (type === 'simple-graph') {
+    validateSimpleGraphDiagram(diagram, fieldPath);
+    return;
+  }
+
+  if (type === 'ui-window') {
+    validateUiWindowDiagram(diagram, fieldPath);
+    return;
   }
 
   if (type === 'memory-free-list') {
@@ -296,6 +322,21 @@ function validateChoiceDiagram(value: unknown, fieldPath: string): void {
     }
 
     expectString(node.label, `${fieldPath}.nodes[${nodeIndex}].label`);
+    if (node.hideLabel !== undefined && typeof node.hideLabel !== 'boolean') {
+      throw new Error(`${fieldPath}.nodes[${nodeIndex}].hideLabel must be boolean`);
+    }
+    if (node.hideNode !== undefined && typeof node.hideNode !== 'boolean') {
+      throw new Error(`${fieldPath}.nodes[${nodeIndex}].hideNode must be boolean`);
+    }
+    if (node.labelDx !== undefined) {
+      expectNumber(node.labelDx, `${fieldPath}.nodes[${nodeIndex}].labelDx`);
+    }
+    if (node.labelDy !== undefined) {
+      expectNumber(node.labelDy, `${fieldPath}.nodes[${nodeIndex}].labelDy`);
+    }
+    if (node.radius !== undefined) {
+      expectNumber(node.radius, `${fieldPath}.nodes[${nodeIndex}].radius`);
+    }
     expectNumber(node.x, `${fieldPath}.nodes[${nodeIndex}].x`);
     expectNumber(node.y, `${fieldPath}.nodes[${nodeIndex}].y`);
 
@@ -323,6 +364,99 @@ function validateChoiceDiagram(value: unknown, fieldPath: string): void {
 
     if (!nodeIds.has(to)) {
       throw new Error(`${fieldPath}.edges[${edgeIndex}].to references missing node`);
+    }
+  }
+}
+
+function validateSimpleGraphDiagram(diagram: Record<string, unknown>, fieldPath: string): void {
+  expectNumber(diagram.width, `${fieldPath}.width`);
+  expectNumber(diagram.height, `${fieldPath}.height`);
+
+  if (diagram.directed !== undefined && typeof diagram.directed !== 'boolean') {
+    throw new Error(`${fieldPath}.directed must be boolean`);
+  }
+
+  const nodes = expectArray(diagram.nodes, `${fieldPath}.nodes`);
+  const nodeIds = new Set<string>();
+
+  for (const [nodeIndex, rawNode] of nodes.entries()) {
+    const node = expectRecord(rawNode, `${fieldPath}.nodes[${nodeIndex}]`);
+    const id = expectString(node.id, `${fieldPath}.nodes[${nodeIndex}].id`);
+    expectUnique(nodeIds, id, `${fieldPath}.nodes[${nodeIndex}].id`);
+    expectString(node.label, `${fieldPath}.nodes[${nodeIndex}].label`);
+    if (node.hideLabel !== undefined && typeof node.hideLabel !== 'boolean') {
+      throw new Error(`${fieldPath}.nodes[${nodeIndex}].hideLabel must be boolean`);
+    }
+    if (node.hideNode !== undefined && typeof node.hideNode !== 'boolean') {
+      throw new Error(`${fieldPath}.nodes[${nodeIndex}].hideNode must be boolean`);
+    }
+    if (node.labelDx !== undefined) {
+      expectNumber(node.labelDx, `${fieldPath}.nodes[${nodeIndex}].labelDx`);
+    }
+    if (node.labelDy !== undefined) {
+      expectNumber(node.labelDy, `${fieldPath}.nodes[${nodeIndex}].labelDy`);
+    }
+    expectNumber(node.x, `${fieldPath}.nodes[${nodeIndex}].x`);
+    expectNumber(node.y, `${fieldPath}.nodes[${nodeIndex}].y`);
+  }
+
+  const edges = expectArray(diagram.edges, `${fieldPath}.edges`);
+  for (const [edgeIndex, rawEdge] of edges.entries()) {
+    const edge = expectRecord(rawEdge, `${fieldPath}.edges[${edgeIndex}]`);
+    const from = expectString(edge.from, `${fieldPath}.edges[${edgeIndex}].from`);
+    const to = expectString(edge.to, `${fieldPath}.edges[${edgeIndex}].to`);
+
+    if (!nodeIds.has(from)) {
+      throw new Error(`${fieldPath}.edges[${edgeIndex}].from references missing node`);
+    }
+
+    if (!nodeIds.has(to)) {
+      throw new Error(`${fieldPath}.edges[${edgeIndex}].to references missing node`);
+    }
+
+    if (edge.label !== undefined) {
+      expectString(edge.label, `${fieldPath}.edges[${edgeIndex}].label`);
+    }
+
+    if (edge.directed !== undefined && typeof edge.directed !== 'boolean') {
+      throw new Error(`${fieldPath}.edges[${edgeIndex}].directed must be boolean`);
+    }
+
+    if (edge.curve !== undefined) {
+      expectNumber(edge.curve, `${fieldPath}.edges[${edgeIndex}].curve`);
+    }
+  }
+}
+
+function validateUiWindowDiagram(diagram: Record<string, unknown>, fieldPath: string): void {
+  expectNumber(diagram.width, `${fieldPath}.width`);
+  expectNumber(diagram.height, `${fieldPath}.height`);
+  expectString(diagram.title, `${fieldPath}.title`);
+
+  const components = expectArray(diagram.components, `${fieldPath}.components`);
+  if (components.length === 0) {
+    throw new Error(`${fieldPath}.components must not be empty`);
+  }
+
+  for (const [componentIndex, rawComponent] of components.entries()) {
+    const component = expectRecord(rawComponent, `${fieldPath}.components[${componentIndex}]`);
+    const kind = expectString(component.kind, `${fieldPath}.components[${componentIndex}].kind`);
+    if (!['checkbox', 'radio', 'label'].includes(kind)) {
+      throw new Error(
+        `${fieldPath}.components[${componentIndex}].kind must be checkbox, radio, or label`,
+      );
+    }
+
+    expectString(component.label, `${fieldPath}.components[${componentIndex}].label`);
+    expectNumber(component.x, `${fieldPath}.components[${componentIndex}].x`);
+    expectNumber(component.y, `${fieldPath}.components[${componentIndex}].y`);
+
+    if (component.checked !== undefined && typeof component.checked !== 'boolean') {
+      throw new Error(`${fieldPath}.components[${componentIndex}].checked must be boolean`);
+    }
+
+    if (component.focused !== undefined && typeof component.focused !== 'boolean') {
+      throw new Error(`${fieldPath}.components[${componentIndex}].focused must be boolean`);
     }
   }
 }
