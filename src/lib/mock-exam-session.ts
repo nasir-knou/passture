@@ -1,3 +1,4 @@
+import type { SourceKind } from '../types/catalog';
 import type { QuestionFile } from '../types/question';
 import type { PracticeOptions, QuizSessionQuestion } from './quiz-session';
 import { loadQuestionFile } from './data-loader';
@@ -11,24 +12,32 @@ const mockExamSessionKey = 'pt.mockExamSession';
 export interface MockExamSubjectConfig {
   subjectId: string;
   subjectTitle: string;
-  sources: Array<{
+  source: {
     subjectId: string;
     subjectTitle: string;
     sourceId: string;
     sourceTitle: string;
     path: string;
-  }>;
-  extractMode: 'all' | 'random-25';
+    kind: SourceKind;
+  };
 }
 
 export interface MockExamConfig {
   subjects: MockExamSubjectConfig[]; // 1~3개
-  totalMinutes: number;              // 과목 수 x 25
-  startTime: string;                 // "13:30"
-  endTime: string;                   // 계산값
+  totalMinutes: number; // 과목 수 x 25
+  startTime: string; // HH:mm
+  endTime: string; // 계산값
   questionOrder?: PracticeOptions['questionOrder'];
   choiceOrder?: PracticeOptions['choiceOrder'];
 }
+
+type StoredMockExamSubjectConfig = Partial<MockExamSubjectConfig> & {
+  sources?: MockExamSubjectConfig['source'][];
+};
+
+type StoredMockExamConfig = Partial<Omit<MockExamConfig, 'subjects'>> & {
+  subjects?: StoredMockExamSubjectConfig[];
+};
 
 export function saveMockExamConfig(config: MockExamConfig): void {
   sessionStorage.setItem(mockExamConfigKey, JSON.stringify(config));
@@ -39,7 +48,7 @@ export function loadMockExamConfig(): MockExamConfig | undefined {
   const raw = sessionStorage.getItem(mockExamConfigKey);
   if (!raw) return undefined;
   try {
-    return JSON.parse(raw) as MockExamConfig;
+    return normalizeMockExamConfig(JSON.parse(raw) as StoredMockExamConfig);
   } catch {
     return undefined;
   }
@@ -48,6 +57,45 @@ export function loadMockExamConfig(): MockExamConfig | undefined {
 export function clearMockExamConfig(): void {
   sessionStorage.removeItem(mockExamConfigKey);
   sessionStorage.removeItem(mockExamSessionKey);
+}
+
+function normalizeMockExamConfig(config: StoredMockExamConfig): MockExamConfig | undefined {
+  const subjects = config.subjects
+    ?.map((subject) => {
+      const source = subject.source ?? subject.sources?.[0];
+      if (!subject.subjectId || !subject.subjectTitle || !source) {
+        return undefined;
+      }
+
+      return {
+        subjectId: subject.subjectId,
+        subjectTitle: subject.subjectTitle,
+        source: {
+          subjectId: source.subjectId,
+          subjectTitle: source.subjectTitle,
+          sourceId: source.sourceId,
+          sourceTitle: source.sourceTitle,
+          path: source.path,
+          kind: source.kind,
+        },
+      };
+    })
+    .filter((subject): subject is MockExamSubjectConfig => subject !== undefined);
+
+  if (!subjects?.length) {
+    return undefined;
+  }
+
+  const times = calcMockExamTimes(subjects.length);
+  return {
+    subjects,
+    totalMinutes:
+      typeof config.totalMinutes === 'number' ? config.totalMinutes : times.totalMinutes,
+    startTime: typeof config.startTime === 'string' ? config.startTime : times.startTime,
+    endTime: typeof config.endTime === 'string' ? config.endTime : times.endTime,
+    questionOrder: config.questionOrder === 'random' ? 'random' : 'default',
+    choiceOrder: config.choiceOrder === 'random' ? 'random' : 'default',
+  };
 }
 
 // ─── Session (시험 중 상태) ──────────────────────────────────────────────
@@ -90,17 +138,23 @@ export function clearMockExamSession(): void {
 // ─── 세션 생성 ───────────────────────────────────────────────────────────
 
 export async function createMockExamSession(config: MockExamConfig): Promise<MockExamSession> {
+  const startedAt = new Date();
+  const times = calcMockExamTimes(config.subjects.length, startedAt);
+  const sessionConfig: MockExamConfig = {
+    ...config,
+    totalMinutes: times.totalMinutes,
+    startTime: times.startTime,
+    endTime: times.endTime,
+  };
   const options: PracticeOptions = {
-    questionOrder: config.questionOrder === 'random' ? 'random' : 'default',
-    choiceOrder: config.choiceOrder === 'random' ? 'random' : 'default',
+    questionOrder: sessionConfig.questionOrder === 'random' ? 'random' : 'default',
+    choiceOrder: sessionConfig.choiceOrder === 'random' ? 'random' : 'default',
   };
 
   const subjects: MockExamSubjectSession[] = await Promise.all(
-    config.subjects.map(async (subjectConfig) => {
-      const files = await Promise.all(
-        subjectConfig.sources.map((s) => loadQuestionFile(s.path)),
-      );
-      const questions = buildQuestions(subjectConfig, files, options);
+    sessionConfig.subjects.map(async (subjectConfig) => {
+      const file = await loadQuestionFile(subjectConfig.source.path);
+      const questions = buildQuestions(subjectConfig, file, options);
       return {
         subjectId: subjectConfig.subjectId,
         subjectTitle: subjectConfig.subjectTitle,
@@ -112,10 +166,10 @@ export async function createMockExamSession(config: MockExamConfig): Promise<Moc
 
   const session: MockExamSession = {
     id: crypto.randomUUID(),
-    config,
+    config: sessionConfig,
     subjects,
     activeSubjectIndex: 0,
-    startedAt: new Date().toISOString(),
+    startedAt: startedAt.toISOString(),
     bookmarks: [],
     status: 'in-progress',
   };
@@ -126,86 +180,93 @@ export async function createMockExamSession(config: MockExamConfig): Promise<Moc
 
 function buildQuestions(
   subjectConfig: MockExamSubjectConfig,
-  files: QuestionFile[],
+  file: QuestionFile,
   options: PracticeOptions,
 ): QuizSessionQuestion[] {
-  const allQuestions: QuizSessionQuestion[] = files.flatMap((file, fileIndex) => {
-    const source = subjectConfig.sources[fileIndex];
-    if (!source) return [];
-    const passagesById = new Map(file.passages?.map((p) => [p.id, p]));
+  const source = subjectConfig.source;
+  const passagesById = new Map(file.passages?.map((p) => [p.id, p]));
+  const allQuestions = file.questions.map((question) => ({
+    key: `${source.subjectId}:${source.sourceId}:${question.id}`,
+    subjectId: source.subjectId,
+    subjectTitle: source.subjectTitle,
+    sourceId: source.sourceId,
+    sourceTitle: source.sourceTitle,
+    question,
+    passages: question.passageRefs?.flatMap((id) => passagesById.get(id) ?? []) ?? [],
+    choices: options.choiceOrder === 'random' ? shuffled(question.choices) : question.choices,
+  }));
 
-    return file.questions.map((question) => ({
-      key: `${source.subjectId}:${source.sourceId}:${question.id}`,
-      subjectId: source.subjectId,
-      subjectTitle: source.subjectTitle,
-      sourceId: source.sourceId,
-      sourceTitle: source.sourceTitle,
-      question,
-      passages: question.passageRefs?.flatMap((id) => passagesById.get(id) ?? []) ?? [],
-      choices: options.choiceOrder === 'random' ? shuffled(question.choices) : question.choices,
-    }));
-  });
-
-  const questions = subjectConfig.extractMode === 'all'
-    ? allQuestions
-    : extractRandom25(allQuestions);
+  const questions = extractMockExamQuestions(allQuestions, file.kind);
 
   return options.questionOrder === 'random' ? shuffled(questions) : questions;
 }
 
-// ─── 무작위 25문제 균일 추출 ─────────────────────────────────────────────
+// ─── 모의시험 25문제 추출 ───────────────────────────────────────────────
 
 /**
- * 문제 ID (예: e17-01, b02-03, l03-05)에서 강 번호를 파싱하여
- * 강별로 균일하게 분포되도록 총 25문제를 추출한다.
- *
- * 알고리즘:
- * 1. 모든 문제를 강 번호별로 그룹핑
- * 2. 총 25문제를 강 수로 나눠 기본 할당량 결정 (floor)
- * 3. 나머지는 문제가 많은 강부터 1개씩 추가 할당
- * 4. 각 강 내에서 할당량만큼 무작위 추출
- * 5. 강 순서대로 정렬하여 최종 목록 생성
+ * 기출은 25문항이면 그대로 사용하고, 그보다 많으면 무작위 25문항을 뽑는다.
+ * 교재/워크북/강의/특강은 문제 ID의 첫 숫자 그룹 범위에 맞춰 균등 분산한다.
  */
-export function extractRandom25(questions: QuizSessionQuestion[]): QuizSessionQuestion[] {
+export function extractMockExamQuestions(
+  questions: QuizSessionQuestion[],
+  sourceKind: SourceKind,
+): QuizSessionQuestion[] {
   const TARGET = 25;
 
   if (questions.length <= TARGET) {
-    return shuffled(questions);
+    return questions;
   }
 
-  // 강 번호 추출: 문제 id에서 첫 번째 숫자 그룹 사용
-  const groupKey = (q: QuizSessionQuestion): string => {
-    const match = /^[a-z]+(\d+)/i.exec(q.question.id);
-    return match?.[1] ?? '0';
-  };
+  if (sourceKind === 'exam') {
+    return shuffled(questions).slice(0, TARGET);
+  }
 
-  // 강별 그룹핑 (순서 유지)
-  const groups = new Map<string, QuizSessionQuestion[]>();
+  return extractGroupedRandom25(questions, TARGET);
+}
+
+function extractGroupedRandom25(
+  questions: QuizSessionQuestion[],
+  target: number,
+): QuizSessionQuestion[] {
+  const groups = new Map<number, QuizSessionQuestion[]>();
   for (const q of questions) {
-    const key = groupKey(q);
+    const key = parseQuestionGroup(q.question.id);
     if (!groups.has(key)) groups.set(key, []);
     groups.get(key)!.push(q);
   }
 
-  const groupEntries = [...groups.entries()];
-  const groupCount = groupEntries.length;
-  const base = Math.floor(TARGET / groupCount);
-  let remainder = TARGET - base * groupCount;
-
-  // 문제가 많은 강부터 나머지 할당 (내림차순 정렬)
-  const sorted = [...groupEntries].sort(([, a], [, b]) => b.length - a.length);
-
-  const picks: QuizSessionQuestion[] = [];
-  for (const [key, group] of sorted) {
-    const allocation = base + (remainder > 0 ? 1 : 0);
-    if (remainder > 0) remainder -= 1;
-    const selected = shuffled(group).slice(0, Math.min(allocation, group.length));
-    picks.push(...selected);
-    groups.set(key, selected);
+  const maxGroup = Math.max(...groups.keys());
+  if (!Number.isFinite(maxGroup) || maxGroup <= 0) {
+    return shuffled(questions).slice(0, target);
   }
 
-  // 강 순서대로 최종 정렬
-  return groupEntries.flatMap(([key]) => groups.get(key) ?? []);
+  const picks: QuizSessionQuestion[] = [];
+  const leftovers: QuizSessionQuestion[] = [];
+  const base = Math.floor(target / maxGroup);
+  let remainder = target - base * maxGroup;
+
+  for (let groupNumber = 1; groupNumber <= maxGroup; groupNumber += 1) {
+    const group = shuffled(groups.get(groupNumber) ?? []);
+    const allocation = base + (remainder > 0 ? 1 : 0);
+    if (remainder > 0) {
+      remainder -= 1;
+    }
+
+    const selected = group.slice(0, allocation);
+    picks.push(...selected);
+    leftovers.push(...group.slice(selected.length));
+  }
+
+  if (picks.length < target) {
+    picks.push(...shuffled(leftovers).slice(0, target - picks.length));
+  }
+
+  return picks.slice(0, target);
+}
+
+function parseQuestionGroup(questionId: string): number {
+  const match = /^[a-z]+(\d+)/i.exec(questionId);
+  return match ? Number(match[1]) : 0;
 }
 
 // ─── 세션 업데이트 헬퍼 ──────────────────────────────────────────────────
@@ -224,9 +285,7 @@ export function setAnswer(
   const updated: MockExamSession = {
     ...session,
     subjects: session.subjects.map((s, i) =>
-      i === subjectIndex
-        ? { ...s, answers: { ...s.answers, [questionKey]: selected } }
-        : s,
+      i === subjectIndex ? { ...s, answers: { ...s.answers, [questionKey]: selected } } : s,
     ),
   };
 
@@ -234,9 +293,7 @@ export function setAnswer(
   if (selected.length === 0) {
     const answers = { ...subject.answers };
     delete answers[questionKey];
-    updated.subjects = updated.subjects.map((s, i) =>
-      i === subjectIndex ? { ...s, answers } : s,
-    );
+    updated.subjects = updated.subjects.map((s, i) => (i === subjectIndex ? { ...s, answers } : s));
   }
 
   saveMockExamSession(updated);
@@ -270,24 +327,25 @@ export function finishSession(session: MockExamSession): MockExamSession {
 
 // ─── 시간 계산 ───────────────────────────────────────────────────────────
 
-export function calcMockExamTimes(subjectCount: number): {
+export function calcMockExamTimes(subjectCount: number, startDate = new Date()): {
   totalMinutes: number;
   startTime: string;
   endTime: string;
 } {
   const totalMinutes = subjectCount * 25;
-  const startHour = 13;
-  const startMinute = 30;
-  const endTotalMinute = startHour * 60 + startMinute + totalMinutes;
-  const endHour = Math.floor(endTotalMinute / 60);
-  const endMinute = endTotalMinute % 60;
+  const startTime = new Date(startDate);
+  const endTime = new Date(startTime.getTime() + totalMinutes * 60_000);
 
-  const pad = (n: number) => String(n).padStart(2, '0');
   return {
     totalMinutes,
-    startTime: `${pad(startHour)}:${pad(startMinute)}`,
-    endTime: `${pad(endHour)}:${pad(endMinute)}`,
+    startTime: formatClockTime(startTime),
+    endTime: formatClockTime(endTime),
   };
+}
+
+function formatClockTime(date: Date): string {
+  const pad = (n: number) => String(n).padStart(2, '0');
+  return `${pad(date.getHours())}:${pad(date.getMinutes())}`;
 }
 
 export function getRemainingSeconds(session: MockExamSession): number {
@@ -306,9 +364,8 @@ export function formatCountdown(seconds: number): string {
 // ─── 정답 체크 ───────────────────────────────────────────────────────────
 
 export function getAnsweredCount(subjectSession: MockExamSubjectSession): number {
-  return subjectSession.questions.filter(
-    (q) => (subjectSession.answers[q.key]?.length ?? 0) > 0,
-  ).length;
+  return subjectSession.questions.filter((q) => (subjectSession.answers[q.key]?.length ?? 0) > 0)
+    .length;
 }
 
 export function gradeSession(session: MockExamSession): MockExamGradeResult[] {

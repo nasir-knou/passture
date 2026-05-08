@@ -1,4 +1,4 @@
-import type { Catalog, CatalogSource } from '../types/catalog';
+import type { Catalog, CatalogSource, SourceKind } from '../types/catalog';
 import {
   calcMockExamTimes,
   saveMockExamConfig,
@@ -18,17 +18,17 @@ export function renderMockExamPage(catalog: Catalog): HTMLElement {
     <section class="page-header">
       <p class="eyebrow">mock exam</p>
       <h1>모의 시험</h1>
-      <p class="lead">실제 방통대 기말시험 환경에서 시간 제한과 함께 풀어봅니다.<br>최대 3과목을 선택할 수 있습니다.</p>
+      <p class="lead">유사 기말 시험 환경에서 시간 제한과 함께 풀어봅니다.<br>최대 3과목을 선택할 수 있습니다.</p>
     </section>
     <section class="mock-exam-setup" aria-label="시험 설정">
       <div class="mock-subject-list">
-        ${catalog.subjects.map((subject, i) => renderSubjectCard(subject.id, subject.title, subject.sources, i)).join('')}
+        ${catalog.subjects.map((subject) => renderSubjectCard(subject.id, subject.title, subject.sources)).join('')}
       </div>
       <div class="mock-time-summary panel" aria-label="시험 시간 요약">
         <dl>
           <div><dt>선택한 과목</dt><dd data-selected-count>0</dd></div>
           <div><dt>시험 시간</dt><dd data-total-time>—</dd></div>
-          <div><dt>시험 시작</dt><dd>13:30</dd></div>
+          <div><dt>시험 시작</dt><dd data-start-time>—</dd></div>
           <div><dt>시험 종료</dt><dd data-end-time>—</dd></div>
         </dl>
       </div>
@@ -53,9 +53,8 @@ function renderSubjectCard(
   subjectId: string,
   subjectTitle: string,
   sources: CatalogSource[],
-  _index: number,
 ): string {
-  const examSources = [...sources].sort((a, b) => {
+  const sortedSources = [...sources].sort((a, b) => {
     if (a.kind === 'exam' && b.kind !== 'exam') return -1;
     if (b.kind === 'exam' && a.kind !== 'exam') return 1;
     return (b.year ?? 0) - (a.year ?? 0);
@@ -73,20 +72,7 @@ function renderSubjectCard(
         <fieldset class="segmented-field mock-source-field">
           <legend>출처 선택</legend>
           <div class="check-list">
-            ${examSources.map((src) => renderSourceRow(src, subjectId, subjectTitle)).join('')}
-          </div>
-        </fieldset>
-        <fieldset class="segmented-field mock-extract-field">
-          <legend>문제 추출</legend>
-          <div class="segmented-control">
-            <label>
-              <input type="radio" name="extract-${escapeHtml(subjectId)}" value="random-25" checked />
-              <span>무작위 25문제</span>
-            </label>
-            <label>
-              <input type="radio" name="extract-${escapeHtml(subjectId)}" value="all" />
-              <span>전체 문제</span>
-            </label>
+            ${sortedSources.map((src) => renderSourceRow(src, subjectId, subjectTitle)).join('')}
           </div>
         </fieldset>
       </div>
@@ -105,7 +91,7 @@ function renderSourceRow(source: CatalogSource, subjectId: string, subjectTitle:
   return `
     <label class="check-row">
       <input
-        type="checkbox"
+        type="radio"
         name="source-${escapeHtml(subjectId)}"
         value="${escapeHtml(source.id)}"
         data-subject-id="${escapeHtml(subjectId)}"
@@ -113,6 +99,7 @@ function renderSourceRow(source: CatalogSource, subjectId: string, subjectTitle:
         data-source-id="${escapeHtml(source.id)}"
         data-source-title="${escapeHtml(source.title)}"
         data-source-path="${escapeHtml(source.path)}"
+        data-source-kind="${escapeHtml(source.kind)}"
       />
       <span>
         <strong>
@@ -197,9 +184,7 @@ function bindSetupEvents(page: HTMLElement, catalog: Catalog): void {
 }
 
 function enforceMaxSubjects(page: HTMLElement): void {
-  const checkboxes = Array.from(
-    page.querySelectorAll<HTMLInputElement>('[data-subject-checkbox]'),
-  );
+  const checkboxes = Array.from(page.querySelectorAll<HTMLInputElement>('[data-subject-checkbox]'));
   const checkedCount = checkboxes.filter((cb) => cb.checked).length;
 
   checkboxes.forEach((cb) => {
@@ -219,10 +204,12 @@ function updateTimeSummary(page: HTMLElement): void {
 
   const countEl = page.querySelector<HTMLElement>('[data-selected-count]');
   const timeEl = page.querySelector<HTMLElement>('[data-total-time]');
+  const startEl = page.querySelector<HTMLElement>('[data-start-time]');
   const endEl = page.querySelector<HTMLElement>('[data-end-time]');
 
   if (countEl) countEl.textContent = String(checkedCount);
   if (timeEl) timeEl.textContent = checkedCount > 0 ? `${times.totalMinutes}분` : '—';
+  if (startEl) startEl.textContent = checkedCount > 0 ? times.startTime : '—';
   if (endEl) endEl.textContent = checkedCount > 0 ? times.endTime : '—';
 }
 
@@ -239,29 +226,25 @@ function readConfig(page: HTMLElement, catalog: Catalog): MockExamConfig | null 
     const catalogSubject = catalog.subjects.find((s) => s.id === subjectId);
     if (!catalogSubject) continue;
 
-    const selectedSources = Array.from(
-      page.querySelectorAll<HTMLInputElement>(`input[name="source-${subjectId}"]:checked`),
-    ).map((input) => ({
-      subjectId: input.dataset.subjectId ?? subjectId,
-      subjectTitle: input.dataset.subjectTitle ?? catalogSubject.title,
-      sourceId: input.dataset.sourceId ?? '',
-      sourceTitle: input.dataset.sourceTitle ?? '',
-      path: input.dataset.sourcePath ?? '',
-    }));
-
-    if (selectedSources.length === 0) return null;
-
-    const extractModeInput = page.querySelector<HTMLInputElement>(
-      `input[name="extract-${subjectId}"]:checked`,
+    const selectedSourceInput = page.querySelector<HTMLInputElement>(
+      `input[name="source-${subjectId}"]:checked`,
     );
-    const extractMode =
-      extractModeInput?.value === 'all' ? 'all' : ('random-25' as const);
+
+    if (!selectedSourceInput) return null;
+
+    const selectedSource = {
+      subjectId: selectedSourceInput.dataset.subjectId ?? subjectId,
+      subjectTitle: selectedSourceInput.dataset.subjectTitle ?? catalogSubject.title,
+      sourceId: selectedSourceInput.dataset.sourceId ?? '',
+      sourceTitle: selectedSourceInput.dataset.sourceTitle ?? '',
+      path: selectedSourceInput.dataset.sourcePath ?? '',
+      kind: (selectedSourceInput.dataset.sourceKind ?? 'exam') as SourceKind,
+    };
 
     subjects.push({
       subjectId,
       subjectTitle: catalogSubject.title,
-      sources: selectedSources,
-      extractMode,
+      source: selectedSource,
     });
   }
 
