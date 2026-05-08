@@ -73,11 +73,6 @@ subjects:
   - id: artificial-intelligence
     title: 인공지능
     sources:
-      - id: past-exams-2017
-        title: 2017 기말
-        path: subjects/artificial-intelligence/past-exams-2017.json
-        kind: exam
-        year: 2017
       - id: past-exams-2018
         title: 2018 기말
         path: subjects/artificial-intelligence/past-exams-2018.json
