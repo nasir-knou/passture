@@ -5,6 +5,55 @@ kind: exam
 year: 2017
 
 passages:
+  - id: g17-knapsack-04
+    type: text
+    body: |
+      물체의 개수는 4개(소시지, 빵, 꿀, 생선)이며, 배낭의 용량은 10이다.
+
+      - 소시지 -> 무게 3, 이익 15
+      - 빵 -> 무게 5, 이익 20
+      - 꿀 -> 무게 3, 이익 9
+      - 생선 -> 무게 4, 이익 14
+
+  - id: g17-sum-code-06
+    type: code
+    language: text
+    body: |
+      doSomething(A[0..n-1], n) {
+        s = 0;  i = 0;
+        while (i < n) {
+          s = s + A[i];
+          i = i + 1;
+        }
+        m = s / n;
+        print(s, n);
+      }
+
+  - id: g17-bubble-pass-08
+    type: text
+    body: |
+      $\underline{5}\quad 35\quad 20\quad 10\quad 40\quad 25\quad 15\quad 30$
+
+  - id: g17-shell-sequences-09
+    type: text
+    body: |
+      - 1, 2, 4, 8, 16, ...
+      - 1, 4, 13, 40, 121, ...
+      - 1, 3, 7, 21, 48, ...
+
+  - id: g17-heap-sort-state-14
+    type: diagram
+    diagram:
+      type: data-table
+      columns: [초기 히프 배열]
+      rows:
+        - ['88  50  15  30  40  7']
+
+  - id: g17-sorting-list-16
+    type: text
+    body: |
+      선택 정렬, 계수 정렬, 히프 정렬, 기수 정렬, 셸 정렬, 합병 정렬, 버블 정렬, 퀵 정렬, 버킷 정렬, 삽입 정렬
+
   - id: g17-bst-delete-21
     type: diagram
     diagram:
@@ -125,23 +174,29 @@ passages:
         - { from: '1', to: '2', label: '4' }
         - { from: '1', to: '3', label: '2' }
         - { from: '4', to: '1', label: '3' }
-        - { from: '2', to: '3', label: '5' }
-        - { from: '3', to: '2', label: '-1' }
+        - { from: '2', to: '3', label: '5', curve: 18 }
+        - { from: '3', to: '2', label: '-1', curve: 18 }
 
   - id: g17-floyd-matrices-28
-    type: diagram
-    diagram:
-      type: data-table
-      columns: ['행렬', '1', '2', '3', '4']
-      rows:
-        - ['D(0) row 1', '0', '4', '2', '∞']
-        - ['D(0) row 2', '∞', '0', '5', '∞']
-        - ['D(0) row 3', '∞', '-1', '0', '∞']
-        - ['D(0) row 4', '3', '∞', '∞', '0']
-        - ['D(4) row 1', '0', '(a)', '(b)', '∞']
-        - ['D(4) row 2', '∞', '0', '5', '∞']
-        - ['D(4) row 3', '∞', '-1', '0', '∞']
-        - ['D(4) row 4', '3', '(c)', '(d)', '0']
+    type: text
+    body: |
+      $$
+      D^{(0)} =
+      \begin{bmatrix}
+      0 & 4 & 2 & \infty \\
+      \infty & 0 & 5 & \infty \\
+      \infty & -1 & 0 & \infty \\
+      3 & \infty & \infty & 0
+      \end{bmatrix}
+      \qquad
+      D^{(4)} =
+      \begin{bmatrix}
+      0 & (a) & (b) & \infty \\
+      \infty & 0 & 5 & \infty \\
+      \infty & -1 & 0 & \infty \\
+      3 & (c) & (d) & 0
+      \end{bmatrix}
+      $$
 
 questions:
   - id: e17-01
@@ -170,10 +225,10 @@ questions:
     type: multiple-choice
     prompt: 길이가 k인 이진 트리가 가질 수 있는 노드의 최대 개수는? (k>=1)
     choices:
-      - { id: '1', text: '2^(k-1)' }
-      - { id: '2', text: '2^(k-1)-1' }
-      - { id: '3', text: '2^k' }
-      - { id: '4', text: '2^k-1' }
+      - { id: '1', text: '$2^{k-1}$' }
+      - { id: '2', text: '$2^{k-1}-1$' }
+      - { id: '3', text: '$2^k$' }
+      - { id: '4', text: '$2^k-1$' }
     answers: ['4']
     explanation: |
       선택지 1: 깊이 k의 마지막 레벨에 존재할 수 있는 최대 노드 수다.
@@ -212,6 +267,7 @@ questions:
 
   - id: e17-04
     type: multiple-choice
+    passageRefs: [g17-knapsack-04]
     prompt: 배낭의 용량이 10이고 물체가 소시지(무게 3, 이익 15), 빵(무게 5, 이익 20), 꿀(무게 3, 이익 9), 생선(무게 4, 이익 14)일 때 0/1 배낭문제의 최적해에 들어가지 않는 물체는?
     choices:
       - { id: '1', text: '소시지' }
@@ -258,12 +314,13 @@ questions:
 
   - id: e17-06
     type: multiple-choice
+    passageRefs: [g17-sum-code-06]
     prompt: 배열 A[0..n-1]을 while문으로 한 번 순회하며 합을 구하는 알고리즘의 시간 복잡도는?
     choices:
-      - { id: '1', text: 'O(n)' }
-      - { id: '2', text: 'O(n^2)' }
-      - { id: '3', text: 'O(nlogn)' }
-      - { id: '4', text: 'O(logn)' }
+      - { id: '1', text: '$O(n)$' }
+      - { id: '2', text: '$O(n^2)$' }
+      - { id: '3', text: '$O(n\log n)$' }
+      - { id: '4', text: '$O(\log n)$' }
     answers: ['1']
     explanation: |
       선택지 1: 반복문이 n번 실행되므로 선형 시간이다.
@@ -302,6 +359,7 @@ questions:
 
   - id: e17-08
     type: multiple-choice
+    passageRefs: [g17-bubble-pass-08]
     prompt: 버블 정렬에서 배열 5, 35, 20, 10, 40, 25, 15, 30을 오름차순으로 정렬할 때 한 단계 수행 중 자리바꿈은 몇 번 발생하는가? (밑줄 친 앞부분은 이미 정렬된 부분)
     choices:
       - { id: '1', text: '2' }
@@ -323,6 +381,7 @@ questions:
 
   - id: e17-09
     type: multiple-choice
+    passageRefs: [g17-shell-sequences-09]
     prompt: 1, 2, 4, 8, 16, ... / 1, 4, 13, 40, 121, ... / 1, 3, 7, 21, 48, ... 같은 순열을 기반으로 정렬을 수행하는 알고리즘은?
     choices:
       - { id: '1', text: '히프 정렬' }
@@ -433,6 +492,7 @@ questions:
 
   - id: e17-14
     type: multiple-choice
+    passageRefs: [g17-heap-sort-state-14]
     prompt: 초기 히프 배열 88, 50, 15, 30, 40, 7에 대해 히프 정렬의 두 번째 단계(최댓값 삭제와 히프 재구성)를 두 번 반복한 후 배열 상태는?
     choices:
       - { id: '1', text: '40 30 15 7 50 88' }
@@ -477,6 +537,7 @@ questions:
 
   - id: e17-16
     type: multiple-choice
+    passageRefs: [g17-sorting-list-16]
     prompt: 보기의 알고리즘(선택, 계수, 히프, 기수, 셸, 합병, 버블, 퀵, 버킷, 삽입 정렬) 중 제자리 정렬 알고리즘의 개수는?
     choices:
       - { id: '1', text: '3' }
@@ -499,6 +560,7 @@ questions:
 
   - id: e17-17
     type: multiple-choice
+    passageRefs: [g17-sorting-list-16]
     prompt: 보기의 알고리즘 중 평균 성능이 O(nlogn)이면서 안정적이지 않은 정렬 알고리즘의 개수는?
     choices:
       - { id: '1', text: '2' }
@@ -521,6 +583,7 @@ questions:
 
   - id: e17-18
     type: multiple-choice
+    passageRefs: [g17-sorting-list-16]
     prompt: 보기의 알고리즘 중 비교 기반의 정렬 알고리즘의 개수는?
     choices:
       - { id: '1', text: '4' }
@@ -635,10 +698,90 @@ questions:
     prompt: 주어진 2-3-4 트리를 흑적 트리로 올바르게 표현한 것은? (검정색으로 채워진 노드가 적색 노드이고, 흰 바탕의 노드가 흑색 노드)
     passageRefs: [g17-two-three-four-tree-23]
     choices:
-      - { id: '1', text: '① 30 채움, 15·55 흰색, 7·22·44·88 채움' }
-      - { id: '2', text: '② 30·15·7 채움, 55·22·44·88 흰색' }
-      - { id: '3', text: '③ 55·7·22 채움, 30·15·44·88 흰색' }
-      - { id: '4', text: '④ 15·55 채움, 30·7·22·44·88 흰색' }
+      - id: '1'
+        text: '①'
+        diagram:
+          type: simple-graph
+          width: 280
+          height: 170
+          nodes:
+            - { id: '30', label: '30', x: 140, y: 25, tone: filled }
+            - { id: '15', label: '15', x: 80, y: 75 }
+            - { id: '55', label: '55', x: 200, y: 75 }
+            - { id: '7', label: '7', x: 50, y: 130, tone: filled }
+            - { id: '22', label: '22', x: 110, y: 130, tone: filled }
+            - { id: '44', label: '44', x: 170, y: 130, tone: filled }
+            - { id: '88', label: '88', x: 230, y: 130, tone: filled }
+          edges:
+            - { from: '30', to: '15' }
+            - { from: '30', to: '55' }
+            - { from: '15', to: '7' }
+            - { from: '15', to: '22' }
+            - { from: '55', to: '44' }
+            - { from: '55', to: '88' }
+      - id: '2'
+        text: '②'
+        diagram:
+          type: simple-graph
+          width: 280
+          height: 170
+          nodes:
+            - { id: '30', label: '30', x: 140, y: 25, tone: filled }
+            - { id: '15', label: '15', x: 80, y: 75, tone: filled }
+            - { id: '55', label: '55', x: 200, y: 75 }
+            - { id: '7', label: '7', x: 50, y: 130, tone: filled }
+            - { id: '22', label: '22', x: 110, y: 130 }
+            - { id: '44', label: '44', x: 170, y: 130 }
+            - { id: '88', label: '88', x: 230, y: 130 }
+          edges:
+            - { from: '30', to: '15' }
+            - { from: '30', to: '55' }
+            - { from: '15', to: '7' }
+            - { from: '15', to: '22' }
+            - { from: '55', to: '44' }
+            - { from: '55', to: '88' }
+      - id: '3'
+        text: '③'
+        diagram:
+          type: simple-graph
+          width: 280
+          height: 170
+          nodes:
+            - { id: '30', label: '30', x: 140, y: 25 }
+            - { id: '15', label: '15', x: 80, y: 75 }
+            - { id: '55', label: '55', x: 200, y: 75, tone: filled }
+            - { id: '7', label: '7', x: 50, y: 130, tone: filled }
+            - { id: '22', label: '22', x: 110, y: 130, tone: filled }
+            - { id: '44', label: '44', x: 170, y: 130 }
+            - { id: '88', label: '88', x: 230, y: 130 }
+          edges:
+            - { from: '30', to: '15' }
+            - { from: '30', to: '55' }
+            - { from: '15', to: '7' }
+            - { from: '15', to: '22' }
+            - { from: '55', to: '44' }
+            - { from: '55', to: '88' }
+      - id: '4'
+        text: '④'
+        diagram:
+          type: simple-graph
+          width: 280
+          height: 170
+          nodes:
+            - { id: '30', label: '30', x: 140, y: 25 }
+            - { id: '15', label: '15', x: 80, y: 75, tone: filled }
+            - { id: '55', label: '55', x: 200, y: 75, tone: filled }
+            - { id: '7', label: '7', x: 50, y: 130 }
+            - { id: '22', label: '22', x: 110, y: 130 }
+            - { id: '44', label: '44', x: 170, y: 130 }
+            - { id: '88', label: '88', x: 230, y: 130 }
+          edges:
+            - { from: '30', to: '15' }
+            - { from: '30', to: '55' }
+            - { from: '15', to: '7' }
+            - { from: '15', to: '22' }
+            - { from: '55', to: '44' }
+            - { from: '55', to: '88' }
     answers: ['3']
     explanation: |
       선택지 1: 루트의 색과 3-노드 표현이 2-3-4 트리 대응과 맞지 않는다.
@@ -745,7 +888,7 @@ questions:
 
   - id: e17-28
     type: multiple-choice
-    prompt: 플로이드 알고리즘을 적용한 최종 상태 D(4)의 (a)~(d)값 중 가장 작은 값을 갖는 것은?
+    prompt: 플로이드 알고리즘을 적용한 최종 상태 $D^{(4)}$의 (a)~(d)값 중 가장 작은 값을 갖는 것은?
     passageRefs: [g17-floyd-graph-28, g17-floyd-matrices-28]
     choices:
       - { id: '1', text: '(a)' }

@@ -5,6 +5,23 @@ kind: exam
 year: 2018
 
 passages:
+  - id: g18-quick-partition-data-07
+    type: diagram
+    diagram:
+      type: data-table
+      columns: [데이터]
+      rows:
+        - ['30  45  20  15  40  25  35  10']
+
+  - id: g18-matrix-chain-11
+    type: diagram
+    diagram:
+      type: data-table
+      columns: [행렬 곱셈 순서]
+      rows:
+        - ['$M_1 \times M_2 \times M_3 \times M_4 \times M_5 \times M_6$']
+        - ['$5 \times 2 \quad 2 \times 3 \quad 3 \times 4 \quad 4 \times 6 \quad 6 \times 7 \quad 7 \times 8$']
+
   - id: g18-floyd-graph-12
     type: diagram
     diagram:
@@ -21,8 +38,23 @@ passages:
         - { from: '1', to: '2', label: '4' }
         - { from: '1', to: '3', label: '2' }
         - { from: '4', to: '1', label: '3' }
-        - { from: '2', to: '3', label: '5' }
-        - { from: '3', to: '2', label: '-1' }
+        - { from: '2', to: '3', label: '5', curve: 18 }
+        - { from: '3', to: '2', label: '-1', curve: 18 }
+
+  - id: g18-activity-selection-16
+    type: diagram
+    diagram:
+      type: data-table
+      columns: [작업]
+      rows:
+        - ['$t_1=(2,5),\ t_2=(6,9),\ t_3=(4,9),\ t_4=(1,4)$']
+        - ['$t_5=(0,7),\ t_6=(9,10),\ t_7=(7,10),\ t_8=(5,8)$']
+
+  - id: g18-genetic-operation-34
+    type: text
+    body: |
+      - 부모의 형질을 나누어 갖는 연산이다.
+      - 다른 최적화 방법과 구별짓는 연산이다.
 
   - id: g18-bst-delete-28
     type: diagram
@@ -139,9 +171,9 @@ questions:
     answers: ['4']
     explanation: |
       선택지 1: 입력 데이터의 값: 복잡도 분석의 정의나 적용 조건과 다르므로 정답이 아니다.
-      선택지 2: 프로그램에 사용된 동적 변수의 개수: 복잡도 분석의 정의나 적용 조건과 다르므로 정답이 아니다.
-      선택지 3: 프로그램 코드의 길이: 복잡도 분석의 정의나 적용 조건과 다르므로 정답이 아니다.
-      선택지 4: 입력 데이터의 크기: 복잡도 분석의 정의와 적용 조건에 맞으므로 정답이다.
+      선택지 2: 프로그램에 사용된 동적 변수의 개수는 메모리 사용량이나 구현 세부와 관련될 수 있지만, 시간 복잡도의 독립 변수로 쓰는 기준은 아니다.
+      선택지 3: 프로그램 코드의 길이는 구현 규모를 나타낼 수 있으나, 같은 길이의 코드라도 반복 횟수에 따라 수행시간은 크게 달라진다.
+      선택지 4: 입력 데이터의 크기 $n$에 따라 기본 연산 횟수가 어떻게 증가하는지를 나타내는 것이 시간 복잡도이므로 정답이다.
 
       핵심 개념:
       시간 복잡도는 보통 입력 크기 n에 대한 기본 연산 횟수의 증가율로 표현한다.
@@ -190,7 +222,8 @@ questions:
 
   - id: e18-07
     type: multiple-choice
-    prompt: '데이터 30, 45, 20, 15, 40, 25, 35, 10에 대해 퀵 정렬의 분할 함수 Partition()을 한 번 적용한 후 왼쪽 부분배열의 첫 번째 원소는? (피벗은 맨 왼쪽 원소, 오름차순)'
+    passageRefs: [g18-quick-partition-data-07]
+    prompt: '다음과 같은 데이터에 대해 퀵 정렬의 분할 함수 Partition()을 한 번 적용한 후 왼쪽 부분배열의 첫 번째 원소는? (피벗은 맨 왼쪽 원소, 오름차순)'
     choices:
       - { id: '1', text: '10' }
       - { id: '2', text: '15' }
@@ -273,7 +306,8 @@ questions:
 
   - id: e18-11
     type: multiple-choice
-    prompt: '연쇄 행렬 곱셈 문제에서 5×2 행렬 M1과 2×3 행렬 M2를 곱할 때 C(1,2)의 값은?'
+    passageRefs: [g18-matrix-chain-11]
+    prompt: '연쇄 행렬 곱셈 문제에서 다음과 같이 6개의 행렬을 곱할 때 $C(1,2)$의 값은?'
     choices:
       - { id: '1', text: '24' }
       - { id: '2', text: '30' }
@@ -294,10 +328,10 @@ questions:
 
   - id: e18-12
     type: multiple-choice
-    prompt: '주어진 그래프에 대해 모든 정점 간의 최단 경로를 구할 때 d42^(3)의 값은?'
+    prompt: '주어진 그래프에 대해 모든 정점 간의 최단 경로를 구할 때 $d_{42}^{(3)}$의 값은?'
     passageRefs: [g18-floyd-graph-12]
     choices:
-      - { id: '1', text: '∞' }
+      - { id: '1', text: '$\infty$' }
       - { id: '2', text: '7' }
       - { id: '3', text: '5' }
       - { id: '4', text: '4' }
@@ -385,7 +419,8 @@ questions:
 
   - id: e18-16
     type: multiple-choice
-    prompt: '작업 스케줄링 문제에서 t1=(2,5), t2=(6,9), t3=(4,9), t4=(1,4), t5=(0,7), t6=(9,10), t7=(7,10), t8=(5,8)일 때 가장 먼저 기계에 할당하는 작업은?'
+    passageRefs: [g18-activity-selection-16]
+    prompt: '다음 작업에 대한 작업 스케줄링 문제의 최적해를 구하려고 한다. 가장 먼저 기계에 할당하는 작업은?'
     choices:
       - { id: '1', text: 't1' }
       - { id: '2', text: 't4' }
@@ -770,6 +805,7 @@ questions:
 
   - id: e18-34
     type: multiple-choice
+    passageRefs: [g18-genetic-operation-34]
     prompt: '부모의 형질을 나누어 갖는 연산이며 다른 최적화 방법과 구별짓는 유전 알고리즘의 연산은?'
     choices:
       - { id: '1', text: '변이' }

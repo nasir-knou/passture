@@ -863,7 +863,7 @@ questions:
       입력은 없을 수도 있지만 출력은 하나 이상 있어야 한다.
       각 단계는 명확하고 실행 가능해야 한다.
       실용적 관점에서는 효율성도 중요한 평가 기준이다.
-    tags: [chapter:01, algorithm]
+    tags: [algorithm]
 
   - id: b01-02
     type: multiple-choice
@@ -885,7 +885,7 @@ questions:
       같은 문제를 풀더라도 시간과 메모리 사용량은 알고리즘마다 다르다.
       현실적인 시간 안에 해를 구할 수 있어야 실제로 사용할 수 있다.
       시간 복잡도와 공간 복잡도는 효율성 분석의 핵심 척도이다.
-    tags: [chapter:01, algorithm, efficiency]
+    tags: [algorithm, efficiency]
 
   - id: b01-03
     type: multiple-choice
@@ -907,7 +907,7 @@ questions:
       항상 최적해를 보장하지는 않지만 조건이 맞으면 효율적이다.
       탐욕적 선택 속성과 최적 부분 구조가 중요하다.
       최소 신장 트리, 분할 가능 배낭 문제 등에 적용된다.
-    tags: [chapter:01, greedy]
+    tags: [greedy]
 
   - id: b01-04
     type: multiple-choice
@@ -929,7 +929,7 @@ questions:
       부분 문제는 원래 문제와 같은 형태이며 독립적이어야 한다.
       이진 탐색, 퀵 정렬, 합병 정렬이 대표 예이다.
       중복 부분 문제가 많으면 동적 프로그래밍이 더 적합할 수 있다.
-    tags: [chapter:01, divide-and-conquer]
+    tags: [divide-and-conquer]
 
   - id: b01-05
     type: multiple-choice
@@ -951,7 +951,7 @@ questions:
       거스름돈, 분할 가능 배낭, 최소 신장 트리 문제 등에 적용될 수 있다.
       모든 문제에서 최적해를 보장하지는 않는다.
       문제의 구조가 탐욕적 선택을 허용하는지 확인해야 한다.
-    tags: [chapter:01, greedy]
+    tags: [greedy]
 
   - id: b01-06
     type: multiple-choice
@@ -973,7 +973,7 @@ questions:
       단위 무게당 이익이 큰 물체부터 선택하는 욕심쟁이 방법이 최적이다.
       용량이 남으면 다음 물체를 가능한 만큼만 잘라 담는다.
       0/1 배낭 문제와 달리 동적 프로그래밍이 필수는 아니다.
-    tags: [chapter:01, greedy, knapsack]
+    tags: [greedy, knapsack]
 
   - id: b01-07
     type: multiple-choice
@@ -995,7 +995,7 @@ questions:
       목표가 중간값이면 한 번의 비교로 탐색이 끝난다.
       목표가 한쪽 부분 배열에 있으면 탐색 범위를 절반으로 줄인다.
       비교 횟수는 목표 위치에 따라 달라질 수 있다.
-    tags: [chapter:01, binary-search]
+    tags: [binary-search]
 
   - id: b01-08
     type: multiple-choice
@@ -1023,7 +1023,7 @@ questions:
       시간 복잡도는 수행시간을 단위 연산 횟수로 추상화한다.
       공간 복잡도는 실행에 필요한 메모리 양을 나타낸다.
       복잡도는 입력 크기와 입력 상태에 따라 달라질 수 있다.
-    tags: [chapter:01, complexity]
+    tags: [complexity]
 
   - id: b01-09
     type: multiple-choice
@@ -1045,7 +1045,7 @@ questions:
       최고차항 중심으로 단순화해 알고리즘 간 우열을 비교한다.
       실제 시간의 정확한 수치보다 성장 추세를 나타낸다.
       O, Ω, Θ 표기법이 대표적인 점근 표기법이다.
-    tags: [chapter:01, asymptotic-notation]
+    tags: [asymptotic-notation]
 
   - id: b01-10
     type: multiple-choice
@@ -1067,7 +1067,7 @@ questions:
       양의 상수 c와 n0가 존재해 모든 n >= n0에서 f(n) <= c g(n)이면 된다.
       계수와 낮은 차수 항은 충분히 큰 입력에서 상수배에 흡수된다.
       Ω는 하한, Θ는 상한과 하한을 동시에 나타낸다.
-    tags: [chapter:01, asymptotic-notation, big-o]
+    tags: [asymptotic-notation, big-o]
 
   - id: b01-11
     type: multiple-choice
@@ -1089,7 +1089,7 @@ questions:
       알고리즘 분석에서 별도 언급이 없으면 최악 수행시간의 상한으로 많이 사용한다.
       Ω는 하한, Θ는 정확한 차수에 가깝다.
       평균 시간은 입력 분포 가정이 필요하다.
-    tags: [chapter:01, asymptotic-notation, big-o]
+    tags: [asymptotic-notation, big-o]
 
   - id: b01-12
     type: multiple-choice
@@ -1111,7 +1111,7 @@ questions:
       최선과 최악이 같은 차수이면 Θ로 더 정확한 성능을 나타낼 수 있다.
       O는 너무 느슨한 상한일 수 있다.
       Ω는 최소한 어느 정도 이상 걸린다는 하한 표현이다.
-    tags: [chapter:01, asymptotic-notation, theta]
+    tags: [asymptotic-notation, theta]
 
   - id: b01-13
     type: multiple-choice
@@ -1136,7 +1136,7 @@ questions:
       충분히 큰 입력에서 f(n)이 g(n)의 상수배보다 작아지지 않음을 의미한다.
       O는 상한, Θ는 상한과 하한을 동시에 나타낸다.
       그래프 해석에서는 n0 이후의 관계가 중요하다.
-    tags: [chapter:01, asymptotic-notation, omega]
+    tags: [asymptotic-notation, omega]
 
   - id: b01-14
     type: multiple-choice
@@ -1158,11 +1158,10 @@ questions:
       일반적인 증가 순서는 O(1), O(log n), O(n), O(n log n), O(n^2), O(2^n)이다.
       입력 크기가 커질수록 성장률 차이가 중요해진다.
       알고리즘 선택 시 점근 증가율은 핵심 판단 기준이다.
-    tags: [chapter:01, complexity-order]
+    tags: [complexity-order]
 
   - id: b01-15
     type: multi-answer
-    allowMultiple: true
     prompt: |
       입력 크기가 n일 때 주어진 2개의 프로그램 (a)와 (b)의 시간 복잡도를 각각 고르시오.
 
@@ -1201,7 +1200,7 @@ questions:
       (a)의 내부 반복은 삼각수 합이 되어 Θ(n^2)이다.
       (b)는 중첩되지 않은 반복문 두 개가 순차 실행되므로 Θ(n)+Θ(n)=Θ(n)이다.
       여러 코드 조각의 복잡도를 각각 묻는 문제에서는 각 조각을 독립적으로 분석해야 한다.
-    tags: [chapter:01, complexity, loop-analysis]
+    tags: [complexity, loop-analysis]
 
   - id: b01-16
     type: multiple-choice
@@ -1223,7 +1222,7 @@ questions:
       T(n)=T(n-1)+Θ(n)은 1부터 n까지 선형 비용이 누적된다.
       T(n)=T(n/2)+Θ(1)은 로그 단계만 필요하다.
       폐쇄형 차수를 비교하면 알고리즘 효율을 비교할 수 있다.
-    tags: [chapter:01, recurrence]
+    tags: [recurrence]
 
   - id: b01-17
     type: multiple-choice
@@ -1245,7 +1244,7 @@ questions:
       이 프로그램은 매번 입력 크기를 절반으로 줄인 한 번의 재귀 호출만 한다.
       중간값 출력과 인덱스 계산은 상수 시간이다.
       따라서 점화식은 T(n)=T(n/2)+Θ(1)이다.
-    tags: [chapter:01, recurrence]
+    tags: [recurrence]
 
   - id: b02-01
     type: multiple-choice
@@ -1270,7 +1269,7 @@ questions:
       안정성은 같은 키를 가진 데이터의 상대 순서를 유지하는 성질이다.
       제자리성과 안정성은 서로 다른 기준이다.
       정렬 알고리즘을 비교할 때 시간 복잡도와 함께 공간 사용량도 살펴야 한다.
-    tags: [chapter:02, sorting, in-place]
+    tags: [sorting, in-place]
 
   - id: b02-02
     type: multiple-choice
@@ -1292,7 +1291,7 @@ questions:
       계수, 기수, 버킷 정렬은 데이터의 범위나 구조를 활용한다.
       비교 기반 정렬은 일반적으로 Ω(n log n)의 하한을 갖는다.
       비비교 정렬은 조건이 맞으면 선형 시간에 가까운 성능도 가능하다.
-    tags: [chapter:02, sorting, counting-sort]
+    tags: [sorting, counting-sort]
 
   - id: b02-03
     type: multiple-choice
@@ -1314,7 +1313,7 @@ questions:
       각 단계에서 남은 구간 전체를 비교해 최솟값을 찾아야 한다.
       이미 정렬된 입력이어도 비교 횟수는 줄어들지 않는다.
       제자리 정렬이지만 안정적인 정렬은 아니다.
-    tags: [chapter:02, sorting, selection-sort]
+    tags: [sorting, selection-sort]
 
   - id: b02-04
     type: multiple-choice
@@ -1346,7 +1345,7 @@ questions:
       최솟값이 이미 제자리에 있으면 배열 변화가 없을 수 있다.
       단계별로 앞쪽부터 정렬 영역이 확정된다.
       정렬 과정을 보면 알고리즘의 선택 기준을 추론할 수 있다.
-    tags: [chapter:02, sorting, selection-sort]
+    tags: [sorting, selection-sort]
 
   - id: b02-05
     type: multiple-choice
@@ -1379,7 +1378,7 @@ questions:
       큰 값이 반복적으로 뒤쪽으로 밀려나는 형태로 정렬된다.
       추가 배열 없이 정렬하므로 제자리 정렬이다.
       같은 값은 교환하지 않으면 안정성이 유지된다.
-    tags: [chapter:02, sorting, bubble-sort, stability]
+    tags: [sorting, bubble-sort, stability]
 
   - id: b02-06
     type: multiple-choice
@@ -1401,7 +1400,7 @@ questions:
       오름차순 정렬에서는 왼쪽 값이 더 크면 오른쪽 값과 교환한다.
       왼쪽에서 오른쪽으로 진행하면 가장 큰 값이 한 패스 후 끝으로 이동한다.
       각 패스가 끝날 때마다 뒤쪽 정렬 영역이 하나씩 확정된다.
-    tags: [chapter:02, sorting, bubble-sort]
+    tags: [sorting, bubble-sort]
 
   - id: b02-07
     type: multiple-choice
@@ -1439,7 +1438,7 @@ questions:
       첫 번째 패스에서 60이 뒤로 이동하며 4번 비교한다.
       두 번째 패스에서는 20,30,40,50이 이미 정렬되어 있어 3번 비교 후 종료한다.
       조기 종료 조건은 이미 거의 정렬된 입력에서 비교 횟수를 줄인다.
-    tags: [chapter:02, sorting, bubble-sort]
+    tags: [sorting, bubble-sort]
 
   - id: b02-08
     type: multiple-choice
@@ -1461,7 +1460,7 @@ questions:
       이미 정렬된 입력에서는 각 단계에서 한 번의 확인만으로 넘어갈 수 있다.
       최선 시간 복잡도는 Θ(n)이다.
       역순에 가까울수록 이동과 비교가 많아져 Θ(n^2)에 가까워진다.
-    tags: [chapter:02, sorting, insertion-sort]
+    tags: [sorting, insertion-sort]
 
   - id: b02-09
     type: multiple-choice
@@ -1483,7 +1482,7 @@ questions:
       역순 입력에서는 현재 원소가 매번 정렬 구간의 맨 앞까지 이동한다.
       n개 원소의 역순 입력 비교 횟수는 n(n-1)/2가 된다.
       5개 원소에서는 4+3+2+1이 아니라 삽입 단계별 1+2+3+4로 계산해도 10이다.
-    tags: [chapter:02, sorting, insertion-sort]
+    tags: [sorting, insertion-sort]
 
   - id: b02-10
     type: multiple-choice
@@ -1505,7 +1504,7 @@ questions:
       큰 간격으로 멀리 떨어진 원소를 먼저 정리한 뒤 간격을 줄인다.
       마지막에는 간격 1의 삽입 정렬을 수행한다.
       간격 순열 선택이 실제 성능에 큰 영향을 준다.
-    tags: [chapter:02, sorting, shell-sort]
+    tags: [sorting, shell-sort]
 
   - id: b02-11
     type: multiple-choice
@@ -1527,7 +1526,7 @@ questions:
       $2^{i-1}$ 순열은 1, 2, 4, 8, 16, ... 형태이다.
       입력 크기와 같거나 큰 간격은 실질적인 정렬 단계로 쓰기 어렵다.
       간격 h를 사용하면 시작 위치 0부터 h-1까지 h개의 부분배열이 형성된다.
-    tags: [chapter:02, sorting, shell-sort]
+    tags: [sorting, shell-sort]
 
   - id: b02-12
     type: multiple-choice
@@ -1549,7 +1548,7 @@ questions:
       첫 원소 피벗에서 이미 정렬된 입력은 피벗이 항상 최솟값 또는 최댓값이 된다.
       이 경우 한쪽 부분배열이 비어 있고 다른 쪽은 n-1개가 된다.
       분할은 Θ(n)이므로 점화식은 T(n)=T(n-1)+Θ(n)이다.
-    tags: [chapter:02, sorting, quick-sort]
+    tags: [sorting, quick-sort]
 
   - id: b02-13
     type: multiple-choice
@@ -1571,7 +1570,7 @@ questions:
       첫 원소 40을 피벗으로 잡으면 40보다 작은 값들이 왼쪽 부분배열을 이룬다.
       분할 결과는 완전 정렬 상태가 아니라 피벗 기준의 부분 분리 상태이다.
       따라서 왼쪽 부분배열 내부 순서는 정렬된 순서와 다를 수 있다.
-    tags: [chapter:02, sorting, quick-sort, partition]
+    tags: [sorting, quick-sort, partition]
 
   - id: b02-14
     type: multiple-choice
@@ -1593,7 +1592,7 @@ questions:
       이 문제는 실제 교환 과정을 모두 추적하지 않아도 피벗보다 작은 값의 개수로 풀 수 있다.
       피벗 자체는 왼쪽 부분배열 개수에 포함하지 않는다.
       분할 후 각 부분배열 내부가 정렬되어 있을 필요는 없다.
-    tags: [chapter:02, sorting, quick-sort, partition]
+    tags: [sorting, quick-sort, partition]
 
   - id: b02-15
     type: multiple-choice
@@ -1615,7 +1614,7 @@ questions:
       Right 위치에는 피벗 이하인 값이 놓인다.
       분할 후 피벗은 자신의 최종 위치로 이동한다.
       피벗의 원래 자리에는 교환 대상이었던 값이 들어간다.
-    tags: [chapter:02, sorting, quick-sort, partition]
+    tags: [sorting, quick-sort, partition]
 
   - id: b02-16
     type: multiple-choice
@@ -1637,7 +1636,7 @@ questions:
       이때 두 부분배열의 크기가 거의 같아진다.
       점화식은 T(n)=2T(n/2)+Θ(n)이고 수행시간은 O(n log n)이다.
       정렬된 입력은 피벗 선택 방식에 따라 오히려 최악이 될 수 있다.
-    tags: [chapter:02, sorting, quick-sort, pivot]
+    tags: [sorting, quick-sort, pivot]
 
   - id: b02-17
     type: multiple-choice
@@ -1659,7 +1658,7 @@ questions:
       n개의 단일 원소 블록을 하나로 만들려면 합병은 n-1번 필요하다.
       8개 원소에서는 7번의 Merge() 호출이 발생한다.
       분할 호출 수와 합병 호출 수를 구분해야 한다.
-    tags: [chapter:02, sorting, merge-sort]
+    tags: [sorting, merge-sort]
 
   - id: b02-18
     type: multiple-choice
@@ -1681,7 +1680,7 @@ questions:
       따라서 최선, 평균, 최악 모두 O(n log n)이다.
       퀵 정렬은 피벗 선택이 나쁘면 O(n^2)이 될 수 있다.
       입력 상태가 주어졌을 때 알고리즘별 최악 성능을 비교해야 한다.
-    tags: [chapter:02, sorting, merge-sort, quick-sort]
+    tags: [sorting, merge-sort, quick-sort]
 
   - id: b02-19
     type: multiple-choice
@@ -1703,7 +1702,7 @@ questions:
       Merge()는 정렬된 두 부분배열을 하나의 정렬 배열로 합친다.
       두 함수 모두 처리 대상 원소 수에 비례하는 시간이 든다.
       정렬 전체 시간과 내부 함수 한 번의 시간을 구분해야 한다.
-    tags: [chapter:02, sorting, quick-sort, merge-sort]
+    tags: [sorting, quick-sort, merge-sort]
 
   - id: b02-20
     type: multiple-choice
@@ -1725,7 +1724,7 @@ questions:
       합병 정렬은 배열을 반으로 나누어 정렬한 뒤 합병한다.
       두 알고리즘 모두 분할정복 구조를 갖는다.
       안정성, 제자리성, 최악 시간은 알고리즘별로 다르다.
-    tags: [chapter:02, sorting, divide-and-conquer]
+    tags: [sorting, divide-and-conquer]
 
   - id: b02-21
     type: multiple-choice
@@ -1815,7 +1814,7 @@ questions:
       최대 힙은 부모 노드 값이 자식 노드 값보다 크거나 같아야 한다.
       힙은 값 조건뿐 아니라 완전 이진 트리 구조도 만족해야 한다.
       트리 그림 문항은 값 관계와 채워진 위치를 함께 확인해야 한다.
-    tags: [chapter:02, sorting, heap-sort, heap]
+    tags: [sorting, heap-sort, heap]
 
   - id: b02-22
     type: multiple-choice
@@ -1837,7 +1836,7 @@ questions:
       오른쪽 자식은 2i+2이다.
       부모 인덱스는 floor((i-1)/2)로 계산할 수 있다.
       배열 표현은 완전 이진 트리의 레벨 순서 저장이다.
-    tags: [chapter:02, sorting, heap]
+    tags: [sorting, heap]
 
   - id: b02-23
     type: multiple-choice
@@ -1859,7 +1858,7 @@ questions:
       부모보다 크면 부모와 교환하는 과정을 반복한다.
       최대 힙에서는 루트가 전체 최댓값이 된다.
       삽입 과정은 힙 조건을 회복할 때까지만 국소적으로 진행된다.
-    tags: [chapter:02, sorting, heap]
+    tags: [sorting, heap]
 
   - id: b02-24
     type: multiple-choice
@@ -1881,7 +1880,7 @@ questions:
       두 방법 모두 유효한 힙을 만들지만 배열 표현이 완전히 같을 필요는 없다.
       같은 입력에서도 힙 구성 절차에 따라 형제 노드 위치가 달라질 수 있다.
       힙 조건은 부모-자식 관계만 요구하며 전체 정렬 상태를 요구하지 않는다.
-    tags: [chapter:02, sorting, heap]
+    tags: [sorting, heap]
 
   - id: b02-25
     type: multiple-choice
@@ -1903,7 +1902,7 @@ questions:
       최댓값 삭제와 재조정을 반복하면 뒤쪽부터 정렬 영역이 확정된다.
       문제에서 묻는 배열 위치는 아직 힙 영역에 남아 있는 값일 수 있다.
       단계별 배열 상태를 분리해 추적해야 한다.
-    tags: [chapter:02, sorting, heap-sort]
+    tags: [sorting, heap-sort]
 
   - id: b02-26
     type: multiple-choice
@@ -1925,7 +1924,7 @@ questions:
       최대 힙에서 루트는 항상 현재 힙 영역의 최댓값이다.
       최댓값을 네 번 제거하면 상위 네 값이 정렬 영역으로 이동한다.
       남은 힙의 루트는 남은 데이터 중 가장 큰 값이다.
-    tags: [chapter:02, sorting, heap-sort]
+    tags: [sorting, heap-sort]
 
   - id: b02-27
     type: multiple-choice
@@ -1947,7 +1946,7 @@ questions:
       셸, 합병, 퀵 정렬은 모두 부분배열을 활용한다.
       힙 정렬은 배열을 힙으로 해석해 부모-자식 관계를 이용한다.
       정렬 알고리즘의 내부 자료 구조와 분할 방식을 구분해야 한다.
-    tags: [chapter:02, sorting, heap-sort]
+    tags: [sorting, heap-sort]
 
   - id: b02-28
     type: multiple-choice
@@ -1969,7 +1968,7 @@ questions:
       합병 정렬은 원소 간 비교를 기반으로 한다.
       비교 기반 정렬은 일반적으로 O(n log n)의 성능을 가진다.
       선형 시간 정렬은 입력 조건이 충족될 때 효과적이다.
-    tags: [chapter:02, sorting, linear-time-sort]
+    tags: [sorting, linear-time-sort]
 
   - id: b02-29
     type: multiple-choice
@@ -1991,7 +1990,7 @@ questions:
       수행시간은 입력 개수 n과 값의 범위 k에 의존한다.
       k가 n보다 작거나 n에 비례하면 O(n+k)를 O(n)으로 볼 수 있다.
       값의 범위가 지나치게 크면 공간과 시간이 비효율적이다.
-    tags: [chapter:02, sorting, counting-sort]
+    tags: [sorting, counting-sort]
 
   - id: b02-30
     type: multiple-choice
@@ -2013,7 +2012,7 @@ questions:
       LSD 방식은 낮은 자릿수부터, MSD 방식은 높은 자릿수부터 진행한다.
       자릿수 d가 상수이면 n개 데이터에 대해 선형 시간 성능을 기대할 수 있다.
       안정적인 내부 정렬이 자릿수 처리 결과를 유지하는 데 중요하다.
-    tags: [chapter:02, sorting, radix-sort]
+    tags: [sorting, radix-sort]
 
   - id: b02-31
     type: multiple-choice
@@ -2035,7 +2034,7 @@ questions:
       기수 정렬은 자릿수별 안정 정렬을 반복한다.
       셸 정렬은 간격을 둔 삽입 정렬의 확장이다.
       계수 정렬은 카운트 배열과 누적 위치 계산으로 직접 정렬한다.
-    tags: [chapter:02, sorting, counting-sort]
+    tags: [sorting, counting-sort]
 
   - id: b02-32
     type: multiple-choice
@@ -2057,7 +2056,7 @@ questions:
       삽입, 선택, 버블, 셸, 퀵, 힙, 합병 정렬은 비교 기반 정렬이다.
       합병 정렬은 합병 과정에서 보조 배열을 사용한다.
       문제 조건의 범위인 비교 기반 정렬 안에서 판단해야 한다.
-    tags: [chapter:02, sorting, in-place, merge-sort]
+    tags: [sorting, in-place, merge-sort]
 
   - id: b02-33
     type: multiple-choice
@@ -2079,7 +2078,7 @@ questions:
       제자리성은 추가 저장 공간이 상수 개를 넘지 않는 성질이다.
       삽입 정렬은 두 성질을 모두 만족하는 대표적인 정렬이다.
       선택 정렬과 합병 정렬은 각각 한 성질만 만족하는 예로 자주 비교된다.
-    tags: [chapter:02, sorting, stability, in-place]
+    tags: [sorting, stability, in-place]
 
   - id: b02-34
     type: multiple-choice
@@ -2101,7 +2100,7 @@ questions:
       각 삭제/재조정은 O(log n), 이를 n번 반복해 O(n log n)이 된다.
       퀵 정렬은 평균 O(n log n)이지만 최악은 O(n^2)이다.
       정렬 알고리즘 비교에서는 최선, 평균, 최악 시간을 구분해야 한다.
-    tags: [chapter:02, sorting, heap-sort]
+    tags: [sorting, heap-sort]
 
   - id: b03-01
     type: multiple-choice
@@ -2123,7 +2122,7 @@ questions:
       데이터 구조에 따라 적합한 탐색 방법이 달라진다.
       내부 탐색과 외부 탐색은 데이터가 저장되는 기억장치 관점의 분류이다.
       탐색 성능은 비교 횟수와 저장 구조에 크게 좌우된다.
-    tags: [chapter:03, search]
+    tags: [search]
 
   - id: b03-02
     type: multiple-choice
@@ -2145,7 +2144,7 @@ questions:
       데이터가 정렬되어 있지 않아도 사용할 수 있다.
       구현이 단순하지만 평균과 최악 탐색 시간이 O(n)이다.
       정렬되지 않고 규모가 작은 데이터에 실용적이다.
-    tags: [chapter:03, search, sequential-search]
+    tags: [search, sequential-search]
 
   - id: b03-03
     type: multiple-choice
@@ -2167,7 +2166,7 @@ questions:
       탐색 키를 찾으면 즉시 종료할 수 있다.
       비교 횟수는 탐색 키가 위치한 순서와 직접 관련된다.
       키가 없으면 최악의 경우 모든 원소를 비교한다.
-    tags: [chapter:03, search, sequential-search]
+    tags: [search, sequential-search]
 
   - id: b03-04
     type: multiple-choice
@@ -2189,7 +2188,7 @@ questions:
       새 원소를 끝에 붙이면 위치 탐색이 필요 없다.
       탐색과 삭제는 원하는 원소를 찾아야 하므로 O(n)이다.
       자료구조의 정렬 유지 여부가 삽입 비용을 바꾼다.
-    tags: [chapter:03, search, sequential-search, insertion]
+    tags: [search, sequential-search, insertion]
 
   - id: b03-05
     type: multiple-choice
@@ -2211,7 +2210,7 @@ questions:
       탐색 키가 가운데 원소이면 첫 비교에서 종료된다.
       키가 작거나 크면 왼쪽 또는 오른쪽 절반만 계속 탐색한다.
       탐색 대상은 반드시 정렬되어 있어야 한다.
-    tags: [chapter:03, search, binary-search]
+    tags: [search, binary-search]
 
   - id: b03-06
     type: multiple-choice
@@ -2233,7 +2232,7 @@ questions:
       배열 인덱스 0..6의 가운데는 3이고 값은 6이다.
       10은 6보다 크므로 오른쪽 부분배열 4..6을 탐색한다.
       그 가운데 값이 10이므로 두 번째 비교에서 종료된다.
-    tags: [chapter:03, search, binary-search]
+    tags: [search, binary-search]
 
   - id: b03-07
     type: multiple-choice
@@ -2255,7 +2254,7 @@ questions:
       이진 탐색은 매 단계 탐색 범위를 절반으로 줄인다.
       이진 탐색의 평균 비교 횟수는 로그 차수이다.
       다만 이진 탐색은 정렬된 배열에서만 적용할 수 있다.
-    tags: [chapter:03, search, sequential-search, binary-search]
+    tags: [search, sequential-search, binary-search]
 
   - id: b03-08
     type: multiple-choice
@@ -2278,7 +2277,7 @@ questions:
       오른쪽 서브트리의 모든 키는 현재 노드보다 크다.
       조건은 직접 자식뿐 아니라 전체 서브트리에 대해 성립해야 한다.
       잘못 놓인 노드는 조상 노드와의 관계까지 확인해야 찾을 수 있다.
-    tags: [chapter:03, binary-search-tree]
+    tags: [binary-search-tree]
 
   - id: b03-09
     type: multiple-choice
@@ -2301,7 +2300,7 @@ questions:
       탐색 키가 현재 키보다 작으면 왼쪽, 크면 오른쪽으로 이동한다.
       키를 찾거나 더 내려갈 자식이 없을 때 탐색이 끝난다.
       탐색 경로는 비교 결과로 하나만 결정된다.
-    tags: [chapter:03, binary-search-tree, search]
+    tags: [binary-search-tree, search]
 
   - id: b03-10
     type: multiple-choice
@@ -2324,7 +2323,7 @@ questions:
       자식이 없으면 단순 삭제한다.
       자식이 하나이면 그 자식이 삭제된 노드의 위치로 올라간다.
       자식이 둘이면 보통 후계자나 선행자로 대체한다.
-    tags: [chapter:03, binary-search-tree, deletion]
+    tags: [binary-search-tree, deletion]
 
   - id: b03-11
     type: multiple-choice
@@ -2347,7 +2346,7 @@ questions:
       후계자는 오른쪽 서브트리에서 가장 작은 키이다.
       18의 오른쪽 서브트리는 20을 루트로 하고 그 왼쪽에 19가 있다.
       따라서 19가 18의 위치로 이동한다.
-    tags: [chapter:03, binary-search-tree, deletion]
+    tags: [binary-search-tree, deletion]
 
   - id: b03-12
     type: multiple-choice
@@ -2369,7 +2368,7 @@ questions:
       균형이 어느 정도 유지되면 높이는 O(log n)이다.
       삽입 순서가 나쁘면 높이가 O(n)이 될 수 있다.
       평균과 최악 성능을 구분해야 한다.
-    tags: [chapter:03, binary-search-tree, search]
+    tags: [binary-search-tree, search]
 
   - id: b03-13
     type: multiple-choice
@@ -2392,7 +2391,7 @@ questions:
       각 내부 노드는 키 개수보다 하나 많은 자식을 가진다.
       키의 좌우 서브트리 값 범위 조건도 만족해야 한다.
       그림에서는 키 순서뿐 아니라 리프 깊이도 확인해야 한다.
-    tags: [chapter:03, tree, 2-3-4-tree]
+    tags: [tree, 2-3-4-tree]
 
   - id: b03-14
     type: multiple-choice
@@ -2414,7 +2413,7 @@ questions:
       4-노드의 가운데 키가 부모로 올라간다.
       나머지 키들은 두 노드로 나뉜다.
       삽입은 분할 후 적절한 자식 노드에서 계속 진행된다.
-    tags: [chapter:03, tree, 2-3-4-tree]
+    tags: [tree, 2-3-4-tree]
 
   - id: b03-15
     type: multiple-choice
@@ -2436,7 +2435,7 @@ questions:
       오름차순 삽입은 경사 트리를 만든다.
       2-3-4 트리는 모든 리프 레벨이 같도록 균형을 유지한다.
       균형 탐색 트리의 탐색 시간은 높이 O(log n)에 비례한다.
-    tags: [chapter:03, binary-search-tree, tree, 2-3-4-tree]
+    tags: [binary-search-tree, tree, 2-3-4-tree]
 
   - id: b03-16
     type: multiple-choice
@@ -2461,7 +2460,7 @@ questions:
       임의 노드에서 리프까지의 모든 경로에는 같은 수의 검정 노드가 있어야 한다.
       이 검정 높이 조건이 균형을 보장한다.
       색 변경 문제는 각 경로의 검정 노드 수를 비교해 판단한다.
-    tags: [chapter:03, tree, red-black-tree]
+    tags: [tree, red-black-tree]
 
   - id: b03-17
     type: multiple-choice
@@ -2491,7 +2490,7 @@ questions:
       부모와 새 노드가 모두 빨강이면 회전과 색 변경이 필요할 수 있다.
       부모의 형제 노드 색과 삽입 방향에 따라 처리 방식이 달라진다.
       최종 트리는 이진 탐색 트리 순서와 레드-블랙 색 조건을 모두 만족해야 한다.
-    tags: [chapter:03, tree, red-black-tree, insertion]
+    tags: [tree, red-black-tree, insertion]
 
   - id: b03-18
     type: multiple-choice
@@ -2513,7 +2512,7 @@ questions:
       색 규칙은 트리 높이가 로그 차수를 넘지 않도록 제한한다.
       탐색은 루트에서 리프 방향으로 한 경로만 따라간다.
       삽입은 탐색 후 회전과 색 변경을 하며 O(log n) 안에 끝난다.
-    tags: [chapter:03, tree, red-black-tree]
+    tags: [tree, red-black-tree]
 
   - id: b03-19
     type: multiple-choice
@@ -2536,7 +2535,7 @@ questions:
       문제의 왼쪽 자식은 3개, 오른쪽 자식은 7개의 키를 가진다.
       따라서 t-1 <= 3이고 7 <= 2t-1을 동시에 만족해야 한다.
       이를 만족하는 보기의 값은 t=4이다.
-    tags: [chapter:03, tree, b-tree]
+    tags: [tree, b-tree]
 
   - id: b03-20
     type: multiple-choice
@@ -2559,7 +2558,7 @@ questions:
       t=3이면 최대 키 수는 2t-1=5이다.
       삽입 위치의 노드가 가득 차 있으면 가운데 키를 부모로 올린다.
       분할 후 양쪽 노드는 B-트리의 키 개수 조건을 만족한다.
-    tags: [chapter:03, tree, b-tree, insertion]
+    tags: [tree, b-tree, insertion]
 
   - id: b03-21
     type: multiple-choice
@@ -2581,7 +2580,7 @@ questions:
       적절한 해시 함수는 빠르게 계산되고 충돌을 적게 만들어야 한다.
       충돌이 적으면 평균 탐색, 삽입, 삭제가 O(1)에 가깝다.
       충돌 해결 방법에 따라 실제 성능이 달라진다.
-    tags: [chapter:03, hashing, hash-table]
+    tags: [hashing, hash-table]
 
   - id: b03-22
     type: multiple-choice
@@ -2603,7 +2602,7 @@ questions:
       테이블 크기 M의 선택이 충돌 빈도에 영향을 준다.
       문자열 키에는 비닝, 단순 합, 가중 합 같은 방식도 사용된다.
       해시 함수는 빠른 계산과 균등 분포가 중요하다.
-    tags: [chapter:03, hashing, hash-function]
+    tags: [hashing, hash-function]
 
   - id: b03-23
     type: multiple-choice
@@ -2628,7 +2627,7 @@ questions:
       개방 해싱은 테이블 밖 별도 구조에 충돌 데이터를 연결한다.
       폐쇄 해싱은 테이블 내부의 다른 슬롯을 탐사한다.
       해시 함수와 충돌 해결 방법은 구분해야 한다.
-    tags: [chapter:03, hashing, collision-resolution]
+    tags: [hashing, collision-resolution]
 
   - id: b03-24
     type: multiple-choice
@@ -2651,7 +2650,7 @@ questions:
       테이블 끝에 도달하면 처음으로 돌아가 탐사한다.
       해시 주소가 비어 있지 않으면 빈 슬롯을 찾을 때까지 이동한다.
       이 방식은 1차 클러스터링이 발생할 수 있다.
-    tags: [chapter:03, hashing, linear-probing]
+    tags: [hashing, linear-probing]
 
   - id: b03-25
     type: multiple-choice
@@ -2673,7 +2672,7 @@ questions:
       선형 탐사는 연속 구간이 커지는 1차 클러스터링이 생긴다.
       이차 탐사는 같은 초기 주소끼리 같은 탐사 순서를 갖는 2차 클러스터링이 생길 수 있다.
       이중 해싱은 두 번째 해시 함수로 탐사 간격을 정해 클러스터링을 줄인다.
-    tags: [chapter:03, hashing, double-hashing]
+    tags: [hashing, double-hashing]
 
   - id: b03-26
     type: multiple-choice
@@ -2695,7 +2694,7 @@ questions:
       균형 탐색 트리는 높이를 로그 차수로 제한한다.
       레드-블랙 트리와 B-트리는 균형 조건으로 최악 탐색 시간을 보장한다.
       최악 시간 비교에서는 평균적인 모양을 가정하면 안 된다.
-    tags: [chapter:03, search, binary-search-tree]
+    tags: [search, binary-search-tree]
 
   - id: b04-01
     type: multiple-choice
@@ -2717,7 +2716,7 @@ questions:
       차수는 정점과 연결된 간선의 개수이다.
       방향 그래프에서는 진입차수와 진출차수로 나누어 볼 수 있다.
       경로의 길이는 차수와 달리 경로에 포함된 간선 수를 말한다.
-    tags: [chapter:04, graph, degree]
+    tags: [graph, degree]
 
   - id: b04-02
     type: multiple-choice
@@ -2743,7 +2742,7 @@ questions:
       n개의 정점을 갖는 트리는 정확히 n-1개의 간선을 가진다.
       두 정점 사이의 단순 경로는 유일하다.
       간선 하나를 제거하면 트리는 비연결 그래프가 된다.
-    tags: [chapter:04, graph, tree]
+    tags: [graph, tree]
 
   - id: b04-03
     type: multiple-choice
@@ -2766,7 +2765,7 @@ questions:
       더 갈 곳이 없으면 직전 정점으로 되돌아간다.
       인접 정점을 어떤 순서로 선택하는지에 따라 방문 순서가 달라질 수 있다.
       문제에서 지정한 선택 기준을 방문 순서에 반영해야 한다.
-    tags: [chapter:04, graph, dfs]
+    tags: [graph, dfs]
 
   - id: b04-04
     type: multiple-choice
@@ -2789,7 +2788,7 @@ questions:
       주변 정점은 큐에 저장해 먼저 들어온 정점부터 처리한다.
       같은 레벨 안에서는 인접 정점 삽입 순서에 따라 결과가 달라질 수 있다.
       DFS와 달리 한 경로를 깊게 내려가지 않는다.
-    tags: [chapter:04, graph, bfs]
+    tags: [graph, bfs]
 
   - id: b04-05
     type: multiple-choice
@@ -2812,7 +2811,7 @@ questions:
       DFS 기반 방법은 더 이상 갈 곳이 없을 때 정점을 스택에 넣는다.
       탐색이 끝난 뒤 스택에서 꺼내는 순서가 위상 정렬 결과가 된다.
       하나의 그래프에 여러 위상 정렬 결과가 있을 수 있다.
-    tags: [chapter:04, graph, topological-sort, dfs]
+    tags: [graph, topological-sort, dfs]
 
   - id: b04-06
     type: multiple-choice
@@ -2835,7 +2834,7 @@ questions:
       DFS와 역방향 그래프 DFS를 이용해 강연결 성분을 구할 수 있다.
       서로 왕복 경로가 있는 정점들은 같은 성분에 속한다.
       단독 정점도 다른 정점과 왕복 경로가 없으면 하나의 강연결 성분이다.
-    tags: [chapter:04, graph, strongly-connected-component]
+    tags: [graph, strongly-connected-component]
 
   - id: b04-07
     type: multiple-choice
@@ -2858,7 +2857,7 @@ questions:
       정점이 n개이면 신장 트리는 n-1개의 간선을 가진다.
       크루스칼 알고리즘은 가중치가 작은 간선부터 사이클을 만들지 않으면 추가한다.
       같은 가중치의 간선이 여러 개면 여러 최소 신장 트리가 가능할 수 있다.
-    tags: [chapter:04, graph, minimum-spanning-tree]
+    tags: [graph, minimum-spanning-tree]
 
   - id: b04-08
     type: multiple-choice
@@ -2881,7 +2880,7 @@ questions:
       크루스칼 알고리즘은 작은 가중치부터 검토한다.
       간선을 추가해 두 끝점이 이미 같은 연결 성분에 있으면 버린다.
       최종적으로 모든 정점을 연결하는 n-1개 간선만 남는다.
-    tags: [chapter:04, graph, minimum-spanning-tree, kruskal]
+    tags: [graph, minimum-spanning-tree, kruskal]
 
   - id: b04-09
     type: multiple-choice
@@ -2904,7 +2903,7 @@ questions:
       매 단계에서 현재 트리와 바깥 정점을 잇는 최소 가중치 간선을 선택한다.
       선택된 간선의 바깥쪽 정점이 S에 추가된다.
       이 과정을 모든 정점이 선택될 때까지 반복한다.
-    tags: [chapter:04, graph, prim, minimum-spanning-tree]
+    tags: [graph, prim, minimum-spanning-tree]
 
   - id: b04-10
     type: multiple-choice
@@ -2927,7 +2926,7 @@ questions:
       S 내부 간선은 새 정점을 추가하지 않으므로 제외된다.
       V-S 내부 간선도 현재 트리와 연결되지 않으므로 제외된다.
       컷을 지나는 최소 가중치 간선이 다음 선택 간선이다.
-    tags: [chapter:04, graph, prim, minimum-spanning-tree]
+    tags: [graph, prim, minimum-spanning-tree]
 
   - id: b04-11
     type: multiple-choice
@@ -2950,7 +2949,7 @@ questions:
       선택된 간선의 V-S 쪽 정점이 S에 추가된다.
       시작 정점이 같아도 같은 가중치 간선 처리 방식에 따라 일부 순서는 달라질 수 있다.
       문제의 간선 가중치 흐름에서는 정점 6이 세 번째 포함 정점이다.
-    tags: [chapter:04, graph, prim, minimum-spanning-tree]
+    tags: [graph, prim, minimum-spanning-tree]
 
   - id: b04-12
     type: multiple-choice
@@ -2972,7 +2971,7 @@ questions:
       데이크스트라는 음의 가중치가 없는 경우에 효율적이다.
       벨만-포드는 음의 가중치가 있어도 음의 사이클이 없으면 사용할 수 있다.
       플로이드는 모든 정점 쌍 최단 경로를 동적 프로그래밍으로 구한다.
-    tags: [chapter:04, graph, shortest-path, bellman-ford]
+    tags: [graph, shortest-path, bellman-ford]
 
   - id: b04-13
     type: multiple-choice
@@ -2994,7 +2993,7 @@ questions:
       크루스칼과 프림은 최소 신장 트리 알고리즘이다.
       데이크스트라, 벨만-포드, 플로이드는 최단 경로 알고리즘이다.
       알고리즘 이름뿐 아니라 해결하는 문제 유형을 구분해야 한다.
-    tags: [chapter:04, graph, minimum-spanning-tree, shortest-path]
+    tags: [graph, minimum-spanning-tree, shortest-path]
 
   - id: b04-14
     type: multiple-choice
@@ -3017,7 +3016,7 @@ questions:
       선택된 정점의 인접 정점 거리를 완화한다.
       음의 가중치가 없는 그래프에서 단일 출발점 최단 경로를 구한다.
       각 단계의 거리 갱신 결과를 기준으로 다음 정점을 선택해야 한다.
-    tags: [chapter:04, graph, dijkstra]
+    tags: [graph, dijkstra]
 
   - id: b04-15
     type: multiple-choice
@@ -3040,7 +3039,7 @@ questions:
       거리값만으로는 경로 자체를 바로 알 수 없으므로 predecessor 정보를 함께 본다.
       주어진 그래프의 최단 경로는 1-2-3-4-6이다.
       최단 거리와 최단 경로에 포함되는 정점을 구분해야 한다.
-    tags: [chapter:04, graph, dijkstra, shortest-path]
+    tags: [graph, dijkstra, shortest-path]
 
   - id: b04-16
     type: multiple-choice
@@ -3063,7 +3062,7 @@ questions:
       음의 가중치가 없으면 데이크스트라 알고리즘이 효율적이다.
       음의 가중치가 있으면 벨만-포드 알고리즘을 고려한다.
       음의 사이클이 있으면 최단 경로가 정의되지 않을 수 있다.
-    tags: [chapter:04, graph, bellman-ford, shortest-path]
+    tags: [graph, bellman-ford, shortest-path]
 
   - id: b04-17
     type: multiple-choice
@@ -3086,7 +3085,7 @@ questions:
       각 단계에서 이전 단계 거리값을 기준으로 더 짧은 경로를 찾는다.
       음의 가중치 간선이 있어도 음의 사이클이 없으면 사용할 수 있다.
       특정 단계의 d값은 해당 개수 이하 간선을 사용한 최단 거리이다.
-    tags: [chapter:04, graph, bellman-ford]
+    tags: [graph, bellman-ford]
 
   - id: b04-18
     type: multiple-choice
@@ -3109,7 +3108,7 @@ questions:
       음의 간선을 포함한 경로가 뒤늦게 더 짧은 거리로 갱신할 수 있다.
       최종 단계까지 완화를 반복해야 전체 최단 거리를 얻는다.
       음의 사이클이 없다는 전제가 필요하다.
-    tags: [chapter:04, graph, bellman-ford, shortest-path]
+    tags: [graph, bellman-ford, shortest-path]
 
   - id: b04-19
     type: multiple-choice
@@ -3134,7 +3133,7 @@ questions:
       플로이드는 모든 정점 쌍 최단 경로 알고리즘이다.
       데이크스트라는 매 단계 최단 거리 미선택 정점을 고르는 욕심쟁이 접근이다.
       플로이드는 경유 정점 범위를 늘리는 동적 프로그래밍 접근이다.
-    tags: [chapter:04, graph, dijkstra, floyd-warshall]
+    tags: [graph, dijkstra, floyd-warshall]
 
   - id: b04-20
     type: multiple-choice
@@ -3157,7 +3156,7 @@ questions:
       점화식은 d_ij^(k)=min(d_ij^(k-1), d_ik^(k-1)+d_kj^(k-1))이다.
       d42^(1)은 정점 1만 경유 정점으로 허용한 4에서 2까지의 거리이다.
       직접 경로와 경유 경로 중 더 작은 값을 선택한다.
-    tags: [chapter:04, graph, floyd-warshall]
+    tags: [graph, floyd-warshall]
 
   - id: b04-21
     type: multiple-choice
@@ -3180,7 +3179,7 @@ questions:
       각 단계에서 경유 정점을 허용했을 때 더 짧은 경로가 있으면 갱신한다.
       최종 행렬 D^(n)은 모든 정점 쌍의 최단 거리를 담는다.
       행렬의 행과 열이 각각 출발 정점과 도착 정점을 의미한다.
-    tags: [chapter:04, graph, floyd-warshall]
+    tags: [graph, floyd-warshall]
 
   - id: b04-22
     type: multiple-choice
@@ -3203,7 +3202,7 @@ questions:
       P[i][j]=k이면 i에서 j로 가는 최단 경로가 k를 경유한다는 뜻이다.
       P 배열 값을 재귀적으로 따라가면 실제 최단 경로를 복원한다.
       인덱스 시작 번호를 문제 조건과 맞춰 해석해야 한다.
-    tags: [chapter:04, graph, floyd-warshall, path-reconstruction]
+    tags: [graph, floyd-warshall, path-reconstruction]
 
   - id: b04-23
     type: multiple-choice
@@ -3226,7 +3225,7 @@ questions:
       P[i][j]=0이면 i에서 j로 직접 이동하는 구간이다.
       P[i][j]=k이면 i에서 k, k에서 j로 나누어 재귀적으로 복원한다.
       최단 거리 행렬과 경로 복원 테이블은 서로 다른 정보를 담는다.
-    tags: [chapter:04, graph, floyd-warshall, path-reconstruction]
+    tags: [graph, floyd-warshall, path-reconstruction]
 
   - id: b04-24
     type: multiple-choice
@@ -3248,7 +3247,7 @@ questions:
       모든 정점을 출발점으로 삼으면 이를 |V|번 반복한다.
       따라서 전체 시간은 O(|V|^3)이 된다.
       플로이드 알고리즘도 O(n^3)이지만 구현은 더 단순하다.
-    tags: [chapter:04, graph, dijkstra, all-pairs-shortest-path]
+    tags: [graph, dijkstra, all-pairs-shortest-path]
 
   - id: b04-25
     type: multiple-choice
@@ -3270,7 +3269,7 @@ questions:
       각 간선에는 용량이 있으며 플로는 용량을 초과할 수 없다.
       소스와 싱크를 제외한 정점에서는 플로 보존 제약이 성립한다.
       플로값은 소스 유출량 또는 싱크 유입량으로 정의된다.
-    tags: [chapter:04, graph, network-flow]
+    tags: [graph, network-flow]
 
   - id: b04-26
     type: multiple-choice
@@ -3292,7 +3291,7 @@ questions:
       잔여 네트워크에는 순방향 간선과 역방향 간선이 포함된다.
       경로의 여유량은 포함 간선의 잔여 용량 중 최솟값이다.
       BFS를 사용하는 변형은 에드몬즈-카프 알고리즘이다.
-    tags: [chapter:04, graph, ford-fulkerson, network-flow]
+    tags: [graph, ford-fulkerson, network-flow]
 
   - id: b04-27
     type: multiple-choice
@@ -3315,7 +3314,7 @@ questions:
       포드-풀커슨은 잔여 네트워크에서 증가 경로를 찾는다.
       증가 경로의 여유량만큼 순방향 플로를 늘리고 역방향 플로는 줄인다.
       역방향 간선은 실제 원래 그래프의 반대 방향으로 표현된다.
-    tags: [chapter:04, graph, ford-fulkerson, residual-network]
+    tags: [graph, ford-fulkerson, residual-network]
 
   - id: b04-28
     type: multiple-choice
@@ -3338,7 +3337,7 @@ questions:
       정수 용량에서는 매번 최소 1씩 플로가 증가하므로 종료는 보장된다.
       증가 경로를 비효율적으로 선택하면 많은 반복이 필요할 수 있다.
       BFS로 최단 증가 경로를 선택하는 에드몬즈-카프 방식은 이러한 비효율을 줄인다.
-    tags: [chapter:04, graph, ford-fulkerson, network-flow]
+    tags: [graph, ford-fulkerson, network-flow]
 
   - id: b05-01
     type: multiple-choice
@@ -3360,7 +3359,7 @@ questions:
       저장된 해를 이용해 더 큰 문제의 해를 점진적으로 계산한다.
       최적성의 원리가 성립해야 최적해를 조합할 수 있다.
       대표 문제로 피보나치 수열, 행렬 연쇄 곱셈, LCS가 있다.
-    tags: [chapter:05, dynamic-programming]
+    tags: [dynamic-programming]
 
   - id: b05-02
     type: multiple-choice
@@ -3382,7 +3381,7 @@ questions:
       피보나치, 행렬 연쇄 곱셈, LCS는 전형적인 동적 프로그래밍 문제이다.
       일부 최단 경로 문제는 욕심쟁이 방법으로도 해결된다.
       네트워크 플로는 증가 경로 기반 알고리즘으로 다룬다.
-    tags: [chapter:05, dynamic-programming]
+    tags: [dynamic-programming]
 
   - id: b05-03
     type: multiple-choice
@@ -3404,7 +3403,7 @@ questions:
       피보나치 수열은 f(n)=f(n-1)+f(n-2) 점화식을 따른다.
       기저값 f(0), f(1)을 먼저 알아야 한다.
       테이블에 저장하면 같은 값을 반복 계산하지 않는다.
-    tags: [chapter:05, dynamic-programming, fibonacci]
+    tags: [dynamic-programming, fibonacci]
 
   - id: b05-04
     type: multiple-choice
@@ -3426,7 +3425,7 @@ questions:
       f(4)는 f(0), f(1), f(2), f(3)을 차례로 계산한 뒤 구한다.
       중복 재귀 호출을 제거해 계산 횟수를 줄인다.
       피보나치 수열의 DP 계산은 n에 비례한다.
-    tags: [chapter:05, dynamic-programming, fibonacci]
+    tags: [dynamic-programming, fibonacci]
 
   - id: b05-05
     type: multiple-choice
@@ -3448,7 +3447,7 @@ questions:
       각 결과 원소를 계산하려면 j번의 기본 곱셈이 필요하다.
       전체 기본 곱셈 횟수는 i*j*k이다.
       행렬 연쇄 곱셈 문제는 이 횟수를 최소화하는 괄호 순서를 찾는다.
-    tags: [chapter:05, matrix-chain-multiplication]
+    tags: [matrix-chain-multiplication]
 
   - id: b05-06
     type: multiple-choice
@@ -3471,7 +3470,7 @@ questions:
       C[i][j]는 Mi부터 Mj까지 곱하는 최소 기본 곱셈 횟수이다.
       점화식은 C[i][j]=min(C[i][k]+C[k+1][j]+d_{i-1}d_kd_j)이다.
       작은 구간 값부터 큰 구간 값으로 테이블을 채운다.
-    tags: [chapter:05, matrix-chain-multiplication]
+    tags: [matrix-chain-multiplication]
 
   - id: b05-07
     type: multiple-choice
@@ -3493,7 +3492,7 @@ questions:
       P[1][4]=2이면 구간 1..4를 1..2와 3..4로 나눈다.
       각 하위 구간도 P 테이블을 이용해 재귀적으로 괄호를 복원한다.
       C 테이블은 비용, P 테이블은 곱셈 순서를 제공한다.
-    tags: [chapter:05, matrix-chain-multiplication]
+    tags: [matrix-chain-multiplication]
 
   - id: b05-08
     type: multiple-choice
@@ -3515,7 +3514,7 @@ questions:
       각 구간마다 가능한 분할 위치를 모두 시험한다.
       테이블 C와 P를 채우는 데 O(n^3)이 필요하다.
       이후 P를 이용한 순서 복원은 O(n)에 가능하다.
-    tags: [chapter:05, matrix-chain-multiplication]
+    tags: [matrix-chain-multiplication]
 
   - id: b05-09
     type: multiple-choice
@@ -3537,7 +3536,7 @@ questions:
       최적 곱셈 순서는 P 값을 재귀적으로 따라가며 복원한다.
       n개 행렬의 최종 괄호 구조에는 n-1개의 분할이 있다.
       비용 계산과 순서 복원의 시간 복잡도는 서로 다르다.
-    tags: [chapter:05, matrix-chain-multiplication]
+    tags: [matrix-chain-multiplication]
 
   - id: b05-10
     type: multiple-choice
@@ -3571,7 +3570,7 @@ questions:
       한 문자열 길이가 0이면 LCS 길이는 0이다.
       마지막 문자가 같으면 그 문자를 LCS에 포함하고 대각선 값에 1을 더한다.
       마지막 문자가 다르면 둘 중 하나를 제외한 경우의 최댓값을 사용한다.
-    tags: [chapter:05, dynamic-programming, lcs]
+    tags: [dynamic-programming, lcs]
 
   - id: b05-11
     type: multiple-choice
@@ -3594,7 +3593,7 @@ questions:
       두 문자가 같으면 대각선 값에 1을 더한다.
       good와 god의 접두부 goo와 go의 LCS 길이는 2이다.
       테이블 인덱스와 실제 문자의 위치를 정확히 맞춰야 한다.
-    tags: [chapter:05, dynamic-programming, lcs]
+    tags: [dynamic-programming, lcs]
 
   - id: b05-12
     type: multiple-choice
@@ -3623,7 +3622,7 @@ questions:
       문자가 같으면 해당 문자를 결과에 포함하고 대각선으로 이동한다.
       문자가 다르면 위쪽과 왼쪽 중 큰 값을 가진 방향으로 이동한다.
       같은 값인 경우 여러 LCS 추적 경로가 가능할 수 있다.
-    tags: [chapter:05, dynamic-programming, lcs]
+    tags: [dynamic-programming, lcs]
 
   - id: b05-13
     type: multiple-choice
@@ -3645,7 +3644,7 @@ questions:
       테이블 크기는 (n+1)(m+1)이다.
       각 칸은 위, 왼쪽, 대각선 값을 이용해 상수 시간에 채운다.
       따라서 전체 시간 복잡도는 O(nm)이다.
-    tags: [chapter:05, dynamic-programming, lcs]
+    tags: [dynamic-programming, lcs]
 
   - id: b06-01
     type: multiple-choice
@@ -3667,7 +3666,7 @@ questions:
       알파벳은 스트링에 사용할 수 있는 문자의 집합이다.
       10진수 문자열은 숫자 문자 0~9로 구성된다.
       문제의 대상 표현 방식에 따라 알파벳이 달라진다.
-    tags: [chapter:06, string]
+    tags: [string]
 
   - id: b06-02
     type: multiple-choice
@@ -3689,7 +3688,7 @@ questions:
       라빈-카프, KMP, 보이어-무어 알고리즘이 대표적이다.
       그래프 최단 경로와 최소 신장 트리 알고리즘과는 문제 영역이 다르다.
       알고리즘 이름과 적용 분야를 함께 기억해야 한다.
-    tags: [chapter:06, string-matching, boyer-moore]
+    tags: [string-matching, boyer-moore]
 
   - id: b06-03
     type: multiple-choice
@@ -3711,7 +3710,7 @@ questions:
       불일치가 발생하면 패턴을 한 칸 이동한다.
       최악에는 많은 위치에서 패턴 길이만큼 비교한다.
       따라서 시간 복잡도는 O(nm)이다.
-    tags: [chapter:06, string-matching, brute-force]
+    tags: [string-matching, brute-force]
 
   - id: b06-04
     type: multiple-choice
@@ -3733,7 +3732,7 @@ questions:
       패턴 첫 문자와 텍스트 문자가 자주 다르면 비교 횟수가 줄어든다.
       패턴 앞부분이 길게 일치할수록 비교 횟수가 증가한다.
       텍스트와 패턴의 문자 분포가 실제 비교 횟수에 영향을 준다.
-    tags: [chapter:06, string-matching, brute-force]
+    tags: [string-matching, brute-force]
 
   - id: b06-05
     type: multiple-choice
@@ -3758,7 +3757,7 @@ questions:
       해시가 일치하면 문자 단위 확인으로 진짜 매칭인지 검증한다.
       롤링 해시를 이용하면 다음 위치의 해시를 상수 시간에 계산할 수 있다.
       충돌이 많으면 최악 시간은 O(nm)이 될 수 있다.
-    tags: [chapter:06, string-matching, rabin-karp]
+    tags: [string-matching, rabin-karp]
 
   - id: b06-06
     type: multiple-choice
@@ -3780,7 +3779,7 @@ questions:
       직전 해시값, 빠지는 문자, 새로 들어오는 문자를 이용한다.
       modulo 연산은 해시값 범위를 제한한다.
       텍스트 전체 해시 계산은 O(n)에 수행된다.
-    tags: [chapter:06, string-matching, rabin-karp]
+    tags: [string-matching, rabin-karp]
 
   - id: b06-07
     type: multiple-choice
@@ -3802,7 +3801,7 @@ questions:
       첫 해시는 O(m)이지만 이후 위치는 상수 시간 갱신이 가능하다.
       따라서 텍스트 전체 해시 계산은 O(n)이다.
       해시 일치 후보에 대해서만 문자 비교를 수행한다.
-    tags: [chapter:06, string-matching, rabin-karp]
+    tags: [string-matching, rabin-karp]
 
   - id: b06-08
     type: multiple-choice
@@ -3824,7 +3823,7 @@ questions:
       전처리 배열은 접두부와 접미부의 최대 일치 길이를 담는다.
       이미 비교한 텍스트 문자를 되돌아가지 않는다.
       전처리 O(m), 매칭 O(n)으로 수행된다.
-    tags: [chapter:06, string-matching, kmp]
+    tags: [string-matching, kmp]
 
   - id: b06-09
     type: multiple-choice
@@ -3846,7 +3845,7 @@ questions:
       접미부는 문자열의 끝에서 끝나는 부분 문자열이다.
       KMP는 접두부와 접미부의 최대 일치 정보를 이용한다.
       전체 문자열 자체는 보통 최대 일치 접두부/접미부 계산에서 제외한다.
-    tags: [chapter:06, string-matching, kmp]
+    tags: [string-matching, kmp]
 
   - id: b06-10
     type: multiple-choice
@@ -3869,7 +3868,7 @@ questions:
       새 문자가 기존 접두부 다음 문자와 일치하면 값이 1 증가한다.
       불일치하면 이전 F 값을 따라가며 가능한 접두부 길이를 찾는다.
       전처리 결과는 매칭 중 불필요한 중복 비교를 줄인다.
-    tags: [chapter:06, string-matching, kmp]
+    tags: [string-matching, kmp]
 
   - id: b06-11
     type: multiple-choice
@@ -3892,7 +3891,7 @@ questions:
       패턴 위치는 전처리 배열 F를 이용해 이동한다.
       이미 일치한 접두부/접미부 정보를 재사용한다.
       이 때문에 매칭 전체가 O(n)에 수행된다.
-    tags: [chapter:06, string-matching, kmp]
+    tags: [string-matching, kmp]
 
   - id: b06-12
     type: multiple-choice
@@ -3914,7 +3913,7 @@ questions:
       텍스트 매칭 과정에서는 텍스트를 한 방향으로만 진행해 O(n)이다.
       불일치 시 패턴 이동 폭을 전처리 배열로 결정한다.
       n>=m이면 전체 시간은 O(n)으로 정리된다.
-    tags: [chapter:06, string-matching, kmp]
+    tags: [string-matching, kmp]
 
   - id: b06-13
     type: multiple-choice
@@ -3939,7 +3938,7 @@ questions:
       불일치 문자 규칙은 틀린 문자가 패턴에서 마지막으로 나타난 위치를 이용한다.
       일치 접미부 규칙은 이미 맞은 접미부를 다시 활용한다.
       두 규칙 중 더 많이 이동할 수 있는 값을 선택한다.
-    tags: [chapter:06, string-matching, boyer-moore]
+    tags: [string-matching, boyer-moore]
 
   - id: b06-14
     type: multiple-choice
@@ -3962,7 +3961,7 @@ questions:
       그 위치가 불일치 위치에 오도록 패턴을 이동한다.
       해당 문자가 패턴에 없으면 패턴을 그 문자 뒤로 넘길 수 있다.
       비교는 패턴의 오른쪽에서 왼쪽으로 진행된다.
-    tags: [chapter:06, string-matching, boyer-moore]
+    tags: [string-matching, boyer-moore]
 
   - id: b06-15
     type: multiple-choice
@@ -3984,7 +3983,7 @@ questions:
       불일치 문자가 패턴에 없거나 멀리 있으면 큰 폭으로 이동할 수 있다.
       패턴과 텍스트가 많이 일치하면 오히려 비교가 많아질 수 있다.
       불일치 문자 규칙과 일치 접미부 규칙의 이동 폭이 성능에 영향을 준다.
-    tags: [chapter:06, string-matching, boyer-moore]
+    tags: [string-matching, boyer-moore]
 
   - id: b06-16
     type: multiple-choice
@@ -4006,7 +4005,7 @@ questions:
       인코딩은 원본을 압축 데이터로 바꾸는 과정이다.
       디코딩은 압축 데이터를 복원하는 과정이다.
       압축은 무손실 압축과 손실 압축으로 나눌 수 있다.
-    tags: [chapter:06, compression]
+    tags: [compression]
 
   - id: b06-17
     type: multiple-choice
@@ -4028,7 +4027,7 @@ questions:
       긴 run이 많을수록 압축률이 높다.
       문자 변화가 잦으면 run이 짧아져 압축 효과가 떨어진다.
       단순하지만 특정 데이터에서는 매우 효과적이다.
-    tags: [chapter:06, compression, rle]
+    tags: [compression, rle]
 
   - id: b06-18
     type: multiple-choice
@@ -4050,7 +4049,7 @@ questions:
       (문자, 반복 횟수) 형태가 압축 표현이다.
       반복 횟수 자체는 출력 문자열의 일부가 아니다.
       긴 연속 반복을 짧게 저장할 때 유용하다.
-    tags: [chapter:06, compression, rle]
+    tags: [compression, rle]
 
   - id: b06-19
     type: multiple-choice
@@ -4072,7 +4071,7 @@ questions:
       허프만 코드는 접두부 코드라 즉시 복호화가 가능하다.
       가장 작은 빈도의 두 트리를 반복해서 합쳐 트리를 만든다.
       빈도 구조에 따라 여러 문자가 같은 길이의 코드를 가질 수 있다.
-    tags: [chapter:06, compression, huffman-coding]
+    tags: [compression, huffman-coding]
 
   - id: b06-20
     type: multiple-choice
@@ -4095,7 +4094,7 @@ questions:
       새 내부 노드의 레이블은 두 자식 레이블의 합이다.
       합쳐진 트리는 다시 후보 집합에 들어간다.
       이 과정을 하나의 트리가 남을 때까지 반복한다.
-    tags: [chapter:06, compression, huffman-coding]
+    tags: [compression, huffman-coding]
 
   - id: b06-21
     type: multiple-choice
@@ -4118,7 +4117,7 @@ questions:
       ATATCCGAAA에서 빈도는 A=5, C=2, G=1, T=2이다.
       가장 빈도가 큰 A의 코드 길이가 가장 짧다.
       빈도가 낮은 문자는 상대적으로 긴 코드를 갖는다.
-    tags: [chapter:06, compression, huffman-coding]
+    tags: [compression, huffman-coding]
 
   - id: b06-22
     type: multiple-choice
@@ -4141,7 +4140,7 @@ questions:
       루트에서 비트를 따라 리프에 도달하면 문자를 출력한다.
       출력 후 다시 루트에서 다음 비트를 읽는다.
       코드 표를 기준으로 비트열을 끊어 읽어야 한다.
-    tags: [chapter:06, compression, huffman-coding]
+    tags: [compression, huffman-coding]
 
   - id: b06-23
     type: multiple-choice
@@ -4164,7 +4163,7 @@ questions:
       자주 나오는 문자는 짧은 코드가 부여되어 전체 길이를 줄인다.
       고정 길이 코드와 가변 길이 코드를 비교하면 압축 효과를 볼 수 있다.
       접두부 코드라 구분 기호 없이도 디코딩 가능하다.
-    tags: [chapter:06, compression, huffman-coding]
+    tags: [compression, huffman-coding]
 
   - id: b06-24
     type: multiple-choice
@@ -4187,7 +4186,7 @@ questions:
       슬라이딩 윈도우의 과거 영역에서 현재 lookahead와 가장 긴 일치를 찾는다.
       일치 길이 뒤의 첫 문자가 세 번째 값으로 들어간다.
       반복 문자열이 많을수록 압축 효과가 커진다.
-    tags: [chapter:06, compression, lz77]
+    tags: [compression, lz77]
 
   - id: b06-25
     type: multiple-choice
@@ -4210,7 +4209,7 @@ questions:
       결과는 거리, 일치 길이, 다음 문자로 표현된다.
       가능한 일치 중 가장 긴 것을 선택한다.
       일치 다음 문자는 압축 튜플의 세 번째 항목이다.
-    tags: [chapter:06, compression, lz77]
+    tags: [compression, lz77]
 
   - id: b06-26
     type: multiple-choice
@@ -4232,7 +4231,7 @@ questions:
       이후 튜플의 다음 문자가 있으면 이어 붙인다.
       복사 대상은 디코딩 중 확장되는 문자열을 참조할 수 있다.
       거리와 길이 해석을 순서대로 적용해야 한다.
-    tags: [chapter:06, compression, lz77]
+    tags: [compression, lz77]
 
   - id: b06-27
     type: multiple-choice
@@ -4257,7 +4256,7 @@ questions:
       JPEG은 정지 이미지 압축 표준이다.
       JPEG 과정은 블록화, DCT, 양자화, 엔트로피 코딩 순서로 진행된다.
       MPEG은 동영상에서 프레임 간 유사성과 움직임 정보를 활용한다.
-    tags: [chapter:06, compression, jpeg, mpeg]
+    tags: [compression, jpeg, mpeg]
 
   - id: b07-01
     type: multiple-choice
@@ -4291,7 +4290,7 @@ questions:
       대상은 예/아니오로 답하는 판정 문제이다.
       비결정론적 튜링 기계로 다항 시간에 해결 가능한 문제들이 포함된다.
       P는 결정론적 튜링 기계로 다항 시간에 해결 가능한 판정 문제 집합이다.
-    tags: [chapter:07, np]
+    tags: [np]
 
   - id: b07-02
     type: multiple-choice
@@ -4325,7 +4324,7 @@ questions:
       결정론적 계산 모델에서 다항 시간 알고리즘이 존재하는 판정 문제가 포함된다.
       P는 NP에 포함된다.
       P와 NP가 같은지는 아직 밝혀지지 않았다.
-    tags: [chapter:07, p, computational-complexity]
+    tags: [p, computational-complexity]
 
   - id: b07-03
     type: multiple-choice
@@ -4351,7 +4350,7 @@ questions:
       비결정론적 튜링 기계는 여러 가능한 계산 경로를 가질 수 있다.
       NP는 비결정론적 튜링 기계와 관련된 복잡도 클래스이다.
       계산 모델의 차이가 P와 NP 논의의 기반이 된다.
-    tags: [chapter:07, turing-machine, np]
+    tags: [turing-machine, np]
 
   - id: b07-04
     type: multiple-choice
@@ -4373,7 +4372,7 @@ questions:
       문제 A를 푸는 알고리즘으로 문제 Q를 풀 수 있으면 Q를 A로 변환한 것이다.
       다항 시간 변환은 변환 자체가 다항 시간에 수행되어야 한다.
       NP-완전성 증명에서 다항 시간 변환이 핵심 도구이다.
-    tags: [chapter:07, polynomial-time-reduction]
+    tags: [polynomial-time-reduction]
 
   - id: b07-05
     type: multiple-choice
@@ -4398,7 +4397,7 @@ questions:
       NP의 모든 문제가 그 문제로 다항 시간 변환될 수 있다.
       어떤 NP-완전 문제가 다항 시간에 풀리면 모든 NP 문제가 다항 시간에 풀린다.
       CNF 만족성, 클릭 판정, 버텍스 커버 판정 등이 대표적이다.
-    tags: [chapter:07, np-complete]
+    tags: [np-complete]
 
   - id: b07-06
     type: multiple-choice
@@ -4423,7 +4422,7 @@ questions:
       최적화 문제는 관련 판정 문제로 바꿔 다룰 수 있다.
       통 채우기 판정 문제는 대표적인 NP-완전 문제이다.
       다항 시간 알고리즘이 알려진 최단 경로 문제와 구분해야 한다.
-    tags: [chapter:07, np-complete, bin-packing]
+    tags: [np-complete, bin-packing]
 
   - id: b07-07
     type: multiple-choice
@@ -4445,7 +4444,7 @@ questions:
       보통 다항 시간에 수행되는 알고리즘을 목표로 한다.
       근사해는 최적해보다 좋을 수 없으며 성능 비율로 품질을 평가한다.
       판정 문제 자체보다 최적화 버전이 주된 대상이다.
-    tags: [chapter:07, approximation-algorithm]
+    tags: [approximation-algorithm]
 
   - id: b07-08
     type: multiple-choice
@@ -4467,7 +4466,7 @@ questions:
       근사해 크기는 최적해 크기의 두 배를 넘지 않는다.
       따라서 근사해가 10이면 최적해는 최소 5 이상이어야 한다.
       최적해보다 좋은 근사해는 존재할 수 없다.
-    tags: [chapter:07, approximation-algorithm, vertex-cover]
+    tags: [approximation-algorithm, vertex-cover]
 
   - id: b07-09
     type: multiple-choice
@@ -4489,7 +4488,7 @@ questions:
       버텍스 커버 2-근사 알고리즘은 최적해의 두 배 이하를 보장한다.
       최적해가 15이면 근사해 범위는 15 이상 30 이하이다.
       보장 범위 안의 값은 결과로 나올 수 있다.
-    tags: [chapter:07, approximation-algorithm, vertex-cover]
+    tags: [approximation-algorithm, vertex-cover]
 
   - id: b07-10
     type: multiple-choice
@@ -4512,7 +4511,7 @@ questions:
       선택된 두 정점에 부수된 간선을 모두 제거한다.
       간선이 남아 있으면 과정을 반복한다.
       이 알고리즘은 최적해의 두 배 이내 크기를 보장한다.
-    tags: [chapter:07, approximation-algorithm, vertex-cover]
+    tags: [approximation-algorithm, vertex-cover]
 
   - id: b07-11
     type: multiple-choice
@@ -4534,7 +4533,7 @@ questions:
       근사 알고리즘은 최적해보다 같거나 나쁜 해를 빠르게 찾는다.
       외판원 문제의 근사 알고리즘은 삼각부등식 같은 조건에서 성능을 보장한다.
       근사해의 가능 여부는 최적해와 보장 범위를 기준으로 판단한다.
-    tags: [chapter:07, approximation-algorithm, traveling-salesman-problem]
+    tags: [approximation-algorithm, traveling-salesman-problem]
 
   - id: b07-12
     type: multiple-choice
@@ -4557,7 +4556,7 @@ questions:
       문제의 최소 신장 트리 가중치가 10이면 관련 상한은 20이다.
       삼각부등식이 성립하는 경우 MST 기반 순회 근사가 가능하다.
       보장 범위를 넘는 값은 해당 근사해로 볼 수 없다.
-    tags: [chapter:07, approximation-algorithm, traveling-salesman-problem]
+    tags: [approximation-algorithm, traveling-salesman-problem]
 
   - id: b07-13
     type: multiple-choice
@@ -4580,7 +4579,7 @@ questions:
       이미 방문한 정점이 다시 나오면 건너뛰어 해밀토니언 사이클을 만든다.
       삼각부등식이 있으면 중복 정점 제거가 비용을 늘리지 않는다.
       DFS 순서를 기반으로 방문 순서를 복원해야 한다.
-    tags: [chapter:07, approximation-algorithm, traveling-salesman-problem]
+    tags: [approximation-algorithm, traveling-salesman-problem]
 
   - id: b07-14
     type: multiple-choice
@@ -4603,7 +4602,7 @@ questions:
       외판원 문제의 최적해는 가능한 해밀토니언 사이클 중 비용이 최소인 값이다.
       주어진 그래프에서는 비용 18인 사이클이 존재한다.
       근사해 비용 19는 최적해보다 약간 큰 값이다.
-    tags: [chapter:07, approximation-algorithm, traveling-salesman-problem]
+    tags: [approximation-algorithm, traveling-salesman-problem]
 
   - id: b07-15
     type: multiple-choice
@@ -4625,7 +4624,7 @@ questions:
       최초법의 근사해는 최적해의 두 배를 넘지 않는다.
       더 엄밀하게는 약 1.7배를 넘지 않는 성질이 알려져 있다.
       최적해가 20이면 44는 보장 범위를 벗어난다.
-    tags: [chapter:07, approximation-algorithm, bin-packing]
+    tags: [approximation-algorithm, bin-packing]
 
   - id: b07-16
     type: multiple-choice
@@ -4648,7 +4647,7 @@ questions:
       들어갈 수 있는 통이 없으면 새 통을 연다.
       입력 순서에 따라 결과가 달라질 수 있다.
       주어진 순서에서는 4개 통이 사용된다.
-    tags: [chapter:07, approximation-algorithm, bin-packing]
+    tags: [approximation-algorithm, bin-packing]
 
   - id: b07-17
     type: multiple-choice
@@ -4671,7 +4670,7 @@ questions:
       들어갈 수 있는 통이 없으면 새 통을 연다.
       최초법보다 더 적은 통을 사용할 수 있는 경우가 있다.
       주어진 순서에서는 3개 통으로 배치된다.
-    tags: [chapter:07, approximation-algorithm, bin-packing]
+    tags: [approximation-algorithm, bin-packing]
 
   - id: b07-18
     type: multiple-choice
@@ -4694,4 +4693,4 @@ questions:
       큰 물체를 먼저 배치해 낭비 공간을 줄인다.
       감소순 최선법과 같은 결과를 얻는 경우도 있다.
       주어진 물체들은 정렬 후 3개 통으로 배치된다.
-    tags: [chapter:07, approximation-algorithm, bin-packing]
+    tags: [approximation-algorithm, bin-packing]
