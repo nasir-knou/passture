@@ -4,6 +4,145 @@ title: 알고리즘 2017 기말
 kind: exam
 year: 2017
 
+passages:
+  - id: g17-bst-delete-21
+    type: diagram
+    diagram:
+      type: simple-graph
+      width: 360
+      height: 240
+      nodes:
+        - { id: '30', label: '30', x: 180, y: 35 }
+        - { id: '15', label: '15', x: 105, y: 105 }
+        - { id: '55', label: '55', x: 255, y: 105 }
+        - { id: '7', label: '7', x: 65, y: 185 }
+        - { id: '22', label: '22', x: 145, y: 185 }
+        - { id: '44', label: '44', x: 215, y: 185 }
+        - { id: '88', label: '88', x: 295, y: 185 }
+      edges:
+        - { from: '30', to: '15' }
+        - { from: '30', to: '55' }
+        - { from: '15', to: '7' }
+        - { from: '15', to: '22' }
+        - { from: '55', to: '44' }
+        - { from: '55', to: '88' }
+
+  - id: g17-two-three-four-tree-23
+    type: diagram
+    diagram:
+      type: simple-graph
+      width: 420
+      height: 190
+      nodes:
+        - { id: root, label: '30 | 55', x: 210, y: 45 }
+        - { id: left, label: '7 | 15 | 22', x: 100, y: 135 }
+        - { id: middle, label: '44', x: 210, y: 135 }
+        - { id: right, label: '88', x: 320, y: 135 }
+      edges:
+        - { from: root, to: left }
+        - { from: root, to: middle }
+        - { from: root, to: right }
+
+  - id: g17-dfs-graph-24
+    type: diagram
+    diagram:
+      type: simple-graph
+      width: 360
+      height: 240
+      nodes:
+        - { id: '1', label: '1', x: 180, y: 35 }
+        - { id: '2', label: '2', x: 90, y: 105 }
+        - { id: '3', label: '3', x: 180, y: 105 }
+        - { id: '4', label: '4', x: 270, y: 105 }
+        - { id: '5', label: '5', x: 135, y: 185 }
+        - { id: '6', label: '6', x: 270, y: 185 }
+      edges:
+        - { from: '1', to: '2' }
+        - { from: '1', to: '3' }
+        - { from: '1', to: '4' }
+        - { from: '2', to: '5' }
+        - { from: '3', to: '5' }
+        - { from: '4', to: '6' }
+
+  - id: g17-scc-graph-25
+    type: diagram
+    diagram:
+      type: simple-graph
+      width: 360
+      height: 240
+      directed: true
+      nodes:
+        - { id: '1', label: '1', x: 180, y: 35 }
+        - { id: '2', label: '2', x: 95, y: 105 }
+        - { id: '3', label: '3', x: 180, y: 105 }
+        - { id: '4', label: '4', x: 265, y: 105 }
+        - { id: '5', label: '5', x: 140, y: 185 }
+        - { id: '6', label: '6', x: 265, y: 185 }
+      edges:
+        - { from: '1', to: '2' }
+        - { from: '1', to: '3' }
+        - { from: '2', to: '5' }
+        - { from: '3', to: '5' }
+        - { from: '5', to: '1' }
+        - { from: '4', to: '1' }
+        - { from: '4', to: '6' }
+
+  - id: g17-mst-graph-27
+    type: diagram
+    diagram:
+      type: simple-graph
+      width: 360
+      height: 300
+      nodes:
+        - { id: a, label: a, x: 180, y: 40 }
+        - { id: b, label: b, x: 95, y: 135 }
+        - { id: c, label: c, x: 180, y: 135 }
+        - { id: d, label: d, x: 265, y: 135 }
+        - { id: e, label: e, x: 135, y: 240 }
+        - { id: f, label: f, x: 235, y: 240 }
+      edges:
+        - { from: a, to: b, label: '5' }
+        - { from: a, to: c, label: '3' }
+        - { from: a, to: d, label: '7' }
+        - { from: b, to: e, label: '2' }
+        - { from: c, to: e, label: '1' }
+        - { from: d, to: f, label: '4' }
+        - { from: e, to: f, label: '6' }
+
+  - id: g17-floyd-graph-28
+    type: diagram
+    diagram:
+      type: simple-graph
+      width: 320
+      height: 260
+      directed: true
+      nodes:
+        - { id: '1', label: '1', x: 160, y: 35 }
+        - { id: '2', label: '2', x: 70, y: 145 }
+        - { id: '3', label: '3', x: 160, y: 225 }
+        - { id: '4', label: '4', x: 250, y: 145 }
+      edges:
+        - { from: '1', to: '2', label: '4' }
+        - { from: '1', to: '3', label: '2' }
+        - { from: '4', to: '1', label: '3' }
+        - { from: '2', to: '3', label: '5' }
+        - { from: '3', to: '2', label: '-1' }
+
+  - id: g17-floyd-matrices-28
+    type: diagram
+    diagram:
+      type: data-table
+      columns: ['행렬', '1', '2', '3', '4']
+      rows:
+        - ['D(0) row 1', '0', '4', '2', '∞']
+        - ['D(0) row 2', '∞', '0', '5', '∞']
+        - ['D(0) row 3', '∞', '-1', '0', '∞']
+        - ['D(0) row 4', '3', '∞', '∞', '0']
+        - ['D(4) row 1', '0', '(a)', '(b)', '∞']
+        - ['D(4) row 2', '∞', '0', '5', '∞']
+        - ['D(4) row 3', '∞', '-1', '0', '∞']
+        - ['D(4) row 4', '3', '(c)', '(d)', '0']
+
 questions:
   - id: e17-01
     type: multiple-choice
@@ -96,7 +235,7 @@ questions:
     type: multiple-choice
     prompt: 다음 중 f(n)=O(g(n))의 관계를 나타내는 그래프는?
     images:
-      - path: images/subjects/algorithms/past-exams/2017/page-1.png
+      - path: images/subjects/algorithms/past-exams/2017/e17-05-choices.png
         alt: 2017년 알고리즘 기출 5번 그래프 보기
     choices:
       - { id: '1', text: '①' }
@@ -449,9 +588,7 @@ questions:
   - id: e17-21
     type: multiple-choice
     prompt: 이진 탐색 트리에서 루트 노드 30을 삭제할 경우 삭제되는 노드의 자리에 새롭게 위치하는 노드의 값은?
-    images:
-      - path: images/subjects/algorithms/past-exams/2017/page-2.png
-        alt: 2017년 알고리즘 기출 21번 이진 탐색 트리
+    passageRefs: [g17-bst-delete-21]
     choices:
       - { id: '1', text: '7' }
       - { id: '2', text: '15' }
@@ -496,14 +633,12 @@ questions:
   - id: e17-23
     type: multiple-choice
     prompt: 주어진 2-3-4 트리를 흑적 트리로 올바르게 표현한 것은? (검정색으로 채워진 노드가 적색 노드이고, 흰 바탕의 노드가 흑색 노드)
-    images:
-      - path: images/subjects/algorithms/past-exams/2017/page-2.png
-        alt: 2017년 알고리즘 기출 23번 2-3-4 트리와 흑적 트리 보기
+    passageRefs: [g17-two-three-four-tree-23]
     choices:
-      - { id: '1', text: '①' }
-      - { id: '2', text: '②' }
-      - { id: '3', text: '③' }
-      - { id: '4', text: '④' }
+      - { id: '1', text: '① 30 채움, 15·55 흰색, 7·22·44·88 채움' }
+      - { id: '2', text: '② 30·15·7 채움, 55·22·44·88 흰색' }
+      - { id: '3', text: '③ 55·7·22 채움, 30·15·44·88 흰색' }
+      - { id: '4', text: '④ 15·55 채움, 30·7·22·44·88 흰색' }
     answers: ['3']
     explanation: |
       선택지 1: 루트의 색과 3-노드 표현이 2-3-4 트리 대응과 맞지 않는다.
@@ -521,9 +656,7 @@ questions:
   - id: e17-24
     type: multiple-choice
     prompt: 주어진 그래프에서 깊이 우선 탐색을 수행했을 때 정점 방문 순서 1, 3, (a), (b), (c), (d)에서 (b)에 들어갈 정점은?
-    images:
-      - path: images/subjects/algorithms/past-exams/2017/page-2.png
-        alt: 2017년 알고리즘 기출 24번 깊이 우선 탐색 그래프
+    passageRefs: [g17-dfs-graph-24]
     choices:
       - { id: '1', text: '2' }
       - { id: '2', text: '4' }
@@ -545,9 +678,7 @@ questions:
   - id: e17-25
     type: multiple-choice
     prompt: 다음 방향 그래프에서 강연결 성분은 모두 몇 개인가?
-    images:
-      - path: images/subjects/algorithms/past-exams/2017/page-3.png
-        alt: 2017년 알고리즘 기출 25번 방향 그래프
+    passageRefs: [g17-scc-graph-25]
     choices:
       - { id: '1', text: '1' }
       - { id: '2', text: '2' }
@@ -592,9 +723,7 @@ questions:
   - id: e17-27
     type: multiple-choice
     prompt: 주어진 그래프에 대해 최소 신장 트리를 구하였을 때 이에 포함되지 않는 간선은?
-    images:
-      - path: images/subjects/algorithms/past-exams/2017/page-3.png
-        alt: 2017년 알고리즘 기출 27번 최소 신장 트리 그래프
+    passageRefs: [g17-mst-graph-27]
     choices:
       - { id: '1', text: '(a, b)' }
       - { id: '2', text: '(c, e)' }
@@ -617,9 +746,7 @@ questions:
   - id: e17-28
     type: multiple-choice
     prompt: 플로이드 알고리즘을 적용한 최종 상태 D(4)의 (a)~(d)값 중 가장 작은 값을 갖는 것은?
-    images:
-      - path: images/subjects/algorithms/past-exams/2017/page-3.png
-        alt: 2017년 알고리즘 기출 28번 플로이드 알고리즘 그래프와 행렬
+    passageRefs: [g17-floyd-graph-28, g17-floyd-matrices-28]
     choices:
       - { id: '1', text: '(a)' }
       - { id: '2', text: '(b)' }

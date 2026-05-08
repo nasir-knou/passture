@@ -4,6 +4,68 @@ title: 알고리즘 2018 기말
 kind: exam
 year: 2018
 
+passages:
+  - id: g18-floyd-graph-12
+    type: diagram
+    diagram:
+      type: simple-graph
+      width: 320
+      height: 260
+      directed: true
+      nodes:
+        - { id: '1', label: '1', x: 160, y: 35 }
+        - { id: '2', label: '2', x: 70, y: 145 }
+        - { id: '3', label: '3', x: 160, y: 225 }
+        - { id: '4', label: '4', x: 250, y: 145 }
+      edges:
+        - { from: '1', to: '2', label: '4' }
+        - { from: '1', to: '3', label: '2' }
+        - { from: '4', to: '1', label: '3' }
+        - { from: '2', to: '3', label: '5' }
+        - { from: '3', to: '2', label: '-1' }
+
+  - id: g18-bst-delete-28
+    type: diagram
+    diagram:
+      type: simple-graph
+      width: 420
+      height: 300
+      nodes:
+        - { id: '35', label: '35', x: 210, y: 35 }
+        - { id: '30', label: '30', x: 120, y: 100 }
+        - { id: '55', label: '55', x: 300, y: 100 }
+        - { id: '15', label: '15', x: 75, y: 170 }
+        - { id: '44', label: '44', x: 255, y: 170 }
+        - { id: '88', label: '88', x: 345, y: 170 }
+        - { id: '7', label: '7', x: 35, y: 245 }
+        - { id: '22', label: '22', x: 115, y: 245 }
+        - { id: '40', label: '40', x: 215, y: 245 }
+      edges:
+        - { from: '35', to: '30' }
+        - { from: '35', to: '55' }
+        - { from: '30', to: '15' }
+        - { from: '15', to: '7' }
+        - { from: '15', to: '22' }
+        - { from: '55', to: '44' }
+        - { from: '55', to: '88' }
+        - { from: '44', to: '40' }
+
+  - id: g18-btree-insert-30
+    type: diagram
+    diagram:
+      type: simple-graph
+      width: 430
+      height: 190
+      nodes:
+        - { id: root, label: '30 | 50', x: 215, y: 45 }
+        - { id: left, label: '10 | 20', x: 90, y: 135 }
+        - { id: middle, label: '40 | 45', x: 215, y: 135 }
+        - { id: right, label: '60 | 80 | 90', x: 340, y: 135 }
+      edges:
+        - { from: root, to: left }
+        - { from: root, to: middle }
+        - { from: root, to: right }
+
 questions:
   - id: e18-01
     type: multiple-choice
@@ -233,9 +295,7 @@ questions:
   - id: e18-12
     type: multiple-choice
     prompt: '주어진 그래프에 대해 모든 정점 간의 최단 경로를 구할 때 d42^(3)의 값은?'
-    images:
-      - path: images/subjects/algorithms/past-exams/2018/page-1.png
-        alt: 2018년 알고리즘 기출 12번 참고 이미지
+    passageRefs: [g18-floyd-graph-12]
     choices:
       - { id: '1', text: '∞' }
       - { id: '2', text: '7' }
@@ -574,9 +634,7 @@ questions:
   - id: e18-28
     type: multiple-choice
     prompt: '이진 탐색 트리에서 노드 35를 삭제하려고 한다. 삭제되는 노드 35의 자리에 위치하는 노드는?'
-    images:
-      - path: images/subjects/algorithms/past-exams/2018/page-2.png
-        alt: 2018년 알고리즘 기출 28번 참고 이미지
+    passageRefs: [g18-bst-delete-28]
     choices:
       - { id: '1', text: '7' }
       - { id: '2', text: '30' }
@@ -621,9 +679,7 @@ questions:
   - id: e18-30
     type: multiple-choice
     prompt: 't=2인 B-트리에서 70을 삽입하는 과정에서 부모 노드로 보내지는 키값은?'
-    images:
-      - path: images/subjects/algorithms/past-exams/2018/page-2.png
-        alt: 2018년 알고리즘 기출 30번 참고 이미지
+    passageRefs: [g18-btree-insert-30]
     choices:
       - { id: '1', text: '60' }
       - { id: '2', text: '70' }
