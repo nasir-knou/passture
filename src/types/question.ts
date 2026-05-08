@@ -32,7 +32,6 @@ export interface Question {
   choices: Choice[];
   answers: string[];
   answerKey?: string;
-  allowMultiple?: boolean;
   explanation: string;
   tags?: string[];
 }
@@ -74,6 +73,7 @@ export interface SimpleGraphNode {
   labelDx?: number;
   labelDy?: number;
   radius?: number;
+  tone?: 'filled';
   x: number;
   y: number;
 }
@@ -84,6 +84,7 @@ export interface SimpleGraphEdge {
   label?: string;
   directed?: boolean;
   curve?: number;
+  style?: 'solid' | 'dashed';
 }
 
 export interface UiWindowDiagram {
@@ -123,6 +124,9 @@ export interface ResourceAllocationGraphNode {
 export interface ResourceAllocationGraphEdge {
   from: string;
   style?: 'solid' | 'dashed';
+  label?: string;
+  labelDx?: number;
+  labelDy?: number;
   to: string;
 }
 

@@ -235,10 +235,6 @@ function validateQuestion(
   if (question.answerKey !== undefined) {
     expectString(question.answerKey, `${fieldPath}.answerKey`);
   }
-
-  if (question.allowMultiple !== undefined && typeof question.allowMultiple !== 'boolean') {
-    throw new Error(`${fieldPath}.allowMultiple must be boolean`);
-  }
 }
 
 function validateChoice(value: unknown, fieldPath: string, root: string): asserts value is Choice {
@@ -357,6 +353,15 @@ function validateChoiceDiagram(value: unknown, fieldPath: string): void {
         throw new Error(`${fieldPath}.edges[${edgeIndex}].style must be solid or dashed`);
       }
     }
+    if (edge.label !== undefined) {
+      expectString(edge.label, `${fieldPath}.edges[${edgeIndex}].label`);
+    }
+    if (edge.labelDx !== undefined) {
+      expectNumber(edge.labelDx, `${fieldPath}.edges[${edgeIndex}].labelDx`);
+    }
+    if (edge.labelDy !== undefined) {
+      expectNumber(edge.labelDy, `${fieldPath}.edges[${edgeIndex}].labelDy`);
+    }
 
     if (!nodeIds.has(from)) {
       throw new Error(`${fieldPath}.edges[${edgeIndex}].from references missing node`);
@@ -424,6 +429,13 @@ function validateSimpleGraphDiagram(diagram: Record<string, unknown>, fieldPath:
 
     if (edge.curve !== undefined) {
       expectNumber(edge.curve, `${fieldPath}.edges[${edgeIndex}].curve`);
+    }
+
+    if (edge.style !== undefined) {
+      const style = expectString(edge.style, `${fieldPath}.edges[${edgeIndex}].style`);
+      if (!['solid', 'dashed'].includes(style)) {
+        throw new Error(`${fieldPath}.edges[${edgeIndex}].style must be solid or dashed`);
+      }
     }
   }
 }

@@ -158,6 +158,7 @@ function renderSession(session: QuizSession): HTMLElement {
   `;
 
   bindQuizEvents(page, session);
+  restoreQuizScroll();
   return page;
 }
 
@@ -169,7 +170,7 @@ function bindQuizEvents(page: HTMLElement, session: QuizSession): void {
         session.questions[session.currentIndex]?.key ?? '',
         readSelectedAnswers(page),
       );
-      refreshRoute();
+      refreshRoute({ preserveScroll: true });
     });
   });
 
@@ -185,7 +186,7 @@ function bindQuizEvents(page: HTMLElement, session: QuizSession): void {
     }
 
     answerCurrentQuestion(session, selected);
-    refreshRoute();
+    refreshRoute({ preserveScroll: true });
   });
 
   page.querySelectorAll<HTMLButtonElement>('[data-question-index]').forEach((button) => {
@@ -230,11 +231,12 @@ function bindQuizEvents(page: HTMLElement, session: QuizSession): void {
     }
 
     toggleBookmark(current.key);
-    refreshRoute();
+    refreshRoute({ preserveScroll: true });
   });
 }
 
 const questionMapExpandedKey = 'passture.questionMapExpanded';
+const quizScrollRestoreKey = 'passture.quiz.scrollY';
 const questionMapRowSize = 26;
 
 function optionModeLabel(mode: 'default' | 'random'): string {
@@ -420,6 +422,27 @@ function choiceClass(id: string, answers: readonly string[], selected: Set<strin
   return '';
 }
 
-function refreshRoute(): void {
+function refreshRoute(options: { preserveScroll?: boolean } = {}): void {
+  if (options.preserveScroll) {
+    sessionStorage.setItem(quizScrollRestoreKey, String(window.scrollY));
+  }
+
   window.location.hash = `#/quiz?ts=${Date.now()}`;
+}
+
+function restoreQuizScroll(): void {
+  const value = sessionStorage.getItem(quizScrollRestoreKey);
+  if (value === null) {
+    return;
+  }
+
+  sessionStorage.removeItem(quizScrollRestoreKey);
+  const scrollY = Number(value);
+  if (!Number.isFinite(scrollY)) {
+    return;
+  }
+
+  requestAnimationFrame(() => {
+    window.scrollTo(window.scrollX, scrollY);
+  });
 }

@@ -167,7 +167,8 @@ function renderDiagram(diagram: ChoiceDiagram, className: string): string {
             }
 
             const points = edgeEndpoint(from, to);
-            return `<line class="rag-edge ${edge.style === 'dashed' ? 'rag-edge-dashed' : ''}" x1="${points.x1}" y1="${points.y1}" x2="${points.x2}" y2="${points.y2}" marker-end="url(#${markerId})" />`;
+            const label = edge.label ? renderRagEdgeLabel(edge.label, points, edge.labelDx ?? 0, edge.labelDy ?? 0) : '';
+            return `<line class="rag-edge ${edge.style === 'dashed' ? 'rag-edge-dashed' : ''}" x1="${points.x1}" y1="${points.y1}" x2="${points.x2}" y2="${points.y2}" marker-end="url(#${markerId})" />${label}`;
           })
           .join('')}
         ${diagram.nodes.map((node) => renderRagNode(node)).join('')}
@@ -335,12 +336,13 @@ function renderSimpleGraphDiagram(diagram: ChoiceDiagram & { type: 'simple-graph
           const directed = edge.directed ?? diagram.directed ?? false;
           const points = simpleGraphEdgeEndpoint(from, to);
           const marker = directed ? ` marker-end="url(#${markerId})"` : '';
+          const edgeClass = `simple-graph-edge ${edge.style === 'dashed' ? 'simple-graph-edge-dashed' : ''}`.trim();
           const isLoop = edge.from === edge.to;
           const edgeShape = isLoop
-            ? `<path class="simple-graph-edge" d="${simpleGraphLoopPath(from, edge.curve ?? 1)}"${marker}></path>`
+            ? `<path class="${edgeClass}" d="${simpleGraphLoopPath(from, edge.curve ?? 1)}"${marker}></path>`
             : edge.curve && edge.curve !== 0
-              ? `<path class="simple-graph-edge" d="${simpleGraphCurvePath(points, edge.curve)}"${marker}></path>`
-              : `<line class="simple-graph-edge" x1="${points.x1}" y1="${points.y1}" x2="${points.x2}" y2="${points.y2}"${marker}></line>`;
+              ? `<path class="${edgeClass}" d="${simpleGraphCurvePath(points, edge.curve)}"${marker}></path>`
+              : `<line class="${edgeClass}" x1="${points.x1}" y1="${points.y1}" x2="${points.x2}" y2="${points.y2}"${marker}></line>`;
           const label = edge.label ? renderSimpleGraphEdgeLabel(edge.label, from, to, edge.curve ?? 0) : '';
 
           return `${edgeShape}${label}`;
@@ -349,7 +351,7 @@ function renderSimpleGraphDiagram(diagram: ChoiceDiagram & { type: 'simple-graph
       ${diagram.nodes
         .map(
           (node) => `
-            <g class="simple-graph-node">
+            <g class="simple-graph-node ${node.tone === 'filled' ? 'simple-graph-node-filled' : ''}">
               ${node.hideNode ? '' : `<circle cx="${node.x}" cy="${node.y}" r="${node.radius ?? 20}"></circle>`}
               ${
                 node.hideLabel
@@ -446,8 +448,16 @@ function renderClockPageReplacementDiagram(
   const entries = diagram.entries;
   const step = (Math.PI * 2) / entries.length;
   const pointerAngle = -Math.PI / 2 + diagram.pointerIndex * step;
-  const pointerX = cx + Math.cos(pointerAngle) * (innerRadius + 6);
-  const pointerY = cy + Math.sin(pointerAngle) * (innerRadius + 6);
+  const pointerRadius = innerRadius + 18;
+  const pointerX = cx + Math.cos(pointerAngle) * pointerRadius;
+  const pointerY = cy + Math.sin(pointerAngle) * pointerRadius;
+  const rotationRadius = innerRadius + 8;
+  const rotationStartAngle = pointerAngle;
+  const rotationEndAngle = pointerAngle + Math.PI * 0.9;
+  const rotationStartX = cx + Math.cos(rotationStartAngle) * rotationRadius;
+  const rotationStartY = cy + Math.sin(rotationStartAngle) * rotationRadius;
+  const rotationEndX = cx + Math.cos(rotationEndAngle) * rotationRadius;
+  const rotationEndY = cy + Math.sin(rotationEndAngle) * rotationRadius;
 
   return `
     <svg
@@ -482,7 +492,7 @@ function renderClockPageReplacementDiagram(
         })
         .join('')}
       <line class="clock-pointer" x1="${cx}" y1="${cy}" x2="${pointerX}" y2="${pointerY}" marker-end="url(#${markerId})"></line>
-      <path class="clock-rotation" d="M ${cx + 24} ${cy - 32} C ${cx + 56} ${cy - 24}, ${cx + 58} ${cy + 14}, ${cx + 26} ${cy + 28}" marker-end="url(#${markerId})"></path>
+      <path class="clock-rotation" d="M ${rotationStartX} ${rotationStartY} A ${rotationRadius} ${rotationRadius} 0 0 1 ${rotationEndX} ${rotationEndY}" marker-end="url(#${markerId})"></path>
     </svg>
   `;
 }
@@ -609,6 +619,17 @@ function renderRagNode(node: ResourceAllocationGraphNode): string {
       <text text-anchor="middle" dominant-baseline="central">${label}</text>
     </g>
   `;
+}
+
+function renderRagEdgeLabel(
+  label: string,
+  points: { x1: number; y1: number; x2: number; y2: number },
+  dx: number,
+  dy: number,
+): string {
+  const x = (points.x1 + points.x2) / 2 + dx;
+  const y = (points.y1 + points.y2) / 2 + dy;
+  return `<text class="rag-edge-label" x="${x}" y="${y}" text-anchor="middle">${escapeHtml(label)}</text>`;
 }
 
 function formatSvgMathLabel(value: string): string {
