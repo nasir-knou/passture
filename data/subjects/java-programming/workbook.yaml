@@ -278,34 +278,6 @@ questions:
       접근 제어자를 생략하면 package-private 접근이 된다.
     tags: [chapter:03, access-modifier]
 
-  - id: b03-07
-    type: multi-answer
-    allowMultiple: true
-    prompt: |
-      다음 코드에 관한 설명으로 잘못된 것이 있으면 모두 고르시오.
-
-      ```java
-      Circle c = new Circle(5);
-      ```
-    choices:
-      - { id: '1', text: '참조형 변수가 선언되었다.' }
-      - { id: '2', text: '객체가 사용할 메모리 공간이 할당되었다.' }
-      - { id: '3', text: '변수 c에 메모리의 주소가 대입되었다.' }
-      - { id: '4', text: '생성자가 실행되었다.' }
-    answers: ['1', '2', '3', '4']
-    explanation: |
-      선택지 1: `Circle c`로 참조형 변수가 선언된다.
-      선택지 2: `new` 연산자로 객체를 위한 메모리 공간이 할당된다.
-      선택지 3: 생성된 객체의 참조값이 변수 `c`에 대입된다.
-      선택지 4: `Circle(5)` 생성자가 실행된다.
-
-      핵심 개념:
-      객체 생성식은 참조 변수 선언, 메모리 할당, 생성자 실행, 참조값 대입을 포함한다.
-      `new`는 객체를 생성하고 그 참조값을 반환한다.
-      참조형 변수는 객체 자체가 아니라 객체를 가리키는 값을 저장한다.
-      생성자는 객체 초기화 과정에서 호출된다.
-    tags: [chapter:03, object, constructor]
-
   - id: b03-08
     type: multiple-choice
     prompt: |
