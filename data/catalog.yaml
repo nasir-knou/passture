@@ -43,7 +43,11 @@ subjects:
       - id: basic-intensive
         title: 기초특강
         path: subjects/discrete-math/basic-intensive.json
-        kind: intensive
+        kind: lecture
+      - id: lecture-exercises
+        title: 연습문제
+        path: subjects/discrete-math/lecture-exercises.json
+        kind: lecture
   - id: algorithms
     title: 알고리즘
     sources:
@@ -73,6 +77,11 @@ subjects:
   - id: artificial-intelligence
     title: 인공지능
     sources:
+      - id: past-exams-2017
+        title: 2017 기말
+        path: subjects/artificial-intelligence/past-exams-2017.json
+        kind: exam
+        year: 2017
       - id: past-exams-2018
         title: 2018 기말
         path: subjects/artificial-intelligence/past-exams-2018.json

@@ -1,7 +1,7 @@
 subjectId: discrete-math
 sourceId: basic-intensive
 title: 이산수학 기초특강
-kind: intensive
+kind: lecture
 passages:
   - id: gi02-17-propositions
     type: text
@@ -484,7 +484,7 @@ passages:
 
       $T=\{(1,8),(2,2),(3,4)\}$, $U=\{(1,2),(2,4),(3,4)\}$
 questions:
-  - id: i02-01
+  - id: l02-01
     type: multiple-choice
     prompt: 다음 중 명제인 것은?
     choices:
@@ -511,7 +511,7 @@ questions:
     tags:
       - chapter:02
       - basic-intensive
-  - id: i02-02
+  - id: l02-02
     type: multiple-choice
     prompt: 다음 중 명제인 것은?
     choices:
@@ -538,7 +538,7 @@ questions:
     tags:
       - chapter:02
       - basic-intensive
-  - id: i02-03
+  - id: l02-03
     type: multiple-choice
     prompt: 다음 중 명제인 것은?
     choices:
@@ -565,7 +565,7 @@ questions:
     tags:
       - chapter:02
       - basic-intensive
-  - id: i02-04
+  - id: l02-04
     type: multiple-choice
     prompt: 다음 중 명제인 것은?
     choices:
@@ -592,7 +592,7 @@ questions:
     tags:
       - chapter:02
       - basic-intensive
-  - id: i02-05
+  - id: l02-05
     type: multiple-choice
     prompt: 다음 중 명제인 것은?
     choices:
@@ -619,7 +619,7 @@ questions:
     tags:
       - chapter:02
       - basic-intensive
-  - id: i02-06
+  - id: l02-06
     type: multiple-choice
     prompt: 다음 중 명제인 것은?
     choices:
@@ -646,7 +646,7 @@ questions:
     tags:
       - chapter:02
       - basic-intensive
-  - id: i02-07
+  - id: l02-07
     type: multiple-choice
     prompt: 다음 중 명제인 것은?
     choices:
@@ -673,7 +673,7 @@ questions:
     tags:
       - chapter:02
       - basic-intensive
-  - id: i02-08
+  - id: l02-08
     type: multiple-choice
     prompt: 다음 중 명제인 것은?
     choices:
@@ -700,7 +700,7 @@ questions:
     tags:
       - chapter:02
       - basic-intensive
-  - id: i02-09
+  - id: l02-09
     type: multiple-choice
     prompt: 다음 중 명제인 것은?
     choices:
@@ -727,7 +727,7 @@ questions:
     tags:
       - chapter:02
       - basic-intensive
-  - id: i02-10
+  - id: l02-10
     type: multiple-choice
     prompt: 다음 중 명제인 것은?
     choices:
@@ -754,7 +754,7 @@ questions:
     tags:
       - chapter:02
       - basic-intensive
-  - id: i02-11
+  - id: l02-11
     type: multiple-choice
     prompt: 다음 중 명제인 것은?
     choices:
@@ -781,7 +781,7 @@ questions:
     tags:
       - chapter:02
       - basic-intensive
-  - id: i02-12
+  - id: l02-12
     type: multiple-choice
     prompt: 다음 중 합성 명제인 것은?
     choices:
@@ -808,7 +808,7 @@ questions:
     tags:
       - chapter:02
       - basic-intensive
-  - id: i02-13
+  - id: l02-13
     type: multiple-choice
     prompt: 다음 중 합성 명제가 아닌 것은?
     choices:
@@ -835,7 +835,7 @@ questions:
     tags:
       - chapter:02
       - basic-intensive
-  - id: i02-14
+  - id: l02-14
     type: multiple-choice
     prompt: 다음 중 합성 명제가 아닌 것은?
     choices:
@@ -862,7 +862,7 @@ questions:
     tags:
       - chapter:02
       - basic-intensive
-  - id: i02-15
+  - id: l02-15
     type: multiple-choice
     passageRefs:
       - gi02-15-truth-table
@@ -895,7 +895,7 @@ questions:
     tags:
       - chapter:02
       - basic-intensive
-  - id: i02-16
+  - id: l02-16
     type: multiple-choice
     passageRefs:
       - gi02-16-truth-table
@@ -926,7 +926,7 @@ questions:
     tags:
       - chapter:02
       - basic-intensive
-  - id: i02-17
+  - id: l02-17
     type: multiple-choice
     passageRefs:
       - gi02-17-propositions
@@ -955,7 +955,7 @@ questions:
     tags:
       - chapter:02
       - basic-intensive
-  - id: i02-18
+  - id: l02-18
     type: multiple-choice
     prompt: 배타적 논리합 $p \oplus q$와 동치인 합성 명제는?
     choices:
@@ -982,7 +982,7 @@ questions:
     tags:
       - chapter:02
       - basic-intensive
-  - id: i02-19
+  - id: l02-19
     type: multiple-choice
     prompt: 다음 중 명제 $p$, $q$에 대한 배타적 논리합 $p \oplus q$의 진리표는?
     choices:
@@ -1041,7 +1041,7 @@ questions:
     tags:
       - chapter:02
       - basic-intensive
-  - id: i02-20
+  - id: l02-20
     type: multiple-choice
     prompt: 다음 중 거짓인 명제는?
     choices:
@@ -1068,7 +1068,7 @@ questions:
     tags:
       - chapter:02
       - basic-intensive
-  - id: i02-21
+  - id: l02-21
     type: multiple-choice
     prompt: $P \leftrightarrow Q$와 동치인 것은?
     choices:
@@ -1095,7 +1095,7 @@ questions:
     tags:
       - chapter:02
       - basic-intensive
-  - id: i02-22
+  - id: l02-22
     type: multiple-choice
     prompt: 다음 중 쌍조건명제 $p \leftrightarrow q$의 진리표로 옳은 것은?
     choices:
@@ -1154,7 +1154,7 @@ questions:
     tags:
       - chapter:02
       - basic-intensive
-  - id: i02-23
+  - id: l02-23
     type: multiple-choice
     prompt: $p$와 $q$가 명제일 때, 다음 중 항진명제인 것은?
     choices:
@@ -1181,7 +1181,7 @@ questions:
     tags:
       - chapter:02
       - basic-intensive
-  - id: i02-24
+  - id: l02-24
     type: multiple-choice
     prompt: $p$와 $q$가 명제일 때, 다음 중 항진명제인 것은?
     choices:
@@ -1208,7 +1208,7 @@ questions:
     tags:
       - chapter:02
       - basic-intensive
-  - id: i02-25
+  - id: l02-25
     type: multiple-choice
     prompt: 명제 $p$, $q$에 대해서 다음 중 항진명제인 것은?
     choices:
@@ -1235,7 +1235,7 @@ questions:
     tags:
       - chapter:02
       - basic-intensive
-  - id: i02-26
+  - id: l02-26
     type: multiple-choice
     prompt: 명제 $p$에 대해서 다음 중 항진명제인 것은?
     choices:
@@ -1262,7 +1262,7 @@ questions:
     tags:
       - chapter:02
       - basic-intensive
-  - id: i02-27
+  - id: l02-27
     type: multiple-choice
     prompt: 다음 중 항진명제인 것은?
     choices:
@@ -1289,7 +1289,7 @@ questions:
     tags:
       - chapter:02
       - basic-intensive
-  - id: i02-28
+  - id: l02-28
     type: multiple-choice
     prompt: 명제 $p$, $q$에 대해서 다음 중 옳은 것은?
     choices:
@@ -1316,7 +1316,7 @@ questions:
     tags:
       - chapter:02
       - basic-intensive
-  - id: i02-29
+  - id: l02-29
     type: multiple-choice
     prompt: 명제 $p$에 대해서 다음 중 모순명제인 것은?
     choices:
@@ -1343,7 +1343,7 @@ questions:
     tags:
       - chapter:02
       - basic-intensive
-  - id: i02-30
+  - id: l02-30
     type: multiple-choice
     prompt: 명제 $p$에 대해서 다음 중 모순명제인 것은?
     choices:
@@ -1370,7 +1370,7 @@ questions:
     tags:
       - chapter:02
       - basic-intensive
-  - id: i02-31
+  - id: l02-31
     type: multiple-choice
     prompt: $p$가 명제일 때, 다음 중 모순명제인 것은?
     choices:
@@ -1397,7 +1397,7 @@ questions:
     tags:
       - chapter:02
       - basic-intensive
-  - id: i02-32
+  - id: l02-32
     type: multiple-choice
     prompt: 다음 중 모순명제인 것은?
     choices:
@@ -1424,7 +1424,7 @@ questions:
     tags:
       - chapter:02
       - basic-intensive
-  - id: i02-33
+  - id: l02-33
     type: multiple-choice
     prompt: 배타적 논리합 $p \oplus q$에 관한 다음 설명 중 옳은 것은?
     choices:
@@ -1451,7 +1451,7 @@ questions:
     tags:
       - chapter:02
       - basic-intensive
-  - id: i02-34
+  - id: l02-34
     type: multiple-choice
     prompt: 조건명제 $p \to q$에 대한 다음 서술 중 옳은 것은?
     choices:
@@ -1478,7 +1478,7 @@ questions:
     tags:
       - chapter:02
       - basic-intensive
-  - id: i02-35
+  - id: l02-35
     type: multiple-choice
     prompt: 명제함수 $P(x,y)=x^2+y^2=8$일 때, 다음 중 옳은 것은?
     choices:
@@ -1505,7 +1505,7 @@ questions:
     tags:
       - chapter:02
       - basic-intensive
-  - id: i02-36
+  - id: l02-36
     type: multiple-choice
     prompt: 명제함수 $P(x,y)=x^2+y^2=5$일 때, 다음 중 옳은 것은?
     choices:
@@ -1532,7 +1532,7 @@ questions:
     tags:
       - chapter:02
       - basic-intensive
-  - id: i02-37
+  - id: l02-37
     type: multiple-choice
     prompt: 명제함수 $P(x,y)=x+2y=3$일 때, 다음 중 옳은 것은?
     choices:
@@ -1559,7 +1559,7 @@ questions:
     tags:
       - chapter:02
       - basic-intensive
-  - id: i02-38
+  - id: l02-38
     type: multiple-choice
     prompt: 명제함수 $P(x,y)=x+2y=3$일 때, 다음 중 옳은 것은?
     choices:
@@ -1586,7 +1586,7 @@ questions:
     tags:
       - chapter:02
       - basic-intensive
-  - id: i02-39
+  - id: l02-39
     type: multiple-choice
     prompt: 명제함수 $P(x,y)=x+2y=5$일 때, 다음 중 옳은 것은?
     choices:
@@ -1613,7 +1613,7 @@ questions:
     tags:
       - chapter:02
       - basic-intensive
-  - id: i02-40
+  - id: l02-40
     type: multiple-choice
     prompt: |-
       명제함수 P(x)가 x > 1이고 x의 정의구역 D = {1, 2, 3, 4}일 때, ∀xP(x)와
@@ -1642,7 +1642,7 @@ questions:
     tags:
       - chapter:02
       - basic-intensive
-  - id: i02-41
+  - id: l02-41
     type: multiple-choice
     prompt: |-
       명제함수 $P(x)$가 $x > 1$이고 $x$의 정의구역 $D = \{1,2,3\}$일 때, $\forall xP(x)$와
@@ -1671,7 +1671,7 @@ questions:
     tags:
       - chapter:02
       - basic-intensive
-  - id: i02-42
+  - id: l02-42
     type: multiple-choice
     prompt: |-
       명제함수 $P(x)$가 $x > 0$이고 $x$의 정의구역 $D = \{1,2,3\}$일 때, $\forall xP(x)$와
@@ -1700,7 +1700,7 @@ questions:
     tags:
       - chapter:02
       - basic-intensive
-  - id: i02-43
+  - id: l02-43
     type: multiple-choice
     prompt: |-
       명제함수 $P(x)$가 $x > 2$이고 $x$의 정의구역 $D = \{1,2,3\}$일 때, $\forall xP(x)$와
@@ -1729,7 +1729,7 @@ questions:
     tags:
       - chapter:02
       - basic-intensive
-  - id: i02-44
+  - id: l02-44
     type: multiple-choice
     prompt: |-
       명제함수 $P(x)$가 $x^2 > 0$이고 $x$의 정의구역 $D = \{1,2,3\}$일 때, $\forall xP(x)$와
@@ -1758,7 +1758,7 @@ questions:
     tags:
       - chapter:02
       - basic-intensive
-  - id: i02-45
+  - id: l02-45
     type: multiple-choice
     prompt: 다음 중 유효추론이 아닌 것은?
     choices:
@@ -1785,7 +1785,7 @@ questions:
     tags:
       - chapter:02
       - basic-intensive
-  - id: i02-46
+  - id: l02-46
     type: multiple-choice
     prompt: 다음 중 유효추론인 것은?
     choices:
@@ -1812,7 +1812,7 @@ questions:
     tags:
       - chapter:02
       - basic-intensive
-  - id: i06-01
+  - id: l06-01
     type: multiple-choice
     prompt: 집합 $A=\{1,2,3,4,5\}$, $B=\{3,4,5\}$일 때, $R=\{(a,b)\mid a+b=7\}$로 옳은 것은?
     choices:
@@ -1839,7 +1839,7 @@ questions:
     tags:
       - chapter:06
       - basic-intensive
-  - id: i06-02
+  - id: l06-02
     type: multiple-choice
     prompt: |-
       집합 $A=\{1,2,3,4\}$, $B=\{3,4\}$일 때, $A$에서 $B$로의 관계 $R=\{(a,b)\mid a+b=5\}$에
@@ -1868,7 +1868,7 @@ questions:
     tags:
       - chapter:06
       - basic-intensive
-  - id: i06-03
+  - id: l06-03
     type: multiple-choice
     prompt: 다음 중 $A=\{1,2\}$, $B=\{1,2,3,4\}$일 때, A에서 B로 가는 관계 $R=\{(a,b)\mid a^2=b\}$을 부울행렬로 바르게 나타낸 것은?
     choices:
@@ -1895,7 +1895,7 @@ questions:
     tags:
       - chapter:06
       - basic-intensive
-  - id: i06-04
+  - id: l06-04
     type: multiple-choice
     prompt: 관계의 성질에 대해 잘못 설명한 것은?
     choices:
@@ -1922,7 +1922,7 @@ questions:
     tags:
       - chapter:06
       - basic-intensive
-  - id: i06-05
+  - id: l06-05
     type: multiple-choice
     prompt: 집합 A에서의 관계 R의 성질에 대해 잘못 설명한 것은?
     choices:
@@ -1949,7 +1949,7 @@ questions:
     tags:
       - chapter:06
       - basic-intensive
-  - id: i06-06
+  - id: l06-06
     type: multiple-choice
     passageRefs:
       - gi06-06
@@ -1980,7 +1980,7 @@ questions:
     tags:
       - chapter:06
       - basic-intensive
-  - id: i06-07
+  - id: l06-07
     type: multiple-choice
     passageRefs:
       - gi06-07
@@ -2009,7 +2009,7 @@ questions:
     tags:
       - chapter:06
       - basic-intensive
-  - id: i06-08
+  - id: l06-08
     type: multiple-choice
     passageRefs:
       - gi06-07
@@ -2038,7 +2038,7 @@ questions:
     tags:
       - chapter:06
       - basic-intensive
-  - id: i06-09
+  - id: l06-09
     type: multiple-choice
     passageRefs:
       - gi06-07
@@ -2067,7 +2067,7 @@ questions:
     tags:
       - chapter:06
       - basic-intensive
-  - id: i06-10
+  - id: l06-10
     type: multiple-choice
     passageRefs:
       - gi06-10
@@ -2096,7 +2096,7 @@ questions:
     tags:
       - chapter:06
       - basic-intensive
-  - id: i06-11
+  - id: l06-11
     type: multiple-choice
     passageRefs:
       - gi06-10
@@ -2125,7 +2125,7 @@ questions:
     tags:
       - chapter:06
       - basic-intensive
-  - id: i06-12
+  - id: l06-12
     type: multiple-choice
     passageRefs:
       - gi06-12
@@ -2154,7 +2154,7 @@ questions:
     tags:
       - chapter:06
       - basic-intensive
-  - id: i06-13
+  - id: l06-13
     type: multiple-choice
     passageRefs:
       - gi06-12
@@ -2183,7 +2183,7 @@ questions:
     tags:
       - chapter:06
       - basic-intensive
-  - id: i06-14
+  - id: l06-14
     type: multiple-choice
     passageRefs:
       - gi06-14
@@ -2212,7 +2212,7 @@ questions:
     tags:
       - chapter:06
       - basic-intensive
-  - id: i06-15
+  - id: l06-15
     type: multiple-choice
     passageRefs:
       - gi06-14
@@ -2238,7 +2238,7 @@ questions:
     tags:
       - chapter:06
       - basic-intensive
-  - id: i06-16
+  - id: l06-16
     type: multiple-choice
     passageRefs:
       - gi06-16
@@ -2264,7 +2264,7 @@ questions:
     tags:
       - chapter:06
       - basic-intensive
-  - id: i06-17
+  - id: l06-17
     type: multiple-choice
     passageRefs:
       - gi06-16
@@ -2290,7 +2290,7 @@ questions:
     tags:
       - chapter:06
       - basic-intensive
-  - id: i06-18
+  - id: l06-18
     type: multiple-choice
     passageRefs:
       - gi06-18
@@ -2316,7 +2316,7 @@ questions:
     tags:
       - chapter:06
       - basic-intensive
-  - id: i06-19
+  - id: l06-19
     type: multiple-choice
     passageRefs:
       - gi06-18
@@ -2342,7 +2342,7 @@ questions:
     tags:
       - chapter:06
       - basic-intensive
-  - id: i06-20
+  - id: l06-20
     type: multiple-choice
     passageRefs:
       - gi06-20
@@ -2368,7 +2368,7 @@ questions:
     tags:
       - chapter:06
       - basic-intensive
-  - id: i06-21
+  - id: l06-21
     type: multiple-choice
     passageRefs:
       - gi06-20
@@ -2394,7 +2394,7 @@ questions:
     tags:
       - chapter:06
       - basic-intensive
-  - id: i06-22
+  - id: l06-22
     type: multiple-choice
     passageRefs:
       - gi06-20
@@ -2420,7 +2420,7 @@ questions:
     tags:
       - chapter:06
       - basic-intensive
-  - id: i06-23
+  - id: l06-23
     type: multiple-choice
     passageRefs:
       - gi06-23
@@ -2446,7 +2446,7 @@ questions:
     tags:
       - chapter:06
       - basic-intensive
-  - id: i06-24
+  - id: l06-24
     type: multiple-choice
     passageRefs:
       - gi06-23
@@ -2472,7 +2472,7 @@ questions:
     tags:
       - chapter:06
       - basic-intensive
-  - id: i06-25
+  - id: l06-25
     type: multiple-choice
     passageRefs:
       - gi06-25
@@ -2498,7 +2498,7 @@ questions:
     tags:
       - chapter:06
       - basic-intensive
-  - id: i06-26
+  - id: l06-26
     type: multiple-choice
     passageRefs:
       - gi06-25
@@ -2524,7 +2524,7 @@ questions:
     tags:
       - chapter:06
       - basic-intensive
-  - id: i06-27
+  - id: l06-27
     type: multiple-choice
     passageRefs:
       - gi06-27
@@ -2550,7 +2550,7 @@ questions:
     tags:
       - chapter:06
       - basic-intensive
-  - id: i06-28
+  - id: l06-28
     type: multiple-choice
     passageRefs:
       - gi06-27
@@ -2576,7 +2576,7 @@ questions:
     tags:
       - chapter:06
       - basic-intensive
-  - id: i06-29
+  - id: l06-29
     type: multiple-choice
     passageRefs:
       - gi06-29
@@ -2602,7 +2602,7 @@ questions:
     tags:
       - chapter:06
       - basic-intensive
-  - id: i06-30
+  - id: l06-30
     type: multiple-choice
     passageRefs:
       - gi06-29
@@ -2628,7 +2628,7 @@ questions:
     tags:
       - chapter:06
       - basic-intensive
-  - id: i07-01
+  - id: l07-01
     type: multiple-choice
     prompt: $\lfloor 2.13 \rfloor$의 값으로 옳은 것은?
     choices:
@@ -2652,7 +2652,7 @@ questions:
     tags:
       - chapter:07
       - basic-intensive
-  - id: i07-02
+  - id: l07-02
     type: multiple-choice
     prompt: $\lceil 2.41 \rceil$의 값은?
     choices:
@@ -2676,7 +2676,7 @@ questions:
     tags:
       - chapter:07
       - basic-intensive
-  - id: i07-03
+  - id: l07-03
     type: multiple-choice
     prompt: $\lceil 3.14 \rceil - \lfloor 3.1 \rfloor$의 값은?
     choices:
@@ -2700,7 +2700,7 @@ questions:
     tags:
       - chapter:07
       - basic-intensive
-  - id: i07-04
+  - id: l07-04
     type: multiple-choice
     prompt: 28 mod 6 값과 같은 값을 가지는 것은?
     choices:
@@ -2724,7 +2724,7 @@ questions:
     tags:
       - chapter:07
       - basic-intensive
-  - id: i07-05
+  - id: l07-05
     type: multiple-choice
     prompt: 33 mod 5 값과 같은 값을 가지는 것은?
     choices:
@@ -2748,7 +2748,7 @@ questions:
     tags:
       - chapter:07
       - basic-intensive
-  - id: i07-06
+  - id: l07-06
     type: multiple-choice
     prompt: 30 mod 5와 결과가 같은 식은?
     choices:
@@ -2772,7 +2772,7 @@ questions:
     tags:
       - chapter:07
       - basic-intensive
-  - id: i07-07
+  - id: l07-07
     type: multiple-choice
     prompt: 3!와 같은 값을 가지는 것은?
     choices:
@@ -2796,7 +2796,7 @@ questions:
     tags:
       - chapter:07
       - basic-intensive
-  - id: i07-08
+  - id: l07-08
     type: multiple-choice
     prompt: 다음 중 옳은 것은?
     choices:
@@ -2820,7 +2820,7 @@ questions:
     tags:
       - chapter:07
       - basic-intensive
-  - id: i07-09
+  - id: l07-09
     type: multiple-choice
     prompt: 다음 중 옳은 것은?
     choices:
@@ -2844,7 +2844,7 @@ questions:
     tags:
       - chapter:07
       - basic-intensive
-  - id: i07-10
+  - id: l07-10
     type: multiple-choice
     prompt: 다음 중 옳은 것은?
     choices:
@@ -2868,7 +2868,7 @@ questions:
     tags:
       - chapter:07
       - basic-intensive
-  - id: i07-11
+  - id: l07-11
     type: multiple-choice
     prompt: 다음 중 옳은 것은?
     choices:
@@ -2892,7 +2892,7 @@ questions:
     tags:
       - chapter:07
       - basic-intensive
-  - id: i07-12
+  - id: l07-12
     type: multiple-choice
     prompt: 다음 중 옳은 것은?
     choices:
@@ -2916,7 +2916,7 @@ questions:
     tags:
       - chapter:07
       - basic-intensive
-  - id: i07-13
+  - id: l07-13
     type: multiple-choice
     prompt: 다음 중 옳은 것은?
     choices:
@@ -2940,7 +2940,7 @@ questions:
     tags:
       - chapter:07
       - basic-intensive
-  - id: i07-14
+  - id: l07-14
     type: multiple-choice
     prompt: A={1,2,3}, B={a,b,c,d,e}일 때, 다음 관계들 중 A에서 B로의 함수인 것은?
     choices:
@@ -2964,7 +2964,7 @@ questions:
     tags:
       - chapter:07
       - basic-intensive
-  - id: i07-15
+  - id: l07-15
     type: multiple-choice
     prompt: 집합 A={1,2,3}, B={a,b,c,d}에 대해 다음 중 A에서 B로의 함수인 것은?
     choices:
@@ -2988,7 +2988,7 @@ questions:
     tags:
       - chapter:07
       - basic-intensive
-  - id: i07-16
+  - id: l07-16
     type: multiple-choice
     prompt: A={1,2,3}, B={a,b,c}일 때, 다음 관계들 중 A에서 B로의 전단사함수인 것은?
     choices:
@@ -3012,7 +3012,7 @@ questions:
     tags:
       - chapter:07
       - basic-intensive
-  - id: i07-17
+  - id: l07-17
     type: multiple-choice
     prompt: A={1,2,3}, B={a,b,c,d}일 때, 다음 관계들 중 A에서 B로의 단사함수인 것은?
     choices:
@@ -3036,7 +3036,7 @@ questions:
     tags:
       - chapter:07
       - basic-intensive
-  - id: i07-18
+  - id: l07-18
     type: multiple-choice
     prompt: |-
       A={1,2,3,4}일 때, A에서의 관계 R이 역함수를 가지는 함수인 경우는 다음 중
@@ -3062,7 +3062,7 @@ questions:
     tags:
       - chapter:07
       - basic-intensive
-  - id: i07-19
+  - id: l07-19
     type: multiple-choice
     prompt: |-
       A={1,2,3}, B={a,b,c}일 때, A에서 B로의 관계 R={(1,a), (2,a), (3,b)}에 관한
@@ -3088,7 +3088,7 @@ questions:
     tags:
       - chapter:07
       - basic-intensive
-  - id: i07-20
+  - id: l07-20
     type: multiple-choice
     prompt: |-
       집합 X={1,2,3,4}와 Y={a,b,c}가 주어졌을 때, X에서 Y로의 관계
@@ -3114,7 +3114,7 @@ questions:
     tags:
       - chapter:07
       - basic-intensive
-  - id: i07-23
+  - id: l07-23
     type: multiple-choice
     passageRefs:
       - gi07-23
@@ -3140,7 +3140,7 @@ questions:
     tags:
       - chapter:07
       - basic-intensive
-  - id: i07-24
+  - id: l07-24
     type: multiple-choice
     passageRefs:
       - gi07-23
@@ -3166,7 +3166,7 @@ questions:
     tags:
       - chapter:07
       - basic-intensive
-  - id: i07-25
+  - id: l07-25
     type: multiple-choice
     passageRefs:
       - gi07-25
@@ -3192,7 +3192,7 @@ questions:
     tags:
       - chapter:07
       - basic-intensive
-  - id: i07-26
+  - id: l07-26
     type: multiple-choice
     passageRefs:
       - gi07-25
