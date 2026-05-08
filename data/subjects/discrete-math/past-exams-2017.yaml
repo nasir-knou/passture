@@ -5,645 +5,796 @@ kind: exam
 year: 2017
 
 passages:
-  - id: g17-relation-r
-    type: image
-    image:
-      path: images/subjects/discrete-math/past-exams/2017/e17-relation-r.png
-      alt: 2017년 이산수학 기출 49~51번 관계 R 방향 그래프
+  - id: g17-matrix-ab-01
+    type: text
+    body: |
+      행렬 $A$와 $B$가 아래와 같을 때 물음에 답하시오.
 
-  - id: g17-graph-g
-    type: image
-    image:
-      path: images/subjects/discrete-math/past-exams/2017/e17-graph-g.png
-      alt: 2017년 이산수학 기출 55~56번 그래프 G
+      $$
+      A=
+      \begin{pmatrix}
+      1 & 2\\
+      3 & 4
+      \end{pmatrix}
+      \qquad
+      B=
+      \begin{pmatrix}
+      1 & 1\\
+      0 & 1
+      \end{pmatrix}
+      $$
+
+  - id: g17-anti-diagonal-matrix-01
+    type: text
+    body: |
+      다음 행렬 $A$를 나타내는 용어로서 적절한 것은?
+
+      $$
+      A=
+      \begin{pmatrix}
+      0 & 0 & 1\\
+      0 & 1 & 0\\
+      1 & 0 & 0
+      \end{pmatrix}
+      $$
+
+  - id: g17-boolean-matrices-01
+    type: text
+    body: |
+      다음 행렬들에 대한 물음에 답하시오.
+
+      $$
+      A=
+      \begin{pmatrix}
+      1 & 1\\
+      0 & 1
+      \end{pmatrix}
+      \qquad
+      B=
+      \begin{pmatrix}
+      1 & 0\\
+      1 & 0
+      \end{pmatrix}
+      \qquad
+      C=
+      \begin{pmatrix}
+      1 & 0\\
+      1 & 1
+      \end{pmatrix}
+      \qquad
+      D=
+      \begin{pmatrix}
+      1 & 0\\
+      0 & 0
+      \end{pmatrix}
+      $$
+
+  - id: g17-relation-graph-desc-01
+    type: text
+    body: |
+      다음은 집합 $A=\{1,2,3\}$에서의 관계 $R$을 방향 그래프로 나타낸 것이다. 물음에 답하시오.
+
+  - id: g17-relation-graph-01
+    type: diagram
+    diagram:
+      type: simple-graph
+      width: 420
+      height: 320
+      directed: true
+      nodes:
+        - { id: '1', label: '1', x: 210, y: 72 }
+        - { id: '2', label: '2', x: 118, y: 222 }
+        - { id: '3', label: '3', x: 302, y: 222 }
+      edges:
+        - { from: '1', to: '1', curve: 1 }
+        - { from: '2', to: '2', curve: 1 }
+        - { from: '3', to: '3', curve: 1 }
+        - { from: '1', to: '2', curve: 54 }
+        - { from: '2', to: '3', curve: -46 }
+        - { from: '3', to: '1', curve: 54 }
+
+  - id: g17-multigraph-01
+    type: diagram
+    diagram:
+      type: simple-graph
+      width: 440
+      height: 280
+      nodes:
+        - { id: v1, label: v1, x: 95, y: 220, radius: 5, labelDx: -14, labelDy: 22 }
+        - { id: v2, label: v2, x: 230, y: 220, radius: 5, labelDx: -2, labelDy: 22 }
+        - { id: v3, label: v3, x: 365, y: 220, radius: 5, labelDx: 12, labelDy: 22 }
+        - { id: v4, label: v4, x: 165, y: 52, radius: 5, labelDx: 16, labelDy: -12 }
+      edges:
+        - { from: v1, to: v2 }
+        - { from: v1, to: v4 }
+        - { from: v2, to: v4 }
+        - { from: v2, to: v3, curve: 38 }
+        - { from: v2, to: v3, curve: -38 }
+
+  - id: g17-bst-01
+    type: diagram
+    diagram:
+      type: simple-graph
+      width: 280
+      height: 260
+      nodes:
+        - { id: n5, label: '5', x: 140, y: 40 }
+        - { id: n3, label: '3', x: 85, y: 130 }
+        - { id: n7, label: '7', x: 195, y: 130 }
+        - { id: n4, label: '4', x: 125, y: 220 }
+      edges:
+        - { from: n5, to: n3 }
+        - { from: n5, to: n7 }
+        - { from: n3, to: n4 }
+
+  - id: g17-grid-network-01
+    type: diagram
+    diagram:
+      type: simple-graph
+      width: 460
+      height: 300
+      nodes:
+        - { id: n00, label: A, x: 70, y: 245, radius: 5, labelDx: -20, labelDy: 14 }
+        - { id: n10, label: n10, hideLabel: true, x: 150, y: 245, radius: 5 }
+        - { id: n20, label: n20, hideLabel: true, x: 230, y: 245, radius: 5 }
+        - { id: n30, label: n30, hideLabel: true, x: 310, y: 245, radius: 5 }
+        - { id: n40, label: n40, hideLabel: true, x: 390, y: 245, radius: 5 }
+        - { id: n01, label: n01, hideLabel: true, x: 70, y: 185, radius: 5 }
+        - { id: n11, label: n11, hideLabel: true, x: 150, y: 185, radius: 5 }
+        - { id: n21, label: n21, hideLabel: true, x: 230, y: 185, radius: 5 }
+        - { id: n31, label: n31, hideLabel: true, x: 310, y: 185, radius: 5 }
+        - { id: n41, label: n41, hideLabel: true, x: 390, y: 185, radius: 5 }
+        - { id: n02, label: n02, hideLabel: true, x: 70, y: 125, radius: 5 }
+        - { id: n12, label: n12, hideLabel: true, x: 150, y: 125, radius: 5 }
+        - { id: n22, label: n22, hideLabel: true, x: 230, y: 125, radius: 5 }
+        - { id: n32, label: n32, hideLabel: true, x: 310, y: 125, radius: 5 }
+        - { id: n42, label: n42, hideLabel: true, x: 390, y: 125, radius: 5 }
+        - { id: n03, label: n03, hideLabel: true, x: 70, y: 65, radius: 5 }
+        - { id: n13, label: n13, hideLabel: true, x: 150, y: 65, radius: 5 }
+        - { id: n23, label: n23, hideLabel: true, x: 230, y: 65, radius: 5 }
+        - { id: n33, label: n33, hideLabel: true, x: 310, y: 65, radius: 5 }
+        - { id: n43, label: B, x: 390, y: 65, radius: 5, labelDx: 18, labelDy: -8 }
+      edges:
+        - { from: n00, to: n10 }
+        - { from: n10, to: n20 }
+        - { from: n20, to: n30 }
+        - { from: n30, to: n40 }
+        - { from: n01, to: n11 }
+        - { from: n11, to: n21 }
+        - { from: n21, to: n31 }
+        - { from: n31, to: n41 }
+        - { from: n02, to: n12 }
+        - { from: n12, to: n22 }
+        - { from: n22, to: n32 }
+        - { from: n32, to: n42 }
+        - { from: n03, to: n13 }
+        - { from: n13, to: n23 }
+        - { from: n23, to: n33 }
+        - { from: n33, to: n43 }
+        - { from: n00, to: n01 }
+        - { from: n01, to: n02 }
+        - { from: n02, to: n03 }
+        - { from: n10, to: n11 }
+        - { from: n11, to: n12 }
+        - { from: n12, to: n13 }
+        - { from: n20, to: n21 }
+        - { from: n21, to: n22 }
+        - { from: n22, to: n23 }
+        - { from: n30, to: n31 }
+        - { from: n31, to: n32 }
+        - { from: n32, to: n33 }
+        - { from: n40, to: n41 }
+        - { from: n41, to: n42 }
+        - { from: n42, to: n43 }
+
+  - id: g17-dfa-01
+    type: diagram
+    diagram:
+      type: simple-graph
+      width: 420
+      height: 180
+      directed: true
+      nodes:
+        - { id: start, label: start, hideNode: true, hideLabel: true, x: 25, y: 105 }
+        - { id: s0, label: S0, x: 110, y: 105 }
+        - { id: s1, label: S1, x: 310, y: 105 }
+      edges:
+        - { from: start, to: s0 }
+        - { from: s0, to: s0, label: 1/a, curve: 1 }
+        - { from: s0, to: s1, label: 0/a, curve: -44 }
+        - { from: s1, to: s1, label: 0/b, curve: 1 }
+        - { from: s1, to: s0, label: 1/b, curve: -44 }
 
 questions:
   - id: e17-01
     type: multiple-choice
-    prompt: '2017년 이산수학 기말 36번 문항을 풀어주세요.'
-    images:
-      - path: images/subjects/discrete-math/past-exams/2017/questions/q36.png
-        alt: 2017년 이산수학 기말 36번 문항 이미지
+    prompt: 다음 중 이산수학에서 다루는 대상으로 적절한 것은?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '2차 방정식' }
+      - { id: '2', text: '이진 트리' }
+      - { id: '3', text: '미분방정식' }
+      - { id: '4', text: '삼각함수' }
     answers: ['2']
     explanation: |
-      선택지 1: 2017년 이산수학 정답표 기준으로 정답이 아니다.
-      선택지 2: 2017년 이산수학 정답표 기준으로 정답.
-      선택지 3: 2017년 이산수학 정답표 기준으로 정답이 아니다.
-      선택지 4: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 1: 2차 방정식은 대수에서 다루는 연속적 수량 문제에 가깝다.
+      선택지 2: 이진 트리는 정점과 간선으로 이루어진 이산 구조이므로 이산수학의 대표적 대상이다.
+      선택지 3: 미분방정식은 연속적인 변화율을 다루므로 이산수학의 중심 대상이 아니다.
+      선택지 4: 삼각함수는 연속함수와 해석학에서 주로 다루는 대상이다.
 
       핵심 개념:
-      이 문항은 원본 시험지에서 문항 단위로 분리한 이미지 기반 문항이다.
-      수식, 행렬, 그래프 등은 원본 문항 이미지를 기준으로 확인한다.
-      선택지는 이미지 안의 ①~④와 데이터의 선택지 1~4가 대응된다.
-      정답은 origin/정답.txt의 이산수학 정답표를 기준으로 입력했다.
-    tags: [past-exam, cropped-question]
+      이산수학은 셀 수 있거나 분리된 구조를 다루는 수학 분야이다.
+      명제, 집합, 관계, 함수, 그래프, 트리, 오토마타는 이산수학의 대표 주제이다.
+      이진 트리는 각 노드가 최대 두 자식을 갖는 트리로, 그래프와 자료구조 단원에서 중요하게 다룬다.
+    tags: [discrete-structure, tree]
 
   - id: e17-02
     type: multiple-choice
-    prompt: '2017년 이산수학 기말 37번 문항을 풀어주세요.'
-    images:
-      - path: images/subjects/discrete-math/past-exams/2017/questions/q37.png
-        alt: 2017년 이산수학 기말 37번 문항 이미지
+    prompt: 다음 중 명제인 것은?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '$2x-6=0$' }
+      - { id: '2', text: '석이는 공부를 잘 한다.' }
+      - { id: '3', text: '수학 공부를 더 많이 하세요.' }
+      - { id: '4', text: '영이는 소담이보다 나이가 많다.' }
     answers: ['4']
     explanation: |
-      선택지 1: 2017년 이산수학 정답표 기준으로 정답이 아니다.
-      선택지 2: 2017년 이산수학 정답표 기준으로 정답이 아니다.
-      선택지 3: 2017년 이산수학 정답표 기준으로 정답이 아니다.
-      선택지 4: 2017년 이산수학 정답표 기준으로 정답.
+      선택지 1: 변수 $x$의 값이 정해지지 않았으므로 열린 문장이다.
+      선택지 2: "공부를 잘 한다"는 기준이 모호해 객관적 진리값을 정하기 어렵다.
+      선택지 3: 명령문은 참 또는 거짓으로 판정하지 않는다.
+      선택지 4: 두 사람의 나이는 객관적으로 비교할 수 있으므로 참거짓이 정해지는 명제이다.
 
       핵심 개념:
-      이 문항은 원본 시험지에서 문항 단위로 분리한 이미지 기반 문항이다.
-      수식, 행렬, 그래프 등은 원본 문항 이미지를 기준으로 확인한다.
-      선택지는 이미지 안의 ①~④와 데이터의 선택지 1~4가 대응된다.
-      정답은 origin/정답.txt의 이산수학 정답표를 기준으로 입력했다.
-    tags: [past-exam, cropped-question]
+      명제는 참 또는 거짓 중 하나의 진리값을 갖는 선언문이다.
+      미정 변수가 들어간 식, 주관적 표현, 명령문은 진리값을 확정할 수 없어 명제가 아니다.
+      실제 사실 확인이 가능한 평서문은 참인지 거짓인지와 별개로 명제가 될 수 있다.
+    tags: [proposition]
 
   - id: e17-03
     type: multiple-choice
-    prompt: '2017년 이산수학 기말 38번 문항을 풀어주세요.'
-    images:
-      - path: images/subjects/discrete-math/past-exams/2017/questions/q38.png
-        alt: 2017년 이산수학 기말 38번 문항 이미지
+    prompt: 다음 중 모순명제인 것은?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '$p \lor (\sim p)$' }
+      - { id: '2', text: '$p \to (p \lor q)$' }
+      - { id: '3', text: '$(p \land q) \land (\sim p)$' }
+      - { id: '4', text: '$p \lor q \to q \lor p$' }
     answers: ['3']
     explanation: |
-      선택지 1: 2017년 이산수학 정답표 기준으로 정답이 아니다.
-      선택지 2: 2017년 이산수학 정답표 기준으로 정답이 아니다.
-      선택지 3: 2017년 이산수학 정답표 기준으로 정답.
-      선택지 4: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 1: $p$와 $\sim p$ 중 하나는 항상 참이므로 항진명제이다.
+      선택지 2: $p$가 참이면 $p\lor q$도 참이므로 항상 참인 추론 형식이다.
+      선택지 3: $p$와 $\sim p$가 동시에 참이어야 하므로 어떤 경우에도 참이 될 수 없다.
+      선택지 4: 논리합은 교환법칙이 성립하므로 참이다.
 
       핵심 개념:
-      이 문항은 원본 시험지에서 문항 단위로 분리한 이미지 기반 문항이다.
-      수식, 행렬, 그래프 등은 원본 문항 이미지를 기준으로 확인한다.
-      선택지는 이미지 안의 ①~④와 데이터의 선택지 1~4가 대응된다.
-      정답은 origin/정답.txt의 이산수학 정답표를 기준으로 입력했다.
-    tags: [past-exam, cropped-question]
+      모순명제는 모든 진리값 배정에서 항상 거짓인 명제이다.
+      한 명제와 그 부정을 동시에 요구하는 식은 참이 될 수 없다.
+      항진명제와 모순명제는 진리표를 통해 모든 경우의 결과를 확인하면 구분할 수 있다.
+    tags: [proposition, contradiction]
 
   - id: e17-04
     type: multiple-choice
-    prompt: '2017년 이산수학 기말 39번 문항을 풀어주세요.'
-    images:
-      - path: images/subjects/discrete-math/past-exams/2017/questions/q39.png
-        alt: 2017년 이산수학 기말 39번 문항 이미지
+    prompt: 명제함수 $P(x,y)=x+2y=5$일 때, 옳은 것은?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '$P(1,2)=T$' }
+      - { id: '2', text: '$P(2,1)=T$' }
+      - { id: '3', text: '$P(-1,3)=F$' }
+      - { id: '4', text: '$P(3,1)=F$' }
     answers: ['1']
     explanation: |
-      선택지 1: 2017년 이산수학 정답표 기준으로 정답.
-      선택지 2: 2017년 이산수학 정답표 기준으로 정답이 아니다.
-      선택지 3: 2017년 이산수학 정답표 기준으로 정답이 아니다.
-      선택지 4: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 1: $1+2\cdot2=5$이므로 $P(1,2)$는 참이다.
+      선택지 2: $2+2\cdot1=4$이므로 $P(2,1)$은 거짓이다.
+      선택지 3: $-1+2\cdot3=5$이므로 $P(-1,3)$은 참이다.
+      선택지 4: $3+2\cdot1=5$이므로 $P(3,1)$은 참이다.
 
       핵심 개념:
-      이 문항은 원본 시험지에서 문항 단위로 분리한 이미지 기반 문항이다.
-      수식, 행렬, 그래프 등은 원본 문항 이미지를 기준으로 확인한다.
-      선택지는 이미지 안의 ①~④와 데이터의 선택지 1~4가 대응된다.
-      정답은 origin/정답.txt의 이산수학 정답표를 기준으로 입력했다.
-    tags: [past-exam, cropped-question]
+      명제함수는 변수에 값이 대입되면 참 또는 거짓을 판정할 수 있는 명제가 된다.
+      각 선택지의 순서쌍을 식에 직접 대입해 등식 성립 여부를 확인한다.
+      선택지에 표시된 $T/F$ 값까지 실제 대입 결과와 일치해야 한다.
+    tags: [predicate]
 
   - id: e17-05
     type: multiple-choice
-    prompt: '2017년 이산수학 기말 40번 문항을 풀어주세요.'
-    images:
-      - path: images/subjects/discrete-math/past-exams/2017/questions/q40.png
-        alt: 2017년 이산수학 기말 40번 문항 이미지
+    prompt: 명제함수 $P(x)$가 $x>0$이고 $x$의 정의구역 $D=\{1,2,3\}$일 때, $\forall xP(x)$와 $\exists xP(x)$의 진리값을 순서대로 적은 것은?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: 'F, F' }
+      - { id: '2', text: 'F, T' }
+      - { id: '3', text: 'T, F' }
+      - { id: '4', text: 'T, T' }
     answers: ['4']
     explanation: |
-      선택지 1: 2017년 이산수학 정답표 기준으로 정답이 아니다.
-      선택지 2: 2017년 이산수학 정답표 기준으로 정답이 아니다.
-      선택지 3: 2017년 이산수학 정답표 기준으로 정답이 아니다.
-      선택지 4: 2017년 이산수학 정답표 기준으로 정답.
+      선택지 1: 정의구역의 모든 원소가 $x>0$을 만족하므로 둘 다 거짓이 아니다.
+      선택지 2: 존재명제는 참이지만 전칭명제도 참이다.
+      선택지 3: 전칭명제는 참이지만 존재명제도 참이다.
+      선택지 4: $1,2,3$ 모두 $x>0$을 만족하므로 전칭명제와 존재명제가 모두 참이다.
 
       핵심 개념:
-      이 문항은 원본 시험지에서 문항 단위로 분리한 이미지 기반 문항이다.
-      수식, 행렬, 그래프 등은 원본 문항 이미지를 기준으로 확인한다.
-      선택지는 이미지 안의 ①~④와 데이터의 선택지 1~4가 대응된다.
-      정답은 origin/정답.txt의 이산수학 정답표를 기준으로 입력했다.
-    tags: [past-exam, cropped-question]
+      전칭명제 $\forall xP(x)$는 정의구역의 모든 원소가 조건을 만족해야 참이다.
+      존재명제 $\exists xP(x)$는 정의구역의 원소 중 하나 이상이 조건을 만족하면 참이다.
+      유한한 정의구역에서는 각 원소를 직접 대입해 두 명제의 진리값을 판정할 수 있다.
+    tags: [predicate-logic, quantifier]
 
   - id: e17-06
     type: multiple-choice
-    prompt: '2017년 이산수학 기말 41번 문항을 풀어주세요.'
-    images:
-      - path: images/subjects/discrete-math/past-exams/2017/questions/q41.png
-        alt: 2017년 이산수학 기말 41번 문항 이미지
+    prompt: 다음 중 특정한 공리들을 가정하고, 그 가정 하에 제안된 명제가 참인 것을 입증하는 작업을 뜻하는 용어는?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '탐색' }
+      - { id: '2', text: '증명' }
+      - { id: '3', text: '정의' }
+      - { id: '4', text: '정리' }
     answers: ['2']
     explanation: |
-      선택지 1: 2017년 이산수학 정답표 기준으로 정답이 아니다.
-      선택지 2: 2017년 이산수학 정답표 기준으로 정답.
-      선택지 3: 2017년 이산수학 정답표 기준으로 정답이 아니다.
-      선택지 4: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 1: 탐색은 가능한 경우나 해를 찾아보는 과정이다.
+      선택지 2: 가정과 공리에서 출발해 명제가 참임을 논리적으로 보이는 작업은 증명이다.
+      선택지 3: 정의는 용어나 대상의 의미를 정하는 서술이다.
+      선택지 4: 정리는 증명을 통해 참으로 확립된 명제이다.
 
       핵심 개념:
-      이 문항은 원본 시험지에서 문항 단위로 분리한 이미지 기반 문항이다.
-      수식, 행렬, 그래프 등은 원본 문항 이미지를 기준으로 확인한다.
-      선택지는 이미지 안의 ①~④와 데이터의 선택지 1~4가 대응된다.
-      정답은 origin/정답.txt의 이산수학 정답표를 기준으로 입력했다.
-    tags: [past-exam, cropped-question]
+      증명은 공리, 정의, 이미 증명된 정리에서 출발해 결론을 논리적으로 도출하는 과정이다.
+      탐색은 답을 찾는 절차이고, 정의는 용어의 의미를 정하는 서술이다.
+      정리는 증명의 결과로 얻어진 참인 명제라는 점에서 증명 행위 자체와 구분된다.
+    tags: [proof]
 
   - id: e17-07
     type: multiple-choice
-    prompt: '2017년 이산수학 기말 42번 문항을 풀어주세요.'
-    images:
-      - path: images/subjects/discrete-math/past-exams/2017/questions/q42.png
-        alt: 2017년 이산수학 기말 42번 문항 이미지
+    prompt: 집합 $A=\{a,b,c\}$의 분할(partition)이 되는 것은?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '$\{\{a,b,c\}\}$' }
+      - { id: '2', text: '$\{\emptyset,\{a\},\{b\},\{c\}\}$' }
+      - { id: '3', text: '$\{\emptyset,\{a,b\},\{b,c\}\}$' }
+      - { id: '4', text: '$\{\{a,b\},\{b,c\},\{c,a\}\}$' }
     answers: ['1']
     explanation: |
-      선택지 1: 2017년 이산수학 정답표 기준으로 정답.
-      선택지 2: 2017년 이산수학 정답표 기준으로 정답이 아니다.
-      선택지 3: 2017년 이산수학 정답표 기준으로 정답이 아니다.
-      선택지 4: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 1: 유일한 부분집합이 공집합이 아니고 합집합이 $A$이므로 분할이다.
+      선택지 2: 분할에는 공집합이 포함될 수 없다.
+      선택지 3: 공집합이 포함되고, $\{a,b\}$와 $\{b,c\}$가 겹친다.
+      선택지 4: 각 부분집합들이 서로 겹치므로 분할이 아니다.
 
       핵심 개념:
-      이 문항은 원본 시험지에서 문항 단위로 분리한 이미지 기반 문항이다.
-      수식, 행렬, 그래프 등은 원본 문항 이미지를 기준으로 확인한다.
-      선택지는 이미지 안의 ①~④와 데이터의 선택지 1~4가 대응된다.
-      정답은 origin/정답.txt의 이산수학 정답표를 기준으로 입력했다.
-    tags: [past-exam, cropped-question]
+      분할은 공집합이 아닌 부분집합들의 모음이어야 한다.
+      분할을 이루는 부분집합들은 서로 겹치지 않아야 하며, 모두 합쳤을 때 원래 집합이 되어야 한다.
+      전체 집합 하나만으로 이루어진 $\{\{a,b,c\}\}$도 분할 조건을 만족한다.
+    tags: [set, partition]
 
   - id: e17-08
     type: multiple-choice
-    prompt: '2017년 이산수학 기말 43번 문항을 풀어주세요.'
-    images:
-      - path: images/subjects/discrete-math/past-exams/2017/questions/q43.png
-        alt: 2017년 이산수학 기말 43번 문항 이미지
+    prompt: 전체집합 $U=\{a,b,c,d,e,f,g\}$이고 $A=\{a,c,e,g\}$, $B=\{b,d,f\}$, $C=\{a,b,c\}$라고 할 때, 다음 중 옳지 않은 것은?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '$A \cup B = U$' }
+      - { id: '2', text: '$A \cap B = \emptyset$' }
+      - { id: '3', text: '$A^c = C$' }
+      - { id: '4', text: '$A \oplus B = U$' }
     answers: ['3']
     explanation: |
-      선택지 1: 2017년 이산수학 정답표 기준으로 정답이 아니다.
-      선택지 2: 2017년 이산수학 정답표 기준으로 정답이 아니다.
-      선택지 3: 2017년 이산수학 정답표 기준으로 정답.
-      선택지 4: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 1: $A$와 $B$를 합치면 $U$의 모든 원소가 된다.
+      선택지 2: $A$와 $B$에는 공통 원소가 없으므로 교집합은 공집합이다.
+      선택지 3: $A^c=\{b,d,f\}$인데 $C=\{a,b,c\}$이므로 같지 않다.
+      선택지 4: $A$와 $B$가 서로소이고 합집합이 $U$이므로 대칭차도 $U$이다.
 
       핵심 개념:
-      이 문항은 원본 시험지에서 문항 단위로 분리한 이미지 기반 문항이다.
-      수식, 행렬, 그래프 등은 원본 문항 이미지를 기준으로 확인한다.
-      선택지는 이미지 안의 ①~④와 데이터의 선택지 1~4가 대응된다.
-      정답은 origin/정답.txt의 이산수학 정답표를 기준으로 입력했다.
-    tags: [past-exam, cropped-question]
+      여집합 $A^c$는 전체집합 $U$에서 $A$에 속하지 않는 원소들의 집합이다.
+      대칭차 $A\oplus B$는 두 집합 중 정확히 한쪽에만 속하는 원소들의 집합이다.
+      서로소인 두 집합의 대칭차는 그 두 집합의 합집합과 같다.
+    tags: [set, complement, symmetric-difference]
 
   - id: e17-09
     type: multiple-choice
-    prompt: '2017년 이산수학 기말 44번 문항을 풀어주세요.'
-    images:
-      - path: images/subjects/discrete-math/past-exams/2017/questions/q44.png
-        alt: 2017년 이산수학 기말 44번 문항 이미지
+    prompt: $U$가 전체집합이고 $A \subseteq B \subseteq U$일 때 다음 중 틀린 것은?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '$A \cup B = B$' }
+      - { id: '2', text: '$A \cap B^c = \emptyset$' }
+      - { id: '3', text: '$A^c \subseteq B^c$' }
+      - { id: '4', text: '$A-B=\emptyset$' }
     answers: ['3']
     explanation: |
-      선택지 1: 2017년 이산수학 정답표 기준으로 정답이 아니다.
-      선택지 2: 2017년 이산수학 정답표 기준으로 정답이 아니다.
-      선택지 3: 2017년 이산수학 정답표 기준으로 정답.
-      선택지 4: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 1: $A$가 $B$의 부분집합이면 합집합은 더 큰 집합 $B$이다.
+      선택지 2: $A$의 모든 원소가 $B$에 있으므로 $B^c$와는 겹치지 않는다.
+      선택지 3: 여집합을 취하면 포함관계가 뒤집히므로 $B^c \subseteq A^c$가 맞다.
+      선택지 4: $A$의 원소가 모두 $B$에 포함되므로 $A-B$는 공집합이다.
 
       핵심 개념:
-      이 문항은 원본 시험지에서 문항 단위로 분리한 이미지 기반 문항이다.
-      수식, 행렬, 그래프 등은 원본 문항 이미지를 기준으로 확인한다.
-      선택지는 이미지 안의 ①~④와 데이터의 선택지 1~4가 대응된다.
-      정답은 origin/정답.txt의 이산수학 정답표를 기준으로 입력했다.
-    tags: [past-exam, cropped-question]
+      $A \subseteq B$이면 $A$의 모든 원소가 $B$에 포함된다.
+      여집합을 취하면 포함관계가 반대로 바뀌어 $B^c \subseteq A^c$가 된다.
+      부분집합 관계에서는 $A \cup B=B$, $A-B=\emptyset$ 같은 식이 성립한다.
+    tags: [set, complement]
 
   - id: e17-10
     type: multiple-choice
-    prompt: '2017년 이산수학 기말 45번 문항을 풀어주세요.'
-    images:
-      - path: images/subjects/discrete-math/past-exams/2017/questions/q45.png
-        alt: 2017년 이산수학 기말 45번 문항 이미지
+    passageRefs: [g17-matrix-ab-01]
+    prompt: 위 행렬 $A$와 $B$에 대해 다음 중 행렬 연산이 잘못된 것은?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - id: '1'
+        text: |
+          $A+B=
+          \begin{pmatrix}
+          2 & 3\\
+          3 & 5
+          \end{pmatrix}$
+      - id: '2'
+        text: |
+          $AB=
+          \begin{pmatrix}
+          1 & 2\\
+          0 & 4
+          \end{pmatrix}$
+      - id: '3'
+        text: |
+          $2A=
+          \begin{pmatrix}
+          2 & 4\\
+          6 & 8
+          \end{pmatrix}$
+      - id: '4'
+        text: |
+          $B^2=
+          \begin{pmatrix}
+          1 & 2\\
+          0 & 1
+          \end{pmatrix}$
     answers: ['2']
     explanation: |
-      선택지 1: 2017년 이산수학 정답표 기준으로 정답이 아니다.
-      선택지 2: 2017년 이산수학 정답표 기준으로 정답.
-      선택지 3: 2017년 이산수학 정답표 기준으로 정답이 아니다.
-      선택지 4: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 1: 같은 위치의 성분을 더하면 제시된 결과가 맞다.
+      선택지 2: 실제로 $AB=\begin{pmatrix}1&3\\3&7\end{pmatrix}$이므로 제시된 결과는 잘못되었다.
+      선택지 3: $A$의 모든 성분에 2를 곱한 결과가 맞다.
+      선택지 4: $B$를 자기 자신과 곱하면 $\begin{pmatrix}1&2\\0&1\end{pmatrix}$이 된다.
 
       핵심 개념:
-      이 문항은 원본 시험지에서 문항 단위로 분리한 이미지 기반 문항이다.
-      수식, 행렬, 그래프 등은 원본 문항 이미지를 기준으로 확인한다.
-      선택지는 이미지 안의 ①~④와 데이터의 선택지 1~4가 대응된다.
-      정답은 origin/정답.txt의 이산수학 정답표를 기준으로 입력했다.
-    tags: [past-exam, cropped-question]
+      행렬 덧셈과 스칼라곱은 같은 위치의 성분끼리 계산한다.
+      행렬곱 $AB$는 $A$의 행과 $B$의 열의 내적으로 각 성분을 계산한다.
+      행렬곱은 성분별 곱이 아니므로 직접 행-열 곱셈을 수행해야 한다.
+    tags: [matrix]
 
   - id: e17-11
     type: multiple-choice
-    prompt: '2017년 이산수학 기말 46번 문항을 풀어주세요.'
-    images:
-      - path: images/subjects/discrete-math/past-exams/2017/questions/q46.png
-        alt: 2017년 이산수학 기말 46번 문항 이미지
+    passageRefs: [g17-anti-diagonal-matrix-01]
+    prompt: 위 행렬 $A$를 나타내는 용어로서 적절한 것은?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '부울행렬' }
+      - { id: '2', text: '대각행렬' }
+      - { id: '3', text: '삼각행렬' }
+      - { id: '4', text: '행사다리꼴 행렬' }
     answers: ['1']
     explanation: |
-      선택지 1: 2017년 이산수학 정답표 기준으로 정답.
-      선택지 2: 2017년 이산수학 정답표 기준으로 정답이 아니다.
-      선택지 3: 2017년 이산수학 정답표 기준으로 정답이 아니다.
-      선택지 4: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 1: 모든 성분이 0 또는 1이므로 부울행렬이다.
+      선택지 2: 주대각선 밖의 성분이 모두 0이어야 대각행렬인데, $(1,3)$과 $(3,1)$ 성분이 1이다.
+      선택지 3: 상삼각행렬이나 하삼각행렬의 조건을 만족하지 않는다.
+      선택지 4: 행별 leading 1의 위치가 아래로 갈수록 오른쪽으로 이동하지 않으므로 행사다리꼴이 아니다.
 
       핵심 개념:
-      이 문항은 원본 시험지에서 문항 단위로 분리한 이미지 기반 문항이다.
-      수식, 행렬, 그래프 등은 원본 문항 이미지를 기준으로 확인한다.
-      선택지는 이미지 안의 ①~④와 데이터의 선택지 1~4가 대응된다.
-      정답은 origin/정답.txt의 이산수학 정답표를 기준으로 입력했다.
-    tags: [past-exam, cropped-question]
+      부울행렬은 성분이 0과 1로만 이루어진 행렬이며 관계나 논리 구조를 표현할 때 쓰인다.
+      대각행렬은 주대각선 밖의 모든 성분이 0이어야 한다.
+      행사다리꼴은 영행이 아래에 있고 각 행의 첫 nonzero 성분 위치가 아래로 갈수록 오른쪽으로 이동해야 한다.
+    tags: [boolean-matrix, matrix]
 
   - id: e17-12
     type: multiple-choice
-    prompt: '2017년 이산수학 기말 47번 문항을 풀어주세요.'
-    images:
-      - path: images/subjects/discrete-math/past-exams/2017/questions/q47.png
-        alt: 2017년 이산수학 기말 47번 문항 이미지
+    passageRefs: [g17-boolean-matrices-01]
+    prompt: $A \wedge B$, 즉 $A$와 $B$의 교차(meet)를 구하면?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '$A$' }
+      - { id: '2', text: '$B$' }
+      - { id: '3', text: '$C$' }
+      - { id: '4', text: '$D$' }
     answers: ['4']
     explanation: |
-      선택지 1: 2017년 이산수학 정답표 기준으로 정답이 아니다.
-      선택지 2: 2017년 이산수학 정답표 기준으로 정답이 아니다.
-      선택지 3: 2017년 이산수학 정답표 기준으로 정답이 아니다.
-      선택지 4: 2017년 이산수학 정답표 기준으로 정답.
+      선택지 1: $A$는 $(1,2)$, $(2,2)$ 성분이 1이지만 $B$에서는 0이므로 meet 결과가 아니다.
+      선택지 2: $B$는 $(2,1)$ 성분이 1이지만 $A$에서는 0이므로 meet 결과가 아니다.
+      선택지 3: $C$는 $A$와 $B$의 공통 1 위치보다 더 많은 1을 가진다.
+      선택지 4: 두 행렬에서 모두 1인 위치는 $(1,1)$뿐이므로 $D$가 정답이다.
 
       핵심 개념:
-      이 문항은 원본 시험지에서 문항 단위로 분리한 이미지 기반 문항이다.
-      수식, 행렬, 그래프 등은 원본 문항 이미지를 기준으로 확인한다.
-      선택지는 이미지 안의 ①~④와 데이터의 선택지 1~4가 대응된다.
-      정답은 origin/정답.txt의 이산수학 정답표를 기준으로 입력했다.
-    tags: [past-exam, cropped-question]
+      부울행렬의 meet $\wedge$는 대응 성분끼리 논리곱을 취해 계산한다.
+      $1\land1$만 1이고, 한쪽이라도 0이면 결과 성분은 0이다.
+      따라서 두 행렬에서 동시에 1인 위치만 결과 행렬에 남는다.
+    tags: [boolean-matrix]
 
   - id: e17-13
     type: multiple-choice
-    prompt: '2017년 이산수학 기말 48번 문항을 풀어주세요.'
-    images:
-      - path: images/subjects/discrete-math/past-exams/2017/questions/q48.png
-        alt: 2017년 이산수학 기말 48번 문항 이미지
+    passageRefs: [g17-boolean-matrices-01]
+    prompt: $A \odot B$, 즉 $A$와 $B$의 부울곱을 구하면?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '$A$' }
+      - { id: '2', text: '$B$' }
+      - { id: '3', text: '$C$' }
+      - { id: '4', text: '$D$' }
     answers: ['2']
     explanation: |
-      선택지 1: 2017년 이산수학 정답표 기준으로 정답이 아니다.
-      선택지 2: 2017년 이산수학 정답표 기준으로 정답.
-      선택지 3: 2017년 이산수학 정답표 기준으로 정답이 아니다.
-      선택지 4: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 1: 부울곱 결과의 두 번째 열은 모두 0이므로 $A$가 아니다.
+      선택지 2: $A\odot B$를 계산하면 $\begin{pmatrix}1&0\\1&0\end{pmatrix}$으로 $B$와 같다.
+      선택지 3: $C$는 $(2,2)$ 성분이 1이지만 부울곱 결과는 0이다.
+      선택지 4: $D$는 $(2,1)$ 성분이 0이지만 부울곱 결과는 1이다.
 
       핵심 개념:
-      이 문항은 원본 시험지에서 문항 단위로 분리한 이미지 기반 문항이다.
-      수식, 행렬, 그래프 등은 원본 문항 이미지를 기준으로 확인한다.
-      선택지는 이미지 안의 ①~④와 데이터의 선택지 1~4가 대응된다.
-      정답은 origin/정답.txt의 이산수학 정답표를 기준으로 입력했다.
-    tags: [past-exam, cropped-question]
+      부울행렬의 부울곱은 일반 행렬곱의 곱셈을 AND, 덧셈을 OR로 바꾸어 계산한다.
+      각 성분은 행과 열을 짝지어 논리곱한 뒤 논리합으로 합쳐 얻는다.
+      부울곱은 관계의 합성이나 도달 가능성 계산에 자주 사용된다.
+    tags: [boolean-matrix]
 
   - id: e17-14
     type: multiple-choice
-    prompt: '2017년 이산수학 기말 49번 문항을 풀어주세요.'
-    images:
-      - path: images/subjects/discrete-math/past-exams/2017/questions/q49.png
-        alt: 2017년 이산수학 기말 49번 문항 이미지
+    passageRefs: [g17-relation-graph-desc-01, g17-relation-graph-01]
+    prompt: 관계 $R$을 순서쌍의 집합으로 나타낸 것은?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '$R=\{(1,2),(2,3),(3,1)\}$' }
+      - { id: '2', text: '$R=\{(1,3),(3,2),(2,1)\}$' }
+      - { id: '3', text: '$R=\{(1,1),(1,3),(2,1),(2,2),(3,2),(3,3)\}$' }
+      - { id: '4', text: '$R=\{(1,1),(1,2),(2,2),(2,3),(3,1),(3,3)\}$' }
     answers: ['4']
     explanation: |
-      선택지 1: 2017년 이산수학 정답표 기준으로 정답이 아니다.
-      선택지 2: 2017년 이산수학 정답표 기준으로 정답이 아니다.
-      선택지 3: 2017년 이산수학 정답표 기준으로 정답이 아니다.
-      선택지 4: 2017년 이산수학 정답표 기준으로 정답.
+      선택지 1: 세 루프 $(1,1),(2,2),(3,3)$가 빠져 있다.
+      선택지 2: 화살표 방향을 반대로 읽은 순서쌍들이 포함되어 있다.
+      선택지 3: 그래프의 간선 방향과 다른 $(1,3),(2,1),(3,2)$가 들어 있다.
+      선택지 4: 루프 세 개와 간선 $1\to2$, $2\to3$, $3\to1$을 모두 반영한다.
 
       핵심 개념:
-      이 문항은 원본 시험지에서 문항 단위로 분리한 이미지 기반 문항이다.
-      수식, 행렬, 그래프 등은 원본 문항 이미지를 기준으로 확인한다.
-      선택지는 이미지 안의 ①~④와 데이터의 선택지 1~4가 대응된다.
-      정답은 origin/정답.txt의 이산수학 정답표를 기준으로 입력했다.
-    tags: [past-exam, cropped-question]
+      방향 그래프에서 정점 $a$에서 $b$로 향하는 간선은 관계의 순서쌍 $(a,b)$에 대응한다.
+      자기 자신으로 돌아오는 루프는 $(a,a)$ 형태의 순서쌍이다.
+      간선 방향을 반대로 읽으면 전혀 다른 관계가 되므로 화살표 방향을 먼저 확인해야 한다.
+    tags: [relation, directed-graph]
 
   - id: e17-15
     type: multiple-choice
-    passageRefs: [g17-relation-r]
-    prompt: 관계 R에 대한 설명으로 옳은 것은?
-    images:
-      - path: images/subjects/discrete-math/past-exams/2017/questions/q50.png
-        alt: 2017년 이산수학 기말 50번 문항 이미지
+    passageRefs: [g17-relation-graph-desc-01, g17-relation-graph-01]
+    prompt: 관계 $R$에 대한 설명으로 옳은 것은?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
-      - { id: K, text: '정답 없음' }
-    answers: [K]
+      - { id: '1', text: '반사적이 아니다.' }
+      - { id: '2', text: '대칭적이다.' }
+      - { id: '3', text: '추이적이다.' }
+      - { id: '4', text: '동치관계다.' }
+      - { id: 'K', text: '정답 없음' }
+    answers: ['K']
+    answerKey: K
     explanation: |
-      선택지 1: 관계 R은 모든 원소에 대한 자기 루프가 있으므로 반사적이다.
-      선택지 2: (1, 2)는 있지만 (2, 1)이 없어 대칭적이지 않다.
-      선택지 3: (1, 2), (2, 3)이 있지만 (1, 3)이 없어 추이적이지 않다.
+      선택지 1: 모든 원소 $1,2,3$에 자기 루프가 있으므로 반사적이다.
+      선택지 2: $(1,2)$는 있지만 $(2,1)$이 없으므로 대칭적이지 않다.
+      선택지 3: $(1,2)$와 $(2,3)$은 있지만 $(1,3)$이 없으므로 추이적이지 않다.
       선택지 4: 대칭성과 추이성이 성립하지 않으므로 동치관계가 아니다.
-      정답 없음 (정답): 2017년 이산수학 정답표의 K는 제시된 1~4번 중 정답이 없음을 의미한다.
+      정답 없음: 보기 1~4가 모두 틀렸으므로 원문 정답표의 K를 보존했다.
 
       핵심 개념:
-      49~51번은 같은 방향 그래프의 관계 R을 기준으로 판단한다.
-      반사성은 모든 원소의 자기 루프, 대칭성은 모든 순서쌍의 역순서쌍, 추이성은 연결된 두 관계의 합성 결과가 다시 R에 포함되는지로 판단한다.
-      정답은 origin/정답.txt의 이산수학 정답표를 기준으로 입력했다.
-    tags: [past-exam, cropped-question]
+      반사성은 모든 원소의 자기 루프가 있을 때 성립한다.
+      대칭성은 모든 순서쌍의 역순서쌍이 함께 있을 때 성립한다.
+      추이성은 $(a,b)$와 $(b,c)$가 있으면 $(a,c)$도 관계에 포함되는지를 확인한다.
+      동치관계가 되려면 반사성, 대칭성, 추이성이 모두 성립해야 한다.
+    tags: [relation, equivalence-relation]
 
   - id: e17-16
     type: multiple-choice
-    passageRefs: [g17-relation-r]
-    prompt: 관계 R을 부울행렬로 나타낸 것은?
-    images:
-      - path: images/subjects/discrete-math/past-exams/2017/questions/q51.png
-        alt: 2017년 이산수학 기말 51번 문항 이미지
+    passageRefs: [g17-relation-graph-desc-01, g17-relation-graph-01]
+    prompt: 관계 $R$을 부울행렬로 나타낸 것은?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '$M_R=\begin{pmatrix}1&1&0\\0&1&1\\1&0&1\end{pmatrix}$' }
+      - { id: '2', text: '$M_R=\begin{pmatrix}1&1&1\\0&1&1\\0&0&1\end{pmatrix}$' }
+      - { id: '3', text: '$M_R=\begin{pmatrix}1&1&0\\1&0&1\\0&1&1\end{pmatrix}$' }
+      - { id: '4', text: '$M_R=\begin{pmatrix}1&0&1\\0&1&0\\1&0&1\end{pmatrix}$' }
     answers: ['1']
     explanation: |
-      선택지 1: 2017년 이산수학 정답표 기준으로 정답.
-      선택지 2: 2017년 이산수학 정답표 기준으로 정답이 아니다.
-      선택지 3: 2017년 이산수학 정답표 기준으로 정답이 아니다.
-      선택지 4: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 1: 행을 출발 정점, 열을 도착 정점으로 두면 루프와 $1\to2$, $2\to3$, $3\to1$이 정확히 표시된다.
+      선택지 2: $1\to3$이 추가되고 $3\to1$이 빠져 있다.
+      선택지 3: $2\to1$, $3\to2$가 추가되고 $2$의 루프가 빠져 있다.
+      선택지 4: $1\to2$, $2\to3$이 빠지고 $1\to3$이 추가되어 있다.
 
       핵심 개념:
-      이 문항은 원본 시험지에서 문항 단위로 분리한 이미지 기반 문항이다.
-      수식, 행렬, 그래프 등은 원본 문항 이미지를 기준으로 확인한다.
-      선택지는 이미지 안의 ①~④와 데이터의 선택지 1~4가 대응된다.
-      정답은 origin/정답.txt의 이산수학 정답표를 기준으로 입력했다.
-    tags: [past-exam, cropped-question]
+      관계의 부울행렬에서 행은 출발 원소, 열은 도착 원소로 해석한다.
+      순서쌍 $(i,j)$가 관계에 포함되면 행렬의 $(i,j)$ 성분을 1로 표시한다.
+      방향 그래프의 간선과 루프를 행렬 성분으로 옮기면 관계의 부울행렬을 얻는다.
+    tags: [relation, boolean-matrix]
 
   - id: e17-17
     type: multiple-choice
-    prompt: '2017년 이산수학 기말 52번 문항을 풀어주세요.'
-    images:
-      - path: images/subjects/discrete-math/past-exams/2017/questions/q52.png
-        alt: 2017년 이산수학 기말 52번 문항 이미지
+    prompt: $A=\{1,2,3\}$, $B=\{a,b,c,d\}$일 때, 다음 관계들 중 $A$에서 $B$로의 단사함수인 것은?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '$R=\{(1,a),(2,b),(3,a)\}$' }
+      - { id: '2', text: '$R=\{(1,b),(2,c),(3,a)\}$' }
+      - { id: '3', text: '$R=\{(1,b),(2,c),(3,a),(3,b)\}$' }
+      - { id: '4', text: '$R=\{(1,a),(1,b),(2,c),(2,a),(3,b),(3,c)\}$' }
     answers: ['2']
     explanation: |
-      선택지 1: 2017년 이산수학 정답표 기준으로 정답이 아니다.
-      선택지 2: 2017년 이산수학 정답표 기준으로 정답.
-      선택지 3: 2017년 이산수학 정답표 기준으로 정답이 아니다.
-      선택지 4: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 1: $1$과 $3$이 모두 $a$로 대응하므로 단사가 아니다.
+      선택지 2: 정의역의 각 원소가 하나씩 대응하고 대응값 $b,c,a$가 모두 달라 단사함수이다.
+      선택지 3: 원소 $3$이 $a$와 $b$ 두 값에 대응하므로 함수가 아니다.
+      선택지 4: 여러 정의역 원소가 두 개 이상의 값에 대응하므로 함수가 아니다.
 
       핵심 개념:
-      이 문항은 원본 시험지에서 문항 단위로 분리한 이미지 기반 문항이다.
-      수식, 행렬, 그래프 등은 원본 문항 이미지를 기준으로 확인한다.
-      선택지는 이미지 안의 ①~④와 데이터의 선택지 1~4가 대응된다.
-      정답은 origin/정답.txt의 이산수학 정답표를 기준으로 입력했다.
-    tags: [past-exam, cropped-question]
+      함수는 정의역의 모든 원소가 공역의 정확히 하나의 원소에 대응해야 한다.
+      단사함수는 서로 다른 정의역 원소가 서로 다른 공역 원소에 대응하는 함수이다.
+      같은 공역 원소가 두 번 사용되거나 한 정의역 원소가 여러 값에 대응하면 단사함수가 아니다.
+    tags: [function, injective]
 
   - id: e17-18
     type: multiple-choice
-    prompt: '2017년 이산수학 기말 53번 문항을 풀어주세요.'
-    images:
-      - path: images/subjects/discrete-math/past-exams/2017/questions/q53.png
-        alt: 2017년 이산수학 기말 53번 문항 이미지
+    prompt: $30 \bmod 5$와 결과가 같은 식은?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '$\lceil 7.1 \rceil \bmod 3$' }
+      - { id: '2', text: '$\lfloor 10.5 \rfloor \bmod 4$' }
+      - { id: '3', text: '$3! \bmod 4$' }
+      - { id: '4', text: '$\left(\dfrac{6!}{5!}\right) \bmod 6$' }
     answers: ['4']
     explanation: |
-      선택지 1: 2017년 이산수학 정답표 기준으로 정답이 아니다.
-      선택지 2: 2017년 이산수학 정답표 기준으로 정답이 아니다.
-      선택지 3: 2017년 이산수학 정답표 기준으로 정답이 아니다.
-      선택지 4: 2017년 이산수학 정답표 기준으로 정답.
+      선택지 1: $\lceil7.1\rceil=8$이고 $8\bmod3=2$이다.
+      선택지 2: $\lfloor10.5\rfloor=10$이고 $10\bmod4=2$이다.
+      선택지 3: $3!=6$이고 $6\bmod4=2$이다.
+      선택지 4: $\frac{6!}{5!}=6$이고 $6\bmod6=0$으로 $30\bmod5=0$과 같다.
 
       핵심 개념:
-      이 문항은 원본 시험지에서 문항 단위로 분리한 이미지 기반 문항이다.
-      수식, 행렬, 그래프 등은 원본 문항 이미지를 기준으로 확인한다.
-      선택지는 이미지 안의 ①~④와 데이터의 선택지 1~4가 대응된다.
-      정답은 origin/정답.txt의 이산수학 정답표를 기준으로 입력했다.
-    tags: [past-exam, cropped-question]
+      $a \bmod b$는 $a$를 $b$로 나누었을 때의 나머지이다.
+      천장값 $\lceil x\rceil$은 $x$보다 크거나 같은 가장 작은 정수이고, 바닥값 $\lfloor x\rfloor$은 $x$보다 작거나 같은 가장 큰 정수이다.
+      팩토리얼과 나머지 연산이 함께 있을 때는 괄호 안 값을 먼저 계산한 뒤 나머지를 구한다.
+    tags: [number-theory, modulo, floor-ceiling]
 
   - id: e17-19
     type: multiple-choice
-    prompt: '2017년 이산수학 기말 54번 문항을 풀어주세요.'
-    images:
-      - path: images/subjects/discrete-math/past-exams/2017/questions/q54.png
-        alt: 2017년 이산수학 기말 54번 문항 이미지
+    prompt: 부울함수 $F=AB+ABC+AB\overline{C}$를 간소화한 결과는?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '$F=AB+AC$' }
+      - { id: '2', text: '$F=AB+A\overline{C}$' }
+      - { id: '3', text: '$F=AB$' }
+      - { id: '4', text: '$F=AC$' }
     answers: ['3']
     explanation: |
-      선택지 1: 2017년 이산수학 정답표 기준으로 정답이 아니다.
-      선택지 2: 2017년 이산수학 정답표 기준으로 정답이 아니다.
-      선택지 3: 2017년 이산수학 정답표 기준으로 정답.
-      선택지 4: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 1: $AB$만으로도 전체 식을 흡수할 수 있으므로 $+AC$가 불필요하다.
+      선택지 2: $A\overline C$ 항은 원래 식에서 일반적으로 도출되지 않는다.
+      선택지 3: $AB+ABC+AB\overline C=AB(1+C+\overline C)=AB$이므로 정답이다.
+      선택지 4: 원래 식에는 항상 $B$가 포함되므로 $AC$만으로는 동치가 아니다.
 
       핵심 개념:
-      이 문항은 원본 시험지에서 문항 단위로 분리한 이미지 기반 문항이다.
-      수식, 행렬, 그래프 등은 원본 문항 이미지를 기준으로 확인한다.
-      선택지는 이미지 안의 ①~④와 데이터의 선택지 1~4가 대응된다.
-      정답은 origin/정답.txt의 이산수학 정답표를 기준으로 입력했다.
-    tags: [past-exam, cropped-question]
+      부울대수에서는 $+$를 논리합, 곱을 논리곱으로 해석한다.
+      흡수법칙에 의해 $X+XY=X$가 성립한다.
+      공통 인수 $AB$를 묶으면 $C+\overline C=1$을 이용해 복잡한 식을 간단히 줄일 수 있다.
+    tags: [boolean-algebra]
 
   - id: e17-20
     type: multiple-choice
-    passageRefs: [g17-graph-g]
-    prompt: G와 관련된 서술 중 부적절한 것은?
-    images:
-      - path: images/subjects/discrete-math/past-exams/2017/questions/q55.png
-        alt: 2017년 이산수학 기말 55번 문항 이미지
+    passageRefs: [g17-multigraph-01]
+    prompt: 위 그래프 $G$와 관련된 서술 중 부적절한 것은?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '$G$는 단순그래프이다.' }
+      - { id: '2', text: '$G$의 꼭지점의 집합은 $\{v_1,v_2,v_3,v_4\}$이다.' }
+      - { id: '3', text: '$G$의 차수는 10이다.' }
+      - { id: '4', text: '$v_1$의 차수는 2이고 $v_2$의 차수는 4이다.' }
     answers: ['1']
     explanation: |
-      선택지 1: 2017년 이산수학 정답표 기준으로 정답.
-      선택지 2: 2017년 이산수학 정답표 기준으로 정답이 아니다.
-      선택지 3: 2017년 이산수학 정답표 기준으로 정답이 아니다.
-      선택지 4: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 1: $v_2$와 $v_3$ 사이에 평행간선이 있으므로 단순그래프가 아니다.
+      선택지 2: 그림의 꼭지점은 $v_1,v_2,v_3,v_4$ 네 개이다.
+      선택지 3: 각 꼭지점 차수를 더하면 $2+4+2+2=10$이다.
+      선택지 4: $v_1$에는 간선 2개, $v_2$에는 $v_1$, $v_4$, $v_3$으로 가는 간선 4개가 닿아 있다.
 
       핵심 개념:
-      이 문항은 원본 시험지에서 문항 단위로 분리한 이미지 기반 문항이다.
-      수식, 행렬, 그래프 등은 원본 문항 이미지를 기준으로 확인한다.
-      선택지는 이미지 안의 ①~④와 데이터의 선택지 1~4가 대응된다.
-      정답은 origin/정답.txt의 이산수학 정답표를 기준으로 입력했다.
-    tags: [past-exam, cropped-question]
+      단순그래프는 루프와 평행간선이 없는 무방향 그래프이다.
+      정점의 차수는 그 정점에 연결된 간선 수를 세며, 평행간선은 각각 따로 센다.
+      그래프 전체의 차수 합은 모든 꼭지점 차수의 합이며, 무방향 그래프에서는 간선 수의 두 배와 같다.
+    tags: [graph, simple-graph, degree]
 
   - id: e17-21
     type: multiple-choice
-    passageRefs: [g17-graph-g]
-    prompt: 그래프 G를 인접행렬로 표현한 것은?
-    images:
-      - path: images/subjects/discrete-math/past-exams/2017/questions/q56.png
-        alt: 2017년 이산수학 기말 56번 문항 이미지
+    passageRefs: [g17-multigraph-01]
+    prompt: 위 그래프 $G$를 인접행렬로 표현한 것은?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - id: '1'
+        text: |
+          $\begin{pmatrix}
+          0 & 1 & 0 & 1\\
+          1 & 0 & 2 & 1\\
+          0 & 2 & 0 & 0\\
+          1 & 1 & 0 & 0
+          \end{pmatrix}$
+      - id: '2'
+        text: |
+          $\begin{pmatrix}
+          1 & 1 & 1 & 0\\
+          1 & 2 & 1 & 1\\
+          0 & 1 & 2 & 0\\
+          1 & 1 & 1 & 1
+          \end{pmatrix}$
+      - id: '3'
+        text: |
+          $\begin{pmatrix}
+          0 & 2 & 0 & 1\\
+          2 & 0 & 2 & 1\\
+          0 & 2 & 0 & 0\\
+          1 & 1 & 0 & 0
+          \end{pmatrix}$
+      - id: '4'
+        text: |
+          $\begin{pmatrix}
+          0 & 1 & 1 & 0\\
+          1 & 0 & 1 & 0\\
+          1 & 1 & 0 & 2\\
+          0 & 0 & 2 & 0
+          \end{pmatrix}$
     answers: ['1']
     explanation: |
-      선택지 1: 2017년 이산수학 정답표 기준으로 정답.
-      선택지 2: 2017년 이산수학 정답표 기준으로 정답이 아니다.
-      선택지 3: 2017년 이산수학 정답표 기준으로 정답이 아니다.
-      선택지 4: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 1: $v_1v_2$, $v_1v_4$, $v_2v_4$는 각각 1개, $v_2v_3$은 2개인 구조를 정확히 나타낸다.
+      선택지 2: 루프에 해당하는 대각 성분과 존재하지 않는 간선들이 포함되어 있다.
+      선택지 3: $v_1v_2$ 간선을 2개로 잘못 표시했다.
+      선택지 4: $v_3v_4$ 간선 2개가 있는 것처럼 표시해 그림과 다르다.
 
       핵심 개념:
-      이 문항은 원본 시험지에서 문항 단위로 분리한 이미지 기반 문항이다.
-      수식, 행렬, 그래프 등은 원본 문항 이미지를 기준으로 확인한다.
-      선택지는 이미지 안의 ①~④와 데이터의 선택지 1~4가 대응된다.
-      정답은 origin/정답.txt의 이산수학 정답표를 기준으로 입력했다.
-    tags: [past-exam, cropped-question]
+      인접행렬은 정점 $v_i$와 $v_j$ 사이의 간선 수를 $(i,j)$ 성분에 기록한다.
+      무방향 그래프의 인접행렬은 주대각선을 기준으로 대칭이다.
+      다중간선이 있으면 해당 성분에는 1이 아니라 간선 개수인 2가 들어갈 수 있다.
+    tags: [graph, adjacency-matrix]
 
   - id: e17-22
     type: multiple-choice
-    prompt: '2017년 이산수학 기말 57번 문항을 풀어주세요.'
-    images:
-      - path: images/subjects/discrete-math/past-exams/2017/questions/q57.png
-        alt: 2017년 이산수학 기말 57번 문항 이미지
+    prompt: 다음 서술 중 부적절한 것은?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '사이클이 없는 연결그래프를 트리라고 한다.' }
+      - { id: '2', text: '$n$개의 꼭지점을 가지는 연결그래프가 $n-1$개의 변을 가진다면 해당 그래프는 트리이다.' }
+      - { id: '3', text: '높이가 $k$인 완전 이진트리의 최대 노드 수는 $2^{k+1}-1$이다.' }
+      - { id: '4', text: '최소 신장트리를 구하는 방법으로 힙(heap) 정렬 알고리즘과 셸(shell) 정렬 알고리즘이 있다.' }
     answers: ['4']
     explanation: |
-      선택지 1: 2017년 이산수학 정답표 기준으로 정답이 아니다.
-      선택지 2: 2017년 이산수학 정답표 기준으로 정답이 아니다.
-      선택지 3: 2017년 이산수학 정답표 기준으로 정답이 아니다.
-      선택지 4: 2017년 이산수학 정답표 기준으로 정답.
+      선택지 1: 트리의 기본 정의로 옳다.
+      선택지 2: 연결그래프에서 정점 수가 $n$이고 간선 수가 $n-1$이면 트리 조건을 만족한다.
+      선택지 3: 높이 $k$인 이진트리의 최대 노드 수 공식으로 옳다.
+      선택지 4: 최소 신장트리는 Kruskal, Prim 같은 알고리즘으로 구하며, 힙 정렬과 셸 정렬은 정렬 알고리즘이다.
 
       핵심 개념:
-      이 문항은 원본 시험지에서 문항 단위로 분리한 이미지 기반 문항이다.
-      수식, 행렬, 그래프 등은 원본 문항 이미지를 기준으로 확인한다.
-      선택지는 이미지 안의 ①~④와 데이터의 선택지 1~4가 대응된다.
-      정답은 origin/정답.txt의 이산수학 정답표를 기준으로 입력했다.
-    tags: [past-exam, cropped-question]
+      트리는 연결되어 있고 사이클이 없는 그래프이다.
+      정점이 $n$개인 트리는 정확히 $n-1$개의 간선을 가진다.
+      최소 신장트리는 가중 연결그래프에서 모든 정점을 연결하면서 총 가중치가 최소인 트리이며, 대표 알고리즘은 Kruskal과 Prim이다.
+    tags: [tree, spanning-tree]
 
   - id: e17-23
     type: multiple-choice
-    prompt: '2017년 이산수학 기말 58번 문항을 풀어주세요.'
-    images:
-      - path: images/subjects/discrete-math/past-exams/2017/questions/q58.png
-        alt: 2017년 이산수학 기말 58번 문항 이미지
+    passageRefs: [g17-bst-01]
+    prompt: 위 그림은 4개의 수 $(3,4,5,7)$가 키로 입력되었을 때 생성된 이진 탐색 트리이다. 키로 사용된 4개의 수는 어떤 순서로 입력되었는가?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '4, 3, 5, 7' }
+      - { id: '2', text: '7, 5, 3, 4' }
+      - { id: '3', text: '5, 3, 7, 4' }
+      - { id: '4', text: '4, 3, 7, 5' }
     answers: ['3']
     explanation: |
-      선택지 1: 2017년 이산수학 정답표 기준으로 정답이 아니다.
-      선택지 2: 2017년 이산수학 정답표 기준으로 정답이 아니다.
-      선택지 3: 2017년 이산수학 정답표 기준으로 정답.
-      선택지 4: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 1: 첫 입력이 4라면 루트가 4가 되어야 한다.
+      선택지 2: 첫 입력이 7이면 루트가 7이 되어야 한다.
+      선택지 3: 5를 루트로 삽입한 뒤 3은 왼쪽, 7은 오른쪽, 4는 3의 오른쪽 자식이 되어 그림과 일치한다.
+      선택지 4: 첫 입력이 4라면 루트가 4가 되므로 그림과 다르다.
 
       핵심 개념:
-      이 문항은 원본 시험지에서 문항 단위로 분리한 이미지 기반 문항이다.
-      수식, 행렬, 그래프 등은 원본 문항 이미지를 기준으로 확인한다.
-      선택지는 이미지 안의 ①~④와 데이터의 선택지 1~4가 대응된다.
-      정답은 origin/정답.txt의 이산수학 정답표를 기준으로 입력했다.
-    tags: [past-exam, cropped-question]
+      이진 탐색 트리는 왼쪽 서브트리에는 더 작은 값, 오른쪽 서브트리에는 더 큰 값을 배치한다.
+      삽입은 입력 순서대로 이루어지며, 처음 입력된 값이 루트가 된다.
+      최종 트리의 루트와 좌우 배치를 역추적하면 가능한 입력 순서를 판단할 수 있다.
+    tags: [tree, binary-search-tree]
 
   - id: e17-24
     type: multiple-choice
-    prompt: '2017년 이산수학 기말 59번 문항을 풀어주세요.'
-    images:
-      - path: images/subjects/discrete-math/past-exams/2017/questions/q59.png
-        alt: 2017년 이산수학 기말 59번 문항 이미지
+    passageRefs: [g17-grid-network-01]
+    prompt: 다음과 같은 컴퓨터 네트워크가 있다고 하였을 때, $A$에서 $B$까지 최단 거리로 가는 방법은 몇 가지인가?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: '12' }
+      - { id: '2', text: '20' }
+      - { id: '3', text: '24' }
+      - { id: '4', text: '35' }
     answers: ['4']
     explanation: |
-      선택지 1: 2017년 이산수학 정답표 기준으로 정답이 아니다.
-      선택지 2: 2017년 이산수학 정답표 기준으로 정답이 아니다.
-      선택지 3: 2017년 이산수학 정답표 기준으로 정답이 아니다.
-      선택지 4: 2017년 이산수학 정답표 기준으로 정답.
+      선택지 1: 오른쪽 이동과 위쪽 이동의 배열 수를 과소 계산한 값이다.
+      선택지 2: 필요한 이동 수의 조합을 모두 세지 못했다.
+      선택지 3: 최단 경로의 전체 순서 배치 수와 맞지 않는다.
+      선택지 4: 오른쪽 4번, 위쪽 3번의 순서를 배열하므로 $\binom{7}{3}=35$가지이다.
 
       핵심 개념:
-      이 문항은 원본 시험지에서 문항 단위로 분리한 이미지 기반 문항이다.
-      수식, 행렬, 그래프 등은 원본 문항 이미지를 기준으로 확인한다.
-      선택지는 이미지 안의 ①~④와 데이터의 선택지 1~4가 대응된다.
-      정답은 origin/정답.txt의 이산수학 정답표를 기준으로 입력했다.
-    tags: [past-exam, cropped-question]
+      격자 그래프에서 최단 경로는 목적지에 가까워지는 방향의 이동만 사용한다.
+      필요한 오른쪽 이동 수와 위쪽 이동 수를 합친 뒤, 그 순서를 배열하는 조합 문제로 바꿀 수 있다.
+      총 7번 이동 중 위쪽 이동 3번의 위치를 고르면 되므로 $\binom{7}{3}=35$이다.
+    tags: [graph, counting, shortest-path]
 
   - id: e17-25
     type: multiple-choice
-    prompt: '2017년 이산수학 기말 60번 문항을 풀어주세요.'
-    images:
-      - path: images/subjects/discrete-math/past-exams/2017/questions/q60.png
-        alt: 2017년 이산수학 기말 60번 문항 이미지
+    passageRefs: [g17-dfa-01]
+    prompt: 위 상태 전이도는 결정적 유한 오토마타를 표현하고 있다. 입력 문자열 00011에 대응하는 출력 문자열을 구한 것은?
     choices:
-      - { id: '1', text: '1' }
-      - { id: '2', text: '2' }
-      - { id: '3', text: '3' }
-      - { id: '4', text: '4' }
+      - { id: '1', text: 'ababa' }
+      - { id: '2', text: 'abbba' }
+      - { id: '3', text: 'aaabb' }
+      - { id: '4', text: 'bbbaa' }
     answers: ['2']
     explanation: |
-      선택지 1: 2017년 이산수학 정답표 기준으로 정답이 아니다.
-      선택지 2: 2017년 이산수학 정답표 기준으로 정답.
-      선택지 3: 2017년 이산수학 정답표 기준으로 정답이 아니다.
-      선택지 4: 2017년 이산수학 정답표 기준으로 정답이 아니다.
+      선택지 1: 세 번째 입력 0을 $s_1$에서 처리할 때 출력은 b이므로 ababa가 아니다.
+      선택지 2: $s_0$에서 0/a로 $s_1$, 0/b로 $s_1$, 0/b로 $s_1$, 1/b로 $s_0$, 1/a로 $s_0$가 되어 출력은 abbba이다.
+      선택지 3: 두 번째 입력부터 $s_1$의 0/b 루프를 따라야 하므로 aaabb가 아니다.
+      선택지 4: 첫 입력 0은 $s_0$에서 a를 출력하므로 첫 글자 b가 맞지 않는다.
 
       핵심 개념:
-      이 문항은 원본 시험지에서 문항 단위로 분리한 이미지 기반 문항이다.
-      수식, 행렬, 그래프 등은 원본 문항 이미지를 기준으로 확인한다.
-      선택지는 이미지 안의 ①~④와 데이터의 선택지 1~4가 대응된다.
-      정답은 origin/정답.txt의 이산수학 정답표를 기준으로 입력했다.
-    tags: [past-exam, cropped-question]
+      결정적 유한 오토마타에서는 현재 상태와 입력기호가 다음 상태와 출력을 하나로 결정한다.
+      간선 표기 $0/a$는 입력 0을 읽을 때 해당 간선을 따라가며 출력 a를 붙인다는 뜻이다.
+      시작 상태에서 입력문자열을 왼쪽부터 한 글자씩 처리하며 상태와 출력 문자열을 함께 갱신한다.
+    tags: [automata, finite-state-machine]
