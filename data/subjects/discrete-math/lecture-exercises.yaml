@@ -210,7 +210,7 @@ questions:
 
       핵심 개념:
       알고리즘의 기본 제어 구조는 순차, 선택, 반복이며 for 문은 대표적인 반복구조이다.
-    tags: [chapter:01, algorithm]
+    tags: [algorithm]
 
   - id: l01-04
     type: multiple-choice
@@ -229,7 +229,7 @@ questions:
 
       핵심 개념:
       추상화는 복잡한 대상을 핵심 구조로 표현하는 과정이며, 모델은 필요에 따라 변형하거나 단순화할 수 있다.
-    tags: [chapter:01, abstraction]
+    tags: [abstraction]
 
   - id: l01-05
     type: multiple-choice
@@ -248,7 +248,7 @@ questions:
 
       핵심 개념:
       알고리즘 표현은 모호성을 줄이고 실행 순서와 제어 구조를 명확히 드러내야 한다.
-    tags: [chapter:01, algorithm]
+    tags: [algorithm]
 
   - id: l02-01
     type: multiple-choice
@@ -267,7 +267,7 @@ questions:
 
       핵심 개념:
       명제는 참 또는 거짓 중 하나의 진리값을 명확히 갖는 문장이다.
-    tags: [chapter:02, proposition]
+    tags: [proposition]
 
   - id: l02-02
     type: multiple-choice
@@ -322,7 +322,7 @@ questions:
 
       핵심 개념:
       배타적 논리합 $p \oplus q$는 두 명제의 진리값이 서로 다를 때만 참이다.
-    tags: [chapter:02, truth-table]
+    tags: [truth-table]
 
   - id: l02-03
     type: multiple-choice
@@ -377,7 +377,7 @@ questions:
 
       핵심 개념:
       합성명제는 안쪽 연산의 진리값을 먼저 구한 뒤 바깥 논리연산을 적용해 행별로 계산한다.
-    tags: [chapter:02, truth-table]
+    tags: [truth-table]
 
   - id: l02-04
     type: multiple-choice
@@ -432,7 +432,7 @@ questions:
 
       핵심 개념:
       조건명제는 전건이 참이고 후건이 거짓일 때만 거짓이며, 쌍조건명제는 양쪽 진리값이 같을 때 참이다.
-    tags: [chapter:02, truth-table]
+    tags: [truth-table]
 
   - id: l02-05
     type: multiple-choice
@@ -451,7 +451,7 @@ questions:
 
       핵심 개념:
       조건명제 $p \to q$는 $p$가 참이고 $q$가 거짓일 때만 거짓이며, 쌍조건명제는 두 진리값이 같으면 참이다.
-    tags: [chapter:02, conditional]
+    tags: [conditional]
 
   - id: l02-06
     type: multiple-choice
@@ -459,7 +459,10 @@ questions:
     choices:
       - { id: '1', text: 역은 “영국의 수도가 파리이면, 한국의 수도는 서울이다”가 된다. }
       - { id: '2', text: 이는 “영국의 수도는 파리가 아니라면 한국의 수도가 서울이 아니다.”가 된다. }
-      - { id: '3', text: 대우는 “한국의 수도가 서울이 아니라면 영국의 수도는 파리가 아니다”가 된다. }
+      - {
+          id: '3',
+          text: 대우는 “한국의 수도가 서울이 아니라면 영국의 수도는 파리가 아니다”가 된다.,
+        }
       - { id: '4', text: 주어진 조건 명제의 진리값과 역의 진리값은 동일하다. }
     answers: ['1']
     explanation: |
@@ -470,7 +473,7 @@ questions:
 
       핵심 개념:
       $p \to q$의 역은 $q \to p$, 이는 $\sim p \to \sim q$, 대우는 $\sim q \to \sim p$이다.
-    tags: [chapter:02, conditional]
+    tags: [conditional]
 
   - id: l03-01
     type: multiple-choice
@@ -489,7 +492,7 @@ questions:
 
       핵심 개념:
       공리, 정의, 정리, 증명은 수학적 논증에서 서로 다른 역할을 하므로 용어를 구분해야 한다.
-    tags: [chapter:03, proof]
+    tags: [proof]
   - id: l03-02
     type: multiple-choice
     prompt: 증명방법에 해당하지 않는 것은?
@@ -507,7 +510,7 @@ questions:
 
       핵심 개념:
       증명방법과 증명 절차 안의 구성요소를 구분해야 한다.
-    tags: [chapter:03, proof]
+    tags: [proof]
 
   - id: l03-03
     type: multiple-choice
@@ -526,7 +529,7 @@ questions:
 
       핵심 개념:
       전칭명제를 반박하려면 가정은 참이지만 결론은 거짓이 되는 하나의 반례를 찾으면 된다.
-    tags: [chapter:03, counterexample]
+    tags: [counterexample]
 
   - id: l03-04
     type: multiple-choice
@@ -545,7 +548,7 @@ questions:
 
       핵심 개념:
       수학적 귀납법은 기본단계와 귀납단계를 모두 증명해야 자연수 전체에 대한 명제를 보일 수 있다.
-    tags: [chapter:03, induction]
+    tags: [induction]
 
   - id: l03-05
     type: multiple-choice
@@ -565,7 +568,7 @@ questions:
 
       핵심 개념:
       모순 증명법은 증명하려는 결론의 부정을 가정하고 불가능한 결과를 도출해 원래 결론을 참으로 보인다.
-    tags: [chapter:03, contradiction]
+    tags: [contradiction]
 
   - id: l04-01
     type: multiple-choice
@@ -584,7 +587,7 @@ questions:
 
       핵심 개념:
       집합은 명확히 구분되는 원소들의 모임이며, 같은 원소는 한 번만 포함된 것으로 본다.
-    tags: [chapter:04, set]
+    tags: [set]
 
   - id: l04-02
     type: multiple-choice
@@ -603,7 +606,7 @@ questions:
 
       핵심 개념:
       조건제시법에서는 원소의 범위와 자료형 조건을 모두 확인해야 같은 집합인지 판단할 수 있다.
-    tags: [chapter:04, set]
+    tags: [set]
 
   - id: l04-03
     type: multiple-choice
@@ -623,7 +626,7 @@ questions:
 
       핵심 개념:
       서로소는 공통 원소가 없는 관계이고, 분할은 공집합이 아닌 서로소 부분집합들이 전체 집합을 빠짐없이 덮어야 한다.
-    tags: [chapter:04, set]
+    tags: [set]
 
   - id: l04-04
     type: multiple-choice
@@ -642,7 +645,7 @@ questions:
 
       핵심 개념:
       분할은 서로 겹치지 않는 부분집합들의 모음이어야 하며 모든 원소를 빠짐없이 포함해야 한다.
-    tags: [chapter:04, partition]
+    tags: [partition]
 
   - id: l05-01
     type: multiple-choice
@@ -662,7 +665,7 @@ questions:
 
       핵심 개념:
       행렬 원소 $a_{ij}$는 i번째 행, j번째 열의 원소를 뜻한다.
-    tags: [chapter:05, matrix]
+    tags: [matrix]
 
   - id: l05-02
     type: multiple-choice
@@ -682,7 +685,7 @@ questions:
 
       핵심 개념:
       행은 가로 방향, 열은 세로 방향으로 읽으며 행렬의 위치 표기는 행 번호를 먼저 쓴다.
-    tags: [chapter:05, matrix]
+    tags: [matrix]
   - id: l05-03
     type: multiple-choice
     prompt: 행렬 A와 B가 다음과 같을 때 $2B-A$를 구하면?
@@ -701,7 +704,7 @@ questions:
 
       핵심 개념:
       행렬의 상수배와 뺄셈은 같은 위치의 원소끼리 계산한다.
-    tags: [chapter:05, matrix]
+    tags: [matrix]
 
   - id: l05-04
     type: multiple-choice
@@ -720,7 +723,7 @@ questions:
 
       핵심 개념:
       행렬곱은 일반적으로 $AB \ne BA$이므로 교환법칙을 함부로 적용할 수 없다.
-    tags: [chapter:05, matrix]
+    tags: [matrix]
 
   - id: l06-01
     type: multiple-choice
@@ -739,7 +742,7 @@ questions:
 
       핵심 개념:
       관계 $R=\{(a,b)\mid 조건\}$에서는 각 순서쌍이 조건을 만족하는지 직접 대입해 확인한다.
-    tags: [chapter:06, relation]
+    tags: [relation]
 
   - id: l06-02
     type: multiple-choice
@@ -758,7 +761,7 @@ questions:
 
       핵심 개념:
       A에서 B로의 관계는 첫 원소가 A, 둘째 원소가 B에 속해야 하며 제시 조건을 만족해야 한다.
-    tags: [chapter:06, relation]
+    tags: [relation]
 
   - id: l06-03
     type: multiple-choice
@@ -818,16 +821,25 @@ questions:
 
       핵심 개념:
       항등관계의 부울행렬은 각 원소가 자기 자신과만 관계하므로 주대각선 원소만 1이다.
-    tags: [chapter:06, relation, boolean-matrix]
+    tags: [relation, boolean-matrix]
 
   - id: l06-04
     type: multiple-choice
     prompt: 위 지문에서 관계의 성질에 대해 잘못 설명한 것은?
     choices:
       - { id: '1', text: '모든 $a \in A$에 대해 $aRa$이면 반사적이라 한다.' }
-      - { id: '2', text: '모든 $a,b \in A$에 대해 $aRb \to bRa$가 성립하면 관계 R은 대칭적이라 한다.' }
-      - { id: '3', text: '모든 $a,b,c \in A$에 대해 $(aRb \wedge bRc) \to aRc$가 성립하면 관계 R은 추이적이라고 한다.' }
-      - { id: '4', text: '모든 $a,b,c \in A$에 대해 $(aRb \vee bRc) \to aRc$가 성립하면 관계 R은 반사적이라 한다.' }
+      - {
+          id: '2',
+          text: '모든 $a,b \in A$에 대해 $aRb \to bRa$가 성립하면 관계 R은 대칭적이라 한다.',
+        }
+      - {
+          id: '3',
+          text: '모든 $a,b,c \in A$에 대해 $(aRb \wedge bRc) \to aRc$가 성립하면 관계 R은 추이적이라고 한다.',
+        }
+      - {
+          id: '4',
+          text: '모든 $a,b,c \in A$에 대해 $(aRb \vee bRc) \to aRc$가 성립하면 관계 R은 반사적이라 한다.',
+        }
     answers: ['4']
     explanation: |
       선택지 1: 모든 원소가 자기 자신과 관계하면 반사적이라는 설명은 맞다.
@@ -837,7 +849,7 @@ questions:
 
       핵심 개념:
       관계의 반사성, 대칭성, 추이성은 각각 자기 자신과의 관계, 순서쌍의 뒤집힘, 관계의 연결성을 나타낸다.
-    tags: [chapter:06, relation]
+    tags: [relation]
 
   - id: l06-05
     type: multiple-choice
@@ -856,7 +868,7 @@ questions:
 
       핵심 개념:
       역관계 $R^{-1}$은 $R$의 모든 순서쌍 $(a,b)$를 $(b,a)$로 바꾼 관계이다.
-    tags: [chapter:06, relation]
+    tags: [relation]
 
   - id: l07-01
     type: multiple-choice
@@ -875,7 +887,7 @@ questions:
 
       핵심 개념:
       A에서 B로의 함수는 정의역 A의 모든 원소가 공역 B의 원소 하나에만 대응해야 한다.
-    tags: [chapter:07, function]
+    tags: [function]
 
   - id: l07-02
     type: multiple-choice
@@ -894,7 +906,7 @@ questions:
 
       핵심 개념:
       함수의 정의역은 입력 원소의 집합, 공역은 도착 집합, 치역은 실제로 대응된 값들의 집합이다.
-    tags: [chapter:07, function]
+    tags: [function]
 
   - id: l07-03
     type: multiple-choice
@@ -913,7 +925,7 @@ questions:
 
       핵심 개념:
       역함수가 존재하려면 함수가 일대일 대응, 즉 전단사이어야 한다.
-    tags: [chapter:07, inverse-function]
+    tags: [inverse-function]
   - id: l08-01
     type: multiple-choice
     prompt: 다음 진리표에 해당되는 논리게이트로 옳은 것은?
@@ -932,7 +944,7 @@ questions:
 
       핵심 개념:
       NOR 게이트는 $x+y$를 부정한 출력으로, 두 입력이 모두 0일 때만 1이 된다.
-    tags: [chapter:08, logic-gate]
+    tags: [logic-gate]
 
   - id: l08-02
     type: multiple-choice
@@ -952,7 +964,7 @@ questions:
 
       핵심 개념:
       NAND는 AND의 부정이며, $xy$가 참인 경우를 제외하고 출력이 1이다.
-    tags: [chapter:08, logic-gate]
+    tags: [logic-gate]
 
   - id: l08-03
     type: multiple-choice
@@ -971,7 +983,7 @@ questions:
 
       핵심 개념:
       부울식은 부울상수, 부울변수, 부울연산 합/곱/보수로 구성된다.
-    tags: [chapter:08, boolean-algebra]
+    tags: [boolean-algebra]
 
   - id: l08-04
     type: multiple-choice
@@ -990,7 +1002,7 @@ questions:
 
       핵심 개념:
       부울대수의 항등법칙, 지배법칙, 멱등법칙은 일반 산술과 다른 형태로 적용된다.
-    tags: [chapter:08, boolean-algebra]
+    tags: [boolean-algebra]
 
   - id: l08-05
     type: multiple-choice
@@ -1009,14 +1021,17 @@ questions:
 
       핵심 개념:
       부울대수 법칙은 식의 성립 여부뿐 아니라 해당 법칙의 이름까지 구분해야 한다.
-    tags: [chapter:08, boolean-algebra]
+    tags: [boolean-algebra]
 
   - id: l09-01
     type: multiple-choice
     prompt: 그래프에 관련된 용어에 대한 설명으로 옳은 것은?
     choices:
       - { id: '1', text: 동일한 꼭지점을 연결하는 변은 인접했다고 한다. }
-      - { id: '2', text: 두 꼭지점을 연결하는 변이 두 개 이상 있을 때 이러한 변들을 병렬 변이라 한다. }
+      - {
+          id: '2',
+          text: 두 꼭지점을 연결하는 변이 두 개 이상 있을 때 이러한 변들을 병렬 변이라 한다.,
+        }
       - { id: '3', text: 어떠한 변도 연결되지 않은 그래프를 무향 그래프라 한다. }
       - { id: '4', text: 어떤 루프나 어떤 병렬 변을 가지지 않는 무향 그래프를 완전 그래프라 한다. }
     answers: ['2']
@@ -1028,7 +1043,7 @@ questions:
 
       핵심 개념:
       그래프 용어에서 루프, 병렬 변, 단순 그래프, 완전 그래프의 정의를 구분해야 한다.
-    tags: [chapter:09, graph]
+    tags: [graph]
 
   - id: l09-02
     type: multiple-choice
@@ -1048,13 +1063,16 @@ questions:
 
       핵심 개념:
       루프는 한 꼭지점에서 자기 자신으로 연결되는 변이고, 병렬 변은 같은 두 꼭지점을 잇는 둘 이상의 변이다.
-    tags: [chapter:09, graph]
+    tags: [graph]
 
   - id: l09-03
     type: multiple-choice
     prompt: 다음 그래프들 중 다른 그래프 하나는?
     images:
-      - { path: images/subjects/discrete-math/lecture-exercises/l09-03.png, alt: 동형 그래프 선택지 }
+      - {
+          path: images/subjects/discrete-math/lecture-exercises/l09-03.png,
+          alt: 동형 그래프 선택지,
+        }
     choices:
       - { id: '1', text: ①번 }
       - { id: '2', text: ②번 }
@@ -1069,7 +1087,7 @@ questions:
 
       핵심 개념:
       그래프 동형은 꼭지점의 위치나 이름이 아니라 인접 관계와 차수 구조가 보존되는지를 본다.
-    tags: [chapter:09, graph-isomorphism]
+    tags: [graph-isomorphism]
 
   - id: l09-04
     type: multiple-choice
@@ -1089,7 +1107,7 @@ questions:
 
       핵심 개념:
       방향 그래프에서 진출 차수는 꼭지점에서 나가는 화살표 수, 진입 차수는 들어오는 화살표 수이다.
-    tags: [chapter:09, directed-graph]
+    tags: [directed-graph]
 
   - id: l09-05
     type: multiple-choice
@@ -1109,15 +1127,21 @@ questions:
 
       핵심 개념:
       무향 그래프에서 꼭지점의 차수는 그 꼭지점에 연결된 변의 수이며, 루프가 있으면 보통 2로 센다.
-    tags: [chapter:09, degree]
+    tags: [degree]
   - id: l10-01
     type: multiple-choice
     prompt: 다음 보기 중 평면 그래프가 아닌 것은?
     choices:
-      - { id: '1', text: '① 바깥 삼각형과 중앙 꼭짓점을 세 바깥 꼭짓점에 연결한 $K_4$ 형태의 그래프' }
+      - {
+          id: '1',
+          text: '① 바깥 삼각형과 중앙 꼭짓점을 세 바깥 꼭짓점에 연결한 $K_4$ 형태의 그래프',
+        }
       - { id: '2', text: '② 네 꼭짓점이 모두 서로 연결된 완전 그래프 $K_4$' }
       - { id: '3', text: '③ 오각형에 일부 대각선을 더한 그래프' }
-      - { id: '4', text: '④ 위쪽 세 꼭짓점과 아래쪽 세 꼭짓점 사이를 모두 연결한 완전 이분 그래프 $K_{3,3}$' }
+      - {
+          id: '4',
+          text: '④ 위쪽 세 꼭짓점과 아래쪽 세 꼭짓점 사이를 모두 연결한 완전 이분 그래프 $K_{3,3}$',
+        }
     answers: ['4']
     explanation: |
       선택지 1: 교차 없이 평면에 다시 그릴 수 있는 구조이므로 평면 그래프이다.
@@ -1127,7 +1151,7 @@ questions:
 
       핵심 개념:
       평면 그래프는 변이 꼭지점 이외에서 교차하지 않도록 그릴 수 있는 그래프이며, $K_5$와 $K_{3,3}$는 대표적인 비평면 그래프이다.
-    tags: [chapter:10, planar-graph]
+    tags: [planar-graph]
 
   - id: l10-02
     type: multiple-choice
@@ -1146,16 +1170,32 @@ questions:
 
       핵심 개념:
       연결된 평면 그래프에서는 꼭지점 수 $v$, 변 수 $e$, 면 수 $f$가 $v-e+f=2$를 만족한다.
-    tags: [chapter:10, planar-graph]
+    tags: [planar-graph]
 
   - id: l10-03
     type: multiple-choice
     prompt: 오일러 투어에 대한 설명으로 옳은 것은?
     choices:
-      - { id: '1', text: 주어진 그래프가 오일러 투어를 가진다면, 해당 그래프의 모든 꼭지점의 차수는 홀수이다. }
-      - { id: '2', text: 모든 변을 정확히 한 번씩만 지나가고, 시작점과 종점이 동일하면 오일러 투어라 한다. }
-      - { id: '3', text: 주어진 그래프가 연결 그래프이고 모든 꼭지점의 차수가 홀수라면, 해당 그래프는 오일러 투어를 가진다. }
-      - { id: '4', text: 오일러 트레일은 오일러 투어이지만, 오일러 투어라고 해서 반드시 오일러 트레일이 되는 것은 아니다. }
+      - {
+          id: '1',
+          text: 주어진 그래프가 오일러 투어를 가진다면,
+          해당 그래프의 모든 꼭지점의 차수는 홀수이다.,
+        }
+      - {
+          id: '2',
+          text: 모든 변을 정확히 한 번씩만 지나가고,
+          시작점과 종점이 동일하면 오일러 투어라 한다.,
+        }
+      - {
+          id: '3',
+          text: 주어진 그래프가 연결 그래프이고 모든 꼭지점의 차수가 홀수라면,
+          해당 그래프는 오일러 투어를 가진다.,
+        }
+      - {
+          id: '4',
+          text: 오일러 트레일은 오일러 투어이지만,
+          오일러 투어라고 해서 반드시 오일러 트레일이 되는 것은 아니다.,
+        }
     answers: ['2']
     explanation: |
       선택지 1: 오일러 투어가 존재하려면 연결 그래프의 모든 꼭지점 차수가 짝수여야 하므로 홀수라는 설명은 틀렸다.
@@ -1165,7 +1205,7 @@ questions:
 
       핵심 개념:
       오일러 투어는 그래프의 모든 변을 한 번씩 사용하는 닫힌 경로이며, 연결 그래프에서는 모든 꼭지점의 차수가 짝수여야 한다.
-    tags: [chapter:10, euler-tour]
+    tags: [euler-tour]
 
   - id: l10-04
     type: multiple-choice
@@ -1184,7 +1224,7 @@ questions:
 
       핵심 개념:
       해밀턴 경로는 모든 꼭지점을 한 번씩 방문하고, 해밀턴 사이클은 시작점으로 되돌아오는 닫힌 해밀턴 경로이다.
-    tags: [chapter:10, hamiltonian]
+    tags: [hamiltonian]
 
   - id: l11-01
     type: multiple-choice
@@ -1203,7 +1243,7 @@ questions:
 
       핵심 개념:
       트리는 연결되어 있고 사이클이 없는 단순 그래프이다.
-    tags: [chapter:11, tree]
+    tags: [tree]
 
   - id: l11-02
     type: multiple-choice
@@ -1222,7 +1262,7 @@ questions:
 
       핵심 개념:
       트리, 사소한 트리, 공백 트리, 포레스트는 연결성과 노드 수 조건이 다르다.
-    tags: [chapter:11, tree]
+    tags: [tree]
 
   - id: l11-03
     type: multiple-choice
@@ -1241,16 +1281,25 @@ questions:
 
       핵심 개념:
       높이 h인 이진 트리의 최대 노드 수는 레벨 0부터 h까지 모두 채운 경우인 $2^{h+1}-1$이다.
-    tags: [chapter:11, binary-tree]
+    tags: [binary-tree]
 
   - id: l11-04
     type: multiple-choice
     prompt: 다음 설명 중 완전 이진 트리인 것은?
     choices:
-      - { id: '1', text: '① 마지막 레벨의 오른쪽 부분에 노드가 있으나 그보다 왼쪽 자리가 비어 있는 이진 트리' }
-      - { id: '2', text: '② 중간 레벨에서 왼쪽 자식이 비어 있고 오른쪽 방향으로 노드가 이어지는 이진 트리' }
+      - {
+          id: '1',
+          text: '① 마지막 레벨의 오른쪽 부분에 노드가 있으나 그보다 왼쪽 자리가 비어 있는 이진 트리',
+        }
+      - {
+          id: '2',
+          text: '② 중간 레벨에서 왼쪽 자식이 비어 있고 오른쪽 방향으로 노드가 이어지는 이진 트리',
+        }
       - { id: '3', text: '③ 마지막 레벨의 노드들이 왼쪽부터 연속해서 채워지지 않은 이진 트리' }
-      - { id: '4', text: '④ 마지막 레벨을 제외한 모든 레벨이 채워지고 마지막 레벨도 왼쪽부터 연속해서 채워진 이진 트리' }
+      - {
+          id: '4',
+          text: '④ 마지막 레벨을 제외한 모든 레벨이 채워지고 마지막 레벨도 왼쪽부터 연속해서 채워진 이진 트리',
+        }
     answers: ['4']
     explanation: |
       선택지 1: 마지막 레벨이 왼쪽부터 채워지는 완전 이진 트리 조건을 만족하지 않는다.
@@ -1260,7 +1309,7 @@ questions:
 
       핵심 개념:
       완전 이진 트리는 마지막 레벨을 제외한 모든 레벨이 채워지고 마지막 레벨은 왼쪽부터 빈칸 없이 채워진다.
-    tags: [chapter:11, binary-tree]
+    tags: [binary-tree]
 
   - id: l11-05
     type: multiple-choice
@@ -1279,7 +1328,7 @@ questions:
 
       핵심 개념:
       노드 n개를 담는 이진 트리의 최소 높이는 $2^{h+1}-1 \ge n$을 만족하는 가장 작은 h로 구한다.
-    tags: [chapter:11, binary-tree]
+    tags: [binary-tree]
 
   - id: l12-01
     type: multiple-choice
@@ -1298,7 +1347,7 @@ questions:
 
       핵심 개념:
       양의 정수해 $x_1+\cdots+x_k=n$의 개수는 $\binom{n-1}{k-1}$이다.
-    tags: [chapter:12, counting]
+    tags: [counting]
   - id: l12-02
     type: multiple-choice
     prompt: 8비트 2진수 중 비트 111로 시작하거나 111로 끝나는 2진수의 개수는?
@@ -1316,7 +1365,7 @@ questions:
 
       핵심 개념:
       두 조건 중 하나 이상을 만족하는 경우의 수는 포함배제 원리 $|A\cup B|=|A|+|B|-|A\cap B|$로 계산한다.
-    tags: [chapter:12, inclusion-exclusion]
+    tags: [inclusion-exclusion]
 
   - id: l12-03
     type: multiple-choice
@@ -1335,7 +1384,7 @@ questions:
 
       핵심 개념:
       서로 다른 원소 중 순서를 고려해 일부를 배열하는 경우의 수는 순열 $nP r$로 계산한다.
-    tags: [chapter:12, permutation]
+    tags: [permutation]
 
   - id: l12-04
     type: multiple-choice
@@ -1354,7 +1403,7 @@ questions:
 
       핵심 개념:
       같은 원소가 반복되는 순열은 전체 팩토리얼을 같은 종류의 반복 수 팩토리얼로 나누어 계산한다.
-    tags: [chapter:12, permutation]
+    tags: [permutation]
 
   - id: l12-05
     type: multiple-choice
@@ -1373,7 +1422,7 @@ questions:
 
       핵심 개념:
       서로 다른 물건을 서로 다른 위치에 배치하면 위치 선택과 물건 순서를 모두 고려해야 한다.
-    tags: [chapter:12, permutation]
+    tags: [permutation]
 
   - id: l13-01
     type: multiple-choice
@@ -1392,7 +1441,7 @@ questions:
 
       핵심 개념:
       정수의 나누어떨어짐은 덧셈, 뺄셈, 정수배에 대해 닫혀 있지만 일반적인 나눗셈에는 그대로 적용되지 않는다.
-    tags: [chapter:13, divisibility]
+    tags: [divisibility]
 
   - id: l13-02
     type: multiple-choice
@@ -1411,7 +1460,7 @@ questions:
 
       핵심 개념:
       유클리드 호제법은 나눗셈의 나머지를 반복해 마지막 0이 아닌 나머지를 최대공약수로 구한다.
-    tags: [chapter:13, gcd]
+    tags: [gcd]
 
   - id: l13-03
     type: multiple-choice
@@ -1430,7 +1479,7 @@ questions:
 
       핵심 개념:
       직사각형을 같은 크기의 가장 큰 정사각형으로 채우려면 두 변 길이의 최대공약수를 한 변으로 사용한다.
-    tags: [chapter:13, gcd]
+    tags: [gcd]
 
   - id: l13-04
     type: multiple-choice
@@ -1449,7 +1498,7 @@ questions:
 
       핵심 개념:
       $a \equiv b \pmod m$은 $a-b$가 $m$으로 나누어떨어진다는 뜻이다.
-    tags: [chapter:13, modular-arithmetic]
+    tags: [modular-arithmetic]
 
   - id: l14-01
     type: multiple-choice
@@ -1468,7 +1517,7 @@ questions:
 
       핵심 개념:
       튜링머신은 무한 테이프를 사용할 수 있지만 상태 집합과 전이 규칙은 유한하게 정의된다.
-    tags: [chapter:14, turing-machine]
+    tags: [turing-machine]
 
   - id: l14-02
     type: multiple-choice
@@ -1487,7 +1536,7 @@ questions:
 
       핵심 개념:
       촘스키 계층은 정규, 문맥 자유, 문맥 의존, 무제약 문법 순으로 표현력이 커진다.
-    tags: [chapter:14, formal-language]
+    tags: [formal-language]
   - id: l14-03
     type: multiple-choice
     prompt: 유한 오토마타를 구성하는 것으로 부적절한 것은?
@@ -1505,7 +1554,7 @@ questions:
 
       핵심 개념:
       유한 오토마타는 상태 집합, 입력 기호 집합, 전이 함수, 시작 상태, 수락 상태 집합 등으로 정의되며 상태전이도는 이를 나타내는 도구이다.
-    tags: [chapter:14, finite-automata]
+    tags: [finite-automata]
   - id: l14-04
     type: multiple-choice
     prompt: 다음 상태전이도는 어떤 유한 오토마타 M을 표현하고 있는데, M에 대해 입력 문자열 0011에 대응하는 출력 문자열로서 옳은 것은?
@@ -1524,7 +1573,7 @@ questions:
 
       핵심 개념:
       출력이 있는 유한 오토마타에서는 입력을 한 글자씩 읽으며 전이를 따라가고, 각 전이에 붙은 출력을 순서대로 이어 붙인다.
-    tags: [chapter:14, finite-automata]
+    tags: [finite-automata]
   - id: l14-05
     type: multiple-choice
     prompt: 다음 상태전이도는 어떤 결정적 유한 오토마타 M을 표현하고 있는데, M이 수락하는 문자열은?
@@ -1543,7 +1592,7 @@ questions:
 
       핵심 개념:
       결정적 유한 오토마타는 입력 문자열을 모두 읽은 뒤 도달한 상태가 수락 상태이면 그 문자열을 수락한다.
-    tags: [chapter:14, finite-automata]
+    tags: [finite-automata]
   - id: l15-01
     type: multiple-choice
     prompt: 다음 중 이산수학에서 다루는 대상이 아닌 것은?
@@ -1561,7 +1610,7 @@ questions:
 
       핵심 개념:
       이산수학은 명제, 집합, 정수, 관계, 그래프처럼 분리된 구조와 유한하거나 셀 수 있는 대상을 중심으로 다룬다.
-    tags: [chapter:15, review]
+    tags: [review]
   - id: l15-02
     type: multiple-choice
     prompt: 행렬에 대한 다음 서술 중 옳은 것은?
@@ -1579,7 +1628,7 @@ questions:
 
       핵심 개념:
       정방행렬은 행과 열의 크기가 같은 행렬이고, 역행렬이나 단위행렬 조건은 추가적인 성질을 요구한다.
-    tags: [chapter:15, review, matrix]
+    tags: [review, matrix]
   - id: l15-03
     type: multiple-choice
     prompt: 다음 중 관계를 표현하는 방법으로 부적절한 것은?
@@ -1597,7 +1646,7 @@ questions:
 
       핵심 개념:
       관계는 순서쌍, 화살표 도표, 방향 그래프, 부울행렬 등으로 표현하며 순서도는 알고리즘 제어 흐름을 나타낸다.
-    tags: [chapter:15, review, relation]
+    tags: [review, relation]
   - id: l15-04
     type: multiple-choice
     prompt: 다음 지문의 내용 중 옳은 것은?
@@ -1616,7 +1665,7 @@ questions:
 
       핵심 개념:
       바닥함수, 팩토리얼, 나머지 연산은 각각 정의에 따라 직접 계산해 참거짓을 판정한다.
-    tags: [chapter:15, review]
+    tags: [review]
   - id: l15-05
     type: multiple-choice
     prompt: 다음 괄호 안에 들어갈 용어들을 순서대로 나열한 것은?
@@ -1635,7 +1684,7 @@ questions:
 
       핵심 개념:
       그래프의 기본 용어에서 변은 꼭짓점을 연결하고, 인접은 연결 관계, 루프는 자기 자신으로 향하는 변, 병렬 변은 같은 두 꼭짓점을 잇는 여러 변을 뜻한다.
-    tags: [chapter:15, review, graph]
+    tags: [review, graph]
   - id: l15-06
     type: multiple-choice
     prompt: 다음 그래프 중에서 트리가 아닌 것은?
@@ -1657,4 +1706,4 @@ questions:
 
       핵심 개념:
       트리는 연결 그래프이면서 사이클이 없는 그래프이다.
-    tags: [chapter:15, review, tree]
+    tags: [review, tree]
