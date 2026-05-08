@@ -1,15 +1,2254 @@
 subjectId: artificial-intelligence
 sourceId: lecture-exercises
-title: 인공지능 강의 연습문제 샘플
+title: 인공지능 강의 연습문제
 kind: lecture
+
+passages:
+  - id: gl02-graph-05
+    type: diagram
+    diagram:
+      type: simple-graph
+      width: 520
+      height: 260
+      directed: true
+      nodes:
+        - { id: A, label: A, x: 260, y: 35 }
+        - { id: B, label: B, x: 145, y: 85 }
+        - { id: C, label: C, x: 260, y: 85 }
+        - { id: D, label: D, x: 380, y: 85 }
+        - { id: E, label: E, x: 90, y: 140 }
+        - { id: F, label: F, x: 260, y: 140 }
+        - { id: G, label: G, x: 335, y: 140 }
+        - { id: H, label: H, x: 430, y: 140 }
+        - { id: I, label: I, x: 50, y: 205 }
+        - { id: J, label: J, x: 135, y: 205 }
+        - { id: K, label: K, x: 250, y: 205 }
+        - { id: L, label: L, x: 330, y: 205 }
+        - { id: M, label: M, x: 405, y: 205 }
+      edges:
+        - { from: A, to: B }
+        - { from: A, to: C }
+        - { from: A, to: D }
+        - { from: B, to: E }
+        - { from: C, to: F }
+        - { from: C, to: G }
+        - { from: C, to: H }
+        - { from: E, to: I }
+        - { from: E, to: J }
+        - { from: F, to: K }
+        - { from: G, to: L }
+        - { from: G, to: M }
+  - id: gl02-graph-06
+    type: diagram
+    diagram:
+      type: simple-graph
+      width: 520
+      height: 245
+      directed: true
+      nodes:
+        - { id: A, label: A, x: 260, y: 35 }
+        - { id: B1, label: B, x: 150, y: 85 }
+        - { id: C, label: C, x: 370, y: 85 }
+        - { id: D1, label: "D 12", x: 80, y: 150 }
+        - { id: E, label: "E 8", x: 150, y: 150 }
+        - { id: F, label: "F 10", x: 220, y: 150 }
+        - { id: G, label: "G 9", x: 310, y: 150 }
+        - { id: H, label: "H 6", x: 370, y: 150 }
+        - { id: I, label: "I 12", x: 435, y: 150 }
+        - { id: B2, label: B, x: 330, y: 205 }
+        - { id: D2, label: D, x: 370, y: 205 }
+        - { id: J, label: J, x: 420, y: 205 }
+      edges:
+        - { from: A, to: B1 }
+        - { from: A, to: C }
+        - { from: B1, to: D1 }
+        - { from: B1, to: E }
+        - { from: B1, to: F }
+        - { from: C, to: G }
+        - { from: C, to: H }
+        - { from: C, to: I }
+        - { from: H, to: B2, label: "2" }
+        - { from: H, to: D2, label: "5" }
+        - { from: H, to: J, label: "1" }
+  - id: gl04-minimax-01
+    type: diagram
+    diagram:
+      type: simple-graph
+      width: 560
+      height: 230
+      directed: true
+      nodes:
+        - { id: A, label: A, x: 280, y: 35 }
+        - { id: B, label: B, x: 110, y: 95 }
+        - { id: C, label: C, x: 220, y: 95 }
+        - { id: D, label: D, x: 340, y: 95 }
+        - { id: E, label: E, x: 450, y: 95 }
+        - { id: F, label: "F 3", x: 75, y: 165 }
+        - { id: G, label: "G 2", x: 145, y: 165 }
+        - { id: H, label: "H 9", x: 175, y: 165 }
+        - { id: I, label: "I 1", x: 220, y: 165 }
+        - { id: J, label: "J 4", x: 265, y: 165 }
+        - { id: K, label: "K 3", x: 310, y: 165 }
+        - { id: L, label: "L 4", x: 355, y: 165 }
+        - { id: M, label: "M 4", x: 400, y: 165 }
+        - { id: N, label: "N 2", x: 440, y: 165 }
+        - { id: O, label: "O 12", x: 500, y: 165 }
+      edges:
+        - { from: A, to: B }
+        - { from: A, to: C }
+        - { from: A, to: D }
+        - { from: A, to: E }
+        - { from: B, to: F }
+        - { from: B, to: G }
+        - { from: C, to: H }
+        - { from: C, to: I }
+        - { from: C, to: J }
+        - { from: D, to: K }
+        - { from: D, to: L }
+        - { from: D, to: M }
+        - { from: E, to: N }
+        - { from: E, to: O }
+  - id: gl04-alpha-beta-03
+    type: diagram
+    diagram:
+      type: simple-graph
+      width: 520
+      height: 300
+      directed: true
+      nodes:
+        - { id: A, label: A, x: 260, y: 35 }
+        - { id: B, label: "B 4", x: 150, y: 90 }
+        - { id: C, label: "C alpha=4 beta=inf", x: 360, y: 90 }
+        - { id: D, label: D, x: 95, y: 145 }
+        - { id: E, label: E, x: 205, y: 145 }
+        - { id: F, label: F, x: 335, y: 145 }
+        - { id: G, label: "G 4", x: 55, y: 215 }
+        - { id: H, label: "H 2", x: 130, y: 215 }
+        - { id: I, label: "I 5", x: 200, y: 215 }
+        - { id: J, label: "J 1", x: 310, y: 215 }
+        - { id: K, label: "K x", x: 380, y: 215 }
+      edges:
+        - { from: A, to: B }
+        - { from: A, to: C }
+        - { from: B, to: D }
+        - { from: B, to: E }
+        - { from: C, to: F }
+        - { from: D, to: G }
+        - { from: D, to: H }
+        - { from: E, to: I }
+        - { from: F, to: J }
+        - { from: F, to: K }
+  - id: gl05-declarative-02
+    type: text
+    body: |
+      (ㄱ) 프로그래밍 언어로 작성된 명령어의 집합이다.
+      (ㄴ) 지식 사용에 대한 제어정보가 지식 자체에 내포되어 있다.
+      (ㄷ) 상호 독립적이고 단편적인 지식을 나열해 놓은 형태이다.
+      (ㄹ) 별도의 추론기관이 있어, 이에 의해 추론을 한다.
+  - id: gl05-semantic-net-03
+    type: diagram
+    diagram:
+      type: simple-graph
+      width: 620
+      height: 300
+      directed: true
+      nodes:
+        - { id: car, label: 자동차, x: 320, y: 45 }
+        - { id: passenger, label: 승용차, x: 320, y: 125 }
+        - { id: a, label: A, x: 210, y: 205 }
+        - { id: b, label: B, x: 430, y: 205 }
+        - { id: engine, label: 엔진, x: 165, y: 45 }
+        - { id: wheels, label: "4", x: 120, y: 100 }
+        - { id: seats, label: "5", x: 120, y: 155 }
+        - { id: a_displacement, label: "1,591", x: 130, y: 270 }
+        - { id: a_power, label: "140", x: 270, y: 270 }
+        - { id: b_displacement, label: "1,998", x: 375, y: 270 }
+        - { id: b_power, label: "275", x: 490, y: 270 }
+        - { id: b_seats, label: "2", x: 560, y: 270 }
+        - { id: sunroof, label: 선루프, x: 560, y: 205 }
+      edges:
+        - { from: car, to: engine, label: has-part }
+        - { from: passenger, to: car, label: ako }
+        - { from: a, to: passenger, label: isa }
+        - { from: b, to: passenger, label: isa }
+        - { from: car, to: wheels, label: 바퀴 수 }
+        - { from: passenger, to: seats, label: 승차인원 }
+        - { from: a, to: a_displacement, label: 배기량 }
+        - { from: a, to: a_power, label: 최대 출력 }
+        - { from: b, to: b_displacement, label: 배기량 }
+        - { from: b, to: b_power, label: 최대 출력 }
+        - { from: b, to: b_seats, label: 승차인원 }
+        - { from: b, to: sunroof, label: has-part }
+  - id: gl06-relation-06
+    type: diagram
+    diagram:
+      type: simple-graph
+      width: 320
+      height: 220
+      directed: true
+      nodes:
+        - { id: n1, label: "1", x: 70, y: 150 }
+        - { id: n2, label: "2", x: 160, y: 55 }
+        - { id: n3, label: "3", x: 250, y: 150 }
+      edges:
+        - { from: n1, to: n1 }
+        - { from: n2, to: n2 }
+        - { from: n3, to: n3 }
+        - { from: n1, to: n2 }
+        - { from: n2, to: n3 }
+        - { from: n1, to: n3, curve: 0.2 }
+  - id: gl06-relation-07
+    type: diagram
+    diagram:
+      type: simple-graph
+      width: 320
+      height: 220
+      directed: true
+      nodes:
+        - { id: n1, label: "1", x: 120, y: 155 }
+        - { id: n2, label: "2", x: 120, y: 55 }
+        - { id: n3, label: "3", x: 235, y: 155 }
+      edges:
+        - { from: n1, to: n1 }
+        - { from: n2, to: n2 }
+        - { from: n1, to: n2, curve: 0.25 }
+        - { from: n2, to: n1, curve: 0.25 }
+        - { from: n3, to: n2, curve: 0.15 }
+        - { from: n3, to: n1, curve: 0.15 }
+  - id: gl07-fuzzy-rule-03
+    type: image
+    image:
+      path: images/subjects/artificial-intelligence/lecture-exercises/l07-03-passage.png
+      alt: 수위가 상당히 높다와 밸브를 연다의 퍼지 소속함수 그래프
+  - id: gl08-pixel-grid-02
+    type: diagram
+    diagram:
+      type: data-table
+      columns: ["1", "2", "3", "4", "5", "6"]
+      rows:
+        - ["51", "53", "54", "52", "50", "54"]
+        - ["50", "59", "50", "48", "49", "53"]
+        - ["52", "54", "180", "50", "48", "49"]
+        - ["51", "52", "49", "47", "49", "50"]
+        - ["52", "50", "48", "49", "51", "52"]
+  - id: gl08-gaussian-mask-02
+    type: text
+    body: |
+      가우시안 저역통과 필터마스크
+      $$
+      M={1\over16}\begin{bmatrix}
+      1&2&1\\
+      2&4&2\\
+      1&2&1
+      \end{bmatrix}
+      $$
+  - id: gl08-histogram-04
+    type: text
+    body: |
+      그레이레벨 히스토그램은 낮은 회색도 영역과 96 근처에 봉우리가 있고, 두 봉우리 사이의 최소값 구간이 약 64 근처에 있다.
+  - id: gl08-boolean-laws-06
+    type: text
+    body: |
+      ① $\overline{\overline X}=X$
+      ② $X+X=X$
+      ③ $X\cdot\overline X=1$
+      ④ $X+YZ=(X+Y)(X+Z)$
+  - id: gl08-complement-07
+    type: text
+    body: |
+      부울함수 $F=X\overline{Y}Z+XY\overline{Z}$
+
+      ① $\overline F=XY\overline Z+\overline{XY\overline Z}$
+      ② $\overline F=\overline X+\overline Y+Z\cdot X+Y+\overline Z$
+      ③ $\overline F=\overline{XY\overline Z}\cdot XY\overline Z$
+      ④ $\overline F=(X+Y+\overline Z)\cdot(\overline X+\overline Y+Z)$
+  - id: gl08-simplification-09
+    type: text
+    body: |
+      $$
+      \begin{aligned}
+      F&=(X+\overline Y)(X+Z)\\
+       &=XX+XZ+X\overline Y+\overline YZ\\
+       &=X+XZ+X\overline Y+\overline YZ\\
+       &=X(1+Z+\overline Y)+\overline YZ\\
+       &=\Box\\
+       &=X+\overline YZ
+      \end{aligned}
+      $$
+  - id: gl08-boolean-expression-10
+    type: text
+    body: |
+      부울대수식 $ABC+A\overline{B}C+AB\overline{C}$
+
+      ① $AB$
+      ② $AB+\overline A C$
+      ③ $AB+AC$
+      ④ $AC$
+  - id: gl09-petersen-06
+    type: diagram
+    diagram:
+      type: simple-graph
+      width: 420
+      height: 360
+      nodes:
+        - { id: o1, label: o1, hideLabel: true, x: 210, y: 35 }
+        - { id: o2, label: o2, hideLabel: true, x: 65, y: 140 }
+        - { id: o3, label: o3, hideLabel: true, x: 120, y: 310 }
+        - { id: o4, label: o4, hideLabel: true, x: 300, y: 310 }
+        - { id: o5, label: o5, hideLabel: true, x: 355, y: 140 }
+        - { id: i1, label: i1, hideLabel: true, x: 210, y: 105 }
+        - { id: i2, label: i2, hideLabel: true, x: 140, y: 170 }
+        - { id: i3, label: i3, hideLabel: true, x: 170, y: 245 }
+        - { id: i4, label: i4, hideLabel: true, x: 250, y: 245 }
+        - { id: i5, label: i5, hideLabel: true, x: 280, y: 170 }
+      edges:
+        - { from: o1, to: o2 }
+        - { from: o2, to: o3 }
+        - { from: o3, to: o4 }
+        - { from: o4, to: o5 }
+        - { from: o5, to: o1 }
+        - { from: o1, to: i1 }
+        - { from: o2, to: i2 }
+        - { from: o3, to: i3 }
+        - { from: o4, to: i4 }
+        - { from: o5, to: i5 }
+        - { from: i1, to: i3 }
+        - { from: i3, to: i5 }
+        - { from: i5, to: i2 }
+        - { from: i2, to: i4 }
+        - { from: i4, to: i1 }
+  - id: gl09-adjacency-07
+    type: diagram
+    diagram:
+      type: simple-graph
+      width: 420
+      height: 240
+      nodes:
+        - { id: v1, label: v1, x: 75, y: 160 }
+        - { id: v2, label: v2, x: 210, y: 160 }
+        - { id: v3, label: v3, x: 345, y: 160 }
+        - { id: v4, label: v4, x: 210, y: 45 }
+      edges:
+        - { from: v1, to: v2 }
+        - { from: v1, to: v4 }
+        - { from: v2, to: v4 }
+        - { from: v2, to: v3, curve: 0.22 }
+        - { from: v2, to: v3, curve: -0.22 }
+  - id: gl09-incidence-08
+    type: diagram
+    diagram:
+      type: simple-graph
+      width: 420
+      height: 280
+      nodes:
+        - { id: v1, label: v1, x: 210, y: 45 }
+        - { id: v2, label: v2, x: 90, y: 150 }
+        - { id: v3, label: v3, x: 210, y: 245 }
+        - { id: v4, label: v4, x: 330, y: 150 }
+      edges:
+        - { from: v1, to: v2, label: e1 }
+        - { from: v2, to: v3, label: e2 }
+        - { from: v1, to: v3, label: e3 }
+        - { from: v1, to: v4, label: e4 }
+        - { from: v2, to: v4, label: e5 }
+  - id: gl09-components-09
+    type: diagram
+    diagram:
+      type: simple-graph
+      width: 420
+      height: 240
+      nodes:
+        - { id: v1, label: v1, x: 160, y: 45 }
+        - { id: v2, label: v2, x: 70, y: 115 }
+        - { id: v3, label: v3, x: 210, y: 200 }
+        - { id: v4, label: v4, x: 350, y: 115 }
+        - { id: v5, label: v5, x: 300, y: 45 }
+      edges:
+        - { from: v1, to: v3 }
+        - { from: v3, to: v5 }
+        - { from: v2, to: v4 }
+  - id: gl10-euler-05
+    type: text
+    body: |
+      무방향 그래프의 변은 다음과 같다.
+      왼쪽 사각형: e, f, g, h
+      오른쪽 사각형: a, b, c, d
+      두 사각형은 중앙 꼭짓점을 공유하며, 변 d와 f가 중앙 세로선 위에 놓인다.
+  - id: gl10-hamiltonian-06
+    type: diagram
+    diagram:
+      type: simple-graph
+      width: 420
+      height: 300
+      nodes:
+        - { id: a, label: a, x: 70, y: 55 }
+        - { id: b, label: b, x: 250, y: 55 }
+        - { id: c, label: c, x: 345, y: 150 }
+        - { id: d, label: d, x: 250, y: 245 }
+        - { id: e, label: e, x: 70, y: 245 }
+        - { id: f, label: f, x: 140, y: 150 }
+      edges:
+        - { from: a, to: b }
+        - { from: b, to: c }
+        - { from: c, to: d }
+        - { from: d, to: e }
+        - { from: e, to: a }
+        - { from: a, to: f }
+        - { from: e, to: f }
+        - { from: a, to: c }
+        - { from: e, to: c }
+        - { from: b, to: d }
+  - id: gl10-k4-07
+    type: diagram
+    diagram:
+      type: simple-graph
+      width: 280
+      height: 240
+      nodes:
+        - { id: a, label: a, x: 55, y: 45 }
+        - { id: b, label: b, x: 225, y: 45 }
+        - { id: c, label: c, x: 225, y: 195 }
+        - { id: d, label: d, x: 55, y: 195 }
+      edges:
+        - { from: a, to: b }
+        - { from: b, to: c }
+        - { from: c, to: d }
+        - { from: d, to: a }
+        - { from: a, to: c }
+        - { from: b, to: d }
+  - id: gl10-house-08
+    type: diagram
+    diagram:
+      type: simple-graph
+      width: 320
+      height: 260
+      nodes:
+        - { id: top, label: t, hideLabel: true, x: 160, y: 35 }
+        - { id: left_top, label: lt, hideLabel: true, x: 75, y: 105 }
+        - { id: right_top, label: rt, hideLabel: true, x: 245, y: 105 }
+        - { id: left_bottom, label: lb, hideLabel: true, x: 75, y: 215 }
+        - { id: right_bottom, label: rb, hideLabel: true, x: 245, y: 215 }
+      edges:
+        - { from: top, to: left_top }
+        - { from: top, to: right_top }
+        - { from: left_top, to: right_top }
+        - { from: left_top, to: left_bottom }
+        - { from: right_top, to: right_bottom }
+        - { from: left_bottom, to: right_bottom }
+        - { from: left_top, to: right_bottom }
+        - { from: right_top, to: left_bottom }
+  - id: gl10-dijkstra-10
+    type: text
+    body: |
+      가중 그래프의 주요 꼭짓점은 a, b, c, d, e이다.
+      간선과 가중치는 a-상단중앙 5, 상단중앙-상단오른쪽 6, a-왼쪽중앙 2,
+      왼쪽중앙-왼쪽하단 3, 왼쪽하단-d 9, d-c 5, b-c 5, 상단오른쪽-b 7,
+      중앙 e에서 왼쪽중앙 6, 상단중앙 2, b 9, d 3, c 2, 왼쪽하단 1,
+      a-e 8, e-상단오른쪽 5이다.
+  - id: gl14-markov-chain-06
+    type: diagram
+    diagram:
+      type: simple-graph
+      width: 420
+      height: 220
+      directed: true
+      nodes:
+        - { id: s0, label: "0", x: 120, y: 110 }
+        - { id: s1, label: "1", x: 300, y: 110 }
+      edges:
+        - { from: s0, to: s0, label: "0.6", curve: 0.45 }
+        - { from: s0, to: s1, label: "0.4", curve: 0.25 }
+        - { from: s1, to: s0, label: "0.3", curve: 0.25 }
+        - { from: s1, to: s1, label: "0.7", curve: 0.45 }
+  - id: gl15-permutation-combination-07
+    type: text
+    body: |
+      $1\le r\le n$을 만족하는 정수 $n,r$에 대하여, $n$개의 원소를 갖는 집합에서 $r$개 원소를 순서를 고려하여 뽑는 방법을 (  )이라고 부르고 그 경우의 수는 (  )이며, 순서를 무시하고 뽑는 방법은 (  )이라고 부르고 그 경우의 수는 ${n!\over r!(n-r)!}$이다.
+  - id: gl15-gcd-08
+    type: text
+    body: |
+      0이 아닌 두 정수 $a,b$에 대하여 $d\mid a$이고 $d\mid b$인 최대의 양의 정수 $d$를 $a$와 $b$의 (  )라고 부른다.
 
 questions:
   - id: l01-01
-    type: ox
-    prompt: 비지도학습은 정답 레이블 없이 데이터의 구조나 패턴을 찾는 데 사용될 수 있다.
+    type: multiple-choice
+    prompt: 연속에 대한 설명으로 바르지 않은 것은?
     choices:
-      - { id: 'O', text: 'O' }
-      - { id: 'X', text: 'X' }
-    answers: ['O']
-    explanation: 군집화처럼 레이블이 없는 데이터에서 유사한 사례를 묶거나 잠재 구조를 찾는 방법이 비지도학습에 속한다.
-    tags: [chapter:01, machine-learning, unsupervised-learning]
+      - { id: '1', text: 연속이란 중단 또는 급격한 변화가 없는 상태이다. }
+      - { id: '2', text: 디지털 컴퓨터가 다루는 데이터는 연속적인 값이다. }
+      - { id: '3', text: 연속수학에는 미적분학, 위상수학, 해석학 등이 속한다. }
+      - { id: '4', text: 연속적인 성질을 가지는 수학 분야는 연속수학이라 한다. }
+    answers: ['2']
+    explanation: 디지털 컴퓨터가 처리하는 데이터는 일반적으로 이산적인 값으로 표현된다. 연속은 끊김이나 급격한 변화가 없는 상태를 뜻하며, 미적분학·위상수학·해석학 등은 연속수학의 대표적인 분야이다.
+    tags: [chapter:01, continuous, discrete-data]
+
+  - id: l01-02
+    type: multiple-choice
+    prompt: 축구의 도구로 올바르지 않은 것은?
+    choices:
+      - { id: '1', text: 골대 }
+      - { id: '2', text: 축구장 }
+      - { id: '3', text: 토털사커 }
+      - { id: '4', text: 보호대 }
+    answers: ['3']
+    explanation: 골대, 축구장, 보호대는 축구 경기에서 쓰이는 물리적 도구나 환경이다. 토털사커는 경기 전술 또는 스타일을 가리키므로 도구가 아니다.
+    tags: [chapter:01, concept-classification]
+
+  - id: l01-03
+    type: multiple-choice
+    prompt: 대규모 데이터 집합으로부터 일반화하여 습득한 지식을 바탕으로 새로운 데이터를 제공할 수 있도록 설계된 인공지능을 의미하는 것은?
+    choices:
+      - { id: '1', text: 약한 인공지능 }
+      - { id: '2', text: 강한 인공지능 }
+      - { id: '3', text: 생성형 인공지능 }
+      - { id: '4', text: 지식기반 시스템 }
+    answers: ['3']
+    explanation: 생성형 인공지능은 대규모 데이터에서 패턴과 구조를 학습한 뒤 이를 바탕으로 새로운 텍스트, 이미지, 코드 같은 데이터를 생성하는 인공지능이다.
+    tags: [chapter:01, generative-ai]
+
+  - id: l01-04
+    type: multiple-choice
+    prompt: 다음 중 물리적 기호시스템 가설의 의의에 해당되는 것은?
+    choices:
+      - { id: '1', text: 컴퓨터는 인간보다 계산 능력이 우수하다. }
+      - { id: '2', text: 인간이 행하는 지능적 작업을 수행하는 프로그램 작성이 가능하다는 믿음의 근거이다. }
+      - { id: '3', text: 컴퓨터는 수치 데이터의 계산만 할 수 있다. }
+      - { id: '4', text: 2진수를 이용하여 기호를 표현할 수 있다. }
+    answers: ['2']
+    explanation: 물리적 기호시스템 가설은 물리적 기호 시스템이 일반적인 지능적 행동을 위한 충분한 수단을 가진다는 주장이다. 따라서 인간의 지능적 작업을 프로그램으로 구현할 수 있다는 믿음의 근거가 된다.
+    tags: [chapter:01, physical-symbol-system]
+
+  - id: l01-05
+    type: multiple-choice
+    prompt: 지식을 어떻게 체계화하고 지식 베이스에 축적하며, 축적된 지식을 어떻게 이용하는가를 연구하는 학문을 일컫는 것은?
+    choices:
+      - { id: '1', text: 지식공학 }
+      - { id: '2', text: 논리학 }
+      - { id: '3', text: 데이터베이스 }
+      - { id: '4', text: 알고리즘 }
+    answers: ['1']
+    explanation: 지식공학은 지식을 체계적으로 수집하고 지식베이스로 구축하며, 축적된 지식을 추론과 문제 해결에 활용하는 방법을 다루는 분야이다.
+    tags: [chapter:01, knowledge-engineering]
+
+  - id: l02-01
+    type: multiple-choice
+    prompt: 문제표현의 요소 중 문제의 상태를 변화시키기 위한 도구를 표현하는 것은?
+    choices:
+      - { id: '1', text: 상태묘사 }
+      - { id: '2', text: 연산자 }
+      - { id: '3', text: 상태공간 }
+      - { id: '4', text: 객체 }
+    answers: ['2']
+    explanation: 연산자는 문제의 한 상태를 다른 상태로 변환하는 도구이다. 변환 테이블이나 변환 함수로 구현할 수 있으며, 탐색에서는 가능한 행동을 정의한다.
+    tags: [chapter:02, state-space, operator]
+
+  - id: l02-02
+    type: multiple-choice
+    prompt: 상태공간에서 문제의 표현을 위해 정의하는 것은?
+    choices:
+      - { id: '1', text: 초기상태, 목표상태, 메모리 용량 }
+      - { id: '2', text: 연산자, 분석법이 알고리즘 }
+      - { id: '3', text: 연산자, 상태트리, 상태묘사 }
+      - { id: '4', text: 상태묘사 및 주/상태, 복사상태, 연산자 }
+    answers: ['4']
+    explanation: 상태공간 문제표현은 상태를 어떻게 표현할지, 초기상태와 목표상태를 어떻게 정의할지, 그리고 상태를 변화시키는 연산자를 어떻게 정의할지를 포함한다.
+    tags: [chapter:02, state-space, problem-representation]
+
+  - id: l02-03
+    type: multiple-choice
+    prompt: 상태공간 탐색에 의한 문제풀이에 대한 올바른 설명은?
+    choices:
+      - { id: '1', text: 문제를 여러 개의 부분문제로 분할하여 각각을 풀이하는 방식이다. }
+      - { id: '2', text: 알고리즘에 의해 풀이방법을 정렬한다. }
+      - { id: '3', text: 초기상태에서 목표상태에 도달하는 일련의 연산자를 찾기 위해 시행착오 방식으로 그래프 탐색을 한다. }
+      - { id: '4', text: 최대한 탐색 범위를 넓히는 것이 유리하다. }
+    answers: ['3']
+    explanation: 상태공간 탐색은 초기상태에서 출발하여 목표상태에 도달할 수 있는 연산자열을 찾는 과정이다. 그래프나 트리에서 경로를 탐색하며, 탐색 지식을 이용하면 범위를 줄여 효율을 높일 수 있다.
+    tags: [chapter:02, state-space-search]
+
+  - id: l02-04
+    type: multiple-choice
+    prompt: 깊이우선 탐색 과정에서 다음 확장할 노드를 선택하는 기준을 올바르게 설명한 것은?
+    choices:
+      - { id: '1', text: 목표노드에 가까운 것을 먼저 확장한다. }
+      - { id: '2', text: 가장 최근에 생성된 노드를 먼저 확장한다. }
+      - { id: '3', text: 가장 오래전에 생성된 노드를 먼저 확장한다. }
+      - { id: '4', text: 깊이제한을 넘어서 노드를 먼저 확장한다. }
+    answers: ['2']
+    explanation: 깊이우선 탐색은 탐색 선봉방향으로 계속 진행하며 가장 최근에 생성된 노드를 먼저 확장한다. 목표에 도달할 수 없는 경로는 깊이제한 등을 이용해 무한 진행을 막는다.
+    tags: [chapter:02, depth-first-search]
+
+  - id: l02-05
+    type: multiple-choice
+    passageRefs: [gl02-graph-05]
+    prompt: 상태공간 그래프가 위 그림과 같을 때 너비우선 탐색으로 초기상태 A에서 출발하여 목표상태 G에 도달하는 동안 노드가 확장되는 순서는?
+    choices:
+      - { id: '1', text: A→B→E→I→J→C→F→K→G }
+      - { id: '2', text: A→C→F→K→G }
+      - { id: '3', text: A→B→C→D→E→F→G }
+      - { id: '4', text: A→C→G }
+    answers: ['3']
+    explanation: 너비우선 탐색은 먼저 생성된 노드를 먼저 확장하므로 레벨 순서대로 탐색한다. A 다음에는 B, C, D를 확장하고, 이후 다음 레벨의 E, F, G 순서로 확장되어 목표 G에 도달한다.
+    tags: [chapter:02, breadth-first-search]
+
+  - id: l02-06
+    type: multiple-choice
+    passageRefs: [gl02-graph-06]
+    prompt: 균일비용 탐색 과정에서 탐색트리가 위 그림과 같다. 노드 D, E, F, G, H, I의 경로비용은 각각 g(D)=12, g(E)=8, g(F)=10, g(G)=9, g(H)=6, g(I)=12이다. 노드 H를 확장하여 후계노드 B, D, J가 생성되었고 g(B), g(D), g(J)의 비용은 각각 2, 5, 1이다. 이때 OPEN과 CLOSED 처리 과정에 대한 설명으로 옳은 것은?
+    choices:
+      - { id: '1', text: 기존의 B는 CLOSED에서 제거하고, 새로 생성된 B를 OPEN에 넣는다. }
+      - { id: '2', text: 새로 생성된 D는 제거한다. }
+      - { id: '3', text: 기존의 D와 새로 생성된 D를 모두 제거한다. }
+      - { id: '4', text: 다음 확장할 노드는 J이다. }
+    answers: ['1']
+    explanation: 균일비용 탐색에서는 더 낮은 경로비용의 경로가 발견되면 기존 항목을 갱신한다. B는 이미 CLOSED에 있으나 새 경로 비용이 더 작으므로 기존 B를 제거하고 새 B를 OPEN에 넣는다. D는 기존 비용보다 새 비용이 크므로 제거되며, 다음 확장 노드는 비용이 가장 작은 J가 된다.
+    tags: [chapter:02, uniform-cost-search]
+
+  - id: l02-07
+    type: multiple-choice
+    prompt: 다음 중 항진명제가 아닌 것은?
+    choices:
+      - { id: '1', text: '$p \\vee \\sim p$' }
+      - { id: '2', text: '$p \\to q \\equiv \\sim p \\vee q$' }
+      - { id: '3', text: '$\\sim(p \\vee q) \\equiv (\\sim p) \\vee (\\sim q)$' }
+      - { id: '4', text: '$(\\sim p \\wedge \\sim q) \\vee (\\sim(p \\vee \\sim q)) \\equiv \\sim p$' }
+    answers: ['3']
+    explanation: 드모르간 법칙에 따르면 $\\sim(p \\vee q)$는 $(\\sim p) \\wedge (\\sim q)$와 동치이다. 선택지 3은 논리곱이 아니라 논리합을 사용하므로 항진명제가 아니다.
+    tags: [chapter:02, propositional-logic]
+
+  - id: l02-08
+    type: multiple-choice
+    prompt: 명제함수 $p(x,y)=x^2+y^2=8$일 때, $p(1,2)$와 $p(2,2)$의 진리값을 각각 구하면?
+    choices:
+      - { id: '1', text: '$p(1,2)=T,\\ p(2,2)=F$' }
+      - { id: '2', text: '$p(1,2)=F,\\ p(2,2)=T$' }
+      - { id: '3', text: '$p(1,2)=T,\\ p(2,2)=T$' }
+      - { id: '4', text: '$p(1,2)=F,\\ p(2,2)=F$' }
+    answers: ['2']
+    explanation: $p(x,y)$는 $x^2+y^2=8$의 참거짓을 판단하는 명제함수이다. $p(1,2)$는 $1^2+2^2=5$이므로 거짓이고, $p(2,2)$는 $2^2+2^2=8$이므로 참이다.
+    tags: [chapter:02, predicate-logic]
+
+  - id: l02-09
+    type: multiple-choice
+    prompt: 명제함수 $P(x)$와 $Q(x)$가 각각 $P(x)=x^2>0$, $Q(x)=x^2+2x+1>0$이고 $x$의 정의역이 실수인 경우 다음 중 옳은 것은?
+    choices:
+      - id: '1'
+        text: '$\forall x\ P(x)$는 거짓이다.'
+      - id: '2'
+        text: '$\forall x\ Q(x)$는 참이다.'
+      - id: '3'
+        text: '$\exists x\ P(x)$는 거짓이다.'
+      - id: '4'
+        text: '$\exists x\ P(x) \wedge \forall x\ Q(x)$는 참이다.'
+    answers: ['1']
+    explanation: $P(0)$은 $0^2>0$이 아니므로 $\\forall x\\ P(x)$는 거짓이다. $Q(x)=(x+1)^2>0$은 $x=-1$에서 거짓이므로 전칭 명제가 참이 아니다.
+    tags: [chapter:02, predicate-logic]
+
+  - id: l03-01
+    type: multiple-choice
+    prompt: 다음 중 경험적 탐색에 대한 설명으로 옳은 것은?
+    choices:
+      - { id: '1', text: 균일비용 탐색은 경험적 탐색 방법에 해당된다. }
+      - { id: '2', text: 영역적 지식을 이용하여 현 상태에서 목표에 도달하는 데 필요한 경로비용을 예측하여 탐색에 활용한다. }
+      - { id: '3', text: 경험적 탐색은 항상 최적 경로를 탐색하는 것을 보장한다. }
+      - { id: '4', text: 경험적 탐색은 초기상태로부터 현 상태에 도달하는 경로비용은 탐색에 고려하지 않는다. }
+    answers: ['2']
+    explanation: 경험적 탐색은 목표까지의 비용을 추정하는 경험적 지식이나 평가함수를 이용해 탐색 방향을 정한다. 경험적 정보는 성능을 개선할 수 있지만, 알고리즘 조건에 따라 최적해 보장이 달라진다.
+    tags: [chapter:03, heuristic-search]
+
+  - id: l03-02
+    type: multiple-choice
+    prompt: 언덕오르기 탐색에 대한 올바른 설명은?
+    choices:
+      - { id: '1', text: 최적 경로를 탐색하기 위한 알고리즘이다. }
+      - { id: '2', text: 출발노드로부터 목표노드까지의 전체 경로의 비용을 고려하여 탐색한다. }
+      - { id: '3', text: 너비우선 탐색과 유사한 순서로 탐색한다. }
+      - { id: '4', text: 현재 상태를 확장하여 생성된 후계노드들 중에서 다음 확장할 노드를 선택한다. }
+    answers: ['4']
+    explanation: 언덕오르기 탐색은 현재 상태의 후계노드 중 평가값이 좋은 노드를 선택해 이동한다. 전체 경로 비용을 고려하지 않으므로 지역 최적점에 빠질 수 있고, 최적 경로를 항상 보장하지 않는다.
+    tags: [chapter:03, hill-climbing]
+
+  - id: l03-03
+    type: multiple-choice
+    prompt: 평가함수가 전역최소치에 해당되는 해를 구하기 위한 모의 담금질에 대한 올바른 설명은?
+    choices:
+      - { id: '1', text: 어느 시점에서는 현재상태의 후계상태 중 평가함수값이 감소하는 상태로 이동한다. }
+      - { id: '2', text: 해를 매우 빠르게 탐색할 수 있는 알고리즘이다. }
+      - { id: '3', text: 현재상태보다 평가함수값이 더 높은 상태로 이동할 확률은 시간에 따라 감소한다. }
+      - { id: '4', text: 초기상태로부터 목표상태에 이르는 가장 최적의 경로를 따라 이동한다. }
+    answers: ['3']
+    explanation: 모의 담금질은 나쁜 이동도 확률적으로 허용해 지역 최적해를 벗어나게 한다. 이 확률은 온도와 시간에 따라 감소하므로, 시간이 지날수록 더 나쁜 상태로 이동할 가능성이 줄어든다.
+    tags: [chapter:03, simulated-annealing]
+
+  - id: l03-04
+    type: multiple-choice
+    prompt: A* 알고리즘에서 OPEN 리스트에 존재하는 노드 n의 평가함수는 어떻게 정의되는가? 단, g(n)은 출발노드로부터 n까지의 경로비용, ĝ(n)은 g(n)의 예측비용, h(n)은 n으로부터 목표노드까지의 경로비용, ĥ(n)은 h(n)의 예측비용이다.
+    choices:
+      - { id: '1', text: '$g(n)$' }
+      - { id: '2', text: '$\\hat{h}(n)$' }
+      - { id: '3', text: '$\\hat{g}(n)+h(n)$' }
+      - { id: '4', text: '$g(n)+\\hat{h}(n)$' }
+    answers: ['4']
+    explanation: A*는 시작 노드에서 현재 노드까지의 실제 비용 $g(n)$과 현재 노드에서 목표까지의 추정 비용 $\\hat{h}(n)$을 더한 $f(n)=g(n)+\\hat{h}(n)$으로 노드를 평가한다.
+    tags: [chapter:03, a-star]
+
+  - id: l03-05
+    type: multiple-choice
+    prompt: A* 알고리즘에서 최소비용 경로를 탐색하려면 어느 상태에서든 항상 (  )이 성립하도록 평가함수를 정의한다. 괄호에 넣을 내용은? 단, g(n)은 출발노드로부터 n까지의 경로비용, ĝ(n)은 g(n)의 예측비용, h(n)은 n으로부터 목표노드까지의 경로비용, ĥ(n)은 h(n)의 예측비용이다.
+    choices:
+      - { id: '1', text: '$\\hat{h}(n) \\le h(n)$' }
+      - { id: '2', text: '$\\hat{h}(n) \\ge h(n)$' }
+      - { id: '3', text: '$g(n) \\le \\hat{h}(n)$' }
+      - { id: '4', text: '$\\hat{g}(n)-0$' }
+    answers: ['1']
+    explanation: A*가 최적성을 보장하려면 휴리스틱이 실제 남은 비용을 과대평가하지 않아야 한다. 즉 모든 상태에서 $\\hat{h}(n) \\le h(n)$인 허용적 휴리스틱을 사용해야 한다.
+    tags: [chapter:03, a-star, admissible-heuristic]
+
+  - id: l04-01
+    type: multiple-choice
+    passageRefs: [gl04-minimax-01]
+    prompt: 다음 최대최소 탐색트리에서 A의 평가함수와 다음으로 선택할 수는 무엇인가?
+    choices:
+      - { id: '1', text: '3, B' }
+      - { id: '2', text: '1, C' }
+      - { id: '3', text: '3, D' }
+      - { id: '4', text: '12, E' }
+    answers: ['3']
+    explanation: B, C, D, E는 최소화 노드이므로 각각 후계노드 평가값 중 작은 값 2, 1, 3, 2를 갖는다. 최대화 노드 A는 이 중 가장 큰 3을 선택하므로 다음 수는 D이다.
+    tags: [chapter:04, minimax]
+
+  - id: l04-02
+    type: multiple-choice
+    prompt: α-β 가지치기에 대한 설명으로 올바른 것은?
+    choices:
+      - { id: '1', text: 루트로부터 현재 노드까지의 경로비용에 따라 다음 노드를 선택한다. }
+      - { id: '2', text: 넌터미널 트리 탐색을 위한 확장 전략이다. }
+      - { id: '3', text: 최소화 노드에서 한 후계노드의 가치가 v일 때 β<v이면 그 최소화 노드의 나머지 후계노드들은 가지치기한다. }
+      - { id: '4', text: 최대화 노드에서 한 후계노드의 가치가 v일 때 α>v라면 그 최대화 노드의 나머지 후계노드들은 가지치기한다. }
+    answers: ['4']
+    explanation: α-β 가지치기는 미니맥스 탐색에서 불필요한 하위 트리를 잘라내는 방법이다. 최대화 노드와 최소화 노드는 각각 α와 β 한계를 이용하며, 더 좋은 선택 가능성이 없다고 판단되는 분기는 확장하지 않는다.
+    tags: [chapter:04, alpha-beta-pruning]
+
+  - id: l04-03
+    type: multiple-choice
+    passageRefs: [gl04-alpha-beta-03]
+    prompt: 다음 최대최소 탐색트리에서 α-β 가지치기를 적용할 경우 C의 나머지 후계노드들을 가지치기할 수 있는 x의 값에 해당되는 것은?
+    choices:
+      - { id: '1', text: '2' }
+      - { id: '2', text: '5' }
+      - { id: '3', text: '8' }
+      - { id: '4', text: '10' }
+    answers: ['1']
+    explanation: C는 최소화 노드이고 현재 상위 최대화 노드에서 α=4가 확보되어 있다. C의 첫 후계노드 F의 값이 4 이하가 되면 C의 값은 더 이상 A의 현재 선택을 이길 수 없으므로 나머지 후계노드는 가지치기할 수 있다. 선택지 중 이 조건을 만족하는 값은 2이다.
+    tags: [chapter:04, alpha-beta-pruning]
+
+  - id: l04-04
+    type: multiple-choice
+    prompt: 다음 중 몬테카를로 트리 탐색에 대한 설명으로 올바른 것은?
+    choices:
+      - { id: '1', text: 어떠한 상태의 가치를 추정할 수 있는 경험적 평가함수가 필요하다. }
+      - { id: '2', text: 롤아웃을 통해 탐색 과정에서 새로 생성된 노드의 가치를 추정한다. }
+      - { id: '3', text: 확장 후 시뮬레이션 결과를 조상노드에 전달하여 통계를 업데이트하는 것이다. }
+      - { id: '4', text: 선택을 위한 전략은 탐사(exploration)는 고려하지 않고 활용(exploitation)에 중점을 둔다. }
+    answers: ['2']
+    explanation: 몬테카를로 트리 탐색은 선택, 확장, 시뮬레이션, 역전파 단계를 반복한다. 새로 확장된 노드는 롤아웃 시뮬레이션으로 가치를 추정하고, 결과는 조상노드 통계에 반영된다.
+    tags: [chapter:04, monte-carlo-tree-search]
+
+  - id: l04-05
+    type: multiple-choice
+    prompt: 집합 $A=\\{a,b,c\\}$의 멱집합의 원소가 아닌 것은?
+    choices:
+      - { id: '1', text: '$\\{\\}$' }
+      - { id: '2', text: '$\\{a\\}$' }
+      - { id: '3', text: '$\\{b,c\\}$' }
+      - { id: '4', text: '$\\{\\{a,b,c\\}\\}$' }
+    answers: ['4']
+    explanation: 멱집합의 원소는 원래 집합의 부분집합이다. $\\{a,b,c\\}$ 자체는 부분집합이지만, 그것을 다시 원소로 갖는 집합 $\\{\\{a,b,c\\}\\}$는 $A$의 부분집합이 아니므로 멱집합의 원소가 아니다.
+    tags: [chapter:04, set-theory]
+
+  - id: l04-06
+    type: multiple-choice
+    prompt: '$U=\\{1,2,3,4,5\\}$, $A=\\{1,2,3\\}$, $B=\\{2,3,4\\}$일 때 ① $A\\cup B=\\{1,2,3,4\\}$, ② $A\\cap B=\\{2,3\\}$, ③ $A^c=\\{4,5\\}$, ④ $A\\oplus B=\\{1\\}$ 중 틀린 것은?'
+    choices:
+      - { id: '1', text: ① 번 }
+      - { id: '2', text: ② 번 }
+      - { id: '3', text: ③ 번 }
+      - { id: '4', text: ④ 번 }
+    answers: ['4']
+    explanation: 대칭차 $A\\oplus B$는 두 집합 중 한쪽에만 속하는 원소들의 집합이다. 여기서는 $\\{1,4\\}$가 되므로 ④의 $\\{1\\}$은 틀렸다.
+    tags: [chapter:04, set-theory]
+
+  - id: l04-07
+    type: multiple-choice
+    prompt: '$A=\\{1,2,3\\}$일 때 ① $A\\cup\\emptyset=A$, ② $A\\cap\\emptyset=\\emptyset$, ③ $|A\\cup\\emptyset|=0$, ④ $|P(A)|=8$ 중 틀린 것은?'
+    choices:
+      - { id: '1', text: ① 번 }
+      - { id: '2', text: ② 번 }
+      - { id: '3', text: ③ 번 }
+      - { id: '4', text: ④ 번 }
+    answers: ['3']
+    explanation: $A\\cup\\emptyset=A$이므로 $|A\\cup\\emptyset|=|A|=3$이다. 따라서 ③은 틀렸고, 원소가 3개인 집합의 멱집합 크기는 $2^3=8$이다.
+    tags: [chapter:04, set-theory]
+
+  - id: l04-08
+    type: multiple-choice
+    prompt: 이산수학을 신청한 학생이 21명이고, 선형대수를 신청한 학생이 10명, 그리고 두 과목 모두 신청한 학생이 8명이었다. 이산수학 또는 선형대수를 신청한 학생은 모두 몇 명인가?
+    choices:
+      - { id: '1', text: '13' }
+      - { id: '2', text: '23' }
+      - { id: '3', text: '29' }
+      - { id: '4', text: '31' }
+    answers: ['2']
+    explanation: 포함배제 원리에 따라 $|A\\cup B|=|A|+|B|-|A\\cap B|=21+10-8=23$이다.
+    tags: [chapter:04, set-theory, inclusion-exclusion]
+
+  - id: l04-09
+    type: multiple-choice
+    prompt: '$U$가 전체집합이고 $A,B,C$가 $U$의 부분집합이라고 할 때, ① $A\\cup(A\\cap B)=A$, ② $(A^c)^c=A^c$, ③ $A\\cap A^c=U$, ④ $A\\cup(B\\cap C)=(A\\cup B)\\cap C$ 중 올바른 것은?'
+    choices:
+      - { id: '1', text: ① 번 }
+      - { id: '2', text: ② 번 }
+      - { id: '3', text: ③ 번 }
+      - { id: '4', text: ④ 번 }
+    answers: ['1']
+    explanation: 흡수법칙에 의해 $A\\cup(A\\cap B)=A$가 성립한다. 이중여집합은 $(A^c)^c=A$이고, $A\\cap A^c=\\emptyset$이므로 다른 선택지는 성립하지 않는다.
+    tags: [chapter:04, set-theory]
+
+  - id: l04-10
+    type: multiple-choice
+    prompt: '$U$가 전체집합이고 $A\\subseteq B\\subseteq U$일 때, ① $A\\cup B=A$, ② $A\\cap B^c=\\emptyset$, ③ $B^c\\subseteq A^c$, ④ $A-B=\\emptyset$ 중 틀린 것은?'
+    choices:
+      - { id: '1', text: ① 번 }
+      - { id: '2', text: ② 번 }
+      - { id: '3', text: ③ 번 }
+      - { id: '4', text: ④ 번 }
+    answers: ['1']
+    explanation: $A\\subseteq B$이면 $A\\cup B=B$이다. 따라서 $A\\cup B=A$는 일반적으로 성립하지 않는다. 나머지는 부분집합 관계에서 성립한다.
+    tags: [chapter:04, set-theory]
+
+  - id: l05-01
+    type: multiple-choice
+    prompt: 지식기반 시스템에 대한 적절한 설명은?
+    choices:
+      - { id: '1', text: 모든 분야에 대한 지식을 축적하여 문제풀이에 사용한다. }
+      - { id: '2', text: 문제분야의 지식과 추론을 담당하는 추론기관이 분리되어 있다. }
+      - { id: '3', text: 사용자 인터페이스는 지식기반 시스템의 추론을 담당한다. }
+      - { id: '4', text: 문제분야의 전문지식을 메타지식이라고 한다. }
+    answers: ['2']
+    explanation: 지식기반 시스템은 지식베이스, 추론기관, 사용자 인터페이스 등으로 구성된다. 지식베이스는 문제 영역 지식을 저장하고, 추론기관은 저장된 지식을 이용해 결론을 도출한다.
+    tags: [chapter:05, knowledge-based-system]
+
+  - id: l05-02
+    type: multiple-choice
+    passageRefs: [gl05-declarative-02]
+    prompt: 위 지문 내용 중 선언적 지식에 대한 설명을 모두 고른 것은?
+    choices:
+      - { id: '1', text: (ㄱ), (ㄴ) }
+      - { id: '2', text: (ㄱ), (ㄷ) }
+      - { id: '3', text: (ㄴ), (ㄷ) }
+      - { id: '4', text: (ㄷ), (ㄹ) }
+    answers: ['4']
+    explanation: 선언적 지식은 상호 독립적이고 단편적인 지식을 정적으로 나열한 형태이며, 지식 사용을 위해 별도 추론기관이 필요하다. 절차적 명령어나 지식 자체에 내포된 제어정보는 선언적 지식의 특징이 아니다.
+    tags: [chapter:05, knowledge-representation, declarative-knowledge]
+
+  - id: l05-03
+    type: multiple-choice
+    passageRefs: [gl05-semantic-net-03]
+    prompt: 위 지문 시맨틱 네트에서 A에 대해 구할 수 있는 속성과 그 값이 잘못된 것은?
+    choices:
+      - { id: '1', text: 배기량 - 1,591 }
+      - { id: '2', text: 승차인원 - 5 }
+      - { id: '3', text: has-part - 엔진 }
+      - { id: '4', text: has-part - 선루프 }
+    answers: ['4']
+    explanation: A는 승용차의 하위 개체이므로 승용차와 자동차의 속성을 상속받아 승차인원 5와 has-part 엔진을 구할 수 있다. 그러나 선루프는 B에 직접 연결된 속성으로, A에 제공되는 속성이 아니다.
+    tags: [chapter:05, semantic-network, inheritance]
+
+  - id: l05-04
+    type: multiple-choice
+    prompt: 프레임을 이용한 지식표현 방법에 대한 올바른 설명은?
+    choices:
+      - { id: '1', text: 절차적 지식을 표현할 수 있다. }
+      - { id: '2', text: 기호논리를 이용하여 지식을 표현한다. }
+      - { id: '3', text: 특성상속을 사용할 수 없다. }
+      - { id: '4', text: IF 조건 THEN 결론 형식의 지식표현 방법이다. }
+    answers: ['1']
+    explanation: 프레임은 슬롯과 값으로 개념을 표현하며, 슬롯에 연결된 부가 프로시저를 통해 절차적 지식도 표현할 수 있다. 또한 프레임 계층을 이용해 특성 상속을 지원한다.
+    tags: [chapter:05, frame, knowledge-representation]
+
+  - id: l05-05
+    type: multiple-choice
+    prompt: 다음 행렬의 연산 법칙 중 올바르지 않은 것은?
+    choices:
+      - { id: '1', text: '$A+B=B+A$' }
+      - { id: '2', text: '$(A+B)C=AC+BC$' }
+      - { id: '3', text: '$A+(-A)=O$' }
+      - { id: '4', text: '$A(BC)=(BC)A$' }
+    answers: ['4']
+    explanation: 행렬곱은 일반적으로 교환법칙이 성립하지 않는다. 결합법칙은 $A(BC)=(AB)C$ 형태로 성립하지만, $A(BC)=(BC)A$는 일반적으로 성립하지 않는다.
+    tags: [chapter:05, matrix]
+
+  - id: l05-06
+    type: multiple-choice
+    prompt: |
+      행렬 $A=\\begin{bmatrix}1&1&1\\\\0&1&0\\\\0&1&1\\end{bmatrix}$,
+      $B=\\begin{bmatrix}1&1&1\\\\0&1&1\\\\1&1&0\\end{bmatrix}$일 때 행렬의 곱 $A\\times B$를 구하면?
+    choices:
+      - id: '1'
+        text: '$\\begin{bmatrix}1&1&1\\\\0&1&0\\\\0&1&0\\end{bmatrix}$'
+      - id: '2'
+        text: '$\\begin{bmatrix}2&3&2\\\\0&1&1\\\\1&2&1\\end{bmatrix}$'
+      - id: '3'
+        text: '$\\begin{bmatrix}2&1&2\\\\0&1&1\\\\1&0&1\\end{bmatrix}$'
+      - id: '4'
+        text: '$\\begin{bmatrix}1&1&2\\\\0&1&1\\\\1&0&1\\end{bmatrix}$'
+    answers: ['2']
+    explanation: 행렬곱은 각 행과 열의 내적으로 계산한다. 첫 행과 세 열의 값은 각각 2, 3, 2이고, 나머지 행도 같은 방식으로 계산하면 선택지 2의 행렬이 된다.
+    tags: [chapter:05, matrix, matrix-multiplication]
+
+  - id: l05-07
+    type: multiple-choice
+    prompt: |
+      다음 일차연립방정식의 해를 가우스 소거법을 통해서 구하시오.
+
+      $$
+      \\begin{aligned}
+      x_1+2x_2&=-1\\\\
+      2x_1+3x_2&=5
+      \\end{aligned}
+      $$
+    choices:
+      - { id: '1', text: '$x_1=-7,\\ x_2=13$' }
+      - { id: '2', text: '$x_1=1,\\ x_2=-1$' }
+      - { id: '3', text: '$x_1=13,\\ x_2=-7$' }
+      - { id: '4', text: '$x_1=3,\\ x_2=-2$' }
+    answers: ['3']
+    explanation: 첫 식에서 두 배를 뺀 형태로 소거하면 $-x_2=7$이므로 $x_2=-7$이다. 이를 $x_1+2x_2=-1$에 대입하면 $x_1=13$이다.
+    tags: [chapter:05, linear-equation, gaussian-elimination]
+
+  - id: l05-08
+    type: multiple-choice
+    prompt: |
+      다음 지문의 행렬
+      $$
+      \\begin{bmatrix}
+      2&0&0\\\\
+      0&2&0\\\\
+      0&0&2
+      \\end{bmatrix}
+      $$
+      을 설명한 것으로 옳지 않은 것은?
+    choices:
+      - { id: '1', text: 단위행렬 }
+      - { id: '2', text: 대각행렬 }
+      - { id: '3', text: 스칼라행렬 }
+      - { id: '4', text: 대칭행렬 }
+    answers: ['1']
+    explanation: 주어진 행렬은 대각 원소가 모두 2이고 나머지가 0인 스칼라행렬이며, 대각행렬이자 대칭행렬이다. 단위행렬은 대각 원소가 모두 1이어야 하므로 옳지 않다.
+    tags: [chapter:05, matrix]
+
+  - id: l05-09
+    type: multiple-choice
+    prompt: |
+      행렬
+      $$
+      A=\\begin{bmatrix}
+      1&1&1&1\\\\
+      0&1&0&0\\\\
+      1&0&0&1
+      \\end{bmatrix}
+      $$
+      의 전치행렬로 옳은 것은?
+    choices:
+      - id: '1'
+        text: '$A^T=\\begin{bmatrix}1&1&1&1\\\\0&1&0&0\\\\1&0&0&1\\end{bmatrix}$'
+      - id: '2'
+        text: '$A^T=\\begin{bmatrix}1&0&0&1\\\\0&1&0&0\\\\1&1&1&1\\end{bmatrix}$'
+      - id: '3'
+        text: '$A^T=\\begin{bmatrix}1&0&1\\\\1&1&0\\\\1&0&0\\\\1&0&1\\end{bmatrix}$'
+      - id: '4'
+        text: '$A^T=\\begin{bmatrix}1&0&1\\\\0&1&1\\\\0&0&1\\\\1&0&1\\end{bmatrix}$'
+    answers: ['3']
+    explanation: 전치행렬은 원래 행렬의 행과 열을 서로 바꾼 행렬이다. 원래 행렬의 네 열 $(1,0,1)$, $(1,1,0)$, $(1,0,0)$, $(1,0,1)$이 전치행렬의 네 행이 된다.
+    tags: [chapter:05, matrix, transpose]
+
+  - id: l05-10
+    type: multiple-choice
+    prompt: |
+      두 개의 부울행렬 $A=\\begin{bmatrix}1&0&1\\\\0&1&0\\\\0&1&0\\end{bmatrix}$,
+      $B=\\begin{bmatrix}1&0&1\\\\1&1&1\\\\0&1&1\\end{bmatrix}$가 다음과 같을 때 $A$와 $B$의 합(join)을 구하면?
+    choices:
+      - id: '1'
+        text: '$\\begin{bmatrix}1&1&1\\\\0&1&0\\\\0&1&0\\end{bmatrix}$'
+      - id: '2'
+        text: '$\\begin{bmatrix}1&0&1\\\\1&1&1\\\\0&1&1\\end{bmatrix}$'
+      - id: '3'
+        text: '$\\begin{bmatrix}1&1&1\\\\0&1&1\\\\1&0&1\\end{bmatrix}$'
+      - id: '4'
+        text: '$\\begin{bmatrix}1&1&1\\\\1&1&1\\\\1&1&1\\end{bmatrix}$'
+    answers: ['2']
+    explanation: 부울행렬의 join은 같은 위치 원소에 논리합 OR을 적용한다. $A$에서 1인 위치는 이미 $B$에서도 1이거나 $B$의 1과 합쳐져 결과가 $B$와 같은 선택지 2가 된다.
+    tags: [chapter:05, boolean-matrix]
+
+  - id: l06-01
+    type: multiple-choice
+    prompt: $p \\to q$와 동치인 논리식은?
+    choices:
+      - { id: '1', text: '$p \\wedge q$' }
+      - { id: '2', text: '$\\sim p \\wedge q$' }
+      - { id: '3', text: '$p \\vee \\sim q$' }
+      - { id: '4', text: '$\\sim p \\vee q$' }
+    answers: ['4']
+    explanation: 조건명제 $p \\to q$는 $p$가 참이고 $q$가 거짓인 경우에만 거짓이다. 이와 같은 진리값을 갖는 논리식은 $\\sim p \\vee q$이다.
+    tags: [chapter:06, propositional-logic]
+
+  - id: l06-02
+    type: multiple-choice
+    prompt: 다음 중 언언표준형에 해당되는 논리식은? 단, p, q, r, s는 기본명제이다.
+    choices:
+      - { id: '1', text: '$(p \\wedge q) \\vee (\\sim p \\wedge r)$' }
+      - { id: '2', text: '$(\\sim p \\vee q \\vee \\sim r) \\wedge (p \\vee \\sim s)$' }
+      - { id: '3', text: '$\\sim(p \\vee q) \\wedge (p \\vee r)$' }
+      - { id: '4', text: '$\\sim(p \\vee q \\vee r)$' }
+    answers: ['2']
+    explanation: 언언표준형은 리터럴들의 논리합으로 이루어진 절들이 논리곱으로 연결된 형태이다. 선택지 2는 각 절이 리터럴의 논리합이고, 절들이 논리곱으로 연결되어 있다.
+    tags: [chapter:06, clausal-form]
+
+  - id: l06-03
+    type: multiple-choice
+    prompt: 다음 중 긍정논법에 의한 추론에 해당되는 것은?
+    choices:
+      - { id: '1', text: p와 p→q가 참이면 q가 참이다. }
+      - { id: '2', text: ~p와 p→q가 참이면 ~q가 참이다. }
+      - { id: '3', text: q와 p→q가 참이면 p가 참이다. }
+      - { id: '4', text: ~q와 p→q가 참이면 p가 참이다. }
+    answers: ['1']
+    explanation: 긍정논법은 $p$와 $p\\to q$가 참일 때 $q$를 결론으로 도출하는 추론 규칙이다. 조건문의 전건을 긍정하여 후건을 얻는 방식이다.
+    tags: [chapter:06, inference, modus-ponens]
+
+  - id: l06-04
+    type: multiple-choice
+    prompt: $P(x,y) \\vee \\sim Q(x)$와 $Q(A) \\vee R(B)$로부터 도출되는 결과는 무엇인가? 단, x, y는 객체변수, A, B는 객체상수이다.
+    choices:
+      - { id: '1', text: '$P(A,y) \\vee R(B)$' }
+      - { id: '2', text: '$P(x,y) \\vee \\sim R(B)$' }
+      - { id: '3', text: '$P(A,B) \\wedge R(B)$' }
+      - { id: '4', text: '$P(x,y) \\vee R(y)$' }
+    answers: ['1']
+    explanation: $\\sim Q(x)$와 $Q(A)$가 상보 리터럴이 되도록 $x$를 $A$로 단일화한다. 두 리터럴을 제거하고 남은 식을 연결하면 $P(A,y) \\vee R(B)$가 도출된다.
+    tags: [chapter:06, resolution, unification]
+
+  - id: l06-05
+    type: multiple-choice
+    prompt: 도출연역을 이용한 정리증명 과정에 대한 올바른 설명은?
+    choices:
+      - { id: '1', text: 모든 공리를 선언표준형으로 변환한다. }
+      - { id: '2', text: 증명하고자 하는 정리를 부정하여 거짓을 이끌어냄으로써 증명한다. }
+      - { id: '3', text: 모든 절들은 리터럴들의 논리곱으로 표현된다. }
+      - { id: '4', text: 귀납법을 이용하여 증명한다. }
+    answers: ['2']
+    explanation: 도출연역은 증명할 명제의 부정을 공리 집합에 추가한 뒤, 도출 규칙을 반복 적용하여 모순을 얻는 반박 증명 방식이다.
+    tags: [chapter:06, resolution, theorem-proving]
+
+  - id: l06-06
+    type: multiple-choice
+    passageRefs: [gl06-relation-06]
+    prompt: 다음 관계에 대한 설명으로 옳은 것은?
+    choices:
+      - { id: '1', text: 반사적이 아니다. }
+      - { id: '2', text: 추이적이 아니다. }
+      - { id: '3', text: 대칭적이다. }
+      - { id: '4', text: 반사적이다. }
+    answers: ['4']
+    explanation: 세 노드 1, 2, 3에 모두 자기 자신으로 가는 루프가 있으므로 관계는 반사적이다. 방향 간선이 모두 역방향으로 존재하지는 않으므로 대칭적이라고 볼 수 없다.
+    tags: [chapter:06, relation, reflexive]
+
+  - id: l06-07
+    type: multiple-choice
+    passageRefs: [gl06-relation-07]
+    prompt: 다음 관계에 대한 설명으로 옳지 않은 것은?
+    choices:
+      - { id: '1', text: 반사적이 아니다. }
+      - { id: '2', text: 추이적이다. }
+      - { id: '3', text: 대칭적이다. }
+      - { id: '4', text: 대칭적이 아니다. }
+    answers: ['3']
+    explanation: 노드 3에서 다른 노드로 향하는 간선의 역방향 간선이 모두 존재하지 않으므로 대칭적이지 않다. 따라서 '대칭적이다'라는 설명이 옳지 않다.
+    tags: [chapter:06, relation, symmetry, transitive]
+
+  - id: l06-08
+    type: multiple-choice
+    prompt: |
+      집합 $A=\\{1,2,3,4,5,6\\}$와 집합 $B=\\{a,b,c,d\\}$이고
+      $A$에서 $B$로의 관계 $R=\\{(1,b),(2,c),(3,d),(4,a)\\}$와
+      $B$에서 $A$로의 관계 $S=\\{(a,3),(b,4),(c,5),(d,6)\\}$가 다음과 같을 때,
+      합성 관계 $S\\circ R$으로서 옳은 것은?
+    choices:
+      - { id: '1', text: '$S\\circ R=\\{(1,4),(2,5),(3,6),(4,3)\\}$' }
+      - { id: '2', text: '$S\\circ R=\\{(1,b),(2,c),(3,d),(4,a)\\}$' }
+      - { id: '3', text: '$S\\circ R=\\{(a,4),(b,1),(c,2),(d,3)\\}$' }
+      - { id: '4', text: '$S\\circ R=\\{(a,d),(b,a),(c,b),(d,a)\\}$' }
+    answers: ['1']
+    explanation: $R$로 $1\\to b$, $2\\to c$, $3\\to d$, $4\\to a$가 되고, 이어 $S$로 $b\\to4$, $c\\to5$, $d\\to6$, $a\\to3$이 된다. 따라서 합성 관계는 선택지 1이다.
+    tags: [chapter:06, relation, composition]
+
+  - id: l06-09
+    type: multiple-choice
+    prompt: 동치에 대한 설명으로 옳은 것은?
+    choices:
+      - { id: '1', text: 집합 A에 대한 관계 R이 있을 때, R이 반사적, 대칭적, 추이적이지 않으면 R은 동치관계이다. }
+      - { id: '2', text: 집합 A에 대한 관계 R이 있을 때, R이 반사적, 대칭적, 추이적이면 R은 동치관계이다. }
+      - { id: '3', text: 집합 A에 대한 관계 R이 있을 때, R이 반사적이며, 대칭적이지 않으며, 추이적이면 R은 동치관계이다. }
+      - { id: '4', text: 집합 A에 대한 관계 R이 있을 때, R이 반사적이지 않으며, 대칭적, 추이적이면 R은 동치관계이다. }
+    answers: ['2']
+    explanation: 동치관계는 한 집합 위의 관계가 반사성, 대칭성, 추이성을 모두 만족할 때 성립한다.
+    tags: [chapter:06, relation, equivalence-relation]
+
+  - id: l06-10
+    type: multiple-choice
+    prompt: |
+      다음 부울행렬
+      $$
+      \\begin{bmatrix}
+      1&1&0\\\\
+      1&1&1\\\\
+      0&1&1
+      \\end{bmatrix}
+      $$
+      에 대한 설명으로 옳은 것은?
+    choices:
+      - { id: '1', text: 반사적, 대칭적이다. }
+      - { id: '2', text: 대칭적, 추이적이다. }
+      - { id: '3', text: 반사적, 추이적이다. }
+      - { id: '4', text: 반사적이 아니고, 추이적이 아니다. }
+    answers: ['1']
+    explanation: 주대각선 원소가 모두 1이므로 반사적이고, 행렬이 주대각선을 기준으로 대칭이므로 대칭적이다. 그러나 1과 2, 2와 3의 관계가 있어도 1과 3의 관계가 없으므로 추이적이지 않다.
+    tags: [chapter:06, relation, boolean-matrix]
+
+  - id: l07-01
+    type: multiple-choice
+    prompt: |
+      퍼지집합 $X=\\{(a,1.0),(b,0.7),(c,0.2),(d,0.1)\\}$,
+      $Y=\\{(b,0.2),(c,0.5),(d,0.8),(e,1.0)\\}$와 같을 때
+      퍼지집합 연산이 올바른 것은? 단, $A^c$는 $A$의 여집합을 나타낸다.
+    choices:
+      - { id: '1', text: '$X^c=\\{(b,0.3),(c,0.8),(d,0.9)\\}$' }
+      - { id: '2', text: '$X\\cup Y=\\{(a,1.0),(b,0.7),(c,0.5),(d,0.8),(e,1.0)\\}$' }
+      - { id: '3', text: '$X\\cap Y=\\{(a,1.0),(b,0.2),(c,0.2),(d,0.1),(e,1.0)\\}$' }
+      - { id: '4', text: '$Y^c=\\{(a,0.0),(b,0.8),(c,0.5),(d,0.2),(e,0.0)\\}$' }
+    answers: ['2']
+    explanation: 퍼지 합집합은 각 원소의 소속함수값 중 최댓값을 취한다. 따라서 $a,b,c,d,e$의 값은 각각 1.0, 0.7, 0.5, 0.8, 1.0이 되어 선택지 2가 옳다.
+    tags: [chapter:07, fuzzy-set]
+
+  - id: l07-02
+    type: multiple-choice
+    prompt: 다음 중 퍼지논리에서 성립하는 등식은 무엇인가?
+    choices:
+      - { id: '1', text: '$a \\wedge 0=a$' }
+      - { id: '2', text: '$a \\wedge \\sim a=0$' }
+      - { id: '3', text: '$a \\vee \\sim a=1$' }
+      - { id: '4', text: '$\\sim(a \\vee b)=\\sim a \\wedge \\sim b$' }
+    answers: ['4']
+    explanation: 퍼지논리에서도 드모르간 법칙은 성립한다. 하지만 보통 $a\\wedge0=0$이고, 배중률과 모순율은 고전논리처럼 항상 성립하지 않는다.
+    tags: [chapter:07, fuzzy-logic]
+
+  - id: l07-03
+    type: multiple-choice
+    passageRefs: [gl07-fuzzy-rule-03]
+    prompt: '"IF (수위가 높다) THEN (밸브를 연다)"라는 퍼지 규칙이 있다. 제어 대상으로부터 관측된 사실이 "수위가 상당히 높다"이며, 이에 대한 소속함수가 위 그림과 같을 때 이 규칙을 적용한 결과 얻는 결론의 소속함수는?'
+    choices:
+      - id: '1'
+        text: ①
+        image:
+          path: images/subjects/artificial-intelligence/lecture-exercises/l07-03-choice-1.png
+          alt: 7강 3번 퍼지 결론 선택지 1
+      - id: '2'
+        text: ②
+        image:
+          path: images/subjects/artificial-intelligence/lecture-exercises/l07-03-choice-2.png
+          alt: 7강 3번 퍼지 결론 선택지 2
+      - id: '3'
+        text: ③
+        image:
+          path: images/subjects/artificial-intelligence/lecture-exercises/l07-03-choice-3.png
+          alt: 7강 3번 퍼지 결론 선택지 3
+      - id: '4'
+        text: ④
+        image:
+          path: images/subjects/artificial-intelligence/lecture-exercises/l07-03-choice-4.png
+          alt: 7강 3번 퍼지 결론 선택지 4
+    answers: ['4']
+    explanation: 관측 사실과 전건의 일치 정도를 구한 뒤, 그 값으로 결론부의 소속함수를 절단한다. 원문 그래프에서는 결론 '연다'의 소속함수가 해당 수준에서 잘린 형태가 되어 선택지 4가 된다.
+    tags: [chapter:07, fuzzy-inference]
+
+  - id: l07-04
+    type: multiple-choice
+    prompt: |
+      두 함수 $f: Z\\to Z$, $g: Z\\to Z$가 $f(x)=2x+2$, $g(x)=3x+1$일 때,
+      합성함수 $g\\circ f$에 대한 것으로 옳은 것은?
+    choices:
+      - { id: '1', text: '$6x^2+8x+2$' }
+      - { id: '2', text: '$6x+4$' }
+      - { id: '3', text: '$5x+3$' }
+      - { id: '4', text: '$6x+7$' }
+    answers: ['4']
+    explanation: $(g\\circ f)(x)=g(f(x))=3(2x+2)+1=6x+7$이다.
+    tags: [chapter:07, function, composition]
+
+  - id: l07-05
+    type: multiple-choice
+    prompt: |
+      두 함수 $f: Z\\to Z$, $g: Z\\to Z$가 $f(x)=2x$, $g(x)=2x+3$일 때,
+      합성함수 $f\\circ g$에 대한 것으로 옳은 것은?
+    choices:
+      - { id: '1', text: '$4x^2+6x$' }
+      - { id: '2', text: '$4x+3$' }
+      - { id: '3', text: '$4x+6$' }
+      - { id: '4', text: '$4x^2+3$' }
+    answers: ['3']
+    explanation: $(f\\circ g)(x)=f(g(x))=2(2x+3)=4x+6$이다.
+    tags: [chapter:07, function, composition]
+
+  - id: l07-06
+    type: multiple-choice
+    prompt: 다음에 대해 옳은 것은?
+    choices:
+      - { id: '1', text: '$0!=0$' }
+      - { id: '2', text: '$1!=1$' }
+      - { id: '3', text: '$2!=3$' }
+      - { id: '4', text: '$4!=36$' }
+    answers: ['2']
+    explanation: 팩토리얼은 $n!=n(n-1)\\cdots1$이며 $0!=1$, $1!=1$, $2!=2$, $4!=24$이다. 따라서 옳은 것은 선택지 2이다.
+    tags: [chapter:07, factorial]
+
+  - id: l07-07
+    type: multiple-choice
+    prompt: 수식을 간단히 표현한 것으로 옳은 것은?
+    choices:
+      - { id: '1', text: '$\\frac{7!}{5!}=42$' }
+      - { id: '2', text: '$\\frac{(n-2)!}{n!}=\\frac{n-1}{n}$' }
+      - { id: '3', text: '$\\frac{4!}{3!}=3$' }
+      - { id: '4', text: '$\\frac{n!}{(n-1)!}=n-1$' }
+    answers: ['1']
+    explanation: $7!/5!=7\\cdot6=42$이다. 나머지는 각각 $1/(n(n-1))$, 4, n이므로 제시된 값과 다르다.
+    tags: [chapter:07, factorial]
+
+  - id: l07-08
+    type: multiple-choice
+    prompt: 다음 지문에 대한 값으로 옳은 것은? $\\frac{5!}{6!}$
+    choices:
+      - { id: '1', text: '6' }
+      - { id: '2', text: '5' }
+      - { id: '3', text: '$\\frac{1}{6}$' }
+      - { id: '4', text: '$\\frac{1}{6!}$' }
+    answers: ['3']
+    explanation: $6!=6\\cdot5!$이므로 $5!/6!=1/6$이다.
+    tags: [chapter:07, factorial]
+
+  - id: l07-09
+    type: multiple-choice
+    prompt: 다음 함수의 값으로 옳지 않은 것은?
+    choices:
+      - { id: '1', text: '$[3.2]=3$' }
+      - { id: '2', text: '$[4.2]=5$' }
+      - { id: '3', text: '$[-0.5]=-1$' }
+      - { id: '4', text: '$[-1.5]=-2$' }
+    answers: ['4']
+    explanation: 원문 정답에 따르면 해당 함수 표기에서 선택지 4의 값이 옳지 않다. 수치 함수의 반올림/내림 규칙을 적용할 때 음수 구간의 처리에 주의해야 한다.
+    tags: [chapter:07, numeric-function]
+
+  - id: l07-10
+    type: multiple-choice
+    prompt: 다음 함수의 값으로 옳은 것은?
+    choices:
+      - { id: '1', text: '$7\\bmod 3=2$' }
+      - { id: '2', text: '$7\\bmod(-2)=-1$' }
+      - { id: '3', text: '$3\\bmod 3=1$' }
+      - { id: '4', text: '$4\\bmod 7=0$' }
+    answers: ['2']
+    explanation: 원문에서 사용하는 나머지 연산 규칙에 따르면 $7\\bmod(-2)=-1$이 옳다. 다른 선택지의 나머지값은 각각 1, 0, 4가 된다.
+    tags: [chapter:07, modulo]
+
+  - id: l08-01
+    type: multiple-choice
+    prompt: 컴퓨터 시각 시스템의 처리 단계 중 영상의 잡음을 제거하거나 영상을 개선하는 등의 처리를 통해 이어지는 처리를 하기 좋은 형태로 가공하는 단계는?
+    choices:
+      - { id: '1', text: 전처리 }
+      - { id: '2', text: 영상분할 }
+      - { id: '3', text: 영상표현 }
+      - { id: '4', text: 양자화 }
+    answers: ['1']
+    explanation: 전처리는 획득한 영상을 이후 처리에 적합하도록 잡음 제거, 보정, 개선 등을 수행하는 단계이다.
+    tags: [chapter:08, computer-vision, preprocessing]
+
+  - id: l08-02
+    type: multiple-choice
+    passageRefs: [gl08-pixel-grid-02, gl08-gaussian-mask-02]
+    prompt: 픽셀 값들이 위 그림과 같을 때 가우시안 저역통과 필터마스크 M을 적용하면 현재 180이 저장되어 있는 픽셀의 값이 어떠한 값이 되는가?
+    choices:
+      - { id: '1', text: '49' }
+      - { id: '2', text: '50' }
+      - { id: '3', text: '60' }
+      - { id: '4', text: '83' }
+    answers: ['4']
+    explanation: 180을 중심으로 한 3×3 영역과 마스크를 곱해 더하면 $(59+2\cdot50+48+2\cdot54+4\cdot180+2\cdot50+52+2\cdot49+47)/16=83.25$이다. 정수화하면 선택지 4가 된다.
+    tags: [chapter:08, image-processing, gaussian-filter]
+
+  - id: l08-03
+    type: multiple-choice
+    passageRefs: [gl08-pixel-grid-02]
+    prompt: 픽셀 값들이 위 그림과 같을 때 3×3 크기의 중간값 필터를 적용하면 현재 180이 저장되어 있는 픽셀의 값이 어떠한 값이 되는가?
+    choices:
+      - { id: '1', text: '49' }
+      - { id: '2', text: '50' }
+      - { id: '3', text: '60' }
+      - { id: '4', text: '83' }
+    answers: ['2']
+    explanation: 180을 중심으로 한 3×3 값은 59, 50, 48, 54, 180, 50, 52, 49, 47이다. 이를 오름차순 정렬하면 가운데값은 50이므로 중간값 필터 결과는 50이다.
+    tags: [chapter:08, image-processing, median-filter]
+
+  - id: l08-04
+    type: multiple-choice
+    passageRefs: [gl08-histogram-04]
+    prompt: 위와 같은 그레이레벨 히스토그램을 갖는 영상이 있을 때, 이 영상을 이진화하기 위해 적합한 임계치에 해당되는 값은?
+    choices:
+      - { id: '1', text: '32' }
+      - { id: '2', text: '64' }
+      - { id: '3', text: '96' }
+      - { id: '4', text: '128' }
+    answers: ['2']
+    explanation: 두 봉우리 사이의 골짜기 부분을 임계치로 잡으면 두 영역을 잘 분리할 수 있다. 지문 조건에서 최소값 구간은 약 64 근처이다.
+    tags: [chapter:08, image-processing, thresholding]
+
+  - id: l08-05
+    type: multiple-choice
+    prompt: 다음 중 소벨 연산자의 마스크에 속하는 것은?
+    choices:
+      - id: '1'
+        text: '$\\frac14\\begin{bmatrix}-1&0&1\\\\-2&0&2\\\\-1&0&1\\end{bmatrix}$'
+      - id: '2'
+        text: '$\\frac19\\begin{bmatrix}1&1&1\\\\1&1&1\\\\1&1&1\\end{bmatrix}$'
+      - id: '3'
+        text: '$\\frac1{16}\\begin{bmatrix}1&2&1\\\\2&4&2\\\\1&2&1\\end{bmatrix}$'
+      - id: '4'
+        text: '$\\begin{bmatrix}1&-2&1\\\\-2&4&-2\\\\1&-2&1\\end{bmatrix}$'
+    answers: ['1']
+    explanation: 소벨 연산자는 한 방향의 밝기 변화와 수직 방향의 밝기 변화를 계산하는 1차 미분 마스크를 사용한다. 선택지 1은 대표적인 소벨 마스크 형태이다.
+    tags: [chapter:08, image-processing, sobel]
+
+  - id: l08-06
+    type: multiple-choice
+    passageRefs: [gl08-boolean-laws-06]
+    prompt: 부울대수의 기본 정리 중에서 올바르지 않은 것은?
+    choices:
+      - { id: '1', text: ① 번 }
+      - { id: '2', text: ② 번 }
+      - { id: '3', text: ③ 번 }
+      - { id: '4', text: ④ 번 }
+    answers: ['3']
+    explanation: 보수법칙에 따라 $X\cdot\overline X=0$이다. 따라서 지문 ③의 $X\cdot\overline X=1$은 올바르지 않다.
+    tags: [chapter:08, boolean-algebra]
+
+  - id: l08-07
+    type: multiple-choice
+    passageRefs: [gl08-complement-07]
+    prompt: 다음 지문에 제시된 부울함수의 보수로 올바른 것은?
+    choices:
+      - { id: '1', text: ① 번 }
+      - { id: '2', text: ② 번 }
+      - { id: '3', text: ③ 번 }
+      - { id: '4', text: ④ 번 }
+    answers: ['4']
+    explanation: 드모르간 법칙을 적용하면 합의 보수는 각 항 보수의 곱이 된다. $X\overline YZ$의 보수는 $\overline X+Y+\overline Z$이고, $XY\overline Z$의 보수는 $\overline X+\overline Y+Z$ 형태로 전개된다. 원문 정답은 ④이다.
+    tags: [chapter:08, boolean-algebra, complement]
+
+  - id: l08-08
+    type: multiple-choice
+    prompt: 다음 부울대수식 $F=(X+XY+Y)\cdot(X+XY)$을 최대한 간소화한 것은?
+    choices:
+      - { id: '1', text: '$F=X+XY$' }
+      - { id: '2', text: '$F=X$' }
+      - { id: '3', text: '$F=Y$' }
+      - { id: '4', text: '$F=XX+XY$' }
+    answers: ['2']
+    explanation: 흡수법칙에 의해 $X+XY=X$이고, $X+XY+Y=X+Y$이다. 따라서 $(X+Y)\cdot X=X$가 된다.
+    tags: [chapter:08, boolean-algebra, simplification]
+
+  - id: l08-09
+    type: multiple-choice
+    passageRefs: [gl08-simplification-09]
+    prompt: 다음 부울대수식을 간소화하는 과정 중 빈 칸에 들어갈 수식으로 옳은 것은?
+    choices:
+      - { id: '1', text: ① $X(1+Z)+\overline YZ$ }
+      - { id: '2', text: ② $X\cdot Y+\overline YZ$ }
+      - { id: '3', text: ③ $X\cdot1+\overline YZ$ }
+      - { id: '4', text: ④ $XZ+\overline YZ$ }
+    answers: ['3']
+    explanation: $1+Z+\overline Y=1$이므로 $X(1+Z+\overline Y)$는 $X\cdot1$로 줄어든다. 따라서 빈 칸에는 선택지 3이 들어간다.
+    tags: [chapter:08, boolean-algebra, simplification]
+
+  - id: l08-10
+    type: multiple-choice
+    passageRefs: [gl08-boolean-expression-10]
+    prompt: 다음 부울대수식을 간소화한 결과로 옳은 것은?
+    choices:
+      - { id: '1', text: ① 번 }
+      - { id: '2', text: ② 번 }
+      - { id: '3', text: ③ 번 }
+      - { id: '4', text: ④ 번 }
+    answers: ['3']
+    explanation: $ABC+A\overline BC=AC(B+\overline B)=AC$이고, 여기에 $AB\overline C$를 더해 정리하면 원문 선택지 기준 간소화 결과는 ③이다.
+    tags: [chapter:08, boolean-algebra, simplification]
+
+  - id: l09-01
+    type: multiple-choice
+    prompt: 다음 중 주어진 표본 공간을 직교변환을 통해 특징요소 사이의 상관관계를 최소화하는 공간으로 변환한 후 식별에 도움이 되는 성분만으로 표현함으로써 차원 축소를 할 수 있는 기술은?
+    choices:
+      - { id: '1', text: 파르창(Parzen window) }
+      - { id: '2', text: 패턴의 정규화 }
+      - { id: '3', text: 주성분 분석(PCA) }
+      - { id: '4', text: HOG(Histogram of Oriented Gradients) }
+    answers: ['3']
+    explanation: 주성분 분석은 데이터를 투영해 분산이 큰 축으로 새 좌표계를 구성하고, 중요한 성분만 남겨 차원을 축소하는 방법이다.
+    tags: [chapter:09, pattern-recognition, pca]
+
+  - id: l09-02
+    type: multiple-choice
+    prompt: 다음 중 거리측정자가 만족해야 할 공리에 해당되는 것은? 단, x, y, z는 특징벡터이다.
+    choices:
+      - { id: '1', text: '$J(x,y) \\ne 0$ iff $x=y$' }
+      - { id: '2', text: '$J(x,y) \\le 0$' }
+      - { id: '3', text: '$J(x,y)<J(y,x)$' }
+      - { id: '4', text: '$J(x,y)+J(y,z)\\ge J(x,z)$' }
+    answers: ['4']
+    explanation: 거리측정자는 비음성, 동일성, 대칭성, 삼각부등식을 만족해야 한다. 선택지 4는 삼각부등식에 해당한다.
+    tags: [chapter:09, distance-metric]
+
+  - id: l09-03
+    type: multiple-choice
+    prompt: 베이즈 분류기에서 특징벡터 x로 표현되는 패턴이 클래스 C1과 C2 중 어디에 속하는지 식별하고자 한다. 다음 중 C1으로 식별하는 경우는?
+    choices:
+      - { id: '1', text: '$p(C1|x)>p(C2|x)$' }
+      - { id: '2', text: '$p(C1)\\le p(C2)$' }
+      - { id: '3', text: '$p(x|C1)\\le p(x|C2)$' }
+      - { id: '4', text: '$p(C1)p(x)>p(C2)p(x)$' }
+    answers: ['1']
+    explanation: 베이즈 분류에서는 각 클래스의 사후확률을 계산하여 가장 큰 클래스로 분류한다. 따라서 $p(C1|x)>p(C2|x)$이면 C1로 식별한다.
+    tags: [chapter:09, bayes-classifier]
+
+  - id: l09-04
+    type: multiple-choice
+    prompt: 다음 중 학습표본으로부터 확률밀도를 결정하는 방법에 대한 올바른 설명은?
+    choices:
+      - { id: '1', text: 비매개변수 방식은 패턴의 분포가 잘 알려진 확률 모델을 따른다고 가정한다. }
+      - { id: '2', text: k-근접이웃 방식은 매개변수 방식으로 확률밀도를 설정하여 인식한다. }
+      - { id: '3', text: 비계산 방식은 많은 양의 학습 표본을 기억하고 있어야 하며, 거리 계산의 대상이 많으므로 계산 복잡도가 높다. }
+      - { id: '4', text: 최대가능도 추정은 학습 표본 데이터 집합이 관찰될 가능성이 최대인 매개변수를 찾아 보상하는 매개변수를 추정하는 방법이다. }
+    answers: ['4']
+    explanation: 최대가능도 추정은 관측된 학습 표본의 가능도를 최대화하는 확률 모델의 매개변수를 추정하는 방법이다.
+    tags: [chapter:09, density-estimation, maximum-likelihood]
+
+  - id: l09-05
+    type: multiple-choice
+    prompt: 패턴인식 방법 중 k-근접이웃(k-NN)에 대한 설명으로 올바른 것은?
+    choices:
+      - { id: '1', text: 매개변수 방식의 확률밀도 설정을 한다. }
+      - { id: '2', text: 미지의 패턴과 가장 가까운 k개의 학습 표본을 구하였을 때 가장 많은 표본이 속하는 클래스로 식별한다. }
+      - { id: '3', text: 최대가능도 추정 방식으로 확률분포의 매개변수를 결정한다. }
+      - { id: '4', text: 확률 분포가 가우시안 분포라고 가정한다. }
+    answers: ['2']
+    explanation: k-NN은 입력 패턴과 가까운 k개 표본을 찾고, 그 표본들이 가장 많이 속한 클래스로 분류하는 비매개변수 방식이다.
+    tags: [chapter:09, knn]
+
+  - id: l09-06
+    type: multiple-choice
+    passageRefs: [gl09-petersen-06]
+    prompt: 다음 그래프의 총 차수로 옳은 것은?
+    choices:
+      - { id: '1', text: '35' }
+      - { id: '2', text: '30' }
+      - { id: '3', text: '20' }
+      - { id: '4', text: '15' }
+    answers: ['2']
+    explanation: 그래프에는 15개의 변이 있으며, 모든 꼭짓점 차수의 합은 변 수의 두 배이다. 따라서 총 차수는 $2\\times15=30$이다.
+    tags: [chapter:09, graph, degree]
+
+  - id: l09-07
+    type: multiple-choice
+    passageRefs: [gl09-adjacency-07]
+    prompt: 다음 그래프를 인접 행렬로 표현한 것 중 옳은 것은?
+    choices:
+      - id: '1'
+        text: '$\\begin{bmatrix}0&1&0&1\\\\1&0&2&1\\\\0&2&0&0\\\\1&1&0&0\\end{bmatrix}$'
+      - id: '2'
+        text: '$\\begin{bmatrix}1&1&1&0\\\\1&2&1&1\\\\0&1&2&0\\\\1&1&1&1\\end{bmatrix}$'
+      - id: '3'
+        text: '$\\begin{bmatrix}0&2&0&1\\\\2&0&2&1\\\\0&2&0&0\\\\1&1&0&0\\end{bmatrix}$'
+      - id: '4'
+        text: '$\\begin{bmatrix}0&1&1&0\\\\1&0&1&0\\\\1&1&0&2\\\\0&0&2&0\\end{bmatrix}$'
+    answers: ['1']
+    explanation: v2와 v3 사이에는 평행한 두 변이 있으므로 인접 행렬의 해당 위치는 2가 된다. 나머지 연결을 반영하면 선택지 1의 행렬이다.
+    tags: [chapter:09, graph, adjacency-matrix]
+
+  - id: l09-08
+    type: multiple-choice
+    passageRefs: [gl09-incidence-08]
+    prompt: 다음 그래프를 발생행렬로 표현한 것 중 옳은 것은?
+    choices:
+      - id: '1'
+        text: '$\\begin{bmatrix}1&1&0&1&0\\\\1&1&0&0&1\\\\1&1&0&0&0\\\\1&1&0&1&1\\end{bmatrix}$'
+      - id: '2'
+        text: '$\\begin{bmatrix}1&1&0&0\\\\0&1&1&0\\\\1&0&1&0\\\\1&0&0&1\\\\0&1&0&1\\end{bmatrix}$'
+      - id: '3'
+        text: '$\\begin{bmatrix}1&0&1&1&0\\\\1&1&0&0&1\\\\0&1&1&0&0\\\\0&0&0&1&1\\end{bmatrix}$'
+      - id: '4'
+        text: '$\\begin{bmatrix}0&1&0&0\\\\0&0&1&0\\\\0&1&0&0\\\\1&0&0&0\\\\0&1&0&1\\end{bmatrix}$'
+    answers: ['3']
+    explanation: 발생행렬은 각 행을 꼭짓점, 각 열을 변으로 두고 해당 꼭짓점이 변에 접속하면 1을 기록한다. e1=(v1,v2), e2=(v2,v3), e3=(v1,v3), e4=(v1,v4), e5=(v2,v4)이므로 선택지 3이다.
+    tags: [chapter:09, graph, incidence-matrix]
+
+  - id: l09-09
+    type: multiple-choice
+    passageRefs: [gl09-components-09]
+    prompt: 다음 그래프에 대한 설명으로 옳은 것은?
+    choices:
+      - { id: '1', text: 그래프는 한 개의 연결 요소를 가지고 있다. }
+      - { id: '2', text: 그래프는 두 개의 연결 요소를 가지고 있다. }
+      - { id: '3', text: 그래프는 세 개의 연결 요소를 가지고 있다. }
+      - { id: '4', text: 그래프는 연결 그래프이다. }
+    answers: ['2']
+    explanation: 그래프는 {v1, v3, v5}와 {v2, v4} 두 부분으로 나뉘며 서로 연결되지 않는다. 따라서 연결 요소는 2개이다.
+    tags: [chapter:09, graph, connected-component]
+
+  - id: l09-10
+    type: multiple-choice
+    prompt: 꼭짓점의 개수가 6개인 완전 그래프의 변의 개수는 몇 개인가?
+    choices:
+      - { id: '1', text: 6개 }
+      - { id: '2', text: 8개 }
+      - { id: '3', text: 10개 }
+      - { id: '4', text: 15개 }
+    answers: ['4']
+    explanation: 완전 그래프 $K_n$의 변 개수는 $n(n-1)/2$이다. $n=6$이면 $6\\cdot5/2=15$개이다.
+    tags: [chapter:09, graph, complete-graph]
+
+  - id: l10-01
+    type: multiple-choice
+    prompt: 다음 중 준지도학습(semi-supervised learning)에 대해 올바른 설명은?
+    choices:
+      - { id: '1', text: 학습표본들은 입력 데이터 값만으로 구성된다. }
+      - { id: '2', text: 모든 학습표본에 레이블이 지정된다. }
+      - { id: '3', text: 레이블이 지정된 학습표본 집합과 레이블이 지정되지 않은 학습표본 집합을 이용하여 학습한다. }
+      - { id: '4', text: 어떠한 문제를 해결하기 위해 학습된 결과를 이와 특성이 유사한 다른 응용 학습에 활용하는 학습 방법이다. }
+    answers: ['3']
+    explanation: 준지도학습은 일부 레이블이 있는 데이터와 많은 양의 레이블 없는 데이터를 함께 사용해 학습하는 방법이다.
+    tags: [chapter:10, semi-supervised-learning]
+
+  - id: l10-02
+    type: multiple-choice
+    prompt: 다음 중 귀납적 학습에 대한 설명으로 올바른 것은?
+    choices:
+      - { id: '1', text: 식별을 위한 판단 규칙을 사용자가 직접 입력한다. }
+      - { id: '2', text: 학습을 위한 예의 집합은 반드시 가능한 경우를 모두 포함한다. }
+      - { id: '3', text: 반복적인 관찰이나 경험을 통해 일반화된 지식을 습득하는 학습 방법이다. }
+      - { id: '4', text: 학습 과정에서 제시된 학습 표본과 성격이 일치하는 입력에 대해서만 판단을 내릴 수 있도록 학습하는 것이다. }
+    answers: ['3']
+    explanation: 귀납적 학습은 관찰된 사례로부터 일반적인 규칙이나 지식을 추론하는 방식이다.
+    tags: [chapter:10, inductive-learning]
+
+  - id: l10-03
+    type: multiple-choice
+    prompt: 결정트리의 학습에서 어떠한 노드를 분할하는 경우는?
+    choices:
+      - { id: '1', text: 그 노드의 불순도가 높은 경우 }
+      - { id: '2', text: 함수도가 0인 경우 }
+      - { id: '3', text: 불순도가 정해진 임계치 미만인 경우 }
+      - { id: '4', text: 노드에 분류된 학습표본의 수가 많은 경우 }
+    answers: ['1']
+    explanation: 불순도는 한 노드에 서로 다른 클래스의 표본이 얼마나 섞여 있는지를 나타낸다. 불순도가 높을수록 추가 분할의 필요성이 크다.
+    tags: [chapter:10, decision-tree, impurity]
+
+  - id: l10-04
+    type: multiple-choice
+    prompt: 결정트리 학습에 대한 설명으로 올바른 것은?
+    choices:
+      - { id: '1', text: 불순도가 높아지는 방향으로 노드를 분할한다. }
+      - { id: '2', text: 루트 노드의 불순도는 0이다. }
+      - { id: '3', text: 불순도가 큰 값은 갖는 노드는 단말노드가 된다. }
+      - { id: '4', text: 엔트로피나 지니 불순도 등이 불순도 계산에 사용된다. }
+    answers: ['4']
+    explanation: 결정트리는 불순도를 낮추는 방향으로 분할하며, 엔트로피나 지니 불순도 같은 지표를 사용해 분할 기준을 정한다.
+    tags: [chapter:10, decision-tree, impurity]
+
+  - id: l10-05
+    type: multiple-choice
+    passageRefs: [gl10-euler-05]
+    prompt: 다음 그래프의 오일러 투어로서 옳은 것은?
+    choices:
+      - { id: '1', text: abcdefgh }
+      - { id: '2', text: cehgfdab }
+      - { id: '3', text: dfghecb }
+      - { id: '4', text: fghefghedabc }
+    answers: ['2']
+    explanation: 오일러 투어는 모든 변을 정확히 한 번씩 지나 출발점으로 돌아오는 폐쇄 보행이다. 제시된 그래프에서 원문 정답 기준 올바른 변 방문 순서는 cehgfdab이다.
+    tags: [chapter:10, graph, euler-tour]
+
+  - id: l10-06
+    type: multiple-choice
+    passageRefs: [gl10-hamiltonian-06]
+    prompt: 다음 그래프의 해밀턴 사이클로 옳은 것은?
+    choices:
+      - { id: '1', text: abcdef }
+      - { id: '2', text: abdcefa }
+      - { id: '3', text: abcdfea }
+      - { id: '4', text: afebac }
+    answers: ['2']
+    explanation: 해밀턴 사이클은 모든 꼭짓점을 정확히 한 번씩 방문하고 시작점으로 돌아오는 사이클이다. abdcefa는 각 꼭짓점을 한 번씩 포함하고 다시 a로 돌아온다.
+    tags: [chapter:10, graph, hamiltonian-cycle]
+
+  - id: l10-07
+    type: multiple-choice
+    passageRefs: [gl10-k4-07]
+    prompt: 다음 그래프의 해밀턴 사이클로 틀린 것은?
+    choices:
+      - { id: '1', text: abcda }
+      - { id: '2', text: bdcab }
+      - { id: '3', text: cbdac }
+      - { id: '4', text: dabad }
+    answers: ['4']
+    explanation: 해밀턴 사이클은 모든 꼭짓점을 정확히 한 번씩 방문해야 한다. dabad는 a를 반복하고 c를 포함하지 않으므로 해밀턴 사이클이 아니다.
+    tags: [chapter:10, graph, hamiltonian-cycle]
+
+  - id: l10-08
+    type: multiple-choice
+    passageRefs: [gl10-house-08]
+    prompt: 다음 그래프에 관한 설명으로 적절한 것은?
+    choices:
+      - { id: '1', text: 오일러 투어는 없으며, 해밀턴 사이클은 존재한다. }
+      - { id: '2', text: 오일러 투어는 존재하고, 해밀턴 사이클은 존재하지 않는다. }
+      - { id: '3', text: 오일러 투어와 해밀턴 사이클이 모두 존재한다. }
+      - { id: '4', text: 오일러 투어와 해밀턴 사이클이 모두 존재하지 않는다. }
+    answers: ['1']
+    explanation: 그래프에는 홀수 차수 꼭짓점이 있어 오일러 투어는 없지만, 모든 꼭짓점을 한 번씩 지나 시작점으로 돌아오는 해밀턴 사이클은 존재한다.
+    tags: [chapter:10, graph, euler-tour, hamiltonian-cycle]
+
+  - id: l10-09
+    type: multiple-choice
+    prompt: 다음 그래프에서 해밀턴 사이클로서 쉽게 표현된 것은?
+    choices:
+      - id: '1'
+        text: ①
+        image:
+          path: images/subjects/artificial-intelligence/lecture-exercises/l10-09-choice-1.png
+          alt: 10강 9번 해밀턴 사이클 선택지 1
+      - id: '2'
+        text: ②
+        image:
+          path: images/subjects/artificial-intelligence/lecture-exercises/l10-09-choice-2.png
+          alt: 10강 9번 해밀턴 사이클 선택지 2
+      - id: '3'
+        text: ③
+        image:
+          path: images/subjects/artificial-intelligence/lecture-exercises/l10-09-choice-3.png
+          alt: 10강 9번 해밀턴 사이클 선택지 3
+      - id: '4'
+        text: ④
+        image:
+          path: images/subjects/artificial-intelligence/lecture-exercises/l10-09-choice-4.png
+          alt: 10강 9번 해밀턴 사이클 선택지 4
+    answers: ['3']
+    explanation: 선택지 3은 모든 꼭짓점을 한 번씩 포함하는 해밀턴 사이클을 파란 경로로 나타낸 것이다.
+    tags: [chapter:10, graph, hamiltonian-cycle]
+
+  - id: l10-10
+    type: multiple-choice
+    passageRefs: [gl10-dijkstra-10]
+    prompt: 다음 그래프에서 데이크스트라 알고리즘을 이용하여 꼭짓점 a에서 다른 꼭짓점까지의 최단경로를 바르게 계산한 것은?
+    choices:
+      - { id: '1', text: a에서 b까지의 최단 경로는 13이다. }
+      - { id: '2', text: a에서 c까지의 최단 경로는 10이다. }
+      - { id: '3', text: a에서 d까지의 최단 경로는 11이다. }
+      - { id: '4', text: a에서 e까지의 최단 경로는 8이다. }
+    answers: ['1']
+    explanation: 데이크스트라 알고리즘으로 a에서 각 꼭짓점까지의 누적 최단 거리를 갱신하면, 원문 정답 기준 a에서 b까지의 최단 거리가 13으로 계산된다.
+    tags: [chapter:10, graph, dijkstra]
+
+  - id: l11-01
+    type: multiple-choice
+    prompt: 다음 중 선형회귀에 대한 적절한 설명은?
+    choices:
+      - { id: '1', text: 독립변수에 대한 종속변수의 관계가 3차 방정식으로 표현된다. }
+      - { id: '2', text: 오차 제곱의 평균이 최소가 되도록 선형가설을 학습한다. }
+      - { id: '3', text: 로지스틱 함수로 가설을 표현한다. }
+      - { id: '4', text: 종속변수는 두 유형 중 하나를 나타내는 값이다. }
+    answers: ['2']
+    explanation: 선형회귀는 입력 변수와 출력 변수 사이의 관계를 선형식으로 모델링하고, 평균제곱오차가 최소가 되도록 파라미터를 학습한다.
+    tags: [chapter:11, linear-regression]
+
+  - id: l11-02
+    type: multiple-choice
+    prompt: 경사하강법으로 손실함수가 최소가 되는 파라미터를 구하기 위해 훈련하는 과정에 대한 올바른 설명은?
+    choices:
+      - { id: '1', text: 학습률은 큰 값일수록 좋다. }
+      - { id: '2', text: 파라미터를 항상 일정한 방향으로 변화시킨다. }
+      - { id: '3', text: 비용함수 기울기의 음의 방향으로 파라미터를 변화시킨다. }
+      - { id: '4', text: 여러 번 반복하여 학습하지 않고 한 번에 학습이 완료된다. }
+    answers: ['3']
+    explanation: 경사하강법은 손실함수를 줄이기 위해 기울기의 반대 방향으로 파라미터를 갱신한다. 학습률은 너무 크거나 작지 않게 정해야 하며 반복 학습이 필요하다.
+    tags: [chapter:11, gradient-descent]
+
+  - id: l11-03
+    type: multiple-choice
+    prompt: 다음 중 로지스틱 회귀에 대한 설명으로 옳은 것은?
+    choices:
+      - { id: '1', text: 독립변수와 종속변수의 상관관계를 선형함수로 예측한다. }
+      - { id: '2', text: 독립변수는 한 개만 사용할 수 있다. }
+      - { id: '3', text: 독립변수의 선형 함수를 로지스틱 함수의 로짓으로 사용하여 확률을 계산한다. }
+      - { id: '4', text: 손실함수는 교차 엔트로피보다 평균제곱오차(MSE)가 적합하다. }
+    answers: ['3']
+    explanation: 로지스틱 회귀는 입력 특징의 선형결합을 로지스틱 함수에 통과시켜 클래스에 속할 확률을 계산한다.
+    tags: [chapter:11, logistic-regression]
+
+  - id: l11-04
+    type: multiple-choice
+    prompt: 다항 로지스틱 회귀에서 선형 판별함수의 값들을 0부터 1 사이의 값으로 압축하기 위해 사용하는 것은?
+    choices:
+      - { id: '1', text: 엔트로피 }
+      - { id: '2', text: 교차 엔트로피 }
+      - { id: '3', text: 소프트맥스 함수 }
+      - { id: '4', text: 자연로그 }
+    answers: ['3']
+    explanation: 소프트맥스 함수는 여러 클래스 점수를 0과 1 사이의 확률값으로 변환하고, 전체 합이 1이 되도록 정규화한다.
+    tags: [chapter:11, softmax, logistic-regression]
+
+  - id: l11-05
+    type: multiple-choice
+    prompt: k-평균 군집화 알고리즘에서 어떠한 표본 부분집합이 특정 평균벡터에 가장 가까운 것으로 분류되었을 때 어떠한 처리를 하는가?
+    choices:
+      - { id: '1', text: 평균벡터의 위치를 그 표본 부분집합에 속하는 표본들의 평균위치로 업데이트한다. }
+      - { id: '2', text: 그 평균벡터를 제거한다. }
+      - { id: '3', text: 학습표본들을 평균벡터 방향으로 이동시킨다. }
+      - { id: '4', text: 학습표본들을 제거한다. }
+    answers: ['1']
+    explanation: k-평균 군집화는 각 표본을 가장 가까운 평균벡터에 할당한 뒤, 각 군집에 속한 표본들의 평균으로 중심을 갱신하는 과정을 반복한다.
+    tags: [chapter:11, k-means]
+
+  - id: l11-06
+    type: multiple-choice
+    prompt: 높이가 5인 포화 이진 트리에는 몇 개의 노드가 있는가?
+    choices:
+      - { id: '1', text: '31' }
+      - { id: '2', text: '32' }
+      - { id: '3', text: '63' }
+      - { id: '4', text: '64' }
+    answers: ['3']
+    explanation: 높이가 5인 포화 이진 트리의 노드 수는 $2^{6}-1=63$으로 계산된다. 원문은 루트의 높이를 0으로 두는 정의를 따른다.
+    tags: [chapter:11, binary-tree]
+
+  - id: l11-07
+    type: multiple-choice
+    prompt: 다음 설명 중 옳은 것은?
+    choices:
+      - { id: '1', text: 높이가 2인 이진 트리의 최대 노드 개수는 8개이다. }
+      - { id: '2', text: 높이가 3이고 16개의 노드를 가지는 완전 이진 트리가 존재한다. }
+      - { id: '3', text: 16개의 노드를 가지는 이진 트리의 최소 높이는 3이다. }
+      - { id: '4', text: 4개의 노드를 가지는 이진 트리의 최대 높이는 3이다. }
+    answers: ['4']
+    explanation: 4개의 노드를 한쪽으로만 연결하면 최대 높이는 3이 된다. 다른 선택지는 이진 트리의 높이와 최대 노드 수 관계에 맞지 않는다.
+    tags: [chapter:11, binary-tree]
+
+  - id: l11-08
+    type: multiple-choice
+    prompt: $A<B<C<D<E$의 관계가 성립할 때, 다음 트리 중 이진 탐색 트리로 옳은 것은?
+    choices:
+      - { id: '1', text: '루트 C, 왼쪽 B(A,E), 오른쪽 D' }
+      - { id: '2', text: '루트 C, 왼쪽 B(A), 오른쪽 D(E)' }
+      - { id: '3', text: '루트 A, 오른쪽 B, B의 왼쪽 C와 오른쪽 E, C의 오른쪽 D' }
+      - { id: '4', text: '루트 C, 왼쪽 B(A), 오른쪽 D의 왼쪽 E' }
+    answers: ['2']
+    explanation: 이진 탐색 트리는 각 노드의 왼쪽 서브트리에 더 작은 값, 오른쪽 서브트리에 더 큰 값이 위치해야 한다. 선택지 2만 이 조건을 만족한다.
+    tags: [chapter:11, binary-search-tree]
+
+  - id: l11-09
+    type: multiple-choice
+    prompt: 이진 탐색 트리의 각 노드가 검색의 대상이 될 확률이 A:0.3, B:0.2, C:0.4, D:0.1과 같을 때, 다음 트리에서 가장 진 탐색 트리는 어느 것인가?
+    choices:
+      - { id: '1', text: '루트 C, 왼쪽 B(A), 오른쪽 D' }
+      - { id: '2', text: '루트 B, 왼쪽 A, 오른쪽 C의 오른쪽 D' }
+      - { id: '3', text: '루트 A, 오른쪽 B, B의 왼쪽 C와 오른쪽 D' }
+      - { id: '4', text: '루트 D, 왼쪽 A, 오른쪽 C의 오른쪽 B' }
+    answers: ['1']
+    explanation: 검색 확률이 높은 C를 루트에 두고, 그 다음 확률의 A, B, D가 이진 탐색 트리 조건을 만족하도록 배치된 선택지 1이 원문 정답이다.
+    tags: [chapter:11, binary-search-tree, optimal-bst]
+
+  - id: l11-10
+    type: multiple-choice
+    prompt: 다음 설명 중 잘못된 것은?
+    choices:
+      - { id: '1', text: 그래프 G의 모든 꼭짓점을 연결하고 사이클이 존재하지 않는 G의 부분 그래프를 신장 트리라고 부른다. }
+      - { id: '2', text: 그래프 G의 신장 트리 중에서 가장 작은 총 가중치를 가지는 트리를 G의 최소 신장 트리라고 부른다. }
+      - { id: '3', text: 크루스칼(Kruskal) 알고리즘은 주어진 그래프에서 가중치가 가장 작은 변부터 차례대로 트리에 추가함으로써 최소 신장 트리를 찾는 알고리즘이다. }
+      - { id: '4', text: 프림(Prim) 알고리즘은 주어진 그래프에서 가중치가 가장 큰 꼭짓점부터 차례대로 트리에 추가함으로써 최소 신장 트리를 찾는 알고리즘이다. }
+    answers: ['4']
+    explanation: 프림 알고리즘은 현재까지 만든 트리에 인접한 간선 중 최소 가중치 간선을 선택해 확장한다. 가중치가 가장 큰 꼭짓점부터 추가하는 방식이 아니다.
+    tags: [chapter:11, graph, minimum-spanning-tree]
+
+  - id: l12-01
+    type: multiple-choice
+    prompt: 인공 신경망의 특성을 올바르게 설명한 것은?
+    choices:
+      - { id: '1', text: 뉴런은 복잡한 알고리즘을 통해 문제를 해결한다. }
+      - { id: '2', text: 각각의 뉴런은 1개의 뉴런과 연결된다. }
+      - { id: '3', text: 정보는 신경연접에 분산 저장된다. }
+      - { id: '4', text: 하나의 뉴런에 고장이 발생하면 전체 시스템이 다운된다. }
+    answers: ['3']
+    explanation: 인공 신경망은 많은 단순 뉴런과 연결 가중치로 구성되며, 학습된 정보는 연결 가중치에 분산 저장된다.
+    tags: [chapter:12, neural-network]
+
+  - id: l12-02
+    type: multiple-choice
+    prompt: 다음 중 신경망의 하이퍼파라미터에 해당되지 않는 것은?
+    choices:
+      - { id: '1', text: 뉴런 사이의 연결 가중치 }
+      - { id: '2', text: 학습률 }
+      - { id: '3', text: 미니배치의 크기 }
+      - { id: '4', text: 활성함수의 종류 }
+    answers: ['1']
+    explanation: 연결 가중치는 학습 데이터로부터 훈련 과정에서 결정되는 모델 파라미터이다. 학습률, 미니배치 크기, 활성함수 종류는 학습 전에 정하는 하이퍼파라미터이다.
+    tags: [chapter:12, neural-network, hyperparameter]
+
+  - id: l12-03
+    type: multiple-choice
+    prompt: 다음 중 전체 학습 표본집합을 무작위로 분할한 부분집합 단위로 경사의 평균을 구하여 모델 파라미터를 업데이트하는 훈련 방법을 의미하는 것은?
+    choices:
+      - { id: '1', text: 배치 경사하강법 }
+      - { id: '2', text: 미니배치 SGD }
+      - { id: '3', text: 모의 담금질 }
+      - { id: '4', text: 비지도학습 }
+    answers: ['2']
+    explanation: 미니배치 SGD는 전체 훈련 데이터를 작은 부분집합으로 나누고, 각 미니배치에 대해 기울기를 계산하여 파라미터를 갱신한다.
+    tags: [chapter:12, stochastic-gradient-descent, mini-batch]
+
+  - id: l12-04
+    type: multiple-choice
+    prompt: 프랭크 로젠블랏이 제안한 퍼셉트론 모델에서 뉴런의 활성함수로 사용하는 것은?
+    choices:
+      - { id: '1', text: 선형함수 }
+      - { id: '2', text: 시그모이드 함수 }
+      - { id: '3', text: TanH 함수 }
+      - { id: '4', text: 단위 계단 함수 }
+    answers: ['4']
+    explanation: 고전적인 퍼셉트론은 입력의 가중합이 임계값을 넘으면 1, 그렇지 않으면 0을 출력하는 단위 계단 함수를 사용한다.
+    tags: [chapter:12, perceptron, activation-function]
+
+  - id: l12-05
+    type: multiple-choice
+    prompt: 다음 중 단층 퍼셉트론으로 학습할 수 있는 결정경계의 형태는?
+    choices:
+      - { id: '1', text: 선형 }
+      - { id: '2', text: 원형 }
+      - { id: '3', text: 포물선 }
+      - { id: '4', text: 다각형 }
+    answers: ['1']
+    explanation: 단층 퍼셉트론은 입력의 선형 결합에 기반하므로 선형 결정경계만 표현할 수 있다.
+    tags: [chapter:12, perceptron, decision-boundary]
+
+  - id: l12-06
+    type: multiple-choice
+    prompt: 1부터 5까지의 숫자를 가지고 만들 수 있는 3자리 수는 모두 몇 가지인가? 단, 각 숫자는 중복해서 사용할 수 있다고 가정한다.
+    choices:
+      - { id: '1', text: '27' }
+      - { id: '2', text: '125' }
+      - { id: '3', text: '128' }
+      - { id: '4', text: '512' }
+    answers: ['2']
+    explanation: 각 자리마다 1부터 5까지 5가지 선택이 가능하고 중복 사용이 허용되므로 경우의 수는 $5^3=125$이다.
+    tags: [chapter:12, counting]
+
+  - id: l12-07
+    type: multiple-choice
+    prompt: 8명으로 구성된 배구팀이 있다. 선발 출전할 선수로 6명을 뽑는 방법은 모두 몇 가지인가?
+    choices:
+      - { id: '1', text: '28' }
+      - { id: '2', text: '35' }
+      - { id: '3', text: '49' }
+      - { id: '4', text: '112' }
+    answers: ['1']
+    explanation: 8명 중 6명을 순서 없이 고르는 조합이므로 $_8C_6=$_8C_2=28$이다.
+    tags: [chapter:12, combination]
+
+  - id: l12-08
+    type: multiple-choice
+    prompt: $(x+y)^6$에서 $x^4y^2$의 계수는?
+    choices:
+      - { id: '1', text: '6' }
+      - { id: '2', text: '12' }
+      - { id: '3', text: '15' }
+      - { id: '4', text: '30' }
+    answers: ['3']
+    explanation: 이항정리에 의해 $x^4y^2$의 계수는 $\\binom{6}{2}=15$이다.
+    tags: [chapter:12, binomial-theorem]
+
+  - id: l12-09
+    type: multiple-choice
+    prompt: 사루에 감자 7개와 고구마 13개가 들어 있는데, 감자는 6개가 상했고 고구마는 2개가 상했다고 가정하자. 만일 자루에서 상한 것을 하나 꺼냈는데 그것이 고구마일 확률을 구하면?
+    choices:
+      - { id: '1', text: '$1/10$' }
+      - { id: '2', text: '$1/4$' }
+      - { id: '3', text: '$13/20$' }
+      - { id: '4', text: '$2/5$' }
+    answers: ['2']
+    explanation: 상한 것은 감자 6개와 고구마 2개로 총 8개이다. 상한 것 중 고구마일 조건부 확률은 $2/8=1/4$이다.
+    tags: [chapter:12, conditional-probability]
+
+  - id: l12-10
+    type: multiple-choice
+    prompt: 점화식 $a_n=a_{n-1}+2$, $a_1=3$의 해를 구하면?
+    choices:
+      - { id: '1', text: '$a_n=n+2$' }
+      - { id: '2', text: '$a_n=3n-2$' }
+      - { id: '3', text: '$a_n=n^2+1$' }
+      - { id: '4', text: '$a_n=2n+1$' }
+    answers: ['4']
+    explanation: 첫째항이 3이고 공차가 2인 등차수열이므로 $a_n=3+2(n-1)=2n+1$이다.
+    tags: [chapter:12, recurrence]
+
+  - id: l13-01
+    type: multiple-choice
+    prompt: 다음 중 오차역전파 모델에 대한 설명으로 올바른 것은?
+    choices:
+      - { id: '1', text: 1개의 선형함수로 해결할 수 없는 문제는 학습할 수 없다. }
+      - { id: '2', text: 비지도학습 방식으로 학습한다. }
+      - { id: '3', text: 뉴런의 활성함수는 단위 계단함수를 사용한다. }
+      - { id: '4', text: 은닉층을 포함하는 다층 퍼셉트론을 학습시킬 수 있다. }
+    answers: ['4']
+    explanation: 오차역전파는 은닉층을 포함한 다층 퍼셉트론의 가중치를 지도학습으로 학습하는 대표적인 방법이다.
+    tags: [chapter:13, backpropagation, multilayer-perceptron]
+
+  - id: l13-02
+    type: multiple-choice
+    prompt: 경사하강법 적용 과정에서 이전 단계의 연결가중치 변화량을 현 단계에서 반영하기 위한 비율을 나타내는 것은?
+    choices:
+      - { id: '1', text: 모멘텀 }
+      - { id: '2', text: ReLU }
+      - { id: '3', text: 학습률 }
+      - { id: '4', text: TanH }
+    answers: ['1']
+    explanation: 모멘텀은 이전 갱신 방향을 현재 갱신에 일부 반영하여 수렴을 빠르게 하고 진동을 완화하는 항이다.
+    tags: [chapter:13, gradient-descent, momentum]
+
+  - id: l13-03
+    type: multiple-choice
+    prompt: 다음 중 제한 볼츠만 머신에 대한 설명으로 올바른 것은?
+    choices:
+      - { id: '1', text: 지도학습 신경망이다. }
+      - { id: '2', text: 각각의 뉴런은 동일 층에 속하는 뉴런들과 완전연결 방식으로 연결된다. }
+      - { id: '3', text: 주어진 학습표본 집합에 대해 학습을 수행하면 자동으로 특징 추출기의 역할을 할 수 있도록 학습된다. }
+      - { id: '4', text: 데이터는 은닉 유닛을 통해 입력되고, 가시 유닛은 입력된 데이터에 대한 새로운 표현을 제공한다. }
+    answers: ['3']
+    explanation: 제한 볼츠만 머신은 가시 유닛과 은닉 유닛 사이만 연결되며, 비지도 방식으로 데이터의 잠재 표현을 학습해 특징 추출에 활용될 수 있다.
+    tags: [chapter:13, restricted-boltzmann-machine]
+
+  - id: l13-04
+    type: multiple-choice
+    prompt: 자기조직화 지도 모델에서 학습벡터 x에 대한 승자 뉴런의 연결가중치 벡터가 w일 때 어떻게 학습이 이루어지는가?
+    choices:
+      - { id: '1', text: w를 x로 대체한다. }
+      - { id: '2', text: x로부터 멀어지도록 w를 조정한다. }
+      - { id: '3', text: x에 가까워지도록 w를 조정한다. }
+      - { id: '4', text: x를 w로 대체한다. }
+    answers: ['3']
+    explanation: 자기조직화 지도는 입력 벡터와 가장 가까운 승자 뉴런과 그 이웃 뉴런의 가중치를 입력 벡터 쪽으로 이동시킨다.
+    tags: [chapter:13, self-organizing-map]
+
+  - id: l13-05
+    type: multiple-choice
+    prompt: a, b가 정수이고 $a\\equiv b\\pmod 5$일 때 다음 중 옳지 않은 것은?
+    choices:
+      - { id: '1', text: '$5\\mid(a+b)$' }
+      - { id: '2', text: '$5\\mid(a-b)$' }
+      - { id: '3', text: '$a\\bmod 5=b\\bmod 5$' }
+      - { id: '4', text: '$a=5k+b$ 단, k는 정수' }
+    answers: ['1']
+    explanation: $a\\equiv b\\pmod5$이면 $5$는 $a-b$를 나눈다. 그러나 $a+b$가 항상 5의 배수인 것은 아니다.
+    tags: [chapter:13, modular-arithmetic]
+
+  - id: l13-06
+    type: multiple-choice
+    prompt: a, b, c가 정수이고 $a\\equiv b\\pmod m$일 때 다음 중 옳지 않은 것은?
+    choices:
+      - { id: '1', text: '$a+c\\equiv b+c\\pmod m$' }
+      - { id: '2', text: '$ac\\equiv bc\\pmod m$' }
+      - { id: '3', text: '$a\\equiv ab\\pmod m$' }
+      - { id: '4', text: '$a\\equiv a+bm\\pmod m$' }
+    answers: ['3']
+    explanation: 합동식은 같은 수를 더하거나 같은 수를 곱해도 유지된다. 하지만 $a\\equiv b$라는 사실만으로 $a\\equiv ab$가 항상 성립하지는 않는다.
+    tags: [chapter:13, modular-arithmetic]
+
+  - id: l13-07
+    type: multiple-choice
+    prompt: n이 2 이상의 자연수이면 n은 (  )이거나 소수의 (  )으로 유일하게 표현할 수 있다. 다음 빈 칸에 적당한 말들을 순서대로 적은 것은?
+    choices:
+      - { id: '1', text: 합성수, 합 }
+      - { id: '2', text: 합성수, 곱 }
+      - { id: '3', text: 소수, 합 }
+      - { id: '4', text: 소수, 곱 }
+    answers: ['4']
+    explanation: 산술의 기본정리에 따르면 2 이상의 자연수는 소수이거나 소수들의 곱으로 유일하게 표현된다.
+    tags: [chapter:13, number-theory, prime-factorization]
+
+  - id: l13-08
+    type: multiple-choice
+    prompt: 다음 중 메르센 소수가 아닌 것은?
+    choices:
+      - { id: '1', text: '3' }
+      - { id: '2', text: '7' }
+      - { id: '3', text: '11' }
+      - { id: '4', text: '15' }
+    answers: ['3']
+    explanation: 원문 정답은 11이다. 메르센 소수는 $2^p-1$ 꼴이면서 소수인 수로, 11은 이 꼴의 메르센 수가 아니다.
+    tags: [chapter:13, number-theory, mersenne-prime]
+
+  - id: l13-09
+    type: multiple-choice
+    prompt: '페르마의 작은 정리를 이용하여 $2^{100}$을 5로 나누었을 때의 나머지를 구하면? 힌트: $2^{5-1}=2^4\\equiv1\\pmod5$'
+    choices:
+      - { id: '1', text: '1' }
+      - { id: '2', text: '2' }
+      - { id: '3', text: '3' }
+      - { id: '4', text: '4' }
+    answers: ['1']
+    explanation: $2^4\\equiv1\\pmod5$이고 100은 4의 배수이므로 $2^{100}=(2^4)^{25}\\equiv1^{25}\\equiv1\\pmod5$이다.
+    tags: [chapter:13, number-theory, fermat-little-theorem]
+
+  - id: l13-10
+    type: multiple-choice
+    prompt: 나머지 거듭제곱 알고리즘을 활용하여 $3^5\\bmod7$을 구하면?
+    choices:
+      - { id: '1', text: '6' }
+      - { id: '2', text: '5' }
+      - { id: '3', text: '4' }
+      - { id: '4', text: '3' }
+    answers: ['2']
+    explanation: $3^2\\equiv2\\pmod7$, $3^4\\equiv4\\pmod7$이므로 $3^5\\equiv4\\cdot3=12\\equiv5\\pmod7$이다.
+    tags: [chapter:13, modular-exponentiation]
+
+  - id: l14-01
+    type: multiple-choice
+    prompt: 다음 중 특정 학습 데이터 집합에 지나치게 의존적으로 학습함으로써 일반화가 잘 이루어지지 않는 문제를 나타내는 것은?
+    choices:
+      - { id: '1', text: 과적합(overfitting) }
+      - { id: '2', text: 경사 소멸 }
+      - { id: '3', text: XOR 문제 }
+      - { id: '4', text: 교차 엔트로피 }
+    answers: ['1']
+    explanation: 과적합은 학습 데이터에는 잘 맞지만 새로운 데이터에 대한 일반화 성능이 낮아지는 현상이다.
+    tags: [chapter:14, deep-learning, overfitting]
+
+  - id: l14-02
+    type: multiple-choice
+    prompt: 다음 중 심층 신경망의 학습을 개선하기 위한 방향을 설명한 것으로 적절한 것은?
+    choices:
+      - { id: '1', text: 활성함수는 입력의 전 구간에서 미분 가능한 시그모이드 함수를 사용해야 한다. }
+      - { id: '2', text: 연결 가중치는 모두 0으로 초기화하여 훈련한다. }
+      - { id: '3', text: 경사 소멸 문제를 개선하기 위해서는 드롭아웃을 활용한다. }
+      - { id: '4', text: 적절한 규제를 통해 모델을 단순화하는 것은 과적합 문제를 개선하는 데 도움이 된다. }
+    answers: ['4']
+    explanation: 규제, 가중치 감소, 드롭아웃 등은 모델 복잡도를 제어하여 과적합 완화에 활용된다. 모든 가중치를 0으로 초기화하거나 시그모이드만 사용하는 것은 적절하지 않다.
+    tags: [chapter:14, deep-learning, regularization]
+
+  - id: l14-03
+    type: multiple-choice
+    prompt: 합성곱 신경망(CNN)을 구성하는 각 단계의 역할을 설명한 것으로 옳은 것은?
+    choices:
+      - { id: '1', text: '합성곱층: 뉴런의 출력에 비선형 함수를 적용하는 층' }
+      - { id: '2', text: '풀링층: 이전 단계로부터의 입력을 서브샘플링(subsampling)하여 축소된 규모의 출력을 만드는 단계' }
+      - { id: '3', text: 'ReLU층: 분류기의 역할을 담당하는 층' }
+      - { id: '4', text: '완전연결층: 특징추출을 담당하는 층' }
+    answers: ['2']
+    explanation: 풀링층은 공간 크기를 줄이는 서브샘플링을 수행한다. 합성곱층은 필터로 특징을 검출하고, ReLU층은 비선형 활성화를 적용하며, 완전연결층은 주로 분류에 쓰인다.
+    tags: [chapter:14, cnn, pooling]
+
+  - id: l14-04
+    type: multiple-choice
+    prompt: 합성곱 신경망(CNN)에서 이미지 입력 32x32 크기의 3채널 입력에 대해 10개의 3x3 필터를 적용하도록 구성하였다. 이때 스트라이드는 2로 하며, 패딩은 사용하지 않는다. 이 층의 출력은?
+    choices:
+      - { id: '1', text: 32x32 크기의 10채널 출력 }
+      - { id: '2', text: 30x30 크기의 3채널 출력 }
+      - { id: '3', text: 15x15 크기의 3채널 출력 }
+      - { id: '4', text: 15x15 크기의 10채널 출력 }
+    answers: ['4']
+    explanation: 출력 크기는 $\\lfloor(32-3+2\\cdot0)/2\\rfloor+1=15$이고, 필터가 10개이므로 출력 채널도 10개이다.
+    tags: [chapter:14, cnn, convolution-output]
+
+  - id: l14-05
+    type: multiple-choice
+    prompt: 합성곱 신경망(CNN)의 어떠한 층에서 32x32 크기의 4채널 입력으로 10개의 5x5 필터를 적용함으로써 출력을 만들어내려고 한다. 각 필터에는 바이어스를 포함한다. 이 단계에서 학습해야 할 파라미터의 수는 몇 개인가?
+    choices:
+      - { id: '1', text: '1,010개' }
+      - { id: '2', text: '1,000개' }
+      - { id: '3', text: '250개' }
+      - { id: '4', text: '102,410개' }
+    answers: ['1']
+    explanation: 필터 하나의 가중치는 $5\\times5\\times4=100$개이고 바이어스 1개가 추가된다. 필터 10개이므로 $(100+1)\\times10=1,010$개이다.
+    tags: [chapter:14, cnn, parameters]
+
+  - id: l14-06
+    type: multiple-choice
+    prompt: 지문에서 해당 마르코프 연쇄를 전이확률행렬로 표시한 것으로 옳은 것은?
+    passages: [gl14-markov-chain-06]
+    choices:
+      - { id: '1', text: '$P=\begin{bmatrix}0.3&0.4\\0.6&0.7\end{bmatrix}$' }
+      - { id: '2', text: '$P=\begin{bmatrix}0.3&0.7\\0.6&0.4\end{bmatrix}$' }
+      - { id: '3', text: '$P=\begin{bmatrix}0.6&0.3\\0.4&0.7\end{bmatrix}$' }
+      - { id: '4', text: '$P=\begin{bmatrix}0.6&0.4\\0.3&0.7\end{bmatrix}$' }
+    answers: ['4']
+    explanation: 상태 0에서 0과 1로 갈 확률은 각각 0.6, 0.4이고, 상태 1에서 0과 1로 갈 확률은 각각 0.3, 0.7이다.
+    tags: [chapter:14, markov-chain, transition-matrix]
+
+  - id: l14-07
+    type: multiple-choice
+    prompt: 지문에서, 상태 0은 맑음을, 상태 1은 비가 옴을 나타낸다고 할 때, 오늘의 날씨 상태가 맑음일 때 내일의 날씨가 비가 옴이 될 확률은?
+    passages: [gl14-markov-chain-06]
+    choices:
+      - { id: '1', text: '30%' }
+      - { id: '2', text: '40%' }
+      - { id: '3', text: '50%' }
+      - { id: '4', text: '60%' }
+    answers: ['2']
+    explanation: 오늘 상태가 0일 때 내일 상태가 1일 전이확률은 그림의 0에서 1로 가는 간선 값인 0.4, 즉 40%이다.
+    tags: [chapter:14, markov-chain, transition-probability]
+
+  - id: l14-08
+    type: multiple-choice
+    prompt: 언어 $L=\{a,b\}$일 때 $L^3$의 원소로서 옳은 것은?
+    choices:
+      - { id: '1', text: '$aba$' }
+      - { id: '2', text: '$ab$' }
+      - { id: '3', text: '$a$' }
+      - { id: '4', text: '$\lambda$' }
+    answers: ['1']
+    explanation: $L^3$은 알파벳 $a,b$로 이루어진 길이 3의 문자열 집합이므로 $aba$가 해당한다.
+    tags: [chapter:14, formal-language]
+
+  - id: l14-09
+    type: multiple-choice
+    prompt: 알파벳 $\Sigma=\{a,b,c\}$를 통해서 만들어 낼 수 있는 문자열이 아닌 것은?
+    choices:
+      - { id: '1', text: '$cba$' }
+      - { id: '2', text: '$bbb$' }
+      - { id: '3', text: '$010$' }
+      - { id: '4', text: '$\lambda$' }
+    answers: ['3']
+    explanation: 알파벳에 0과 1이 포함되어 있지 않으므로 $010$은 해당 알파벳으로 만들 수 없다. 빈 문자열 $\\lambda$는 문자열로 인정된다.
+    tags: [chapter:14, formal-language, alphabet]
+
+  - id: l14-10
+    type: multiple-choice
+    prompt: 문법 $G=(\{S\},\{a,b\},\{S\to aSb,\ S\to\lambda\},S)$의 문법 언어 $L(G)$는 무엇인가?
+    choices:
+      - { id: '1', text: '$L(G)=\{a,aa,aaa,\cdots\}$' }
+      - { id: '2', text: '$L(G)=\{b,bb,bbb,\cdots\}$' }
+      - { id: '3', text: '$L(G)=\{ab,aabb,aaabbb,\cdots\}$' }
+      - { id: '4', text: '$L(G)=\{ab,abab,ababab,\cdots\}$' }
+    answers: ['3']
+    explanation: 생성규칙 $S\to aSb$를 반복한 뒤 $S\to\lambda$를 적용하면 같은 개수의 a와 b가 순서대로 놓인 문자열이 생성된다.
+    tags: [chapter:14, grammar, formal-language]
+
+  - id: l15-01
+    type: multiple-choice
+    prompt: 다음 중 ResNet에 대한 설명으로 올바른 것은?
+    choices:
+      - { id: '1', text: 모든 층이 완전한 순차적 구조로 연결된다. }
+      - { id: '2', text: 순환 신경망 구조이다. }
+      - { id: '3', text: 내부 층의 활성함수는 선형함수를 사용하고, 최종 출력층에 ReLU를 사용한다. }
+      - { id: '4', text: 스킵 연결을 포함하는 잔차 블록(residual block)을 사용하여 깊은 신경망의 학습이 잘 이루어지게 하려는 것이다. }
+    answers: ['4']
+    explanation: ResNet은 잔차 블록과 스킵 연결을 통해 깊은 네트워크의 학습 어려움을 완화한다.
+    tags: [chapter:15, resnet, deep-learning]
+
+  - id: l15-02
+    type: multiple-choice
+    prompt: RNN에 대한 설명으로 옳은 것은?
+    choices:
+      - { id: '1', text: 피드 포워드 연결만으로 구성된다. }
+      - { id: '2', text: 은닉 상태를 표현하는 층은 1개의 뉴런으로 구성된다. }
+      - { id: '3', text: 이전 입력에 대한 기억을 유지할 수 있게 설계한다. }
+      - { id: '4', text: 고정된 길이의 입력을 대상으로 하는 모델이다. }
+    answers: ['3']
+    explanation: RNN은 이전 시점의 정보를 은닉 상태로 유지하여 순차 데이터의 문맥을 반영할 수 있다.
+    tags: [chapter:15, rnn]
+
+  - id: l15-03
+    type: multiple-choice
+    prompt: 다음 중 장기기억 벡터와 단기기억 벡터는 은닉 상태 벡터를 표현하고, 망각 게이트, 입력 게이트, 출력 게이트를 이용하여 정보의 유지 및 활용을 제어하는 구조를 활용하는 순환 신경망 모델은?
+    choices:
+      - { id: '1', text: LSTM }
+      - { id: '2', text: GRU }
+      - { id: '3', text: SOM }
+      - { id: '4', text: ResNet }
+    answers: ['1']
+    explanation: LSTM은 장기기억과 단기기억을 게이트로 제어하여 긴 시퀀스의 정보를 보존하도록 설계된 순환 신경망 모델이다.
+    tags: [chapter:15, lstm, rnn]
+
+  - id: l15-04
+    type: multiple-choice
+    prompt: 다음 중 시퀀스를 입력으로 받아 다른 시퀀스로 변환하는 인코더-디코더 모델에 해당하는 것은?
+    choices:
+      - { id: '1', text: CNN }
+      - { id: '2', text: seq2seq }
+      - { id: '3', text: LSTM }
+      - { id: '4', text: RBM }
+    answers: ['2']
+    explanation: seq2seq는 인코더가 입력 시퀀스를 표현으로 압축하고 디코더가 출력 시퀀스를 생성하는 인코더-디코더 구조이다.
+    tags: [chapter:15, seq2seq, encoder-decoder]
+
+  - id: l15-05
+    type: multiple-choice
+    prompt: 다음 중 디코더의 각 시점에서 가장 관계가 깊은 입력에 주의를 기울일 수 있게 하는 구조에 해당되는 것은?
+    choices:
+      - { id: '1', text: 어텐션 메커니즘 }
+      - { id: '2', text: BPTT }
+      - { id: '3', text: 잔차 블록 }
+      - { id: '4', text: 메모리 셀 }
+    answers: ['1']
+    explanation: 어텐션은 디코더의 각 시점에서 입력 시퀀스의 관련 부분에 더 큰 가중치를 두도록 하는 메커니즘이다.
+    tags: [chapter:15, attention, seq2seq]
+
+  - id: l15-06
+    type: multiple-choice
+    prompt: 다음 중 GPT, BERT 등의 거대 언어 모델에 활용되는 모델에 해당되는 것은?
+    choices:
+      - { id: '1', text: seq2seq }
+      - { id: '2', text: ResNet }
+      - { id: '3', text: 트랜스포머 }
+      - { id: '4', text: GRU }
+    answers: ['3']
+    explanation: GPT와 BERT는 트랜스포머 구조를 기반으로 하는 대표적인 거대 언어 모델이다.
+    tags: [chapter:15, transformer, language-model]
+
+  - id: l15-07
+    type: multiple-choice
+    prompt: 다음 괄호 안에 들어갈 용어들을 순서대로 나열한 것은?
+    passages: [gl15-permutation-combination-07]
+    choices:
+      - { id: '1', text: '조합, $n!$, 순열' }
+      - { id: '2', text: '순열, ${n!\over r!}$, 조합' }
+      - { id: '3', text: '조합, ${(n-r)!\over r!}$, 순열' }
+      - { id: '4', text: '순열, ${n!\over(n-r)!}$, 조합' }
+    answers: ['4']
+    explanation: 순서를 고려해 r개를 뽑는 것은 순열이고 경우의 수는 ${n!\over(n-r)!}$이다. 순서를 무시하는 것은 조합이다.
+    tags: [chapter:15, combinatorics, permutation, combination]
+
+  - id: l15-08
+    type: multiple-choice
+    prompt: 다음 괄호 안에 들어갈 용어로서 옳은 것은?
+    passages: [gl15-gcd-08]
+    choices:
+      - { id: '1', text: 최대공약수 }
+      - { id: '2', text: 최소공배수 }
+      - { id: '3', text: 합성수 }
+      - { id: '4', text: 소수 }
+    answers: ['1']
+    explanation: 두 정수를 모두 나누는 양의 정수 중 가장 큰 수는 최대공약수이다.
+    tags: [chapter:15, number-theory, gcd]
