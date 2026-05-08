@@ -24,7 +24,7 @@ questions:
       표준 형식은 `public static void main(String[] args)`이다.
       `String args[]`와 `String[] args`는 배열 선언 위치만 다르고 같은 의미로 사용할 수 있다.
       `public`은 외부 실행 환경에서 접근할 수 있게 하고, `static`은 객체 생성 없이 호출되게 한다.
-    tags: [chapter:01, main-method]
+    tags: [main-method]
 
   - id: b02-01
     type: multiple-choice
@@ -46,11 +46,10 @@ questions:
       한 줄 주석은 `//`로 시작해 줄 끝까지 적용된다.
       여러 줄 주석은 `/*`로 시작하고 `*/`로 끝나야 한다.
       문서화 주석은 `/** ... */` 형식을 사용한다.
-    tags: [chapter:02, comment]
+    tags: [comment]
 
   - id: b02-02
     type: multi-answer
-    allowMultiple: true
     prompt: 다음 중 식별자로 사용할 수 있는 것을 모두 고르시오.
     choices:
       - { id: '1', text: '_12' }
@@ -69,11 +68,10 @@ questions:
       식별자는 영문자, 한글, 숫자, 밑줄, 달러 기호를 사용할 수 있다.
       첫 문자는 숫자가 될 수 없다.
       `#` 같은 특수 문자는 식별자에 사용할 수 없다.
-    tags: [chapter:02, identifier]
+    tags: [identifier]
 
   - id: b02-04
     type: multi-answer
-    allowMultiple: true
     prompt: 다음 네 종류의 변수 가운데 필드에 해당하는 것을 모두 고르시오.
     choices:
       - { id: '1', text: '인스턴스 변수' }
@@ -92,11 +90,10 @@ questions:
       인스턴스 변수는 객체마다 별도의 값을 가진다.
       클래스 변수는 `static`으로 선언되어 클래스 단위로 공유된다.
       파라미터와 지역 변수는 필드가 아니라 메서드 실행 범위에서 사용된다.
-    tags: [chapter:02, variable, field]
+    tags: [variable, field]
 
   - id: b02-05
     type: multi-answer
-    allowMultiple: true
     prompt: 다음 중 문제가 있는 것을 모두 고르시오.
     choices:
       - { id: '1', text: 'int i = 0x1111;' }
@@ -115,7 +112,7 @@ questions:
       `L`은 `long` 정수 리터럴에 사용한다.
       소수점이 있는 실수 리터럴은 기본적으로 `double`이다.
       문자형 `char`는 정수형과 호환될 수 있다.
-    tags: [chapter:02, literal, type]
+    tags: [literal, type]
 
   - id: b02-09
     type: multiple-choice
@@ -137,7 +134,7 @@ questions:
       `int[][] a`, `int[] a[]`, `int a[][]`는 모두 이차원 배열 선언이 가능하다.
       배열 크기는 `new int[10][10]`처럼 생성식에서 지정한다.
       대괄호 안에 쉼표로 크기를 나열하는 문법은 Java 배열 선언이 아니다.
-    tags: [chapter:02, array]
+    tags: [array]
 
   - id: b02-13
     type: multiple-choice
@@ -166,7 +163,7 @@ questions:
       반복 변수의 타입은 배열 원소 타입과 호환되어야 한다.
       인덱스가 필요 없을 때 향상된 for문을 사용하면 코드가 간결해진다.
       인덱스 변수를 직접 선언하지 않았으면 `names[i]`처럼 사용할 수 없다.
-    tags: [chapter:02, array, enhanced-for]
+    tags: [array, enhanced-for]
 
   - id: b02-14
     type: multiple-choice
@@ -188,7 +185,7 @@ questions:
       문자 리터럴, 십진수 코드값, 16진수 코드값으로 같은 문자를 표현할 수 있다.
       유니코드 이스케이프는 `\u` 뒤의 16진수 코드값으로 문자를 표현한다.
       `0x41`과 65는 `'A'`이지만 `\u0065`는 `'e'`이다.
-    tags: [chapter:02, char, unicode]
+    tags: [char, unicode]
 
   - id: b03-01
     type: multiple-choice
@@ -210,7 +207,7 @@ questions:
       객체지향에서는 대상의 중요한 속성과 동작을 골라 클래스로 표현한다.
       불필요한 세부 구현을 감추면 문제를 더 쉽게 모델링할 수 있다.
       캡슐화, 상속과 구별되는 객체지향의 핵심 개념이다.
-    tags: [chapter:03, abstraction]
+    tags: [abstraction]
 
   - id: b03-02
     type: multiple-choice
@@ -232,7 +229,7 @@ questions:
       필드는 인스턴스 필드와 정적 필드로 나눌 수 있다.
       메소드도 인스턴스 메소드와 정적 메소드로 나눌 수 있다.
       C와 달리 Java에는 클래스 밖에 선언되는 전역 변수가 없다.
-    tags: [chapter:03, class, field]
+    tags: [class, field]
 
   - id: b03-03
     type: multiple-choice
@@ -254,7 +251,7 @@ questions:
       static 메소드와 클래스 메소드는 같은 의미로 사용된다.
       추상 메소드는 선언만 있고 구현은 하위 클래스에서 제공한다.
       이름이 비슷해도 정적성과 추상성은 서로 다른 개념이다.
-    tags: [chapter:03, static-method, abstract-method]
+    tags: [static-method, abstract-method]
 
   - id: b03-06
     type: multiple-choice
@@ -276,7 +273,7 @@ questions:
       `public`은 어디서나 접근 가능하다.
       `protected`는 같은 패키지와 상속 관계의 서브 클래스에서 접근 가능하다.
       접근 제어자를 생략하면 package-private 접근이 된다.
-    tags: [chapter:03, access-modifier]
+    tags: [access-modifier]
 
   - id: b03-08
     type: multiple-choice
@@ -303,11 +300,10 @@ questions:
       매개변수의 개수나 타입, 순서가 달라야 한다.
       반환 타입만 다른 메소드는 오버로딩으로 인정되지 않는다.
       오버로딩은 컴파일 시점에 호출 대상이 결정된다.
-    tags: [chapter:03, overloading]
+    tags: [overloading]
 
   - id: b03-11
     type: multi-answer
-    allowMultiple: true
     prompt: |
       다음과 같은 메소드가 부모 클래스에서 정의되어 있으나 서브 클래스에서 재정의하고자 한다. 재정의하기 위한 메소드 형식으로 적합하지 않은 것을 모두 고르시오.
 
@@ -331,7 +327,7 @@ questions:
       메소드 이름과 매개변수 목록이 같아야 한다.
       반환 타입은 같거나 공변 반환 타입이어야 한다.
       접근 제어자는 부모 메소드보다 좁아질 수 없다.
-    tags: [chapter:03, overriding]
+    tags: [overriding]
 
   - id: b03-12
     type: multiple-choice
@@ -359,11 +355,10 @@ questions:
       같은 객체에서 다음 메소드를 호출하려면 `this`를 반환하면 된다.
       필드와 매개변수 이름이 같을 때는 `this.field`로 필드를 명확히 지정한다.
       `void`나 기본형 값을 반환하면 같은 객체의 다음 메소드를 체이닝할 수 없다.
-    tags: [chapter:03, method-chaining, this]
+    tags: [method-chaining, this]
 
   - id: b04-01
     type: multi-answer
-    allowMultiple: true
     prompt: 다음 중 잘못이 있는 것을 모두 고르시오.
     choices:
       - { id: '1', text: 'final이면서 abstract 클래스' }
@@ -382,7 +377,7 @@ questions:
       `abstract`는 하위 클래스에서 구현이 필요하다는 뜻이다.
       두 성격은 클래스나 메소드에서 충돌할 수 있다.
       필드는 메소드처럼 `abstract`로 선언할 수 없다.
-    tags: [chapter:04, final, abstract]
+    tags: [final, abstract]
 
   - id: b04-03
     type: multiple-choice
@@ -407,11 +402,10 @@ questions:
       공통 필드와 구현된 메소드를 제공할 수 있다.
       추상 메소드는 선언만 있고 구현은 없다.
       추상 클래스를 상속한 구체 클래스는 추상 메소드를 구현해야 한다.
-    tags: [chapter:04, abstract-class]
+    tags: [abstract-class]
 
   - id: b04-05
     type: multi-answer
-    allowMultiple: true
     prompt: A와 B가 클래스이고 X, Y, Z가 인터페이스라고 가정할 때, 다음 중 잘못된 것을 모두 고르시오.
     choices:
       - { id: '1', text: 'class A extends B { }' }
@@ -430,11 +424,10 @@ questions:
       클래스는 여러 인터페이스를 구현할 수 있다.
       인터페이스는 여러 인터페이스를 상속할 수 있다.
       인터페이스와 클래스 사이의 관계에는 `implements`와 `extends`를 구분해 사용해야 한다.
-    tags: [chapter:04, interface, inheritance]
+    tags: [interface, inheritance]
 
   - id: b06-02
     type: multi-answer
-    allowMultiple: true
     prompt: 프로그램에서 IOException 클래스를 사용하고자 한다. 다음 중 적당한 import 구문을 모두 고르시오.
     choices:
       - { id: '1', text: 'import java.io;' }
@@ -453,11 +446,10 @@ questions:
       특정 클래스는 `package.ClassName` 형식으로 import한다.
       패키지 안의 모든 타입은 `package.*` 형식으로 import할 수 있다.
       파일 경로 구분자가 아니라 패키지 이름 구분자인 점을 사용한다.
-    tags: [chapter:06, import, exception]
+    tags: [import, exception]
 
   - id: b06-06
     type: multi-answer
-    allowMultiple: true
     prompt: 다음 중 반드시 예외처리를 할 필요는 없는 것을 모두 고르시오.
     choices:
       - { id: '1', text: 'ArithmeticException' }
@@ -476,7 +468,7 @@ questions:
       checked 예외는 컴파일러가 처리 여부를 검사한다.
       `RuntimeException`의 하위 예외는 보통 반드시 처리하지 않아도 된다.
       입출력 관련 `IOException`은 대표적인 checked 예외이다.
-    tags: [chapter:06, exception, runtime-exception]
+    tags: [exception, runtime-exception]
 
   - id: b06-10
     type: multiple-choice
@@ -498,7 +490,7 @@ questions:
       소스 파일의 패키지 소속은 `package` 선언으로 지정한다.
       다른 패키지의 클래스를 간단히 쓰려면 `import`를 사용한다.
       패키지는 디렉터리 구조와 대응되는 계층 이름을 가진다.
-    tags: [chapter:06, package, import]
+    tags: [package, import]
 
   - id: b06-12
     type: multiple-choice
@@ -523,7 +515,7 @@ questions:
       괄호 안에서 선언한 리소스는 블록 종료 시 자동으로 `close`된다.
       여러 리소스는 나중에 선언된 것부터 역순으로 닫힌다.
       파일, 스트림 같은 리소스 처리에서 누수를 줄이는 데 유용하다.
-    tags: [chapter:06, try-with-resources, exception]
+    tags: [try-with-resources, exception]
 
   - id: b07-08
     type: multiple-choice
@@ -553,7 +545,7 @@ questions:
       `==`는 두 참조가 같은 객체를 가리키는지 비교한다.
       문자열 리터럴은 문자열 풀에서 공유될 수 있다.
       `new String(...)`은 같은 내용을 가져도 별도 객체를 생성한다.
-    tags: [chapter:07, string, equals]
+    tags: [string, equals]
 
   - id: b07-09
     type: multiple-choice
@@ -575,7 +567,7 @@ questions:
       `valueOf`와 `toString` 계열은 보통 문자열을 반환한다.
       `parseInt`는 문자열을 정수값으로 해석한다.
       반환 타입을 구분해야 형 변환 오류를 피할 수 있다.
-    tags: [chapter:07, string, wrapper]
+    tags: [string, wrapper]
 
   - id: b08-01
     type: multiple-choice
@@ -603,7 +595,7 @@ questions:
       `InputStream`은 바이트 입력의 공통 상위 클래스이다.
       `OutputStream`은 바이트 출력의 공통 상위 클래스이다.
       입력 스트림은 읽기 메소드, 출력 스트림은 쓰기 메소드를 중심으로 동작한다.
-    tags: [chapter:08, io, stream]
+    tags: [io, stream]
 
   - id: b08-03
     type: multiple-choice
@@ -625,7 +617,7 @@ questions:
       실제 입출력은 스트림이나 `RandomAccessFile` 같은 클래스를 사용한다.
       경로 표현은 운영체제의 파일 시스템 규칙에 영향을 받는다.
       파일 존재 확인, 디렉터리 생성, 삭제 같은 작업은 `File`에서 제공된다.
-    tags: [chapter:08, file, io]
+    tags: [file, io]
 
   - id: b08-06
     type: multiple-choice
@@ -647,7 +639,7 @@ questions:
       파일 포인터는 현재 읽기/쓰기 위치를 나타낸다.
       읽기와 쓰기 작업은 보통 포인터를 이동시킨다.
       위치 조회 메소드는 포인터 값을 변경하지 않는다.
-    tags: [chapter:08, random-access-file, file-pointer]
+    tags: [random-access-file, file-pointer]
 
   - id: b11-02
     type: multiple-choice
@@ -669,7 +661,7 @@ questions:
       중간 연산은 새 스트림을 반환하며 지연 실행된다.
       종료 연산은 스트림 파이프라인을 실제로 실행한다.
       `forEach`는 각 요소에 작업을 수행하는 대표적인 종료 연산이다.
-    tags: [chapter:11, stream, terminal-operation]
+    tags: [stream, terminal-operation]
 
   - id: b11-03
     type: multiple-choice
@@ -691,7 +683,7 @@ questions:
       스트림은 컬렉션 원소를 함수형 연산으로 처리하는 파이프라인을 제공한다.
       순차 스트림과 병렬 스트림을 선택할 수 있다.
       컬렉션 자체를 변경하지 않고 데이터를 처리할 수 있다.
-    tags: [chapter:11, stream, collection]
+    tags: [stream, collection]
 
   - id: b11-04
     type: multiple-choice
@@ -713,11 +705,10 @@ questions:
       조건을 만족하지 않는 원소는 결과 스트림에서 제외된다.
       `filter()`는 중간 연산이므로 새 스트림을 반환한다.
       스트림 파이프라인에서 데이터 선별에 자주 사용된다.
-    tags: [chapter:11, stream, filter]
+    tags: [stream, filter]
 
   - id: b11-06
     type: multi-answer
-    allowMultiple: true
     prompt: 다음에서 스트림을 사용할 때 얻을 수 있는 장점을 모두 고르시오.
     choices:
       - { id: '1', text: '코드의 가독성을 높인다.' }
@@ -736,7 +727,7 @@ questions:
       내부 반복을 사용해 반복 제어 코드를 줄인다.
       중간 연산은 지연 실행되어 최적화될 수 있다.
       병렬 스트림을 통해 병렬 처리도 지원한다.
-    tags: [chapter:11, stream]
+    tags: [stream]
 
   - id: b11-12
     type: multiple-choice
@@ -758,7 +749,7 @@ questions:
       스트림의 원소를 리스트, 집합, 맵 등으로 모을 수 있다.
       `Collectors` 유틸리티와 함께 자주 사용된다.
       중간 연산과 달리 실제 계산을 끝내고 결과를 반환한다.
-    tags: [chapter:11, stream, collect]
+    tags: [stream, collect]
 
   - id: b12-07
     type: multiple-choice
@@ -780,7 +771,7 @@ questions:
       상호 배제는 동시에 하나의 스레드만 임계 영역에 들어가게 한다.
       동기화가 없으면 경쟁 상태가 발생할 수 있다.
       Java에서는 `synchronized` 키워드로 메소드나 블록을 동기화할 수 있다.
-    tags: [chapter:12, thread, synchronization]
+    tags: [thread, synchronization]
 
   - id: b12-09
     type: multiple-choice
@@ -802,7 +793,7 @@ questions:
       동일 객체의 상태를 여러 스레드가 수정하면 경쟁 상태가 발생할 수 있다.
       동기화는 공유 객체의 임계 영역을 보호하는 방식으로 적용한다.
       예제에서는 세 스레드가 같은 `Account` 객체에 입금한다.
-    tags: [chapter:12, thread, shared-resource]
+    tags: [thread, shared-resource]
 
   - id: b12-10
     type: multiple-choice
@@ -824,7 +815,7 @@ questions:
       Java에서는 메소드 선언에 `synchronized`를 붙일 수 있다.
       인스턴스 synchronized 메소드는 같은 객체에 대해 한 번에 하나의 스레드만 실행된다.
       공유 객체의 상태 변경 메소드가 임계 영역이 된다.
-    tags: [chapter:12, synchronized]
+    tags: [synchronized]
 
   - id: b12-11
     type: multiple-choice
@@ -846,7 +837,7 @@ questions:
       최종 결과를 출력하기 전에 작업 스레드들이 모두 끝났는지 보장해야 한다.
       `wait`/`notify`는 객체 모니터 기반 협력 제어에 사용된다.
       `sleep`은 현재 실행 중인 스레드를 일정 시간 멈춘다.
-    tags: [chapter:12, thread, join]
+    tags: [thread, join]
 
   - id: b12-12
     type: multiple-choice
@@ -877,7 +868,7 @@ questions:
       checked 예외는 `try-catch`로 처리하거나 `throws`로 전파해야 한다.
       예외 전파는 메소드 선언부의 `throws` 절에 작성한다.
       `catch`는 메소드 선언부가 아니라 `try` 블록 뒤에 작성한다.
-    tags: [chapter:12, exception, thread]
+    tags: [exception, thread]
 
   - id: b13-03
     type: multiple-choice
@@ -911,7 +902,7 @@ questions:
       `Connection`은 DBMS와의 연결을 나타낸다.
       `Statement` 또는 `PreparedStatement`로 SQL을 실행한다.
       `ResultSet`은 select 질의의 결과를 표현한다.
-    tags: [chapter:13, jdbc]
+    tags: [jdbc]
 
   - id: b13-08
     type: multiple-choice
@@ -933,7 +924,7 @@ questions:
       조회 결과는 행과 열을 가진 `ResultSet`으로 표현된다.
       데이터 변경 질의에는 보통 `executeUpdate()`를 사용한다.
       SQL 실행 객체와 결과 객체의 역할을 구분해야 한다.
-    tags: [chapter:13, jdbc, result-set]
+    tags: [jdbc, result-set]
 
   - id: b13-10
     type: multiple-choice
@@ -955,7 +946,7 @@ questions:
       `executeQuery()`는 조회 결과를 `ResultSet`으로 돌려준다.
       변경 질의에는 `executeUpdate()`가 적합하다.
       메소드 이름과 SQL 질의 종류를 맞춰 사용해야 한다.
-    tags: [chapter:13, jdbc, execute-query]
+    tags: [jdbc, execute-query]
 
   - id: b13-11
     type: multiple-choice
@@ -977,11 +968,10 @@ questions:
       `ResultSet`은 커서를 이동하며 행 단위로 값을 읽는다.
       각 열 값은 `getString`, `getInt` 같은 메소드로 가져온다.
       연결, 실행 객체, 결과 객체의 역할이 서로 다르다.
-    tags: [chapter:13, jdbc, result-set]
+    tags: [jdbc, result-set]
 
   - id: b13-12
     type: multi-answer
-    allowMultiple: true
     prompt: 다음 중 데이터베이스의 내용을 변경시킬 수 있는 SQL 구문을 모두 고르시오.
     choices:
       - { id: '1', text: 'select' }
@@ -1000,7 +990,7 @@ questions:
       `select`는 검색 결과를 반환한다.
       `insert`, `update`, `delete`는 데이터 상태를 변경한다.
       JDBC에서는 변경 질의에 `executeUpdate()`를 주로 사용한다.
-    tags: [chapter:13, sql]
+    tags: [sql]
 
   - id: b14-01
     type: multiple-choice
@@ -1022,7 +1012,7 @@ questions:
       JAR는 Java Archive의 약자이다.
       여러 클래스 파일과 리소스를 하나의 파일로 관리할 수 있다.
       웹 애플리케이션 배포에는 별도의 WAR 형식이 사용된다.
-    tags: [chapter:14, jar, library]
+    tags: [jar, library]
 
   - id: b14-05
     type: multiple-choice
@@ -1052,4 +1042,4 @@ questions:
       `requires`는 필요한 다른 모듈을 선언한다.
       `exports`는 외부에서 접근 가능한 패키지를 선언한다.
       `java.base` 모듈은 기본으로 의존하므로 명시하지 않아도 된다.
-    tags: [chapter:14, module]
+    tags: [module]

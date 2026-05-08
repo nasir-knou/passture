@@ -151,7 +151,7 @@ questions:
 
       핵심 개념:
       Java의 플랫폼 독립성은 소스 코드가 아니라 컴파일된 바이트코드와 JVM 실행 모델에서 나온다.
-    tags: [chapter:01, java-platform, bytecode]
+    tags: [java-platform, bytecode]
 
   - id: l01-02
     type: multiple-choice
@@ -171,7 +171,7 @@ questions:
 
       핵심 개념:
       Java 소스 파일에는 public 클래스가 하나만 있을 수 있고, public 클래스 이름은 파일명과 같아야 한다.
-    tags: [chapter:01, class-file, compilation]
+    tags: [class-file, compilation]
 
   - id: l02-01
     type: multiple-choice
@@ -190,7 +190,7 @@ questions:
 
       핵심 개념:
       Java는 기본형과 참조형을 구분하며, 클래스 이름은 참조형 타입으로 사용된다.
-    tags: [chapter:02, type, class]
+    tags: [type, class]
 
   - id: l02-02
     type: multiple-choice
@@ -209,7 +209,7 @@ questions:
 
       핵심 개념:
       Java 정수 리터럴은 접두사에 따라 10진수, 8진수, 16진수, 2진수로 해석된다.
-    tags: [chapter:02, literal, integer]
+    tags: [literal, integer]
 
   - id: l03-01
     type: multiple-choice
@@ -228,7 +228,7 @@ questions:
 
       핵심 개념:
       Java 배열은 선언 시 타입 또는 변수명에 []를 붙이고, 생성 시 new 타입[크기] 형식을 사용한다.
-    tags: [chapter:03, array, syntax]
+    tags: [array, syntax]
 
   - id: l03-02
     type: multiple-choice
@@ -247,7 +247,7 @@ questions:
 
       핵심 개념:
       Java에서 + 연산은 피연산자 중 문자열이 있으면 문자열 연결로 동작한다.
-    tags: [chapter:03, output, string-concat]
+    tags: [output, string-concat]
 
   - id: l03-03
     type: multiple-choice
@@ -267,7 +267,7 @@ questions:
 
       핵심 개념:
       protected 멤버는 같은 패키지 내부 또는 다른 패키지의 하위 클래스에서 접근할 수 있다.
-    tags: [chapter:03, access-modifier, protected]
+    tags: [access-modifier, protected]
 
   - id: l04-01
     type: multiple-choice
@@ -286,7 +286,7 @@ questions:
 
       핵심 개념:
       final은 적용 대상에 따라 변수 재할당, 메소드 재정의, 클래스 상속을 제한한다.
-    tags: [chapter:04, final]
+    tags: [final]
 
   - id: l04-02
     type: multiple-choice
@@ -306,7 +306,7 @@ questions:
 
       핵심 개념:
       Java의 클래스 상수는 보통 static final로 선언하며, final은 재할당 금지를 의미한다.
-    tags: [chapter:04, final, static, constant]
+    tags: [final, static, constant]
 
   - id: l05-01
     type: multiple-choice
@@ -326,7 +326,7 @@ questions:
 
       핵심 개념:
       오버라이딩된 인스턴스 메소드는 참조 변수 타입이 아니라 실제 객체 타입을 기준으로 동적 바인딩된다.
-    tags: [chapter:05, inheritance, polymorphism, overriding]
+    tags: [inheritance, polymorphism, overriding]
 
   - id: l05-02
     type: multiple-choice
@@ -346,7 +346,7 @@ questions:
 
       핵심 개념:
       인터페이스 간 상속은 extends, 클래스의 인터페이스 구현은 implements로 표현한다.
-    tags: [chapter:05, interface, inheritance]
+    tags: [interface, inheritance]
 
   - id: l06-01
     type: multiple-choice
@@ -366,7 +366,7 @@ questions:
 
       핵심 개념:
       Java 제네릭의 타입 인수는 참조형이어야 하며 기본형은 래퍼 클래스로 사용한다.
-    tags: [chapter:06, generics]
+    tags: [generics]
 
   - id: l06-02
     type: multiple-choice
@@ -386,7 +386,7 @@ questions:
 
       핵심 개념:
       람다식에서 return은 중괄호로 감싼 블록 본문에서만 사용한다.
-    tags: [chapter:06, lambda, functional-interface]
+    tags: [lambda, functional-interface]
 
   - id: l07-01
     type: multiple-choice
@@ -405,7 +405,7 @@ questions:
 
       핵심 개념:
       Java 소스 파일의 패키지 선언은 파일 맨 앞의 package 패키지명; 형식으로 작성한다.
-    tags: [chapter:07, package]
+    tags: [package]
 
   - id: l07-02
     type: multiple-choice
@@ -425,7 +425,7 @@ questions:
 
       핵심 개념:
       검사 예외를 메소드 밖으로 전달하려면 메소드 선언부에 throws 예외타입을 적는다.
-    tags: [chapter:07, exception, throws]
+    tags: [exception, throws]
 
   - id: l08-01
     type: multiple-choice
@@ -445,7 +445,7 @@ questions:
 
       핵심 개념:
       String 메소드는 기존 문자열을 바꾸지 않고 새 문자열을 반환한다.
-    tags: [chapter:08, string, immutable]
+    tags: [string, immutable]
 
   - id: l08-02
     type: multiple-choice
@@ -464,7 +464,7 @@ questions:
 
       핵심 개념:
       Object는 Java 클래스 계층의 최상위 클래스이고, String은 불변 문자열 클래스다.
-    tags: [chapter:08, object, string]
+    tags: [object, string]
 
   - id: l09-01
     type: multiple-choice
@@ -483,7 +483,7 @@ questions:
 
       핵심 개념:
       기본 스트림은 실제 데이터 소스와 직접 연결되고, 보조 스트림은 기존 스트림에 기능을 추가한다.
-    tags: [chapter:09, io, stream]
+    tags: [io, stream]
 
   - id: l09-02
     type: multiple-choice
@@ -502,7 +502,7 @@ questions:
 
       핵심 개념:
       Reader 계열은 문자 스트림이고 InputStream 계열은 바이트 스트림이다.
-    tags: [chapter:09, io, buffered-reader]
+    tags: [io, buffered-reader]
 
   - id: l10-01
     type: multiple-choice
@@ -521,15 +521,21 @@ questions:
 
       핵심 개념:
       Path는 파일 내용 자체가 아니라 파일 시스템 경로를 표현하고 조작하는 인터페이스다.
-    tags: [chapter:10, nio, path]
+    tags: [nio, path]
 
   - id: l10-02
     type: multiple-choice
     prompt: FileChannel 클래스에 관한 설명으로 틀린 것은 무엇인가?
     choices:
       - { id: '1', text: 'java.io 패키지의 파일 관련 스트림 클래스를 대체하기 위한 클래스이다.' }
-      - { id: '2', text: 'FileChannel.open(path)으로 객체 생성을 하면 해당 파일을 읽기용으로 열게 된다.' }
-      - { id: '3', text: '파일 입력을 위해 FileChannelReader, 파일 출력을 위해 FileChannelWriter를 사용한다.' }
+      - {
+          id: '2',
+          text: 'FileChannel.open(path)으로 객체 생성을 하면 해당 파일을 읽기용으로 열게 된다.',
+        }
+      - {
+          id: '3',
+          text: '파일 입력을 위해 FileChannelReader, 파일 출력을 위해 FileChannelWriter를 사용한다.',
+        }
       - { id: '4', text: '멀티 스레드 환경에서도 안전하게 사용할 수 있게 설계되었다.' }
     answers: ['3']
     explanation: |
@@ -540,7 +546,7 @@ questions:
 
       핵심 개념:
       FileChannel은 채널 기반 파일 입출력 API이며 Reader/Writer 이름의 별도 FileChannel 클래스쌍으로 나뉘지 않는다.
-    tags: [chapter:10, nio, file-channel]
+    tags: [nio, file-channel]
 
   - id: l11-01
     type: multiple-choice
@@ -559,7 +565,7 @@ questions:
 
       핵심 개념:
       List는 순서와 중복을 허용하고, Set은 일반적으로 중복을 허용하지 않는다.
-    tags: [chapter:11, collection, arraylist]
+    tags: [collection, arraylist]
 
   - id: l11-02
     type: multiple-choice
@@ -578,7 +584,7 @@ questions:
 
       핵심 개념:
       Map 계열은 키와 값의 쌍을 저장하고, Set 계열은 중복 없는 원소 집합을 저장한다.
-    tags: [chapter:11, collection, map, set]
+    tags: [collection, map, set]
 
   - id: l12-01
     type: multiple-choice
@@ -598,7 +604,7 @@ questions:
 
       핵심 개념:
       배열에서 스트림을 만들 때는 Arrays.stream(배열)을 사용한다.
-    tags: [chapter:12, stream, array]
+    tags: [stream, array]
 
   - id: l12-02
     type: multiple-choice
@@ -618,13 +624,16 @@ questions:
 
       핵심 개념:
       Stream의 filter는 조건식이 참인 원소만 남기는 중간 연산이다.
-    tags: [chapter:12, stream, filter]
+    tags: [stream, filter]
 
   - id: l13-01
     type: multiple-choice
     prompt: 스레드 동기화와 관련된 다음 설명 중 올바른 것은?
     choices:
-      - { id: '1', text: '메소드 interrupt()는 현재 스레드가 인터럽트를 받을 적이 있는지 검사한다.' }
+      - {
+          id: '1',
+          text: '메소드 interrupt()는 현재 스레드가 인터럽트를 받을 적이 있는지 검사한다.',
+        }
       - { id: '2', text: '메소드 notify()는 현재 실행 중인 스레드를 정해진 시간 동안 중지시킨다.' }
       - { id: '3', text: '메소드 wait()는 대기 상태의 스레드들 가운데 하나를 기다리게 한다.' }
       - { id: '4', text: '메소드 join()은 this 스레드가 종료될 때까지 현재 스레드가 기다린다.' }
@@ -637,7 +646,7 @@ questions:
 
       핵심 개념:
       wait/notify는 객체 모니터 기반 대기와 통지, join은 스레드 종료 대기에 사용된다.
-    tags: [chapter:13, thread, synchronization]
+    tags: [thread, synchronization]
 
   - id: l13-02
     type: multiple-choice
@@ -656,7 +665,7 @@ questions:
 
       핵심 개념:
       스레드 동기화는 공유 자원에 대한 동시 접근을 제어해 데이터 일관성을 유지하는 방법이다.
-    tags: [chapter:13, thread, synchronization]
+    tags: [thread, synchronization]
 
   - id: l14-01
     type: multiple-choice
@@ -675,7 +684,7 @@ questions:
 
       핵심 개념:
       JDBC의 대표 구성 요소에는 Connection, Statement, ResultSet, DriverManager 등이 있다.
-    tags: [chapter:14, jdbc]
+    tags: [jdbc]
 
   - id: l14-02
     type: multiple-choice
@@ -694,7 +703,7 @@ questions:
 
       핵심 개념:
       PreparedStatement는 Statement의 하위 인터페이스로, 미리 컴파일된 매개변수화 SQL 실행에 사용된다.
-    tags: [chapter:14, jdbc, preparedstatement]
+    tags: [jdbc, preparedstatement]
 
   - id: l15-01
     type: multiple-choice
@@ -713,7 +722,7 @@ questions:
 
       핵심 개념:
       Classpath는 JVM과 컴파일러가 클래스와 JAR 라이브러리를 찾는 경로다.
-    tags: [chapter:15, jar, classpath]
+    tags: [jar, classpath]
 
   - id: l15-02
     type: multiple-choice
@@ -732,4 +741,4 @@ questions:
 
       핵심 개념:
       Java 모듈 시스템에서 java.base는 모든 모듈이 자동으로 읽는 필수 기본 모듈이다.
-    tags: [chapter:15, module, java-base]
+    tags: [module, java-base]
