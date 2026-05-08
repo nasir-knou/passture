@@ -19,10 +19,26 @@ passages:
       until false;
 
   - id: g19-rag-01
-    type: image
-    image:
-      path: images/subjects/operating-systems/past-exams/2019/e19-rag.png
-      alt: 2019년 운영체제 기출 42~43번 자원할당 그래프
+    type: diagram
+    diagram:
+      type: resource-allocation-graph
+      width: 420
+      height: 430
+      nodes:
+        - { id: p1, kind: process, label: p_1, x: 70, y: 135 }
+        - { id: p2, kind: process, label: p_2, x: 350, y: 135 }
+        - { id: p3, kind: process, label: p_3, x: 350, y: 335 }
+        - { id: r1, kind: resource, label: r_1, x: 210, y: 55, units: 1 }
+        - { id: r2, kind: resource, label: r_2, x: 210, y: 185, units: 1 }
+        - { id: r3, kind: resource, label: r_3, x: 210, y: 300, units: 2 }
+      edges:
+        - { from: r1, to: p1, label: (ㄱ), labelDx: -35, labelDy: -38 }
+        - { from: p2, to: r1 }
+        - { from: p1, to: r2 }
+        - { from: r2, to: p2 }
+        - { from: p1, to: r3, label: (ㄴ), labelDx: -42, labelDy: 8 }
+        - { from: r3, to: p2, label: (ㄷ), labelDx: 42, labelDy: -8 }
+        - { from: r3, to: p3, label: (ㄹ), labelDy: 45 }
 
   - id: g19-transformed-rag-01
     type: diagram
@@ -72,14 +88,32 @@ passages:
     body: |
       시간 별 페이지 참조가 아래와 같다. 2개의 페이지 프레임이 있고 현재 시간 3까지 진행이 되었을 때, 다음 질문에 답하시오.
 
-  - id: g19-page-reference-image-01
+  - id: g19-page-reference-timeline-01
     type: diagram
     diagram:
-      type: data-table
-      columns: [구분, '1', '2', '3', '4', '5']
-      rows:
-        - [시간, '1', '2', '3', '4', '5']
-        - [페이지 참조, A, B, A, C, D]
+      type: simple-graph
+      width: 640
+      height: 170
+      nodes:
+        - { id: time-label, label: 시간, x: 80, y: 42, hideNode: true }
+        - { id: page-label, label: 페이지 참조, x: 70, y: 100, hideNode: true }
+        - { id: axis-start, label: axis-start, x: 175, y: 58, hideNode: true, hideLabel: true }
+        - { id: axis-end, label: axis-end, x: 575, y: 58, hideNode: true, hideLabel: true }
+        - { id: t1, label: '1', x: 205, y: 35, hideNode: true }
+        - { id: t2, label: '2', x: 295, y: 35, hideNode: true }
+        - { id: t3, label: '3', x: 385, y: 35, hideNode: true }
+        - { id: t4, label: '4', x: 475, y: 35, hideNode: true }
+        - { id: t5, label: '5', x: 555, y: 35, hideNode: true }
+        - { id: p1, label: A, x: 205, y: 95, hideNode: true }
+        - { id: p2, label: B, x: 295, y: 95, hideNode: true }
+        - { id: p3, label: A, x: 385, y: 95, hideNode: true }
+        - { id: p4, label: C, x: 475, y: 95, hideNode: true }
+        - { id: p5, label: D, x: 555, y: 95, hideNode: true }
+        - { id: current-top, label: current-top, x: 430, y: 10, hideNode: true, hideLabel: true }
+        - { id: current-bottom, label: current-bottom, x: 430, y: 130, hideNode: true, hideLabel: true }
+      edges:
+        - { from: axis-start, to: axis-end, directed: true }
+        - { from: current-top, to: current-bottom, style: dashed }
 
 questions:
   - id: e19-01
@@ -532,7 +566,7 @@ questions:
 
   - id: e19-18
     type: multiple-choice
-    passageRefs: [g19-page-reference-01, g19-page-reference-image-01]
+    passageRefs: [g19-page-reference-01, g19-page-reference-timeline-01]
     prompt: FIFO 페이지 교체기법에서 시간 4에 교체 대상으로 선택하는 페이지 프레임 안의 페이지는?
     choices:
       - id: '1'
@@ -559,7 +593,7 @@ questions:
 
   - id: e19-19
     type: multiple-choice
-    passageRefs: [g19-page-reference-01, g19-page-reference-image-01]
+    passageRefs: [g19-page-reference-01, g19-page-reference-timeline-01]
     prompt: LFU 페이지 교체기법에서 시간 4에 교체 대상으로 선택하는 페이지 프레임 안의 페이지는?
     choices:
       - id: '1'

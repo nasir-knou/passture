@@ -83,14 +83,32 @@ passages:
     body: |
       시간 별 페이지 참조가 아래와 같다. 3개의 페이지 프레임이 있고 현재 시간 4까지 진행이 되었을 때, 다음 질문에 답하시오.
 
-  - id: g17-page-reference-table-01
+  - id: g17-page-reference-timeline-01
     type: diagram
     diagram:
-      type: data-table
-      columns: [구분, '1', '2', '3', '4', '5']
-      rows:
-        - [시간, '1', '2', '3', '4', '5']
-        - [페이지 참조, A, B, A, C, D]
+      type: simple-graph
+      width: 640
+      height: 170
+      nodes:
+        - { id: time-label, label: 시간, x: 80, y: 42, hideNode: true }
+        - { id: page-label, label: 페이지 참조, x: 70, y: 100, hideNode: true }
+        - { id: axis-start, label: axis-start, x: 175, y: 58, hideNode: true, hideLabel: true }
+        - { id: axis-end, label: axis-end, x: 575, y: 58, hideNode: true, hideLabel: true }
+        - { id: t1, label: '1', x: 205, y: 35, hideNode: true }
+        - { id: t2, label: '2', x: 295, y: 35, hideNode: true }
+        - { id: t3, label: '3', x: 385, y: 35, hideNode: true }
+        - { id: t4, label: '4', x: 475, y: 35, hideNode: true }
+        - { id: t5, label: '5', x: 555, y: 35, hideNode: true }
+        - { id: p1, label: A, x: 205, y: 95, hideNode: true }
+        - { id: p2, label: B, x: 295, y: 95, hideNode: true }
+        - { id: p3, label: A, x: 385, y: 95, hideNode: true }
+        - { id: p4, label: C, x: 475, y: 95, hideNode: true }
+        - { id: p5, label: D, x: 555, y: 95, hideNode: true }
+        - { id: current-top, label: current-top, x: 515, y: 10, hideNode: true, hideLabel: true }
+        - { id: current-bottom, label: current-bottom, x: 515, y: 130, hideNode: true, hideLabel: true }
+      edges:
+        - { from: axis-start, to: axis-end, directed: true }
+        - { from: current-top, to: current-bottom, style: dashed }
 
 questions:
   - id: e17-01
@@ -408,7 +426,7 @@ questions:
 
   - id: e17-15
     type: multiple-choice
-    passageRefs: [g17-page-reference-01, g17-page-reference-table-01]
+    passageRefs: [g17-page-reference-01, g17-page-reference-timeline-01]
     prompt: FIFO 페이지 교체기법에서 시간 5에 교체 대상으로 선택하는 페이지 프레임 안의 페이지는?
     choices:
       - { id: '1', text: 'A' }
@@ -431,7 +449,7 @@ questions:
 
   - id: e17-16
     type: multiple-choice
-    passageRefs: [g17-page-reference-01, g17-page-reference-table-01]
+    passageRefs: [g17-page-reference-01, g17-page-reference-timeline-01]
     prompt: LRU 페이지 교체기법에서 시간 5에 교체 대상으로 선택하는 페이지 프레임 안의 페이지는?
     choices:
       - { id: '1', text: 'A' }
@@ -550,10 +568,10 @@ questions:
       - { id: '4', text: 'SLTF' }
     answers: ['4']
     explanation: |
-      선택지 1: SSTF는 현재 헤드 위치에서 가장 가까운 트랙 요청을 먼저 처리해 탐구시간을 줄이는 방식이다.
-      선택지 2: SCAN은 헤드가 한 방향으로 이동하며 요청을 처리하므로 탐구시간 최적화 계열이다.
+      선택지 1: SSTF(Shortest Seek Time First)는 현재 헤드 위치에서 가장 가까운 트랙 요청을 먼저 처리해 탐구시간을 줄이는 방식이다.
+      선택지 2: SCAN은 엘리베이터 스케줄링처럼 헤드가 한 방향으로 이동하며 요청을 처리하므로 탐구시간 최적화 계열이다.
       선택지 3: LOOK은 요청이 있는 범위까지만 이동하는 SCAN 변형으로 탐구시간 최적화 계열이다.
-      선택지 4: SLTF는 회전 지연시간을 줄이는 관점의 스케줄링이므로 다른 세 선택지와 최적화 대상이 달라 정답이다.
+      선택지 4: SLTF(Shortest Latency Time First)는 회전 지연시간을 줄이는 관점의 스케줄링이므로 다른 세 선택지와 최적화 대상이 달라 정답이다.
 
       핵심 개념:
       디스크 스케줄링은 접근시간의 여러 요소 중 무엇을 줄일지에 따라 구분된다.

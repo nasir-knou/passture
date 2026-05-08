@@ -5,10 +5,21 @@ kind: workbook
 
 passages:
   - id: g04-semaphore-definition-01
-    type: image
-    image:
-      path: images/subjects/operating-systems/workbook/b04-07-semaphore-definition.png
-      alt: 운영체제 워크북 4장 7번 세마포어 P(s), V(s) 정의
+    type: diagram
+    diagram:
+      type: data-table
+      columns: [P(s), V(s)]
+      rows:
+        - - |
+              if (s > 0)
+                (가)____;
+              else
+                현재 프로세스를 대기시킴;
+          - |
+              if (대기 중인 프로세스 없음)
+                (나)____;
+              else
+                대기 중인 프로세스 1개를 진행;
 
   - id: g04-critical-section-context-01
     type: text
@@ -16,22 +27,82 @@ passages:
       다음은 두 개 이상의 프로세스가 동시에 액세스하면 안 되는 $S_1$ 부분을 세마포어를 이용하여 제어하고 있는 코드이다. 다음 물음에 답하시오. 단, mutex의 초깃값은 1이다.
 
   - id: g04-critical-section-code-01
-    type: image
-    image:
-      path: images/subjects/operating-systems/workbook/b04-08-critical-section-code.png
-      alt: 운영체제 워크북 4장 8~9번 세마포어 임계영역 제어 코드
+    type: diagram
+    diagram:
+      type: data-table
+      columns: [세마포어 임계영역 제어 코드]
+      rows:
+        - - |
+              ...
+              (가)____(mutex);
+              $S_1$
+              (나)____(mutex);
+              ...
+
+  - id: g04-order-sync-code-01
+    type: diagram
+    diagram:
+      type: data-table
+      columns: [프로세스 A의 코드, 프로세스 B의 코드]
+      rows:
+        - - |
+              ...
+              (가)
+              $S_1$
+              (나)
+              ...
+          - |
+              ...
+              (다)
+              $S_2$
+              (라)
+              ...
 
   - id: g05-producer-consumer-code-01
-    type: image
-    image:
-      path: images/subjects/operating-systems/workbook/b05-02-producer-consumer-code.png
-      alt: 운영체제 워크북 5장 2번 생산자-소비자 코드
+    type: diagram
+    diagram:
+      type: data-table
+      columns: [생산자의 코드, 소비자의 코드]
+      rows:
+        - - |
+              while(true) {
+                데이터를 생산
+                P(empty);
+                P(mutex);
+                버퍼에 데이터를 넣음
+                V(mutex);
+                V(full);
+              }
+          - |
+              while(true) {
+                P(full);
+                P(mutex);
+                버퍼에서 데이터를 꺼냄
+                V(mutex);
+                V(empty);
+                데이터를 소비
+              }
 
   - id: g05-readers-writers-code-01
-    type: image
-    image:
-      path: images/subjects/operating-systems/workbook/b05-04-readers-writers-code.png
-      alt: 운영체제 워크북 5장 4번 제1판독기-기록기 코드
+    type: diagram
+    diagram:
+      type: data-table
+      columns: [기록기의 코드, 판독기의 코드]
+      rows:
+        - - |
+              P(wrt);
+              공유자원에 쓰기
+              V(wrt);
+          - |
+              P(mutex);
+              rcount = rcount + 1;
+              if (rcount == 1) then P(wrt);
+              V(mutex);
+              공유자원에서 읽기
+              P(mutex);
+              rcount = rcount - 1;
+              if (rcount == 0) then V(wrt);
+              V(mutex);
 
   - id: g06-rag-04
     type: image
@@ -118,7 +189,8 @@ passages:
     type: diagram
     diagram:
       type: data-table
-      columns: [세그먼트 번호, 세그먼트 존재 비트, 보조기억장치 주소, 세그먼트 길이, 세그먼트 시작주소]
+      columns:
+        [세그먼트 번호, 세그먼트 존재 비트, 보조기억장치 주소, 세그먼트 길이, 세그먼트 시작주소]
       rows:
         - ['2', '1', '30000', '1000', '300']
         - ['⋮', '⋮', '⋮', '⋮', '⋮']
@@ -138,14 +210,32 @@ passages:
     body: |
       시각별 페이지 참조가 아래와 같다. 2개의 페이지 프레임이 있고 현재 시각 3까지 진행되었을 때, 다음 물음에 답하시오.
 
-  - id: g10-page-reference-diagram-03
+  - id: g10-page-reference-timeline-03
     type: diagram
     diagram:
-      type: data-table
-      columns: [구분, '1', '2', '3', '4', '5']
-      rows:
-        - [시각, '1', '2', '3', '4', '5']
-        - [페이지 참조, A, A, B, C, A]
+      type: simple-graph
+      width: 640
+      height: 170
+      nodes:
+        - { id: time-label, label: 시각, x: 80, y: 42, hideNode: true }
+        - { id: page-label, label: 페이지 참조, x: 70, y: 100, hideNode: true }
+        - { id: axis-start, label: axis-start, x: 175, y: 58, hideNode: true, hideLabel: true }
+        - { id: axis-end, label: axis-end, x: 575, y: 58, hideNode: true, hideLabel: true }
+        - { id: t1, label: '1', x: 205, y: 35, hideNode: true }
+        - { id: t2, label: '2', x: 295, y: 35, hideNode: true }
+        - { id: t3, label: '3', x: 385, y: 35, hideNode: true }
+        - { id: t4, label: '4', x: 475, y: 35, hideNode: true }
+        - { id: t5, label: '5', x: 555, y: 35, hideNode: true }
+        - { id: p1, label: A, x: 205, y: 95, hideNode: true }
+        - { id: p2, label: A, x: 295, y: 95, hideNode: true }
+        - { id: p3, label: B, x: 385, y: 95, hideNode: true }
+        - { id: p4, label: C, x: 475, y: 95, hideNode: true }
+        - { id: p5, label: A, x: 555, y: 95, hideNode: true }
+        - { id: current-top, label: current-top, x: 430, y: 10, hideNode: true, hideLabel: true }
+        - { id: current-bottom, label: current-bottom, x: 430, y: 130, hideNode: true, hideLabel: true }
+      edges:
+        - { from: axis-start, to: axis-end, directed: true }
+        - { from: current-top, to: current-bottom, style: dashed }
 
   - id: g10-clock-queue-07
     type: diagram
@@ -163,11 +253,34 @@ passages:
   - id: g10-working-set-reference-09
     type: diagram
     diagram:
-      type: data-table
-      columns: [구분, '2', '3', '4', '5', '6', '7', '8', '9', '10']
-      rows:
-        - [시각, '2', '3', '4', '5', '6', '7', '8', '9', '10']
-        - [페이지 참조, B, B, B, C, A, A, C, B, A]
+      type: simple-graph
+      width: 760
+      height: 170
+      nodes:
+        - { id: time-label, label: 시각, x: 80, y: 42, hideNode: true }
+        - { id: page-label, label: 페이지 참조, x: 70, y: 100, hideNode: true }
+        - { id: axis-start, label: axis-start, x: 150, y: 58, hideNode: true, hideLabel: true }
+        - { id: axis-end, label: axis-end, x: 705, y: 58, hideNode: true, hideLabel: true }
+        - { id: t2, label: '2', x: 185, y: 35, hideNode: true }
+        - { id: t3, label: '3', x: 245, y: 35, hideNode: true }
+        - { id: t4, label: '4', x: 305, y: 35, hideNode: true }
+        - { id: t5, label: '5', x: 365, y: 35, hideNode: true }
+        - { id: t6, label: '6', x: 425, y: 35, hideNode: true }
+        - { id: t7, label: '7', x: 485, y: 35, hideNode: true }
+        - { id: t8, label: '8', x: 545, y: 35, hideNode: true }
+        - { id: t9, label: '9', x: 605, y: 35, hideNode: true }
+        - { id: t10, label: '10', x: 665, y: 35, hideNode: true }
+        - { id: p2, label: B, x: 185, y: 95, hideNode: true }
+        - { id: p3, label: B, x: 245, y: 95, hideNode: true }
+        - { id: p4, label: B, x: 305, y: 95, hideNode: true }
+        - { id: p5, label: C, x: 365, y: 95, hideNode: true }
+        - { id: p6, label: A, x: 425, y: 95, hideNode: true }
+        - { id: p7, label: A, x: 485, y: 95, hideNode: true }
+        - { id: p8, label: C, x: 545, y: 95, hideNode: true }
+        - { id: p9, label: B, x: 605, y: 95, hideNode: true }
+        - { id: p10, label: A, x: 665, y: 95, hideNode: true }
+      edges:
+        - { from: axis-start, to: axis-end, directed: true }
 
   - id: g11-interrupt-sequence-06
     type: text
@@ -214,7 +327,7 @@ questions:
       단일 CPU에서도 문맥 교환을 통해 병행성이 제공된다.
       공유 자원을 함께 사용하면 경쟁 상태가 발생할 수 있다.
       운영체제는 상호배제와 동기화로 이러한 문제를 제어한다.
-    tags: [chapter:04, concurrency]
+    tags: [concurrency]
 
   - id: b04-02
     type: multiple-choice
@@ -236,7 +349,7 @@ questions:
       협력 프로세스는 데이터나 상태를 공유하며 상호작용한다.
       병행 실행에서 프로세스 간 관계를 구분하는 것은 동기화 설계의 출발점이다.
       독립 프로세스는 상대적으로 제어가 단순하다.
-    tags: [chapter:04, process]
+    tags: [process]
 
   - id: b04-03
     type: multiple-choice
@@ -258,7 +371,7 @@ questions:
       상호배제는 한 번에 하나의 프로세스만 임계영역에 들어가도록 보장한다.
       상호배제가 없으면 경쟁 상태가 발생할 수 있다.
       세마포어와 모니터는 상호배제 구현에 사용된다.
-    tags: [chapter:04, mutual-exclusion, critical-section]
+    tags: [mutual-exclusion, critical-section]
 
   - id: b04-04
     type: multiple-choice
@@ -280,7 +393,7 @@ questions:
       상호배제도 넓게는 동기화 문제에 포함될 수 있다.
       처리 순서 제약이 있을 때는 적절한 신호와 대기 조건이 필요하다.
       세마포어의 P/V 연산은 동기화에 활용된다.
-    tags: [chapter:04, synchronization]
+    tags: [synchronization]
 
   - id: b04-05
     type: multiple-choice
@@ -302,7 +415,7 @@ questions:
       초기값은 사용 목적에 맞게 설정해야 한다.
       P 연산은 검사 또는 감소를 수행한다.
       V 연산은 증가 또는 대기 프로세스 깨우기를 수행한다.
-    tags: [chapter:04, semaphore]
+    tags: [semaphore]
 
   - id: b04-06
     type: multiple-choice
@@ -324,7 +437,7 @@ questions:
       V 연산은 자원 사용 후 세마포어 값을 증가시킨다.
       P/V 연산은 원자적으로 수행되어야 한다.
       세마포어 값과 대기 큐를 통해 프로세스 실행 순서를 조정한다.
-    tags: [chapter:04, semaphore]
+    tags: [semaphore]
 
   - id: b04-07
     type: multiple-choice
@@ -347,7 +460,7 @@ questions:
       V(s)는 자원을 반납하거나 대기 프로세스를 깨우는 연산이다.
       세마포어 구현에서 P/V의 원자성은 중요하다.
       잘못된 증감 방향은 동기화 의미를 반대로 만든다.
-    tags: [chapter:04, semaphore]
+    tags: [semaphore]
 
   - id: b04-08
     type: multiple-choice
@@ -370,7 +483,7 @@ questions:
       동시에 여러 프로세스가 임계영역에 들어가면 경쟁 상태가 생길 수 있다.
       세마포어는 임계영역 진입 전후에 P/V 연산을 두어 접근을 제어한다.
       임계영역 보호는 병행 프로세스 제어의 핵심이다.
-    tags: [chapter:04, critical-section]
+    tags: [critical-section]
 
   - id: b04-09
     type: multiple-choice
@@ -393,10 +506,11 @@ questions:
       임계영역을 빠져나온 뒤에는 V 연산으로 자원을 반환한다.
       P/V 위치가 바뀌면 상호배제 의미가 깨진다.
       세마포어 초기값 1은 한 번에 하나의 프로세스만 진입하게 한다.
-    tags: [chapter:04, semaphore, critical-section]
+    tags: [semaphore, critical-section]
 
   - id: b04-10
     type: multiple-choice
+    passageRefs: [g04-order-sync-code-01]
     prompt: 프로세스 A가 코드 S1을 수행한 후에 프로세스 B가 코드 S2를 수행하도록 동기화를 할 때, 연산 P와 연산 V의 위치로 올바른 것은?
     choices:
       - { id: '1', text: '연산 P: (가), 연산 V: (라)' }
@@ -415,7 +529,7 @@ questions:
       후행 작업 앞에는 P를 두어 선행 작업 완료 전에는 대기하게 한다.
       초기 세마포어 값이 0이면 V가 수행되기 전 P에서 대기한다.
       세마포어는 상호배제뿐 아니라 실행 순서 제어에도 사용된다.
-    tags: [chapter:04, semaphore, synchronization]
+    tags: [semaphore, synchronization]
 
   - id: b05-01
     type: multiple-choice
@@ -437,7 +551,7 @@ questions:
       버퍼가 가득 차면 생산자가 대기한다.
       버퍼가 비어 있으면 소비자가 대기한다.
       버퍼 조작 자체는 상호배제로 보호해야 한다.
-    tags: [chapter:05, producer-consumer]
+    tags: [producer-consumer]
 
   - id: b05-02
     type: multiple-choice
@@ -460,7 +574,7 @@ questions:
       full은 채워진 버퍼 항목 수를 나타낸다.
       empty는 빈 버퍼 공간 수를 나타내며 보통 n으로 초기화한다.
       세마포어 초깃값은 동기화 조건의 의미를 반영해야 한다.
-    tags: [chapter:05, semaphore, producer-consumer]
+    tags: [semaphore, producer-consumer]
 
   - id: b05-03
     type: multiple-choice
@@ -488,7 +602,7 @@ questions:
       읽기끼리는 동시에 가능하다.
       쓰기는 다른 읽기나 쓰기와 동시에 수행될 수 없다.
       이를 위해 판독기 수와 기록기 접근을 별도로 제어한다.
-    tags: [chapter:05, readers-writers]
+    tags: [readers-writers]
 
   - id: b05-04
     type: multiple-choice
@@ -511,7 +625,7 @@ questions:
       mutex는 판독기 수를 나타내는 rcount 갱신을 보호한다.
       두 세마포어 모두 이진 세마포어로 1에서 시작한다.
       판독기 수 갱신도 임계영역으로 다루어야 한다.
-    tags: [chapter:05, readers-writers, semaphore]
+    tags: [readers-writers, semaphore]
 
   - id: b05-05
     type: multiple-choice
@@ -534,7 +648,7 @@ questions:
       rcount 변경은 mutex로 보호해야 한다.
       공유 변수 갱신이 원자적으로 처리되지 않으면 경쟁 상태가 생긴다.
       동기화 문제에서는 보조 변수도 임계영역으로 보아야 한다.
-    tags: [chapter:05, readers-writers, race-condition]
+    tags: [readers-writers, race-condition]
 
   - id: b05-06
     type: multiple-choice
@@ -556,7 +670,7 @@ questions:
       공유 메모리는 공통 메모리 영역을 통해 데이터를 교환한다.
       메시지 전달 방식은 send/receive 연산을 사용한다.
       공유 메모리는 빠르지만 동기화 책임이 프로그래머에게 있다.
-    tags: [chapter:05, ipc, shared-memory]
+    tags: [ipc, shared-memory]
 
   - id: b05-07
     type: multiple-choice
@@ -578,7 +692,7 @@ questions:
       send/receive 연산이 사용된다.
       커널이 통신 기능을 중재한다.
       공유 메모리보다 단순하지만 상대적으로 느릴 수 있다.
-    tags: [chapter:05, ipc, message-passing]
+    tags: [ipc, message-passing]
 
   - id: b05-08
     type: multiple-choice
@@ -606,7 +720,7 @@ questions:
       링크는 방향성과 용량 같은 속성을 가진다.
       단방향 링크와 양방향 링크가 모두 가능하다.
       링크 구조는 통신 방식의 동작을 결정한다.
-    tags: [chapter:05, ipc, communication-link]
+    tags: [ipc, communication-link]
 
   - id: b05-09
     type: multiple-choice
@@ -628,7 +742,7 @@ questions:
       간접통신은 우편함 또는 포트를 통해 메시지를 주고받는다.
       직접통신의 링크는 통신하는 두 프로세스 쌍에 대응된다.
       통신 링크의 성질은 직접/간접 방식에 따라 달라진다.
-    tags: [chapter:05, ipc, direct-communication]
+    tags: [ipc, direct-communication]
 
   - id: b05-10
     type: multiple-choice
@@ -650,7 +764,7 @@ questions:
       프로세스는 같은 우편함을 공유해 통신할 수 있다.
       우편함 기반 통신은 여러 프로세스가 참여할 수 있다.
       직접통신과 달리 수신 프로세스 이름 대신 우편함 식별자가 사용된다.
-    tags: [chapter:05, ipc, indirect-communication]
+    tags: [ipc, indirect-communication]
 
   - id: b06-01
     type: multiple-choice
@@ -678,7 +792,7 @@ questions:
       기아상태는 특정 프로세스가 계속 자원을 얻지 못하는 상태이다.
       기아상태에서는 다른 프로세스의 진행은 가능할 수 있다.
       두 현상은 모두 자원 할당 정책과 관련된다.
-    tags: [chapter:06, deadlock, starvation]
+    tags: [deadlock, starvation]
 
   - id: b06-02
     type: multiple-choice
@@ -700,7 +814,7 @@ questions:
       네 조건이 동시에 성립해야 교착상태가 발생할 수 있다.
       선점이 가능하면 자원을 강제로 회수할 수 있어 교착상태 예방에 도움이 된다.
       교착상태 예방은 이 조건 중 하나를 깨는 방식으로 접근한다.
-    tags: [chapter:06, deadlock]
+    tags: [deadlock]
 
   - id: b06-03
     type: multiple-choice
@@ -725,7 +839,7 @@ questions:
       교착상태는 여러 필요조건이 동시에 만족될 때 발생한다.
       비선점 조건에서는 이미 할당된 자원을 강제로 빼앗을 수 없다.
       환형대기는 자원 대기 관계가 순환 구조를 이루는 조건이다.
-    tags: [chapter:06, deadlock, hold-and-wait]
+    tags: [deadlock, hold-and-wait]
 
   - id: b06-04
     type: multiple-choice
@@ -748,7 +862,7 @@ questions:
       단위자원이 여러 개인 자원 유형에서는 사이클만으로 항상 교착상태를 단정할 수는 없다.
       그러나 사이클에 있는 프로세스들이 기다리는 자원이 반환될 가능성이 없으면 교착상태로 판단한다.
       이 그래프는 사이클이 존재하고 $r_3$의 가용 자원이 해당 대기 고리를 풀지 못한다.
-    tags: [chapter:06, deadlock, resource-allocation-graph]
+    tags: [deadlock, resource-allocation-graph]
 
   - id: b06-05
     type: multiple-choice
@@ -771,7 +885,7 @@ questions:
       가용 단위자원이 대기 중인 프로세스에 할당되어 진행을 만들 수 있으면 사이클이 해소될 수 있다.
       교착상태 판단은 사이클 존재뿐 아니라 각 자원 유형의 총 단위자원 수와 가용 여부를 함께 본다.
       이 그래프에서는 $r_2$의 가용 단위자원이 교착 고리를 풀 수 있다.
-    tags: [chapter:06, deadlock, resource-allocation-graph]
+    tags: [deadlock, resource-allocation-graph]
 
   - id: b06-06
     type: multiple-choice
@@ -859,7 +973,7 @@ questions:
       프로세스에서 자원으로 가는 간선은 요청, 자원에서 프로세스로 가는 간선은 할당을 뜻한다.
       단일 단위자원만 있는 자원 유형에서는 사이클이 교착상태 판단의 강한 근거가 된다.
       여러 선택지 중 실제 사이클이 닫혀 있고 진행 가능성이 없는 그래프를 고르면 된다.
-    tags: [chapter:06, deadlock, resource-allocation-graph]
+    tags: [deadlock, resource-allocation-graph]
 
   - id: b06-07
     type: multiple-choice
@@ -881,7 +995,7 @@ questions:
       예방은 필요조건 중 하나가 성립하지 않게 한다.
       회피는 안전상태를 유지하도록 자원을 할당한다.
       탐지와 복구는 발생한 교착상태를 찾아 해소한다.
-    tags: [chapter:06, deadlock]
+    tags: [deadlock]
 
   - id: b06-08
     type: multiple-choice
@@ -903,7 +1017,7 @@ questions:
       각 자원 유형에 일련번호를 부여한다.
       프로세스는 자신이 가진 자원보다 큰 순서의 자원만 요청하게 하므로 $r_1$ 보유 중 $r_2$를 요청하려면 $f(r_1) < f(r_2)$이어야 한다.
       순환 대기 관계가 만들어지지 않도록 자원 요청 순서를 제한한다.
-    tags: [chapter:06, deadlock-prevention]
+    tags: [deadlock-prevention]
 
   - id: b07-01
     type: multiple-choice
@@ -925,7 +1039,7 @@ questions:
       이를 위해 현재 할당량, 가용 자원, 최대 요구량을 사용한다.
       은행원 알고리즘은 대표적인 교착상태 회피 알고리즘이다.
       최소 요구량은 안전성 검사에 필요한 핵심 정보가 아니다.
-    tags: [chapter:07, deadlock-avoidance]
+    tags: [deadlock-avoidance]
 
   - id: b07-02
     type: multiple-choice
@@ -953,7 +1067,7 @@ questions:
       안전순서열은 프로세스들이 차례로 자원을 얻고 완료될 수 있는 순서이다.
       완료된 프로세스가 반납하는 자원은 뒤 프로세스의 실행 가능성에 영향을 준다.
       교착상태 회피는 안전상태를 유지하는 방향으로 자원을 할당한다.
-    tags: [chapter:07, safe-state]
+    tags: [safe-state]
 
   - id: b07-03
     type: multiple-choice
@@ -975,7 +1089,7 @@ questions:
       안전상태가 유지되면 자원을 할당할 수 있다.
       불안전상태는 교착상태 가능성이 있는 상태이다.
       은행원 알고리즘은 안전성 검사를 통해 요청 수락 여부를 결정한다.
-    tags: [chapter:07, deadlock-avoidance]
+    tags: [deadlock-avoidance]
 
   - id: b07-04
     type: multiple-choice
@@ -999,7 +1113,7 @@ questions:
       주장 간선이 실제 요청으로 바뀐 뒤 이를 할당 간선으로 바꾸었을 때 사이클이 생기면 불안전상태가 될 수 있다.
       불안전상태가 되는 요청은 수용하지 않아야 한다.
       그래프의 할당 간선, 주장 간선, 요청 간선을 구분해 사이클을 판단한다.
-    tags: [chapter:07, resource-allocation-graph]
+    tags: [resource-allocation-graph]
 
   - id: b07-05
     type: multiple-choice
@@ -1022,7 +1136,7 @@ questions:
       변형된 자원할당 그래프에서는 점선 주장 간선을 실제 요청 및 할당으로 바꾸었을 때 생기는 사이클을 검사한다.
       사이클이 생겨 불안전상태가 되면 요청을 거절한다.
       교착상태 회피는 안전상태를 유지하는 것이 목적이다.
-    tags: [chapter:07, resource-allocation-graph]
+    tags: [resource-allocation-graph]
 
   - id: b07-06
     type: multiple-choice
@@ -1044,7 +1158,7 @@ questions:
       실제 할당 전 가정 상태를 만들어 안전성 검사를 수행한다.
       안전상태이면 요청을 승인하고, 아니면 대기시킨다.
       각 프로세스의 최대 요구량 정보가 필요하다.
-    tags: [chapter:07, bankers-algorithm]
+    tags: [bankers-algorithm]
 
   - id: b07-07
     type: multiple-choice
@@ -1066,7 +1180,7 @@ questions:
       탐지 알고리즘은 프로세스 수와 자원 수에 따라 비용이 크다.
       너무 자주 수행하면 시스템 오버헤드가 커진다.
       탐지 시점은 비용과 반응성을 고려해 선택한다.
-    tags: [chapter:07, deadlock-detection]
+    tags: [deadlock-detection]
 
   - id: b07-08
     type: multiple-choice
@@ -1088,7 +1202,7 @@ questions:
       프로세스 종료 또는 자원 선점이 사용될 수 있다.
       복구 대상 선택은 비용과 공정성을 고려해야 한다.
       무차별 종료는 비효율적일 수 있다.
-    tags: [chapter:07, deadlock-recovery]
+    tags: [deadlock-recovery]
 
   - id: b08-01
     type: multiple-choice
@@ -1110,7 +1224,7 @@ questions:
       CPU에 가까울수록 빠르고 비트당 비용이 높다.
       보조기억장치는 대용량이지만 접근 속도가 느리고 비트당 비용이 낮다.
       레지스터와 캐시는 빠른 접근을 위해 소량으로 사용된다.
-    tags: [chapter:08, memory-hierarchy]
+    tags: [memory-hierarchy]
 
   - id: b08-02
     type: multiple-choice
@@ -1132,7 +1246,7 @@ questions:
       절대주소를 사용하므로 실행 중 재배치가 어렵다.
       상대주소를 사용하는 방식은 재배치 가능성을 높인다.
       메모리 관리 방식은 주소 변환 방식과 밀접하다.
-    tags: [chapter:08, memory-management, loading]
+    tags: [memory-management, loading]
 
   - id: b08-03
     type: multiple-choice
@@ -1157,7 +1271,7 @@ questions:
       외부 단편화는 빈 공간이 여러 곳에 흩어진 상태이다.
       내부 단편화는 할당된 영역 안에 사용되지 않는 공간이 남는 상태이다.
       단편화는 메모리 배치와 할당 정책에 영향을 받는다.
-    tags: [chapter:08, fragmentation]
+    tags: [fragmentation]
 
   - id: b08-04
     type: multiple-choice
@@ -1179,7 +1293,7 @@ questions:
       프로세스가 분할영역보다 작으면 내부 단편화가 생긴다.
       분할 크기와 작업 크기가 맞지 않으면 공간 낭비가 발생한다.
       동적 분할 방식은 외부 단편화 문제가 더 두드러진다.
-    tags: [chapter:08, fixed-partition, fragmentation]
+    tags: [fixed-partition, fragmentation]
 
   - id: b08-05
     type: multiple-choice
@@ -1204,7 +1318,7 @@ questions:
       시간이 지나면 빈 공간이 흩어지는 외부 단편화가 발생할 수 있다.
       외부 단편화는 통합이나 집약으로 완화할 수 있다.
       최초 적합, 최적 적합, 최악 적합은 빈 공간 선택 전략이다.
-    tags: [chapter:08, dynamic-partition, fragmentation]
+    tags: [dynamic-partition, fragmentation]
 
   - id: b08-06
     type: multiple-choice
@@ -1226,7 +1340,7 @@ questions:
       최초 적합은 빠르지만 공간 사용이 최적이 아닐 수 있다.
       최적 적합은 남는 공간을 최소화하려 한다.
       최악 적합은 큰 빈 공간을 선택해 남는 공간도 크게 유지하려 한다.
-    tags: [chapter:08, memory-allocation, best-fit]
+    tags: [memory-allocation, best-fit]
 
   - id: b08-07
     type: multiple-choice
@@ -1249,7 +1363,7 @@ questions:
       요구 크기를 수용할 수 있는 첫 번째 빈 공간을 선택한다.
       탐색 비용이 비교적 작다.
       빈 공간 선택 결과는 리스트 순서에 영향을 받는다.
-    tags: [chapter:08, first-fit]
+    tags: [first-fit]
 
   - id: b08-08
     type: multiple-choice
@@ -1272,7 +1386,7 @@ questions:
       다음 할당 때 그 위치부터 탐색을 시작한다.
       최초 적합보다 앞쪽 공간에 할당이 집중되는 현상을 줄일 수 있다.
       선택 결과는 이전 탐색 위치에 따라 달라진다.
-    tags: [chapter:08, next-fit]
+    tags: [next-fit]
 
   - id: b08-09
     type: multiple-choice
@@ -1295,7 +1409,7 @@ questions:
       남는 공간을 최소화하는 것이 목적이다.
       전체 빈 공간을 탐색해야 할 수 있어 비용이 커질 수 있다.
       작은 조각이 많이 생길 위험도 있다.
-    tags: [chapter:08, best-fit]
+    tags: [best-fit]
 
   - id: b08-10
     type: multiple-choice
@@ -1318,7 +1432,7 @@ questions:
       할당 후에도 비교적 큰 남은 공간을 유지하려는 전략이다.
       전체 빈 공간 탐색이 필요할 수 있다.
       실제 성능은 작업 특성과 빈 공간 분포에 따라 달라진다.
-    tags: [chapter:08, worst-fit]
+    tags: [worst-fit]
 
   - id: b09-01
     type: multiple-choice
@@ -1346,7 +1460,7 @@ questions:
       프로세스는 가상주소를 사용하고 하드웨어/운영체제가 이를 실주소로 변환한다.
       필요한 부분만 메모리에 적재해 메모리 사용 효율을 높인다.
       가상주소의 연속성과 물리 메모리의 연속성은 분리될 수 있다.
-    tags: [chapter:09, virtual-memory, address-translation]
+    tags: [virtual-memory, address-translation]
 
   - id: b09-02
     type: multiple-choice
@@ -1368,7 +1482,7 @@ questions:
       물리 메모리는 같은 크기의 페이지 프레임으로 나뉜다.
       페이지 단위 매핑으로 외부 단편화를 줄일 수 있다.
       페이지 크기 때문에 마지막 페이지에서 내부 단편화가 생길 수 있다.
-    tags: [chapter:09, virtual-memory, paging]
+    tags: [virtual-memory, paging]
 
   - id: b09-03
     type: multiple-choice
@@ -1391,7 +1505,7 @@ questions:
       페이지 테이블은 페이지 번호를 페이지 프레임 번호로 변환한다.
       실주소는 `페이지 프레임 번호 x 페이지 크기 + 변위`로 구한다.
       변위는 페이지 내부 위치이므로 주소변환 과정에서 그대로 유지된다.
-    tags: [chapter:09, paging, address-translation]
+    tags: [paging, address-translation]
 
   - id: b09-04
     type: multiple-choice
@@ -1413,7 +1527,7 @@ questions:
       각 세그먼트는 서로 다른 크기를 가질 수 있다.
       세그먼트 단위 보호와 공유가 자연스럽다.
       가변 크기 연속 할당이므로 외부 단편화가 발생할 수 있다.
-    tags: [chapter:09, virtual-memory, segmentation]
+    tags: [virtual-memory, segmentation]
 
   - id: b09-05
     type: multiple-choice
@@ -1436,7 +1550,7 @@ questions:
       세그먼트 테이블은 각 세그먼트의 시작주소와 길이를 저장한다.
       존재 비트가 $1$이고 변위가 세그먼트 길이보다 작으면 실주소는 시작주소와 변위의 합이다.
       변위가 길이를 벗어나면 주소 오류로 처리된다.
-    tags: [chapter:09, segmentation, address-translation]
+    tags: [segmentation, address-translation]
 
   - id: b09-06
     type: multiple-choice
@@ -1459,7 +1573,7 @@ questions:
       가상주소는 세그먼트 번호, 페이지 번호, 페이지 내 변위로 구성된다.
       세그먼트별 페이지 테이블을 통해 페이지 프레임 번호를 찾는다.
       최종 실주소는 `페이지 프레임 번호 x 페이지 크기 + 변위`로 계산한다.
-    tags: [chapter:09, paging, segmentation, address-translation]
+    tags: [paging, segmentation, address-translation]
 
   - id: b09-07
     type: multiple-choice
@@ -1481,7 +1595,7 @@ questions:
       초기 적재량을 줄여 메모리를 절약할 수 있다.
       참조되지 않는 페이지를 불필요하게 가져오지 않는다.
       필요한 페이지가 메모리에 없으면 페이지 부재가 발생한다.
-    tags: [chapter:09, demand-paging]
+    tags: [demand-paging]
 
   - id: b09-08
     type: multiple-choice
@@ -1506,7 +1620,7 @@ questions:
       예상이 맞으면 페이지 부재 지연을 줄일 수 있다.
       예상이 틀리면 불필요한 입출력과 메모리 사용이 발생한다.
       실제 효율은 참조 패턴 예측의 정확도에 크게 좌우된다.
-    tags: [chapter:09, prepaging]
+    tags: [prepaging]
 
   - id: b10-01
     type: multiple-choice
@@ -1528,7 +1642,7 @@ questions:
       앞으로 가장 늦게 다시 사용될 페이지를 제거하면 페이지 부재를 최소화할 수 있다.
       실제 시스템에서는 미래를 알 수 없어 주로 성능 비교 기준으로 사용된다.
       LRU, FIFO, LFU 같은 알고리즘은 이를 근사하려는 방식이다.
-    tags: [chapter:10, page-replacement, optimal]
+    tags: [page-replacement, optimal]
 
   - id: b10-02
     type: multiple-choice
@@ -1550,11 +1664,11 @@ questions:
       FIFO처럼 스택 알고리즘이 아닌 방식에서 발생할 수 있다.
       페이지 프레임 수가 많으면 항상 성능이 좋아진다는 직관의 예외이다.
       LRU 같은 스택 기반 알고리즘은 일반적으로 이 현상이 발생하지 않는다.
-    tags: [chapter:10, page-replacement, belady-anomaly]
+    tags: [page-replacement, belady-anomaly]
 
   - id: b10-03
     type: multiple-choice
-    passageRefs: [g10-page-reference-context-03, g10-page-reference-diagram-03]
+    passageRefs: [g10-page-reference-context-03, g10-page-reference-timeline-03]
     prompt: FIFO 페이지 교체 알고리즘에서 시각 4에 교체 대상으로 선택하는 페이지 프레임 안의 페이지는?
     choices:
       - { id: '1', text: 'A' }
@@ -1573,11 +1687,11 @@ questions:
       페이지가 언제 마지막으로 사용되었는지는 고려하지 않는다.
       구현은 단순하지만 지역성을 충분히 반영하지 못한다.
       Belady의 이상현상이 발생할 수 있다.
-    tags: [chapter:10, page-replacement, fifo]
+    tags: [page-replacement, fifo]
 
   - id: b10-04
     type: multiple-choice
-    passageRefs: [g10-page-reference-context-03, g10-page-reference-diagram-03]
+    passageRefs: [g10-page-reference-context-03, g10-page-reference-timeline-03]
     prompt: LRU 페이지 교체 알고리즘에서 시각 4에 교체 대상으로 선택하는 페이지 프레임 안의 페이지는?
     choices:
       - { id: '1', text: 'A' }
@@ -1596,11 +1710,11 @@ questions:
       최근에 사용된 페이지는 다시 사용될 가능성이 높다는 시간 지역성을 이용한다.
       최적 교체를 과거 참조 이력으로 근사한다.
       정확한 구현에는 사용 시각이나 순서 관리 비용이 필요하다.
-    tags: [chapter:10, page-replacement, lru]
+    tags: [page-replacement, lru]
 
   - id: b10-05
     type: multiple-choice
-    passageRefs: [g10-page-reference-context-03, g10-page-reference-diagram-03]
+    passageRefs: [g10-page-reference-context-03, g10-page-reference-timeline-03]
     prompt: LFU 페이지 교체 알고리즘에서 시각 4에 교체 대상으로 선택하는 페이지 프레임 안의 페이지는?
     choices:
       - { id: '1', text: 'A' }
@@ -1619,11 +1733,12 @@ questions:
       자주 쓰인 페이지는 앞으로도 중요할 가능성이 높다고 가정한다.
       오래전에 많이 쓰였지만 현재는 쓰이지 않는 페이지가 남는 문제가 있을 수 있다.
       동률 처리 방식은 구현에 따라 별도 정책이 필요하다.
-    tags: [chapter:10, page-replacement, lfu]
+    tags: [page-replacement, lfu]
 
   - id: b10-06
     type: multiple-choice
-    prompt: '시각별 페이지 참조가 1:A, 2:A, 3:B, 4:C, 5:A이고 페이지 프레임이 2개이며 현재 시각 3까지 진행되었다. 2차 기회 페이지 교체 알고리즘에서 시각 4에 교체 대상으로 선택하는 페이지 프레임 안의 페이지는?'
+    passageRefs: [g10-page-reference-context-03, g10-page-reference-timeline-03]
+    prompt: 2차 기회 페이지 교체 알고리즘에서 시각 4에 교체 대상으로 선택하는 페이지 프레임 안의 페이지는?
     choices:
       - { id: '1', text: 'A' }
       - { id: '2', text: 'B' }
@@ -1641,7 +1756,7 @@ questions:
       참조 비트가 1이면 0으로 바꾸고 큐 뒤로 보내 교체를 미룬다.
       참조 비트가 0인 페이지는 최근 참조되지 않았다고 보고 교체한다.
       LRU를 완벽히 구현하기 어려울 때 하드웨어 참조 비트로 근사한다.
-    tags: [chapter:10, page-replacement, second-chance]
+    tags: [page-replacement, second-chance]
 
   - id: b10-07
     type: multiple-choice
@@ -1664,7 +1779,7 @@ questions:
       포인터는 참조 비트를 검사하며 원형으로 이동한다.
       참조 비트가 1이면 0으로 바꾸고 넘어간다.
       처음 만나는 참조 비트 0 페이지가 교체 대상이 된다.
-    tags: [chapter:10, page-replacement, clock]
+    tags: [page-replacement, clock]
 
   - id: b10-08
     type: multiple-choice
@@ -1686,7 +1801,7 @@ questions:
       현재 지역성을 반영해 필요한 페이지들을 메모리에 유지하려는 전략이다.
       워킹 세트가 메모리에 없으면 페이지 부재와 스래싱이 증가할 수 있다.
       실행 단계가 바뀌면 워킹 세트도 함께 변한다.
-    tags: [chapter:10, working-set, thrashing]
+    tags: [working-set, thrashing]
 
   - id: b10-09
     type: multiple-choice
@@ -1709,7 +1824,7 @@ questions:
       중복 참조는 한 번만 집합에 포함한다.
       시간 창 밖의 페이지 참조는 현재 워킹 세트에서 제외된다.
       워킹 세트는 프로세스의 현재 지역성을 나타낸다.
-    tags: [chapter:10, working-set]
+    tags: [working-set]
 
   - id: b10-10
     type: multiple-choice
@@ -1731,7 +1846,7 @@ questions:
       부재율이 높으면 프로세스에 할당된 프레임이 부족하다고 본다.
       부재율이 낮으면 일부 프레임을 회수해 다른 프로세스에 활용할 수 있다.
       스래싱을 완화하고 메모리 자원 배분을 동적으로 조절하는 데 사용된다.
-    tags: [chapter:10, pff, page-fault]
+    tags: [pff, page-fault]
 
   - id: b11-01
     type: multiple-choice
@@ -1753,7 +1868,7 @@ questions:
       공용장치는 여러 프로세스가 공유할 수 있는 장치이다.
       가상장치는 실제 장치의 제약을 운영체제가 완화해 다른 형태처럼 보이게 한다.
       스풀링은 느린 전용장치를 공유 가능한 가상장치처럼 사용하게 하는 대표 기법이다.
-    tags: [chapter:11, io-device]
+    tags: [io-device]
 
   - id: b11-02
     type: multiple-choice
@@ -1778,7 +1893,7 @@ questions:
       장치 드라이버는 특정 장치를 운영체제에서 사용할 수 있게 하는 소프트웨어이다.
       응용 프로그램은 장치별 세부 제어를 직접 알 필요 없이 드라이버를 통해 요청한다.
       입출력 계층은 하드웨어 차이를 추상화해 일관된 인터페이스를 제공한다.
-    tags: [chapter:11, device-controller, device-driver]
+    tags: [device-controller, device-driver]
 
   - id: b11-03
     type: multiple-choice
@@ -1800,7 +1915,7 @@ questions:
       인터럽트 입출력은 장치가 준비되었을 때 CPU에 알려준다.
       DMA는 대량 데이터 전송을 CPU 대신 DMA 제어기가 처리한다.
       사이클 스틸링은 DMA가 메모리 버스를 잠시 사용하도록 하는 방식이다.
-    tags: [chapter:11, io, polling, dma]
+    tags: [io, polling, dma]
 
   - id: b11-04
     type: multiple-choice
@@ -1822,7 +1937,7 @@ questions:
       CPU는 현재 작업을 중단하고 인터럽트 처리 루틴을 실행한다.
       입출력 완료, 오류, 타이머 등 다양한 이벤트에 사용된다.
       인터럽트는 폴링보다 CPU 낭비를 줄일 수 있다.
-    tags: [chapter:11, interrupt]
+    tags: [interrupt]
 
   - id: b11-05
     type: multiple-choice
@@ -1850,7 +1965,7 @@ questions:
       인터럽트 서비스 루틴은 발생한 이벤트에 맞는 처리를 수행한다.
       처리가 끝나면 저장된 문맥을 복원해 중단된 작업을 이어간다.
       이 구조 덕분에 CPU는 입출력 완료를 기다리며 낭비되지 않는다.
-    tags: [chapter:11, interrupt, context-save]
+    tags: [interrupt, context-save]
 
   - id: b11-06
     type: multiple-choice
@@ -1873,7 +1988,7 @@ questions:
       CPU는 현재 명령 실행을 마친 뒤 인터럽트에 응답한다.
       인터럽트 원인과 대상 정보가 전달되어 적절한 처리 루틴이 실행된다.
       처리가 끝나면 저장된 상태를 복원해 원래 실행 흐름으로 돌아간다.
-    tags: [chapter:11, interrupt]
+    tags: [interrupt]
 
   - id: b11-07
     type: multiple-choice
@@ -1895,7 +2010,7 @@ questions:
       대량 입출력 데이터 전송에서 CPU 개입을 줄인다.
       DMA 제어기가 메모리 주소와 전송량을 관리한다.
       CPU는 전송 시작과 완료 처리에 주로 관여한다.
-    tags: [chapter:11, dma]
+    tags: [dma]
 
   - id: b11-08
     type: multiple-choice
@@ -1918,7 +2033,7 @@ questions:
       입출력 데이터가 임시 저장 공간을 거쳐 처리된다.
       이중 버퍼링은 한 버퍼를 처리하는 동안 다른 버퍼에 데이터를 저장할 수 있다.
       순환 버퍼링은 여러 버퍼를 순환적으로 사용해 연속 처리 효율을 높인다.
-    tags: [chapter:11, buffering]
+    tags: [buffering]
 
   - id: b11-09
     type: multiple-choice
@@ -1943,7 +2058,7 @@ questions:
       순환 버퍼링은 여러 버퍼를 번갈아 사용해 병행성을 높인다.
       한 버퍼가 처리되는 동안 다른 버퍼에는 새 데이터가 들어올 수 있다.
       연속적인 입출력 흐름에서 대기 시간을 줄일 수 있다.
-    tags: [chapter:11, buffering, circular-buffer]
+    tags: [buffering, circular-buffer]
 
   - id: b11-10
     type: multiple-choice
@@ -1965,7 +2080,7 @@ questions:
       저속 전용장치의 입출력을 디스크에 임시 저장해 작업을 빠르게 끝낸다.
       대표적으로 프린터 출력 대기열 처리에 사용된다.
       사용자는 장치를 독점하는 것처럼 보지만 운영체제가 순서를 관리한다.
-    tags: [chapter:11, spooling]
+    tags: [spooling]
 
   - id: b12-01
     type: multiple-choice
@@ -1987,7 +2102,7 @@ questions:
       원하는 위치까지 이동해야 하므로 임의 접근에는 시간이 많이 걸린다.
       자기 테이프가 대표적인 순차접근 저장장치이다.
       백업이나 대용량 보관처럼 순차 처리 중심 작업에 적합하다.
-    tags: [chapter:12, storage, sequential-access]
+    tags: [storage, sequential-access]
 
   - id: b12-02
     type: multiple-choice
@@ -2009,7 +2124,7 @@ questions:
       핵심 목표는 헤드 이동 거리와 탐구시간을 줄이는 것이다.
       요청 순서만 따르는 FCFS는 단순하지만 평균 응답시간이 커질 수 있다.
       SSTF, SCAN, LOOK 등은 헤드 이동 특성을 고려한다.
-    tags: [chapter:12, disk-scheduling]
+    tags: [disk-scheduling]
 
   - id: b12-03
     type: multiple-choice
@@ -2031,7 +2146,7 @@ questions:
       탐구시간은 헤드가 목표 트랙까지 이동하는 시간이다.
       기계적 움직임이 필요하므로 디스크 성능에 큰 영향을 준다.
       디스크 스케줄링은 주로 탐구시간을 줄이기 위해 사용된다.
-    tags: [chapter:12, disk, seek-time]
+    tags: [disk, seek-time]
 
   - id: b12-04
     type: multiple-choice
@@ -2054,7 +2169,7 @@ questions:
       구현이 단순하고 공정하지만 헤드 이동 거리를 고려하지 않는다.
       요청 순서가 나쁘면 평균 응답시간이 길어질 수 있다.
       디스크 큐에 들어온 순서가 곧 서비스 순서가 된다.
-    tags: [chapter:12, disk-scheduling, fcfs]
+    tags: [disk-scheduling, fcfs]
 
   - id: b12-05
     type: multiple-choice
@@ -2077,7 +2192,7 @@ questions:
       현재 헤드 위치에서 탐구시간이 가장 짧은 요청을 먼저 처리한다.
       평균 탐구시간을 줄일 수 있지만 특정 요청이 오래 기다릴 수 있다.
       현재 위치가 바뀔 때마다 가장 가까운 요청을 다시 선택한다.
-    tags: [chapter:12, disk-scheduling, sstf]
+    tags: [disk-scheduling, sstf]
 
   - id: b12-06
     type: multiple-choice
@@ -2100,7 +2215,7 @@ questions:
       끝 트랙에 도달하면 방향을 바꿔 반대 방향 요청을 처리한다.
       엘리베이터 알고리즘이라고도 불린다.
       FCFS보다 헤드 이동을 줄이면서도 어느 정도 공정성을 제공한다.
-    tags: [chapter:12, disk-scheduling, scan]
+    tags: [disk-scheduling, scan]
 
   - id: b12-07
     type: multiple-choice
@@ -2123,7 +2238,7 @@ questions:
       한 끝에 도달하면 반대쪽 끝으로 이동한 뒤 같은 방향 처리를 계속한다.
       모든 요청에 더 균등한 대기시간을 제공하려는 목적이 있다.
       이동 방향에 따라 서비스 순서가 달라진다.
-    tags: [chapter:12, disk-scheduling, c-scan]
+    tags: [disk-scheduling, c-scan]
 
   - id: b12-08
     type: multiple-choice
@@ -2146,7 +2261,7 @@ questions:
       끝 트랙까지 무조건 가지 않고 방향을 전환한다.
       현재 진행방향에서 가장 가까운 요청들을 먼저 처리한다.
       총탐구시간은 연속 서비스 트랙 사이의 이동거리 합으로 구한다.
-    tags: [chapter:12, disk-scheduling, look]
+    tags: [disk-scheduling, look]
 
   - id: b12-09
     type: multiple-choice
@@ -2168,7 +2283,7 @@ questions:
       무결성은 파일 내용과 메타데이터가 올바르게 유지되는 성질이다.
       장애나 오류로 파일 정보가 손상되지 않도록 복구와 검사를 수행할 수 있다.
       백업, 저널링, 접근 제어 등이 무결성 유지와 관련된다.
-    tags: [chapter:12, file-system, integrity]
+    tags: [file-system, integrity]
 
   - id: b12-10
     type: multiple-choice
@@ -2190,7 +2305,7 @@ questions:
       직접 파일은 특정 레코드를 빠르게 접근할 수 있다.
       인덱스된 순차 파일은 순차접근과 직접접근의 장점을 함께 제공한다.
       인덱스는 키와 레코드 위치를 연결해 검색 효율을 높인다.
-    tags: [chapter:12, file-organization, indexed-sequential-file]
+    tags: [file-organization, indexed-sequential-file]
 
   - id: b13-01
     type: multiple-choice
@@ -2212,7 +2327,7 @@ questions:
       구성 노드는 동질적일 수도 있고 이질적일 수도 있다.
       자원 공유, 성능 향상, 신뢰성 향상이 주요 목적이다.
       사용자는 로컬 자원과 원격 자원을 가능한 투명하게 사용할 수 있어야 한다.
-    tags: [chapter:13, distributed-system]
+    tags: [distributed-system]
 
   - id: b13-02
     type: multiple-choice
@@ -2234,7 +2349,7 @@ questions:
       노드 장애를 다른 노드가 보완해 신뢰성을 높일 수 있다.
       네트워크 통신과 일관성 관리가 필요해 구조는 단순하지 않다.
       투명성 제공은 분산 운영체제의 중요한 설계 목표이다.
-    tags: [chapter:13, distributed-system]
+    tags: [distributed-system]
 
   - id: b13-03
     type: multiple-choice
@@ -2256,7 +2371,7 @@ questions:
       완전연결 구조는 직접 경로가 많아 통신 경로가 짧다.
       링크 수가 많아 비용과 관리 복잡도가 커진다.
       분산 시스템 성능과 신뢰성은 네트워크 구조의 영향을 받는다.
-    tags: [chapter:13, network-topology]
+    tags: [network-topology]
 
   - id: b13-04
     type: multiple-choice
@@ -2281,7 +2396,7 @@ questions:
       투명성은 위치, 접근, 이주 등의 차이를 숨기는 성질이다.
       데이터 이주, 계산 이주, 프로세스 이주는 작업을 분산시키는 방식이다.
       사용자는 원격 자원을 로컬 자원처럼 쉽게 사용할 수 있어야 한다.
-    tags: [chapter:13, distributed-os, transparency]
+    tags: [distributed-os, transparency]
 
   - id: b13-05
     type: multiple-choice
@@ -2309,7 +2424,7 @@ questions:
       이름 공간 관리는 파일 위치와 이름 충돌을 다루는 핵심 기능이다.
       마운트는 원격 디렉터리를 로컬 이름 공간에 연결하는 방식이다.
       캐시는 성능을 높이지만 일관성 관리가 필요하다.
-    tags: [chapter:13, distributed-file-system]
+    tags: [distributed-file-system]
 
   - id: b13-06
     type: multiple-choice
@@ -2337,7 +2452,7 @@ questions:
       주소공간과 위치를 숨기기 위해 이름과 바인딩 관리가 필요하다.
       컴파일 시간 바인딩은 동적인 분산 환경에 적합하지 않을 수 있다.
       런타임 바인딩은 실제 참조 시점에 원격 위치를 찾아 연결한다.
-    tags: [chapter:13, remote-memory, binding]
+    tags: [remote-memory, binding]
 
   - id: b13-07
     type: multiple-choice
@@ -2368,7 +2483,7 @@ questions:
       프로그래머는 명시적 메시지 전달보다 단순한 메모리 접근 모델을 사용할 수 있다.
       실제 데이터 이동과 일관성 유지는 시스템이 관리한다.
       직접 제어가 어렵고 일관성 관리 비용이 성능에 영향을 줄 수 있다.
-    tags: [chapter:13, distributed-shared-memory]
+    tags: [distributed-shared-memory]
 
   - id: b13-08
     type: multiple-choice
@@ -2399,7 +2514,7 @@ questions:
       클라이언트는 원격 서버의 절차를 로컬 함수 호출처럼 사용한다.
       스텁은 인자 포장, 메시지 전송, 결과 반환을 담당한다.
       네트워크 지연과 장애 가능성 때문에 로컬 호출과 동일한 성능은 아니다.
-    tags: [chapter:13, rpc]
+    tags: [rpc]
 
   - id: b13-09
     type: multiple-choice
@@ -2427,7 +2542,7 @@ questions:
       주소공간이 다르므로 포인터나 메모리 주소 전달에는 주의가 필요하다.
       일반적인 동기 RPC는 응답을 기다리는 동안 호출자가 대기한다.
       병렬 처리가 목적이면 비동기 호출이나 메시지 기반 설계를 고려할 수 있다.
-    tags: [chapter:13, rpc]
+    tags: [rpc]
 
   - id: b13-10
     type: multiple-choice
@@ -2455,7 +2570,7 @@ questions:
       분산 공유 메모리는 원격 데이터 공유를 메모리 접근처럼 추상화한다.
       메시지 전달은 직렬화와 역직렬화가 필요할 수 있다.
       WAN은 지리적으로 떨어진 네트워크들을 연결하는 광역 네트워크이다.
-    tags: [chapter:13, distributed-system, distributed-shared-memory]
+    tags: [distributed-system, distributed-shared-memory]
 
   - id: b14-01
     type: multiple-choice
@@ -2477,7 +2592,7 @@ questions:
       기밀성은 정보 노출을 막는 성질이다.
       무결성은 정보와 시스템 상태의 허가되지 않은 변경을 막는다.
       가용성은 정당한 사용자가 자원과 서비스를 사용할 수 있게 보장한다.
-    tags: [chapter:14, security]
+    tags: [security]
 
   - id: b14-02
     type: multiple-choice
@@ -2499,7 +2614,7 @@ questions:
       변조는 데이터나 시스템 상태를 허가 없이 바꾸는 무결성 공격이다.
       가로채기는 정보 노출과 관련된 기밀성 침해이다.
       흐름 차단은 서비스나 자원 사용을 방해하는 가용성 침해이다.
-    tags: [chapter:14, security, integrity]
+    tags: [security, integrity]
 
   - id: b14-03
     type: multiple-choice
@@ -2521,7 +2636,7 @@ questions:
       사용자가 직접 실행하도록 유도해 사용자의 권한을 악용한다.
       권한 상승이나 정보 탈취에 사용될 수 있다.
       출처가 불분명한 프로그램 실행을 제한하는 것이 중요하다.
-    tags: [chapter:14, security, trojan-horse]
+    tags: [security, trojan-horse]
 
   - id: b14-04
     type: multiple-choice
@@ -2543,7 +2658,7 @@ questions:
       인증은 주장된 신원을 검증하는 단계이다.
       접근제어는 인증된 주체가 어떤 자원을 사용할 수 있는지 결정한다.
       감사는 보안 사건 추적과 책임성 확보를 위해 기록을 남긴다.
-    tags: [chapter:14, authentication]
+    tags: [authentication]
 
   - id: b14-05
     type: multiple-choice
@@ -2565,7 +2680,7 @@ questions:
       임의적 접근제어는 소유자 중심으로 권한을 부여한다.
       강제적 접근제어는 시스템 정책과 보안 등급에 의해 권한이 정해진다.
       역할 기반 접근제어는 직무나 역할을 기준으로 권한을 관리한다.
-    tags: [chapter:14, access-control, dac]
+    tags: [access-control, dac]
 
   - id: b14-06
     type: multiple-choice
@@ -2587,7 +2702,7 @@ questions:
       공개키는 배포할 수 있고 개인키는 소유자만 보관한다.
       전자서명, 키 교환, 인증 등에 활용된다.
       대량 데이터 암호화에는 속도가 빠른 비밀키 암호와 함께 쓰는 경우가 많다.
-    tags: [chapter:14, cryptography, public-key]
+    tags: [cryptography, public-key]
 
   - id: b14-07
     type: multiple-choice
@@ -2610,7 +2725,7 @@ questions:
       주체와 객체 사이의 접근 허용 여부를 검사한다.
       우회할 수 없고, 항상 호출되며, 검증 가능해야 한다.
       운영체제의 보호 커널 개념과 연결된다.
-    tags: [chapter:14, security-model, reference-monitor]
+    tags: [security-model, reference-monitor]
 
   - id: b14-08
     type: multiple-choice
@@ -2638,7 +2753,7 @@ questions:
       단순 보안 속성은 낮은 등급으로만 읽기를 허용한다.
       스타 속성은 낮은 등급으로 쓰기를 금지해 정보 누출을 막는다.
       무결성 보호에는 비바 모델이 더 직접적으로 대응한다.
-    tags: [chapter:14, security-model, bell-lapadula]
+    tags: [security-model, bell-lapadula]
 
   - id: b14-09
     type: multiple-choice
@@ -2660,7 +2775,7 @@ questions:
       낮은 무결성 정보가 높은 무결성 객체를 오염시키는 것을 막는다.
       벨-라파둘라와 반대로 기밀성보다 데이터 신뢰도를 중시한다.
       운영체제 보안 정책과 무결성 제어 개념에 영향을 준다.
-    tags: [chapter:14, security-model, biba]
+    tags: [security-model, biba]
 
   - id: b14-10
     type: multiple-choice
@@ -2685,7 +2800,7 @@ questions:
       커널 내부 기능은 강한 권한을 가지므로 설계와 검증이 중요하다.
       단순히 커널로 이동시키는 것만으로 보안이 보장되지는 않는다.
       작은 신뢰 기반과 검증 가능한 구현이 보안 커널의 핵심이다.
-    tags: [chapter:14, security-kernel]
+    tags: [security-kernel]
 
   - id: b15-01
     type: multiple-choice
@@ -2707,7 +2822,7 @@ questions:
       유닉스와 호환되는 공개 운영체제로 발전했다.
       MINIX는 Linux의 기반과 학습 배경에 영향을 준 운영체제이다.
       POSIX는 운영체제 호환성을 위한 표준이지 운영체제 자체가 아니다.
-    tags: [chapter:15, linux]
+    tags: [linux]
 
   - id: b15-02
     type: multiple-choice
@@ -2729,7 +2844,7 @@ questions:
       무료 사용, POSIX 호환, 넓은 하드웨어 지원이 장점이다.
       관리와 문제 해결에는 일정 수준의 시스템 지식이 필요할 수 있다.
       배포판과 데스크톱 환경에 따라 초보자 친화성은 달라진다.
-    tags: [chapter:15, linux]
+    tags: [linux]
 
   - id: b15-03
     type: multiple-choice
@@ -2751,7 +2866,7 @@ questions:
       장치와 파일을 일관된 인터페이스로 다루는 유닉스 철학을 따른다.
       여러 사용자가 동시에 사용하고 여러 작업을 병행 처리할 수 있다.
       C 언어 기반 구현은 다양한 아키텍처 이식에 유리하다.
-    tags: [chapter:15, linux, kernel]
+    tags: [linux, kernel]
 
   - id: b15-04
     type: multiple-choice
@@ -2773,7 +2888,7 @@ questions:
       경성 실시간 시스템은 마감시간 위반이 치명적인 결과를 낳을 수 있다.
       연성 실시간 시스템은 마감시간 위반이 성능 저하로 이어지지만 치명적이지 않을 수 있다.
       일반적인 임베디드 Linux는 강한 경성 실시간 보장보다는 유연성과 기능성이 강점이다.
-    tags: [chapter:15, real-time-system, embedded-linux]
+    tags: [real-time-system, embedded-linux]
 
   - id: b15-05
     type: multiple-choice
@@ -2795,7 +2910,7 @@ questions:
       오픈소스 생태계와 풍부한 드라이버, 네트워크 기능이 장점이다.
       RTOS는 Real-Time Operating System의 약자로, 임베디드 Linux는 RTOS에 비해 기능은 풍부하지만 자원 요구량이 클 수 있다.
       실시간성이 강하게 필요한 경우 별도 패치나 RTOS 선택이 필요할 수 있다.
-    tags: [chapter:15, embedded-linux]
+    tags: [embedded-linux]
 
   - id: b15-06
     type: multiple-choice
@@ -2820,7 +2935,7 @@ questions:
       하드웨어 추상화 계층은 하드웨어 차이를 숨긴다.
       하위 시스템은 다양한 응용 환경과 호환성을 제공한다.
       성능을 위해 일부 그래픽 기능은 커널 모드로 이동했다.
-    tags: [chapter:15, windows, kernel]
+    tags: [windows, kernel]
 
   - id: b15-07
     type: multiple-choice
@@ -2845,7 +2960,7 @@ questions:
       NT 계열은 안정성과 보안 구조를 강화했다.
       Windows는 x86뿐 아니라 ARM 등 다양한 하드웨어를 지원해 왔다.
       운영체제 사례 문항의 버전 설명은 원문 작성 시점 기준으로 해석한다.
-    tags: [chapter:15, windows]
+    tags: [windows]
 
   - id: b15-08
     type: multiple-choice
@@ -2870,7 +2985,7 @@ questions:
       무선 네트워크, 센서, 터치 UI, 앱 생태계 지원이 중요하다.
       전력 관리와 사용자 경험이 설계의 핵심 요소이다.
       모바일 기기의 보급 확대로 모바일 OS의 중요성이 커졌다.
-    tags: [chapter:15, mobile-os]
+    tags: [mobile-os]
 
   - id: b15-09
     type: multiple-choice
@@ -2892,7 +3007,7 @@ questions:
       애플리케이션은 Java/Kotlin 계열 환경에서 동작하는 경우가 많다.
       오픈소스 기반이라 다양한 하드웨어에 이식될 수 있다.
       하드웨어 지원은 커널, 드라이버, 런타임 환경의 결합에 달려 있다.
-    tags: [chapter:15, android]
+    tags: [android]
 
   - id: b15-10
     type: multiple-choice
@@ -2920,4 +3035,4 @@ questions:
       Dalvik은 과거 Android에서 사용된 가상기계이다.
       ART는 설치 시점 또는 실행 전 컴파일을 통해 성능을 높인다.
       가상기계와 런타임은 이식성과 실행 성능 사이의 균형을 다룬다.
-    tags: [chapter:15, android, runtime]
+    tags: [android, runtime]

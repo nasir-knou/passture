@@ -22,10 +22,25 @@ passages:
           (나)
 
   - id: g18-rag-01
-    type: image
-    image:
-      path: images/subjects/operating-systems/past-exams/2018/e18-rag.png
-      alt: 2018년 운영체제 기출 43번 자원할당 그래프
+    type: diagram
+    diagram:
+      type: resource-allocation-graph
+      width: 640
+      height: 430
+      nodes:
+        - { id: p1, kind: process, label: p_1, x: 105, y: 150 }
+        - { id: p2, kind: process, label: p_2, x: 405, y: 150 }
+        - { id: p3, kind: process, label: p_3, x: 520, y: 385 }
+        - { id: r1, kind: resource, label: r_1, x: 260, y: 70, units: 1 }
+        - { id: r2, kind: resource, label: r_2, x: 260, y: 235, units: 1 }
+        - { id: r3, kind: resource, label: r_3, x: 260, y: 370, units: 2 }
+      edges:
+        - { from: r1, to: p1, label: (ㄱ), labelDx: -45, labelDy: -42 }
+        - { from: p2, to: r1, label: (ㄴ), labelDx: 28, labelDy: -35 }
+        - { from: p1, to: r2 }
+        - { from: r2, to: p2, label: (ㄷ), labelDx: 0, labelDy: -34 }
+        - { from: p2, to: r3, label: (ㄹ), labelDx: 45, labelDy: 0 }
+        - { from: r3, to: p3 }
 
   - id: g18-free-list-01
     type: text
@@ -54,14 +69,32 @@ passages:
     body: |
       시간 별 페이지 참조가 아래와 같다. 3개의 페이지 프레임이 있고 현재 시간 4까지 진행이 되었을 때, 다음 질문에 답하시오.
 
-  - id: g18-page-reference-image-01
+  - id: g18-page-reference-timeline-01
     type: diagram
     diagram:
-      type: data-table
-      columns: [구분, '1', '2', '3', '4', '5']
-      rows:
-        - [시간, '1', '2', '3', '4', '5']
-        - [페이지 참조, A, B, C, B, D]
+      type: simple-graph
+      width: 640
+      height: 170
+      nodes:
+        - { id: time-label, label: 시간, x: 80, y: 42, hideNode: true }
+        - { id: page-label, label: 페이지 참조, x: 70, y: 100, hideNode: true }
+        - { id: axis-start, label: axis-start, x: 175, y: 58, hideNode: true, hideLabel: true }
+        - { id: axis-end, label: axis-end, x: 575, y: 58, hideNode: true, hideLabel: true }
+        - { id: t1, label: '1', x: 205, y: 35, hideNode: true }
+        - { id: t2, label: '2', x: 295, y: 35, hideNode: true }
+        - { id: t3, label: '3', x: 385, y: 35, hideNode: true }
+        - { id: t4, label: '4', x: 475, y: 35, hideNode: true }
+        - { id: t5, label: '5', x: 555, y: 35, hideNode: true }
+        - { id: p1, label: A, x: 205, y: 95, hideNode: true }
+        - { id: p2, label: B, x: 295, y: 95, hideNode: true }
+        - { id: p3, label: C, x: 385, y: 95, hideNode: true }
+        - { id: p4, label: B, x: 475, y: 95, hideNode: true }
+        - { id: p5, label: D, x: 555, y: 95, hideNode: true }
+        - { id: current-top, label: current-top, x: 515, y: 10, hideNode: true, hideLabel: true }
+        - { id: current-bottom, label: current-bottom, x: 515, y: 130, hideNode: true, hideLabel: true }
+      edges:
+        - { from: axis-start, to: axis-end, directed: true }
+        - { from: current-top, to: current-bottom, style: dashed }
 
 questions:
   - id: e18-01
@@ -70,7 +103,10 @@ questions:
     choices:
       - { id: '1', text: '2개 이상의 프로세스에 대한 처리순서를 결정하는 것' }
       - { id: '2', text: '동시에 사용할 수 없는 공유자원이 있는 경우 동기화 필요' }
-      - { id: '3', text: '한 프로세스의 처리 결과에 따라 다른 프로세스의 처리가 영향을 받는 경우 동기화 필요' }
+      - {
+          id: '3',
+          text: '한 프로세스의 처리 결과에 따라 다른 프로세스의 처리가 영향을 받는 경우 동기화 필요',
+        }
       - { id: '4', text: '한 프로세스 내의 프로그램 문장 사이의 처리순서를 결정하는 것' }
     answers: ['4']
     explanation: |
@@ -202,9 +238,18 @@ questions:
     prompt: 교착상태의 필요조건에 대한 설명으로 바르지 않은 것은?
     choices:
       - { id: '1', text: '상호배제 - 프로세스들이 자원에 대한 배타적인 통제권을 요구' }
-      - { id: '2', text: '점유 대기 - 프로세스 A가 자원 S를 할당받아 배타적으로 점유한 채 프로세스 B가 점유 중인 자원 T가 해제되기를 기다리는 상황' }
-      - { id: '3', text: '선점 - 프로세스에 할당된 자원은 그 프로세스 스스로 반환하기 전이라도 제거 가능' }
-      - { id: '4', text: '환형 대기 - 프로세스의 자원 점유 및 점유된 자원의 요구 관계가 환형을 이루며 대기' }
+      - {
+          id: '2',
+          text: '점유 대기 - 프로세스 A가 자원 S를 할당받아 배타적으로 점유한 채 프로세스 B가 점유 중인 자원 T가 해제되기를 기다리는 상황',
+        }
+      - {
+          id: '3',
+          text: '선점 - 프로세스에 할당된 자원은 그 프로세스 스스로 반환하기 전이라도 제거 가능',
+        }
+      - {
+          id: '4',
+          text: '환형 대기 - 프로세스의 자원 점유 및 점유된 자원의 요구 관계가 환형을 이루며 대기',
+        }
     answers: ['3']
     explanation: |
       선택지 1: 상호배제는 한 번에 하나의 프로세스만 사용할 수 있는 자원이 있을 때 성립하므로 교착상태 필요조건이다.
@@ -378,7 +423,7 @@ questions:
 
   - id: e18-15
     type: multiple-choice
-    passageRefs: [g18-page-reference-01, g18-page-reference-image-01]
+    passageRefs: [g18-page-reference-01, g18-page-reference-timeline-01]
     prompt: FIFO 페이지 교체기법에서 시간 5에 교체 대상으로 선택하는 페이지 프레임 안의 페이지는?
     choices:
       - { id: '1', text: 'A' }
@@ -401,7 +446,7 @@ questions:
 
   - id: e18-16
     type: multiple-choice
-    passageRefs: [g18-page-reference-01, g18-page-reference-image-01]
+    passageRefs: [g18-page-reference-01, g18-page-reference-timeline-01]
     prompt: LRU 페이지 교체기법에서 시간 5에 교체 대상으로 선택하는 페이지 프레임 안의 페이지는?
     choices:
       - { id: '1', text: 'A' }
@@ -581,7 +626,10 @@ questions:
     prompt: 운영체제 보안의 기본 목표와 그 설명이 바르게 짝지어진 것은?
     choices:
       - { id: '1', text: '무결성 - 모든 주체는 합법적인 경우에는 항상 객체에 접근이 가능해야 함' }
-      - { id: '2', text: '가용성 - 비인가 주체에 의한 자원의 생성, 변경, 삭제 등으로부터 자원을 보호' }
+      - {
+          id: '2',
+          text: '가용성 - 비인가 주체에 의한 자원의 생성, 변경, 삭제 등으로부터 자원을 보호',
+        }
       - { id: '3', text: '기밀성 - 운영체제 자원의 부적절한 노출을 예방하고 감지' }
       - { id: '4', text: '접근제어 - 컴퓨터 시스템에 발생한 모든 중요한 사건을 영구적으로 기록' }
     answers: ['3']
