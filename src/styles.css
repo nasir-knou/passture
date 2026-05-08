@@ -1642,3 +1642,841 @@ h1 {
     justify-content: stretch;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   모의 시험 — CSS 변수
+═══════════════════════════════════════════════════════════════ */
+
+:root {
+  --exam-topbar-bg: #3b3b3b;
+  --exam-topbar-text: #ffffff;
+  --exam-topbar-height: 44px;
+
+  --exam-exit-bg: #4a9a8f;
+  --exam-exit-text: #ffffff;
+  --exam-exit-border: #3d8379;
+  --exam-exit-hover-bg: #3d8379;
+
+  --exam-timer-text: #ffffff;
+  --exam-timer-warning: #e53e3e;
+
+  --exam-tab-bg: #2d7d77;
+  --exam-tab-border: #1f5e59;
+  --exam-tab-active-bg: #ffffff;
+  --exam-tab-active-border: #ffffff;
+  --exam-tab-active-text: #1a5e5a;
+  --exam-tab-inactive-text: #f0f0f0;
+  --exam-tab-height: 48px;
+
+  --exam-question-bg: #ffffff;
+  --exam-question-text: #1a1a1a;
+  --exam-choice-selected-bg: #e8f4fd;
+
+  --exam-bookmark-inactive: #d4a843;
+  --exam-bookmark-active: #e8952e;
+
+  --exam-nav-arrow-color: #b0b0b0;
+  --exam-nav-arrow-hover: #666666;
+
+  --exam-sidebar-bg: #b8b8b8;
+  --exam-sidebar-width: 280px;
+  --exam-sidebar-border: #a0a0a0;
+
+  --exam-info-bg: #d0d0d0;
+  --exam-info-text: #222222;
+
+  --exam-grid-bg: #ffffff;
+  --exam-grid-border: #999999;
+  --exam-grid-number-bg: #d8d8d8;
+  --exam-grid-answer-color: #0066cc;
+  --exam-grid-bookmark-color: #e8952e;
+  --exam-grid-cell-height: 32px;
+
+  --exam-modal-overlay: rgba(0, 0, 0, 0.5);
+  --exam-modal-bg: #ffffff;
+  --exam-modal-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --exam-modal-confirm-border: #e8952e;
+
+  --exam-font-size: 16px;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   모의 시험 — 전체 레이아웃
+═══════════════════════════════════════════════════════════════ */
+
+.exam-shell {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+  font-size: var(--exam-font-size);
+  background: #f0f0f0;
+}
+
+.exam-body {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  margin-top: var(--exam-topbar-height);
+}
+
+.exam-main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  padding-top: var(--exam-tab-height);
+  overflow: hidden;
+  position: relative;
+}
+
+.exam-question-wrapper {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+  min-width: 0;
+}
+
+.exam-question-area {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 24px 48px;
+  background: var(--exam-question-bg);
+  scroll-behavior: smooth;
+  min-width: 0;
+}
+
+/* ─── 가로형(paged) 좌우 이전/다음 버튼 ──────────────────── */
+
+.exam-side-btn {
+  width: 64px;
+  min-width: 64px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.06);
+  border: none;
+  cursor: pointer;
+  color: #666;
+  font-size: 13px;
+  font-weight: 500;
+  gap: 6px;
+  transition: background 0.15s, color 0.15s;
+  user-select: none;
+}
+
+.exam-side-btn:hover:not(:disabled) {
+  background: rgba(0, 0, 0, 0.13);
+  color: #222;
+}
+
+.exam-side-btn:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.exam-side-btn span {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.exam-shell.layout-wide .exam-sidebar {
+  width: 200px;
+}
+
+.exam-shell.layout-wide .exam-question-area {
+  padding: 24px 32px;
+}
+
+/* ─── 상단 바 ─────────────────────────────────────────────── */
+
+.exam-topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  height: var(--exam-topbar-height);
+  background: var(--exam-topbar-bg);
+  color: var(--exam-topbar-text);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  gap: 12px;
+}
+
+.exam-topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.exam-topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.exam-logo {
+  display: flex;
+  align-items: center;
+}
+
+.exam-title {
+  color: var(--exam-topbar-text);
+  font-weight: bold;
+  font-size: 15px;
+  white-space: nowrap;
+}
+
+.exam-exit-btn {
+  background: var(--exam-exit-bg);
+  color: var(--exam-exit-text);
+  border: 1px solid var(--exam-exit-border);
+  border-radius: 4px;
+  padding: 5px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.exam-exit-btn:hover {
+  background: var(--exam-exit-hover-bg);
+}
+
+.exam-font-btn {
+  background: transparent;
+  border: none;
+  color: #b0b0b0;
+  font-size: 13px;
+  cursor: pointer;
+  padding: 4px 6px;
+  white-space: nowrap;
+}
+
+.exam-font-btn:hover {
+  color: #ffffff;
+}
+
+.exam-layout-btn {
+  background: var(--exam-exit-bg);
+  border: none;
+  color: #ffffff;
+  width: 30px;
+  height: 30px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.7;
+  transition: opacity 0.1s;
+}
+
+.exam-layout-btn.is-active {
+  opacity: 1;
+  outline: 2px solid #ffffff;
+  outline-offset: 1px;
+}
+
+.exam-timer-block {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.exam-timer-label {
+  color: #b0b0b0;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.exam-timer {
+  color: var(--exam-timer-text);
+  font-weight: bold;
+  font-size: 20px;
+  font-family: 'Courier New', Courier, monospace;
+  min-width: 80px;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.exam-timer.is-warning {
+  color: var(--exam-timer-warning);
+}
+
+/* ─── 교과목 탭 ───────────────────────────────────────────── */
+
+.exam-tabs {
+  position: fixed;
+  top: var(--exam-topbar-height);
+  left: 0;
+  right: var(--exam-sidebar-width);
+  z-index: 100;
+  height: var(--exam-tab-height);
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 2px;
+  padding: 6px 16px 0;
+  background: var(--exam-tab-bg);
+  border-bottom: 1px solid var(--exam-tab-border);
+}
+
+.exam-tab {
+  flex: 0 0 auto;
+  background: #7a8f8e;
+  border: 1px solid #5a6e6d;
+  border-bottom: none;
+  border-radius: 4px 4px 0 0;
+  color: var(--exam-tab-inactive-text);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.1s;
+}
+
+.exam-tab-title {
+  font-size: 13px;
+  line-height: 1.2;
+}
+
+.exam-tab.is-active {
+  background: var(--exam-tab-active-bg);
+  border-color: var(--exam-tab-border);
+  border-bottom: none;
+  color: var(--exam-tab-active-text);
+  font-weight: bold;
+  padding-top: 2px;
+  margin-bottom: -1px;
+  z-index: 1;
+}
+
+.exam-tab:hover:not(.is-active) {
+  background: #8fa3a2;
+}
+
+.exam-tab-count {
+  font-weight: normal;
+  font-size: 12px;
+  color: inherit;
+}
+
+/* ─── 문제 영역 ───────────────────────────────────────────── */
+
+.exam-question-item {
+  margin-bottom: 56px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid #e8e8e8;
+  position: relative;
+}
+
+.exam-question-item:last-child {
+  border-bottom: none;
+}
+
+.exam-question-area.is-paged .exam-question-item {
+  margin-bottom: 0;
+}
+
+.exam-question-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.exam-question-number {
+  font-weight: bold;
+  font-size: 1em;
+  color: var(--exam-question-text);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.exam-bookmark-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 2px 4px;
+  display: flex;
+  align-items: flex-start;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.exam-choice-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+  border-radius: 50%;
+  border: 1.5px solid #555;
+  font-size: 13px;
+  font-weight: bold;
+  color: #333;
+  flex-shrink: 0;
+  background: transparent;
+  transition: background 0.1s, color 0.1s, border-color 0.1s;
+}
+
+.exam-choice-row.is-selected .exam-choice-number {
+  background: #2d7d77;
+  border-color: #2d7d77;
+  color: #ffffff;
+}
+
+.exam-question-prompt {
+  font-size: 1em;
+  color: var(--exam-question-text);
+  line-height: 1.6;
+  margin: 0 0 16px;
+  flex: 1;
+}
+
+.exam-choice-list {
+  border: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.exam-choice-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1em;
+  color: #333;
+  transition: background 0.1s;
+  min-height: 36px;
+}
+
+.exam-choice-row:hover {
+  background: #f0f0f0;
+}
+
+.exam-choice-row.is-selected {
+  background: var(--exam-choice-selected-bg);
+}
+
+.exam-choice-row input[type="radio"],
+.exam-choice-row input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+/* ─── 페이지 인디케이터 / 한문제씩 네비게이션 ───────────── */
+
+.exam-page-indicator {
+  display: flex;
+  justify-content: center;
+  padding: 8px;
+  background: var(--exam-question-bg);
+  border-top: 1px solid #e0e0e0;
+}
+
+.exam-page-indicator span {
+  background: #e0e0e0;
+  color: #666;
+  font-size: 13px;
+  padding: 3px 14px;
+  border-radius: 12px;
+}
+
+
+/* ─── 정답기록 사이드바 ───────────────────────────────────── */
+
+.exam-sidebar {
+  width: var(--exam-sidebar-width);
+  min-width: var(--exam-sidebar-width);
+  background: var(--exam-sidebar-bg);
+  border-left: 1px solid var(--exam-sidebar-border);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  flex-shrink: 0;
+}
+
+.exam-sidebar-info {
+  background: var(--exam-info-bg);
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--exam-sidebar-border);
+  text-align: center;
+}
+
+.exam-time-label {
+  font-weight: bold;
+  font-size: 14px;
+  color: var(--exam-info-text);
+  margin: 0 0 2px;
+}
+
+.exam-time-range {
+  font-size: 13px;
+  color: #555;
+  margin: 0;
+}
+
+.exam-sidebar-divider {
+  border: none;
+  border-top: 1px solid var(--exam-sidebar-border);
+  margin: 10px 0;
+}
+
+.exam-examinee-info {
+  text-align: center;
+}
+
+.exam-examinee-tag {
+  font-size: 12px;
+  color: #555;
+  margin: 0;
+}
+
+.exam-examinee-id {
+  font-size: 15px;
+  font-weight: bold;
+  color: #000;
+  margin: 2px 0;
+}
+
+.exam-examinee-school {
+  font-size: 14px;
+  font-weight: bold;
+  color: #000;
+  margin: 0;
+}
+
+/* ─── 정답 그리드 ─────────────────────────────────────────── */
+
+.exam-answer-grid {
+  flex: 1;
+  padding: 8px 0;
+}
+
+.exam-grid-row {
+  display: flex;
+  align-items: center;
+  height: var(--exam-grid-cell-height);
+  border-bottom: 1px solid var(--exam-grid-border);
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+.exam-grid-row:hover {
+  background: #adadad;
+}
+
+.exam-grid-row.has-bookmark {
+  border-left: 3px solid var(--exam-grid-bookmark-color);
+}
+
+.exam-grid-num {
+  width: 36px;
+  min-width: 36px;
+  background: var(--exam-grid-number-bg);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 13px;
+  color: #000;
+  border-right: 1px solid var(--exam-grid-border);
+}
+
+.exam-grid-answer {
+  flex: 1;
+  background: var(--exam-grid-bg);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 6px;
+  font-size: 14px;
+}
+
+.exam-grid-answer-circle {
+  color: var(--exam-grid-answer-color);
+  font-weight: bold;
+  font-size: 15px;
+  letter-spacing: 1px;
+}
+
+.exam-grid-bookmark {
+  width: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  background: var(--exam-grid-bg);
+  height: 100%;
+  border-left: 1px solid var(--exam-grid-border);
+  flex-shrink: 0;
+}
+
+/* ─── 퇴실 확인 모달 ──────────────────────────────────────── */
+
+.exam-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  background: var(--exam-modal-overlay);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.exam-modal-overlay[hidden] {
+  display: none;
+}
+
+.exam-modal {
+  background: var(--exam-modal-bg);
+  border-radius: 8px;
+  box-shadow: var(--exam-modal-shadow);
+  width: max-content;
+  max-width: calc(100vw - 32px);
+  overflow: hidden;
+}
+
+.exam-modal-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 20px 12px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.exam-modal-icon {
+  color: #3388cc;
+  font-size: 18px;
+}
+
+.exam-modal-header strong {
+  font-size: 16px;
+  color: #333;
+}
+
+.exam-modal-body {
+  padding: 16px 20px;
+}
+
+.exam-modal-body p {
+  margin: 0 0 6px;
+  font-size: 15px;
+  color: #555;
+  line-height: 1.5;
+}
+
+.exam-modal-body p:last-child {
+  margin-bottom: 0;
+}
+
+.exam-modal-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+  padding: 12px 20px 16px;
+}
+
+.exam-modal-btn-cancel {
+  background: transparent;
+  border: none;
+  color: #333;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 4px 8px;
+}
+
+.exam-modal-btn-cancel:hover {
+  text-decoration: underline;
+}
+
+.exam-modal-btn-confirm {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px solid var(--exam-modal-confirm-border);
+  background: transparent;
+  color: #333;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.1s;
+}
+
+.exam-modal-btn-confirm:hover {
+  background: #fff3e6;
+}
+
+/* ─── 모의 시험 설정 화면 ─────────────────────────────────── */
+
+.mock-exam-setup {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.mock-subject-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mock-subject-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 0;
+  overflow: hidden;
+}
+
+.mock-subject-legend {
+  padding: 0;
+  float: unset;
+  width: 100%;
+}
+
+.mock-subject-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 15px;
+}
+
+.mock-subject-toggle input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.mock-subject-body {
+  padding: 12px 16px 16px;
+  border-top: 1px solid #eee;
+  background: #fafafa;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mock-subject-body[hidden] {
+  display: none;
+}
+
+.mock-time-summary {
+  padding: 16px;
+}
+
+.mock-time-summary dl {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin: 0;
+}
+
+.mock-time-summary dl > div {
+  min-width: 0;
+  text-align: center;
+}
+
+.mock-time-summary dt {
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 4px;
+}
+
+.mock-time-summary dd {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0;
+  color: #1a1a1a;
+}
+
+.mock-exam-setup .start-panel {
+  justify-content: center;
+  margin-top: 8px;
+  padding: 28px;
+  border-color: #b9d8ca;
+  background: linear-gradient(180deg, #f8fffb 0%, #eef8f2 100%);
+  box-shadow: 0 10px 28px rgba(31, 107, 79, 0.12);
+}
+
+.mock-exam-setup .start-panel .primary-button {
+  min-width: 240px;
+  min-height: 60px;
+  border-color: #18563f;
+  border-radius: 8px;
+  background: #18563f;
+  box-shadow: 0 8px 18px rgba(24, 86, 63, 0.22);
+  font-size: 1.12rem;
+  font-weight: 800;
+}
+
+.mock-exam-setup .start-panel .primary-button:hover {
+  background: #124531;
+  transform: translateY(-1px);
+}
+
+/* ─── 모의 시험 결과 화면 ─────────────────────────────────── */
+
+.mock-result-tabs {
+  display: flex;
+  border-bottom: 2px solid #ddd;
+  margin-bottom: 24px;
+  overflow-x: auto;
+}
+
+.mock-result-subject {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ─── 에러 화면 ───────────────────────────────────────────── */
+
+.exam-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  gap: 16px;
+  font-size: 16px;
+  color: #555;
+}
+
+.exam-error a {
+  color: #2563eb;
+  text-decoration: underline;
+}
