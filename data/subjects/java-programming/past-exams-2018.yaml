@@ -5,9 +5,33 @@ kind: exam
 year: 2018
 
 passages:
+  - id: g18-inheritance-options-01
+    type: code
+    language: java
+    body: |
+      class A extends B, C { }       // a
+      class A extends B, Y { }       // b
+      class A implements Y, Z { }    // c
+      interface X extends Y, Z { }   // d
+
+  - id: g18-overriding-options-01
+    type: code
+    language: java
+    body: |
+      // 부모 클래스의 메소드
+      protected double compute(int x, int y)
+
+      // 서브 클래스에서의 재정의 후보
+      a. protected double compute(int x, int y)
+      b. public double compute(int x, int y)
+      c. protected int compute(int x, int y)
+      d. private double compute(int x, int y, int z)
+
   - id: g18-anonymous-class-01
     type: code
     language: java
+    highlights:
+      - new CSuper()
     body: |
       class CSuper {
         public int a = 10;
@@ -52,6 +76,9 @@ passages:
   - id: g18-thread-join-01
     type: code
     language: java
+    highlights:
+      - Thread.yield()
+      - my_thread1.join(); my_thread2.join()
     body: |
       class MyThread implements Runnable {
         public void run() {
@@ -72,6 +99,34 @@ passages:
         }
       }
 
+  - id: g18-awt-list-01
+    type: diagram
+    diagram:
+      type: ui-window
+      width: 220
+      height: 190
+      title: Test
+      components:
+        - { kind: label, label: Red, x: 36, y: 62, focused: true }
+        - { kind: label, label: Green, x: 36, y: 92 }
+        - { kind: label, label: Blue, x: 36, y: 122 }
+        - { kind: label, label: Yellow, x: 36, y: 152 }
+
+  - id: g18-awt-gridlayout-01
+    type: diagram
+    diagram:
+      type: ui-window
+      width: 300
+      height: 210
+      title: Layout
+      components:
+        - { kind: label, label: textarea, x: 34, y: 62 }
+        - { kind: label, label: button1, x: 184, y: 62 }
+        - { kind: label, label: Welcome, x: 34, y: 112 }
+        - { kind: label, label: button2, x: 184, y: 112 }
+        - { kind: label, label: Whiskey, x: 34, y: 162 }
+        - { kind: label, label: Red, x: 184, y: 162 }
+
   - id: g18-window-event-01
     type: code
     language: java
@@ -79,7 +134,7 @@ passages:
       import java.awt.*;
       import java.awt.event.*;
 
-      class MyListener implements WindowListener {
+      class MyListener ______ { // ㄱ
         public void windowClosing(WindowEvent ev) {
           System.exit(0);
         }
@@ -90,7 +145,7 @@ passages:
           super(title);
           this.setSize(400, 300);
           this.setVisible(true);
-          this.addWindowListener(new MyListener());
+          this.__________; // ㄴ, 이벤트 리스너 등록
         }
 
         public void paint(Graphics g) {
@@ -107,6 +162,10 @@ passages:
   - id: g18-jdbc-01
     type: code
     language: java
+    highlights:
+      - conn = DriverManager.getConnection("jdbc:mysql://localhost/my_db", "root", "admin");
+      - stmt = conn.createStatement();
+      - rs = stmt.executeQuery("SELECT * FROM book");
     body: |
       import java.sql.*;
 
@@ -134,7 +193,10 @@ questions:
       - { id: '4', text: 'Eclipse for JavaScript' }
     answers: ['4']
     explanation: |
-      선택지 1: Java 실행 환경과 API가 포함되는 플랫폼이므로 필요하다. 선택지 2: Java 바이트코드 실행에는 JVM이 필요하다. 선택지 3: 컴파일과 개발에는 JDK가 필요하다. 선택지 4: JavaScript용 Eclipse는 Java 실습 필수 도구가 아니다.
+      선택지 1: Java 실행 환경과 API가 포함되는 플랫폼이므로 필요하다.
+      선택지 2: Java 바이트코드 실행에는 JVM이 필요하다.
+      선택지 3: 컴파일과 개발에는 JDK가 필요하다.
+      선택지 4: JavaScript용 Eclipse는 Java 실습 필수 도구가 아니다.
 
       핵심 개념:
       Java 개발에는 JDK와 실행 환경이 필요하다.
@@ -153,7 +215,10 @@ questions:
       - { id: '4', text: 'int[][] d = new int[10][];' }
     answers: ['3']
     explanation: |
-      선택지 1: 1차원 int 배열 생성으로 올바르다. 선택지 2: 선언과 동시에 초기화하므로 올바르다. 선택지 3: 배열 초기화 축약형은 선언과 동시에만 사용할 수 있어 잘못됐다. 선택지 4: 2차원 가변 배열의 첫 차원 생성으로 올바르다.
+      선택지 1: 1차원 int 배열 생성으로 올바르다.
+      선택지 2: 선언과 동시에 초기화하므로 올바르다.
+      선택지 3: 배열 초기화 축약형은 선언과 동시에만 사용할 수 있어 잘못됐다.
+      선택지 4: 2차원 가변 배열의 첫 차원 생성으로 올바르다.
 
       핵심 개념:
       배열 초기화 목록은 선언문과 함께 사용할 때 가장 간단하다.
@@ -172,7 +237,10 @@ questions:
       - { id: '4', text: 'System.out.println(i, "=", j);' }
     answers: ['2']
     explanation: |
-      선택지 1: 두 정수를 더한 합만 출력한다. 선택지 2: 문자열 연결을 이용해 두 값을 구분해 출력하므로 맞다. 선택지 3: println은 이런 형태의 두 인자 호출을 제공하지 않는다. 선택지 4: println은 여러 인자를 쉼표로 받을 수 없다.
+      선택지 1: 두 정수를 더한 합만 출력한다.
+      선택지 2: 문자열 연결을 이용해 두 값을 구분해 출력하므로 맞다.
+      선택지 3: println은 이런 형태의 두 인자 호출을 제공하지 않는다.
+      선택지 4: println은 여러 인자를 쉼표로 받을 수 없다.
 
       핵심 개념:
       println은 기본적으로 하나의 인자를 출력한다.
@@ -183,6 +251,7 @@ questions:
 
   - id: e18-04
     type: multiple-choice
+    passageRefs: [g18-inheritance-options-01]
     prompt: B와 C가 클래스이고 Y와 Z가 인터페이스라고 가정할 때, 올바른 것을 모두 고른 것은?
     choices:
       - { id: '1', text: 'a, b' }
@@ -191,7 +260,10 @@ questions:
       - { id: '4', text: 'c, d' }
     answers: ['4']
     explanation: |
-      선택지 1: 클래스 다중 상속 a와 클래스 뒤 인터페이스를 extends한 b는 잘못됐다. 선택지 2: a가 잘못됐다. 선택지 3: c는 맞지만 d도 맞다. 선택지 4: 클래스가 인터페이스 Y, Z를 implements하는 c와 인터페이스가 Y, Z를 extends하는 d가 모두 맞다.
+      선택지 1: 클래스 다중 상속 a와 클래스 뒤 인터페이스를 extends한 b는 잘못됐다.
+      선택지 2: a가 잘못됐다.
+      선택지 3: c는 맞지만 d도 맞다.
+      선택지 4: 클래스가 인터페이스 Y, Z를 implements하는 c와 인터페이스가 Y, Z를 extends하는 d가 모두 맞다.
 
       핵심 개념:
       Java 클래스는 하나의 클래스만 extends할 수 있다.
@@ -202,6 +274,7 @@ questions:
 
   - id: e18-05
     type: multiple-choice
+    passageRefs: [g18-overriding-options-01]
     prompt: 부모 클래스의 `protected double compute(int x, int y)`를 서브 클래스에서 재정의하기 위한 메소드 형식으로 적합한 것을 모두 고른 것은?
     choices:
       - { id: '1', text: 'a' }
@@ -210,7 +283,10 @@ questions:
       - { id: '4', text: 'c, d' }
     answers: ['2']
     explanation: |
-      선택지 1: a는 접근 수준, 반환형, 매개변수가 모두 같아 재정의 가능하지만 b도 가능하다. 선택지 2: b는 public으로 접근 범위를 넓힌 재정의라 가능하므로 맞다. 선택지 3: c는 반환형이 int로 달라 불가능하다. 선택지 4: c는 반환형 오류, d는 private이고 매개변수도 달라 오버라이딩이 아니다.
+      선택지 1: a는 접근 수준, 반환형, 매개변수가 모두 같아 재정의 가능하지만 b도 가능하다.
+      선택지 2: b는 public으로 접근 범위를 넓힌 재정의라 가능하므로 맞다.
+      선택지 3: c는 반환형이 int로 달라 불가능하다.
+      선택지 4: c는 반환형 오류, d는 private이고 매개변수도 달라 오버라이딩이 아니다.
 
       핵심 개념:
       오버라이딩은 메소드 이름과 매개변수 목록이 같아야 한다.
@@ -233,7 +309,10 @@ questions:
       - { id: '4', text: 'CSuper 클래스를 매개변수화하였으며 객체 생성 시 자료형을 제공한다.' }
     answers: ['3']
     explanation: |
-      선택지 1: 기존 CSuper 클래스를 다시 정의하는 것이 아니다. 선택지 2: CSuper는 인터페이스가 아니라 클래스다. 선택지 3: CSuper를 상속한 익명 클래스를 만들고 즉시 객체를 생성하므로 맞다. 선택지 4: 제네릭 매개변수화와 관련 없다.
+      선택지 1: 기존 CSuper 클래스를 다시 정의하는 것이 아니다.
+      선택지 2: CSuper는 인터페이스가 아니라 클래스다.
+      선택지 3: CSuper를 상속한 익명 클래스를 만들고 즉시 객체를 생성하므로 맞다.
+      선택지 4: 제네릭 매개변수화와 관련 없다.
 
       핵심 개념:
       익명 클래스는 이름 없이 즉석에서 하위 타입을 정의한다.
@@ -253,7 +332,10 @@ questions:
       - { id: '4', text: '4개' }
     answers: ['3']
     explanation: |
-      선택지 1: public 클래스 외에 CSuper와 익명 클래스가 있어 부족하다. 선택지 2: 익명 클래스 파일을 빠뜨렸다. 선택지 3: CSuper, AnonymousTest, 익명 클래스 파일이 생성되어 맞다. 선택지 4: 별도 네 번째 클래스는 없다.
+      선택지 1: public 클래스 외에 CSuper와 익명 클래스가 있어 부족하다.
+      선택지 2: 익명 클래스 파일을 빠뜨렸다.
+      선택지 3: CSuper, AnonymousTest, 익명 클래스 파일이 생성되어 맞다.
+      선택지 4: 별도 네 번째 클래스는 없다.
 
       핵심 개념:
       하나의 소스 파일에 여러 클래스가 있으면 각 클래스별 .class 파일이 생성된다.
@@ -272,7 +354,10 @@ questions:
       - { id: '4', text: '추상 클래스나 인터페이스는 자식 클래스로 상속되어 사용된다.' }
     answers: ['2']
     explanation: |
-      선택지 1: 추상 클래스는 공통 성격을 묶는 부모 타입으로 쓸 수 있다. 선택지 2: 추상 클래스도 직접 인스턴스화할 수 없으므로 잘못됐다. 선택지 3: 인터페이스 필드는 암묵적으로 public static final이다. 선택지 4: 추상 클래스는 상속, 인터페이스는 구현을 통해 사용된다.
+      선택지 1: 추상 클래스는 공통 성격을 묶는 부모 타입으로 쓸 수 있다.
+      선택지 2: 추상 클래스도 직접 인스턴스화할 수 없으므로 잘못됐다.
+      선택지 3: 인터페이스 필드는 암묵적으로 public static final이다.
+      선택지 4: 추상 클래스는 상속, 인터페이스는 구현을 통해 사용된다.
 
       핵심 개념:
       추상 클래스와 인터페이스는 직접 객체 생성보다 타입 설계에 사용된다.
@@ -291,7 +376,10 @@ questions:
       - { id: '4', text: '문제가 없다.' }
     answers: ['1']
     explanation: |
-      선택지 1: 제네릭 타입 인자에는 참조형만 올 수 있으므로 int는 사용할 수 없다. 선택지 2: 오른쪽 diamond 문제가 아니라 왼쪽의 기본형 타입 인자가 문제다. 선택지 3: Raw 타입 설명과 맞지 않는다. 선택지 4: 컴파일 문제가 있으므로 틀렸다.
+      선택지 1: 제네릭 타입 인자에는 참조형만 올 수 있으므로 int는 사용할 수 없다.
+      선택지 2: 오른쪽 diamond 문제가 아니라 왼쪽의 기본형 타입 인자가 문제다.
+      선택지 3: Raw 타입 설명과 맞지 않는다.
+      선택지 4: 컴파일 문제가 있으므로 틀렸다.
 
       핵심 개념:
       Java 제네릭 타입 인자는 참조형이어야 한다.
@@ -311,7 +399,10 @@ questions:
       - { id: '4', text: 'str2.equals(str3)' }
     answers: ['2']
     explanation: |
-      선택지 1: str2는 str1을 대입받아 같은 객체를 참조하므로 true다. 선택지 2: str3은 같은 문자열 내용이지만 new로 만든 별도 객체라 == 결과가 false다. 선택지 3: 같은 객체의 내용 비교라 true다. 선택지 4: 내용이 Java로 같아 equals는 true다.
+      선택지 1: str2는 str1을 대입받아 같은 객체를 참조하므로 true다.
+      선택지 2: str3은 같은 문자열 내용이지만 new로 만든 별도 객체라 == 결과가 false다.
+      선택지 3: 같은 객체의 내용 비교라 true다.
+      선택지 4: 내용이 Java로 같아 equals는 true다.
 
       핵심 개념:
       `==`는 참조 타입에서 같은 객체인지 비교한다.
@@ -333,7 +424,10 @@ questions:
       - { id: '4', text: 'StringBuffer 객체는 내부적으로 문자열 저장을 위한 버퍼를 가진다.' }
     answers: ['2']
     explanation: |
-      선택지 1: String은 다양한 문자열 처리 메소드를 제공한다. 선택지 2: String은 불변이라 빈번한 변경에는 부적합하므로 잘못됐다. 선택지 3: StringBuffer는 가변 문자열 조작 메소드를 제공한다. 선택지 4: 내부 버퍼를 이용해 문자열을 변경한다.
+      선택지 1: String은 다양한 문자열 처리 메소드를 제공한다.
+      선택지 2: String은 불변이라 빈번한 변경에는 부적합하므로 잘못됐다.
+      선택지 3: StringBuffer는 가변 문자열 조작 메소드를 제공한다.
+      선택지 4: 내부 버퍼를 이용해 문자열을 변경한다.
 
       핵심 개념:
       String은 불변 문자열 클래스다.
@@ -352,7 +446,10 @@ questions:
       - { id: '4', text: 'Path' }
     answers: ['2']
     explanation: |
-      선택지 1: FileReader는 문자 입력 스트림이다. 선택지 2: FileInputStream은 파일에서 바이트 단위로 읽으므로 맞다. 선택지 3: File은 파일 경로/메타데이터 객체에 가깝다. 선택지 4: Path는 경로 표현 객체다.
+      선택지 1: FileReader는 문자 입력 스트림이다.
+      선택지 2: FileInputStream은 파일에서 바이트 단위로 읽으므로 맞다.
+      선택지 3: File은 파일 경로/메타데이터 객체에 가깝다.
+      선택지 4: Path는 경로 표현 객체다.
 
       핵심 개념:
       바이트 입력은 InputStream 계열을 사용한다.
@@ -372,7 +469,10 @@ questions:
       - { id: '4', text: '파일에 있는 데이터를 읽어 buffer에 기록한다.' }
     answers: ['4']
     explanation: |
-      선택지 1: charset.encode(data[i])가 명시되어 있다. 선택지 2: encode 결과를 buffer에 대입한다. 선택지 3: fileChannel.write(buffer)가 버퍼 내용을 기록한다. 선택지 4: 파일에서 읽는 read 동작은 보이지 않는다.
+      선택지 1: charset.encode(data[i])가 명시되어 있다.
+      선택지 2: encode 결과를 buffer에 대입한다.
+      선택지 3: fileChannel.write(buffer)가 버퍼 내용을 기록한다.
+      선택지 4: 파일에서 읽는 read 동작은 보이지 않는다.
 
       핵심 개념:
       Charset은 문자열을 바이트 버퍼로 인코딩할 수 있다.
@@ -391,7 +491,10 @@ questions:
       - { id: '4', text: 'Map' }
     answers: ['1']
     explanation: |
-      선택지 1: Set은 중복을 허용하지 않는 집합형 컬렉션이라 맞다. 선택지 2: List는 순서가 있고 중복을 허용한다. 선택지 3: Queue는 대기열 처리에 사용한다. 선택지 4: Map은 키-값 쌍을 저장한다.
+      선택지 1: Set은 중복을 허용하지 않는 집합형 컬렉션이라 맞다.
+      선택지 2: List는 순서가 있고 중복을 허용한다.
+      선택지 3: Queue는 대기열 처리에 사용한다.
+      선택지 4: Map은 키-값 쌍을 저장한다.
 
       핵심 개념:
       Set은 수학적 집합에 가까운 컬렉션이다.
@@ -410,7 +513,10 @@ questions:
       - { id: '4', text: 'Map<String> set = new HashMap<>();' }
     answers: ['4']
     explanation: |
-      선택지 1: HashSet은 Set 구현체라 맞다. 선택지 2: 변수명은 set이지만 타입과 구현체 조합은 가능하다. 선택지 3: LinkedList는 Queue 구현체로도 사용할 수 있다. 선택지 4: Map은 키와 값 두 타입 인자가 필요하므로 Map<String>은 잘못됐다.
+      선택지 1: HashSet은 Set 구현체라 맞다.
+      선택지 2: 변수명은 set이지만 타입과 구현체 조합은 가능하다.
+      선택지 3: LinkedList는 Queue 구현체로도 사용할 수 있다.
+      선택지 4: Map은 키와 값 두 타입 인자가 필요하므로 Map<String>은 잘못됐다.
 
       핵심 개념:
       제네릭 컬렉션은 인터페이스 타입 변수에 구현 객체를 대입할 수 있다.
@@ -433,7 +539,10 @@ questions:
       - { id: '4', text: '문자열 "finished"를 가장 마지막에 출력시킨다.' }
     answers: ['2']
     explanation: |
-      선택지 1: yield는 우선순위 변경 메소드가 아니다. 선택지 2: 현재 스레드가 실행 기회를 양보한다는 설명이 가장 적절하다. 선택지 3: 이런 순차 완료는 yield가 보장하지 않는다. 선택지 4: finished의 마지막 출력은 join이 담당한다.
+      선택지 1: yield는 우선순위 변경 메소드가 아니다.
+      선택지 2: 현재 스레드가 실행 기회를 양보한다는 설명이 가장 적절하다.
+      선택지 3: 이런 순차 완료는 yield가 보장하지 않는다.
+      선택지 4: finished의 마지막 출력은 join이 담당한다.
 
       핵심 개념:
       yield는 현재 스레드가 CPU를 양보하겠다는 힌트다.
@@ -462,7 +571,10 @@ questions:
       - { id: '4', text: '두 스레드가 공유하는 자원에의 배타적 접근을 보장한다.' }
     answers: ['3']
     explanation: |
-      선택지 1: join은 메인 스레드를 깨우는 기능이 아니다. 선택지 2: CPU 양보는 yield 설명이다. 선택지 3: join은 대상 스레드 종료까지 기다리므로 맞다. 선택지 4: 배타 접근 보장은 synchronized의 역할이다.
+      선택지 1: join은 메인 스레드를 깨우는 기능이 아니다.
+      선택지 2: CPU 양보는 yield 설명이다.
+      선택지 3: join은 대상 스레드 종료까지 기다리므로 맞다.
+      선택지 4: 배타 접근 보장은 synchronized의 역할이다.
 
       핵심 개념:
       join은 특정 스레드가 끝날 때까지 현재 스레드를 대기시킨다.
@@ -482,7 +594,10 @@ questions:
       - { id: '4', text: 'throws InterruptedException' }
     answers: ['4']
     explanation: |
-      선택지 1: throws 뒤에 예외 타입이 빠져 있다. 선택지 2: extends는 상속 키워드다. 선택지 3: join이 요구하는 예외 타입이 아니다. 선택지 4: join은 InterruptedException 처리가 필요하므로 맞다.
+      선택지 1: throws 뒤에 예외 타입이 빠져 있다.
+      선택지 2: extends는 상속 키워드다.
+      선택지 3: join이 요구하는 예외 타입이 아니다.
+      선택지 4: join은 InterruptedException 처리가 필요하므로 맞다.
 
       핵심 개념:
       checked exception은 catch하거나 throws로 전파해야 한다.
@@ -493,10 +608,8 @@ questions:
 
   - id: e18-19
     type: multiple-choice
+    passageRefs: [g18-awt-list-01]
     prompt: 다음 그림이 보여주는 AWT 컨트롤 클래스는 무엇인가?
-    images:
-      - path: images/subjects/java-programming/past-exams/2018/e18-list.png
-        alt: 2018년 Java프로그래밍 기출 54번 AWT List 컨트롤
     choices:
       - { id: '1', text: 'Button' }
       - { id: '2', text: 'Canvas' }
@@ -504,7 +617,10 @@ questions:
       - { id: '4', text: 'List' }
     answers: ['4']
     explanation: |
-      선택지 1: Button은 누르는 단일 버튼이다. 선택지 2: Canvas는 직접 그리기 영역이다. 선택지 3: Choice는 드롭다운 선택 컨트롤에 가깝다. 선택지 4: 여러 항목을 목록으로 보여주는 List 컨트롤이 맞다.
+      선택지 1: Button은 누르는 단일 버튼이다.
+      선택지 2: Canvas는 직접 그리기 영역이다.
+      선택지 3: Choice는 드롭다운 선택 컨트롤에 가깝다.
+      선택지 4: 여러 항목을 목록으로 보여주는 List 컨트롤이 맞다.
 
       핵심 개념:
       AWT List는 여러 항목을 세로 목록으로 표시한다.
@@ -515,6 +631,7 @@ questions:
 
   - id: e18-20
     type: multiple-choice
+    passageRefs: [g18-awt-list-01]
     prompt: 위 문제의 그림에 나타나는 항목을 마우스로 선택(싱글 클릭)할 때와 더블 클릭할 때 발생하는 이벤트는 각각 무엇인가?
     choices:
       - { id: '1', text: 'ActionEvent, ItemEvent' }
@@ -523,7 +640,10 @@ questions:
       - { id: '4', text: 'ItemEvent, WindowEvent' }
     answers: ['2']
     explanation: |
-      선택지 1: 싱글 선택과 더블 클릭 이벤트 순서가 반대다. 선택지 2: List 항목 선택은 ItemEvent, 더블 클릭 액션은 ActionEvent로 볼 수 있어 맞다. 선택지 3: 키 입력 이벤트가 아니다. 선택지 4: 더블 클릭은 창 이벤트가 아니다.
+      선택지 1: 싱글 선택과 더블 클릭 이벤트 순서가 반대다.
+      선택지 2: List 항목 선택은 ItemEvent, 더블 클릭 액션은 ActionEvent로 볼 수 있어 맞다.
+      선택지 3: 키 입력 이벤트가 아니다.
+      선택지 4: 더블 클릭은 창 이벤트가 아니다.
 
       핵심 개념:
       AWT List에서 항목 선택 변화는 ItemEvent와 관련된다.
@@ -534,10 +654,8 @@ questions:
 
   - id: e18-21
     type: multiple-choice
+    passageRefs: [g18-awt-gridlayout-01]
     prompt: 다음 그림을 보고 판단할 때, 프로그램에서 사용된 배치관리자는 무엇이라 생각되는가?
-    images:
-      - path: images/subjects/java-programming/past-exams/2018/e18-layout.png
-        alt: 2018년 Java프로그래밍 기출 56번 GridLayout 실행 화면
     choices:
       - { id: '1', text: 'GridLayout' }
       - { id: '2', text: 'FlowLayout' }
@@ -545,7 +663,10 @@ questions:
       - { id: '4', text: 'ButtonAreaLayout' }
     answers: ['1']
     explanation: |
-      선택지 1: 컴포넌트들이 행과 열의 격자 형태로 배치되어 GridLayout이 가장 적절하다. 선택지 2: FlowLayout처럼 단순 한 줄 흐름이 아니다. 선택지 3: BorderLayout의 5개 영역 구조가 아니다. 선택지 4: 표준 AWT 배치관리자가 아니다.
+      선택지 1: 컴포넌트들이 행과 열의 격자 형태로 배치되어 GridLayout이 가장 적절하다.
+      선택지 2: FlowLayout처럼 단순 한 줄 흐름이 아니다.
+      선택지 3: BorderLayout의 5개 영역 구조가 아니다.
+      선택지 4: 표준 AWT 배치관리자가 아니다.
 
       핵심 개념:
       GridLayout은 컨테이너를 행과 열의 동일한 셀로 나눈다.
@@ -557,7 +678,7 @@ questions:
   - id: e18-22
     type: multiple-choice
     passageRefs: [g18-window-event-01]
-    prompt: 프레임 우측 모서리의 닫기 버튼을 눌렀을 때 윈도우를 종료시키려면 먼저 해당 리스너 인터페이스를 구현하는 클래스가 필요하다. 밑줄 ㄱ에 들어갈 내용으로 적당한 것은?
+    prompt: 프레임 윈도우 우측 모서리에 있는 닫기 버튼을 눌렀을 때 윈도우를 종료시키려면 먼저 해당 리스너를 처리하는 클래스가 필요하다. 밑줄 ㄱ에 들어갈 내용으로 적당한 것은?
     choices:
       - { id: '1', text: 'implements WindowListener' }
       - { id: '2', text: 'implements WindowAdapter' }
@@ -565,16 +686,16 @@ questions:
       - { id: '4', text: 'extends WindowAdapter' }
     answers: ['4']
     explanation: |
-      선택지 1: origin/정답.txt의 2018년 정답표 기준으로 오답 선택지이다.
-      선택지 2: origin/정답.txt의 2018년 정답표 기준으로 오답 선택지이다.
-      선택지 3: origin/정답.txt의 2018년 정답표 기준으로 오답 선택지이다.
-      선택지 4: origin/정답.txt의 2018년 정답표 기준으로 정답 선택지이다.
+      선택지 1: `implements WindowListener`는 인터페이스를 직접 구현하므로 원칙적으로 가능하지만, 이 코드처럼 `windowClosing`만 작성하면 WindowListener의 나머지 메소드도 모두 구현해야 해서 현재 코드 조각과 맞지 않는다.
+      선택지 2: `WindowAdapter`는 클래스이므로 `implements` 대상이 아니다.
+      선택지 3: `WindowListener`는 인터페이스이므로 `extends`로 상속할 수 없다.
+      선택지 4: `WindowAdapter`를 상속하면 필요한 이벤트 메소드만 재정의할 수 있으므로 `windowClosing`만 둔 원문 코드와 맞다.
 
       핵심 개념:
-      이 문항은 origin/정답.txt의 2018년 java-programming 정답표와 대조해 보정했다.
-      선택지는 원본 기출 문제의 번호와 동일하게 대응된다.
-      다중정답 표기는 문서화된 A~K 대조표에 따라 복수 선택지로 변환한다.
-      세부 개념 해설은 원문 전사 고도화 단계에서 보강할 수 있다.
+      `WindowListener`는 여러 윈도우 이벤트 메소드를 가진 인터페이스이다.
+      `WindowAdapter`는 그 메소드들을 빈 구현으로 제공하는 어댑터 클래스이다.
+      필요한 이벤트 하나만 처리하려면 어댑터 클래스를 상속하고 해당 메소드만 오버라이딩하는 방식이 간단하다.
+      원문 정답표도 57번의 정답을 4번으로 제시한다.
     tags: [awt, window-event]
 
   - id: e18-23
@@ -588,7 +709,10 @@ questions:
       - { id: '4', text: 'addWindowAdapter(new MyFrame())' }
     answers: ['1']
     explanation: |
-      선택지 1: 프레임에 WindowListener 구현 객체를 등록하는 올바른 호출이다. 선택지 2: MyFrame은 리스너 객체가 아니다. 선택지 3: addWindowAdapter라는 등록 메소드는 표준 메소드가 아니다. 선택지 4: 메소드와 인자 모두 맞지 않는다.
+      선택지 1: 프레임에 WindowListener 구현 객체를 등록하는 올바른 호출이다.
+      선택지 2: MyFrame은 리스너 객체가 아니다.
+      선택지 3: addWindowAdapter라는 등록 메소드는 표준 메소드가 아니다.
+      선택지 4: 메소드와 인자 모두 맞지 않는다.
 
       핵심 개념:
       윈도우 이벤트 리스너 등록에는 addWindowListener를 사용한다.
@@ -608,7 +732,10 @@ questions:
       - { id: '4', text: 'DBMS와 연결 종료, Statement 객체 생성, SQL 질의 실행' }
     answers: ['3']
     explanation: |
-      선택지 1: getConnection은 DBMS 연결이지 단순 객체 생성만이 아니며 순서도 다르다. 선택지 2: createStatement 단계를 빠뜨렸다. 선택지 3: 연결, Statement 생성, 질의 실행 순서와 일치한다. 선택지 4: 연결 종료가 아니라 연결 생성이다.
+      선택지 1: getConnection은 DBMS 연결이지 단순 객체 생성만이 아니며 순서도 다르다.
+      선택지 2: createStatement 단계를 빠뜨렸다.
+      선택지 3: 연결, Statement 생성, 질의 실행 순서와 일치한다.
+      선택지 4: 연결 종료가 아니라 연결 생성이다.
 
       핵심 개념:
       JDBC 작업은 연결 생성, 명령 객체 생성, SQL 실행 흐름으로 진행된다.
@@ -628,7 +755,10 @@ questions:
       - { id: '4', text: 'StatementTable' }
     answers: ['1']
     explanation: |
-      선택지 1: executeQuery는 SELECT 결과를 ResultSet으로 반환하므로 맞다. 선택지 2: ResultTable은 표준 JDBC 타입이 아니다. 선택지 3: Statement는 SQL 실행 객체다. 선택지 4: StatementTable도 표준 타입이 아니다.
+      선택지 1: executeQuery는 SELECT 결과를 ResultSet으로 반환하므로 맞다.
+      선택지 2: ResultTable은 표준 JDBC 타입이 아니다.
+      선택지 3: Statement는 SQL 실행 객체다.
+      선택지 4: StatementTable도 표준 타입이 아니다.
 
       핵심 개념:
       JDBC에서 SELECT 결과는 ResultSet으로 표현된다.

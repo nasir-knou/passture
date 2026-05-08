@@ -8,16 +8,32 @@ passages:
   - id: g17-anonymous-class-01
     type: code
     language: java
+    highlights: ['new CSuper()']
     body: |
+      ... ...
       CSuper sub = new CSuper() {
         public int b = 20;
         public void method1() { System.out.println("sub1"); }
         public void method3() { System.out.println("sub3"); }
       };
 
+  - id: g17-inheritance-declarations-01
+    type: code
+    language: java
+    body: |
+      class A extends B { }           // a
+      class A implements X, Y { }     // b
+      interface X extends Y, Z { }    // c
+      interface X extends A { }       // d
+
   - id: g17-generics-01
     type: code
     language: java
+    highlights:
+      - 'list1.add("Hello");'
+      - 'String s1 = list1.get(0);'
+      - 'list2.add("Java");'
+      - 'String s2 = list2.get(0);'
     body: |
       import java.util.*;
       class ArrayList<E> implements List<E> {
@@ -27,31 +43,33 @@ passages:
       }
 
       public class GenericTest {
-        public static void main(String[] args) {
+        public static void main(/* ㄱ */ __________) {
           List list1 = new ArrayList();
-          list1.add("Hello");       // a
-          String s1 = list1.get(0); // b
+          list1.add("Hello");        // a
+          String s1 = list1.get(0);  // b
 
           List<String> list2 = new ArrayList<String>();
-          list2.add("Java");       // c
-          String s2 = list2.get(0); // d
+          list2.add("Java");         // c
+          String s2 = list2.get(0);  // d
         }
       }
 
   - id: g17-thread-join-01
     type: code
     language: java
+    highlights: ['Thread.yield();']
     body: |
       public class JoinTest {
-        public static void main(String[] args) throws InterruptedException {
+        public static void main(...) /* ㄱ */ ______ InterruptedException {
           Thread t1 = new MyThread1(); t1.start();
           Thread t2 = new MyThread1(); t2.start();
-          t1.join(); t2.join();
+
+          /* ㄴ */ ______________________
           System.out.println("main");
         }
       }
 
-      class MyThread1 extends Thread {
+      class MyThread1 extends /* ㄷ */ ______ {
         public void run() {
           for (int i = 0; i < 1000; i++) {
             System.out.println(getName());
@@ -64,16 +82,16 @@ passages:
     type: code
     language: java
     body: |
-      Connection conn = null;
-      Statement stmt = null;
-      ResultSet rs = null;
+      /* ㄱ */ __________ conn = null;
+      /* ㄴ */ __________ stmt = null;
+      /* ㄷ */ __________ rs = null;
       try {
         String url = "jdbc:mysql://localhost/test";
         String user = "사용자";
         String pass = "비밀번호";
         conn = DriverManager.getConnection(url, user, pass);
         stmt = conn.createStatement();
-        rs = stmt.executeQuery("SELECT * FROM book");
+        rs = stmt./* ㄹ */ __________("SELECT * FROM book");
         System.out.println("제목\t \t저자\t가격");
         while (rs.next()) {
           System.out.print(rs.getString("title") + "\t");
@@ -81,6 +99,19 @@ passages:
           System.out.println(rs.getInt("price") + "\t");
         }
       }
+
+  - id: g17-checkbox-flow-01
+    type: diagram
+    diagram:
+      type: ui-window
+      width: 390
+      height: 120
+      title: Checkbox
+      components:
+        - { kind: checkbox, label: Whiskey, x: 82, y: 72, focused: true }
+        - { kind: checkbox, label: Beer, x: 176, y: 72 }
+        - { kind: radio, label: Yes, x: 250, y: 72 }
+        - { kind: radio, label: No, x: 310, y: 72, checked: true }
 
 questions:
   - id: e17-01
@@ -93,7 +124,10 @@ questions:
       - { id: '4', text: 'Circle 클래스의 생성자가 실행된다.' }
     answers: ['3']
     explanation: |
-      선택지 1: c는 Circle 객체를 가리키는 참조 변수라 맞다. 선택지 2: new는 객체 메모리를 할당하므로 맞다. 선택지 3: 초기화 블록은 객체마다 반드시 별도로 "할당"되는 요소가 아니므로 잘못된 설명이다. 선택지 4: new Circle(5)는 인자를 받는 생성자를 호출하므로 맞다.
+      선택지 1: c는 Circle 객체를 가리키는 참조 변수라 맞다.
+      선택지 2: new는 객체 메모리를 할당하므로 맞다.
+      선택지 3: 초기화 블록은 객체마다 반드시 별도로 "할당"되는 요소가 아니므로 잘못된 설명이다.
+      선택지 4: new Circle(5)는 인자를 받는 생성자를 호출하므로 맞다.
 
       핵심 개념:
       Java 객체 생성식은 메모리 할당과 생성자 호출을 포함한다.
@@ -112,7 +146,10 @@ questions:
       - { id: '4', text: 'public' }
     answers: ['4']
     explanation: |
-      선택지 1: 생략 접근은 같은 패키지 범위다. 선택지 2: protected는 같은 패키지와 상속 관계에서 접근된다. 선택지 3: private는 같은 클래스 내부로 제한된다. 선택지 4: public은 모든 위치에서 접근 가능하므로 가장 넓다.
+      선택지 1: 생략 접근은 같은 패키지 범위다.
+      선택지 2: protected는 같은 패키지와 상속 관계에서 접근된다.
+      선택지 3: private는 같은 클래스 내부로 제한된다.
+      선택지 4: public은 모든 위치에서 접근 가능하므로 가장 넓다.
 
       핵심 개념:
       Java 접근제어자는 캡슐화 범위를 정한다.
@@ -131,7 +168,10 @@ questions:
       - { id: '4', text: '추상 클래스는 몸체가 구현된 메소드를 포함할 수 있다.' }
     answers: ['3']
     explanation: |
-      선택지 1: 인터페이스 필드는 암묵적으로 public static final이라 맞다. 선택지 2: default/static 메소드는 구현 몸체를 가진다. 선택지 3: 추상 클래스는 직접 인스턴스화할 수 없으므로 잘못됐다. 선택지 4: 추상 클래스는 일반 메소드도 포함할 수 있다.
+      선택지 1: 인터페이스 필드는 암묵적으로 public static final이라 맞다.
+      선택지 2: default/static 메소드는 구현 몸체를 가진다.
+      선택지 3: 추상 클래스는 직접 인스턴스화할 수 없으므로 잘못됐다.
+      선택지 4: 추상 클래스는 일반 메소드도 포함할 수 있다.
 
       핵심 개념:
       추상 클래스는 미완성 메소드를 포함할 수 있어 직접 객체 생성이 불가능하다.
@@ -142,6 +182,7 @@ questions:
 
   - id: e17-04
     type: multiple-choice
+    passageRefs: [g17-inheritance-declarations-01]
     prompt: A와 B가 클래스이고 X, Y, Z가 인터페이스라고 가정할 때, 잘못된 것을 모두 고른 것은?
     choices:
       - { id: '1', text: 'd' }
@@ -150,7 +191,10 @@ questions:
       - { id: '4', text: 'c, d' }
     answers: ['1']
     explanation: |
-      선택지 1: `interface X extends A`인 d만 잘못되어 맞는 답이다. 선택지 2: 클래스는 여러 인터페이스를 implements할 수 있고 인터페이스도 여러 인터페이스를 extends할 수 있어 b, c는 맞다. 선택지 3: b는 맞는 선언이라 오답이다. 선택지 4: c는 맞는 선언이라 오답이다.
+      선택지 1: `interface X extends A`인 d만 잘못되어 맞는 답이다.
+      선택지 2: 클래스는 여러 인터페이스를 implements할 수 있고 인터페이스도 여러 인터페이스를 extends할 수 있어 b, c는 맞다.
+      선택지 3: b는 맞는 선언이라 오답이다.
+      선택지 4: c는 맞는 선언이라 오답이다.
 
       핵심 개념:
       클래스는 하나의 클래스를 extends하고 여러 인터페이스를 implements할 수 있다.
@@ -170,7 +214,10 @@ questions:
       - { id: '4', text: 'CSuper 클래스를 매개변수화하였으며 객체 생성 시 자료형을 제공한다.' }
     answers: ['2']
     explanation: |
-      선택지 1: CSuper 자체를 새로 정의하는 것이 아니다. 선택지 2: CSuper를 상속한 익명 클래스 몸체를 정의하고 즉시 객체를 생성하므로 맞다. 선택지 3: Java 클래스 다중 상속이 아니다. 선택지 4: 제네릭 매개변수화와 관련이 없다.
+      선택지 1: CSuper 자체를 새로 정의하는 것이 아니다.
+      선택지 2: CSuper를 상속한 익명 클래스 몸체를 정의하고 즉시 객체를 생성하므로 맞다.
+      선택지 3: Java 클래스 다중 상속이 아니다.
+      선택지 4: 제네릭 매개변수화와 관련이 없다.
 
       핵심 개념:
       익명 클래스는 이름 없는 하위 클래스를 즉석에서 정의하는 문법이다.
@@ -190,7 +237,10 @@ questions:
       - { id: '4', text: 'String[] args[]' }
     answers: ['3']
     explanation: |
-      선택지 1: Java의 표준 main 매개변수는 Char 배열이 아니다. 선택지 2: 배열이 아니므로 명령행 인자 목록을 받을 수 없다. 선택지 3: `String[] args`가 표준 main 매개변수 형식이다. 선택지 4: 2차원 문자열 배열이라 표준 진입점 형식이 아니다.
+      선택지 1: Java의 표준 main 매개변수는 Char 배열이 아니다.
+      선택지 2: 배열이 아니므로 명령행 인자 목록을 받을 수 없다.
+      선택지 3: `String[] args`가 표준 main 매개변수 형식이다.
+      선택지 4: 2차원 문자열 배열이라 표준 진입점 형식이 아니다.
 
       핵심 개념:
       Java 애플리케이션의 진입점은 public static void main(String[] args)다.
@@ -210,7 +260,10 @@ questions:
       - { id: '4', text: 'd' }
     answers: ['2']
     explanation: |
-      선택지 1: Raw List에 문자열을 추가하는 것은 경고는 가능하지만 컴파일 오류는 아니다. 선택지 2: Raw List의 get 결과는 Object라 String에 대입하려면 형변환이 필요하다. 선택지 3: List<String>에 문자열 추가는 맞다. 선택지 4: List<String>의 get 결과는 String이라 대입 가능하다.
+      선택지 1: Raw List에 문자열을 추가하는 것은 경고는 가능하지만 컴파일 오류는 아니다.
+      선택지 2: Raw List의 get 결과는 Object라 String에 대입하려면 형변환이 필요하다.
+      선택지 3: List<String>에 문자열 추가는 맞다.
+      선택지 4: List<String>의 get 결과는 String이라 대입 가능하다.
 
       핵심 개념:
       제네릭을 쓰지 않은 Raw 타입은 원소 타입 정보가 사라진다.
@@ -232,7 +285,10 @@ questions:
       - { id: '4', text: '예외처리 코드를 작성할 때 finally 블록을 생략해서는 안 된다.' }
     answers: ['4']
     explanation: |
-      선택지 1: 예외가 발생하면 남은 try 문장은 건너뛰고 처리 흐름이 이동한다. 선택지 2: 예외가 없으면 catch는 실행되지 않는다. 선택지 3: 일반적으로 finally는 마지막 정리 코드로 실행된다. 선택지 4: finally는 필요할 때 쓰는 선택 블록이므로 잘못된 설명이다.
+      선택지 1: 예외가 발생하면 남은 try 문장은 건너뛰고 처리 흐름이 이동한다.
+      선택지 2: 예외가 없으면 catch는 실행되지 않는다.
+      선택지 3: 일반적으로 finally는 마지막 정리 코드로 실행된다.
+      선택지 4: finally는 필요할 때 쓰는 선택 블록이므로 잘못된 설명이다.
 
       핵심 개념:
       try는 예외 발생 가능 코드를 감싼다.
@@ -251,7 +307,10 @@ questions:
       - { id: '4', text: '문자열을 빈번하게 변경하는 프로그램에서 사용하면 실행 효율이 좋아진다.' }
     answers: ['4']
     explanation: |
-      선택지 1: String은 java.lang의 문자열 클래스라 맞다. 선택지 2: 비교, 검색, 부분 문자열 추출 메소드를 제공한다. 선택지 3: String은 불변 객체라 맞다. 선택지 4: 빈번한 변경에는 새 객체가 계속 만들어져 효율이 떨어질 수 있다.
+      선택지 1: String은 java.lang의 문자열 클래스라 맞다.
+      선택지 2: 비교, 검색, 부분 문자열 추출 메소드를 제공한다.
+      선택지 3: String은 불변 객체라 맞다.
+      선택지 4: 빈번한 변경에는 새 객체가 계속 만들어져 효율이 떨어질 수 있다.
 
       핵심 개념:
       String은 Java의 대표적인 불변 문자열 클래스다.
@@ -270,7 +329,10 @@ questions:
       - { id: '4', text: 'String s = String.valueOf(34);' }
     answers: ['3']
     explanation: |
-      선택지 1: int를 문자열로 변환한다. 선택지 2: 문자열을 기본형 int로 파싱한다. 선택지 3: int 값 10을 Integer 포장 객체로 만든다. 선택지 4: 값을 문자열로 변환한다.
+      선택지 1: int를 문자열로 변환한다.
+      선택지 2: 문자열을 기본형 int로 파싱한다.
+      선택지 3: int 값 10을 Integer 포장 객체로 만든다.
+      선택지 4: 값을 문자열로 변환한다.
 
       핵심 개념:
       박싱은 기본형 값을 wrapper 객체로 감싸는 변환이다.
@@ -289,7 +351,10 @@ questions:
       - { id: '4', text: 'PrintWriter' }
     answers: ['2']
     explanation: |
-      선택지 1: 바이트 입력 스트림이다. 선택지 2: 파일에 문자 단위로 출력하는 기본 Writer 클래스라 맞다. 선택지 3: 문자 입력을 버퍼링하는 Reader다. 선택지 4: 편리한 출력 기능을 제공하지만 기본 파일 문자 출력 스트림 자체는 FileWriter다.
+      선택지 1: 바이트 입력 스트림이다.
+      선택지 2: 파일에 문자 단위로 출력하는 기본 Writer 클래스라 맞다.
+      선택지 3: 문자 입력을 버퍼링하는 Reader다.
+      선택지 4: 편리한 출력 기능을 제공하지만 기본 파일 문자 출력 스트림 자체는 FileWriter다.
 
       핵심 개념:
       InputStream/OutputStream은 바이트 스트림이다.
@@ -308,7 +373,10 @@ questions:
       - { id: '4', text: '파일 내용의 읽기와 쓰기 기능을 제공한다.' }
     answers: ['4']
     explanation: |
-      선택지 1: Path는 File을 대체/보완하는 경로 API다. 선택지 2: 파일과 디렉터리 경로를 표현한다. 선택지 3: 경로 조작과 비교 기능을 제공한다. 선택지 4: 파일 내용 입출력은 Files나 스트림 API 역할이므로 잘못됐다.
+      선택지 1: Path는 File을 대체/보완하는 경로 API다.
+      선택지 2: 파일과 디렉터리 경로를 표현한다.
+      선택지 3: 경로 조작과 비교 기능을 제공한다.
+      선택지 4: 파일 내용 입출력은 Files나 스트림 API 역할이므로 잘못됐다.
 
       핵심 개념:
       Path는 파일 내용이 아니라 경로를 표현하는 객체다.
@@ -327,7 +395,10 @@ questions:
       - { id: '4', text: 'int i=0; i<=list.length; i++' }
     answers: ['2']
     explanation: |
-      선택지 1: for-each의 좌우 순서가 반대다. 선택지 2: String 원소를 element로 받아 list를 순회하는 올바른 형식이다. 선택지 3: 리스트 원소 타입이 String이므로 int는 맞지 않는다. 선택지 4: 일반 for문 형식이고 컬렉션에는 length가 없다.
+      선택지 1: for-each의 좌우 순서가 반대다.
+      선택지 2: String 원소를 element로 받아 list를 순회하는 올바른 형식이다.
+      선택지 3: 리스트 원소 타입이 String이므로 int는 맞지 않는다.
+      선택지 4: 일반 for문 형식이고 컬렉션에는 length가 없다.
 
       핵심 개념:
       for-each는 `for (원소타입 변수 : 순회대상)` 형식이다.
@@ -346,7 +417,10 @@ questions:
       - { id: '4', text: '같은 자료를 중복으로 저장할 수 없다.' }
     answers: ['4']
     explanation: |
-      선택지 1: ArrayList는 List 구현 클래스다. 선택지 2: 내부적으로 동적 배열 구조를 사용한다. 선택지 3: 입력 순서와 인덱스가 의미를 가진다. 선택지 4: List는 중복 원소를 허용하므로 잘못된 설명이다.
+      선택지 1: ArrayList는 List 구현 클래스다.
+      선택지 2: 내부적으로 동적 배열 구조를 사용한다.
+      선택지 3: 입력 순서와 인덱스가 의미를 가진다.
+      선택지 4: List는 중복 원소를 허용하므로 잘못된 설명이다.
 
       핵심 개념:
       ArrayList는 순서가 있는 List 컬렉션이다.
@@ -365,7 +439,10 @@ questions:
       - { id: '4', text: '컬렉션에 원소를 저장할 때 put(), 조회할 때 get() 메소드를 사용한다.' }
     answers: ['3']
     explanation: |
-      선택지 1: Map은 키-값 자료를 다루는 주요 컬렉션 인터페이스다. 선택지 2: Map 원소는 키와 값의 대응 관계다. 선택지 3: LinkedList는 List 구현체이며 Map 구현체가 아니므로 잘못됐다. 선택지 4: Map 저장과 조회에는 put/get을 사용한다.
+      선택지 1: Map은 키-값 자료를 다루는 주요 컬렉션 인터페이스다.
+      선택지 2: Map 원소는 키와 값의 대응 관계다.
+      선택지 3: LinkedList는 List 구현체이며 Map 구현체가 아니므로 잘못됐다.
+      선택지 4: Map 저장과 조회에는 put/get을 사용한다.
 
       핵심 개념:
       Map은 키로 값을 찾는 자료구조 인터페이스다.
@@ -385,7 +462,10 @@ questions:
       - { id: '4', text: 'interrupt' }
     answers: ['2']
     explanation: |
-      선택지 1: throw는 예외 객체를 직접 던질 때 사용한다. 선택지 2: throws는 메소드 선언부에서 예외 전파를 표시하므로 맞다. 선택지 3: Java 동기화 키워드는 synchronized이며 예외 전파와 무관하다. 선택지 4: interrupt는 스레드 인터럽트 동작이다.
+      선택지 1: throw는 예외 객체를 직접 던질 때 사용한다.
+      선택지 2: throws는 메소드 선언부에서 예외 전파를 표시하므로 맞다.
+      선택지 3: Java 동기화 키워드는 synchronized이며 예외 전파와 무관하다.
+      선택지 4: interrupt는 스레드 인터럽트 동작이다.
 
       핵심 개념:
       checked exception은 처리하거나 전파해야 한다.
@@ -405,7 +485,10 @@ questions:
       - { id: '4', text: 't1.join(); t2.join();' }
     answers: ['4']
     explanation: |
-      선택지 1: sleep은 단순 시간 지연이며 인자도 필요하다. 선택지 2: sleep은 Thread 객체를 인자로 받지 않는다. 선택지 3: sleep은 정적 메소드이고 종료 대기 의미가 아니다. 선택지 4: join은 해당 스레드가 끝날 때까지 기다리므로 맞다.
+      선택지 1: sleep은 단순 시간 지연이며 인자도 필요하다.
+      선택지 2: sleep은 Thread 객체를 인자로 받지 않는다.
+      선택지 3: sleep은 정적 메소드이고 종료 대기 의미가 아니다.
+      선택지 4: join은 해당 스레드가 끝날 때까지 기다리므로 맞다.
 
       핵심 개념:
       join()은 다른 스레드의 종료를 기다리는 동기화 수단이다.
@@ -425,7 +508,10 @@ questions:
       - { id: '4', text: 'Runnable' }
     answers: ['2']
     explanation: |
-      선택지 1: Object를 상속해도 스레드 실행 클래스가 되지 않는다. 선택지 2: Thread를 상속하고 run()을 재정의하는 방식이 맞다. 선택지 3: Process는 Java 스레드 생성 부모 클래스가 아니다. 선택지 4: Runnable은 인터페이스라 extends가 아니라 implements 대상이다.
+      선택지 1: Object를 상속해도 스레드 실행 클래스가 되지 않는다.
+      선택지 2: Thread를 상속하고 run()을 재정의하는 방식이 맞다.
+      선택지 3: Process는 Java 스레드 생성 부모 클래스가 아니다.
+      선택지 4: Runnable은 인터페이스라 extends가 아니라 implements 대상이다.
 
       핵심 개념:
       Java 스레드는 Thread 상속 또는 Runnable 구현으로 만들 수 있다.
@@ -445,7 +531,10 @@ questions:
       - { id: '4', text: '중단되었던 다른 스레드를 깨워 실행가능 상태로 만든다.' }
     answers: ['2']
     explanation: |
-      선택지 1: yield는 우선순위를 변경하지 않는다. 선택지 2: 현재 스레드가 실행 기회를 양보하는 의미라 맞다. 선택지 3: 배타 접근은 synchronized 같은 동기화가 담당한다. 선택지 4: 다른 스레드를 깨우는 기능은 notify/interrupt 등과 관련된다.
+      선택지 1: yield는 우선순위를 변경하지 않는다.
+      선택지 2: 현재 스레드가 실행 기회를 양보하는 의미라 맞다.
+      선택지 3: 배타 접근은 synchronized 같은 동기화가 담당한다.
+      선택지 4: 다른 스레드를 깨우는 기능은 notify/interrupt 등과 관련된다.
 
       핵심 개념:
       yield()는 현재 실행 중인 스레드가 CPU 사용을 양보하겠다는 힌트다.
@@ -464,7 +553,10 @@ questions:
       - { id: '4', text: 'List' }
     answers: ['4']
     explanation: |
-      선택지 1: Frame은 Window를 거쳐 Container 계층에 속한다. 선택지 2: Panel은 Container의 대표 하위 클래스다. 선택지 3: Window도 Container 하위 계층이다. 선택지 4: List는 항목 목록 컴포넌트이며 Container 자식 클래스가 아니다.
+      선택지 1: Frame은 Window를 거쳐 Container 계층에 속한다.
+      선택지 2: Panel은 Container의 대표 하위 클래스다.
+      선택지 3: Window도 Container 하위 계층이다.
+      선택지 4: List는 항목 목록 컴포넌트이며 Container 자식 클래스가 아니다.
 
       핵심 개념:
       AWT 컴포넌트 계층에서 Container는 다른 컴포넌트를 담을 수 있는 컴포넌트다.
@@ -475,10 +567,8 @@ questions:
 
   - id: e17-21
     type: multiple-choice
+    passageRefs: [g17-checkbox-flow-01]
     prompt: 다음 결과를 보고 판단할 때, 프로그램에서 사용된 배치관리자는 무엇이라고 생각되는가?
-    images:
-      - path: images/subjects/java-programming/past-exams/2017/e17-checkbox-flow.png
-        alt: 2017년 Java프로그래밍 기출 56번 체크박스 실행 화면
     choices:
       - { id: '1', text: 'GridLayout' }
       - { id: '2', text: 'FlowLayout' }
@@ -486,7 +576,10 @@ questions:
       - { id: '4', text: 'SpringLayout' }
     answers: ['2']
     explanation: |
-      선택지 1: GridLayout은 격자형 배치라 그림과 다르다. 선택지 2: 컴포넌트들이 왼쪽에서 오른쪽으로 흐르듯 배치되어 FlowLayout이 맞다. 선택지 3: BorderLayout의 5개 영역 배치가 아니다. 선택지 4: 제약 기반 배치로 이 단순 흐름 화면과 거리가 있다.
+      선택지 1: GridLayout은 격자형 배치라 그림과 다르다.
+      선택지 2: 컴포넌트들이 왼쪽에서 오른쪽으로 흐르듯 배치되어 FlowLayout이 맞다.
+      선택지 3: BorderLayout의 5개 영역 배치가 아니다.
+      선택지 4: 제약 기반 배치로 이 단순 흐름 화면과 거리가 있다.
 
       핵심 개념:
       FlowLayout은 컴포넌트를 한 줄에 순서대로 배치한다.
@@ -508,7 +601,10 @@ questions:
         }
     answers: ['2']
     explanation: |
-      선택지 1: 이벤트 소스에 리스너를 등록해야 콜백이 호출된다. 선택지 2: 하나의 이벤트 소스에도 여러 리스너를 등록할 수 있으므로 잘못됐다. 선택지 3: 이벤트 종류별 리스너 인터페이스가 있다. 선택지 4: 여러 메소드를 가진 리스너 구현을 돕기 위해 어댑터 클래스가 제공된다.
+      선택지 1: 이벤트 소스에 리스너를 등록해야 콜백이 호출된다.
+      선택지 2: 하나의 이벤트 소스에도 여러 리스너를 등록할 수 있으므로 잘못됐다.
+      선택지 3: 이벤트 종류별 리스너 인터페이스가 있다.
+      선택지 4: 여러 메소드를 가진 리스너 구현을 돕기 위해 어댑터 클래스가 제공된다.
 
       핵심 개념:
       AWT 이벤트 모델은 이벤트 소스, 이벤트 객체, 리스너로 구성된다.
@@ -527,7 +623,10 @@ questions:
       - { id: '4', text: 'ActionListener' }
     answers: ['4']
     explanation: |
-      선택지 1: Action은 이 문맥의 리스너 인터페이스가 아니다. 선택지 2: ActionEvent는 이벤트 객체 클래스다. 선택지 3: ActionAdapter는 표준 핵심 선택지가 아니다. 선택지 4: addActionListener에는 ActionListener 구현 객체가 필요하다.
+      선택지 1: Action은 이 문맥의 리스너 인터페이스가 아니다.
+      선택지 2: ActionEvent는 이벤트 객체 클래스다.
+      선택지 3: ActionAdapter는 표준 핵심 선택지가 아니다.
+      선택지 4: addActionListener에는 ActionListener 구현 객체가 필요하다.
 
       핵심 개념:
       버튼 클릭은 ActionEvent로 표현된다.
@@ -547,7 +646,10 @@ questions:
       - { id: '4', text: 'ConnectionPool, PreparedStatement, ResultStore' }
     answers: ['1']
     explanation: |
-      선택지 1: DB 연결, SQL 실행 객체, 조회 결과 집합 순서라 코드와 맞다. 선택지 2: 코드는 createStatement()를 사용하므로 Statement가 맞다. 선택지 3: ConnectionEvent와 ResultStore는 이 코드의 JDBC 기본 타입이 아니다. 선택지 4: ConnectionPool과 ResultStore가 맞지 않는다.
+      선택지 1: DB 연결, SQL 실행 객체, 조회 결과 집합 순서라 코드와 맞다.
+      선택지 2: 코드는 createStatement()를 사용하므로 Statement가 맞다.
+      선택지 3: ConnectionEvent와 ResultStore는 이 코드의 JDBC 기본 타입이 아니다.
+      선택지 4: ConnectionPool과 ResultStore가 맞지 않는다.
 
       핵심 개념:
       JDBC의 Connection은 데이터베이스 연결을 나타낸다.
@@ -567,7 +669,10 @@ questions:
       - { id: '4', text: 'executeSql' }
     answers: ['2']
     explanation: |
-      선택지 1: execute는 일반 실행 메소드지만 ResultSet을 바로 받는 SELECT 문맥의 대표 답은 아니다. 선택지 2: SELECT 결과를 ResultSet으로 받을 때 executeQuery를 사용하므로 맞다. 선택지 3: INSERT/UPDATE/DELETE처럼 갱신 행 수를 받을 때 사용한다. 선택지 4: 표준 JDBC 메소드가 아니다.
+      선택지 1: execute는 일반 실행 메소드지만 ResultSet을 바로 받는 SELECT 문맥의 대표 답은 아니다.
+      선택지 2: SELECT 결과를 ResultSet으로 받을 때 executeQuery를 사용하므로 맞다.
+      선택지 3: INSERT/UPDATE/DELETE처럼 갱신 행 수를 받을 때 사용한다.
+      선택지 4: 표준 JDBC 메소드가 아니다.
 
       핵심 개념:
       SELECT 문은 조회 결과를 ResultSet으로 반환한다.

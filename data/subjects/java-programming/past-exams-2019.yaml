@@ -5,6 +5,16 @@ kind: exam
 year: 2019
 
 passages:
+  - id: g19-interface-default-code-01
+    type: code
+    language: java
+    body: |
+      public interface Test {
+        ㄱ void aMethod(String aValue) {
+          System.out.println("Hi" + aValue);
+        }
+      }
+
   - id: g19-employee-code-01
     type: code
     language: java
@@ -56,22 +66,29 @@ passages:
     body: |
       public class CopyFile {
         public static void main(String args[]) {
-          FileReader in = null;
-          FileWriter out = null;
+          ㄱ in = null;
+          ㄴ out = null;
           try {
-            in = new FileReader("input.txt");
-            out = new FileWriter("output.txt");
+            in = new ㄱ("input.txt");
+            out = new ㄴ("output.txt");
             int c;
             while ((c = in.read()) != -1) {
               out.write(c);
             }
             in.close();
             out.close();
-          } catch (java.io.IOException e) {
+          } ㄷ {
             System.out.println(e);
           }
         }
       }
+
+  - id: g19-path-description-01
+    type: text
+    body: |
+      - java.nio.file 패키지에 존재하며 java.io.File 클래스를 대신한다.
+      - 파일시스템에 존재하는 파일이나 디렉터리의 경로를 표현한다.
+      - 경로의 비교, 경로 자체의 조작, 경로 요소의 조회 기능 등을 제공한다.
 
   - id: g19-array-list-code-01
     type: code
@@ -81,11 +98,11 @@ passages:
 
       public class ArrayListTest {
         public static void main(String args[]) {
-          List<String> list = new ArrayList<String>();
+          ㄱ
           list.add("one"); list.add("three");
           list.add("two"); list.add(1, "one");
 
-          for (String s : list) System.out.println(s);
+          ㄴ
         }
       }
 
@@ -99,7 +116,7 @@ passages:
         public int getValue() { return c; }
       }
 
-      class MyThread extends Thread {
+      class MyThread ㄱ Thread {
         Counter c;
         public MyThread(Counter c) { this.c = c; }
         public void run() {
@@ -108,11 +125,11 @@ passages:
       }
 
       public class CounterTest {
-        public static void main(String args[]) throws Exception {
+        public static void main(String args[]) ㄴ Exception {
           Counter c = new Counter();
           Thread t1 = new MyThread(c); t1.start();
           Thread t2 = new MyThread(c); t2.start();
-          t1.join(); t2.join();
+          ㄷ
           System.out.println(c.getValue());
         }
       }
@@ -124,7 +141,7 @@ passages:
       import java.awt.*;
       import java.awt.event.*;
 
-      class MyListener implements ActionListener {
+      class MyListener ㄱ {
         public void actionPerformed(ActionEvent ev) {
           System.out.println(ev.getActionCommand());
         }
@@ -133,13 +150,13 @@ passages:
       public class ButtonTest extends Frame {
         public ButtonTest(String title) {
           super(title);
-          setLayout(new FlowLayout());
+          setLayout(new ㄴ());
           Button b1 = new Button("버튼1"); add(b1);
           Button b2 = new Button("버튼2"); add(b2);
           Button b3 = new Button("버튼3"); add(b3);
           Button b4 = new Button("버튼4"); add(b4);
           Button b5 = new Button("버튼5"); add(b5);
-          b1.addActionListener(new MyListener());
+          b1.ㄷ;
           this.setSize(400, 100);
           setVisible(true);
         }
@@ -148,6 +165,33 @@ passages:
           new ButtonTest("Test Program");
         }
       }
+
+  - id: g19-awt-list-01
+    type: diagram
+    diagram:
+      type: ui-window
+      width: 300
+      height: 140
+      title: Test
+      components:
+        - { kind: label, label: Red, x: 28, y: 58, focused: true }
+        - { kind: label, label: Green, x: 28, y: 82 }
+        - { kind: label, label: Blue, x: 28, y: 106 }
+        - { kind: label, label: Yellow, x: 28, y: 130 }
+
+  - id: g19-awt-flow-layout-01
+    type: diagram
+    diagram:
+      type: ui-window
+      width: 400
+      height: 130
+      title: Test Program
+      components:
+        - { kind: label, label: 버튼1, x: 94, y: 74, focused: true }
+        - { kind: label, label: 버튼2, x: 150, y: 74 }
+        - { kind: label, label: 버튼3, x: 206, y: 74 }
+        - { kind: label, label: 버튼4, x: 262, y: 74 }
+        - { kind: label, label: 버튼5, x: 318, y: 74 }
 
   - id: g19-jdbc-code-01
     type: code
@@ -163,11 +207,11 @@ passages:
           try {
             conn = DriverManager.getConnection(url, user, pass);
             String query = "insert into book values(?, ?, ?)";
-            ps = conn.prepareStatement(query);
+            ps = conn.ㄱ(query);
             ps.setString(1, "삼국지");
             ps.setString(2, "나관중");
             ps.setInt(3, 500);
-            resultCount = ps.executeUpdate();
+            resultCount = ps.ㄴ();
           } catch (Exception ex) {
           }
         }
@@ -176,7 +220,7 @@ passages:
 questions:
   - id: e19-01
     type: multiple-choice
-    prompt: 배열을 사용하는 다음 문장 중 올바른 것은?
+    prompt: 배열을 사용하는 다음 문장 중 ==올바른== 것은?
     choices:
       - { id: '1', text: 'int[] a = new int[10];' }
       - { id: '2', text: 'int b[] = { {1, 2, 3}, {4, 5} };' }
@@ -198,7 +242,8 @@ questions:
 
   - id: e19-02
     type: multiple-choice
-    prompt: 인터페이스에서 기본 몸체를 가지는 메소드를 넣을 때 밑줄 부분에 들어갈 키워드는?
+    passageRefs: [g19-interface-default-code-01]
+    prompt: 인터페이스에서 기본 몸체를 가지는 메소드를 넣을 때 밑줄 부분에 들어갈 ==키워드==는?
     choices:
       - { id: '1', text: 'public' }
       - { id: '2', text: 'final' }
@@ -221,7 +266,7 @@ questions:
   - id: e19-03
     type: multiple-choice
     passageRefs: [g19-employee-code-01]
-    prompt: 위 프로그램에 관한 설명으로 잘못된 것은?
+    prompt: 위 프로그램에 관한 설명으로 ==잘못된== 것은?
     choices:
       - { id: '1', text: '클래스 간의 상속 관계가 존재한다.' }
       - { id: '2', text: 'Employee 클래스를 이용하여 자식 클래스를 정의하였다.' }
@@ -267,17 +312,17 @@ questions:
   - id: e19-05
     type: multiple-choice
     passageRefs: [g19-string-code-01]
-    prompt: 프로그램에 등장하는 다음 수식 중 결과가 String 유형이 아닌 것은?
+    prompt: 프로그램에 등장하는 다음 수식 중 결과가 ==String 유형이 아닌== 것은?
     choices:
       - { id: '1', text: '"abcde"' }
       - { id: '2', text: 'new String()' }
-      - { id: '3', text: 'i < 1000' }
+      - { id: '3', text: 'i < 10000' }
       - { id: '4', text: 'str + aValue' }
     answers: ['3']
     explanation: |
       선택지 1: 문자열 리터럴이므로 String 객체를 나타낸다.
       선택지 2: 기본 생성자로 빈 String 객체를 생성한다.
-      선택지 3: 관계 연산식이므로 결과는 boolean이다.
+      선택지 3: 관계 연산식이므로 결과는 boolean이다. 원본 선택지의 10000은 코드의 1000과 달라도 타입 판단에는 영향을 주지 않는다.
       선택지 4: 문자열 연결 연산 결과는 새로운 String이다.
 
       핵심 개념:
@@ -290,7 +335,7 @@ questions:
   - id: e19-06
     type: multiple-choice
     passageRefs: [g19-string-code-01]
-    prompt: 위 프로그램에 관한 설명으로 잘못된 것은?
+    prompt: 위 프로그램에 관한 설명으로 ==잘못된== 것은?
     choices:
       - { id: '1', text: '컴파일 또는 실행 오류는 발생하지 않는다.' }
       - { id: '2', text: 'for문을 수행할 때마다 새로운 String 객체가 생성된다.' }
@@ -313,7 +358,7 @@ questions:
   - id: e19-07
     type: multiple-choice
     passageRefs: [g19-copy-file-code-01]
-    prompt: 파일로부터 2바이트 문자 단위로 데이터를 읽은 후 파일에 출력할 때, 밑줄 ㄱ과 ㄴ에 들어갈 입출력 스트림 클래스는 순서대로 무엇인가?
+    prompt: 파일로부터 ==2바이트 문자 단위==로 데이터를 읽은 후 파일에 출력할 때, 밑줄 ㄱ과 ㄴ에 들어갈 입출력 스트림 클래스는 순서대로 무엇인가?
     choices:
       - { id: '1', text: 'FileInputStream, FileOutputStream' }
       - { id: '2', text: 'FileOutputStream, FileInputStream' }
@@ -358,7 +403,8 @@ questions:
 
   - id: e19-09
     type: multiple-choice
-    prompt: 다음이 설명하는 인터페이스 또는 클래스의 이름은 무엇인가?
+    passageRefs: [g19-path-description-01]
+    prompt: 다음이 설명하는 ==인터페이스 또는 클래스==의 이름은 무엇인가?
     choices:
       - { id: '1', text: 'Buffer' }
       - { id: '2', text: 'Path' }
@@ -381,7 +427,7 @@ questions:
   - id: e19-10
     type: multiple-choice
     passageRefs: [g19-array-list-code-01]
-    prompt: 컬렉션 인터페이스나 클래스는 제네릭 타입으로 정의되어 있어서 사용할 때 원소로 사용되는 객체의 타입을 지정하는 것이 좋다. 밑줄 ㄱ에 들어갈 선언으로 적당한 것은?
+    prompt: 컬렉션 인터페이스나 클래스는 제네릭 타입으로 정의되어 있어서 사용할 때 ==원소==로 사용되는 객체의 타입을 지정하는 것이 좋다. 밑줄 ㄱ에 들어갈 선언으로 적당한 것은?
     choices:
       - { id: '1', text: 'List<> list = new ArrayList<>();' }
       - { id: '2', text: 'List<Integer> list = new ArrayList<Integer>();' }
@@ -404,7 +450,7 @@ questions:
   - id: e19-11
     type: multiple-choice
     passageRefs: [g19-array-list-code-01]
-    prompt: for-each 구문을 사용하여 컬렉션에 저장된 원소를 순서대로 출력하려 한다. 밑줄 ㄴ에 들어갈 적당한 내용은 무엇인가?
+    prompt: ==for-each== 구문을 사용하여 컬렉션에 저장된 원소를 순서대로 출력하려 한다. 밑줄 ㄴ에 들어갈 적당한 내용은 무엇인가?
     choices:
       - { id: '1', text: 'for (s : list) System.out.println(s);' }
       - { id: '2', text: 'for (s : ArrayList list) System.out.println(s);' }
@@ -427,7 +473,7 @@ questions:
   - id: e19-12
     type: multiple-choice
     passageRefs: [g19-array-list-code-01]
-    prompt: add(원소)는 리스트의 끝에 원소를 추가하며, add(index, 원소)는 지정된 위치에 추가한다. 위 문제의 출력 결과는 무엇인가?
+    prompt: ==add(원소)==는 리스트의 끝에 원소를 추가하며, ==add(index, 원소)==는 지정된 위치에 추가한다. 위 문제의 출력 결과는 무엇인가?
     choices:
       - { id: '1', text: "one\ntwo\nthree" }
       - { id: '2', text: "one\none\nthree\ntwo" }
@@ -449,7 +495,7 @@ questions:
 
   - id: e19-13
     type: multiple-choice
-    prompt: HashMap 컬렉션 객체에 저장되어 있는 원소를 읽거나, 컬렉션에 원소를 추가할 때 사용되는 메소드는 각각 무엇인가?
+    prompt: ==HashMap== 컬렉션 객체에 저장되어 있는 원소를 읽거나, 컬렉션에 원소를 추가할 때 사용되는 메소드는 각각 무엇인가?
     choices:
       - { id: '1', text: 'delete(), insert(원소)' }
       - { id: '2', text: 'pop(), push(원소)' }
@@ -472,7 +518,7 @@ questions:
   - id: e19-14
     type: multiple-choice
     passageRefs: [g19-counter-code-01]
-    prompt: 위에서 공유 자원에 해당하는 것은 무엇인가?
+    prompt: 위에서 ==공유 자원==에 해당하는 것은 무엇인가?
     choices:
       - { id: '1', text: 'Account 객체' }
       - { id: '2', text: 'Counter 객체' }
@@ -495,7 +541,7 @@ questions:
   - id: e19-15
     type: multiple-choice
     passageRefs: [g19-counter-code-01]
-    prompt: Thread의 서브 클래스를 정의하기 위해 밑줄 ㄱ에 들어갈 키워드는 무엇인가?
+    prompt: ==Thread==의 서브 클래스를 정의하기 위해 밑줄 ㄱ에 들어갈 키워드는 무엇인가?
     choices:
       - { id: '1', text: 'Runnable' }
       - { id: '2', text: 'SubClass' }
@@ -518,7 +564,7 @@ questions:
   - id: e19-16
     type: multiple-choice
     passageRefs: [g19-counter-code-01]
-    prompt: 공유 자원을 쓰는 스레드 간에 동기화가 필요하므로 increment() 메소드를 다시 정의해야 한다. 잘못된 것은?
+    prompt: 공유 자원을 쓰는 스레드 간에 동기화가 필요하므로 ==increment()== 메소드를 다시 정의해야 한다. ==잘못된== 것은?
     choices:
       - { id: '1', text: 'public void increment() { synchronized(this) { c++; } }' }
       - { id: '2', text: 'synchronized public void increment() { c++; }' }
@@ -541,7 +587,7 @@ questions:
   - id: e19-17
     type: multiple-choice
     passageRefs: [g19-counter-code-01]
-    prompt: increment()를 호출하는 모든 스레드의 실행이 종료된 후에 최종적으로 20000이 출력되는가를 확인하려고 한다. 이러한 스레드 제어를 위해 밑줄 ㄷ에 들어갈 내용은 무엇인가?
+    prompt: ==increment()==를 호출하는 모든 스레드의 실행이 종료된 후에 최종적으로 ==20000==이 출력되는가를 확인하려고 한다. 이러한 스레드 제어를 위해 밑줄 ㄷ에 들어갈 내용은 무엇인가?
     choices:
       - { id: '1', text: 't1.join(); t2.join();' }
       - { id: '2', text: 't1.notify(); t2.notify();' }
@@ -564,7 +610,7 @@ questions:
   - id: e19-18
     type: multiple-choice
     passageRefs: [g19-counter-code-01]
-    prompt: 앞 문제에서 필요한 메소드를 호출하려면 예외처리 또는 예외 전파가 필요하다. 밑줄 ㄴ에 들어갈 키워드는 무엇인가?
+    prompt: 앞 문제에서 필요한 메소드를 호출하려면 예외처리 또는 예외 전파가 필요하다. 밑줄 ㄴ에 들어갈 ==키워드==는 무엇인가?
     choices:
       - { id: '1', text: 'throw' }
       - { id: '2', text: 'throws' }
@@ -586,10 +632,8 @@ questions:
 
   - id: e19-19
     type: multiple-choice
-    prompt: 다음 그림이 보여주는 AWT 컨트롤에 관한 설명으로 잘못된 것은 무엇인가?
-    images:
-      - path: images/subjects/java-programming/past-exams/2019/e19-listbox.png
-        alt: 2019년 Java프로그래밍 기출 54번 AWT 리스트 컨트롤
+    passageRefs: [g19-awt-list-01]
+    prompt: 다음 그림이 보여주는 ==AWT 컨트롤==에 관한 설명으로 ==잘못된== 것은 무엇인가?
     choices:
       - { id: '1', text: '리스트박스라고도 하며 스크롤이 가능하다.' }
       - { id: '2', text: '목록에 있는 항목 중 다중 선택이 가능하다.' }
@@ -612,7 +656,7 @@ questions:
   - id: e19-20
     type: multiple-choice
     passageRefs: [g19-button-code-01]
-    prompt: 첫 번째와 두 번째 라인에 나오는 import 구문의 의미를 잘 설명한 것은?
+    prompt: 첫 번째와 두 번째 라인에 나오는 ==import== 구문의 의미를 잘 설명한 것은?
     choices:
       - {
           id: '1',
@@ -638,7 +682,7 @@ questions:
   - id: e19-21
     type: multiple-choice
     passageRefs: [g19-button-code-01]
-    prompt: ActionEvent를 등록하려면 해당 이벤트의 리스너를 구현하는 클래스를 먼저 정의해야 한다. 밑줄 ㄱ에 들어갈 내용은?
+    prompt: ==ActionEvent==를 등록하려면 해당 이벤트의 리스너를 구현하는 클래스를 먼저 정의해야 한다. 밑줄 ㄱ에 들어갈 내용은?
     choices:
       - { id: '1', text: 'implements ActionListener' }
       - { id: '2', text: 'extends ActionListener' }
@@ -660,11 +704,8 @@ questions:
 
   - id: e19-22
     type: multiple-choice
-    passageRefs: [g19-button-code-01]
-    prompt: 다음 그림은 위 프로그램을 실행한 결과이다. 배치관리자를 의미하는 것으로 밑줄 ㄴ에 들어갈 내용은 무엇이라 생각하는가?
-    images:
-      - path: images/subjects/java-programming/past-exams/2019/e19-flow-layout.png
-        alt: 2019년 Java프로그래밍 기출 57번 FlowLayout 실행 화면
+    passageRefs: [g19-button-code-01, g19-awt-flow-layout-01]
+    prompt: 다음 그림은 위 프로그램을 실행한 결과이다. ==배치관리자==를 의미하는 것으로 밑줄 ㄴ에 들어갈 내용은 무엇이라 생각하는가?
     choices:
       - { id: '1', text: 'GridLayout' }
       - { id: '2', text: 'FlowLayout' }
@@ -687,7 +728,7 @@ questions:
   - id: e19-23
     type: multiple-choice
     passageRefs: [g19-button-code-01]
-    prompt: 첫 번째 버튼 b1에 ActionEvent를 등록하려고 한다. 밑줄 ㄷ에 들어갈 적당한 내용은?
+    prompt: 첫 번째 버튼 b1에 ==ActionEvent==를 등록하려고 한다. 밑줄 ㄷ에 들어갈 적당한 내용은?
     choices:
       - { id: '1', text: 'addWindowListener()' }
       - { id: '2', text: 'addWindowListener(new MyFrame())' }
@@ -710,7 +751,7 @@ questions:
   - id: e19-24
     type: multiple-choice
     passageRefs: [g19-jdbc-code-01]
-    prompt: 매개변수를 가지는 SQL 구문을 표현하는 객체를 생성하기 위해 밑줄 ㄱ에 들어갈 적당한 메소드는?
+    prompt: 매개변수를 가지는 ==SQL 구문==을 표현하는 객체를 생성하기 위해 밑줄 ㄱ에 들어갈 적당한 메소드는?
     choices:
       - { id: '1', text: 'prepare' }
       - { id: '2', text: 'create' }
@@ -733,7 +774,7 @@ questions:
   - id: e19-25
     type: multiple-choice
     passageRefs: [g19-jdbc-code-01]
-    prompt: 위에서 표현된 SQL 구문을 실행하기 위해 밑줄 ㄴ에 들어갈 적당한 메소드는?
+    prompt: 위에서 표현된 ==SQL 구문==을 실행하기 위해 밑줄 ㄴ에 들어갈 적당한 메소드는?
     choices:
       - { id: '1', text: 'getResultSet' }
       - { id: '2', text: 'execute' }
