@@ -24,16 +24,16 @@ passages:
         - { id: j, label: j, x: 395, y: 265 }
         - { id: k, label: k, x: 475, y: 265 }
       edges:
-        - { from: a, to: b, label: "6" }
-        - { from: a, to: c, label: "4" }
-        - { from: b, to: d, label: "5" }
-        - { from: b, to: e, label: "7" }
-        - { from: b, to: f, label: "4" }
-        - { from: c, to: g, label: "9" }
-        - { from: c, to: h, label: "3" }
-        - { from: c, to: i, label: "7" }
-        - { from: h, to: j, label: "4" }
-        - { from: h, to: k, label: "2" }
+        - { from: a, to: b, label: '6' }
+        - { from: a, to: c, label: '4' }
+        - { from: b, to: d, label: '5' }
+        - { from: b, to: e, label: '7' }
+        - { from: b, to: f, label: '4' }
+        - { from: c, to: g, label: '9' }
+        - { from: c, to: h, label: '3' }
+        - { from: c, to: i, label: '7' }
+        - { from: h, to: j, label: '4' }
+        - { from: h, to: k, label: '2' }
   - id: gb04-minimax-tree-02
     type: diagram
     diagram:
@@ -47,16 +47,16 @@ passages:
         - { id: C, label: C, x: 245, y: 105 }
         - { id: D, label: D, x: 375, y: 105 }
         - { id: E, label: E, x: 505, y: 105 }
-        - { id: F, label: "F 3", x: 80, y: 205 }
-        - { id: G, label: "G 2", x: 150, y: 205 }
-        - { id: H, label: "H 9", x: 205, y: 205 }
-        - { id: I, label: "I 1", x: 245, y: 205 }
-        - { id: J, label: "J 4", x: 285, y: 205 }
-        - { id: K, label: "K 3", x: 345, y: 205 }
-        - { id: L, label: "L 4", x: 405, y: 205 }
-        - { id: M, label: "M 4", x: 460, y: 205 }
-        - { id: N, label: "N 2", x: 500, y: 205 }
-        - { id: O, label: "O 12", x: 560, y: 205 }
+        - { id: F, label: 'F 3', x: 80, y: 205 }
+        - { id: G, label: 'G 2', x: 150, y: 205 }
+        - { id: H, label: 'H 9', x: 205, y: 205 }
+        - { id: I, label: 'I 1', x: 245, y: 205 }
+        - { id: J, label: 'J 4', x: 285, y: 205 }
+        - { id: K, label: 'K 3', x: 345, y: 205 }
+        - { id: L, label: 'L 4', x: 405, y: 205 }
+        - { id: M, label: 'M 4', x: 460, y: 205 }
+        - { id: N, label: 'N 2', x: 500, y: 205 }
+        - { id: O, label: 'O 12', x: 560, y: 205 }
       edges:
         - { from: A, to: B }
         - { from: A, to: C }
@@ -88,11 +88,11 @@ passages:
         - { id: B, label: B, x: 240, y: 165 }
         - { id: C, label: C, x: 400, y: 165 }
         - { id: wheel, label: wheel, x: 190, y: 45 }
-        - { id: w45, label: "45", x: 470, y: 85 }
-        - { id: w60, label: "60", x: 105, y: 155 }
-        - { id: h80, label: "80", x: 105, y: 210 }
+        - { id: w45, label: '45', x: 470, y: 85 }
+        - { id: w60, label: '60', x: 105, y: 155 }
+        - { id: h80, label: '80', x: 105, y: 210 }
         - { id: red, label: red, x: 255, y: 240 }
-        - { id: len150, label: "150", x: 535, y: 145 }
+        - { id: len150, label: '150', x: 535, y: 145 }
         - { id: black, label: black, x: 535, y: 210 }
       edges:
         - { from: A, to: wheel, label: has-part }
@@ -108,21 +108,22 @@ passages:
     type: diagram
     diagram:
       type: data-table
-      columns: ["$x$", "$\\mu_A(x)$", "$\\mu_B(x)$", "$\\mu_{A\\cup B}(x)$", "$\\mu_{\\overline A}(x)$"]
+      columns:
+        ['$x$', "$\\mu_A(x)$", "$\\mu_B(x)$", "$\\mu_{A\\cup B}(x)$", "$\\mu_{\\overline A}(x)$"]
       rows:
-        - ["$a$", "1", "0", "(ㄱ)", "(ㅁ)"]
-        - ["$b$", "0.6", "0.5", "(ㄴ)", "(ㅂ)"]
-        - ["$c$", "0.2", "0.7", "(ㄷ)", "(ㅅ)"]
-        - ["$d$", "0", "0", "(ㄹ)", "(ㅇ)"]
+        - ['$a$', '1', '0', '(ㄱ)', '(ㅁ)']
+        - ['$b$', '0.6', '0.5', '(ㄴ)', '(ㅂ)']
+        - ['$c$', '0.2', '0.7', '(ㄷ)', '(ㅅ)']
+        - ['$d$', '0', '0', '(ㄹ)', '(ㅇ)']
   - id: gb08-four-neighbor-grid-02
     type: diagram
     diagram:
       type: data-table
-      columns: ["열 1", "열 2", "열 3"]
+      columns: ['열 1', '열 2', '열 3']
       rows:
-        - ["ㄱ", "ㄴ", "ㄷ"]
-        - ["ㄹ", "$p$", "ㅁ"]
-        - ["ㅂ", "ㅅ", "ㅇ"]
+        - ['ㄱ', 'ㄴ', 'ㄷ']
+        - ['ㄹ', '$p$', 'ㅁ']
+        - ['ㅂ', 'ㅅ', 'ㅇ']
   - id: gb09-logistic-ensemble-08
     type: text
     body: |
@@ -144,10 +145,6 @@ passages:
         until m == mOld
         return m;
       end-function
-  - id: gb10-perceptron-patterns-04
-    type: text
-    body: |
-      네 개의 패턴분포가 제시되어 있으며, 단층 퍼셉트론으로 학습 가능한 선형분리 분포를 고르는 문제이다. ④는 검은 원과 흰 사각형을 하나의 직선으로 분리할 수 있는 분포이다.
   - id: gb11-cnn-output-formula-07
     type: text
     body: |
@@ -160,12 +157,15 @@ questions:
     prompt: 물리적 기호 시스템 가설의 의의에 해당되는 것은?
     choices:
       - { id: '1', text: 컴퓨터는 인간보다 계산능력이 우수하다. }
-      - { id: '2', text: 인간이 행하는 지능적 작업을 수행하는 프로그램을 작성할 수 있다는 가능성에 대한 믿음의 근원이다. }
+      - {
+          id: '2',
+          text: 인간이 행하는 지능적 작업을 수행하는 프로그램을 작성할 수 있다는 가능성에 대한 믿음의 근원이다.,
+        }
       - { id: '3', text: 컴퓨터는 수치 데이터의 계산만 할 수 있다. }
       - { id: '4', text: 2진수를 이용하여 기호를 표현할 수 있다. }
     answers: ['2']
     explanation: 물리적 기호 시스템 가설은 물리적 기호 시스템이 일반적으로 지능적 행동을 위한 필요충분한 수단을 가진다는 주장으로, 지능적 작업을 수행하는 프로그램을 만들 수 있다는 믿음의 근거가 된다.
-    tags: [chapter:01, artificial-intelligence, physical-symbol-system]
+    tags: [artificial-intelligence, physical-symbol-system]
 
   - id: b01-02
     type: multiple-choice
@@ -177,7 +177,7 @@ questions:
       - { id: '4', text: 알고리즘 }
     answers: ['1']
     explanation: 지식공학은 지식을 체계적으로 수집하고 지식 베이스를 구축하며, 축적된 지식을 이용한 추론 과정 등을 연구하는 분야이다.
-    tags: [chapter:01, knowledge-engineering]
+    tags: [knowledge-engineering]
 
   - id: b01-03
     type: multiple-choice
@@ -189,7 +189,7 @@ questions:
       - { id: '4', text: 머신러닝 접근 방법 }
     answers: ['3']
     explanation: 연결주의 접근 방법은 다수의 단순한 뉴런을 연결한 신경망 모델을 통해 지식을 표현하고 처리하려는 방식이다.
-    tags: [chapter:01, connectionism, neural-network]
+    tags: [connectionism, neural-network]
 
   - id: b02-01
     type: multiple-choice
@@ -201,19 +201,19 @@ questions:
       - { id: '4', text: 객체 }
     answers: ['2']
     explanation: 연산자는 문제의 어떤 상태에서 다른 상태로 변환하기 위한 도구로, 변환 테이블이나 변환 함수 등으로 구현할 수 있다.
-    tags: [chapter:02, state-space, operator]
+    tags: [state-space, operator]
 
   - id: b02-02
     type: multiple-choice
     prompt: 상태공간에서 문제의 표현을 위해 정의하는 것은?
     choices:
-      - { id: '1', text: 초기상태, 목표상태, 메모리 용량 }
-      - { id: '2', text: 연산자, 문제풀이 알고리즘 }
-      - { id: '3', text: 연산자, 탐색트리, 상태묘사 }
-      - { id: '4', text: 상태묘사 및 초기상태, 목표상태, 연산자 }
+      - { id: '1', text: '초기상태, 목표상태, 메모리 용량' }
+      - { id: '2', text: '연산자, 문제풀이 알고리즘' }
+      - { id: '3', text: '연산자, 탐색트리, 상태묘사' }
+      - { id: '4', text: '상태묘사 및 초기상태, 목표상태, 연산자' }
     answers: ['4']
     explanation: 상태공간에서 문제를 표현하려면 상태를 어떻게 표현할 것인지 정하고, 초기상태와 목표상태 및 상태 변환 도구인 연산자를 정의해야 한다.
-    tags: [chapter:02, state-space, problem-representation]
+    tags: [state-space, problem-representation]
 
   - id: b02-03
     type: multiple-choice
@@ -225,7 +225,7 @@ questions:
       - { id: '4', text: 그래프 }
     answers: ['4']
     explanation: 상태공간은 초기상태에서 적용 가능한 연산자를 적용하여 얻을 수 있는 상태를 노드로, 연산자 적용 관계를 아크로 연결한 그래프 형식으로 표현된다.
-    tags: [chapter:02, state-space, graph]
+    tags: [state-space, graph]
 
   - id: b02-04
     type: multiple-choice
@@ -233,11 +233,14 @@ questions:
     choices:
       - { id: '1', text: 문제를 여러 개의 부분문제로 분할하여 각각을 풀이하는 방식이다. }
       - { id: '2', text: 알고리즘에 의해 풀이방법을 정의한다. }
-      - { id: '3', text: 초기상태에서 목표상태에 도달하는 일련의 연산자를 찾기 위해 시행착오 방식으로 그래프를 탐색한다. }
+      - {
+          id: '3',
+          text: 초기상태에서 목표상태에 도달하는 일련의 연산자를 찾기 위해 시행착오 방식으로 그래프를 탐색한다.,
+        }
       - { id: '4', text: 최대한 탐색범위를 넓히는 것이 유리하다. }
     answers: ['3']
     explanation: 상태공간 탐색은 초기상태에서 시작하여 목표상태에 도달할 수 있는 일련의 연산자를 찾는 과정이며, 상태공간 그래프에서 경로를 탐색하는 방식으로 수행된다.
-    tags: [chapter:02, state-space, search]
+    tags: [state-space, search]
 
   - id: b03-01
     type: multiple-choice
@@ -245,11 +248,14 @@ questions:
     choices:
       - { id: '1', text: 문제를 여러 개의 부분문제로 분할하여 각각을 풀이하는 방식이다. }
       - { id: '2', text: 알고리즘에 의해 풀이방법을 정의한다. }
-      - { id: '3', text: 초기상태에서 목표상태에 도달하는 일련의 연산자를 찾기 위해 시행착오 방식으로 그래프를 탐색한다. }
+      - {
+          id: '3',
+          text: 초기상태에서 목표상태에 도달하는 일련의 연산자를 찾기 위해 시행착오 방식으로 그래프를 탐색한다.,
+        }
       - { id: '4', text: 최대한 탐색범위를 넓히는 것이 유리하다. }
     answers: ['3']
     explanation: 상태공간 탐색에 의한 문제풀이는 초기상태에서 목표상태에 도달하는 일련의 연산자를 찾는 과정이며, 유용한 지식을 사용하여 탐색범위를 줄이면서 효율적으로 수행할 수 있다.
-    tags: [chapter:03, state-space, search]
+    tags: [state-space, search]
 
   - id: b03-02
     type: multiple-choice
@@ -261,7 +267,7 @@ questions:
       - { id: '4', text: 깊이제한을 넘어선 노드를 먼저 확장한다. }
     answers: ['2']
     explanation: 깊이우선 탐색은 탐색 진행 방향으로 계속 전진하므로 가장 최근에 생성된 노드를 먼저 확장한다. 무한 진행을 방지하기 위해 깊이제한을 둘 수 있다.
-    tags: [chapter:03, depth-first-search]
+    tags: [depth-first-search]
 
   - id: b03-03
     type: multiple-choice
@@ -274,7 +280,7 @@ questions:
       - { id: '4', text: '$k$' }
     answers: ['4']
     explanation: 출발노드 a에서 d, e, f, g, i, j, k까지의 경로비용은 각각 11, 13, 10, 13, 11, 11, 9이다. 균일비용 탐색은 경로비용이 가장 작은 노드를 확장하므로 다음 확장 노드는 k이다.
-    tags: [chapter:03, uniform-cost-search]
+    tags: [uniform-cost-search]
 
   - id: b03-04
     type: multiple-choice
@@ -286,7 +292,7 @@ questions:
       - { id: '4', text: 현재상태를 확장하여 생성된 후계노드들 중에서 다음 확장할 노드를 선택한다. }
     answers: ['4']
     explanation: 언덕오르기 탐색은 현재상태의 후계노드 중 평가값이 좋은 노드를 다음 확장 노드로 선택한다.
-    tags: [chapter:03, hill-climbing]
+    tags: [hill-climbing]
 
   - id: b03-05
     type: multiple-choice
@@ -294,11 +300,14 @@ questions:
     choices:
       - { id: '1', text: 현재상태에서 후계상태 중 평가함수값이 가장 작은 상태로 이동한다. }
       - { id: '2', text: 해를 매우 빠르게 탐색할 수 있는 알고리즘이다. }
-      - { id: '3', text: 현재상태보다 평가함수값이 더 큰 상태로 이동할 확률은 시간에 따라 감소한다. }
+      - {
+          id: '3',
+          text: 현재상태보다 평가함수값이 더 큰 상태로 이동할 확률은 시간에 따라 감소한다.,
+        }
       - { id: '4', text: 초기상태로부터 목표상태에 이르는 가장 최적의 경로를 따라 이동한다. }
     answers: ['3']
     explanation: 모의 담금질은 나쁜 상태로 이동할 확률을 허용하되 시간이 지날수록 그 확률을 낮춰 지역최적해에 갇히는 것을 줄인다.
-    tags: [chapter:03, simulated-annealing]
+    tags: [simulated-annealing]
 
   - id: b03-06
     type: multiple-choice
@@ -310,7 +319,7 @@ questions:
       - { id: '4', text: '$g(n)+\hat h(n)$' }
     answers: ['4']
     explanation: A*는 현재까지의 실제 경로비용 $g(n)$과 목표까지의 추정 비용 $\hat h(n)$을 합산하여 평가한다.
-    tags: [chapter:03, a-star]
+    tags: [a-star]
 
   - id: b03-07
     type: multiple-choice
@@ -322,7 +331,7 @@ questions:
       - { id: '4', text: '$g(n)=0$' }
     answers: ['1']
     explanation: 휴리스틱 추정값이 실제 비용을 초과하지 않는 admissible 조건이면 A*가 최소비용 경로를 보장할 수 있다.
-    tags: [chapter:03, a-star, admissible-heuristic]
+    tags: [a-star, admissible-heuristic]
 
   - id: b04-01
     type: multiple-choice
@@ -334,7 +343,7 @@ questions:
       - { id: '4', text: 경험적 지식을 적용한 평가함수가 필요 없다. }
     answers: ['2']
     explanation: 최대최소 탐색에서 MAX 노드는 자신에게 가장 유리한, 즉 가치가 가장 큰 후계노드를 선택한다.
-    tags: [chapter:04, minimax]
+    tags: [minimax]
 
   - id: b04-02
     type: multiple-choice
@@ -347,7 +356,7 @@ questions:
       - { id: '4', text: '12, E' }
     answers: ['3']
     explanation: B, C, D, E의 최소값은 각각 2, 1, 3, 2이며 A는 그중 최댓값 3을 갖는 D를 선택한다.
-    tags: [chapter:04, minimax]
+    tags: [minimax]
 
   - id: b04-03
     type: multiple-choice
@@ -360,7 +369,7 @@ questions:
       - { id: '4', text: '8' }
     answers: ['4']
     explanation: B의 현재 $\beta$가 7이므로 E의 첫 값이 8이면 E가 B에서 선택될 수 없어 나머지 후계노드를 가지치기할 수 있다.
-    tags: [chapter:04, alpha-beta-pruning]
+    tags: [alpha-beta-pruning]
 
   - id: b04-04
     type: multiple-choice
@@ -372,7 +381,7 @@ questions:
       - { id: '4', text: $\alpha-\beta$ 가지치기를 이용한 탐색방법이다. }
     answers: ['3']
     explanation: 몬테카를로 트리 탐색은 무작위 시뮬레이션인 롤아웃으로 새 노드의 가치를 추정한다.
-    tags: [chapter:04, monte-carlo-tree-search]
+    tags: [monte-carlo-tree-search]
 
   - id: b04-05
     type: multiple-choice
@@ -384,7 +393,7 @@ questions:
       - { id: '4', text: 가장 많이 방문한 자식노드를 선택하는 정책을 사용한다. }
     answers: ['1']
     explanation: 선택전략은 아직 덜 탐색한 수를 보는 탐사와 현재 좋은 수를 선택하는 활용 사이의 균형을 고려한다.
-    tags: [chapter:04, monte-carlo-tree-search]
+    tags: [monte-carlo-tree-search]
 
   - id: b05-01
     type: multiple-choice
@@ -396,7 +405,7 @@ questions:
       - { id: '4', text: 추론기관 }
     answers: ['4']
     explanation: 추론기관은 지식 베이스의 지식을 적용하여 주어진 상황에 맞는 결론을 도출한다.
-    tags: [chapter:05, knowledge-based-system, inference-engine]
+    tags: [knowledge-based-system, inference-engine]
 
   - id: b05-02
     type: multiple-choice
@@ -408,7 +417,7 @@ questions:
       - { id: '4', text: 입력장치와 출력장치 }
     answers: ['1']
     explanation: 지식기반 시스템은 문제 해결에 필요한 지식을 저장한 지식 베이스와 이를 활용하는 추론기관이 핵심이다.
-    tags: [chapter:05, knowledge-based-system]
+    tags: [knowledge-based-system]
 
   - id: b05-03
     type: multiple-choice
@@ -420,7 +429,7 @@ questions:
       - { id: '4', text: 경험적 지식 }
     answers: ['3']
     explanation: 지식의 적용순서, 우선순위, 추론 결과의 신뢰도 등을 다루는 지식을 메타지식이라고 한다.
-    tags: [chapter:05, meta-knowledge]
+    tags: [meta-knowledge]
 
   - id: b05-04
     type: multiple-choice
@@ -432,19 +441,19 @@ questions:
       - { id: '4', text: 문제 분야 이외의 지식을 집약하는 표현방법이다. }
     answers: ['1']
     explanation: 선언적 지식은 단편적 지식을 나열한 형태이며, 별도의 추론기관에 의해 활용된다.
-    tags: [chapter:05, declarative-knowledge]
+    tags: [declarative-knowledge]
 
   - id: b05-05
     type: multiple-choice
     prompt: 다음 중 선언적 지식에 대한 설명을 모두 고른 것은? (ㄱ) LISP와 같은 프로그래밍 언어로 작성된 명령어의 집합 (ㄴ) 지식 사용에 대한 제어정보가 지식 자체에 내포 (ㄷ) 상호 독립적이고 단편적인 지식을 나열 (ㄹ) 별도의 추론기관에 의해 추론에 활용
     choices:
-      - { id: '1', text: (ㄱ), (ㄴ) }
-      - { id: '2', text: (ㄴ), (ㄷ) }
-      - { id: '3', text: (ㄱ), (ㄹ) }
-      - { id: '4', text: (ㄷ), (ㄹ) }
+      - { id: '1', text: '(ㄱ), (ㄴ)' }
+      - { id: '2', text: '(ㄴ), (ㄷ)' }
+      - { id: '3', text: '(ㄱ), (ㄹ)' }
+      - { id: '4', text: '(ㄷ), (ㄹ)' }
     answers: ['4']
     explanation: 선언적 지식은 상호 독립적인 지식을 나열하고 별도 추론기관을 통해 활용된다.
-    tags: [chapter:05, declarative-knowledge]
+    tags: [declarative-knowledge]
 
   - id: b05-06
     type: multiple-choice
@@ -461,7 +470,7 @@ questions:
         text: C의 $has\\text{-}part=wheel$
     answers: ['4']
     explanation: C는 A와 isa 관계에 있으므로 A의 has-part=wheel과 weight=45를 상속받는다.
-    tags: [chapter:05, semantic-network, inheritance]
+    tags: [semantic-network, inheritance]
 
   - id: b05-07
     type: multiple-choice
@@ -473,7 +482,7 @@ questions:
       - { id: '4', text: LISP 프로그램 }
     answers: ['1']
     explanation: 규칙은 IF 조건부 THEN 결론부 형식으로 지식을 표현한다.
-    tags: [chapter:05, rule-based-representation]
+    tags: [rule-based-representation]
 
   - id: b05-08
     type: multiple-choice
@@ -485,7 +494,7 @@ questions:
       - { id: '4', text: 형식논리를 이용한 지식 표현방법이다. }
     answers: ['1']
     explanation: 프레임은 isa 슬롯 등을 통해 계층적 개념관계와 특성상속을 표현할 수 있다.
-    tags: [chapter:05, frame, inheritance]
+    tags: [frame, inheritance]
 
   - id: b05-09
     type: multiple-choice
@@ -497,7 +506,7 @@ questions:
       - { id: '4', text: 상식적 판단이 필요한 분야에 적합하다. }
     answers: ['3']
     explanation: 전문가 시스템은 특정 응용 분야의 전문지식과 문제해결 전략을 지식 베이스화하여 문제 해결을 지원한다.
-    tags: [chapter:05, expert-system]
+    tags: [expert-system]
 
   - id: b05-10
     type: multiple-choice
@@ -509,7 +518,7 @@ questions:
       - { id: '4', text: 문제 분야의 전문지식이 추론기관 내에 결합되어 있다. }
     answers: ['4']
     explanation: 문제 분야의 전문지식은 지식 베이스에 저장되며, 추론기관은 이를 이용해 추론을 수행한다.
-    tags: [chapter:05, expert-system, inference-engine]
+    tags: [expert-system, inference-engine]
 
   - id: b06-01
     type: multiple-choice
@@ -521,7 +530,7 @@ questions:
       - { id: '4', text: 수치해석 절차만을 표현한다. }
     answers: ['2']
     explanation: 기호논리는 명제와 술어를 기호로 표현하고 논리연산을 통해 추론하며, 불대수와 밀접하게 관련된다.
-    tags: [chapter:06, symbolic-logic]
+    tags: [symbolic-logic]
 
   - id: b06-02
     type: multiple-choice
@@ -533,7 +542,7 @@ questions:
       - { id: '4', text: '$\\sim(P\\vee Q)\\wedge(P\\vee\\sim R)$' }
     answers: ['2']
     explanation: 연언표준형은 리터럴의 논리합으로 연결된 절들을 논리곱으로 연결한 형식이다.
-    tags: [chapter:06, cnf]
+    tags: [cnf]
 
   - id: b06-03
     type: multiple-choice
@@ -549,7 +558,7 @@ questions:
         text: $b$가 거짓이고 $a\\to b$이면 $a$가 참이다.
     answers: ['1']
     explanation: $a$와 $a\\to b$로부터 $b$를 추론하는 긍정식은 항상 참인 추론이다.
-    tags: [chapter:06, inference, modus-ponens]
+    tags: [inference, modus-ponens]
 
   - id: b06-04
     type: multiple-choice
@@ -565,7 +574,7 @@ questions:
         text: $P$가 거짓이면 $Q$는 참이다.
     answers: ['1']
     explanation: 긍정논법은 $P$와 $P\\to Q$로부터 $Q$를 추론한다.
-    tags: [chapter:06, modus-ponens]
+    tags: [modus-ponens]
 
   - id: b06-05
     type: multiple-choice
@@ -577,7 +586,7 @@ questions:
       - { id: '4', text: '부모절: $p\\wedge q,\\ \\sim q\\wedge r$ / 도출절: $p\\wedge r$' }
     answers: ['1']
     explanation: $p$와 $\\sim p\\vee q$에서 상보 리터럴 $p$와 $\\sim p$를 제거하면 $q$가 도출된다.
-    tags: [chapter:06, resolution]
+    tags: [resolution]
 
   - id: b06-06
     type: multiple-choice
@@ -589,7 +598,7 @@ questions:
       - { id: '4', text: 정리가 참임 }
     answers: ['3']
     explanation: 도출연역에 의한 정리증명은 증명할 정리를 부정하고 도출 결과가 $false$이면 모순에 의해 원 정리가 참임을 보인다.
-    tags: [chapter:06, resolution, theorem-proving]
+    tags: [resolution, theorem-proving]
 
   - id: b06-07
     type: multiple-choice
@@ -601,7 +610,7 @@ questions:
       - { id: '4', text: '$P\\wedge Q,\\ \\sim R\\wedge S$' }
     answers: ['1']
     explanation: 함의를 제거하면 $\\sim(P\\wedge Q)\\vee(\\sim R\\wedge S)$이고, 이를 분배하면 두 절 $\\sim P\\vee\\sim Q\\vee\\sim R$와 $\\sim P\\vee\\sim Q\\vee S$가 된다.
-    tags: [chapter:06, clause-form]
+    tags: [clause-form]
 
   - id: b06-08
     type: multiple-choice
@@ -613,7 +622,7 @@ questions:
       - { id: '4', text: '$\\exists x\\ \\sim P(f(x))\\vee Q(x)$' }
     answers: ['4']
     explanation: 객체변수와 함수항을 포함하는 술어식에 전칭/존재 기호를 적용한 식은 술어논리의 정형식이다.
-    tags: [chapter:06, predicate-logic, well-formed-formula]
+    tags: [predicate-logic, well-formed-formula]
 
   - id: b06-09
     type: multiple-choice
@@ -625,7 +634,7 @@ questions:
       - { id: '4', text: '$P(A)\\vee Q(B)\\vee\\sim R(A,B)$' }
     answers: ['3']
     explanation: $R(x,y)$와 $\\sim R(A,B)$에서 $x=A$, $y=B$로 단일화하면 나머지 리터럴의 논리합 $P(A)\\vee Q(B)\\vee S(C)$가 도출된다.
-    tags: [chapter:06, predicate-logic, resolution, unification]
+    tags: [predicate-logic, resolution, unification]
 
   - id: b06-10
     type: multiple-choice
@@ -637,7 +646,7 @@ questions:
       - { id: '4', text: '$Q(x,y)\\wedge R(x,y)$' }
     answers: ['2']
     explanation: $\\sim P(x,y)\\vee Q(x,y)$와 $P(A,z)$를 대상으로 $x=A$, $z=y$로 단일화하면 $Q(A,y)$가 도출된다.
-    tags: [chapter:06, predicate-logic, resolution]
+    tags: [predicate-logic, resolution]
 
   - id: b07-01
     type: multiple-choice
@@ -653,7 +662,7 @@ questions:
         text: 퍼지집합 $A$와 $B$의 합집합의 소속함수 $\mu_{A\\cup B}(x)$는 $\mu_A(x)$와 $\mu_B(x)$ 중 큰 값이다.
     answers: ['4']
     explanation: 퍼지집합의 소속함수는 0부터 1 사이의 실수값이며, 합집합은 각 원소별 소속함수값의 최댓값을 사용한다.
-    tags: [chapter:07, fuzzy-set]
+    tags: [fuzzy-set]
 
   - id: b07-02
     type: multiple-choice
@@ -665,7 +674,7 @@ questions:
       - { id: '4', text: '$\\mu_A(x)\\in[0,1]$' }
     answers: ['4']
     explanation: 퍼지집합의 소속함수값은 원소가 집합에 속할 가능성을 나타내므로 0 이상 1 이하의 값을 가진다.
-    tags: [chapter:07, fuzzy-set, membership-function]
+    tags: [fuzzy-set, membership-function]
 
   - id: b07-03
     type: multiple-choice
@@ -678,7 +687,7 @@ questions:
       - { id: '4', text: '0, 0.5, 0.7, 0' }
     answers: ['1']
     explanation: 퍼지집합의 합집합은 두 소속함수값의 최댓값을 취한다.
-    tags: [chapter:07, fuzzy-set, union]
+    tags: [fuzzy-set, union]
 
   - id: b07-04
     type: multiple-choice
@@ -691,7 +700,7 @@ questions:
       - { id: '4', text: '0, 0.4, 0.8, 0' }
     answers: ['3']
     explanation: 퍼지집합의 여집합은 $1-\mu_A(x)$로 계산하므로 0, 0.4, 0.8, 1이다.
-    tags: [chapter:07, fuzzy-set, complement]
+    tags: [fuzzy-set, complement]
 
   - id: b07-05
     type: multiple-choice
@@ -703,7 +712,7 @@ questions:
       - { id: '4', text: 두 소속함수의 곱 형태 }
     answers: ['1']
     explanation: 퍼지집합의 교집합은 각 원소에서 두 소속함수값 중 작은 값을 취한다.
-    tags: [chapter:07, fuzzy-set, intersection]
+    tags: [fuzzy-set, intersection]
 
   - id: b07-06
     type: multiple-choice
@@ -715,19 +724,19 @@ questions:
       - { id: '4', text: '$a\\to b=a+b$' }
     answers: ['3']
     explanation: 퍼지논리에서 논리합은 보통 두 논릿값의 최댓값으로 정의한다.
-    tags: [chapter:07, fuzzy-logic]
+    tags: [fuzzy-logic]
 
   - id: b07-07
     type: multiple-choice
     prompt: 퍼지추론 및 제어기에 대한 올바른 설명을 모두 나열한 것은? (ㄱ) 조건 및 결론부에 언어적 변수를 포함한다. (ㄴ) 일반규칙과 동일한 추론절차를 사용한다. (ㄷ) 추론된 결과를 비퍼지화하여 제어 대상을 제어한다. (ㄹ) 규칙의 조건에 대한 소속함수값은 0 또는 1이다.
     choices:
-      - { id: '1', text: (ㄱ), (ㄴ) }
-      - { id: '2', text: (ㄱ), (ㄷ) }
-      - { id: '3', text: (ㄴ), (ㄷ) }
-      - { id: '4', text: (ㄴ), (ㄹ) }
+      - { id: '1', text: '(ㄱ), (ㄴ)' }
+      - { id: '2', text: '(ㄱ), (ㄷ)' }
+      - { id: '3', text: '(ㄴ), (ㄷ)' }
+      - { id: '4', text: '(ㄴ), (ㄹ)' }
     answers: ['2']
     explanation: 퍼지추론은 언어적 변수와 소속함수를 사용하며, 제어에는 비퍼지화 과정이 필요하다.
-    tags: [chapter:07, fuzzy-inference, fuzzy-control]
+    tags: [fuzzy-inference, fuzzy-control]
 
   - id: b07-08
     type: multiple-choice
@@ -739,7 +748,7 @@ questions:
       - { id: '4', text: '$\\sim(a\\vee b)=\\sim a\\wedge\\sim b$' }
     answers: ['4']
     explanation: 드모르간 법칙은 퍼지논리에서도 성립한다. 나머지는 고전논리에서는 성립할 수 있으나 퍼지논리에서는 일반적으로 성립하지 않는다.
-    tags: [chapter:07, fuzzy-logic, de-morgan]
+    tags: [fuzzy-logic, de-morgan]
 
   - id: b07-09
     type: multiple-choice
@@ -751,7 +760,7 @@ questions:
       - { id: '4', text: 결론부 소속함수를 0.6에서 절단한 형태 }
     answers: ['4']
     explanation: 관측 사실과 조건부의 정합 결과 최댓값이 0.6이므로 결론부 소속함수의 논리곱, 즉 0.6 수준으로 절단한 형태가 결론이 된다.
-    tags: [chapter:07, fuzzy-inference]
+    tags: [fuzzy-inference]
 
   - id: b08-01
     type: multiple-choice
@@ -760,23 +769,26 @@ questions:
       - { id: '1', text: 표본화는 입력된 데이터를 정수값으로 표현하는 과정이다. }
       - { id: '2', text: 양자화는 원래의 값을 그대로 유지한다. }
       - { id: '3', text: 레인지 영상은 빛의 밝기를 입력한 영상이다. }
-      - { id: '4', text: 표본화 간격을 나이키스트 간격보다 조밀하게 하면 원래 신호를 복원해 낼 수 있다. }
+      - {
+          id: '4',
+          text: 표본화 간격을 나이키스트 간격보다 조밀하게 하면 원래 신호를 복원해 낼 수 있다.,
+        }
     answers: ['4']
     explanation: 표본화는 아날로그 신호를 이산신호로 변환하는 것이며, 나이키스트 조건을 만족하도록 충분히 조밀하게 표본화하면 원 신호를 이론적으로 복원할 수 있다.
-    tags: [chapter:08, digital-image, sampling]
+    tags: [digital-image, sampling]
 
   - id: b08-02
     type: multiple-choice
     prompt: 다음 중 4-이웃 연결성을 적용할 때 픽셀 $p$의 이웃 픽셀들은?
     passageRefs: [gb08-four-neighbor-grid-02]
     choices:
-      - { id: '1', text: (ㄱ), (ㄷ), (ㅂ), (ㅇ) }
-      - { id: '2', text: (ㄱ), (ㄴ), (ㄷ), (ㄹ), (ㅁ), (ㅂ), (ㅅ), (ㅇ) }
-      - { id: '3', text: (ㄴ), (ㄹ), (ㅁ), (ㅅ) }
-      - { id: '4', text: (ㄴ), (ㅂ), (ㅅ), (ㅇ) }
+      - { id: '1', text: '(ㄱ), (ㄷ), (ㅂ), (ㅇ)' }
+      - { id: '2', text: '(ㄱ), (ㄴ), (ㄷ), (ㄹ), (ㅁ), (ㅂ), (ㅅ), (ㅇ)' }
+      - { id: '3', text: '(ㄴ), (ㄹ), (ㅁ), (ㅅ)' }
+      - { id: '4', text: '(ㄴ), (ㅂ), (ㅅ), (ㅇ)' }
     answers: ['3']
     explanation: 4-이웃은 상하좌우 네 픽셀만 이웃으로 정의하므로 (ㄴ), (ㄹ), (ㅁ), (ㅅ)이다.
-    tags: [chapter:08, image-processing, connectivity]
+    tags: [image-processing, connectivity]
 
   - id: b08-03
     type: multiple-choice
@@ -788,7 +800,7 @@ questions:
       - { id: '4', text: '${1\\over4}\\begin{bmatrix}-1&-2&-1\\\\0&0&0\\\\1&2&1\\end{bmatrix}$' }
     answers: ['1']
     explanation: ①은 가우시안 평활화 마스크이며, 나머지는 에지 검출에 쓰이는 라플라스 또는 소벨 계열 마스크이다.
-    tags: [chapter:08, image-processing, smoothing-filter]
+    tags: [image-processing, smoothing-filter]
 
   - id: b08-04
     type: multiple-choice
@@ -800,7 +812,7 @@ questions:
       - { id: '4', text: 중간값 필터 }
     answers: ['4']
     explanation: 중간값 필터는 점잡음에 해당하는 이상값을 제거하는 데 효과적이다.
-    tags: [chapter:08, image-processing, median-filter]
+    tags: [image-processing, median-filter]
 
   - id: b08-05
     type: multiple-choice
@@ -812,7 +824,7 @@ questions:
       - { id: '4', text: 저역통과 필터 }
     answers: ['3']
     explanation: 소벨 연산자는 1차 미분으로 수평 및 수직 방향의 에지를 검출한다.
-    tags: [chapter:08, image-processing, sobel]
+    tags: [image-processing, sobel]
 
   - id: b08-06
     type: multiple-choice
@@ -824,7 +836,7 @@ questions:
       - { id: '4', text: 가우시안 필터 }
     answers: ['2']
     explanation: 라플라스 연산자는 2차 미분을 이용해 에지를 검출한다.
-    tags: [chapter:08, image-processing, laplacian]
+    tags: [image-processing, laplacian]
 
   - id: b08-07
     type: multiple-choice
@@ -836,7 +848,7 @@ questions:
       - { id: '4', text: ④ }
     answers: ['3']
     explanation: 4-이웃 연결성은 상하좌우로만 연결되므로 ③은 연결된 경로가 없는 독립된 픽셀이다.
-    tags: [chapter:08, image-processing, connectivity]
+    tags: [image-processing, connectivity]
 
   - id: b08-08
     type: multiple-choice
@@ -848,7 +860,7 @@ questions:
       - { id: '4', text: 두 번째 피크 값 }
     answers: ['3']
     explanation: 배경과 물체를 나누는 임계값은 두 히스토그램 피크 사이의 최저점에 두는 것이 적절하다.
-    tags: [chapter:08, image-processing, thresholding]
+    tags: [image-processing, thresholding]
 
   - id: b08-09
     type: multiple-choice
@@ -860,7 +872,7 @@ questions:
       - { id: '4', text: 정규화 }
     answers: ['4']
     explanation: 정규화는 인식 대상 패턴을 기준 패턴과 비교 가능한 형태로 변환하는 과정이다.
-    tags: [chapter:08, pattern-recognition, normalization]
+    tags: [pattern-recognition, normalization]
 
   - id: b08-10
     type: multiple-choice
@@ -872,7 +884,7 @@ questions:
       - { id: '4', text: 아날로그 신호를 디지털 신호로 변환하기 위해 }
     answers: ['3']
     explanation: 특징추출은 패턴을 구분하는 데 유용한 정보를 뽑아 인식에 사용하는 과정이다.
-    tags: [chapter:08, pattern-recognition, feature-extraction]
+    tags: [pattern-recognition, feature-extraction]
 
   - id: b08-11
     type: multiple-choice
@@ -884,7 +896,7 @@ questions:
       - { id: '4', text: 패턴의 유용한 정보를 잃지 않는 것 }
     answers: ['3']
     explanation: 좋은 특징은 계산 가능하고 구별에 도움이 되며 유용한 정보를 유지하면서 데이터 양을 줄일 수 있어야 한다.
-    tags: [chapter:08, pattern-recognition, feature]
+    tags: [pattern-recognition, feature]
 
   - id: b08-12
     type: multiple-choice
@@ -896,7 +908,7 @@ questions:
       - { id: '4', text: '$J(x,y)+J(y,z)\\le J(x,z)$' }
     answers: ['2']
     explanation: 거리측도는 자기 자신과의 거리가 0이고, 거리가 0이면 같은 위치라는 조건을 만족해야 한다.
-    tags: [chapter:08, distance-measure]
+    tags: [distance-measure]
 
   - id: b08-13
     type: multiple-choice
@@ -908,7 +920,7 @@ questions:
       - { id: '4', text: '$\\sum_{i=1}^{d}|x_{ia}-x_{ib}|$' }
     answers: ['4']
     explanation: 도시블록 거리는 각 차원별 거리의 절댓값 합으로 정의된다.
-    tags: [chapter:08, distance-measure, city-block-distance]
+    tags: [distance-measure, city-block-distance]
 
   - id: b08-14
     type: multiple-choice
@@ -920,7 +932,7 @@ questions:
       - { id: '4', text: 유클리드 거리 }
     answers: ['1']
     explanation: 마할라노비스 거리는 군집의 분포와 공분산행렬을 고려하여 거리를 측정한다.
-    tags: [chapter:08, mahalanobis-distance]
+    tags: [mahalanobis-distance]
 
   - id: b08-15
     type: multiple-choice
@@ -929,10 +941,13 @@ questions:
       - { id: '1', text: 비매개변수 방식은 패턴의 분포가 잘 알려진 확률모델을 따른다고 가정한다. }
       - { id: '2', text: $k$-NN 방식은 매개변수 방식으로 확률밀도를 결정하여 인식한다. }
       - { id: '3', text: 최대가능도 추정은 비매개변수 방식으로 확률밀도를 결정하기 위한 것이다. }
-      - { id: '4', text: 최대가능도 추정은 학습표본 데이터 집합이 관찰될 가능성이 최대인 매개변수를 찾아 모집단의 매개변수를 추정하는 방법이다. }
+      - {
+          id: '4',
+          text: 최대가능도 추정은 학습표본 데이터 집합이 관찰될 가능성이 최대인 매개변수를 찾아 모집단의 매개변수를 추정하는 방법이다.,
+        }
     answers: ['4']
     explanation: 최대가능도 추정은 관측 데이터의 가능도를 최대로 하는 확률모델의 매개변수를 추정하는 매개변수 방식이다.
-    tags: [chapter:08, maximum-likelihood-estimation]
+    tags: [maximum-likelihood-estimation]
 
   - id: b08-16
     type: multiple-choice
@@ -944,19 +959,19 @@ questions:
       - { id: '4', text: 식별함수가 1개의 선형함수로 표현되는 경우에 사용한다. }
     answers: ['3']
     explanation: $k$-NN은 미지 패턴과 가장 가까운 $k$개의 학습표본을 찾고, 그 표본들의 클래스 분포로 분류한다.
-    tags: [chapter:08, k-nearest-neighbors]
+    tags: [k-nearest-neighbors]
 
   - id: b08-17
     type: multiple-choice
     prompt: $k$-NN을 인식방법으로 사용할 때, 거리측정자가 (ㄱ) 도시블록 거리인 경우와 (ㄴ) 유클리드 거리인 경우 $x$를 어느 패턴으로 인식하게 되는가? 단, $k=3$이다.
     choices:
-      - { id: '1', text: (ㄱ) ●, (ㄴ) □ }
-      - { id: '2', text: (ㄱ) □, (ㄴ) ● }
-      - { id: '3', text: (ㄱ) ●, (ㄴ) ● }
-      - { id: '4', text: (ㄱ) □, (ㄴ) □ }
+      - { id: '1', text: '(ㄱ) ●, (ㄴ) □' }
+      - { id: '2', text: '(ㄱ) □, (ㄴ) ●' }
+      - { id: '3', text: '(ㄱ) ●, (ㄴ) ●' }
+      - { id: '4', text: '(ㄱ) □, (ㄴ) □' }
     answers: ['2']
     explanation: 도시블록 거리에서는 가까운 3개 중 □가 2개, ●가 1개이고, 유클리드 거리에서는 ●가 2개, □가 1개로 선택된다.
-    tags: [chapter:08, k-nearest-neighbors, distance-measure]
+    tags: [k-nearest-neighbors, distance-measure]
 
   - id: b09-01
     type: multiple-choice
@@ -968,7 +983,7 @@ questions:
       - { id: '4', text: 비지도학습 }
     answers: ['3']
     explanation: 강화학습은 환경과 상호작용하면서 행동에 대한 보상을 통해 정책을 학습한다.
-    tags: [chapter:09, reinforcement-learning]
+    tags: [reinforcement-learning]
 
   - id: b09-02
     type: multiple-choice
@@ -980,7 +995,7 @@ questions:
       - { id: '4', text: 준지도학습 }
     answers: ['4']
     explanation: 준지도학습은 레이블이 있는 소량의 데이터와 레이블이 없는 대량의 데이터를 함께 사용한다.
-    tags: [chapter:09, semi-supervised-learning]
+    tags: [semi-supervised-learning]
 
   - id: b09-03
     type: multiple-choice
@@ -992,7 +1007,7 @@ questions:
       - { id: '4', text: 삼단논법 }
     answers: ['2']
     explanation: 학습은 관찰된 사례로부터 일반적인 규칙을 찾아내는 귀납적 추론과 관련된다.
-    tags: [chapter:09, learning, induction]
+    tags: [learning, induction]
 
   - id: b09-04
     type: multiple-choice
@@ -1004,19 +1019,22 @@ questions:
       - { id: '4', text: 정확도(accuracy) }
     answers: ['2']
     explanation: 재현율은 실제 양성 중에서 양성으로 올바르게 분류된 비율이다.
-    tags: [chapter:09, classification-metrics, recall]
+    tags: [classification-metrics, recall]
 
   - id: b09-05
     type: multiple-choice
     prompt: 결정트리에 대한 올바른 설명은?
     choices:
-      - { id: '1', text: 트리 생성과정에서 노드의 불순도검사 결과 불순도가 0이면 그 노드는 단말노드로 한다. }
+      - {
+          id: '1',
+          text: 트리 생성과정에서 노드의 불순도검사 결과 불순도가 0이면 그 노드는 단말노드로 한다.,
+        }
       - { id: '2', text: 비지도학습 방식으로 학습한다. }
       - { id: '3', text: 어느 노드에서 엔트로피값이 크면 불순도는 낮은 것으로 한다. }
       - { id: '4', text: 결정트리의 깊이는 2이다. }
     answers: ['1']
     explanation: 결정트리에서는 더 분할할 필요가 없는 순수한 노드가 되면 단말노드로 둔다.
-    tags: [chapter:09, decision-tree]
+    tags: [decision-tree]
 
   - id: b09-06
     type: multiple-choice
@@ -1028,7 +1046,7 @@ questions:
       - { id: '4', text: k-평균 알고리즘 }
     answers: ['3']
     explanation: 선형회귀는 입력 변수와 출력 변수 사이의 선형 관계를 나타내는 가설을 학습한다.
-    tags: [chapter:09, linear-regression]
+    tags: [linear-regression]
 
   - id: b09-07
     type: multiple-choice
@@ -1040,7 +1058,7 @@ questions:
       - { id: '4', text: 교차 엔트로피 }
     answers: ['4']
     explanation: 로지스틱 회귀의 분류 문제에서는 교차 엔트로피 비용함수를 주로 사용한다.
-    tags: [chapter:09, logistic-regression, cross-entropy]
+    tags: [logistic-regression, cross-entropy]
 
   - id: b09-08
     type: multiple-choice
@@ -1053,7 +1071,7 @@ questions:
       - { id: '4', text: 로그 함수 }
     answers: ['1']
     explanation: 다항 로지스틱 회귀에서는 여러 선형 모델의 출력을 소프트맥스 함수로 변환하여 각 클래스 확률을 구한다.
-    tags: [chapter:09, logistic-regression, softmax]
+    tags: [logistic-regression, softmax]
 
   - id: b09-09
     type: multiple-choice
@@ -1065,7 +1083,7 @@ questions:
       - { id: '4', text: k 평균 알고리즘 }
     answers: ['4']
     explanation: k-평균 알고리즘은 레이블 없이 데이터를 군집으로 나누는 대표적인 비지도학습 알고리즘이다.
-    tags: [chapter:09, clustering, k-means]
+    tags: [clustering, k-means]
 
   - id: b09-10
     type: multiple-choice
@@ -1082,7 +1100,7 @@ questions:
         text: m[j] = mOld[j]
     answers: ['2']
     explanation: k-평균 알고리즘은 각 군집에 속한 학습표본들의 평균으로 중심을 갱신한다.
-    tags: [chapter:09, clustering, k-means]
+    tags: [clustering, k-means]
 
   - id: b10-01
     type: multiple-choice
@@ -1094,7 +1112,7 @@ questions:
       - { id: '4', text: 한 뉴런은 다른 한 뉴런에만 연결된다. }
     answers: ['3']
     explanation: 신경회로망은 뉴런 사이의 연결 가중치를 조절하여 학습된 정보를 분산 저장한다.
-    tags: [chapter:10, neural-network]
+    tags: [neural-network]
 
   - id: b10-02
     type: multiple-choice
@@ -1106,7 +1124,7 @@ questions:
       - { id: '4', text: 활성함수에 저장한다. }
     answers: ['3']
     explanation: 신경회로망의 정보는 연결 가중치의 패턴으로 분산 저장된다.
-    tags: [chapter:10, neural-network, weights]
+    tags: [neural-network, weights]
 
   - id: b10-03
     type: multiple-choice
@@ -1114,24 +1132,39 @@ questions:
     choices:
       - { id: '1', text: 비선형 결정경계를 형성한다. }
       - { id: '2', text: XOR 문제를 해결할 수 없다. }
-      - { id: '3', text: 입력층, 은닉층, 출력층의 3층 구조이다. }
+      - { id: '3', text: '입력층, 은닉층, 출력층의 3층 구조이다.' }
       - { id: '4', text: 입력은 2개만 받는다. }
     answers: ['2']
     explanation: 단층 퍼셉트론은 선형 분리 가능한 문제만 학습할 수 있어 XOR 문제를 해결할 수 없다.
-    tags: [chapter:10, perceptron, xor]
+    tags: [perceptron, xor]
 
   - id: b10-04
     type: multiple-choice
     prompt: 다음의 패턴분포 중 단층 퍼셉트론으로 학습할 수 있는 것은?
-    passageRefs: [gb10-perceptron-patterns-04]
     choices:
-      - { id: '1', text: 패턴분포 1 }
-      - { id: '2', text: 패턴분포 2 }
-      - { id: '3', text: 패턴분포 3 }
-      - { id: '4', text: 패턴분포 4 }
+      - id: '1'
+        text: 패턴분포 1
+        image:
+          path: images/subjects/artificial-intelligence/workbook/b10-04-choice-1.png
+          alt: 인공지능 워크북 10장 4번 선택지 1 패턴분포
+      - id: '2'
+        text: 패턴분포 2
+        image:
+          path: images/subjects/artificial-intelligence/workbook/b10-04-choice-2.png
+          alt: 인공지능 워크북 10장 4번 선택지 2 패턴분포
+      - id: '3'
+        text: 패턴분포 3
+        image:
+          path: images/subjects/artificial-intelligence/workbook/b10-04-choice-3.png
+          alt: 인공지능 워크북 10장 4번 선택지 3 패턴분포
+      - id: '4'
+        text: 패턴분포 4
+        image:
+          path: images/subjects/artificial-intelligence/workbook/b10-04-choice-4.png
+          alt: 인공지능 워크북 10장 4번 선택지 4 패턴분포
     answers: ['4']
     explanation: 단층 퍼셉트론은 하나의 선형 결정경계로 두 클래스를 분리할 수 있는 패턴분포만 학습할 수 있다.
-    tags: [chapter:10, perceptron, linear-separability]
+    tags: [perceptron, linear-separability]
 
   - id: b10-05
     type: multiple-choice
@@ -1143,7 +1176,7 @@ questions:
       - { id: '4', text: 뉴런의 활성함수는 선형함수이다. }
     answers: ['3']
     explanation: 오차역전파는 다층 퍼셉트론의 가중치를 학습시키는 대표적인 지도학습 알고리즘이다.
-    tags: [chapter:10, backpropagation, multilayer-perceptron]
+    tags: [backpropagation, multilayer-perceptron]
 
   - id: b10-06
     type: multiple-choice
@@ -1155,7 +1188,7 @@ questions:
       - { id: '4', text: 가시 유닛은 입력된 데이터의 특징을 출력한다. }
     answers: ['2']
     explanation: RBM은 입력 데이터에 숨어 있는 특징 표현을 학습하는 비지도학습 기반 모델이다.
-    tags: [chapter:10, restricted-boltzmann-machine]
+    tags: [restricted-boltzmann-machine]
 
   - id: b10-07
     type: multiple-choice
@@ -1167,7 +1200,7 @@ questions:
       - { id: '4', text: 결정트리 }
     answers: ['1']
     explanation: 자기조직화 지도는 입력에 가장 잘 반응하는 뉴런이 선택되는 경쟁학습 방식을 사용한다.
-    tags: [chapter:10, self-organizing-map, competitive-learning]
+    tags: [self-organizing-map, competitive-learning]
 
   - id: b10-08
     type: multiple-choice
@@ -1179,7 +1212,7 @@ questions:
       - { id: '4', text: x를 w로 대체한다. }
     answers: ['3']
     explanation: 자기조직화 지도에서는 승자 뉴런과 주변 뉴런의 가중치를 입력 벡터에 가까워지도록 갱신한다.
-    tags: [chapter:10, self-organizing-map]
+    tags: [self-organizing-map]
 
   - id: b10-09
     type: multiple-choice
@@ -1191,7 +1224,7 @@ questions:
       - { id: '4', text: '$w_i$를 $x_j$에서 멀어지는 방향으로 조금 이동한다.' }
     answers: ['2']
     explanation: LVQ에서는 승자 노드가 정답 클래스와 같으면 해당 가중치를 학습표본 쪽으로 이동시킨다.
-    tags: [chapter:10, learning-vector-quantization]
+    tags: [learning-vector-quantization]
 
   - id: b11-01
     type: multiple-choice
@@ -1199,11 +1232,14 @@ questions:
     choices:
       - { id: '1', text: 단층 퍼셉트론을 학습하기 위한 학습 모델이다. }
       - { id: '2', text: 제한 볼츠만 머신은 지도학습 방식으로 학습한다. }
-      - { id: '3', text: ReLU 활성함수는 경사 소멸 문제의 원인을 제공하며 이를 개선하기 위해 시그모이드 함수를 사용한다. }
+      - {
+          id: '3',
+          text: ReLU 활성함수는 경사 소멸 문제의 원인을 제공하며 이를 개선하기 위해 시그모이드 함수를 사용한다.,
+        }
       - { id: '4', text: 합성곱 신경망(CNN)은 동물의 시각 피질 개념을 기반으로 한 신경망 모델이다. }
     answers: ['4']
     explanation: CNN은 동물의 시각 피질에서 영감을 받은 합성곱 구조를 활용하는 대표적인 딥러닝 모델이다.
-    tags: [chapter:11, deep-learning, cnn]
+    tags: [deep-learning, cnn]
 
   - id: b11-02
     type: multiple-choice
@@ -1215,19 +1251,19 @@ questions:
       - { id: '4', text: 교차 엔트로피 }
     answers: ['1']
     explanation: 과적합은 학습 데이터에 과도하게 맞춰져 새로운 데이터에 대한 일반화 성능이 떨어지는 현상이다.
-    tags: [chapter:11, overfitting]
+    tags: [overfitting]
 
   - id: b11-03
     type: multiple-choice
     prompt: 다음 문장에서 (ㄱ)과 (ㄴ)에 넣을 적절한 단어에 해당되는 것은? 심층 신경망에서는 (ㄱ) 문제를 해결하기 위해 드롭아웃과 같은 규제 기법을 활용하며, 시그모이드 대신 ReLU를 활성함수로 사용하여 (ㄴ) 문제를 개선한다.
     choices:
-      - { id: '1', text: (ㄱ) 과적합, (ㄴ) XOR }
-      - { id: '2', text: (ㄱ) 과적합, (ㄴ) 경사 소멸 }
-      - { id: '3', text: (ㄱ) 경사 소멸, (ㄴ) 과적합 }
-      - { id: '4', text: (ㄱ) 경사 소멸, (ㄴ) 계산량 }
+      - { id: '1', text: '(ㄱ) 과적합, (ㄴ) XOR' }
+      - { id: '2', text: '(ㄱ) 과적합, (ㄴ) 경사 소멸' }
+      - { id: '3', text: '(ㄱ) 경사 소멸, (ㄴ) 과적합' }
+      - { id: '4', text: '(ㄱ) 경사 소멸, (ㄴ) 계산량' }
     answers: ['2']
     explanation: 드롭아웃은 과적합 완화에 쓰이고, ReLU는 시그모이드 계열에서 나타나는 경사 소멸 문제를 완화하는 데 도움이 된다.
-    tags: [chapter:11, overfitting, vanishing-gradient, dropout, relu]
+    tags: [overfitting, vanishing-gradient, dropout, relu]
 
   - id: b11-04
     type: multiple-choice
@@ -1239,7 +1275,7 @@ questions:
       - { id: '4', text: Python }
     answers: ['2']
     explanation: TensorFlow는 심층학습 모델을 구성하고 학습시키는 데 널리 쓰이는 프레임워크이다.
-    tags: [chapter:11, deep-learning-framework, tensorflow]
+    tags: [deep-learning-framework, tensorflow]
 
   - id: b11-05
     type: multiple-choice
@@ -1251,7 +1287,7 @@ questions:
       - { id: '4', text: LSTM }
     answers: ['3']
     explanation: 합성곱 신경망은 국소 수용영역과 특징 검출 개념을 활용해 시각 정보를 처리한다.
-    tags: [chapter:11, cnn]
+    tags: [cnn]
 
   - id: b11-06
     type: multiple-choice
@@ -1263,7 +1299,7 @@ questions:
       - { id: '4', text: 통합층(pooling layer) }
     answers: ['1']
     explanation: 합성곱층은 필터를 이용해 입력 영상의 에지, 선, 덩어리 같은 지역 특징을 검출한다.
-    tags: [chapter:11, cnn, convolution-layer]
+    tags: [cnn, convolution-layer]
 
   - id: b11-07
     type: multiple-choice
@@ -1276,7 +1312,7 @@ questions:
       - { id: '4', text: '$15\\times15$ 크기의 8채널 출력' }
     answers: ['4']
     explanation: 출력 한 변의 크기는 $\\lfloor(32-3)/2\\rfloor+1=15$이고, 필터가 8개이므로 8채널 출력이 된다.
-    tags: [chapter:11, cnn, convolution-output]
+    tags: [cnn, convolution-output]
 
   - id: b11-08
     type: multiple-choice
@@ -1288,7 +1324,7 @@ questions:
       - { id: '4', text: ResNet은 대표적인 RNN 모델이다. }
     answers: ['3']
     explanation: RNN은 시간 방향으로 펼친 네트워크에 대해 BPTT 방식으로 학습한다.
-    tags: [chapter:11, rnn, bptt]
+    tags: [rnn, bptt]
 
   - id: b11-09
     type: multiple-choice
@@ -1300,7 +1336,7 @@ questions:
       - { id: '4', text: BPTT }
     answers: ['1']
     explanation: 어텐션은 디코딩 시점마다 인코더 은닉 상태들에 가중치를 주어 문맥 벡터를 동적으로 계산한다.
-    tags: [chapter:11, seq2seq, attention]
+    tags: [seq2seq, attention]
 
   - id: b11-10
     type: multiple-choice
@@ -1309,7 +1345,7 @@ questions:
       - { id: '1', text: 훈련과정을 병렬화할 수 없어 RNN에 비해 훈련에 많은 시간을 소비한다. }
       - { id: '2', text: 시퀀스를 순차적으로 처리하는 RNN 모델에 속한다. }
       - { id: '3', text: 인코더와 디코더를 구현하는 데 RNN 대신 셀프 어텐션 메커니즘을 사용한다. }
-      - { id: '4', text: GPT는 RNN, BERT는 트랜스포머 기반이다. }
+      - { id: '4', text: 'GPT는 RNN, BERT는 트랜스포머 기반이다.' }
     answers: ['3']
     explanation: 트랜스포머는 순환 구조 대신 셀프 어텐션을 중심으로 인코더와 디코더를 구성한다.
-    tags: [chapter:11, transformer, self-attention]
+    tags: [transformer, self-attention]
