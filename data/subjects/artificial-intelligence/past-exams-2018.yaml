@@ -59,6 +59,21 @@ passages:
         - { from: e, to: p }
         - { from: e, to: q }
 
+  - id: g18-resolution-clauses-10
+    type: text
+    body: |
+      $P(x) \lor Q(x,y)$
+      $Q(A,B) \lor \sim R(A,B)$
+      $\sim Q(C,D)$
+      $P(A)$
+
+  - id: g18-fuzzy-sets-11
+    type: text
+    body: |
+      $X=\{(a,0.1),(b,0.4),(c,0.8),(d,1.0),(e,1.0)\}$
+
+      $Y=\{(a,0.5),(b,0.7),(c,1.0),(d,0.2)\}$
+
 questions:
   - id: e18-01
     type: multiple-choice
@@ -271,7 +286,8 @@ questions:
 
   - id: e18-10
     type: multiple-choice
-    prompt: 다음 절들로부터 도출될 수 있는 결론은 무엇인가? 단, $P$, $Q$, $R$은 술어기호, $x$와 $y$는 객체변수, $A$, $B$, $C$, $D$는 객체상수이다. $P(x)\lor Q(x,y)$, $Q(A,B)\lor \sim R(A,B)$, $\sim Q(C,D)$, $P(A)$
+    passageRefs: [g18-resolution-clauses-10]
+    prompt: 다음 절들로부터 도출될 수 있는 결론은 무엇인가? 단, $P$, $Q$, $R$은 술어기호, $x$와 $y$는 객체변수, $A$, $B$, $C$, $D$는 객체상수이다.
     choices:
       - { id: '1', text: '$P(C)$' }
       - { id: '2', text: '$Q(A,y)$' }
@@ -293,7 +309,8 @@ questions:
 
   - id: e18-11
     type: multiple-choice
-    prompt: 퍼지집합 $X=\{(a,0.1),(b,0.4),(c,0.8),(d,1.0),(e,1.0)\}$와 $Y=\{(a,0.5),(b,0.7),(c,1.0),(d,0.2)\}$가 다음과 같을 때 퍼지집합 연산이 올바른 것은?
+    passageRefs: [g18-fuzzy-sets-11]
+    prompt: 퍼지집합 $X$와 $Y$가 다음과 같을 때 퍼지집합 연산이 올바른 것은?
     choices:
       - { id: '1', text: '$X\cup Y=\{(a,0.5),(b,0.7),(c,1.0),(d,1.0)\}$' }
       - { id: '2', text: '$X\cap Y=\{(a,0.1),(b,0.4),(c,0.8),(d,0.2)\}$' }
@@ -704,25 +721,25 @@ questions:
     prompt: $x$와 $o$를 식별할 수 있도록 학습하려고 한다. 다음 중 단층 퍼셉트론으로 학습할 수 있는 것은?
     choices:
       - id: '1'
-        text: '$x$와 $o$가 일부 겹쳐 있어 하나의 직선으로 완전히 분리하기 어려운 산점도'
+        text: '①'
         image:
           path: images/subjects/artificial-intelligence/past-exams/2018/e18-29-choice-1.png
-          alt: 2018년 인공지능 기출 29번 선택지 1 산점도
+          alt: 2018년 인공지능 기출 29번 선택지 1 그림
       - id: '2'
-        text: '$x$는 왼쪽, $o$는 오른쪽에 모여 있어 하나의 직선으로 분리 가능한 산점도'
+        text: '②'
         image:
           path: images/subjects/artificial-intelligence/past-exams/2018/e18-29-choice-2.png
-          alt: 2018년 인공지능 기출 29번 선택지 2 산점도
+          alt: 2018년 인공지능 기출 29번 선택지 2 그림
       - id: '3'
-        text: '$o$가 중앙에 있고 $x$가 바깥을 둘러싸는 비선형 분포의 산점도'
+        text: '③'
         image:
           path: images/subjects/artificial-intelligence/past-exams/2018/e18-29-choice-3.png
-          alt: 2018년 인공지능 기출 29번 선택지 3 산점도
+          alt: 2018년 인공지능 기출 29번 선택지 3 그림
       - id: '4'
-        text: '$x$와 $o$가 서로 섞여 있어 선형 분리가 어려운 산점도'
+        text: '④'
         image:
           path: images/subjects/artificial-intelligence/past-exams/2018/e18-29-choice-4.png
-          alt: 2018년 인공지능 기출 29번 선택지 4 산점도
+          alt: 2018년 인공지능 기출 29번 선택지 4 그림
     answers: ['2']
     explanation: |
       선택지 1: 두 클래스가 겹쳐 있으면 하나의 직선으로 완전히 분리하기 어렵다.

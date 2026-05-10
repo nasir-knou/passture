@@ -10,6 +10,16 @@ passages:
     body: |
       부모절: $\sim p \vee q \vee r$, $\sim q \vee s$
 
+  - id: g17-predicate-equivalence-10
+    type: text
+    body: |
+      $\sim[\forall x\{P(x)\rightarrow Q(x)\}]$
+
+  - id: g17-resolution-clauses-12
+    type: text
+    body: |
+      $\sim P(x)\vee Q(x),\quad P(A),\quad \sim P(B)$
+
   - id: g17-production-rules-15
     type: text
     body: |
@@ -28,16 +38,68 @@ passages:
       $B=\{(a,0.5),(b,0.9),(c,0.2),(d,0.7)\}$
 
   - id: g17-connected-grid-19
-    type: text
-    body: |
-      어두운 칸이 객체 픽셀이고, $p$에서 8-이웃 연결 경로가 존재하는지를 묻는다.
-
-      행/열 표기:
-      r1: c3=$p_1$, c4, c10=$p_4$
-      r2: c4, c8, c9, c10
-      r3: c4, c5, c6=$p$, c7
-      r4: c3, c7
-      r5: c3=$p_2$, c7, c8=$p_3$
+    type: diagram
+    diagram:
+      type: simple-graph
+      width: 440
+      height: 144
+      nodes:
+        - { id: r1c1, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 20, y: 16 }
+        - { id: r1c2, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 60, y: 16 }
+        - { id: r1c3, label: 'p₁', tone: filled, shape: box, width: 40, height: 28, x: 100, y: 16 }
+        - { id: r1c4, label: cell, hideLabel: true, tone: filled, shape: box, width: 40, height: 28, x: 140, y: 16 }
+        - { id: r1c5, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 180, y: 16 }
+        - { id: r1c6, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 220, y: 16 }
+        - { id: r1c7, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 260, y: 16 }
+        - { id: r1c8, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 300, y: 16 }
+        - { id: r1c9, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 340, y: 16 }
+        - { id: r1c10, label: 'p₄', tone: filled, shape: box, width: 40, height: 28, x: 380, y: 16 }
+        - { id: r1c11, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 420, y: 16 }
+        - { id: r2c1, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 20, y: 44 }
+        - { id: r2c2, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 60, y: 44 }
+        - { id: r2c3, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 100, y: 44 }
+        - { id: r2c4, label: cell, hideLabel: true, tone: filled, shape: box, width: 40, height: 28, x: 140, y: 44 }
+        - { id: r2c5, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 180, y: 44 }
+        - { id: r2c6, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 220, y: 44 }
+        - { id: r2c7, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 260, y: 44 }
+        - { id: r2c8, label: cell, hideLabel: true, tone: filled, shape: box, width: 40, height: 28, x: 300, y: 44 }
+        - { id: r2c9, label: cell, hideLabel: true, tone: filled, shape: box, width: 40, height: 28, x: 340, y: 44 }
+        - { id: r2c10, label: cell, hideLabel: true, tone: filled, shape: box, width: 40, height: 28, x: 380, y: 44 }
+        - { id: r2c11, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 420, y: 44 }
+        - { id: r3c1, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 20, y: 72 }
+        - { id: r3c2, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 60, y: 72 }
+        - { id: r3c3, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 100, y: 72 }
+        - { id: r3c4, label: cell, hideLabel: true, tone: filled, shape: box, width: 40, height: 28, x: 140, y: 72 }
+        - { id: r3c5, label: cell, hideLabel: true, tone: filled, shape: box, width: 40, height: 28, x: 180, y: 72 }
+        - { id: r3c6, label: 'p', tone: filled, shape: box, width: 40, height: 28, x: 220, y: 72 }
+        - { id: r3c7, label: cell, hideLabel: true, tone: filled, shape: box, width: 40, height: 28, x: 260, y: 72 }
+        - { id: r3c8, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 300, y: 72 }
+        - { id: r3c9, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 340, y: 72 }
+        - { id: r3c10, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 380, y: 72 }
+        - { id: r3c11, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 420, y: 72 }
+        - { id: r4c1, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 20, y: 100 }
+        - { id: r4c2, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 60, y: 100 }
+        - { id: r4c3, label: cell, hideLabel: true, tone: filled, shape: box, width: 40, height: 28, x: 100, y: 100 }
+        - { id: r4c4, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 140, y: 100 }
+        - { id: r4c5, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 180, y: 100 }
+        - { id: r4c6, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 220, y: 100 }
+        - { id: r4c7, label: cell, hideLabel: true, tone: filled, shape: box, width: 40, height: 28, x: 260, y: 100 }
+        - { id: r4c8, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 300, y: 100 }
+        - { id: r4c9, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 340, y: 100 }
+        - { id: r4c10, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 380, y: 100 }
+        - { id: r4c11, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 420, y: 100 }
+        - { id: r5c1, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 20, y: 128 }
+        - { id: r5c2, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 60, y: 128 }
+        - { id: r5c3, label: 'p₂', tone: filled, shape: box, width: 40, height: 28, x: 100, y: 128 }
+        - { id: r5c4, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 140, y: 128 }
+        - { id: r5c5, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 180, y: 128 }
+        - { id: r5c6, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 220, y: 128 }
+        - { id: r5c7, label: cell, hideLabel: true, tone: filled, shape: box, width: 40, height: 28, x: 260, y: 128 }
+        - { id: r5c8, label: cell, hideLabel: true, tone: filled, shape: box, width: 40, height: 28, x: 300, y: 128 }
+        - { id: r5c9, label: 'p₃', tone: filled, shape: box, width: 40, height: 28, x: 340, y: 128 }
+        - { id: r5c10, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 380, y: 128 }
+        - { id: r5c11, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 420, y: 128 }
+      edges: []
 
   - id: g17-feature-purpose-24
     type: text
@@ -231,6 +293,7 @@ questions:
 
   - id: e17-10
     type: multiple-choice
+    passageRefs: [g17-predicate-equivalence-10]
     prompt: 다음 술어논리식과 동치인 것은?
     choices:
       - { id: '1', text: '$\forall x\{P(x) \wedge \sim Q(x)\}$' }
@@ -240,9 +303,9 @@ questions:
     answers: ['3']
     explanation: |
       선택지 1: 부정된 전칭명제는 존재명제가 되어야 한다.
-      선택지 2: 조건명의 부정이 아니라 단순 논리합이다.
+      선택지 2: 조건명제의 부정이 아니라 단순 논리합이다.
       선택지 3: $\sim \forall x(P(x)\rightarrow Q(x))$는 $\exists x(P(x)\wedge \sim Q(x))$와 동치이므로 정답이다.
-      선택지 4: 조건명의 부정은 $P$와 $\sim Q$의 연언이어야 한다.
+      선택지 4: 조건명제의 부정은 $P$와 $\sim Q$의 연언이어야 한다.
 
       핵심 개념:
       전칭의 부정은 존재이고, 조건명제 $P\rightarrow Q$의 부정은 $P\wedge \sim Q$이다.
@@ -271,7 +334,8 @@ questions:
 
   - id: e17-12
     type: multiple-choice
-    prompt: 다음 절들로부터 도출될 수 있는 결론에 해당되는 것은? 단, $P,Q$는 술어기호, $x,y,z$는 객체변수, $A,B$는 객체상수이다.
+    passageRefs: [g17-resolution-clauses-12]
+    prompt: 다음 절들로부터 도출될 수 있는 결론에 해당되는 것은? 단, $P$와 $Q$는 술어기호, $x,y,z$는 객체변수, $A$와 $B$는 객체상수이다.
     choices:
       - { id: '1', text: '$Q(x)$' }
       - { id: '2', text: '$Q(A)$' }
