@@ -10,10 +10,10 @@ passages:
     body: |
       물체의 개수는 4개(소시지, 빵, 꿀, 생선)이며, 배낭의 용량은 10이다.
 
-      - 소시지 -> 무게 3, 이익 15
-      - 빵 -> 무게 5, 이익 20
-      - 꿀 -> 무게 3, 이익 9
-      - 생선 -> 무게 4, 이익 14
+      - 소시지 → 무게 3, 이익 15
+      - 빵 → 무게 5, 이익 20
+      - 꿀 → 무게 3, 이익 9
+      - 생선 → 무게 4, 이익 14
 
   - id: g17-sum-code-06
     type: code
@@ -26,7 +26,7 @@ passages:
           i = i + 1;
         }
         m = s / n;
-        print(s, n);
+        print(s, m);
       }
 
   - id: g17-bubble-pass-08
@@ -268,7 +268,7 @@ questions:
   - id: e17-04
     type: multiple-choice
     passageRefs: [g17-knapsack-04]
-    prompt: 배낭의 용량이 10이고 물체가 소시지(무게 3, 이익 15), 빵(무게 5, 이익 20), 꿀(무게 3, 이익 9), 생선(무게 4, 이익 14)일 때 0/1 배낭문제의 최적해에 들어가지 않는 물체는?
+    prompt: 다음과 같은 조건의 배낭문제를 욕심쟁이 방법으로 해결하였을 때 배낭에 들어가지 않는 물체는 무엇인가? (단, 물체는 쪼갤 수 있다.)
     choices:
       - { id: '1', text: '소시지' }
       - { id: '2', text: '빵' }
@@ -276,16 +276,16 @@ questions:
       - { id: '4', text: '생선' }
     answers: ['3']
     explanation: |
-      선택지 1: 소시지: 0/1 배낭 문제 절차를 적용한 계산 결과와 다르므로 정답이 아니다.
-      선택지 2: 빵: 0/1 배낭 문제 절차를 적용한 계산 결과와 다르므로 정답이 아니다.
-      선택지 3: 꿀: 0/1 배낭 문제 절차를 적용한 결과와 일치하므로 정답이다.
-      선택지 4: 생선: 0/1 배낭 문제 절차를 적용한 계산 결과와 다르므로 정답이 아니다.
+      선택지 1: 소시지는 단위 무게당 이익이 5로 가장 높아 먼저 들어간다.
+      선택지 2: 빵은 단위 무게당 이익이 4로 두 번째로 들어간다.
+      선택지 3: 꿀은 단위 무게당 이익이 3으로 낮고, 생선을 넣은 뒤 남은 용량이 없어 들어가지 않는다.
+      선택지 4: 생선은 단위 무게당 이익이 3.5로 꿀보다 높아 빵 다음에 들어간다.
 
       핵심 개념:
-      0/1 배낭 문제는 각 물체를 통째로 넣거나 넣지 않는 선택만 허용한다.
-      가능한 조합 중 용량 제약을 만족하면서 이익 합이 최대인 조합을 찾아야 한다.
-      계산형 문항은 최종 정답만 보지 말고 피벗, 테이블, 방문 순서, 교환 횟수처럼 중간 상태를 기준으로 검산한다.
-    tags: [knapsack, optimization]
+      물체를 쪼갤 수 있는 배낭 문제는 단위 무게당 이익이 큰 순서로 선택하는 욕심쟁이 방법을 적용한다.
+      단위 무게당 이익은 소시지 5, 빵 4, 생선 3.5, 꿀 3이다.
+      용량 10에서 소시지와 빵을 넣으면 남은 용량은 2이고, 다음 순서인 생선을 일부 넣으므로 꿀은 들어가지 않는다.
+    tags: [knapsack, greedy]
 
   - id: e17-05
     type: multiple-choice
@@ -315,7 +315,7 @@ questions:
   - id: e17-06
     type: multiple-choice
     passageRefs: [g17-sum-code-06]
-    prompt: 배열 A[0..n-1]을 while문으로 한 번 순회하며 합을 구하는 알고리즘의 시간 복잡도는?
+    prompt: 다음 알고리즘의 시간 복잡도를 올바르게 나타낸 것은?
     choices:
       - { id: '1', text: '$O(n)$' }
       - { id: '2', text: '$O(n^2)$' }
@@ -360,7 +360,7 @@ questions:
   - id: e17-08
     type: multiple-choice
     passageRefs: [g17-bubble-pass-08]
-    prompt: 버블 정렬에서 배열 5, 35, 20, 10, 40, 25, 15, 30을 오름차순으로 정렬할 때 한 단계 수행 중 자리바꿈은 몇 번 발생하는가? (밑줄 친 앞부분은 이미 정렬된 부분)
+    prompt: 버블 정렬을 적용시키는 과정에서 한 단계의 수행 결과가 다음과 같을 때 바로 다음 단계의 수행 결과를 얻기 위해서는 자리 바꿈이 몇 번 발생하는가? (단, 오름차순으로 정렬하고 밑줄 친 부분은 이미 정렬된 부분이다.)
     choices:
       - { id: '1', text: '2' }
       - { id: '2', text: '3' }
@@ -382,7 +382,7 @@ questions:
   - id: e17-09
     type: multiple-choice
     passageRefs: [g17-shell-sequences-09]
-    prompt: 1, 2, 4, 8, 16, ... / 1, 4, 13, 40, 121, ... / 1, 3, 7, 21, 48, ... 같은 순열을 기반으로 정렬을 수행하는 알고리즘은?
+    prompt: 다음과 같은 순열을 기반으로 정렬을 수행하는 알고리즘은?
     choices:
       - { id: '1', text: '히프 정렬' }
       - { id: '2', text: '계수 정렬' }
@@ -493,12 +493,12 @@ questions:
   - id: e17-14
     type: multiple-choice
     passageRefs: [g17-heap-sort-state-14]
-    prompt: 초기 히프 배열 88, 50, 15, 30, 40, 7에 대해 히프 정렬의 두 번째 단계(최댓값 삭제와 히프 재구성)를 두 번 반복한 후 배열 상태는?
+    prompt: 다음은 초기 히프를 배열로 표현한 것이다. 이 배열에 대해서 히프 정렬의 두 번째 단계(최댓값 삭제와 히프의 재구성)를 두 번 반복 수행한 후의 배열의 상태를 올바르게 표현한 것은? (단, 오름차순으로 정렬하며, 밑줄 친 부분은 이미 정렬이 완료된 상태를 나타낸다.)
     choices:
-      - { id: '1', text: '40 30 15 7 50 88' }
-      - { id: '2', text: '40 15 30 7 50 88' }
-      - { id: '3', text: '40 30 7 15 50 88' }
-      - { id: '4', text: '40 15 7 30 50 88' }
+      - { id: '1', text: '$40\ 30\ 15\ 7\ \underline{50\ 88}$' }
+      - { id: '2', text: '$40\ 15\ 30\ 7\ \underline{50\ 88}$' }
+      - { id: '3', text: '$40\ 30\ 7\ 15\ \underline{50\ 88}$' }
+      - { id: '4', text: '$40\ 15\ 7\ 30\ \underline{50\ 88}$' }
     answers: ['1']
     explanation: |
       선택지 1: 88과 50이 차례로 정렬 구간으로 이동하고 남은 히프는 40,30,15,7이 된다.
@@ -538,7 +538,7 @@ questions:
   - id: e17-16
     type: multiple-choice
     passageRefs: [g17-sorting-list-16]
-    prompt: 보기의 알고리즘(선택, 계수, 히프, 기수, 셸, 합병, 버블, 퀵, 버킷, 삽입 정렬) 중 제자리 정렬 알고리즘의 개수는?
+    prompt: 위의 보기의 알고리즘 중에서 제자리 정렬의 알고리즘의 개수는?
     choices:
       - { id: '1', text: '3' }
       - { id: '2', text: '4' }
@@ -702,16 +702,24 @@ questions:
         text: '①'
         diagram:
           type: simple-graph
-          width: 280
-          height: 170
+          width: 360
+          height: 270
           nodes:
-            - { id: '30', label: '30', x: 140, y: 25, tone: filled }
-            - { id: '15', label: '15', x: 80, y: 75 }
-            - { id: '55', label: '55', x: 200, y: 75 }
-            - { id: '7', label: '7', x: 50, y: 130, tone: filled }
-            - { id: '22', label: '22', x: 110, y: 130, tone: filled }
-            - { id: '44', label: '44', x: 170, y: 130, tone: filled }
-            - { id: '88', label: '88', x: 230, y: 130, tone: filled }
+            - { id: '30', label: '30', x: 180, y: 30, tone: filled }
+            - { id: '15', label: '15', x: 100, y: 88 }
+            - { id: '55', label: '55', x: 260, y: 88 }
+            - { id: '7', label: '7', x: 60, y: 150, tone: filled }
+            - { id: '22', label: '22', x: 140, y: 150, tone: filled }
+            - { id: '44', label: '44', x: 220, y: 150, tone: filled }
+            - { id: '88', label: '88', x: 300, y: 150, tone: filled }
+            - { id: n7l, label: 'NULL', x: 40, y: 230, shape: box, width: 38, height: 22, fontSize: 9 }
+            - { id: n7r, label: 'NULL', x: 80, y: 230, shape: box, width: 38, height: 22, fontSize: 9 }
+            - { id: n22l, label: 'NULL', x: 120, y: 230, shape: box, width: 38, height: 22, fontSize: 9 }
+            - { id: n22r, label: 'NULL', x: 160, y: 230, shape: box, width: 38, height: 22, fontSize: 9 }
+            - { id: n44l, label: 'NULL', x: 200, y: 230, shape: box, width: 38, height: 22, fontSize: 9 }
+            - { id: n44r, label: 'NULL', x: 240, y: 230, shape: box, width: 38, height: 22, fontSize: 9 }
+            - { id: n88l, label: 'NULL', x: 280, y: 230, shape: box, width: 38, height: 22, fontSize: 9 }
+            - { id: n88r, label: 'NULL', x: 320, y: 230, shape: box, width: 38, height: 22, fontSize: 9 }
           edges:
             - { from: '30', to: '15' }
             - { from: '30', to: '55' }
@@ -719,20 +727,36 @@ questions:
             - { from: '15', to: '22' }
             - { from: '55', to: '44' }
             - { from: '55', to: '88' }
+            - { from: '7', to: n7l }
+            - { from: '7', to: n7r }
+            - { from: '22', to: n22l }
+            - { from: '22', to: n22r }
+            - { from: '44', to: n44l }
+            - { from: '44', to: n44r }
+            - { from: '88', to: n88l }
+            - { from: '88', to: n88r }
       - id: '2'
         text: '②'
         diagram:
           type: simple-graph
-          width: 280
-          height: 170
+          width: 360
+          height: 270
           nodes:
-            - { id: '30', label: '30', x: 140, y: 25, tone: filled }
-            - { id: '15', label: '15', x: 80, y: 75, tone: filled }
-            - { id: '55', label: '55', x: 200, y: 75 }
-            - { id: '7', label: '7', x: 50, y: 130, tone: filled }
-            - { id: '22', label: '22', x: 110, y: 130 }
-            - { id: '44', label: '44', x: 170, y: 130 }
-            - { id: '88', label: '88', x: 230, y: 130 }
+            - { id: '30', label: '30', x: 180, y: 30, tone: filled }
+            - { id: '15', label: '15', x: 100, y: 88, tone: filled }
+            - { id: '55', label: '55', x: 260, y: 88 }
+            - { id: '7', label: '7', x: 60, y: 150, tone: filled }
+            - { id: '22', label: '22', x: 140, y: 150 }
+            - { id: '44', label: '44', x: 220, y: 150 }
+            - { id: '88', label: '88', x: 300, y: 150 }
+            - { id: n7l, label: 'NULL', x: 40, y: 230, shape: box, width: 38, height: 22, fontSize: 9 }
+            - { id: n7r, label: 'NULL', x: 80, y: 230, shape: box, width: 38, height: 22, fontSize: 9 }
+            - { id: n22l, label: 'NULL', x: 120, y: 230, shape: box, width: 38, height: 22, fontSize: 9 }
+            - { id: n22r, label: 'NULL', x: 160, y: 230, shape: box, width: 38, height: 22, fontSize: 9 }
+            - { id: n44l, label: 'NULL', x: 200, y: 230, shape: box, width: 38, height: 22, fontSize: 9 }
+            - { id: n44r, label: 'NULL', x: 240, y: 230, shape: box, width: 38, height: 22, fontSize: 9 }
+            - { id: n88l, label: 'NULL', x: 280, y: 230, shape: box, width: 38, height: 22, fontSize: 9 }
+            - { id: n88r, label: 'NULL', x: 320, y: 230, shape: box, width: 38, height: 22, fontSize: 9 }
           edges:
             - { from: '30', to: '15' }
             - { from: '30', to: '55' }
@@ -740,20 +764,36 @@ questions:
             - { from: '15', to: '22' }
             - { from: '55', to: '44' }
             - { from: '55', to: '88' }
+            - { from: '7', to: n7l }
+            - { from: '7', to: n7r }
+            - { from: '22', to: n22l }
+            - { from: '22', to: n22r }
+            - { from: '44', to: n44l }
+            - { from: '44', to: n44r }
+            - { from: '88', to: n88l }
+            - { from: '88', to: n88r }
       - id: '3'
         text: '③'
         diagram:
           type: simple-graph
-          width: 280
-          height: 170
+          width: 360
+          height: 270
           nodes:
-            - { id: '30', label: '30', x: 140, y: 25 }
-            - { id: '15', label: '15', x: 80, y: 75 }
-            - { id: '55', label: '55', x: 200, y: 75, tone: filled }
-            - { id: '7', label: '7', x: 50, y: 130, tone: filled }
-            - { id: '22', label: '22', x: 110, y: 130, tone: filled }
-            - { id: '44', label: '44', x: 170, y: 130 }
-            - { id: '88', label: '88', x: 230, y: 130 }
+            - { id: '30', label: '30', x: 180, y: 30 }
+            - { id: '15', label: '15', x: 100, y: 88 }
+            - { id: '55', label: '55', x: 260, y: 88, tone: filled }
+            - { id: '7', label: '7', x: 60, y: 150, tone: filled }
+            - { id: '22', label: '22', x: 140, y: 150, tone: filled }
+            - { id: '44', label: '44', x: 220, y: 150 }
+            - { id: '88', label: '88', x: 300, y: 150 }
+            - { id: n7l, label: 'NULL', x: 40, y: 230, shape: box, width: 38, height: 22, fontSize: 9 }
+            - { id: n7r, label: 'NULL', x: 80, y: 230, shape: box, width: 38, height: 22, fontSize: 9 }
+            - { id: n22l, label: 'NULL', x: 120, y: 230, shape: box, width: 38, height: 22, fontSize: 9 }
+            - { id: n22r, label: 'NULL', x: 160, y: 230, shape: box, width: 38, height: 22, fontSize: 9 }
+            - { id: n44l, label: 'NULL', x: 200, y: 230, shape: box, width: 38, height: 22, fontSize: 9 }
+            - { id: n44r, label: 'NULL', x: 240, y: 230, shape: box, width: 38, height: 22, fontSize: 9 }
+            - { id: n88l, label: 'NULL', x: 280, y: 230, shape: box, width: 38, height: 22, fontSize: 9 }
+            - { id: n88r, label: 'NULL', x: 320, y: 230, shape: box, width: 38, height: 22, fontSize: 9 }
           edges:
             - { from: '30', to: '15' }
             - { from: '30', to: '55' }
@@ -761,20 +801,36 @@ questions:
             - { from: '15', to: '22' }
             - { from: '55', to: '44' }
             - { from: '55', to: '88' }
+            - { from: '7', to: n7l }
+            - { from: '7', to: n7r }
+            - { from: '22', to: n22l }
+            - { from: '22', to: n22r }
+            - { from: '44', to: n44l }
+            - { from: '44', to: n44r }
+            - { from: '88', to: n88l }
+            - { from: '88', to: n88r }
       - id: '4'
         text: '④'
         diagram:
           type: simple-graph
-          width: 280
-          height: 170
+          width: 360
+          height: 270
           nodes:
-            - { id: '30', label: '30', x: 140, y: 25 }
-            - { id: '15', label: '15', x: 80, y: 75, tone: filled }
-            - { id: '55', label: '55', x: 200, y: 75, tone: filled }
-            - { id: '7', label: '7', x: 50, y: 130 }
-            - { id: '22', label: '22', x: 110, y: 130 }
-            - { id: '44', label: '44', x: 170, y: 130 }
-            - { id: '88', label: '88', x: 230, y: 130 }
+            - { id: '30', label: '30', x: 180, y: 30 }
+            - { id: '15', label: '15', x: 100, y: 88, tone: filled }
+            - { id: '55', label: '55', x: 260, y: 88, tone: filled }
+            - { id: '7', label: '7', x: 60, y: 150 }
+            - { id: '22', label: '22', x: 140, y: 150 }
+            - { id: '44', label: '44', x: 220, y: 150 }
+            - { id: '88', label: '88', x: 300, y: 150 }
+            - { id: n7l, label: 'NULL', x: 40, y: 230, shape: box, width: 38, height: 22, fontSize: 9 }
+            - { id: n7r, label: 'NULL', x: 80, y: 230, shape: box, width: 38, height: 22, fontSize: 9 }
+            - { id: n22l, label: 'NULL', x: 120, y: 230, shape: box, width: 38, height: 22, fontSize: 9 }
+            - { id: n22r, label: 'NULL', x: 160, y: 230, shape: box, width: 38, height: 22, fontSize: 9 }
+            - { id: n44l, label: 'NULL', x: 200, y: 230, shape: box, width: 38, height: 22, fontSize: 9 }
+            - { id: n44r, label: 'NULL', x: 240, y: 230, shape: box, width: 38, height: 22, fontSize: 9 }
+            - { id: n88l, label: 'NULL', x: 280, y: 230, shape: box, width: 38, height: 22, fontSize: 9 }
+            - { id: n88r, label: 'NULL', x: 320, y: 230, shape: box, width: 38, height: 22, fontSize: 9 }
           edges:
             - { from: '30', to: '15' }
             - { from: '30', to: '55' }
@@ -782,6 +838,14 @@ questions:
             - { from: '15', to: '22' }
             - { from: '55', to: '44' }
             - { from: '55', to: '88' }
+            - { from: '7', to: n7l }
+            - { from: '7', to: n7r }
+            - { from: '22', to: n22l }
+            - { from: '22', to: n22r }
+            - { from: '44', to: n44l }
+            - { from: '44', to: n44r }
+            - { from: '88', to: n88l }
+            - { from: '88', to: n88r }
     answers: ['3']
     explanation: |
       선택지 1: 루트의 색과 3-노드 표현이 2-3-4 트리 대응과 맞지 않는다.
@@ -888,7 +952,7 @@ questions:
 
   - id: e17-28
     type: multiple-choice
-    prompt: 플로이드 알고리즘을 적용한 최종 상태 $D^{(4)}$의 (a)~(d)값 중 가장 작은 값을 갖는 것은?
+    prompt: 주어진 그래프에 대해서 플로이드 알고리즘을 적용한 초기 상태 $D^{(0)}$와 최종 상태 $D^{(4)}$가 다음과 같을 때 최종 상태의 (a)~(d)값 중에서 가장 작은 값을 갖는 것은?
     passageRefs: [g17-floyd-graph-28, g17-floyd-matrices-28]
     choices:
       - { id: '1', text: '(a)' }

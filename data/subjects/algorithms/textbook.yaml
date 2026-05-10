@@ -1516,10 +1516,46 @@ questions:
     type: multiple-choice
     prompt: LCS 길이를 구하는 점화식으로 바른 것은?
     choices:
-      - { id: '1', text: '기저값 0, 문자가 같으면 대각선+1, 다르면 두 후보의 min' }
-      - { id: '2', text: '기저값 0, 문자가 같으면 대각선+1, 다르면 위쪽과 왼쪽 후보의 max' }
-      - { id: '3', text: '기저값 1, 문자가 같으면 대각선+1, 다르면 두 후보의 max' }
-      - { id: '4', text: '기저값 0, 문자가 다르면 대각선+1, 같으면 두 후보의 max' }
+      - id: '1'
+        text: |
+          $$
+          LCS(i,j)=
+          \begin{cases}
+          0 & i=0 \text{ 또는 } j=0\text{인 경우} \\
+          LCS(i-1,j-1)+1 & x_i=y_j\text{인 경우} \\
+          \min\{LCS(i,j-1), LCS(i-1,j)\} & x_i \ne y_j\text{인 경우}
+          \end{cases}
+          $$
+      - id: '2'
+        text: |
+          $$
+          LCS(i,j)=
+          \begin{cases}
+          0 & i=0 \text{ 또는 } j=0\text{인 경우} \\
+          LCS(i-1,j-1)+1 & x_i=y_j\text{인 경우} \\
+          \max\{LCS(i,j-1), LCS(i-1,j)\} & x_i \ne y_j\text{인 경우}
+          \end{cases}
+          $$
+      - id: '3'
+        text: |
+          $$
+          LCS(i,j)=
+          \begin{cases}
+          1 & i=0 \text{ 또는 } j=0\text{인 경우} \\
+          LCS(i-1,j-1)+1 & x_i \ne y_j\text{인 경우} \\
+          \max\{LCS(i,j-1), LCS(i-1,j)\} & x_i=y_j\text{인 경우}
+          \end{cases}
+          $$
+      - id: '4'
+        text: |
+          $$
+          LCS(i,j)=
+          \begin{cases}
+          0 & i=0 \text{ 또는 } j=0\text{인 경우} \\
+          LCS(i-1,j-1)+1 & x_i \ne y_j\text{인 경우} \\
+          \max\{LCS(i,j-1), LCS(i-1,j)\} & x_i=y_j\text{인 경우}
+          \end{cases}
+          $$
     answers: ['2']
     explanation: |
       선택지 1: 문자가 다를 때는 최소가 아니라 최대를 선택해야 한다.
