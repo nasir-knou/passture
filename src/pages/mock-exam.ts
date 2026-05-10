@@ -7,7 +7,7 @@ import {
 } from '../lib/mock-exam-session';
 import type { OrderMode, PracticeOptions } from '../lib/quiz-session';
 import { loadQuestionFile } from '../lib/data-loader';
-import { escapeHtml, renderFooter, renderTopNav } from './shared';
+import { escapeHtml, renderFooter, renderTopNav, sourceKindLabel } from './shared';
 
 export function renderMockExamPage(catalog: Catalog): HTMLElement {
   const page = document.createElement('main');
@@ -94,13 +94,6 @@ function renderSubjectCard(
 }
 
 function renderSourceRow(source: CatalogSource, subjectId: string, subjectTitle: string): string {
-  const kindLabel: Record<string, string> = {
-    exam: '기말시험',
-    textbook: '기본서',
-    workbook: '워크북',
-    lecture: '강의',
-    intensive: '특강',
-  };
   return `
     <label class="check-row">
       <input
@@ -119,7 +112,7 @@ function renderSourceRow(source: CatalogSource, subjectId: string, subjectTitle:
           ${escapeHtml(source.title)}
           <span class="source-count" data-source-count data-source-path="${escapeHtml(source.path)}">${renderQuestionCountText(source.questionCount)}</span>
         </strong>
-        <small>${kindLabel[source.kind] ?? source.kind}${source.year ? ` · ${source.year}` : ''}</small>
+        <small>${sourceKindLabel(source.kind)}</small>
       </span>
     </label>
   `;

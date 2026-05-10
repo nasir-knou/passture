@@ -24,7 +24,7 @@ export function sourceKindLabel(kind: SourceKind): string {
     case 'lecture':
       return '강의';
     case 'intensive':
-      return '특강';
+      return '강의';
   }
 }
 

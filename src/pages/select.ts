@@ -10,7 +10,7 @@ import {
 } from '../lib/quiz-session';
 import { loadQuestionFile } from '../lib/data-loader';
 import { loadBookmarks, loadWrongAnswers } from '../lib/storage';
-import { escapeHtml, renderFooter, renderTopNav } from './shared';
+import { escapeHtml, renderFooter, renderTopNav, sourceKindLabel } from './shared';
 
 export function renderSelectPage(catalog: Catalog): HTMLElement {
   const page = document.createElement('main');
@@ -188,18 +188,7 @@ function hydrateMissingQuestionCounts(page: HTMLElement): void {
 }
 
 function sourceDetailLabel(source: CatalogSource): string {
-  switch (source.kind) {
-    case 'exam':
-      return '기말시험';
-    case 'textbook':
-      return '기본서';
-    case 'workbook':
-      return '워크북';
-    case 'lecture':
-      return '강의';
-    case 'intensive':
-      return '특강';
-  }
+  return sourceKindLabel(source.kind);
 }
 
 function readSubjectId(catalog: Catalog): string | undefined {
