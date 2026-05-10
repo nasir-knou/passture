@@ -106,6 +106,25 @@ passages:
         - { from: a, to: c, curve: 46 }
         - { from: a, to: c, curve: -46 }
 
+  - id: g18-complete-graph-56-01
+    type: diagram
+    diagram:
+      type: simple-graph
+      width: 360
+      height: 280
+      nodes:
+        - { id: top, label: top, x: 180, y: 30, radius: 8, hideLabel: true }
+        - { id: left, label: left, x: 70, y: 235, radius: 8, hideLabel: true }
+        - { id: center, label: center, x: 180, y: 150, radius: 8, hideLabel: true }
+        - { id: right, label: right, x: 290, y: 235, radius: 8, hideLabel: true }
+      edges:
+        - { from: top, to: left }
+        - { from: top, to: center }
+        - { from: top, to: right }
+        - { from: left, to: center }
+        - { from: center, to: right }
+        - { from: left, to: right }
+
   - id: g18-dfa-60-desc-01
     type: text
     body: |
@@ -601,9 +620,7 @@ questions:
   - id: e18-21
     type: multiple-choice
     prompt: 다음 그래프 $G$에 관한 설명으로 부적절한 것은?
-    images:
-      - path: images/subjects/discrete-math/past-exams/2018/questions/q56.png
-        alt: 2018년 이산수학 기말 56번 문항 이미지
+    passageRefs: [g18-complete-graph-56-01]
     choices:
       - { id: '1', text: '$G$는 완전그래프이다.' }
       - { id: '2', text: '$G$는 정규그래프이다.' }
