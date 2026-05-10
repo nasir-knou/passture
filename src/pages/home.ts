@@ -10,14 +10,13 @@ export function renderHomePage(catalog: Catalog): HTMLElement {
       const sources = subject.sources.length
         ? subject.sources
             .map(
-              (source) =>
-                `<li>${escapeHtml(source.title)} · ${sourceKindLabel(source.kind)}</li>`,
+              (source) => `<li>${escapeHtml(source.title)} · ${sourceKindLabel(source.kind)}</li>`,
             )
             .join('')
         : '<li>등록된 출처 없음</li>';
 
       return `
-        <article class="card">
+        <article class="card subject-card">
           <div>
             <h2>${escapeHtml(subject.title)}</h2>
             <p class="muted">${subject.sources.length}개 출처</p>

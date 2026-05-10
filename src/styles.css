@@ -292,6 +292,7 @@ h1 {
 
 .danger-button {
   border-color: #d6a28a;
+  background: #fff7ed;
   color: #9a3412;
 }
 
@@ -369,6 +370,15 @@ h1 {
     transform 0.18s ease,
     box-shadow 0.18s ease,
     border-color 0.18s ease;
+}
+
+.subject-card {
+  grid-template-rows: auto 1fr auto;
+  align-content: stretch;
+}
+
+.subject-card .card-action {
+  align-self: end;
 }
 
 .card::before {
@@ -649,6 +659,36 @@ h1 {
   font-weight: 800;
 }
 
+.empty-state-card {
+  display: grid;
+  gap: 10px;
+  padding: 22px;
+  border: 1px dashed var(--field-line);
+  border-radius: 8px;
+  background: var(--paper);
+  color: var(--ink-soft);
+  box-shadow: var(--shadow-soft);
+}
+
+.empty-state-card.compact {
+  padding: 16px;
+  box-shadow: none;
+}
+
+.empty-state-card strong {
+  color: var(--ink);
+}
+
+.empty-state-card p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+.empty-state-card .primary-link {
+  justify-self: start;
+  margin-top: 8px;
+}
+
 .segmented-field {
   min-width: 0;
   margin: 0;
@@ -667,6 +707,25 @@ h1 {
 
 .source-field {
   padding-top: 12px;
+}
+
+.source-search {
+  display: grid;
+  gap: 8px;
+  margin-top: 10px;
+  color: var(--ink-soft);
+  font-weight: 800;
+}
+
+.source-search input {
+  width: 100%;
+  min-height: 42px;
+  padding: 0 12px;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  background: #ffffff;
+  color: var(--ink);
+  font: inherit;
 }
 
 .source-count {
@@ -766,6 +825,119 @@ h1 {
   display: block;
   margin-top: 4px;
   color: var(--ink-faint);
+}
+
+.check-row[hidden] {
+  display: none;
+}
+
+.selection-summary {
+  display: grid;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.selection-summary > div:first-child,
+.result-report-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.selection-summary > div:first-child > div,
+.result-report-header > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.selected-chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.selected-chip {
+  display: inline-flex;
+  min-height: 34px;
+  align-items: center;
+  gap: 8px;
+  padding: 0 10px;
+  border: 1px solid rgba(18, 63, 52, 0.16);
+  border-radius: 999px;
+  background: var(--field-soft);
+  color: var(--field);
+  font-weight: 800;
+}
+
+.selected-chip small {
+  color: var(--ink-soft);
+  font-weight: 800;
+}
+
+.empty-state-inline {
+  color: var(--ink-faint);
+  font-weight: 800;
+}
+
+.status-badge {
+  display: inline-flex;
+  min-height: 28px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 9px;
+  border: 1px solid #d8dfd8;
+  border-radius: 999px;
+  background: #fbfcfa;
+  color: #43515f;
+  font-size: 0.82rem;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.status-badge.is-correct {
+  border-color: var(--field-line);
+  background: var(--field-soft);
+  color: var(--field);
+}
+
+.status-badge.source-kind {
+  min-height: 24px;
+  padding-inline: 8px;
+  font-size: 0.78rem;
+}
+
+.status-badge.source-kind-exam {
+  border-color: var(--field-line);
+  background: var(--field-soft);
+  color: var(--field);
+}
+
+.status-badge.source-kind-material {
+  border-color: #9db6cb;
+  background: #eef5fb;
+  color: var(--blueprint);
+}
+
+.status-badge.source-kind-lecture {
+  border-color: #e2b26f;
+  background: var(--amber-soft);
+  color: #8a4b0f;
+}
+
+.status-badge.is-wrong {
+  border-color: #f3c99a;
+  background: #fff7ed;
+  color: #9a3412;
+}
+
+.status-badge.is-unanswered {
+  border-color: #d2dbd3;
+  background: #f8faf7;
+  color: #667483;
 }
 
 .action-row {
@@ -902,6 +1074,28 @@ h1 {
   border-radius: 8px;
   background: var(--paper);
   box-shadow: var(--shadow-soft);
+}
+
+.collapsible-map summary {
+  cursor: pointer;
+  color: var(--field);
+  font-weight: 900;
+  list-style: none;
+}
+
+.collapsible-map summary::-webkit-details-marker {
+  display: none;
+}
+
+.collapsible-map summary::after {
+  content: '접기';
+  margin-left: 10px;
+  color: var(--ink-faint);
+  font-size: 0.86rem;
+}
+
+.collapsible-map:not([open]) summary::after {
+  content: '펼치기';
 }
 
 .question-map-header {
@@ -1081,6 +1275,83 @@ h1 {
 .question-map-legend .legend-incorrect {
   border-color: #b45309;
   background: #fff7ed;
+}
+
+.question-map-legend .legend-unanswered {
+  border-color: #d2dbd3;
+  background: #f8faf7;
+}
+
+.result-report,
+.result-source-set {
+  display: grid;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.result-report-header strong {
+  font-size: 1.05rem;
+}
+
+.result-percent-bar {
+  width: 100%;
+  height: 14px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--paper-strong);
+}
+
+.result-percent-bar span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--field), #2f7d5b);
+}
+
+.result-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.source-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 10px;
+}
+
+.source-stat-card {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid rgba(18, 63, 52, 0.14);
+  border-radius: 6px;
+  background: var(--paper-muted);
+}
+
+.source-stat-card strong,
+.source-stat-card small {
+  display: block;
+  min-width: 0;
+}
+
+.source-stat-card small {
+  margin-top: 4px;
+  color: var(--ink-faint);
+}
+
+.source-stat-meta {
+  flex: 0 0 auto;
+  text-align: right;
+}
+
+.source-stat-meta span {
+  color: var(--field);
+  font-size: 1.4rem;
+  font-weight: 900;
 }
 
 .question-card {
@@ -1838,7 +2109,8 @@ h1 {
   }
 
   .subject-switcher,
-  .subject-summary {
+  .subject-summary,
+  .mock-time-summary dl {
     grid-template-columns: 1fr;
   }
 
@@ -1873,6 +2145,47 @@ h1 {
   .grading-actions {
     display: grid;
     justify-content: stretch;
+  }
+
+  .segmented-field {
+    padding: 14px;
+  }
+
+  .source-stat-card,
+  .selection-summary > div:first-child,
+  .result-report-header {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .source-stat-meta {
+    text-align: left;
+  }
+
+  .result-map .question-map-grid {
+    grid-template-columns: repeat(6, 32px);
+    max-height: 176px;
+    overflow-y: auto;
+  }
+
+  .selected-chip,
+  .status-badge {
+    max-width: 100%;
+  }
+
+  .mock-config-item {
+    grid-template-columns: 1fr;
+    align-items: stretch;
+  }
+
+  .mock-config-item strong,
+  .mock-config-item span {
+    white-space: normal;
+  }
+
+  .mock-config-item em,
+  .mock-config-item small {
+    justify-self: start;
   }
 }
 
@@ -2667,6 +2980,94 @@ h1 {
   font-weight: bold;
   margin: 0;
   color: var(--ink);
+}
+
+.mock-config-summary {
+  display: grid;
+  gap: 14px;
+}
+
+.mock-config-summary-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.mock-config-summary p {
+  margin: 0;
+  color: var(--ink-soft);
+  font-weight: 800;
+  line-height: 1.6;
+}
+
+.mock-config-list {
+  display: grid;
+  gap: 8px;
+}
+
+.mock-config-item {
+  display: grid;
+  grid-template-columns: minmax(120px, 1fr) minmax(180px, 1.5fr) auto auto;
+  gap: 10px;
+  align-items: center;
+  min-width: 0;
+  padding: 10px 12px;
+  border: 1px solid rgba(18, 63, 52, 0.14);
+  border-radius: 6px;
+  background: var(--paper-muted);
+}
+
+.mock-config-item strong,
+.mock-config-item span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mock-config-item em,
+.mock-config-item small {
+  display: inline-flex;
+  min-height: 28px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 9px;
+  border-radius: 999px;
+  font-style: normal;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.mock-config-item em {
+  border: 1px solid var(--field-line);
+  background: var(--field-soft);
+  color: var(--field);
+}
+
+.mock-config-item small {
+  border: 1px solid #d8dfd8;
+  background: #ffffff;
+  color: var(--ink-soft);
+}
+
+.mock-config-total {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 2px;
+  color: var(--ink);
+  font-weight: 900;
+}
+
+.mock-config-total span {
+  display: inline-flex;
+  min-height: 32px;
+  align-items: center;
+  padding: 0 10px;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  background: var(--paper);
 }
 
 .mock-exam-setup .start-panel {
