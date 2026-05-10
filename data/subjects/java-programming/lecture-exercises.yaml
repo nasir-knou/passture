@@ -20,15 +20,24 @@ passages:
     type: diagram
     diagram:
       type: simple-graph
-      width: 480
-      height: 230
+      width: 560
+      height: 245
       nodes:
-        - { id: one-alpha, label: 'package one / Alpha', x: 120, y: 70 }
-        - { id: one-beta, label: 'package one / Beta', x: 120, y: 160 }
-        - { id: two-alphasub, label: 'package two / AlphaSub', x: 350, y: 70 }
-        - { id: two-gamma, label: 'package two / Gamma', x: 350, y: 160 }
+        - { id: package-one-box, label: package-one, hideLabel: true, shape: box, width: 140, height: 180, x: 160, y: 125, fillColor: '#f8fbfd', strokeColor: '#3b74b9', strokeWidth: 2 }
+        - { id: package-two-box, label: package-two, hideLabel: true, shape: box, width: 150, height: 180, x: 400, y: 125, fillColor: '#f8fbfd', strokeColor: '#3b74b9', strokeWidth: 2 }
+        - { id: package-one-title, label: package, hideNode: true, fontSize: 18, textColor: '#9b0066', x: 160, y: 58 }
+        - { id: package-one-name, label: one, hideNode: true, fontSize: 18, x: 160, y: 84 }
+        - { id: package-two-title, label: package, hideNode: true, fontSize: 18, textColor: '#9b0066', x: 400, y: 58 }
+        - { id: package-two-name, label: two, hideNode: true, fontSize: 18, x: 400, y: 84 }
+        - { id: one-alpha, label: Alpha, shape: box, width: 90, height: 36, x: 160, y: 130, fillColor: '#d9d9d9', strokeColor: '#d9d9d9', strokeWidth: 1, fontSize: 20 }
+        - { id: one-beta, label: Beta, shape: box, width: 90, height: 36, x: 160, y: 190, fillColor: '#d9d9d9', strokeColor: '#d9d9d9', strokeWidth: 1, fontSize: 20 }
+        - { id: two-alphasub, label: AlphaSub, shape: box, width: 112, height: 36, x: 400, y: 130, fillColor: '#d9d9d9', strokeColor: '#d9d9d9', strokeWidth: 1, fontSize: 20 }
+        - { id: two-gamma, label: Gamma, shape: box, width: 112, height: 36, x: 400, y: 190, fillColor: '#d9d9d9', strokeColor: '#d9d9d9', strokeWidth: 1, fontSize: 20 }
+        - { id: inherit-label, label: '상속 관계', hideNode: true, fontSize: 18, x: 280, y: 116 }
+        - { id: alpha-edge, label: alpha-edge, hideNode: true, hideLabel: true, x: 207, y: 130 }
+        - { id: alphasub-edge, label: alphasub-edge, hideNode: true, hideLabel: true, x: 343, y: 130 }
       edges:
-        - { from: two-alphasub, to: one-alpha, label: '상속 관계', directed: true }
+        - { from: alphasub-edge, to: alpha-edge, directed: true }
 
   - id: g04-circle-code
     type: code

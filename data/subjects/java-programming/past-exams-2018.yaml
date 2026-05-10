@@ -17,11 +17,15 @@ passages:
   - id: g18-overriding-options-01
     type: code
     language: java
+    highlights:
+      - protected double compute(int x, int y)
     body: |
-      // 부모 클래스의 메소드
       protected double compute(int x, int y)
 
-      // 서브 클래스에서의 재정의 후보
+  - id: g18-overriding-choice-list-01
+    type: code
+    language: java
+    body: |
       a. protected double compute(int x, int y)
       b. public double compute(int x, int y)
       c. protected int compute(int x, int y)
@@ -31,7 +35,10 @@ passages:
     type: code
     language: java
     highlights:
-      - new CSuper()
+      - new CSuper() {
+      - public int b = 20;
+      - public void method1() { System.out.println("sub1"); }
+      - public void method3() { System.out.println("sub3"); }
     body: |
       class CSuper {
         public int a = 10;
@@ -48,6 +55,12 @@ passages:
           };
         }
       }
+
+  - id: g18-generic-data-01
+    type: code
+    language: java
+    body: |
+      Data<int> d = new Data<>();
 
   - id: g18-string-identity-01
     type: code
@@ -79,6 +92,7 @@ passages:
     highlights:
       - Thread.yield()
       - my_thread1.join(); my_thread2.join()
+      - __________
     body: |
       class MyThread implements Runnable {
         public void run() {
@@ -90,7 +104,7 @@ passages:
       }
 
       public class JoinTest {
-        public static void main(String args[]) throws InterruptedException {
+        public static void main(String args[]) __________ {
           Thread my_thread1 = new Thread(new MyThread(), "thd1");
           Thread my_thread2 = new Thread(new MyThread(), "thd2");
           my_thread1.start(); my_thread2.start();
@@ -274,8 +288,8 @@ questions:
 
   - id: e18-05
     type: multiple-choice
-    passageRefs: [g18-overriding-options-01]
-    prompt: 부모 클래스의 `protected double compute(int x, int y)`를 서브 클래스에서 재정의하기 위한 메소드 형식으로 적합한 것을 모두 고른 것은?
+    passageRefs: [g18-overriding-options-01, g18-overriding-choice-list-01]
+    prompt: 아래 메소드가 부모 클래스에서 정의되어 있으나 서브 클래스에서 재정의하고자 한다. 재정의를 위한 메소드 형식으로 적합한 것을 모두 고른 것은?
     choices:
       - { id: '1', text: 'a' }
       - { id: '2', text: 'a, b' }
@@ -283,10 +297,10 @@ questions:
       - { id: '4', text: 'c, d' }
     answers: ['2']
     explanation: |
-      선택지 1: a는 접근 수준, 반환형, 매개변수가 모두 같아 재정의 가능하지만 b도 가능하다.
-      선택지 2: b는 public으로 접근 범위를 넓힌 재정의라 가능하므로 맞다.
-      선택지 3: c는 반환형이 int로 달라 불가능하다.
-      선택지 4: c는 반환형 오류, d는 private이고 매개변수도 달라 오버라이딩이 아니다.
+      선택지 1: a는 접근 수준, 반환형, 매개변수가 모두 같아 재정의 가능하지만 b도 가능하므로 일부만 고른 것이다.
+      선택지 2: a는 원형이 같고, b는 public으로 접근 범위를 넓힌 형태라 둘 다 재정의 가능하므로 정답이다.
+      선택지 3: c는 반환형이 int로 달라 재정의할 수 없으므로 포함하면 안 된다.
+      선택지 4: c는 반환형이 다르고, d는 매개변수 목록이 다르며 접근 범위도 private으로 좁아져 재정의가 아니다.
 
       핵심 개념:
       오버라이딩은 메소드 이름과 매개변수 목록이 같아야 한다.
@@ -332,10 +346,10 @@ questions:
       - { id: '4', text: '4개' }
     answers: ['3']
     explanation: |
-      선택지 1: public 클래스 외에 CSuper와 익명 클래스가 있어 부족하다.
-      선택지 2: 익명 클래스 파일을 빠뜨렸다.
-      선택지 3: CSuper, AnonymousTest, 익명 클래스 파일이 생성되어 맞다.
-      선택지 4: 별도 네 번째 클래스는 없다.
+      선택지 1: `AnonymousTest.class` 하나만 생성되는 것이 아니다. 같은 소스에 정의된 `CSuper`와 익명 클래스도 각각 클래스 파일로 컴파일된다.
+      선택지 2: `CSuper.class`와 `AnonymousTest.class`만 세면 익명 클래스의 클래스 파일을 빠뜨린 것이다.
+      선택지 3: `CSuper.class`, `AnonymousTest.class`, `AnonymousTest$1.class`처럼 익명 클래스 파일까지 총 3개가 생성되므로 정답이다.
+      선택지 4: 코드에 이름 있는 클래스는 `CSuper`와 `AnonymousTest` 두 개이고 익명 클래스는 하나뿐이므로 네 번째 클래스 파일은 생성되지 않는다.
 
       핵심 개념:
       하나의 소스 파일에 여러 클래스가 있으면 각 클래스별 .class 파일이 생성된다.
@@ -368,7 +382,8 @@ questions:
 
   - id: e18-09
     type: multiple-choice
-    prompt: '`Data`가 제네릭 클래스일 때 `Data<int> d = new Data<>();` 문장의 문제점을 바르게 설명한 것은?'
+    passageRefs: [g18-generic-data-01]
+    prompt: Data가 제네릭 클래스일 때, 다음 문장의 문제점이 무엇인지 바르게 설명한 것은?
     choices:
       - { id: '1', text: '제네릭 클래스의 타입 매개변수로 기본 자료형을 사용할 수 없다.' }
       - { id: '2', text: '대입 연산자의 우측에 있는 <>를 <int>로 바꾸어야 한다.' }
@@ -376,10 +391,10 @@ questions:
       - { id: '4', text: '문제가 없다.' }
     answers: ['1']
     explanation: |
-      선택지 1: 제네릭 타입 인자에는 참조형만 올 수 있으므로 int는 사용할 수 없다.
-      선택지 2: 오른쪽 diamond 문제가 아니라 왼쪽의 기본형 타입 인자가 문제다.
-      선택지 3: Raw 타입 설명과 맞지 않는다.
-      선택지 4: 컴파일 문제가 있으므로 틀렸다.
+      선택지 1: 제네릭 클래스의 타입 매개변수에는 참조 자료형만 올 수 있으므로 기본 자료형 int는 사용할 수 없어 정답이다.
+      선택지 2: 오른쪽 diamond 연산자가 문제가 아니라 왼쪽 타입 인자 int가 문제다.
+      선택지 3: Raw 타입은 타입 인자를 생략한 형태이며, 타입 매개변수를 Object로 써야 한다는 뜻이 아니다.
+      선택지 4: 기본 자료형을 타입 인자로 사용했으므로 문제가 있다.
 
       핵심 개념:
       Java 제네릭 타입 인자는 참조형이어야 한다.
@@ -594,22 +609,24 @@ questions:
       - { id: '4', text: 'throws InterruptedException' }
     answers: ['4']
     explanation: |
-      선택지 1: throws 뒤에 예외 타입이 빠져 있다.
-      선택지 2: extends는 상속 키워드다.
-      선택지 3: join이 요구하는 예외 타입이 아니다.
-      선택지 4: join은 InterruptedException 처리가 필요하므로 맞다.
+      선택지 1: `throws`는 예외를 호출자에게 전파하겠다는 키워드지만, 뒤에 전파할 예외 타입이 없어 메소드 선언으로 완성되지 않는다.
+      선택지 2: `extends`는 클래스 상속이나 인터페이스 확장에 쓰는 키워드이므로 메소드의 예외 전파 절에 들어갈 수 없다.
+      선택지 3: `ArithmeticException`은 산술 연산 오류를 나타내는 런타임 예외이며, 이 코드의 `join()` 호출이 요구하는 예외 타입이 아니다.
+      선택지 4: `Thread.join()`은 `InterruptedException`을 발생시킬 수 있는 메소드이므로 `main` 선언의 빈칸에는 `throws InterruptedException`이 들어가는 것이 적절하다.
 
       핵심 개념:
       checked exception은 catch하거나 throws로 전파해야 한다.
-      Thread.join()은 InterruptedException을 발생시킬 수 있다.
-      throws 절에는 구체적인 예외 타입을 적는다.
+      `Thread.join()`은 대기 중 인터럽트될 수 있어 `InterruptedException` 처리가 필요하다.
+      `throws` 절에는 키워드와 함께 구체적인 예외 타입을 적어야 한다.
       상속 키워드와 예외 전파 키워드를 구분해야 한다.
     tags: [exception, thread]
 
   - id: e18-19
     type: multiple-choice
     passageRefs: [g18-awt-list-01]
-    prompt: 다음 그림이 보여주는 AWT 컨트롤 클래스는 무엇인가?
+    prompt: |
+      다음 그림이 보여주는 AWT 컨트롤 클래스는 무엇인가?
+      자바프로그래밍 교재 개정에 따른 시험범위 제외
     choices:
       - { id: '1', text: 'Button' }
       - { id: '2', text: 'Canvas' }
@@ -632,7 +649,9 @@ questions:
   - id: e18-20
     type: multiple-choice
     passageRefs: [g18-awt-list-01]
-    prompt: 위 문제의 그림에 나타나는 항목을 마우스로 선택(싱글 클릭)할 때와 더블 클릭할 때 발생하는 이벤트는 각각 무엇인가?
+    prompt: |
+      위 문제의 그림에 나타나는 항목을 마우스로 선택(싱글 클릭)할 때와 더블 클릭할 때 발생하는 이벤트는 각각 무엇인가?
+      자바프로그래밍 교재 개정에 따른 시험범위 제외
     choices:
       - { id: '1', text: 'ActionEvent, ItemEvent' }
       - { id: '2', text: 'ItemEvent, ActionEvent' }
@@ -655,7 +674,9 @@ questions:
   - id: e18-21
     type: multiple-choice
     passageRefs: [g18-awt-gridlayout-01]
-    prompt: 다음 그림을 보고 판단할 때, 프로그램에서 사용된 배치관리자는 무엇이라 생각되는가?
+    prompt: |
+      다음 그림을 보고 판단할 때, 프로그램에서 사용된 배치관리자는 무엇이라 생각되는가?
+      자바프로그래밍 교재 개정에 따른 시험범위 제외
     choices:
       - { id: '1', text: 'GridLayout' }
       - { id: '2', text: 'FlowLayout' }
@@ -678,7 +699,9 @@ questions:
   - id: e18-22
     type: multiple-choice
     passageRefs: [g18-window-event-01]
-    prompt: 프레임 윈도우 우측 모서리에 있는 닫기 버튼을 눌렀을 때 윈도우를 종료시키려면 먼저 해당 리스너를 처리하는 클래스가 필요하다. 밑줄 ㄱ에 들어갈 내용으로 적당한 것은?
+    prompt: |
+      프레임 윈도우 우측 모서리에 있는 닫기 버튼을 눌렀을 때 윈도우를 종료시키려면 먼저 해당 리스너를 처리하는 클래스가 필요하다. 밑줄 ㄱ에 들어갈 내용으로 적당한 것은?
+      자바프로그래밍 교재 개정에 따른 시험범위 제외
     choices:
       - { id: '1', text: 'implements WindowListener' }
       - { id: '2', text: 'implements WindowAdapter' }
@@ -701,7 +724,9 @@ questions:
   - id: e18-23
     type: multiple-choice
     passageRefs: [g18-window-event-01]
-    prompt: 이벤트 등록을 위해 밑줄 ㄴ에 들어갈 내용은?
+    prompt: |
+      이벤트 등록을 위해 밑줄 ㄴ에 들어갈 내용은?
+      자바프로그래밍 교재 개정에 따른 시험범위 제외
     choices:
       - { id: '1', text: 'addWindowListener(new MyListener())' }
       - { id: '2', text: 'addWindowListener(new MyFrame())' }

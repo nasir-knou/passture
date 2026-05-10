@@ -8,7 +8,13 @@ passages:
   - id: g17-anonymous-class-01
     type: code
     language: java
-    highlights: ['new CSuper()']
+    highlights:
+      - |
+        new CSuper() {
+          public int b = 20;
+          public void method1() { System.out.println("sub1"); }
+          public void method3() { System.out.println("sub3"); }
+        };
     body: |
       ... ...
       CSuper sub = new CSuper() {
@@ -57,7 +63,11 @@ passages:
   - id: g17-thread-join-01
     type: code
     language: java
-    highlights: ['Thread.yield();']
+    highlights:
+      - /* ㄱ */ ______
+      - /* ㄴ */ ______________________
+      - /* ㄷ */ ______
+      - Thread.yield();
     body: |
       public class JoinTest {
         public static void main(...) /* ㄱ */ ______ InterruptedException {
@@ -81,6 +91,11 @@ passages:
   - id: g17-jdbc-01
     type: code
     language: java
+    highlights:
+      - /* ㄱ */ __________
+      - /* ㄴ */ __________
+      - /* ㄷ */ __________
+      - /* ㄹ */ __________
     body: |
       /* ㄱ */ __________ conn = null;
       /* ㄴ */ __________ stmt = null;
@@ -214,15 +229,15 @@ questions:
       - { id: '4', text: 'CSuper 클래스를 매개변수화하였으며 객체 생성 시 자료형을 제공한다.' }
     answers: ['2']
     explanation: |
-      선택지 1: CSuper 자체를 새로 정의하는 것이 아니다.
-      선택지 2: CSuper를 상속한 익명 클래스 몸체를 정의하고 즉시 객체를 생성하므로 맞다.
-      선택지 3: Java 클래스 다중 상속이 아니다.
-      선택지 4: 제네릭 매개변수화와 관련이 없다.
+      선택지 1: 굵게 표시된 구문은 이미 존재하는 `CSuper` 클래스를 새로 정의하는 선언문이 아니라, `CSuper`를 기반으로 한 익명 하위 클래스의 객체 생성식이다.
+      선택지 2: `new CSuper() { ... }`는 `CSuper`를 상속받는 이름 없는 클래스를 정의하면서 그 객체를 즉시 생성하는 구문이므로 정답이다.
+      선택지 3: Java 클래스는 여러 클래스를 동시에 상속할 수 없으며, 이 구문도 `CSuper`와 익명 클래스로부터 다중 상속받는다는 뜻이 아니다.
+      선택지 4: 굵게 표시된 중괄호 블록은 익명 클래스 몸체이지 제네릭 타입 인자를 제공하는 매개변수화 문법이 아니다.
 
       핵심 개념:
       익명 클래스는 이름 없는 하위 클래스를 즉석에서 정의하는 문법이다.
-      `new 부모타입() { ... }` 형태로 생성과 정의가 동시에 일어난다.
-      익명 클래스 내부에서 메소드를 재정의하거나 멤버를 추가할 수 있다.
+      `new 부모타입() { ... }` 형태에서는 부모 타입의 생성자를 호출하면서 익명 하위 클래스 몸체를 함께 작성한다.
+      이 지문에서는 `method1()`을 재정의하고 `b`, `method3()` 같은 멤버를 익명 클래스 안에 추가했다.
       일회성 구현이나 이벤트 처리에서 자주 쓰인다.
     tags: [anonymous-class]
 
@@ -462,15 +477,15 @@ questions:
       - { id: '4', text: 'interrupt' }
     answers: ['2']
     explanation: |
-      선택지 1: throw는 예외 객체를 직접 던질 때 사용한다.
-      선택지 2: throws는 메소드 선언부에서 예외 전파를 표시하므로 맞다.
-      선택지 3: Java 동기화 키워드는 synchronized이며 예외 전파와 무관하다.
-      선택지 4: interrupt는 스레드 인터럽트 동작이다.
+      선택지 1: `throw`는 메소드 안에서 예외 객체를 직접 발생시킬 때 쓰는 실행문이므로, `main(...) ____ InterruptedException` 형태의 선언부 빈칸에는 맞지 않는다.
+      선택지 2: `throws`는 메소드 선언부에서 발생 가능한 예외 타입을 호출자에게 전파한다고 표시하는 키워드이므로 ㄱ에 들어가야 한다.
+      선택지 3: `synchronize`는 Java 키워드가 아니며, 동기화 키워드인 `synchronized`도 예외 전파와는 역할이 다르다.
+      선택지 4: `interrupt`는 스레드에 인터럽트 신호를 보내는 메소드 이름으로, 예외 전파 선언에 사용하는 키워드가 아니다.
 
       핵심 개념:
       checked exception은 처리하거나 전파해야 한다.
-      메소드 선언부의 throws는 호출자에게 예외 처리를 넘긴다.
-      throw는 실제 예외 객체를 발생시키는 실행문이다.
+      `join()`은 `InterruptedException` 처리가 필요하므로 `main` 선언부에 `throws InterruptedException`을 둘 수 있다.
+      `throws`는 메소드 선언부에서 예외 전파를 알리고, `throw`는 코드 실행 중 예외 객체를 던진다.
       join()은 InterruptedException 처리가 필요하다.
     tags: [exception, thread]
 
@@ -545,7 +560,9 @@ questions:
 
   - id: e17-20
     type: multiple-choice
-    prompt: GUI 컴포넌트의 클래스 계층 구조에서 Container 클래스의 자식 클래스가 아닌 것은?
+    prompt: |
+      GUI 컴포넌트의 클래스 계층 구조에서 Container 클래스의 자식 클래스가 아닌 것은?
+      자바프로그래밍 교재 개정에 따른 시험범위 제외
     choices:
       - { id: '1', text: 'Frame' }
       - { id: '2', text: 'Panel' }
@@ -568,7 +585,9 @@ questions:
   - id: e17-21
     type: multiple-choice
     passageRefs: [g17-checkbox-flow-01]
-    prompt: 다음 결과를 보고 판단할 때, 프로그램에서 사용된 배치관리자는 무엇이라고 생각되는가?
+    prompt: |
+      다음 결과를 보고 판단할 때, 프로그램에서 사용된 배치관리자는 무엇이라고 생각되는가?
+      자바프로그래밍 교재 개정에 따른 시험범위 제외
     choices:
       - { id: '1', text: 'GridLayout' }
       - { id: '2', text: 'FlowLayout' }
@@ -590,7 +609,9 @@ questions:
 
   - id: e17-22
     type: multiple-choice
-    prompt: 이벤트 처리에 관한 설명으로 잘못된 것은 무엇인가?
+    prompt: |
+      이벤트 처리에 관한 설명으로 잘못된 것은 무엇인가?
+      자바프로그래밍 교재 개정에 따른 시험범위 제외
     choices:
       - { id: '1', text: '이벤트 처리를 위해서는 이벤트 소스에 리스너 객체를 등록해야 한다.' }
       - { id: '2', text: '하나의 이벤트 소스에는 하나의 이벤트 처리만 등록할 수 있다.' }
@@ -615,7 +636,9 @@ questions:
 
   - id: e17-23
     type: multiple-choice
-    prompt: 버튼 컴포넌트(aButton)에 ActionEvent를 등록하는 문장 `aButton.addActionListener(new A());`에서 클래스 A가 구현해야 하는 인터페이스는 무엇인가?
+    prompt: |
+      버튼 컴포넌트(aButton)에 ActionEvent를 등록하는 문장 `aButton.addActionListener(new A());`에서 클래스 A가 구현해야 하는 인터페이스는 무엇인가?
+      자바프로그래밍 교재 개정에 따른 시험범위 제외
     choices:
       - { id: '1', text: 'Action' }
       - { id: '2', text: 'ActionEvent' }
@@ -646,10 +669,10 @@ questions:
       - { id: '4', text: 'ConnectionPool, PreparedStatement, ResultStore' }
     answers: ['1']
     explanation: |
-      선택지 1: DB 연결, SQL 실행 객체, 조회 결과 집합 순서라 코드와 맞다.
-      선택지 2: 코드는 createStatement()를 사용하므로 Statement가 맞다.
-      선택지 3: ConnectionEvent와 ResultStore는 이 코드의 JDBC 기본 타입이 아니다.
-      선택지 4: ConnectionPool과 ResultStore가 맞지 않는다.
+      선택지 1: ㄱ은 DB 연결 객체 Connection, ㄴ은 createStatement()가 반환하는 Statement, ㄷ은 SELECT 결과를 받는 ResultSet이므로 정답이다.
+      선택지 2: PreparedStatement는 prepareStatement()로 만드는 매개변수 SQL 실행 객체라 이 코드의 ㄴ과 맞지 않는다.
+      선택지 3: ConnectionEvent는 연결 이벤트 객체이고 ResultStore는 표준 JDBC 결과 타입이 아니므로 맞지 않는다.
+      선택지 4: ConnectionPool은 연결 풀 개념이고 ResultStore도 표준 JDBC 타입이 아니므로 맞지 않는다.
 
       핵심 개념:
       JDBC의 Connection은 데이터베이스 연결을 나타낸다.

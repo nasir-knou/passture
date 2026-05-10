@@ -17,6 +17,7 @@
 - 코드 지문은 `passages`의 `type: code`로 분리되어 있어 재사용성과 렌더링 측면에서 적절하다.
 - 3강 접근제어 도식은 `simple-graph` diagram으로 도표화되어 있어 이미지 크롭보다 적절하다.
 - 해설은 선택지별 오답 이유와 핵심 개념을 포함하고 있어 기존 기출 데이터셋 스타일과 맞는다.
+- `multi-answer` 또는 `answers`가 2개 이상인 문항은 남아 있지 않다.
 
 ## 1~10번
 
@@ -58,6 +59,14 @@
 ## 수정 사항
 
 - 모든 강의 문제 ID와 태그를 당시 문서 규칙에 맞춰 정리했다.
+- passage화 가능한 코드/도식 지문은 `passages`와 `passageRefs`로 분리했다.
+- 원본 기준 다중선택지 문항 제거 조건을 재확인했으며, 현재 데이터셋에는 제거 대상이 없다.
+
+## 검증
+
+- `pnpm exec tsx scripts/build-data.ts` 통과.
+- `pnpm test -- --run tests/build-data.test.ts` 통과.
+- 데이터셋 기계 점검 결과: 31문항, 12개 passage 모두 참조됨, `multi-answer` 및 복수 정답 문항 0개.
 
 ## 남은 리스크
 
