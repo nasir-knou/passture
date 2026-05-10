@@ -68,14 +68,22 @@ export interface SimpleGraphDiagram {
 export interface SimpleGraphNode {
   id: string;
   label: string;
+  fillColor?: string;
   hideLabel?: boolean;
   hideNode?: boolean;
+  fontSize?: number;
   labelDx?: number;
   labelDy?: number;
   radius?: number;
+  shape?: 'circle' | 'box';
+  strokeColor?: string;
+  strokeWidth?: number;
+  textColor?: string;
   tone?: 'filled';
+  width?: number;
   x: number;
   y: number;
+  height?: number;
 }
 
 export interface SimpleGraphEdge {
@@ -146,6 +154,7 @@ export interface MemoryFreeListBlock {
 
 export interface DataTableDiagram {
   type: 'data-table';
+  cellFormat?: 'text' | 'code';
   columns: string[];
   rows: string[][];
 }

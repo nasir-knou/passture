@@ -324,6 +324,9 @@ function validateChoiceDiagram(value: unknown, fieldPath: string): void {
     if (node.hideNode !== undefined && typeof node.hideNode !== 'boolean') {
       throw new Error(`${fieldPath}.nodes[${nodeIndex}].hideNode must be boolean`);
     }
+    if (node.fontSize !== undefined) {
+      expectNumber(node.fontSize, `${fieldPath}.nodes[${nodeIndex}].fontSize`);
+    }
     if (node.labelDx !== undefined) {
       expectNumber(node.labelDx, `${fieldPath}.nodes[${nodeIndex}].labelDx`);
     }
@@ -333,8 +336,20 @@ function validateChoiceDiagram(value: unknown, fieldPath: string): void {
     if (node.radius !== undefined) {
       expectNumber(node.radius, `${fieldPath}.nodes[${nodeIndex}].radius`);
     }
+    if (node.shape !== undefined) {
+      const shape = expectString(node.shape, `${fieldPath}.nodes[${nodeIndex}].shape`);
+      if (!['circle', 'box'].includes(shape)) {
+        throw new Error(`${fieldPath}.nodes[${nodeIndex}].shape must be circle or box`);
+      }
+    }
+    if (node.width !== undefined) {
+      expectNumber(node.width, `${fieldPath}.nodes[${nodeIndex}].width`);
+    }
     expectNumber(node.x, `${fieldPath}.nodes[${nodeIndex}].x`);
     expectNumber(node.y, `${fieldPath}.nodes[${nodeIndex}].y`);
+    if (node.height !== undefined) {
+      expectNumber(node.height, `${fieldPath}.nodes[${nodeIndex}].height`);
+    }
 
     if (node.units !== undefined) {
       expectNumber(node.units, `${fieldPath}.nodes[${nodeIndex}].units`);
@@ -499,6 +514,13 @@ function validateMemoryFreeListDiagram(diagram: Record<string, unknown>, fieldPa
 }
 
 function validateDataTableDiagram(diagram: Record<string, unknown>, fieldPath: string): void {
+  if (diagram.cellFormat !== undefined) {
+    const cellFormat = expectString(diagram.cellFormat, `${fieldPath}.cellFormat`);
+    if (!['text', 'code'].includes(cellFormat)) {
+      throw new Error(`${fieldPath}.cellFormat must be text or code`);
+    }
+  }
+
   const columns = expectArray(diagram.columns, `${fieldPath}.columns`);
   if (columns.length === 0) {
     throw new Error(`${fieldPath}.columns must not be empty`);

@@ -1161,13 +1161,15 @@ h1 {
   fill: currentColor;
 }
 
-.simple-graph .simple-graph-node circle {
+.simple-graph .simple-graph-node circle,
+.simple-graph .simple-graph-node rect {
   fill: #ffffff;
   stroke: currentColor;
   stroke-width: 2.5;
 }
 
-.simple-graph .simple-graph-node-filled circle {
+.simple-graph .simple-graph-node-filled circle,
+.simple-graph .simple-graph-node-filled rect {
   fill: currentColor;
 }
 
@@ -1341,6 +1343,24 @@ h1 {
 
 .data-table-diagram td {
   background: #ffffff;
+}
+
+.data-table-diagram .data-table-code td {
+  padding: 0;
+  text-align: left;
+  vertical-align: top;
+  white-space: normal;
+}
+
+.data-table-diagram .data-table-code pre {
+  overflow-x: auto;
+  margin: 0;
+  padding: 10px 14px;
+  color: #111827;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace;
+  font-size: 13px;
+  line-height: 1.55;
+  white-space: pre;
 }
 
 .clock-page-replacement {

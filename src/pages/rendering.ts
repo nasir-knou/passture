@@ -352,11 +352,11 @@ function renderSimpleGraphDiagram(diagram: ChoiceDiagram & { type: 'simple-graph
         .map(
           (node) => `
             <g class="simple-graph-node ${node.tone === 'filled' ? 'simple-graph-node-filled' : ''}">
-              ${node.hideNode ? '' : `<circle cx="${node.x}" cy="${node.y}" r="${node.radius ?? 20}"></circle>`}
+              ${node.hideNode ? '' : renderSimpleGraphNodeShape(node)}
               ${
                 node.hideLabel
                   ? ''
-                  : `<text x="${node.x + (node.labelDx ?? 0)}" y="${node.y + (node.labelDy ?? 0)}" text-anchor="${node.labelDx === undefined ? 'middle' : node.labelDx < 0 ? 'end' : 'start'}" dominant-baseline="central">${renderMathText(node.label)}</text>`
+                  : `<text x="${node.x + (node.labelDx ?? 0)}" y="${node.y + (node.labelDy ?? 0)}" text-anchor="${node.labelDx === undefined ? 'middle' : node.labelDx < 0 ? 'end' : 'start'}" dominant-baseline="central"${renderSimpleGraphTextStyle(node)}>${renderMathText(node.label)}</text>`
               }
             </g>
           `,
@@ -364,6 +364,62 @@ function renderSimpleGraphDiagram(diagram: ChoiceDiagram & { type: 'simple-graph
         .join('')}
     </svg>
   `;
+}
+
+function renderSimpleGraphNodeShape(node: {
+  fillColor?: string;
+  height?: number;
+  radius?: number;
+  shape?: 'circle' | 'box';
+  strokeColor?: string;
+  strokeWidth?: number;
+  width?: number;
+  x: number;
+  y: number;
+}): string {
+  const style = renderSimpleGraphShapeStyle(node);
+
+  if (node.shape === 'box') {
+    const width = node.width ?? 36;
+    const height = node.height ?? 18;
+    return `<rect x="${node.x - width / 2}" y="${node.y - height / 2}" width="${width}" height="${height}" rx="2"${style}></rect>`;
+  }
+
+  return `<circle cx="${node.x}" cy="${node.y}" r="${node.radius ?? 20}"${style}></circle>`;
+}
+
+function renderSimpleGraphShapeStyle(node: {
+  fillColor?: string;
+  strokeColor?: string;
+  strokeWidth?: number;
+}): string {
+  const styles: string[] = [];
+  if (node.fillColor) {
+    styles.push(`fill: ${escapeHtml(node.fillColor)}`);
+  }
+  if (node.strokeColor) {
+    styles.push(`stroke: ${escapeHtml(node.strokeColor)}`);
+  }
+  if (node.strokeWidth !== undefined) {
+    styles.push(`stroke-width: ${node.strokeWidth}`);
+  }
+
+  return styles.length > 0 ? ` style="${styles.join('; ')}"` : '';
+}
+
+function renderSimpleGraphTextStyle(node: {
+  fontSize?: number;
+  textColor?: string;
+}): string {
+  const styles: string[] = [];
+  if (node.fontSize) {
+    styles.push(`font-size: ${node.fontSize}px`);
+  }
+  if (node.textColor) {
+    styles.push(`fill: ${escapeHtml(node.textColor)}`);
+  }
+
+  return styles.length > 0 ? ` style="${styles.join('; ')}"` : '';
 }
 
 function simpleGraphEdgeEndpoint(
@@ -448,12 +504,12 @@ function renderClockPageReplacementDiagram(
   const entries = diagram.entries;
   const step = (Math.PI * 2) / entries.length;
   const pointerAngle = -Math.PI / 2 + diagram.pointerIndex * step;
-  const pointerRadius = innerRadius + 18;
+  const pointerRadius = innerRadius * 0.86;
   const pointerX = cx + Math.cos(pointerAngle) * pointerRadius;
   const pointerY = cy + Math.sin(pointerAngle) * pointerRadius;
-  const rotationRadius = innerRadius + 8;
-  const rotationStartAngle = pointerAngle;
-  const rotationEndAngle = pointerAngle + Math.PI * 0.9;
+  const rotationRadius = innerRadius * 0.42;
+  const rotationStartAngle = pointerAngle + Math.PI * 0.12;
+  const rotationEndAngle = pointerAngle + Math.PI * 0.82;
   const rotationStartX = cx + Math.cos(rotationStartAngle) * rotationRadius;
   const rotationStartY = cy + Math.sin(rotationStartAngle) * rotationRadius;
   const rotationEndX = cx + Math.cos(rotationEndAngle) * rotationRadius;
@@ -498,9 +554,12 @@ function renderClockPageReplacementDiagram(
 }
 
 function renderDataTableDiagram(diagram: DataTableDiagram, className: string): string {
+  const isCodeTable = diagram.cellFormat === 'code';
+  const tableClass = isCodeTable ? 'data-table-code' : '';
+
   return `
     <div class="${className} data-table-diagram" role="img" aria-label="${escapeHtml(diagram.columns.join(', '))}">
-      <table>
+      <table class="${tableClass}">
         <thead>
           <tr>
             ${diagram.columns.map((column) => `<th>${renderMathText(column)}</th>`).join('')}
@@ -511,7 +570,7 @@ function renderDataTableDiagram(diagram: DataTableDiagram, className: string): s
             .map(
               (row) => `
                 <tr>
-                  ${row.map((cell) => `<td>${renderMathText(cell)}</td>`).join('')}
+                  ${row.map((cell) => `<td>${renderDataTableCell(cell, isCodeTable)}</td>`).join('')}
                 </tr>
               `,
             )
@@ -520,6 +579,14 @@ function renderDataTableDiagram(diagram: DataTableDiagram, className: string): s
       </table>
     </div>
   `;
+}
+
+function renderDataTableCell(cell: string, isCodeTable: boolean): string {
+  if (!isCodeTable) {
+    return renderMathText(cell);
+  }
+
+  return `<pre><code>${escapeHtml(cell.trimEnd())}</code></pre>`;
 }
 
 function renderMemoryFreeListDiagram(diagram: MemoryFreeListDiagram, className: string): string {

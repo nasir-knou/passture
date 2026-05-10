@@ -437,8 +437,10 @@ SVG 기반 `diagram` 라벨 작성 규칙:
 `data-table` 필드:
 
 - `columns`: 표 머리글 배열
+- `cellFormat`: 선택 필드. 기본값은 `text`이며, 코드형 표는 `code`를 사용한다.
 - `rows`: 행 배열. 각 행의 셀 개수는 `columns` 개수와 같아야 한다.
 - 셀 문자열에는 일반 텍스트와 KaTeX 인라인 수식을 사용할 수 있다.
+- `cellFormat: code`일 때 셀 문자열은 공백과 줄바꿈을 보존하는 코드 블록으로 렌더링된다.
 
 `clock-page-replacement` 필드:
 
