@@ -75,6 +75,19 @@ function renderSubjectCard(
             ${sortedSources.map((src) => renderSourceRow(src, subjectId, subjectTitle)).join('')}
           </div>
         </fieldset>
+        <fieldset class="segmented-field">
+          <legend>문항 구성</legend>
+          <div class="segmented-control" aria-label="${escapeHtml(subjectTitle)} 문항 구성">
+            <label>
+              <input type="radio" name="questionMode-${escapeHtml(subjectId)}" value="sample25" checked />
+              <span>무작위 25문제</span>
+            </label>
+            <label>
+              <input type="radio" name="questionMode-${escapeHtml(subjectId)}" value="all" />
+              <span>전체 풀기</span>
+            </label>
+          </div>
+        </fieldset>
       </div>
     </fieldset>
   `;
@@ -244,6 +257,7 @@ function readConfig(page: HTMLElement, catalog: Catalog): MockExamConfig | null 
     subjects.push({
       subjectId,
       subjectTitle: catalogSubject.title,
+      questionMode: readQuestionMode(page, subjectId),
       source: selectedSource,
     });
   }
@@ -260,6 +274,16 @@ function readConfig(page: HTMLElement, catalog: Catalog): MockExamConfig | null 
     questionOrder: options.questionOrder,
     choiceOrder: options.choiceOrder,
   };
+}
+
+function readQuestionMode(
+  page: HTMLElement,
+  subjectId: string,
+): MockExamSubjectConfig['questionMode'] {
+  const checked = page.querySelector<HTMLInputElement>(
+    `input[name="questionMode-${subjectId}"]:checked`,
+  );
+  return checked?.value === 'all' ? 'all' : 'sample25';
 }
 
 function readPracticeOptions(page: HTMLElement): PracticeOptions {

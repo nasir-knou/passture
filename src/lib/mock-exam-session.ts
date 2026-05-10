@@ -12,6 +12,7 @@ const mockExamSessionKey = 'pt.mockExamSession';
 export interface MockExamSubjectConfig {
   subjectId: string;
   subjectTitle: string;
+  questionMode: MockExamQuestionMode;
   source: {
     subjectId: string;
     subjectTitle: string;
@@ -21,6 +22,8 @@ export interface MockExamSubjectConfig {
     kind: SourceKind;
   };
 }
+
+export type MockExamQuestionMode = 'sample25' | 'all';
 
 export interface MockExamConfig {
   subjects: MockExamSubjectConfig[]; // 1~3개
@@ -70,6 +73,7 @@ function normalizeMockExamConfig(config: StoredMockExamConfig): MockExamConfig |
       return {
         subjectId: subject.subjectId,
         subjectTitle: subject.subjectTitle,
+        questionMode: normalizeQuestionMode(subject.questionMode),
         source: {
           subjectId: source.subjectId,
           subjectTitle: source.subjectTitle,
@@ -96,6 +100,10 @@ function normalizeMockExamConfig(config: StoredMockExamConfig): MockExamConfig |
     questionOrder: config.questionOrder === 'random' ? 'random' : 'default',
     choiceOrder: config.choiceOrder === 'random' ? 'random' : 'default',
   };
+}
+
+function normalizeQuestionMode(mode: unknown): MockExamQuestionMode {
+  return mode === 'all' ? 'all' : 'sample25';
 }
 
 // ─── Session (시험 중 상태) ──────────────────────────────────────────────
@@ -196,7 +204,10 @@ function buildQuestions(
     choices: options.choiceOrder === 'random' ? shuffled(question.choices) : question.choices,
   }));
 
-  const questions = extractMockExamQuestions(allQuestions, file.kind);
+  const questions =
+    subjectConfig.questionMode === 'all'
+      ? allQuestions
+      : extractMockExamQuestions(allQuestions, file.kind);
 
   return options.questionOrder === 'random' ? shuffled(questions) : questions;
 }
@@ -327,7 +338,10 @@ export function finishSession(session: MockExamSession): MockExamSession {
 
 // ─── 시간 계산 ───────────────────────────────────────────────────────────
 
-export function calcMockExamTimes(subjectCount: number, startDate = new Date()): {
+export function calcMockExamTimes(
+  subjectCount: number,
+  startDate = new Date(),
+): {
   totalMinutes: number;
   startTime: string;
   endTime: string;
