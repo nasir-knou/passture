@@ -32,6 +32,14 @@ export function renderMockExamPage(catalog: Catalog): HTMLElement {
           <div><dt>시험 종료</dt><dd data-end-time>—</dd></div>
         </dl>
       </div>
+      <section class="mock-config-summary panel" aria-live="polite" aria-label="문항 구성 요약">
+        <div class="mock-config-summary-header">
+          <strong data-mock-config-title>문항 구성 (0과목)</strong>
+        </div>
+        <div class="mock-config-list" data-mock-config-summary>
+          <p>과목과 출처를 선택해 주세요.</p>
+        </div>
+      </section>
       <section class="settings-grid" aria-label="모의시험 순서 설정">
         ${renderOrderSetting('문제순서 설정', 'mock-question-order', 'questionOrder')}
         ${renderOrderSetting('선지순서 설정', 'mock-choice-order', 'choiceOrder')}
@@ -61,7 +69,7 @@ function renderSubjectCard(
   });
 
   return `
-    <fieldset class="mock-subject-card panel" data-subject-card data-subject-id="${escapeHtml(subjectId)}">
+    <fieldset class="mock-subject-card panel" data-subject-card data-subject-id="${escapeHtml(subjectId)}" data-subject-title="${escapeHtml(subjectTitle)}">
       <legend class="mock-subject-legend">
         <label class="mock-subject-toggle">
           <input type="checkbox" name="subject" value="${escapeHtml(subjectId)}" data-subject-checkbox />
@@ -106,13 +114,14 @@ function renderSourceRow(source: CatalogSource, subjectId: string, subjectTitle:
         data-source-title="${escapeHtml(source.title)}"
         data-source-path="${escapeHtml(source.path)}"
         data-source-kind="${escapeHtml(source.kind)}"
+        data-question-count="${source.questionCount ?? ''}"
       />
       <span>
         <strong>
           ${escapeHtml(source.title)}
           <span class="source-count" data-source-count data-source-path="${escapeHtml(source.path)}">${renderQuestionCountText(source.questionCount)}</span>
         </strong>
-        <small>${sourceKindLabel(source.kind)}</small>
+        <small><span class="status-badge source-kind ${sourceKindClass(source.kind)}">${sourceKindLabel(source.kind)}</span></small>
       </span>
     </label>
   `;
@@ -135,6 +144,12 @@ function hydrateMissingQuestionCounts(page: HTMLElement): void {
 
     void loadQuestionFile(path).then((file) => {
       element.textContent = renderQuestionCountText(file.questions.length);
+      page
+        .querySelectorAll<HTMLInputElement>(`input[data-source-path="${cssEscape(path)}"]`)
+        .forEach((input) => {
+          input.dataset.questionCount = String(file.questions.length);
+        });
+      updateMockConfigSummary(page);
     });
   });
 }
@@ -169,9 +184,17 @@ function bindSetupEvents(page: HTMLElement, catalog: Catalog): void {
       const body = card?.querySelector<HTMLElement>('.mock-subject-body');
       if (body) body.hidden = !checkbox.checked;
       updateTimeSummary(page);
+      updateMockConfigSummary(page);
       enforceMaxSubjects(page);
     });
   });
+
+  page
+    .querySelectorAll<HTMLInputElement>('input[type="radio"]')
+    .forEach((input) => input.addEventListener('change', () => updateMockConfigSummary(page)));
+
+  updateTimeSummary(page);
+  updateMockConfigSummary(page);
 
   // 시험 시작
   page.querySelector<HTMLButtonElement>('[data-start-exam]')?.addEventListener('click', () => {
@@ -217,6 +240,67 @@ function updateTimeSummary(page: HTMLElement): void {
   if (timeEl) timeEl.textContent = checkedCount > 0 ? `${times.totalMinutes}분` : '—';
   if (startEl) startEl.textContent = checkedCount > 0 ? times.startTime : '—';
   if (endEl) endEl.textContent = checkedCount > 0 ? times.endTime : '—';
+}
+
+function updateMockConfigSummary(page: HTMLElement): void {
+  const checkedSubjects = Array.from(
+    page.querySelectorAll<HTMLInputElement>('[data-subject-checkbox]:checked'),
+  );
+  const titleEl = page.querySelector<HTMLElement>('[data-mock-config-title]');
+  const summaryEl = page.querySelector<HTMLElement>('[data-mock-config-summary]');
+
+  if (!summaryEl) {
+    return;
+  }
+
+  if (titleEl) {
+    titleEl.textContent = `문항 구성 (${checkedSubjects.length}과목)`;
+  }
+
+  if (checkedSubjects.length === 0) {
+    summaryEl.innerHTML = '<p>과목과 출처를 선택해 주세요.</p>';
+    return;
+  }
+
+  let totalQuestions = 0;
+  const items = checkedSubjects.map((checkbox) => {
+    const card = checkbox.closest<HTMLElement>('[data-subject-card]');
+    const sourceInput = card?.querySelector<HTMLInputElement>(
+      `input[name="source-${checkbox.value}"]:checked`,
+    );
+    const mode = readQuestionMode(page, checkbox.value);
+    const sourceTitle = sourceInput?.dataset.sourceTitle ?? '출처 미선택';
+    const questionCount = Number(sourceInput?.dataset.questionCount);
+    const expectedCount =
+      mode === 'all'
+        ? Number.isFinite(questionCount)
+          ? questionCount
+          : 0
+        : Number.isFinite(questionCount)
+          ? Math.min(questionCount, 25)
+          : 25;
+
+    totalQuestions += expectedCount;
+    const subjectTitle = card?.dataset.subjectTitle ?? checkbox.value;
+    const questionSummary = mode === 'all' ? `전체 ${expectedCount}문항` : '무작위 25문항';
+    return `
+      <div class="mock-config-item">
+        <strong>${escapeHtml(subjectTitle)}</strong>
+        <span>${escapeHtml(sourceTitle)}</span>
+        <em>${mode === 'all' ? '전체' : '25문제'}</em>
+        <small>${questionSummary}</small>
+      </div>
+    `;
+  });
+
+  const times = calcMockExamTimes(checkedSubjects.length);
+  summaryEl.innerHTML = `
+    ${items.join('')}
+    <div class="mock-config-total">
+      <span>총 ${totalQuestions}문항</span>
+      <span>시험 시간 ${times.totalMinutes}분</span>
+    </div>
+  `;
 }
 
 function readConfig(page: HTMLElement, catalog: Catalog): MockExamConfig | null {
@@ -289,4 +373,24 @@ function readPracticeOptions(page: HTMLElement): PracticeOptions {
 function readOrderMode(page: HTMLElement, name: keyof PracticeOptions): OrderMode {
   const checked = page.querySelector<HTMLInputElement>(`input[name="${name}"]:checked`);
   return checked?.value === 'random' ? 'random' : 'default';
+}
+
+function sourceKindClass(kind: SourceKind): string {
+  switch (kind) {
+    case 'exam':
+      return 'source-kind-exam';
+    case 'textbook':
+    case 'workbook':
+      return 'source-kind-material';
+    case 'lecture':
+    case 'intensive':
+      return 'source-kind-lecture';
+  }
+}
+
+function cssEscape(value: string): string {
+  if ('CSS' in window && typeof CSS.escape === 'function') {
+    return CSS.escape(value);
+  }
+  return value.replace(/"/g, '\\"');
 }
