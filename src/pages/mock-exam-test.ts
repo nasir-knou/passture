@@ -15,7 +15,12 @@ import {
 } from '../lib/mock-exam-session';
 import type { QuizSessionQuestion } from '../lib/quiz-session';
 import { escapeHtml } from './shared';
-import { renderPassages, renderChoiceContent, renderRichText, renderQuestionImages } from './rendering';
+import {
+  renderPassages,
+  renderChoiceContent,
+  renderRichText,
+  renderQuestionImages,
+} from './rendering';
 
 let timerInterval: ReturnType<typeof setInterval> | null = null;
 
@@ -69,27 +74,41 @@ function renderExam(page: HTMLElement, session: MockExamSession): void {
       <div class="exam-main">
         ${renderSubjectTabs(session)}
         <div class="exam-question-wrapper">
-          ${layoutMode === 'paged' ? `
+          ${
+            layoutMode === 'paged'
+              ? `
             <button class="exam-side-btn exam-side-btn--prev" type="button" data-paged-prev ${pagedIndex === 0 ? 'disabled' : ''} aria-label="이전 문제">
               <span>이전</span>
             </button>
-          ` : ''}
+          `
+              : ''
+          }
           <div class="exam-question-area ${layoutMode === 'paged' ? 'is-paged' : ''}" data-question-area>
-            ${layoutMode === 'scroll'
-              ? renderQuestionList(subjectSession, session)
-              : renderPagedQuestion(subjectSession, session, pagedIndex)}
+            ${
+              layoutMode === 'scroll'
+                ? renderQuestionList(subjectSession, session)
+                : renderPagedQuestion(subjectSession, session, pagedIndex)
+            }
           </div>
-          ${layoutMode === 'paged' ? `
+          ${
+            layoutMode === 'paged'
+              ? `
             <button class="exam-side-btn exam-side-btn--next" type="button" data-paged-next ${pagedIndex === total - 1 ? 'disabled' : ''} aria-label="다음 문제">
               <span>다음</span>
             </button>
-          ` : ''}
+          `
+              : ''
+          }
         </div>
-        ${layoutMode === 'paged' ? `
+        ${
+          layoutMode === 'paged'
+            ? `
           <div class="exam-page-indicator">
             <span>${pagedIndex + 1} / ${total}</span>
           </div>
-        ` : ''}
+        `
+            : ''
+        }
       </div>
       <aside class="exam-sidebar" aria-label="정답기록">
         ${renderSidebar(session)}
@@ -111,7 +130,6 @@ function renderPagedQuestion(
   return renderQuestionItem(q, index, subjectSession, session);
 }
 
-
 // ─── 상단 바 ─────────────────────────────────────────────────────────────
 
 function renderTopBar(session: MockExamSession): string {
@@ -127,7 +145,7 @@ function renderTopBar(session: MockExamSession): string {
             <text x="14" y="19" text-anchor="middle" fill="white" font-size="12" font-weight="bold">방</text>
           </svg>
         </span>
-        <span class="exam-title">20XX년 1학기 기말시험</span>
+        <span class="exam-title">20XX년 X학기 기말시험</span>
         <button class="exam-exit-btn" type="button" data-exit-btn>시험실 퇴실</button>
       </div>
       <div class="exam-topbar-right">
@@ -172,7 +190,10 @@ function renderSubjectTabs(session: MockExamSession): string {
 
 // ─── 문제 목록 (세로 스크롤) ──────────────────────────────────────────────
 
-function renderQuestionList(subjectSession: MockExamSubjectSession, session: MockExamSession): string {
+function renderQuestionList(
+  subjectSession: MockExamSubjectSession,
+  session: MockExamSession,
+): string {
   return subjectSession.questions
     .map((q, index) => renderQuestionItem(q, index, subjectSession, session))
     .join('');
@@ -250,8 +271,8 @@ function renderSidebar(session: MockExamSession): string {
       <hr class="exam-sidebar-divider" />
       <div class="exam-examinee-info">
         <p class="exam-examinee-tag">[모의테스트]</p>
-        <p class="exam-examinee-id">20nnnn-123456</p>
-        <p class="exam-examinee-school">방송대</p>
+        <p class="exam-examinee-id">20XXXX-123456</p>
+        <p class="exam-examinee-school">테스트</p>
       </div>
     </div>
     <div class="exam-answer-grid" data-answer-grid>
@@ -260,14 +281,18 @@ function renderSidebar(session: MockExamSession): string {
   `;
 }
 
-function renderAnswerGrid(subjectSession: MockExamSubjectSession, session: MockExamSession): string {
+function renderAnswerGrid(
+  subjectSession: MockExamSubjectSession,
+  session: MockExamSession,
+): string {
   return subjectSession.questions
     .map((q, index) => {
       const selected = subjectSession.answers[q.key] ?? [];
       const isBookmarked = session.bookmarks.includes(q.key);
-      const answerDisplay = selected.length > 0
-        ? `<span class="exam-grid-answer-circle">${selected.map((id) => circledNumber(id)).join('')}</span>`
-        : '';
+      const answerDisplay =
+        selected.length > 0
+          ? `<span class="exam-grid-answer-circle">${selected.map((id) => circledNumber(id)).join('')}</span>`
+          : '';
 
       return `
         <div
@@ -281,16 +306,30 @@ function renderAnswerGrid(subjectSession: MockExamSubjectSession, session: MockE
         >
           <span class="exam-grid-num">${index + 1}</span>
           <span class="exam-grid-answer">${answerDisplay}</span>
-          ${isBookmarked ? '<span class="exam-grid-bookmark" aria-hidden="true">🚩</span>' : ''}
+          ${isBookmarked ? renderGridBookmark() : ''}
         </div>
       `;
     })
     .join('');
 }
 
+function renderGridBookmark(): string {
+  return `
+    <span class="exam-grid-bookmark" aria-hidden="true">
+      <svg width="14" height="18" viewBox="0 0 20 24" fill="#e8952e" stroke="#e8952e" stroke-width="2">
+        <path d="M2 2h16v20l-8-5-8 5V2z"/>
+      </svg>
+    </span>
+  `;
+}
+
 function circledNumber(id: string): string {
   const map: Record<string, string> = {
-    '1': '①', '2': '②', '3': '③', '4': '④', '5': '⑤',
+    '1': '①',
+    '2': '②',
+    '3': '③',
+    '4': '④',
+    '5': '⑤',
   };
   return map[id] ?? id;
 }
@@ -480,7 +519,7 @@ function refreshGridRow(page: HTMLElement, session: MockExamSession, questionKey
   row.classList.toggle('has-bookmark', isBookmarked);
   const existingFlag = row.querySelector('.exam-grid-bookmark');
   if (isBookmarked && !existingFlag) {
-    row.insertAdjacentHTML('beforeend', '<span class="exam-grid-bookmark" aria-hidden="true">🚩</span>');
+    row.insertAdjacentHTML('beforeend', renderGridBookmark());
   } else if (!isBookmarked && existingFlag) {
     existingFlag.remove();
   }
