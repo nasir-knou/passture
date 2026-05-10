@@ -18,7 +18,7 @@ export function startApp(root: HTMLElement): void {
     '/mock-exam/test': async () => renderMockExamTestPage(),
     '/mock-exam/result': async () => renderMockExamResultPage(),
     '/quiz': async () => renderQuizPage(await loadCatalog()),
-    '/result': async () => renderResultPage(),
+    '/result': async () => renderResultPage(await loadCatalog()),
     '/history': async () => renderHistoryPage(await loadCatalog()),
     '/bookmarks': async () => {
       window.location.hash = '#/history';

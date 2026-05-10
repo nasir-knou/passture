@@ -1,4 +1,4 @@
-import type { Catalog, CatalogSource } from '../types/catalog';
+import type { Catalog, CatalogSource, SourceKind } from '../types/catalog';
 import {
   savePracticeOptions,
   savePracticeScope,
@@ -26,12 +26,17 @@ export function renderSelectPage(catalog: Catalog): HTMLElement {
         ? sortSourcesForSelect(subject.sources)
             .map((source) => renderSourceRow(source, subject.id, subject.title))
             .join('')
-        : '<p class="muted">아직 등록된 출처가 없습니다.</p>';
+        : '<div class="empty-state-card compact"><strong>출처 없음</strong><p>아직 등록된 출처가 없습니다.</p></div>';
 
       return `
         <fieldset class="segmented-field source-field">
           <legend>출처 선택</legend>
+          <label class="source-search">
+            <span>문제 검색</span>
+            <input type="search" placeholder="문제 내용, 출처명, 카테고리 검색" data-source-search />
+          </label>
           <div class="check-list">${sources}</div>
+          <p class="empty-state-inline" data-source-search-empty hidden>검색 결과가 없습니다.</p>
         </fieldset>
       `;
     })
@@ -69,6 +74,16 @@ export function renderSelectPage(catalog: Catalog): HTMLElement {
       ${renderOrderSetting('문제순서 설정', 'question-order', 'questionOrder')}
       ${renderOrderSetting('선지순서 설정', 'choice-order', 'choiceOrder')}
     </section>
+    <section class="selection-summary panel" aria-live="polite" aria-label="선택 요약">
+      <div>
+        <span class="status-badge">선택 요약</span>
+        <strong data-selected-source-count>선택된 출처 0개</strong>
+      </div>
+      <p class="muted" data-selected-question-count>총 0문항</p>
+      <div class="selected-chip-list" data-selected-source-list>
+        <span class="empty-state-inline">선택된 출처가 없습니다.</span>
+      </div>
+    </section>
     <section class="start-panel" aria-label="풀이 시작">
       <div>
         <strong>설정한 조건으로 풀이를 시작합니다.</strong>
@@ -81,6 +96,9 @@ export function renderSelectPage(catalog: Catalog): HTMLElement {
   `;
 
   hydrateMissingQuestionCounts(page);
+  hydrateSourceSearchText(page);
+  bindSelectionSummary(page);
+  bindSourceSearch(page);
 
   page.querySelector<HTMLButtonElement>('[data-start-quiz]')?.addEventListener('click', () => {
     const selectedSources = Array.from(
@@ -123,8 +141,13 @@ export function renderSelectPage(catalog: Catalog): HTMLElement {
 }
 
 function renderSourceRow(source: CatalogSource, subjectId: string, subjectTitle: string): string {
+  const label = sourceDetailLabel(source);
+  const searchText = normalizeSearchText(
+    `${subjectTitle} ${source.title} ${label} ${source.year ?? ''}`,
+  );
+
   return `
-    <label class="check-row">
+    <label class="check-row source-row" data-source-row data-search-text="${escapeHtml(searchText)}">
       <input
         type="checkbox"
         name="source"
@@ -136,13 +159,14 @@ function renderSourceRow(source: CatalogSource, subjectId: string, subjectTitle:
         data-source-path="${escapeHtml(source.path)}"
         data-kind="${source.kind}"
         data-year="${source.year ?? ''}"
+        data-question-count="${source.questionCount ?? ''}"
       />
       <span>
         <strong>
           ${escapeHtml(source.title)}
           <span class="source-count" data-source-count data-source-path="${escapeHtml(source.path)}">${renderQuestionCountText(source.questionCount)}</span>
         </strong>
-        <small>${sourceDetailLabel(source)}</small>
+        <small><span class="status-badge source-kind ${sourceKindClass(source.kind)}">${label}</span></small>
       </span>
     </label>
   `;
@@ -183,12 +207,138 @@ function hydrateMissingQuestionCounts(page: HTMLElement): void {
 
     void loadQuestionFile(path).then((file) => {
       element.textContent = renderQuestionCountText(file.questions.length);
+      page
+        .querySelectorAll<HTMLInputElement>(`input[data-source-path="${cssEscape(path)}"]`)
+        .forEach((input) => {
+          input.dataset.questionCount = String(file.questions.length);
+        });
+      updateSelectionSummary(page);
     });
   });
 }
 
+function hydrateSourceSearchText(page: HTMLElement): void {
+  page.querySelectorAll<HTMLElement>('[data-source-row]').forEach((row) => {
+    const input = row.querySelector<HTMLInputElement>('input[data-source-path]');
+    const path = input?.dataset.sourcePath;
+    if (!path) {
+      return;
+    }
+
+    void loadQuestionFile(path).then((file) => {
+      const questionText = file.questions
+        .flatMap((question) => [
+          question.id,
+          question.prompt,
+          question.explanation,
+          ...question.choices.map((choice) => choice.text ?? ''),
+        ])
+        .join(' ');
+      row.dataset.searchText = normalizeSearchText(
+        `${row.dataset.searchText ?? ''} ${questionText}`,
+      );
+      filterSourceRows(page);
+    });
+  });
+}
+
+function bindSelectionSummary(page: HTMLElement): void {
+  page.querySelectorAll<HTMLInputElement>('input[name="source"]').forEach((input) => {
+    input.addEventListener('change', () => updateSelectionSummary(page));
+  });
+  updateSelectionSummary(page);
+}
+
+function updateSelectionSummary(page: HTMLElement): void {
+  const checked = Array.from(
+    page.querySelectorAll<HTMLInputElement>('input[name="source"]:checked'),
+  );
+  const totalQuestions = checked.reduce((total, input) => {
+    const count = Number(input.dataset.questionCount);
+    return Number.isFinite(count) ? total + count : total;
+  }, 0);
+
+  const countEl = page.querySelector<HTMLElement>('[data-selected-source-count]');
+  const questionEl = page.querySelector<HTMLElement>('[data-selected-question-count]');
+  const listEl = page.querySelector<HTMLElement>('[data-selected-source-list]');
+
+  if (countEl) {
+    countEl.textContent = `선택된 출처 ${checked.length}개`;
+  }
+  if (questionEl) {
+    questionEl.textContent = `총 ${totalQuestions}문항`;
+  }
+  if (listEl) {
+    listEl.innerHTML = checked.length
+      ? checked
+          .map(
+            (input) => `
+              <span class="selected-chip">
+                <strong>${escapeHtml(input.dataset.sourceTitle ?? '')}</strong>
+                <small class="status-badge source-kind ${sourceKindClass(input.dataset.kind ?? 'exam')}">${escapeHtml(sourceKindLabel((input.dataset.kind ?? 'exam') as SourceKind))}</small>
+              </span>
+            `,
+          )
+          .join('')
+      : '<span class="empty-state-inline">선택된 출처가 없습니다.</span>';
+  }
+}
+
+function bindSourceSearch(page: HTMLElement): void {
+  const input = page.querySelector<HTMLInputElement>('[data-source-search]');
+  input?.addEventListener('input', () => filterSourceRows(page));
+  filterSourceRows(page);
+}
+
+function filterSourceRows(page: HTMLElement): void {
+  const query = normalizeSearchText(
+    page.querySelector<HTMLInputElement>('[data-source-search]')?.value ?? '',
+  );
+  const rows = Array.from(page.querySelectorAll<HTMLElement>('[data-source-row]'));
+  let visibleCount = 0;
+
+  rows.forEach((row) => {
+    const visible = !query || (row.dataset.searchText ?? '').includes(query);
+    row.hidden = !visible;
+    if (visible) {
+      visibleCount += 1;
+    }
+  });
+
+  const empty = page.querySelector<HTMLElement>('[data-source-search-empty]');
+  if (empty) {
+    empty.hidden = visibleCount > 0 || !query;
+  }
+}
+
+function normalizeSearchText(value: string): string {
+  return value.replace(/\s+/g, ' ').trim().toLowerCase();
+}
+
+function cssEscape(value: string): string {
+  if ('CSS' in window && typeof CSS.escape === 'function') {
+    return CSS.escape(value);
+  }
+  return value.replace(/"/g, '\\"');
+}
+
 function sourceDetailLabel(source: CatalogSource): string {
   return sourceKindLabel(source.kind);
+}
+
+function sourceKindClass(kind: SourceKind | string): string {
+  switch (kind) {
+    case 'exam':
+      return 'source-kind-exam';
+    case 'textbook':
+    case 'workbook':
+      return 'source-kind-material';
+    case 'lecture':
+    case 'intensive':
+      return 'source-kind-lecture';
+    default:
+      return 'source-kind-exam';
+  }
 }
 
 function readSubjectId(catalog: Catalog): string | undefined {

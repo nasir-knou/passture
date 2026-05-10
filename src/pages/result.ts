@@ -1,11 +1,18 @@
 import {
   clearSession,
+  loadPracticeOptions,
   loadSession,
   scoreSession,
+  savePracticeOptions,
+  savePracticeScope,
+  saveSelectedSources,
   type QuizResponse,
   type QuizSession,
   type QuizSessionQuestion,
+  type SelectedSource,
 } from '../lib/quiz-session';
+import type { Catalog } from '../types/catalog';
+import { loadBookmarks } from '../lib/storage';
 import { escapeHtml, renderFooter, renderTopNav } from './shared';
 import {
   formatAnswerSummary,
@@ -16,7 +23,7 @@ import {
   renderRichText,
 } from './rendering';
 
-export function renderResultPage(): HTMLElement {
+export function renderResultPage(catalog: Catalog): HTMLElement {
   const page = document.createElement('main');
   page.className = 'app-shell';
   const session = loadSession();
@@ -29,13 +36,18 @@ export function renderResultPage(): HTMLElement {
         <h1>결과가 없습니다</h1>
         <p class="lead">문제 선택 화면에서 새 풀이 세션을 시작해 주세요.</p>
       </section>
-      <a class="primary-link" href="#/select">문제 선택</a>
+      <section class="empty-state-card">
+        <strong>표시할 결과가 없습니다.</strong>
+        <p>풀이를 완료하면 정답률, 오답, 출처별 결과가 여기에 정리됩니다.</p>
+        <a class="primary-link" href="#/select">문제 선택</a>
+      </section>
       ${renderFooter()}
     `;
     return page;
   }
 
   const score = scoreSession(session);
+  const report = createResultReport(session, score);
   const selectedIndex = readQuestionIndex(session.questions.length);
   const selectedQuestion = session.questions[selectedIndex] ?? session.questions[0];
   page.innerHTML = `
@@ -43,7 +55,6 @@ export function renderResultPage(): HTMLElement {
     <section class="page-header">
       <p class="eyebrow">result</p>
       <h1>결과</h1>
-      ${renderSourceSet(session)}
     </section>
     <section class="score-grid" aria-label="점수 요약">
       <article class="score-card">
@@ -63,14 +74,20 @@ export function renderResultPage(): HTMLElement {
         <span>정답률</span>
       </article>
     </section>
+    ${renderResultReport(report)}
+    ${renderSourceBreakdown(session)}
     ${renderResultNavigator(session, selectedIndex)}
     ${selectedQuestion ? renderReviewCard(selectedQuestion, session.responses[selectedQuestion.key]) : ''}
     <div class="action-row">
       <a class="secondary-link" href="#/quiz">풀이로 돌아가기</a>
-      <button class="primary-button" type="button" data-new-session>새 세션 시작</button>
+      <button class="secondary-button" type="button" data-retry-wrong ${report.wrong === 0 ? 'disabled' : ''}>오답만 다시 풀기</button>
+      <button class="secondary-button" type="button" data-retry-bookmarked ${report.bookmarked === 0 ? 'disabled' : ''}>북마크만 다시 풀기</button>
+      <button class="secondary-button danger-button" type="button" data-new-session>새 세션 시작</button>
     </div>
     ${renderFooter()}
   `;
+
+  bindRetryActions(page, session, catalog);
 
   page.querySelector<HTMLButtonElement>('[data-new-session]')?.addEventListener('click', () => {
     clearSession();
@@ -80,38 +97,130 @@ export function renderResultPage(): HTMLElement {
   return page;
 }
 
-function renderSourceSet(session: QuizSession): string {
-  const sources = [
-    ...new Map(
-      session.questions.map((question) => [
-        `${question.subjectId}:${question.sourceId}`,
-        {
-          subjectId: question.subjectId,
-          sourceId: question.sourceId,
-          title: question.sourceTitle,
-          count: session.questions.filter((item) => item.sourceId === question.sourceId).length,
-        },
-      ]),
-    ).values(),
-  ];
+interface ResultReport {
+  total: number;
+  answered: number;
+  correct: number;
+  wrong: number;
+  unanswered: number;
+  percent: number;
+  bookmarked: number;
+}
 
+function createResultReport(
+  session: QuizSession,
+  score: ReturnType<typeof scoreSession>,
+): ResultReport {
+  const bookmarkedKeys = new Set(loadBookmarks());
+  const wrong = Object.values(session.responses).filter((response) => !response.correct).length;
+
+  return {
+    total: score.total,
+    answered: score.answered,
+    correct: score.correct,
+    wrong,
+    unanswered: Math.max(score.total - score.answered, 0),
+    percent: score.percent,
+    bookmarked: session.questions.filter((question) => bookmarkedKeys.has(question.key)).length,
+  };
+}
+
+function renderResultReport(report: ResultReport): string {
   return `
-    <section class="result-source-set" aria-label="출처 세트">
-      <p class="muted">이번 결과의 출처 세트</p>
-      <div class="source-chip-list">
+    <section class="result-report panel" aria-label="결과 리포트">
+      <div class="result-report-header">
+        <div>
+          <span class="status-badge">리포트</span>
+          <strong>${report.percent}% 정답률</strong>
+        </div>
+        <span class="muted">${report.answered}/${report.total} 응답</span>
+      </div>
+      <div class="result-percent-bar" aria-label="정답률 ${report.percent}%">
+        <span style="width: ${report.percent}%"></span>
+      </div>
+      <div class="result-metrics">
+        <span class="status-badge is-correct">정답 ${report.correct}</span>
+        <span class="status-badge is-wrong">오답 ${report.wrong}</span>
+        <span class="status-badge is-unanswered">미응답 ${report.unanswered}</span>
+      </div>
+    </section>
+  `;
+}
+
+function renderSourceBreakdown(session: QuizSession): string {
+  const sources = createSourceStats(session);
+  return `
+    <section class="result-source-set panel" aria-label="출처별 결과 요약">
+      <div class="result-report-header">
+        <div>
+          <span class="status-badge">출처별 결과</span>
+          <strong>출처 ${sources.length}개</strong>
+        </div>
+      </div>
+      <div class="source-stat-grid">
         ${sources
           .map(
             (source) => `
-              <span class="source-chip">
-                <strong>${escapeHtml(source.title)}</strong>
-                <small>${escapeHtml(source.subjectId)} · ${escapeHtml(source.sourceId)} · ${source.count}문항</small>
-              </span>
+              <article class="source-stat-card">
+                <div>
+                  <strong>${escapeHtml(source.title)}</strong>
+                  <small>${escapeHtml(source.subjectTitle)}</small>
+                </div>
+                <div class="source-stat-meta">
+                  <span>${source.percent}%</span>
+                  <small>${source.correct}/${source.answered} 정답 · ${source.total}문항</small>
+                </div>
+              </article>
             `,
           )
           .join('')}
       </div>
     </section>
   `;
+}
+
+interface SourceStat {
+  subjectId: string;
+  subjectTitle: string;
+  sourceId: string;
+  title: string;
+  total: number;
+  answered: number;
+  correct: number;
+  percent: number;
+}
+
+function createSourceStats(session: QuizSession): SourceStat[] {
+  const stats = new Map<string, SourceStat>();
+
+  session.questions.forEach((question) => {
+    const key = `${question.subjectId}:${question.sourceId}`;
+    const current =
+      stats.get(key) ??
+      ({
+        subjectId: question.subjectId,
+        subjectTitle: question.subjectTitle,
+        sourceId: question.sourceId,
+        title: question.sourceTitle,
+        total: 0,
+        answered: 0,
+        correct: 0,
+        percent: 0,
+      } satisfies SourceStat);
+    const response = session.responses[question.key];
+    current.total += 1;
+    if (response) {
+      current.answered += 1;
+      if (response.correct) {
+        current.correct += 1;
+      }
+    }
+    current.percent =
+      current.answered === 0 ? 0 : Math.round((current.correct / current.answered) * 100);
+    stats.set(key, current);
+  });
+
+  return [...stats.values()];
 }
 
 function readQuestionIndex(total: number): number {
@@ -127,7 +236,8 @@ function readQuestionIndex(total: number): number {
 
 function renderResultNavigator(session: QuizSession, selectedIndex: number): string {
   return `
-    <section class="question-map result-map" aria-label="문제별 결과 바로가기">
+    <details class="question-map result-map collapsible-map" aria-label="문제별 결과 바로가기" open>
+      <summary>문제별 결과</summary>
       <div class="question-map-grid">
         ${session.questions
           .map((question, index) => {
@@ -154,8 +264,65 @@ function renderResultNavigator(session: QuizSession, selectedIndex: number): str
         <span><i class="legend-incorrect"></i>오답</span>
         <span><i class="legend-unanswered"></i>미응답</span>
       </div>
-    </section>
+    </details>
   `;
+}
+
+function bindRetryActions(page: HTMLElement, session: QuizSession, catalog: Catalog): void {
+  const retrySources = createSelectedSourcesFromSession(session, catalog);
+
+  page.querySelector<HTMLButtonElement>('[data-retry-wrong]')?.addEventListener('click', () => {
+    startScopedRetry(retrySources, 'wrong');
+  });
+
+  page
+    .querySelector<HTMLButtonElement>('[data-retry-bookmarked]')
+    ?.addEventListener('click', () => {
+      startScopedRetry(retrySources, 'bookmarked');
+    });
+}
+
+function startScopedRetry(sources: SelectedSource[], scope: 'wrong' | 'bookmarked'): void {
+  if (sources.length === 0) {
+    window.location.hash = '#/select';
+    return;
+  }
+
+  saveSelectedSources(sources);
+  savePracticeScope(scope);
+  savePracticeOptions(loadPracticeOptions());
+  clearSession();
+  window.location.hash = '#/quiz';
+}
+
+function createSelectedSourcesFromSession(
+  session: QuizSession,
+  catalog: Catalog,
+): SelectedSource[] {
+  const sources = new Map<string, SelectedSource>();
+
+  session.questions.forEach((question) => {
+    const key = `${question.subjectId}:${question.sourceId}`;
+    if (sources.has(key)) {
+      return;
+    }
+
+    const catalogSubject = catalog.subjects.find((subject) => subject.id === question.subjectId);
+    const catalogSource = catalogSubject?.sources.find((source) => source.id === question.sourceId);
+    if (!catalogSource) {
+      return;
+    }
+
+    sources.set(key, {
+      subjectId: question.subjectId,
+      subjectTitle: question.subjectTitle,
+      sourceId: question.sourceId,
+      sourceTitle: question.sourceTitle,
+      path: catalogSource.path,
+    });
+  });
+
+  return [...sources.values()];
 }
 
 function renderReviewCard(
