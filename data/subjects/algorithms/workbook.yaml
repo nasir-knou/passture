@@ -3339,6 +3339,31 @@ questions:
       BFS로 최단 증가 경로를 선택하는 에드몬즈-카프 방식은 이러한 비효율을 줄인다.
     tags: [graph, ford-fulkerson, network-flow]
 
+  - id: b04-29
+    type: multiple-choice
+    images:
+      - path: images/subjects/algorithms/workbook/b04-29-cut.png
+        alt: 4장 29번 네트워크 플로 커트 다이어그램 (a)(b)(c)(d) 4가지 커트 경계 표시
+    prompt: 주어진 네트워크에서 커트에 해당하지 않는 것은?
+    choices:
+      - { id: '1', text: (a) }
+      - { id: '2', text: (b) }
+      - { id: '3', text: (c) }
+      - { id: '4', text: (d) }
+    answers: ['3']
+    explanation: |
+      선택지 1: (a)는 소스와 싱크를 서로 다른 집합으로 나누는 유효한 커트이다.
+      선택지 2: (b)는 소스와 싱크를 서로 다른 집합으로 나누는 유효한 커트이다.
+      선택지 3: (c)는 소스와 싱크가 같은 집합에 속하므로 s-t 커트가 될 수 없다.
+      선택지 4: (d)는 소스와 싱크를 서로 다른 집합으로 나누는 유효한 커트이다.
+
+      핵심 개념:
+      커트(cut)는 소스 s와 싱크 t가 각각 서로 다른 집합에 속하도록 정점 집합을 둘로 나누는 것이다.
+      S의 정점에서 T의 정점으로 향하는 간선과 T에서 S로 향하는 간선의 집합이 커트를 이룬다.
+      커트의 용량은 S에서 T로 향하는 간선의 용량 합이다.
+      최대 플로-최소 커트 정리에 의해 최대 플로 값은 최소 커트 용량과 같다.
+    tags: [graph, network-flow, cut]
+
   - id: b05-01
     type: multiple-choice
     prompt: 동적 프로그래밍에 대한 설명으로 올바른 것은?
