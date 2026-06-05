@@ -4,6 +4,82 @@ title: 알고리즘 워크북 문제
 kind: workbook
 
 passages:
+  - id: gb01-loop-a-15
+    type: code
+    language: c
+    body: |
+      (a)
+      for (i = 0; i < n - 1; i++) {
+          for (j = i + 1; j < n; j++)
+              printf("*");
+          printf("\n");
+      }
+
+  - id: gb01-loop-b-15
+    type: code
+    language: c
+    body: |
+      (b)
+      for (i = 0; i < n - 1; i++)
+          sum = sum + i;
+
+      for (j = 1; j < n; j++)
+          printf("*");
+
+  - id: gb01-printmid-17
+    type: code
+    language: text
+    body: |
+      PrintMid(A, s, e)
+      // 입력 배열: A[s..e]
+      {
+          if (s > e) return (-1);
+          m = [(e - s)] / 2;
+          print(A[m]);
+          PrintMid(A, s, m - 1);
+      }
+
+  - id: gb02-selection-sort-03
+    type: text
+    body: |
+      선택 정렬
+
+      주어진 배열에서 가장 작은 값부터 차례대로 선택해서 나열하는 방식이다. 미정렬 부분 A[i..n-1]에서 최솟값을 찾은 후, 최솟값과 미정렬 부분의 첫 번째 데이터 A[i]와 위치를 교환하는 과정을 반복한다.
+
+      $O(n^2)$, 불안정적 정렬, 제자리 정렬이다.
+
+      입력 데이터의 순서에 민감하지 않아 언제나 동일한 수행시간을 가진다.
+
+  - id: gb02-whatsort-05
+    type: code
+    language: c
+    body: |
+      WhatSort(A[], n) {
+          // A[0..n-1]: 입력 배열, n: 입력 크기
+          for (i = 0; i < n - 1; i++)
+              for (j = 0; j < n - 1; j++)
+                  if (A[j] > A[j + 1])
+                      A[j]와 A[j + 1]의 위치 교환;
+          return (A);
+      }
+
+  - id: gb02-bubble-early-exit-07
+    type: code
+    language: c
+    body: |
+      BubbleSort(A[], n) {
+          for (i = 0; i < n - 1; i++) {
+              Sorted = TRUE;
+              for (j = 0; j < (n - 1) - i; j++)
+                  if (A[j] > A[j + 1]) {
+                      A[j]와 A[j + 1]의 위치 교환;
+                      Sorted = FALSE;
+                  }
+              if (Sorted == TRUE) break;
+          }
+          return (A);
+      }
+
   - id: gb03-bst-invalid-08
     type: diagram
     diagram:
@@ -139,6 +215,72 @@ passages:
         - { from: n11, to: n13 }
         - { from: n13, to: n12 }
         - { from: n13, to: n14 }
+
+  - id: gb03-234-insert-14
+    type: diagram
+    diagram:
+      type: simple-graph
+      width: 560
+      height: 160
+      nodes:
+        - { id: n711, label: '7 11', x: 280, y: 35, radius: 28 }
+        - { id: n135, label: '1 3 5', x: 205, y: 105, radius: 32 }
+        - { id: n9, label: '9', x: 280, y: 105, radius: 18 }
+        - { id: n13, label: '13', x: 355, y: 105, radius: 20 }
+      edges:
+        - { from: n711, to: n135 }
+        - { from: n711, to: n9 }
+        - { from: n711, to: n13 }
+
+  - id: gb03-red-black-color-16
+    type: diagram
+    diagram:
+      type: simple-graph
+      width: 640
+      height: 330
+      nodes:
+        - { id: n40, label: '40', x: 320, y: 30, radius: 18, fillColor: '#111827', textColor: '#ffffff' }
+        - { id: n20, label: '20', x: 210, y: 80, radius: 18, fillColor: '#111827', textColor: '#ffffff' }
+        - { id: n90, label: '90', x: 430, y: 80, radius: 18, fillColor: '#111827', textColor: '#ffffff' }
+        - { id: n10, label: '10', x: 150, y: 135, radius: 18, fillColor: '#111827', textColor: '#ffffff' }
+        - { id: n30, label: '30', x: 270, y: 135, radius: 18, fillColor: '#9ca3af', textColor: '#ffffff' }
+        - { id: n70, label: '70', x: 390, y: 135, radius: 18, fillColor: '#9ca3af', textColor: '#ffffff' }
+        - { id: n100, label: '100', x: 510, y: 135, radius: 18, fillColor: '#111827', textColor: '#ffffff' }
+        - { id: n60, label: '60', x: 350, y: 190, radius: 18, fillColor: '#111827', textColor: '#ffffff' }
+        - { id: n80, label: '80', x: 430, y: 190, radius: 18, fillColor: '#111827', textColor: '#ffffff' }
+        - { id: n50, label: '50', x: 310, y: 245, radius: 18, fillColor: '#9ca3af', textColor: '#ffffff' }
+        - { id: nil10l, label: 'NIL', x: 130, y: 180, shape: box, width: 30, height: 14, fontSize: 10, fillColor: '#111827', textColor: '#ffffff' }
+        - { id: nil10r, label: 'NIL', x: 170, y: 180, shape: box, width: 30, height: 14, fontSize: 10, fillColor: '#111827', textColor: '#ffffff' }
+        - { id: nil30l, label: 'NIL', x: 250, y: 180, shape: box, width: 30, height: 14, fontSize: 10, fillColor: '#111827', textColor: '#ffffff' }
+        - { id: nil30r, label: 'NIL', x: 290, y: 180, shape: box, width: 30, height: 14, fontSize: 10, fillColor: '#111827', textColor: '#ffffff' }
+        - { id: nil60r, label: 'NIL', x: 370, y: 235, shape: box, width: 30, height: 14, fontSize: 10, fillColor: '#111827', textColor: '#ffffff' }
+        - { id: nil80l, label: 'NIL', x: 410, y: 235, shape: box, width: 30, height: 14, fontSize: 10, fillColor: '#111827', textColor: '#ffffff' }
+        - { id: nil80r, label: 'NIL', x: 450, y: 235, shape: box, width: 30, height: 14, fontSize: 10, fillColor: '#111827', textColor: '#ffffff' }
+        - { id: nil100l, label: 'NIL', x: 490, y: 180, shape: box, width: 30, height: 14, fontSize: 10, fillColor: '#111827', textColor: '#ffffff' }
+        - { id: nil100r, label: 'NIL', x: 530, y: 180, shape: box, width: 30, height: 14, fontSize: 10, fillColor: '#111827', textColor: '#ffffff' }
+        - { id: nil50l, label: 'NIL', x: 290, y: 290, shape: box, width: 30, height: 14, fontSize: 10, fillColor: '#111827', textColor: '#ffffff' }
+        - { id: nil50r, label: 'NIL', x: 330, y: 290, shape: box, width: 30, height: 14, fontSize: 10, fillColor: '#111827', textColor: '#ffffff' }
+      edges:
+        - { from: n40, to: n20 }
+        - { from: n40, to: n90 }
+        - { from: n20, to: n10 }
+        - { from: n20, to: n30 }
+        - { from: n90, to: n70 }
+        - { from: n90, to: n100 }
+        - { from: n70, to: n60 }
+        - { from: n70, to: n80 }
+        - { from: n60, to: n50 }
+        - { from: n10, to: nil10l }
+        - { from: n10, to: nil10r }
+        - { from: n30, to: nil30l }
+        - { from: n30, to: nil30r }
+        - { from: n60, to: nil60r }
+        - { from: n80, to: nil80l }
+        - { from: n80, to: nil80r }
+        - { from: n100, to: nil100l }
+        - { from: n100, to: nil100r }
+        - { from: n50, to: nil50l }
+        - { from: n50, to: nil50r }
 
   - id: gb03-btree-19
     type: diagram
@@ -1051,10 +1193,10 @@ questions:
     type: multiple-choice
     prompt: 빅오 표기법에서 f(n)=O(g(n))이 되기 위한 조건으로 알맞은 수식은?
     choices:
-      - { id: '1', text: '$g(n) \\le c \\cdot f(n)$' }
-      - { id: '2', text: '$g(n) \\ge c \\cdot f(n)$' }
-      - { id: '3', text: '$f(n) \\le c \\cdot g(n)$' }
-      - { id: '4', text: '$f(n) \\ge c \\cdot g(n)$' }
+      - { id: '1', text: '$g(n) \le c \cdot f(n)$' }
+      - { id: '2', text: '$g(n) \ge c \cdot f(n)$' }
+      - { id: '3', text: '$f(n) \le c \cdot g(n)$' }
+      - { id: '4', text: '$f(n) \ge c \cdot g(n)$' }
     answers: ['3']
     explanation: |
       선택지 1: 이는 g가 f의 상수배 이하라는 형태로 방향이 다르다.
@@ -1071,12 +1213,12 @@ questions:
 
   - id: b01-11
     type: multiple-choice
-    prompt: 일반적으로 '알고리즘의 수행시간이 O(n log n)이다'라는 표현이 의미하는 것은?
+    prompt: 일반적으로 '알고리즘의 수행시간이 $O(n\log n)$이다'라는 표현이 의미하는 것은?
     choices:
-      - { id: '1', text: '최악의 수행시간이 $O(n\\log n)$이다.' }
-      - { id: '2', text: '최선의 수행시간이 $O(n\\log n)$이다.' }
-      - { id: '3', text: '평균 수행시간이 $O(n\\log n)$이다.' }
-      - { id: '4', text: '최악 및 최선 모두 $O(n\\log n)$이다.' }
+      - { id: '1', text: '최악의 수행시간이 $O(n\log n)$이다.' }
+      - { id: '2', text: '최선의 수행시간이 $O(n\log n)$이다.' }
+      - { id: '3', text: '평균 수행시간이 $O(n\log n)$이다.' }
+      - { id: '4', text: '최악 및 최선 모두 $O(n\log n)$이다.' }
     answers: ['1']
     explanation: |
       선택지 1: O 표기법은 점근적 상한이므로 일반적으로 최악 수행시간의 상한으로 해석한다.
@@ -1096,9 +1238,9 @@ questions:
     prompt: 최선의 수행시간과 최악의 수행시간이 같아서 보다 정확한 성능을 표현할 수 있는 점근성능 표기법은?
     choices:
       - { id: '1', text: '$f(n)=O(g(n))$' }
-      - { id: '2', text: '$f(n)=\\Omega(g(n))$' }
-      - { id: '3', text: '$f(n)=\\Theta(g(n))$' }
-      - { id: '4', text: '$f(n)=\\Phi(g(n))$' }
+      - { id: '2', text: '$f(n)=\Omega(g(n))$' }
+      - { id: '3', text: '$f(n)=\Theta(g(n))$' }
+      - { id: '4', text: '$f(n)=\Phi(g(n))$' }
     answers: ['3']
     explanation: |
       선택지 1: O는 상한만 나타낸다.
@@ -1142,57 +1284,39 @@ questions:
     type: multiple-choice
     prompt: 알고리즘의 성능을 나타내는 빅오 함수 중에서 가장 효율적인 것은?
     choices:
-      - { id: '1', text: '$O(n\\log n)$' }
-      - { id: '2', text: '$O(\\log n)$' }
+      - { id: '1', text: '$O(n\log n)$' }
+      - { id: '2', text: '$O(\log n)$' }
       - { id: '3', text: '$O(n^2)$' }
       - { id: '4', text: '$O(2^n)$' }
     answers: ['2']
     explanation: |
-      선택지 1: n log n은 log n보다 빠르게 증가한다.
+      선택지 1: $n\log n$은 log n보다 빠르게 증가한다.
       선택지 2: 보기 중 O(log n)이 입력 증가에 따른 증가율이 가장 작아 가장 효율적이다.
       선택지 3: n^2은 다항 시간 중에서도 증가율이 더 크다.
       선택지 4: 2^n은 지수 시간으로 매우 빠르게 증가한다.
 
       핵심 개념:
       빅오 함수는 왼쪽에 위치할수록 보통 더 효율적이다.
-      일반적인 증가 순서는 O(1), O(log n), O(n), O(n log n), O(n^2), O(2^n)이다.
+      일반적인 증가 순서는 O(1), O(log n), O(n), $O(n\log n)$, O(n^2), O(2^n)이다.
       입력 크기가 커질수록 성장률 차이가 중요해진다.
       알고리즘 선택 시 점근 증가율은 핵심 판단 기준이다.
     tags: [complexity-order]
 
   - id: b01-15
     type: multi-answer
-    prompt: |
-      입력 크기가 n일 때 주어진 2개의 프로그램 (a)와 (b)의 시간 복잡도를 각각 고르시오.
-
-      (a)
-      ```c
-      for (i = 0; i < n - 1; i++) {
-        for (j = i + 1; j < n; j++)
-          printf("*");
-        printf("\n");
-      }
-      ```
-
-      (b)
-      ```c
-      for (i = 0; i < n - 1; i++)
-        sum = sum + i;
-
-      for (j = 1; j < n; j++)
-        printf("*");
-      ```
+    passageRefs: [gb01-loop-a-15, gb01-loop-b-15]
+    prompt: 입력 크기 n일 때 주어진 2개의 프로그램 (a)와 (b)의 시간 복잡도를 나타내는 것을 각각 고르시오.
     choices:
-      - { id: '1', text: '$O(\\log n)$' }
+      - { id: '1', text: '$O(\log n)$' }
       - { id: '2', text: '$O(n)$' }
-      - { id: '3', text: '$O(n\\log n)$' }
+      - { id: '3', text: '$O(n\log n)$' }
       - { id: '4', text: '$O(n^2)$' }
     answers: ['4', '2']
     answerKey: '(a) 4, (b) 2'
     explanation: |
       선택지 1: 두 프로그램 모두 로그 단계로 줄어드는 구조가 아니다.
       선택지 2: 프로그램 (b)는 서로 중첩되지 않은 두 반복문이 각각 n에 비례하므로 O(n)이다.
-      선택지 3: 두 프로그램 모두 n log n 형태의 분할/병합 구조가 아니다.
+      선택지 3: 두 프로그램 모두 $n\log n$ 형태의 분할/병합 구조가 아니다.
       선택지 4: 프로그램 (a)는 바깥 반복마다 안쪽 반복 횟수가 n-1, n-2, ..., 1로 줄어들며 합이 Θ(n^2)이므로 O(n^2)이다.
 
       핵심 개념:
@@ -1206,15 +1330,15 @@ questions:
     type: multiple-choice
     prompt: 주어진 점화식의 폐쇄형을 기준으로 비교할 때 가장 비효율적인 것은?
     choices:
-      - { id: '1', text: '$T(n)=T(n-1)+\\Theta(n),\\ T(1)=\\Theta(1)$' }
-      - { id: '2', text: '$T(n)=T(\\frac{n}{2})+\\Theta(1),\\ T(1)=\\Theta(1)$' }
-      - { id: '3', text: '$T(n)=2T(\\frac{n}{2})+\\Theta(n),\\ T(1)=\\Theta(1)$' }
-      - { id: '4', text: '$T(n)=2T(\\frac{n}{2})+\\Theta(1),\\ T(1)=\\Theta(1)$' }
+      - { id: '1', text: '$T(n)=T(n-1)+\Theta(n),\ T(1)=\Theta(1)$' }
+      - { id: '2', text: '$T(n)=T(\frac{n}{2})+\Theta(1),\ T(1)=\Theta(1)$' }
+      - { id: '3', text: '$T(n)=2T(\frac{n}{2})+\Theta(n),\ T(1)=\Theta(1)$' }
+      - { id: '4', text: '$T(n)=2T(\frac{n}{2})+\Theta(1),\ T(1)=\Theta(1)$' }
     answers: ['1']
     explanation: |
       선택지 1: 폐쇄형은 Θ(n^2)로 보기 중 가장 크다.
       선택지 2: 폐쇄형은 Θ(log n)이다.
-      선택지 3: 폐쇄형은 Θ(n log n)이다.
+      선택지 3: 폐쇄형은 $\Theta(n\log n)$이다.
       선택지 4: 폐쇄형은 Θ(n)이다.
 
       핵심 개념:
@@ -1226,12 +1350,13 @@ questions:
 
   - id: b01-17
     type: multiple-choice
-    prompt: 'PrintMid(A, s, e)는 중간 원소를 출력한 뒤 왼쪽 절반 A[s..m-1]에 대해서만 재귀 호출한다. 입력 크기가 n일 때 수행시간에 해당하는 점화식은?'
+    passageRefs: [gb01-printmid-17]
+    prompt: 입력 크기가 n일 때 주어진 프로그램의 수행시간에 해당하는 점화식은?
     choices:
-      - { id: '1', text: '$T(n)=2T(\\frac{n}{2})+\\Theta(1),\\ T(1)=\\Theta(1)$' }
-      - { id: '2', text: '$T(n)=2T(\\frac{n}{2})+\\Theta(n),\\ T(1)=\\Theta(1)$' }
-      - { id: '3', text: '$T(n)=T(\\frac{n}{2})+\\Theta(1),\\ T(1)=\\Theta(1)$' }
-      - { id: '4', text: '$T(n)=T(\\frac{n}{2})+\\Theta(n),\\ T(1)=\\Theta(1)$' }
+      - { id: '1', text: '$T(n)=2T(\frac{n}{2})+\Theta(1),\ T(1)=\Theta(1)$' }
+      - { id: '2', text: '$T(n)=2T(\frac{n}{2})+\Theta(n),\ T(1)=\Theta(1)$' }
+      - { id: '3', text: '$T(n)=T(\frac{n}{2})+\Theta(1),\ T(1)=\Theta(1)$' }
+      - { id: '4', text: '$T(n)=T(\frac{n}{2})+\Theta(n),\ T(1)=\Theta(1)$' }
     answers: ['3']
     explanation: |
       선택지 1: 재귀 호출은 두 번이 아니라 왼쪽 절반 한 번만 수행된다.
@@ -1289,17 +1414,18 @@ questions:
       핵심 개념:
       선택, 버블, 삽입, 셸, 퀵, 병합, 힙 정렬은 원소 간 비교를 기반으로 한다.
       계수, 기수, 버킷 정렬은 데이터의 범위나 구조를 활용한다.
-      비교 기반 정렬은 일반적으로 Ω(n log n)의 하한을 갖는다.
+      비교 기반 정렬은 일반적으로 $\Omega(n\log n)$의 하한을 갖는다.
       비비교 정렬은 조건이 맞으면 선형 시간에 가까운 성능도 가능하다.
     tags: [sorting, counting-sort]
 
   - id: b02-03
     type: multiple-choice
-    prompt: '입력 크기 n인 배열에서 i=0부터 n-2까지 반복하며, 매 단계마다 미정렬 부분 A[i..n-1]의 최솟값을 찾아 A[i]와 위치를 교환하는 정렬 알고리즘에 대한 설명으로 올바른 것은?'
+    passageRefs: [gb02-selection-sort-03]
+    prompt: 다음 정렬 알고리즘에 대한 설명으로 올바른 것은?
     choices:
       - { id: '1', text: 안정적인 정렬 알고리즘이다. }
       - { id: '2', text: 버블 정렬의 처리 과정을 나타낸다. }
-      - { id: '3', text: 최악의 수행시간은 $O(n\\log n)$이다. }
+      - { id: '3', text: 최악의 수행시간은 $O(n\log n)$이다. }
       - { id: '4', text: 언제나 동일한 시간 복잡도를 갖는다. }
     answers: ['4']
     explanation: |
@@ -1349,21 +1475,11 @@ questions:
 
   - id: b02-05
     type: multiple-choice
-    prompt: |
-      다음 알고리즘에 대한 설명으로 올바른 것은?
-
-      ```c
-      WhatSort(A[], n) {
-        for (i = 0; i < n - 1; i++)
-          for (j = 0; j < n - 1; j++)
-            if (A[j] > A[j + 1])
-              A[j]와 A[j + 1]의 위치 교환;
-        return A;
-      }
-      ```
+    passageRefs: [gb02-whatsort-05]
+    prompt: 다음 알고리즘에 대한 설명으로 올바른 것은?
     choices:
       - { id: '1', text: 모든 데이터는 많아야 두 번의 위치 교환이 발생한다. }
-      - { id: '2', text: 시간 복잡도는 $O(n\\log n)$이다. }
+      - { id: '2', text: 시간 복잡도는 $O(n\log n)$이다. }
       - { id: '3', text: 제자리 정렬 알고리즘이 아니다. }
       - { id: '4', text: 같은 값을 갖는 데이터에 대한 정렬 전후의 상대적인 순서가 그대로 유지된다. }
     answers: ['4']
@@ -1404,23 +1520,8 @@ questions:
 
   - id: b02-07
     type: multiple-choice
-    prompt: |
-      다음 버블 정렬 알고리즘으로 입력 배열 `A[]={60,20,30,40,50}`을 오름차순 정렬할 때, if문에서 수행되는 데이터 간 총 비교 횟수는?
-
-      ```c
-      BubbleSort(A[], n) {
-        for (i = 0; i < n - 1; i++) {
-          Sorted = TRUE;
-          for (j = 0; j < (n - 1) - i; j++)
-            if (A[j] > A[j + 1]) {
-              A[j]와 A[j + 1]의 위치 교환;
-              Sorted = FALSE;
-            }
-          if (Sorted == TRUE) break;
-        }
-        return A;
-      }
-      ```
+    passageRefs: [gb02-bubble-early-exit-07]
+    prompt: 다음 버블 정렬 알고리즘으로 입력 배열 `A[]={60,20,30,40,50}`을 오름차순 정렬할 때, if문에서 수행되는 데이터 간 총 비교 횟수는?
     choices:
       - { id: '1', text: '5' }
       - { id: '2', text: '7' }
@@ -1488,7 +1589,7 @@ questions:
     type: multiple-choice
     prompt: 셸 정렬에 대한 설명으로 올바른 것은?
     choices:
-      - { id: '1', text: 최악의 경우 $O(n\\log n)$의 수행시간을 보장한다. }
+      - { id: '1', text: 최악의 경우 $O(n\log n)$의 수행시간을 보장한다. }
       - { id: '2', text: 제자리 정렬 알고리즘이 아니다. }
       - { id: '3', text: 각 부분배열에서 인접한 두 데이터 간의 거리는 항상 일정하다. }
       - { id: '4', text: 선택 정렬의 단점을 보완한 정렬 알고리즘이다. }
@@ -1532,10 +1633,10 @@ questions:
     type: multiple-choice
     prompt: 입력 데이터가 제 순서로 정렬된 상태로 주어졌을 때 퀵 정렬의 수행시간에 해당하는 점화식은? 단, 피벗은 배열의 첫 번째 원소로 지정한다.
     choices:
-      - { id: '1', text: '$T(n)=T(n-1)+\\Theta(n),\\ T(1)=\\Theta(1)$' }
-      - { id: '2', text: '$T(n)=T(n/2)+\\Theta(1),\\ T(1)=\\Theta(1)$' }
-      - { id: '3', text: '$T(n)=2T(n/2)+\\Theta(n),\\ T(1)=\\Theta(1)$' }
-      - { id: '4', text: '$T(n)=2T(n/2)+\\Theta(1),\\ T(1)=\\Theta(1)$' }
+      - { id: '1', text: '$T(n)=T(n-1)+\Theta(n),\ T(1)=\Theta(1)$' }
+      - { id: '2', text: '$T(n)=T(n/2)+\Theta(1),\ T(1)=\Theta(1)$' }
+      - { id: '3', text: '$T(n)=2T(n/2)+\Theta(n),\ T(1)=\Theta(1)$' }
+      - { id: '4', text: '$T(n)=2T(n/2)+\Theta(1),\ T(1)=\Theta(1)$' }
     answers: ['1']
     explanation: |
       선택지 1: 첫 원소를 피벗으로 쓰면 정렬된 입력에서 한쪽 부분배열만 n-1 크기로 남는다.
@@ -1634,7 +1735,7 @@ questions:
       핵심 개념:
       퀵 정렬의 최선은 피벗이 매번 부분배열의 중간값이 되는 경우이다.
       이때 두 부분배열의 크기가 거의 같아진다.
-      점화식은 T(n)=2T(n/2)+Θ(n)이고 수행시간은 O(n log n)이다.
+      점화식은 T(n)=2T(n/2)+Θ(n)이고 수행시간은 $O(n\log n)$이다.
       정렬된 입력은 피벗 선택 방식에 따라 오히려 최악이 될 수 있다.
     tags: [sorting, quick-sort, pivot]
 
@@ -1671,13 +1772,13 @@ questions:
     answers: ['2']
     explanation: |
       선택지 1: 첫 원소 피벗의 퀵 정렬은 내림차순 입력에서 O(n^2)의 최악 수행시간이 된다.
-      선택지 2: 합병 정렬은 입력 상태와 무관하게 O(n log n)의 수행시간을 보장한다.
+      선택지 2: 합병 정렬은 입력 상태와 무관하게 $O(n\log n)$의 수행시간을 보장한다.
       선택지 3: 삽입 정렬은 내림차순 입력에서 O(n^2)이 된다.
       선택지 4: 셸 정렬도 일반적으로 최악 O(n^2)로 설명된다.
 
       핵심 개념:
       합병 정렬은 항상 배열을 거의 반으로 나누고 선형 시간에 합병한다.
-      따라서 최선, 평균, 최악 모두 O(n log n)이다.
+      따라서 최선, 평균, 최악 모두 $O(n\log n)$이다.
       퀵 정렬은 피벗 선택이 나쁘면 O(n^2)이 될 수 있다.
       입력 상태가 주어졌을 때 알고리즘별 최악 성능을 비교해야 한다.
     tags: [sorting, merge-sort, quick-sort]
@@ -1686,16 +1787,16 @@ questions:
     type: multiple-choice
     prompt: 퀵 정렬의 분할 함수 Partition()과 합병 정렬의 합병 함수 Merge()의 수행시간을 바르게 나열한 것은?
     choices:
-      - { id: '1', text: '$O(n),\\ O(n)$' }
-      - { id: '2', text: '$O(n),\\ O(n\\log n)$' }
-      - { id: '3', text: '$O(n\\log n),\\ O(n)$' }
-      - { id: '4', text: '$O(n\\log n),\\ O(n\\log n)$' }
+      - { id: '1', text: '$O(n),\ O(n)$' }
+      - { id: '2', text: '$O(n),\ O(n\log n)$' }
+      - { id: '3', text: '$O(n\log n),\ O(n)$' }
+      - { id: '4', text: '$O(n\log n),\ O(n\log n)$' }
     answers: ['1']
     explanation: |
       선택지 1: Partition()과 Merge()는 각각 주어진 구간을 한 번 훑는 선형 시간 함수이다.
       선택지 2: Merge() 자체는 정렬 전체가 아니라 한 번의 합병이므로 O(n)이다.
       선택지 3: Partition()도 한 번의 분할에서는 O(n)이다.
-      선택지 4: 두 함수 모두 단일 호출 기준으로 O(n log n)이 아니다.
+      선택지 4: 두 함수 모두 단일 호출 기준으로 $O(n\log n)$이 아니다.
 
       핵심 개념:
       Partition()은 피벗과 나머지 원소를 비교하며 좌우 부분배열로 나눈다.
@@ -1710,7 +1811,7 @@ questions:
     choices:
       - { id: '1', text: 퀵 정렬은 안정적이지만 제자리 정렬 알고리즘이 아니다. }
       - { id: '2', text: 합병 정렬은 안정적이지 않지만 제자리 정렬 알고리즘이다. }
-      - { id: '3', text: 모두 최악의 수행시간이 $O(n\\log n)$이다. }
+      - { id: '3', text: 모두 최악의 수행시간이 $O(n\log n)$이다. }
       - { id: '4', text: 모두 분할정복 방법을 적용한 알고리즘이다. }
     answers: ['4']
     explanation: |
@@ -1960,13 +2061,13 @@ questions:
     explanation: |
       선택지 1: 버킷 정렬은 데이터가 균등하게 분포하는 조건에서 평균 O(n)을 기대할 수 있다.
       선택지 2: 기수 정렬은 자릿수가 상수이면 O(n)으로 볼 수 있다.
-      선택지 3: 합병 정렬은 비교 기반 정렬로 최선, 평균, 최악 모두 O(n log n)이다.
+      선택지 3: 합병 정렬은 비교 기반 정렬로 최선, 평균, 최악 모두 $O(n\log n)$이다.
       선택지 4: 계수 정렬은 입력값 범위가 입력 개수에 비례하면 O(n)이다.
 
       핵심 개념:
       계수, 기수, 버킷 정렬은 데이터 분포나 자릿수 정보를 이용하는 선형 시간 정렬이다.
       합병 정렬은 원소 간 비교를 기반으로 한다.
-      비교 기반 정렬은 일반적으로 O(n log n)의 성능을 가진다.
+      비교 기반 정렬은 일반적으로 $O(n\log n)$의 성능을 가진다.
       선형 시간 정렬은 입력 조건이 충족될 때 효과적이다.
     tags: [sorting, linear-time-sort]
 
@@ -2082,7 +2183,7 @@ questions:
 
   - id: b02-34
     type: multiple-choice
-    prompt: 최악의 수행시간이 $O(n\\log n)$인 정렬 알고리즘은?
+    prompt: 최악의 수행시간이 $O(n\log n)$인 정렬 알고리즘은?
     choices:
       - { id: '1', text: 삽입 정렬 }
       - { id: '2', text: 힙 정렬 }
@@ -2091,14 +2192,14 @@ questions:
     answers: ['2']
     explanation: |
       선택지 1: 삽입 정렬의 최악 수행시간은 O(n^2)이다.
-      선택지 2: 힙 정렬은 최악의 경우에도 O(n log n)을 보장한다.
+      선택지 2: 힙 정렬은 최악의 경우에도 $O(n\log n)$을 보장한다.
       선택지 3: 퀵 정렬의 최악 수행시간은 피벗이 치우치면 O(n^2)이다.
-      선택지 4: 기수 정렬은 비교 기반 O(n log n) 분류가 아니라 자릿수 조건에 따른 선형 시간 정렬이다.
+      선택지 4: 기수 정렬은 비교 기반 $O(n\log n)$ 분류가 아니라 자릿수 조건에 따른 선형 시간 정렬이다.
 
       핵심 개념:
       힙 정렬은 최대 힙 구성 후 루트 삭제와 재조정을 반복한다.
-      각 삭제/재조정은 O(log n), 이를 n번 반복해 O(n log n)이 된다.
-      퀵 정렬은 평균 O(n log n)이지만 최악은 O(n^2)이다.
+      각 삭제/재조정은 O(log n), 이를 n번 반복해 $O(n\log n)$이 된다.
+      퀵 정렬은 평균 $O(n\log n)$이지만 최악은 O(n^2)이다.
       정렬 알고리즘 비교에서는 최선, 평균, 최악 시간을 구분해야 한다.
     tags: [sorting, heap-sort]
 
@@ -2173,9 +2274,9 @@ questions:
     prompt: 순차 탐색의 평균 삽입 시간은? 단, n은 입력 배열의 크기이다.
     choices:
       - { id: '1', text: '$O(1)$' }
-      - { id: '2', text: '$O(\\log n)$' }
+      - { id: '2', text: '$O(\log n)$' }
       - { id: '3', text: '$O(n)$' }
-      - { id: '4', text: '$O(n\\log n)$' }
+      - { id: '4', text: '$O(n\log n)$' }
     answers: ['1']
     explanation: |
       선택지 1: 순차 탐색을 사용하는 비정렬 리스트에서는 새 원소를 마지막에 추가하면 되므로 삽입은 상수 시간이다.
@@ -2238,9 +2339,9 @@ questions:
     type: multiple-choice
     prompt: 순차 탐색과 이진 탐색의 평균 탐색 시간을 바르게 나열한 것은? 단, n은 입력 배열의 크기이다.
     choices:
-      - { id: '1', text: '순차 탐색 $O(\\log n)$, 이진 탐색 $O(\\log n)$' }
-      - { id: '2', text: '순차 탐색 $O(\\log n)$, 이진 탐색 $O(n)$' }
-      - { id: '3', text: '순차 탐색 $O(n)$, 이진 탐색 $O(\\log n)$' }
+      - { id: '1', text: '순차 탐색 $O(\log n)$, 이진 탐색 $O(\log n)$' }
+      - { id: '2', text: '순차 탐색 $O(\log n)$, 이진 탐색 $O(n)$' }
+      - { id: '3', text: '순차 탐색 $O(n)$, 이진 탐색 $O(\log n)$' }
       - { id: '4', text: '순차 탐색 $O(n)$, 이진 탐색 $O(n)$' }
     answers: ['3']
     explanation: |
@@ -2353,9 +2454,9 @@ questions:
     prompt: 입력 크기 n에 대한 이진 탐색 트리의 평균 탐색 시간은?
     choices:
       - { id: '1', text: '$O(1)$' }
-      - { id: '2', text: '$O(\\log n)$' }
+      - { id: '2', text: '$O(\log n)$' }
       - { id: '3', text: '$O(n)$' }
-      - { id: '4', text: '$O(n\\log n)$' }
+      - { id: '4', text: '$O(n\log n)$' }
     answers: ['2']
     explanation: |
       선택지 1: 일반적인 이진 탐색 트리 탐색은 상수 시간으로 보장되지 않는다.
@@ -2395,7 +2496,8 @@ questions:
 
   - id: b03-14
     type: multiple-choice
-    prompt: '2-3-4 트리 `[7 11]`의 자식이 `[1 3 5]`, `[9]`, `[13]`일 때, 원소 6을 삽입하는 과정에서 부모 노드로 보내지는 키값은?'
+    passageRefs: [gb03-234-insert-14]
+    prompt: 다음 2-3-4 트리에서 원소 6을 삽입하는 과정에서 부모 노드로 보내지는 키값은?
     choices:
       - { id: '1', text: '1' }
       - { id: '2', text: '3' }
@@ -2419,9 +2521,9 @@ questions:
     type: multiple-choice
     prompt: 1부터 n까지 정수를 오름차순으로 삽입하여 n개 원소를 갖는 이진 탐색 트리와 n개 원소를 갖는 2-3-4 트리를 각각 구성하였다. 이때 각 트리에 대한 평균 탐색 시간은?
     choices:
-      - { id: '1', text: '이진 탐색 트리 $O(\\log n)$, 2-3-4 트리 $O(\\log n)$' }
-      - { id: '2', text: '이진 탐색 트리 $O(\\log n)$, 2-3-4 트리 $O(n)$' }
-      - { id: '3', text: '이진 탐색 트리 $O(n)$, 2-3-4 트리 $O(\\log n)$' }
+      - { id: '1', text: '이진 탐색 트리 $O(\log n)$, 2-3-4 트리 $O(\log n)$' }
+      - { id: '2', text: '이진 탐색 트리 $O(\log n)$, 2-3-4 트리 $O(n)$' }
+      - { id: '3', text: '이진 탐색 트리 $O(n)$, 2-3-4 트리 $O(\log n)$' }
       - { id: '4', text: '이진 탐색 트리 $O(n)$, 2-3-4 트리 $O(n)$' }
     answers: ['3']
     explanation: |
@@ -2439,10 +2541,8 @@ questions:
 
   - id: b03-16
     type: multiple-choice
-    prompt: '레드-블랙 트리에서 하나의 노드 색깔만 바꾸면 성질을 만족할 수 있다. 해당 노드의 키값은? 단, 열린 음영 처리된 노드가 빨강 노드이다. 구조상 30 노드를 지나는 경로의 검정 노드 수만 부족하다.'
-    images:
-      - path: images/subjects/algorithms/workbook/b03-16-red-black-tree.png
-        alt: b03-16 레드-블랙 트리
+    passageRefs: [gb03-red-black-color-16]
+    prompt: '레드-블랙 트리에서 하나의 노드 색깔만 바꾸면 성질을 만족할 수 있다. 해당 노드의 키값은? 단, 옅은 음영 처리된 노드가 빨강 노드이다. 구조상 30 노드를 지나는 경로의 검정 노드 수만 부족하다.'
     choices:
       - { id: '1', text: '10' }
       - { id: '2', text: '30' }
@@ -2496,9 +2596,9 @@ questions:
     type: multiple-choice
     prompt: 노드의 개수가 n인 레드-블랙 트리의 평균 탐색 시간과 평균 삽입 시간은?
     choices:
-      - { id: '1', text: '탐색 $O(\\log n)$, 삽입 $O(\\log n)$' }
-      - { id: '2', text: '탐색 $O(\\log n)$, 삽입 $O(n)$' }
-      - { id: '3', text: '탐색 $O(n)$, 삽입 $O(\\log n)$' }
+      - { id: '1', text: '탐색 $O(\log n)$, 삽입 $O(\log n)$' }
+      - { id: '2', text: '탐색 $O(\log n)$, 삽입 $O(n)$' }
+      - { id: '3', text: '탐색 $O(n)$, 삽입 $O(\log n)$' }
       - { id: '4', text: '탐색 $O(n)$, 삽입 $O(n)$' }
     answers: ['1']
     explanation: |
@@ -2566,7 +2666,7 @@ questions:
     choices:
       - { id: '1', text: 해시 함수는 주소를 키값으로 바꿔 준다. }
       - { id: '2', text: 해시 테이블의 개념은 연결 리스트와 유사하다. }
-      - { id: '3', text: 탐색, 삽입, 삭제에 $O(\\log n)$ 시간이 필요하다. }
+      - { id: '3', text: 탐색, 삽입, 삭제에 $O(\log n)$ 시간이 필요하다. }
       - { id: '4', text: 키값을 활용하여 해시 테이블의 주소를 직접 계산한다. }
     answers: ['4']
     explanation: |
@@ -2584,7 +2684,7 @@ questions:
 
   - id: b03-22
     type: multiple-choice
-    prompt: '키값 K에 대한 해시 함수를 $h(K)=K \\bmod M$으로 정의하는 방법은? 단, M은 해시 테이블의 크기이다.'
+    prompt: '키값 K에 대한 해시 함수를 $h(K)=K \bmod M$으로 정의하는 방법은? 단, M은 해시 테이블의 크기이다.'
     choices:
       - { id: '1', text: 비닝 }
       - { id: '2', text: 가중 합 }
@@ -2614,7 +2714,7 @@ questions:
           text: 개방 해싱은 동일한 주소로 해시되는 모든 원소를 연결 리스트 형태로 저장하는 방법이다.,
         }
       - { id: '3', text: 폐쇄 해싱에는 선형 탐사, 이차 탐사, 이중 해싱 등이 있다. }
-      - { id: '4', text: $x \\ne y$인 두 키값에 대하여 $h(x)=h(y)$인 경우에 사용하는 방법이다. }
+      - { id: '4', text: $x \ne y$인 두 키값에 대하여 $h(x)=h(y)$인 경우에 사용하는 방법이다. }
     answers: ['1']
     explanation: |
       선택지 1: 개방 해싱과 폐쇄 해싱은 해시 함수 종류가 아니라 충돌 해결 방법이다.
@@ -2632,7 +2732,7 @@ questions:
   - id: b03-24
     type: multiple-choice
     passageRefs: [gb03-hash-table-24]
-    prompt: '해시 함수 $h(K)=K \\bmod 5$를 이용하고 현재 해시 테이블의 상태가 다음과 같을 때, 키값 23이 삽입되는 슬롯의 주소는? 단, 충돌 해결은 선형 탐사를 이용한다.'
+    prompt: '해시 함수 $h(K)=K \bmod 5$를 이용하고 현재 해시 테이블의 상태가 다음과 같을 때, 키값 23이 삽입되는 슬롯의 주소는? 단, 충돌 해결은 선형 탐사를 이용한다.'
     choices:
       - { id: '1', text: '0' }
       - { id: '2', text: '1' }
@@ -3231,7 +3331,7 @@ questions:
     type: multiple-choice
     prompt: '각 정점을 출발점으로 하는 데이크스트라 알고리즘을 반복적으로 적용하여 모든 쌍 최단 경로 문제를 해결할 경우의 시간 복잡도는? 단, 그래프는 인접 행렬로 표현하고 정점의 개수는 n이다.'
     choices:
-      - { id: '1', text: '$O(n\\log n)$' }
+      - { id: '1', text: '$O(n\log n)$' }
       - { id: '2', text: '$O(n)$' }
       - { id: '3', text: '$O(n^2)$' }
       - { id: '4', text: '$O(n^3)$' }
@@ -3254,9 +3354,9 @@ questions:
     prompt: '네트워크 플로 문제에 대한 설명으로 적절한 것은? 단, 네트워크는 N=(V,E,s,t,c)로 정의되고, f(u,v)는 간선에 대한 플로이다.'
     choices:
       - { id: '1', text: '(V,E)는 무방향 그래프이다.' }
-      - { id: '2', text: '$\\sum_{v\\in V} f(s,v)=\\sum_{w\\in V} f(w,t)$이다.' }
-      - { id: '3', text: '$c(u,v) \\le f(u,v)$이다.' }
-      - { id: '4', text: '모든 $u\\in V-{s,t}$에 대해서 $\\sum_u f(u,v) \\ne \\sum_w f(v,w)$이다.' }
+      - { id: '2', text: '$\sum_{v\in V} f(s,v)=\sum_{w\in V} f(w,t)$이다.' }
+      - { id: '3', text: '$c(u,v) \le f(u,v)$이다.' }
+      - { id: '4', text: '모든 $u\in V-{s,t}$에 대해서 $\sum_u f(u,v) \ne \sum_w f(v,w)$이다.' }
     answers: ['2']
     explanation: |
       선택지 1: 네트워크 플로는 방향 그래프를 대상으로 정의된다.
@@ -3524,7 +3624,7 @@ questions:
     prompt: n개 행렬의 연쇄적 곱셈 문제를 해결하는 동적 프로그래밍 알고리즘의 시간 복잡도는?
     choices:
       - { id: '1', text: '$O(n)$' }
-      - { id: '2', text: '$O(n\\log n)$' }
+      - { id: '2', text: '$O(n\log n)$' }
       - { id: '3', text: '$O(n^2)$' }
       - { id: '4', text: '$O(n^3)$' }
     answers: ['4']
@@ -3546,7 +3646,7 @@ questions:
     prompt: 'n개 행렬의 연쇄적 곱셈 문제에서 동적 프로그래밍으로 얻은 테이블 P[1..n][1..n]으로부터 행렬의 곱셈 순서를 직접 구하는 알고리즘의 시간 복잡도는?'
     choices:
       - { id: '1', text: '$O(n)$' }
-      - { id: '2', text: '$O(n\\log n)$' }
+      - { id: '2', text: '$O(n\log n)$' }
       - { id: '3', text: '$O(n^2)$' }
       - { id: '4', text: '$O(n^3)$' }
     answers: ['1']
@@ -3653,8 +3753,8 @@ questions:
     type: multiple-choice
     prompt: 길이가 각각 n과 m인 두 스트링의 LCS 길이를 구하는 동적 프로그래밍 알고리즘의 시간 복잡도는?
     choices:
-      - { id: '1', text: '$O(\\min\\{n,m\\})$' }
-      - { id: '2', text: '$O(\\max\\{n,m\\})$' }
+      - { id: '1', text: '$O(\min\{n,m\})$' }
+      - { id: '2', text: '$O(\max\{n,m\})$' }
       - { id: '3', text: '$O(n+m)$' }
       - { id: '4', text: '$O(nm)$' }
     answers: ['4']
@@ -3675,10 +3775,10 @@ questions:
     type: multiple-choice
     prompt: '2000, 175, 32 등 자연수인 10진수를 나타내는 스트링의 알파벳은?'
     choices:
-      - { id: '1', text: '$\\Sigma=\\{0,1\\}$' }
-      - { id: '2', text: '$\\Sigma=\\{0,1,2,3,4,5,6,7,8,9\\}$' }
-      - { id: '3', text: '$\\Sigma=\\{0,1,2,3,4,5,6,7,8,9,a,b,c,d,e,f\\}$' }
-      - { id: '4', text: '$\\Sigma=\\{a,b,c,d,\\cdots,x,y,z\\}$' }
+      - { id: '1', text: '$\Sigma=\{0,1\}$' }
+      - { id: '2', text: '$\Sigma=\{0,1,2,3,4,5,6,7,8,9\}$' }
+      - { id: '3', text: '$\Sigma=\{0,1,2,3,4,5,6,7,8,9,a,b,c,d,e,f\}$' }
+      - { id: '4', text: '$\Sigma=\{a,b,c,d,\cdots,x,y,z\}$' }
     answers: ['2']
     explanation: |
       선택지 1: 이는 2진수를 나타내는 알파벳이다.
@@ -3720,8 +3820,8 @@ questions:
     prompt: 텍스트와 패턴의 길이가 각각 n과 m일 때, 브루트-포스 스트링 매칭 알고리즘의 수행시간은?
     choices:
       - { id: '1', text: '$O(m+n)$' }
-      - { id: '2', text: '$O(m\\log n)$' }
-      - { id: '3', text: '$O(n\\log m)$' }
+      - { id: '2', text: '$O(m\log n)$' }
+      - { id: '3', text: '$O(n\log m)$' }
       - { id: '4', text: '$O(mn)$' }
     answers: ['4']
     explanation: |
@@ -3923,8 +4023,8 @@ questions:
     prompt: 텍스트와 패턴의 길이가 각각 n과 m일 때, KMP 알고리즘의 수행시간은? 단, n >= m이다.
     choices:
       - { id: '1', text: '$O(n)$' }
-      - { id: '2', text: '$O(m\\log n)$' }
-      - { id: '3', text: '$O(n\\log m)$' }
+      - { id: '2', text: '$O(m\log n)$' }
+      - { id: '3', text: '$O(n\log m)$' }
       - { id: '4', text: '$O(mn)$' }
     answers: ['1']
     explanation: |
