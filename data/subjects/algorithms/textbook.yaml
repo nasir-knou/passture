@@ -15,6 +15,95 @@ passages:
       \end{cases}
       $$
 
+  - id: g04-adjacency-list-02
+    type: diagram
+    diagram:
+      type: data-table
+      columns: ['정점', '인접 정점']
+      rows:
+        - ['1', '2, 3, 4']
+        - ['2', '1, 4']
+        - ['3', '1, 4']
+        - ['4', '1, 2, 3']
+
+  - id: g04-bfs-tree-04
+    type: diagram
+    diagram:
+      type: simple-graph
+      width: 360
+      height: 220
+      nodes:
+        - { id: '1', label: '1', x: 180, y: 34 }
+        - { id: '2', label: '2', x: 95, y: 92 }
+        - { id: '3', label: '3', x: 180, y: 92 }
+        - { id: '4', label: '4', x: 265, y: 92 }
+        - { id: '5', label: '5', x: 136, y: 166 }
+        - { id: '6', label: '6', x: 265, y: 166 }
+      edges:
+        - { from: '1', to: '2' }
+        - { from: '1', to: '3' }
+        - { from: '1', to: '4' }
+        - { from: '2', to: '5' }
+        - { from: '3', to: '5', style: dashed }
+        - { from: '4', to: '6' }
+
+  - id: g04-spanning-source-07
+    type: diagram
+    diagram:
+      type: simple-graph
+      width: 260
+      height: 220
+      nodes:
+        - { id: '1', label: '1', x: 130, y: 30 }
+        - { id: '2', label: '2', x: 78, y: 86 }
+        - { id: '3', label: '3', x: 182, y: 86 }
+        - { id: '4', label: '4', x: 78, y: 168 }
+        - { id: '5', label: '5', x: 182, y: 168 }
+      edges:
+        - { from: '1', to: '2' }
+        - { from: '1', to: '3' }
+        - { from: '2', to: '3' }
+        - { from: '2', to: '4' }
+        - { from: '2', to: '5' }
+        - { from: '3', to: '4' }
+        - { from: '3', to: '5' }
+        - { from: '4', to: '5' }
+
+  - id: g04-dijkstra-pseudocode-11
+    type: code
+    language: text
+    body: |
+      시작 정점 s로부터의 거리를 초기화;
+      do {
+          (ㄱ);
+          선택된 정점에 인접한 모든 미선택 정점의 거리 조정;
+      } while (미선택 정점이 존재)
+
+  - id: g04-floyd-pseudocode-14
+    type: code
+    language: text
+    highlights: ['(ㄱ)', '(ㄴ)', '(ㄷ)']
+    body: |
+      Floyd(G)
+      입력: 인접 행렬로 표현된 그래프 G=(V, E)
+      출력: 모든 정점 간의 최단 경로의 길이 D[][]
+      {
+          D[][]를 간선의 가중치로 초기화;
+          for ( (ㄱ) = 1부터 |V|까지 )
+              for ( (ㄴ) = 1부터 |V|까지 )
+                  for ( (ㄷ) = 1부터 |V|까지 )
+                      if (D[i][j] > D[i][k] + D[k][j])
+                          D[i][j] = D[i][k] + D[k][j];
+          return (D[][]);
+      }
+
+  - id: g05-dp-problems-02
+    type: text
+    body: |
+      가. 피보나치 수열
+      나. 행렬의 연쇄적 곱셈
+      다. 최장 공통 부분 수열
+
 questions:
   - id: t01-01
     type: multiple-choice
@@ -113,8 +202,8 @@ questions:
     choices:
       - { id: '1', text: '$n - 1$' }
       - { id: '2', text: '$n$' }
-      - { id: '3', text: '$\\frac{n}{2} - 1$' }
-      - { id: '4', text: '$\\frac{n}{2}$' }
+      - { id: '3', text: '$\frac{n}{2}$' }
+      - { id: '4', text: '$\frac{n}{2} - 1$' }
     answers: ['1']
     explanation: |
       선택지 1: n개 중 최솟값을 확인하려면 나머지 n-1개가 후보보다 크다는 비교가 필요하다.
@@ -197,12 +286,12 @@ questions:
 
   - id: t01-09
     type: multiple-choice
-    prompt: '$f(n)=3n^3+3n-10$이고 $g(n)=n^3$인 경우 $n \\ge 1$에 대해서 $f(n) \\le 7 \\cdot g(n)$일 때 $f(n)$을 나타내는 점근적 표기법은?'
+    prompt: '$f(n)=3n^3+3n-10$이고 $g(n)=n^3$인 경우 $n \ge 1$에 대해서 $f(n) \le 7 \cdot g(n)$일 때 $f(n)$을 나타내는 점근적 표기법은?'
     choices:
       - { id: '1', text: '$f(n)=O(n^3)$' }
-      - { id: '2', text: '$f(n)=\\Omega(n^3)$' }
-      - { id: '3', text: '$f(n)=\\Theta(n^3)$' }
-      - { id: '4', text: '$f(n)=\\Phi(n^3)$' }
+      - { id: '2', text: '$f(n)=\Omega(n^3)$' }
+      - { id: '3', text: '$f(n)=\Theta(n^3)$' }
+      - { id: '4', text: '$f(n)=\Phi(n^3)$' }
     answers: ['1']
     explanation: |
       선택지 1: f(n)이 상수배 g(n) 이하로 제한되므로 점근적 상한인 O(n^3)로 표현할 수 있다.
@@ -221,10 +310,10 @@ questions:
     type: multiple-choice
     prompt: 점근성능의 표기법 중에서 점근적 상한을 나타내는 것은?
     choices:
-      - { id: '1', text: '$f(n)=\\Omega(g(n))$' }
+      - { id: '1', text: '$f(n)=\Omega(g(n))$' }
       - { id: '2', text: '$f(n)=O(g(n))$' }
-      - { id: '3', text: '$f(n)=\\Phi(g(n))$' }
-      - { id: '4', text: '$f(n)=\\Theta(g(n))$' }
+      - { id: '3', text: '$f(n)=\Phi(g(n))$' }
+      - { id: '4', text: '$f(n)=\Theta(g(n))$' }
     answers: ['2']
     explanation: |
       선택지 1: Ω 표기법은 점근적 하한을 나타낸다.
@@ -243,20 +332,20 @@ questions:
     type: multiple-choice
     prompt: 충분히 큰 입력 크기 n에 대해서 가장 빠른 성능을 나타내는 빅오 함수부터 올바르게 나열한 것은?
     choices:
-      - { id: '1', text: '$O(n) \\to O(\\log n) \\to O(n\\log n) \\to O(n^2)$' }
-      - { id: '2', text: '$O(n) \\to O(n\\log n) \\to O(\\log n) \\to O(n^2)$' }
-      - { id: '3', text: '$O(\\log n) \\to O(n) \\to O(n\\log n) \\to O(n^2)$' }
-      - { id: '4', text: '$O(\\log n) \\to O(n\\log n) \\to O(n) \\to O(n^2)$' }
+      - { id: '1', text: '$O(n) \to O(\log n) \to O(n\log n) \to O(n^2)$' }
+      - { id: '2', text: '$O(n) \to O(n\log n) \to O(\log n) \to O(n^2)$' }
+      - { id: '3', text: '$O(\log n) \to O(n) \to O(n\log n) \to O(n^2)$' }
+      - { id: '4', text: '$O(\log n) \to O(n\log n) \to O(n) \to O(n^2)$' }
     answers: ['3']
     explanation: |
       선택지 1: 로그 시간은 선형 시간보다 빠르므로 O(log n)이 O(n)보다 앞서야 한다.
-      선택지 2: O(log n), O(n), O(n log n)의 순서가 맞지 않다.
-      선택지 3: 충분히 큰 n에서 O(log n), O(n), O(n log n), O(n^2) 순으로 증가율이 커진다.
-      선택지 4: O(n log n)은 O(n)보다 느리다.
+      선택지 2: O(log n), O(n), $O(n\log n)$의 순서가 맞지 않다.
+      선택지 3: 충분히 큰 n에서 O(log n), O(n), $O(n\log n)$, O(n^2) 순으로 증가율이 커진다.
+      선택지 4: $O(n\log n)$은 O(n)보다 느리다.
 
       핵심 개념:
       점근 복잡도는 입력이 충분히 커질 때의 증가율을 비교한다.
-      일반적으로 log n < n < n log n < n^2 순서로 증가한다.
+      일반적으로 log n < n < $n\log n$ < n^2 순서로 증가한다.
       증가율이 낮을수록 큰 입력에서 더 빠른 알고리즘으로 평가된다.
       상수와 낮은 차수 항은 점근 비교에서 보통 무시한다.
     tags: [asymptotic-notation, complexity-order]
@@ -266,15 +355,15 @@ questions:
     passageRefs: [g01-recurrence-12]
     prompt: 다음 점화식의 폐쇄형은?
     choices:
-      - { id: '1', text: '$\\Theta(\\log n)$' }
-      - { id: '2', text: '$\\Theta(n)$' }
-      - { id: '3', text: '$\\Theta(n\\log n)$' }
-      - { id: '4', text: '$\\Theta(n^2)$' }
+      - { id: '1', text: '$\Theta(\log n)$' }
+      - { id: '2', text: '$\Theta(n)$' }
+      - { id: '3', text: '$\Theta(n\log n)$' }
+      - { id: '4', text: '$\Theta(n^2)$' }
     answers: ['4']
     explanation: |
       선택지 1: 매 단계 더해지는 비용이 선형이므로 로그보다 훨씬 크다.
       선택지 2: 1부터 n까지의 합은 선형이 아니라 이차식 차수이다.
-      선택지 3: 선형 항들의 누적합은 n log n이 아니라 n^2 차수이다.
+      선택지 3: 선형 항들의 누적합은 $n\log n$이 아니라 n^2 차수이다.
       선택지 4: T(n)=T(n-1)+Θ(n)이므로 Θ(1)+Θ(2)+...+Θ(n)=Θ(n^2)이다.
 
       핵심 개념:
@@ -288,16 +377,16 @@ questions:
     type: multiple-choice
     prompt: 가장 효율적인 성능을 나타내는 점화식 표현은?
     choices:
-      - { id: '1', text: '$T(n)=T(\\frac{n}{2})+\\Theta(1),\\ T(1)=\\Theta(1)$' }
-      - { id: '2', text: '$T(n)=T(\\frac{n}{2})+\\Theta(n),\\ T(1)=\\Theta(1)$' }
-      - { id: '3', text: '$T(n)=2T(\\frac{n}{2})+\\Theta(1),\\ T(1)=\\Theta(1)$' }
-      - { id: '4', text: '$T(n)=2T(\\frac{n}{2})+\\Theta(n),\\ T(1)=\\Theta(1)$' }
+      - { id: '1', text: '$T(n)=T(\frac{n}{2})+\Theta(1),\ T(1)=\Theta(1)$' }
+      - { id: '2', text: '$T(n)=T(\frac{n}{2})+\Theta(n),\ T(1)=\Theta(1)$' }
+      - { id: '3', text: '$T(n)=2T(\frac{n}{2})+\Theta(1),\ T(1)=\Theta(1)$' }
+      - { id: '4', text: '$T(n)=2T(\frac{n}{2})+\Theta(n),\ T(1)=\Theta(1)$' }
     answers: ['1']
     explanation: |
       선택지 1: 매 단계 문제 크기가 절반이 되고 추가 비용이 상수이므로 Θ(log n)으로 가장 효율적이다.
       선택지 2: 각 단계의 추가 비용이 n, n/2, ...로 누적되어 Θ(n)이다.
       선택지 3: 두 개의 절반 크기 문제를 풀어 전체적으로 Θ(n)이 된다.
-      선택지 4: 전형적인 합병 정렬 형태로 Θ(n log n)이다.
+      선택지 4: 전형적인 합병 정렬 형태로 $\Theta(n\log n)$이다.
 
       핵심 개념:
       점화식의 가지 수와 각 단계 추가 비용이 전체 시간에 영향을 준다.
@@ -349,7 +438,7 @@ questions:
       핵심 개념:
       비교 기반 정렬은 원소 간 대소 비교로 순서를 결정한다.
       계수 정렬, 기수 정렬, 버킷 정렬은 데이터 범위나 분포를 이용하는 비비교 정렬이다.
-      비교 기반 정렬의 일반적인 하한은 Ω(n log n)이다.
+      비교 기반 정렬의 일반적인 하한은 $\Omega(n\log n)$이다.
       비비교 정렬은 조건이 맞으면 선형 시간에 가까운 성능을 낼 수 있다.
     tags: [sorting, counting-sort]
 
@@ -401,15 +490,15 @@ questions:
     type: multiple-choice
     prompt: 이미 제 순서대로 정렬된 n개의 데이터에 대해서 삽입 정렬을 적용할 때의 시간 복잡도는?
     choices:
-      - { id: '1', text: '$O(\\log n)$' }
+      - { id: '1', text: '$O(\log n)$' }
       - { id: '2', text: '$O(n)$' }
-      - { id: '3', text: '$O(n\\log n)$' }
+      - { id: '3', text: '$O(n\log n)$' }
       - { id: '4', text: '$O(n^2)$' }
     answers: ['2']
     explanation: |
       선택지 1: 각 원소를 한 번씩 확인해야 하므로 로그 시간은 아니다.
       선택지 2: 이미 정렬된 경우 삽입 정렬은 각 원소를 거의 한 번씩만 확인하므로 O(n)이다.
-      선택지 3: 삽입 정렬의 최선 시간은 n log n보다 작다.
+      선택지 3: 삽입 정렬의 최선 시간은 $n\log n$보다 작다.
       선택지 4: 삽입 정렬의 최악 시간은 O(n^2)이지만 이미 정렬된 최선 경우에는 O(n)이다.
 
       핵심 개념:
@@ -469,24 +558,24 @@ questions:
     choices:
       - {
           id: '1',
-          text: '피벗 선택의 임의성이 보장된다면 평균 실행 시간 $O(n\\log n)$이 보장된다.',
+          text: '피벗 선택의 임의성이 보장된다면 평균 실행 시간 $O(n\log n)$이 보장된다.',
         }
-      - { id: '2', text: '최악의 경우에도 실행 시간 $O(n\\log n)$이 보장된다.' }
+      - { id: '2', text: '최악의 경우에도 실행 시간 $O(n\log n)$이 보장된다.' }
       - { id: '3', text: '안정적이면서 제자리 정렬 알고리즘이다.' }
       - {
           id: '4',
-          text: '피벗을 중심으로 부분배열이 항상 같은 크기로 분할될 때의 실행 시간은 $O(\\log n)$이다.',
+          text: '피벗을 중심으로 부분배열이 항상 같은 크기로 분할될 때의 실행 시간은 $O(\log n)$이다.',
         }
     answers: ['1']
     explanation: |
-      선택지 1: 피벗을 임의로 선택하면 평균적으로 균형 잡힌 분할을 기대할 수 있어 평균 O(n log n)을 기대할 수 있다.
+      선택지 1: 피벗을 임의로 선택하면 평균적으로 균형 잡힌 분할을 기대할 수 있어 평균 $O(n\log n)$을 기대할 수 있다.
       선택지 2: 피벗 선택이 나쁘면 퀵 정렬의 최악 시간은 O(n^2)이다.
       선택지 3: 일반적인 퀵 정렬은 제자리 정렬이지만 안정 정렬은 아니다.
-      선택지 4: 균등 분할되어도 각 단계 분할 비용이 있어 전체 시간은 O(n log n)이다.
+      선택지 4: 균등 분할되어도 각 단계 분할 비용이 있어 전체 시간은 $O(n\log n)$이다.
 
       핵심 개념:
       퀵 정렬은 피벗을 기준으로 작은 값과 큰 값을 분할한다.
-      평균 시간 복잡도는 O(n log n)이다.
+      평균 시간 복잡도는 $O(n\log n)$이다.
       최악의 경우 한쪽으로 치우친 분할이 반복되어 O(n^2)이 된다.
       피벗 선택 전략은 퀵 정렬 성능에 큰 영향을 준다.
     tags: [sorting, quick-sort]
@@ -510,12 +599,12 @@ questions:
       퀵 정렬의 성능은 피벗이 배열을 얼마나 균형 있게 나누는지에 좌우된다.
       피벗이 항상 최솟값이나 최댓값이면 한쪽으로 치우친 분할이 된다.
       이 경우 재귀 깊이가 n에 가까워져 O(n^2)이 된다.
-      중간값에 가까운 피벗은 O(n log n) 성능을 기대하게 한다.
+      중간값에 가까운 피벗은 $O(n\log n)$ 성능을 기대하게 한다.
     tags: [sorting, quick-sort, pivot]
 
   - id: t02-10
     type: multiple-choice
-    prompt: '최악의 시간 복잡도가 다음 점화식으로 표현되는 정렬 알고리즘은? $T(n)=2T(n/2)+\\Theta(n),\\ T(1)=\\Theta(1)$'
+    prompt: '최악의 시간 복잡도가 다음 점화식으로 표현되는 정렬 알고리즘은? $T(n)=2T(n/2)+\Theta(n),\ T(1)=\Theta(1)$'
     choices:
       - { id: '1', text: '퀵 정렬' }
       - { id: '2', text: '셸 정렬' }
@@ -531,8 +620,8 @@ questions:
       핵심 개념:
       합병 정렬은 배열을 절반으로 나누고 각각 정렬한 뒤 병합한다.
       병합 단계는 전체 원소를 한 번 훑으므로 Θ(n)이다.
-      마스터 정리에 의해 이 점화식의 해는 Θ(n log n)이다.
-      합병 정렬은 최악의 경우에도 O(n log n)을 보장한다.
+      마스터 정리에 의해 이 점화식의 해는 $\Theta(n\log n)$이다.
+      합병 정렬은 최악의 경우에도 $O(n\log n)$을 보장한다.
     tags: [sorting, merge-sort, recurrence]
 
   - id: t02-11
@@ -554,7 +643,7 @@ questions:
       힙은 완전 이진 트리를 배열로 표현한 자료구조이다.
       최대 힙이나 최소 힙은 부모와 자식 사이의 순서 조건을 만족한다.
       힙 정렬은 힙에서 최댓값 또는 최솟값을 반복적으로 꺼내 정렬한다.
-      시간 복잡도는 O(n log n)이며 제자리 정렬이 가능하다.
+      시간 복잡도는 $O(n\log n)$이며 제자리 정렬이 가능하다.
     tags: [sorting, heap-sort]
 
   - id: t02-12
@@ -669,7 +758,7 @@ questions:
 
   - id: t02-17
     type: multiple-choice
-    prompt: 최선의 수행시간이 $O(n\\log n)$인 정렬 알고리즘은?
+    prompt: 최선의 수행시간이 $O(n\log n)$인 정렬 알고리즘은?
     choices:
       - { id: '1', text: '삽입 정렬' }
       - { id: '2', text: '합병 정렬' }
@@ -678,14 +767,14 @@ questions:
     answers: ['2']
     explanation: |
       선택지 1: 삽입 정렬의 최선 시간은 O(n)이다.
-      선택지 2: 합병 정렬은 입력 상태와 관계없이 O(n log n) 시간이 걸린다.
+      선택지 2: 합병 정렬은 입력 상태와 관계없이 $O(n\log n)$ 시간이 걸린다.
       선택지 3: 선택 정렬은 보통 최선에도 O(n^2) 비교가 필요하다.
       선택지 4: 계수 정렬은 조건이 맞으면 O(n+k) 선형 시간에 수행된다.
 
       핵심 개념:
       합병 정렬은 항상 절반 분할과 선형 병합을 반복한다.
       입력이 이미 정렬되어 있어도 병합 과정은 필요하다.
-      따라서 최선, 평균, 최악 모두 O(n log n)이다.
+      따라서 최선, 평균, 최악 모두 $O(n\log n)$이다.
       입력 상태에 따른 성능 변화가 작은 안정적인 정렬 방식이다.
     tags: [sorting, merge-sort]
 
@@ -706,7 +795,7 @@ questions:
 
       핵심 개념:
       제자리 정렬은 입력 배열 외 추가 저장 공간을 상수 수준으로 사용하는 정렬이다.
-      합병 정렬은 안정적이고 O(n log n)을 보장하지만 추가 공간이 필요하다.
+      합병 정렬은 안정적이고 $O(n\log n)$을 보장하지만 추가 공간이 필요하다.
       삽입, 퀵, 힙 정렬은 일반적으로 제자리 정렬로 분류된다.
       공간 복잡도는 시간 복잡도와 별개의 알고리즘 평가 기준이다.
     tags: [sorting, in-place, merge-sort]
@@ -741,15 +830,15 @@ questions:
     prompt: 순차 탐색의 평균 탐색 시간은? 단, n은 입력 배열의 크기이다.
     choices:
       - { id: '1', text: '$O(1)$' }
-      - { id: '2', text: '$O(\\log n)$' }
+      - { id: '2', text: '$O(\log n)$' }
       - { id: '3', text: '$O(n)$' }
-      - { id: '4', text: '$O(n\\log n)$' }
+      - { id: '4', text: '$O(n\log n)$' }
     answers: ['3']
     explanation: |
       선택지 1: 한 번에 찾는 경우도 있지만 평균적으로 상수 시간은 아니다.
       선택지 2: 로그 시간은 이진 탐색처럼 탐색 범위를 절반씩 줄일 때 가능하다.
       선택지 3: 순차 탐색은 앞에서부터 차례로 비교하므로 평균적으로 n에 비례한다.
-      선택지 4: 순차 탐색은 정렬 알고리즘처럼 n log n 단계가 필요하지 않다.
+      선택지 4: 순차 탐색은 정렬 알고리즘처럼 $n\log n$ 단계가 필요하지 않다.
 
       핵심 개념:
       순차 탐색은 첫 원소부터 목표 원소까지 차례로 검사한다.
@@ -763,15 +852,15 @@ questions:
     prompt: 이진 탐색의 평균 탐색 시간은? 단, n은 입력 배열의 크기이다.
     choices:
       - { id: '1', text: '$O(1)$' }
-      - { id: '2', text: '$O(\\log n)$' }
+      - { id: '2', text: '$O(\log n)$' }
       - { id: '3', text: '$O(n)$' }
-      - { id: '4', text: '$O(n\\log n)$' }
+      - { id: '4', text: '$O(n\log n)$' }
     answers: ['2']
     explanation: |
       선택지 1: 목표가 중간 원소인 경우는 상수 시간이지만 평균적으로는 아니다.
       선택지 2: 이진 탐색은 매 단계 탐색 범위를 절반으로 줄이므로 O(log n)이다.
       선택지 3: O(n)은 순차 탐색의 평균 시간이다.
-      선택지 4: 이진 탐색은 n log n보다 훨씬 빠르다.
+      선택지 4: 이진 탐색은 $n\log n$보다 훨씬 빠르다.
 
       핵심 개념:
       이진 탐색은 정렬된 배열에서 사용할 수 있다.
@@ -785,15 +874,15 @@ questions:
     prompt: 이진 탐색의 평균 삽입 시간은? 단, n은 입력 배열의 크기이다.
     choices:
       - { id: '1', text: '$O(1)$' }
-      - { id: '2', text: '$O(\\log n)$' }
+      - { id: '2', text: '$O(\log n)$' }
       - { id: '3', text: '$O(n)$' }
-      - { id: '4', text: '$O(n\\log n)$' }
+      - { id: '4', text: '$O(n\log n)$' }
     answers: ['3']
     explanation: |
       선택지 1: 정렬 상태를 유지해야 하므로 상수 시간 삽입은 어렵다.
       선택지 2: 삽입 위치 탐색은 O(log n)이지만 원소 이동이 추가로 필요하다.
       선택지 3: 배열에서 정렬 상태를 유지하며 삽입하려면 평균적으로 O(n)개의 원소 이동이 필요하다.
-      선택지 4: 한 번의 삽입에 n log n까지 필요하지는 않다.
+      선택지 4: 한 번의 삽입에 $n\log n$까지 필요하지는 않다.
 
       핵심 개념:
       이진 탐색은 삽입 위치를 빠르게 찾을 수 있다.
@@ -832,15 +921,15 @@ questions:
     prompt: 입력 크기 n에 대한 이진 탐색 트리의 최악 탐색 시간은?
     choices:
       - { id: '1', text: '$O(1)$' }
-      - { id: '2', text: '$O(\\log n)$' }
+      - { id: '2', text: '$O(\log n)$' }
       - { id: '3', text: '$O(n)$' }
-      - { id: '4', text: '$O(n\\log n)$' }
+      - { id: '4', text: '$O(n\log n)$' }
     answers: ['3']
     explanation: |
       선택지 1: 루트에서 바로 찾는 경우는 가능하지만 최악 시간이 아니다.
       선택지 2: 균형 잡힌 이진 탐색 트리의 탐색 시간이다.
       선택지 3: 트리가 한쪽으로 치우치면 높이가 n에 가까워져 최악 탐색 시간이 O(n)이다.
-      선택지 4: 한 번의 탐색에 n log n까지 필요하지는 않다.
+      선택지 4: 한 번의 탐색에 $n\log n$까지 필요하지는 않다.
 
       핵심 개념:
       이진 탐색 트리의 탐색 시간은 트리 높이에 비례한다.
@@ -876,15 +965,15 @@ questions:
     prompt: 원소(키값)의 개수가 n인 2-3-4 트리의 탐색 시간은?
     choices:
       - { id: '1', text: '$O(1)$' }
-      - { id: '2', text: '$O(\\log n)$' }
+      - { id: '2', text: '$O(\log n)$' }
       - { id: '3', text: '$O(n)$' }
-      - { id: '4', text: '$O(n\\log n)$' }
+      - { id: '4', text: '$O(n\log n)$' }
     answers: ['2']
     explanation: |
       선택지 1: 루트에서 바로 찾는 특수한 경우를 제외하면 상수 시간은 아니다.
       선택지 2: 2-3-4 트리는 균형 트리이므로 높이가 O(log n)이고 탐색 시간도 O(log n)이다.
       선택지 3: 균형을 유지하므로 일반적인 한쪽 치우친 이진 탐색 트리처럼 O(n)이 되지 않는다.
-      선택지 4: 한 번의 탐색에 n log n 시간은 필요하지 않다.
+      선택지 4: 한 번의 탐색에 $n\log n$ 시간은 필요하지 않다.
 
       핵심 개념:
       2-3-4 트리는 항상 균형을 유지하는 탐색 트리이다.
@@ -923,15 +1012,15 @@ questions:
     prompt: 노드의 개수가 n인 레드-블랙 트리의 탐색 시간은?
     choices:
       - { id: '1', text: '$O(1)$' }
-      - { id: '2', text: '$O(\\log n)$' }
+      - { id: '2', text: '$O(\log n)$' }
       - { id: '3', text: '$O(n)$' }
-      - { id: '4', text: '$O(n\\log n)$' }
+      - { id: '4', text: '$O(n\log n)$' }
     answers: ['2']
     explanation: |
       선택지 1: 일반적인 탐색에서 상수 시간은 아니다.
       선택지 2: 레드-블랙 트리는 균형을 유지해 높이가 O(log n)이므로 탐색 시간도 O(log n)이다.
       선택지 3: 균형 규칙이 있어 높이가 n까지 커지는 것을 막는다.
-      선택지 4: 한 번의 탐색에는 n log n이 필요하지 않다.
+      선택지 4: 한 번의 탐색에는 $n\log n$이 필요하지 않다.
 
       핵심 개념:
       레드-블랙 트리는 균형 이진 탐색 트리이다.
@@ -947,7 +1036,7 @@ questions:
       - { id: '1', text: '모든 노드는 $t-1$개 이상 $2t$개 미만의 키를 가진다.' }
       - { id: '2', text: '내부 노드는 자신이 가진 키의 개수보다 하나 더 많은 자식을 가진다.' }
       - { id: '3', text: '모든 리프 노드의 레벨은 동일하다.' }
-      - { id: '4', text: '원소의 개수가 n인 경우 탐색 시간은 $O(\\log n)$이다.' }
+      - { id: '4', text: '원소의 개수가 n인 경우 탐색 시간은 $O(\log n)$이다.' }
     answers: ['1']
     explanation: |
       선택지 1: 일반적인 B-트리에서 루트는 예외가 될 수 있어 모든 노드가 t-1개 이상의 키를 가진다고 말하면 부정확하다.
@@ -1030,12 +1119,77 @@ questions:
 
   - id: t04-02
     type: multiple-choice
-    prompt: '그래프 G의 인접 리스트가 1: 2, 3, 4 / 2: 1, 4 / 3: 1, 4 / 4: 1, 2, 3일 때 그래프 G를 나타내는 것은?'
+    passageRefs: [g04-adjacency-list-02]
+    prompt: 다음은 그래프 G를 인접 리스트로 구현한 것이다. 그래프 G를 나타내는 것은?
     choices:
-      - { id: '1', text: '간선 {1-2, 1-3, 2-4, 3-4}' }
-      - { id: '2', text: '간선 {1-2, 1-3, 2-3, 2-4, 3-4}' }
-      - { id: '3', text: '간선 {1-2, 1-3, 1-4, 2-4, 3-4}' }
-      - { id: '4', text: '간선 {1-2, 1-3, 1-4, 2-3, 2-4, 3-4}' }
+      - id: '1'
+        text: 그래프 1
+        diagram:
+          type: simple-graph
+          width: 180
+          height: 180
+          nodes:
+            - { id: '1', label: '1', x: 90, y: 28 }
+            - { id: '2', label: '2', x: 38, y: 86 }
+            - { id: '3', label: '3', x: 142, y: 86 }
+            - { id: '4', label: '4', x: 90, y: 150 }
+          edges:
+            - { from: '1', to: '2' }
+            - { from: '1', to: '3' }
+            - { from: '2', to: '4' }
+            - { from: '3', to: '4' }
+      - id: '2'
+        text: 그래프 2
+        diagram:
+          type: simple-graph
+          width: 180
+          height: 180
+          nodes:
+            - { id: '1', label: '1', x: 90, y: 28 }
+            - { id: '2', label: '2', x: 38, y: 86 }
+            - { id: '3', label: '3', x: 142, y: 86 }
+            - { id: '4', label: '4', x: 90, y: 150 }
+          edges:
+            - { from: '1', to: '2' }
+            - { from: '1', to: '3' }
+            - { from: '2', to: '3' }
+            - { from: '2', to: '4' }
+            - { from: '3', to: '4' }
+      - id: '3'
+        text: 그래프 3
+        diagram:
+          type: simple-graph
+          width: 180
+          height: 180
+          nodes:
+            - { id: '1', label: '1', x: 90, y: 28 }
+            - { id: '2', label: '2', x: 38, y: 86 }
+            - { id: '3', label: '3', x: 142, y: 86 }
+            - { id: '4', label: '4', x: 90, y: 150 }
+          edges:
+            - { from: '1', to: '2' }
+            - { from: '1', to: '3' }
+            - { from: '1', to: '4' }
+            - { from: '2', to: '4' }
+            - { from: '3', to: '4' }
+      - id: '4'
+        text: 그래프 4
+        diagram:
+          type: simple-graph
+          width: 180
+          height: 180
+          nodes:
+            - { id: '1', label: '1', x: 90, y: 28 }
+            - { id: '2', label: '2', x: 38, y: 86 }
+            - { id: '3', label: '3', x: 142, y: 86 }
+            - { id: '4', label: '4', x: 90, y: 150 }
+          edges:
+            - { from: '1', to: '2' }
+            - { from: '1', to: '3' }
+            - { from: '1', to: '4' }
+            - { from: '2', to: '3' }
+            - { from: '2', to: '4' }
+            - { from: '3', to: '4' }
     answers: ['3']
     explanation: |
       선택지 1: 정점 1과 4 사이의 간선이 빠져 있다.
@@ -1074,7 +1228,8 @@ questions:
 
   - id: t04-04
     type: multiple-choice
-    prompt: '정점 1을 시작으로 그래프를 순회한 트리의 사용 간선이 1-2, 2-5, 1-3, 1-4, 4-6이고, 3-5는 미사용 간선이다. 이때 사용된 탐색 방법에 대한 설명으로 적절한 것은?'
+    passageRefs: [g04-bfs-tree-04]
+    prompt: 다음 그림은 정점 1을 시작 정점으로 그래프를 순회하는 과정에서 방문 정점과 그때 사용한 간선으로 구성한 트리이다. 이때 사용된 탐색 방법에 대한 설명으로 적절한 것은? 단, 실선은 실제 방문 과정에서 사용된 간선이고, 점선은 방문 시 사용되지 않은 간선이다.
     choices:
       - { id: '1', text: '큐를 이용하여 주변 정점을 관리한다.' }
       - { id: '2', text: '최근의 주변 정점을 우선으로 방문한다.' }
@@ -1140,15 +1295,83 @@ questions:
 
   - id: t04-07
     type: multiple-choice
-    prompt: '원래 그래프의 간선이 {1-2, 1-3, 2-3, 2-4, 2-5, 3-4, 3-5, 4-5}일 때, 다음 중 신장 트리에 해당하는 것은?'
+    passageRefs: [g04-spanning-source-07]
+    prompt: 다음 그래프 중에서 신장 트리에 해당하는 것은?
     choices:
-      - { id: '1', text: '간선 {1-2, 1-3, 2-3, 2-4}' }
-      - { id: '2', text: '간선 {1-2, 1-3, 2-5, 3-4}' }
-      - { id: '3', text: '간선 {1-2, 1-3, 2-4, 3-4, 4-5}' }
-      - { id: '4', text: '간선 {1-2, 1-3, 2-4, 3-5, 4-5}' }
+      - id: '1'
+        text: 그래프 1
+        diagram:
+          type: simple-graph
+          width: 180
+          height: 180
+          nodes:
+            - { id: '1', label: '1', x: 90, y: 24 }
+            - { id: '2', label: '2', x: 42, y: 76 }
+            - { id: '3', label: '3', x: 138, y: 76 }
+            - { id: '4', label: '4', x: 42, y: 150 }
+            - { id: '5', label: '5', x: 138, y: 150 }
+          edges:
+            - { from: '1', to: '2' }
+            - { from: '1', to: '3' }
+            - { from: '2', to: '3' }
+            - { from: '2', to: '4' }
+            - { from: '3', to: '5' }
+      - id: '2'
+        text: 그래프 2
+        diagram:
+          type: simple-graph
+          width: 180
+          height: 180
+          nodes:
+            - { id: '1', label: '1', x: 90, y: 24 }
+            - { id: '2', label: '2', x: 42, y: 76 }
+            - { id: '3', label: '3', x: 138, y: 76 }
+            - { id: '4', label: '4', x: 42, y: 150 }
+            - { id: '5', label: '5', x: 138, y: 150 }
+          edges:
+            - { from: '1', to: '2' }
+            - { from: '1', to: '3' }
+            - { from: '2', to: '5' }
+            - { from: '3', to: '4' }
+      - id: '3'
+        text: 그래프 3
+        diagram:
+          type: simple-graph
+          width: 180
+          height: 180
+          nodes:
+            - { id: '1', label: '1', x: 90, y: 24 }
+            - { id: '2', label: '2', x: 42, y: 76 }
+            - { id: '3', label: '3', x: 138, y: 76 }
+            - { id: '4', label: '4', x: 42, y: 150 }
+            - { id: '5', label: '5', x: 138, y: 150 }
+          edges:
+            - { from: '1', to: '2' }
+            - { from: '1', to: '3' }
+            - { from: '2', to: '4' }
+            - { from: '3', to: '4' }
+            - { from: '4', to: '5' }
+      - id: '4'
+        text: 그래프 4
+        diagram:
+          type: simple-graph
+          width: 180
+          height: 180
+          nodes:
+            - { id: '1', label: '1', x: 90, y: 24 }
+            - { id: '2', label: '2', x: 42, y: 76 }
+            - { id: '3', label: '3', x: 138, y: 76 }
+            - { id: '4', label: '4', x: 42, y: 150 }
+            - { id: '5', label: '5', x: 138, y: 150 }
+          edges:
+            - { from: '1', to: '2' }
+            - { from: '1', to: '3' }
+            - { from: '2', to: '4' }
+            - { from: '3', to: '5' }
+            - { from: '4', to: '5' }
     answers: ['2']
     explanation: |
-      선택지 1: 정점 5가 포함되지 않고 1-2-3 사이에 사이클이 있다.
+      선택지 1: 다섯 정점을 모두 포함하지만 1-2-3 사이에 사이클이 있다.
       선택지 2: 다섯 정점을 모두 연결하고 간선 수가 4개이며 사이클이 없다.
       선택지 3: 간선 수가 5개이고 사이클이 존재한다.
       선택지 4: 간선 수가 5개이고 사이클이 존재한다.
@@ -1228,7 +1451,8 @@ questions:
 
   - id: t04-11
     type: multiple-choice
-    prompt: '데이크스트라 알고리즘에서 시작 정점 s로부터의 거리를 초기화한 뒤 반복문 안의 빈칸에 알맞은 것은? selected set이 있고 미선택 정점이 존재할 때 수행한다.'
+    passageRefs: [g04-dijkstra-pseudocode-11]
+    prompt: 데이크스트라 알고리즘을 개념적으로 표현한 것이다. 빈칸 (ㄱ)에 알맞은 것은?
     choices:
       - { id: '1', text: '미선택 정점 중에서 최소 간선을 갖는 정점을 선택' }
       - { id: '2', text: '미선택 정점 중에서 최소 거리 정점을 선택' }
@@ -1294,7 +1518,8 @@ questions:
 
   - id: t04-14
     type: multiple-choice
-    prompt: '플로이드 알고리즘의 세 중첩 반복문에서 D[i][j] > D[i][k] + D[k][j]를 검사한다고 할 때, 바깥쪽부터 빈칸 ㄱ, ㄴ, ㄷ에 들어갈 변수 순서는?'
+    passageRefs: [g04-floyd-pseudocode-14]
+    prompt: 다음은 플로이드 알고리즘을 개략적으로 표현한 것이다. 밑줄 친 (ㄱ)~(ㄷ) 부분에 알맞은 변수를 올바르게 나열한 것은?
     choices:
       - { id: '1', text: 'i-j-k' }
       - { id: '2', text: 'j-k-i' }
@@ -1382,7 +1607,8 @@ questions:
 
   - id: t05-02
     type: multiple-choice
-    prompt: 동적 프로그래밍 방법으로 해결 가능한 문제를 모두 고른 것은? 가. 피보나치 수열, 나. 행렬의 연쇄적 곱셈, 다. 최장 공통 부분 수열
+    passageRefs: [g05-dp-problems-02]
+    prompt: 동적 프로그래밍 방법으로 해결 가능한 문제를 모두 고른 것은?
     choices:
       - { id: '1', text: '가, 나' }
       - { id: '2', text: '가, 다' }
@@ -1473,13 +1699,13 @@ questions:
     prompt: n개 행렬의 연쇄적 곱셈 문제를 해결하는 동적 프로그래밍 알고리즘의 시간 복잡도는?
     choices:
       - { id: '1', text: '$O(n)$' }
-      - { id: '2', text: '$O(n\\log n)$' }
+      - { id: '2', text: '$O(n\log n)$' }
       - { id: '3', text: '$O(n^2)$' }
       - { id: '4', text: '$O(n^3)$' }
     answers: ['4']
     explanation: |
       선택지 1: 모든 부분 구간과 분할 위치를 고려해야 하므로 선형 시간이 아니다.
-      선택지 2: 행렬 연쇄 곱셈 DP는 n log n보다 많은 계산을 수행한다.
+      선택지 2: 행렬 연쇄 곱셈 DP는 $n\log n$보다 많은 계산을 수행한다.
       선택지 3: 부분 구간 수는 O(n^2)이지만 각 구간마다 분할 위치를 다시 확인한다.
       선택지 4: O(n^2)개의 부분 문제 각각에 O(n)개의 분할을 검사하므로 O(n^3)이다.
 
@@ -1495,7 +1721,7 @@ questions:
     prompt: n개 행렬의 연쇄적 곱셈 문제를 해결하는 동적 프로그래밍 알고리즘의 수행 결과로 얻은 테이블 P[1..n][1..n]으로부터 행렬의 곱셈 순서를 직접 구하는 알고리즘의 시간 복잡도는?
     choices:
       - { id: '1', text: '$O(n)$' }
-      - { id: '2', text: '$O(n\\log n)$' }
+      - { id: '2', text: '$O(n\log n)$' }
       - { id: '3', text: '$O(n^2)$' }
       - { id: '4', text: '$O(n^3)$' }
     answers: ['1']
@@ -1574,8 +1800,8 @@ questions:
     type: multiple-choice
     prompt: 길이가 각각 n과 m인 두 스트링의 LCS 길이를 구하는 동적 프로그래밍 알고리즘의 시간 복잡도는?
     choices:
-      - { id: '1', text: '$O(\\min\\{n,m\\})$' }
-      - { id: '2', text: '$O(\\max\\{n,m\\})$' }
+      - { id: '1', text: '$O(\min\{n,m\})$' }
+      - { id: '2', text: '$O(\max\{n,m\})$' }
       - { id: '3', text: '$O(n+m)$' }
       - { id: '4', text: '$O(nm)$' }
     answers: ['4']
@@ -1596,8 +1822,8 @@ questions:
     type: multiple-choice
     prompt: 길이가 n과 m인 두 스트링의 LCS 길이를 구해 얻은 테이블 LCS[0..n][0..m]으로부터 LCS를 직접 구하는 알고리즘의 시간 복잡도는?
     choices:
-      - { id: '1', text: '$O(\\min\\{n,m\\})$' }
-      - { id: '2', text: '$O(\\max\\{n,m\\})$' }
+      - { id: '1', text: '$O(\min\{n,m\})$' }
+      - { id: '2', text: '$O(\max\{n,m\})$' }
       - { id: '3', text: '$O(n+m)$' }
       - { id: '4', text: '$O(nm)$' }
     answers: ['3']
@@ -1641,8 +1867,8 @@ questions:
     prompt: 텍스트와 패턴의 길이가 각각 n과 m일 때, 브루트-포스 스트링 매칭 알고리즘의 수행시간은?
     choices:
       - { id: '1', text: '$O(m+n)$' }
-      - { id: '2', text: '$O(m\\log n)$' }
-      - { id: '3', text: '$O(n\\log m)$' }
+      - { id: '2', text: '$O(m\log n)$' }
+      - { id: '3', text: '$O(n\log m)$' }
       - { id: '4', text: '$O(mn)$' }
     answers: ['4']
     explanation: |
@@ -1757,8 +1983,8 @@ questions:
     prompt: 텍스트와 패턴의 길이가 각각 n과 m일 때, KMP 알고리즘의 수행시간은? 단, n >= m이다.
     choices:
       - { id: '1', text: '$O(n)$' }
-      - { id: '2', text: '$O(m\\log n)$' }
-      - { id: '3', text: '$O(n\\log m)$' }
+      - { id: '2', text: '$O(m\log n)$' }
+      - { id: '3', text: '$O(n\log m)$' }
       - { id: '4', text: '$O(mn)$' }
     answers: ['1']
     explanation: |

@@ -1849,6 +1849,10 @@ h1 {
   padding: 2px 0;
 }
 
+.katex {
+  white-space: nowrap;
+}
+
 .question-prompt .katex-display,
 .choice-text .katex-display,
 .explanation-body .katex-display,
