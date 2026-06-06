@@ -416,7 +416,7 @@ passages:
         - { from: n6, to: n3 }
         - { from: n7, to: n6 }
         - { from: n6, to: n5 }
-        - { from: n4, to: n1 }
+        - { from: n1, to: n4 }
         - { from: n8, to: n4 }
 
   - id: gb04-mst-07
