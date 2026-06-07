@@ -61,7 +61,7 @@ export async function renderQuizPage(catalog: Catalog): Promise<HTMLElement> {
 
 function renderSession(session: QuizSession): HTMLElement {
   const page = document.createElement('main');
-  page.className = 'app-shell';
+  page.className = 'app-shell quiz-page';
 
   const current = session.questions[session.currentIndex];
 
@@ -117,7 +117,12 @@ function renderSession(session: QuizSession): HTMLElement {
       <p class="question-prompt">${renderRichText(current.question.prompt)}</p>
       ${renderQuestionImages(current.question.images ?? [])}
       <div class="question-card-tools">
-        <button class="secondary-button bookmark-button" type="button" data-bookmark>
+        <button
+          class="secondary-button bookmark-button ${bookmarked ? 'is-bookmarked' : ''}"
+          type="button"
+          data-bookmark
+          aria-label="${bookmarked ? '북마크 해제' : '북마크'}"
+        >
           ${bookmarked ? '북마크 해제' : '북마크'}
         </button>
       </div>
@@ -159,6 +164,7 @@ function renderSession(session: QuizSession): HTMLElement {
 
   bindQuizEvents(page, session);
   restoreQuizScroll();
+  centerCurrentQuestionMapItem(page);
   return page;
 }
 
@@ -444,5 +450,22 @@ function restoreQuizScroll(): void {
 
   requestAnimationFrame(() => {
     window.scrollTo(window.scrollX, scrollY);
+  });
+}
+
+function centerCurrentQuestionMapItem(page: HTMLElement): void {
+  if (!window.matchMedia('(max-width: 640px)').matches) {
+    return;
+  }
+
+  const grid = page.querySelector<HTMLElement>('.quiz-map .question-map-grid');
+  const current = grid?.querySelector<HTMLElement>('.question-map-item.is-current');
+  if (!grid || !current) {
+    return;
+  }
+
+  requestAnimationFrame(() => {
+    const scrollLeft = current.offsetLeft - (grid.clientWidth - current.offsetWidth) / 2;
+    grid.scrollTo({ left: Math.max(scrollLeft, 0), behavior: 'auto' });
   });
 }
