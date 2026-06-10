@@ -113,19 +113,22 @@ function renderSession(session: QuizSession): HTMLElement {
     </section>
     ${renderQuestionNavigator(session)}
     <article class="question-card">
-      ${renderPassages(current.passages)}
-      <p class="question-prompt">${renderRichText(current.question.prompt)}</p>
-      ${renderQuestionImages(current.question.images ?? [])}
-      <div class="question-card-tools">
+      <nav class="quiz-navigation-row" aria-label="문제 탐색">
+        <button class="secondary-button" type="button" data-prev ${session.currentIndex === 0 ? 'disabled' : ''}>이전</button>
         <button
           class="secondary-button bookmark-button ${bookmarked ? 'is-bookmarked' : ''}"
           type="button"
           data-bookmark
           aria-label="${bookmarked ? '북마크 해제' : '북마크'}"
         >
-          ${bookmarked ? '북마크 해제' : '북마크'}
+          ${renderBookmarkIcon(bookmarked)}
+          <span>${bookmarked ? '북마크 해제' : '북마크'}</span>
         </button>
-      </div>
+        <button class="secondary-button" type="button" data-next ${session.currentIndex === session.questions.length - 1 ? 'disabled' : ''}>다음</button>
+      </nav>
+      ${renderPassages(current.passages)}
+      <p class="question-prompt">${renderRichText(current.question.prompt)}</p>
+      ${renderQuestionImages(current.question.images ?? [])}
       <fieldset class="choice-list">
         <legend class="sr-only">선택지</legend>
         ${current.choices
@@ -210,14 +213,18 @@ function bindQuizEvents(page: HTMLElement, session: QuizSession): void {
     refreshRoute();
   });
 
-  page.querySelector<HTMLButtonElement>('[data-prev]')?.addEventListener('click', () => {
-    moveQuestion(session, session.currentIndex - 1);
-    refreshRoute();
+  page.querySelectorAll<HTMLButtonElement>('[data-prev]').forEach((button) => {
+    button.addEventListener('click', () => {
+      moveQuestion(session, session.currentIndex - 1);
+      refreshRoute();
+    });
   });
 
-  page.querySelector<HTMLButtonElement>('[data-next]')?.addEventListener('click', () => {
-    moveQuestion(session, session.currentIndex + 1);
-    refreshRoute();
+  page.querySelectorAll<HTMLButtonElement>('[data-next]').forEach((button) => {
+    button.addEventListener('click', () => {
+      moveQuestion(session, session.currentIndex + 1);
+      refreshRoute();
+    });
   });
 
   page.querySelector<HTMLButtonElement>('[data-grade-all]')?.addEventListener('click', () => {
@@ -230,14 +237,16 @@ function bindQuizEvents(page: HTMLElement, session: QuizSession): void {
     refreshRoute();
   });
 
-  page.querySelector<HTMLButtonElement>('[data-bookmark]')?.addEventListener('click', () => {
-    const current = session.questions[session.currentIndex];
-    if (!current) {
-      return;
-    }
+  page.querySelectorAll<HTMLButtonElement>('[data-bookmark]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const current = session.questions[session.currentIndex];
+      if (!current) {
+        return;
+      }
 
-    toggleBookmark(current.key);
-    refreshRoute({ preserveScroll: true });
+      toggleBookmark(current.key);
+      refreshRoute({ preserveScroll: true });
+    });
   });
 }
 
@@ -251,6 +260,14 @@ function optionModeLabel(mode: 'default' | 'random'): string {
 
 function sourceDisplayLabel(subjectTitle: string, sourceTitle: string): string {
   return `${subjectTitle} - ${sourceTitle}`;
+}
+
+function renderBookmarkIcon(bookmarked: boolean): string {
+  return `
+    <svg class="bookmark-button-icon" width="18" height="22" viewBox="0 0 20 24" fill="${bookmarked ? 'currentColor' : 'none'}" aria-hidden="true">
+      <path d="M2 2h16v20l-8-5-8 5V2z" />
+    </svg>
+  `;
 }
 
 function withSubjectTitle(

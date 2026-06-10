@@ -1389,7 +1389,58 @@ h1 {
 }
 
 .bookmark-button {
+  gap: 8px;
   min-width: 112px;
+  border-color: #e5c983;
+  background: #fff9e8;
+  color: #9b6416;
+}
+
+.bookmark-button:hover:not(:disabled) {
+  border-color: #d4a843;
+  box-shadow:
+    inset 0 -2px 0 rgba(212, 168, 67, 0.16),
+    0 8px 18px rgba(145, 97, 24, 0.1);
+}
+
+.bookmark-button.is-bookmarked {
+  border-color: #e8952e;
+  background: #fff1d6;
+  color: #bf6516;
+}
+
+.bookmark-button-icon {
+  width: 18px;
+  height: 22px;
+  flex: 0 0 auto;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linejoin: round;
+}
+
+.quiz-navigation-row {
+  display: grid;
+  grid-template-columns: minmax(112px, 1fr) auto minmax(112px, 1fr);
+  gap: 10px;
+  align-items: center;
+}
+
+.quiz-navigation-row [data-prev],
+.quiz-navigation-row [data-next] {
+  width: 100%;
+  max-width: 160px;
+}
+
+.quiz-navigation-row [data-prev] {
+  justify-self: start;
+}
+
+.quiz-navigation-row [data-bookmark] {
+  justify-self: center;
+}
+
+.quiz-navigation-row [data-next] {
+  justify-self: end;
 }
 
 .passage {
@@ -2232,13 +2283,31 @@ h1 {
   }
 
   .bookmark-button::before {
-    content: '☆';
-    font-size: 1.24rem;
-    line-height: 1;
+    content: none;
   }
 
   .bookmark-button.is-bookmarked::before {
-    content: '★';
+    content: none;
+  }
+
+  .bookmark-button-icon {
+    width: 18px;
+    height: 22px;
+  }
+
+  .quiz-navigation-row {
+    grid-template-columns: minmax(66px, 0.8fr) minmax(52px, auto) minmax(66px, 0.8fr);
+    gap: 8px;
+  }
+
+  .quiz-navigation-row .secondary-button {
+    min-height: 44px;
+    padding-inline: 10px;
+  }
+
+  .quiz-navigation-row [data-prev],
+  .quiz-navigation-row [data-next] {
+    max-width: none;
   }
 
   .question-prompt {
