@@ -425,6 +425,7 @@ questions:
 
   - id: b04-06
     type: multiple-choice
+    passageRefs: [g04-semaphore-definition-01]
     prompt: 세마포어의 두 연산 P와 V에 대한 설명으로 바른 것은?
     choices:
       - { id: '1', text: 'P: 감소, V: 감소' }
