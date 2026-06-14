@@ -1,4 +1,4 @@
-import type { SourceKind } from '../types/catalog';
+import type { Semester, SourceKind } from '../types/catalog';
 
 interface NavItem {
   href: string;
@@ -26,6 +26,10 @@ export function sourceKindLabel(kind: SourceKind): string {
     case 'intensive':
       return '강의';
   }
+}
+
+export function semesterLabel(semester: Semester): string {
+  return `${semester}학기`;
 }
 
 export function renderTopNav(
