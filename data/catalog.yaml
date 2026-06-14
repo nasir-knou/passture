@@ -2,6 +2,7 @@ version: 1
 subjects:
   - id: operating-systems
     title: 운영체제
+    semester: 1
     sources:
       - id: past-exams-2017
         title: 2017 기말
@@ -24,6 +25,7 @@ subjects:
         kind: workbook
   - id: discrete-math
     title: 이산수학
+    semester: 1
     sources:
       - id: past-exams-2017
         title: 2017 기말
@@ -50,6 +52,7 @@ subjects:
         kind: lecture
   - id: algorithms
     title: 알고리즘
+    semester: 1
     sources:
       - id: past-exams-2017
         title: 2017 기말
@@ -76,6 +79,7 @@ subjects:
         kind: workbook
   - id: artificial-intelligence
     title: 인공지능
+    semester: 1
     sources:
       - id: past-exams-2017
         title: 2017 기말
@@ -102,6 +106,7 @@ subjects:
         kind: lecture
   - id: java-programming
     title: Java프로그래밍
+    semester: 1
     sources:
       - id: past-exams-2017
         title: 2017 기말
@@ -125,4 +130,12 @@ subjects:
       - id: lecture-exercises
         title: 연습문제
         path: subjects/java-programming/lecture-exercises.json
+        kind: lecture
+  - id: second-semester-placeholder
+    title: 2학기 과목 추가 예정
+    semester: 2
+    sources:
+      - id: placeholder-set
+        title: 더미데이터 문제세트
+        path: subjects/second-semester-placeholder/placeholder-set.json
         kind: lecture

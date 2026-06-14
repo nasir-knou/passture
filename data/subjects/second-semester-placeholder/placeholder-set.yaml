@@ -1,0 +1,16 @@
+subjectId: second-semester-placeholder
+sourceId: placeholder-set
+title: 2학기 과목 추가 예정 더미데이터 문제세트
+kind: lecture
+
+questions:
+  - id: l01-01
+    type: multiple-choice
+    prompt: 2학기 과목 문제세트가 추가되기 전까지 표시되는 더미 문항입니다. 올바른 선택지는?
+    choices:
+      - id: '1'
+        text: 2학기 과목 추가 예정
+      - id: '2'
+        text: 실제 시험 문제
+    answers: ['1']
+    explanation: 이 문항은 2학기 과목 구분 UI와 데이터 흐름을 확인하기 위한 더미데이터입니다.

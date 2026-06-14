@@ -105,11 +105,43 @@ describe('data validation', () => {
           {
             id: 'operating-systems',
             title: '운영체제',
+            semester: 1,
             sources: [examSource],
           },
         ],
       }),
     ).not.toThrow();
+  });
+
+  it('rejects missing subject semesters', () => {
+    expect(() =>
+      validateCatalog({
+        version: 1,
+        subjects: [
+          {
+            id: 'operating-systems',
+            title: '운영체제',
+            sources: [examSource],
+          },
+        ],
+      }),
+    ).toThrow(/semester/);
+  });
+
+  it('rejects invalid subject semesters', () => {
+    expect(() =>
+      validateCatalog({
+        version: 1,
+        subjects: [
+          {
+            id: 'operating-systems',
+            title: '운영체제',
+            semester: 3,
+            sources: [examSource],
+          },
+        ],
+      }),
+    ).toThrow(/must be 1 or 2/);
   });
 
   it('accepts textbook IDs and choice images', () => {

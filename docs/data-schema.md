@@ -28,6 +28,7 @@ version: 1
 subjects:
   - id: operating-systems
     title: 운영체제
+    semester: 1
     sources:
       - id: past-exams-2017
         title: 2017 기말
@@ -54,6 +55,7 @@ subjects:
         kind: lecture
   - id: algorithms
     title: 알고리즘
+    semester: 1
     sources:
       - id: past-exams-2019
         title: 2019 기말
@@ -74,6 +76,7 @@ subjects:
         kind: lecture
   - id: artificial-intelligence
     title: 인공지능
+    semester: 1
     sources:
       - id: past-exams-2018
         title: 2018 기말
@@ -87,6 +90,7 @@ subjects:
         year: 2019
   - id: java-programming
     title: Java프로그래밍
+    semester: 1
     sources:
       - id: past-exams-2019
         title: 2019 기말
@@ -96,6 +100,14 @@ subjects:
 ```
 
 런타임용 `public/data/catalog.json`에는 빌드 시 각 출처의 `questions.length`를 계산한 `questionCount`가 추가된다. 선택 화면과 홈의 출처 목록은 이를 사용해 `2019 기말 (25문제)`처럼 표시한다. 원본 `catalog.yaml`에는 수동으로 문제 수를 적지 않는다.
+
+과목의 학기 정보는 `subjects[].semester`에 단일값으로 저장한다.
+
+- `semester: 1` → 1학기 과목
+- `semester: 2` → 2학기 과목
+- 모든 과목은 `semester`를 반드시 가져야 하며, 값은 `1` 또는 `2`만 허용한다.
+- 학기 정보는 과목 단위 메타데이터이므로 출처나 문제 파일에는 중복 저장하지 않는다.
+- `subjectId`는 북마크, 오답 기록, 풀이 세션 키에 쓰이므로 학기 구분을 위해 변경하지 않는다.
 
 화면의 큰 분류는 `기출 / 교재 / 강의` 3개로 유지한다.
 

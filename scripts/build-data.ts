@@ -55,6 +55,7 @@ export function validateCatalog(value: unknown): asserts value is Catalog {
     const subjectId = expectString(subject.id, `${subjectPath}.id`);
     expectUnique(subjectIds, subjectId, `${subjectPath}.id`);
     expectString(subject.title, `${subjectPath}.title`);
+    expectSemester(subject.semester, `${subjectPath}.semester`);
 
     const sources = expectArray(subject.sources, `${subjectPath}.sources`);
     const sourceIds = new Set<string>();
@@ -688,6 +689,12 @@ function expectUnique(seen: Set<string>, value: string, fieldPath: string): void
 function expectSourceKind(value: string, fieldPath: string): asserts value is SourceKind {
   if (!['exam', 'textbook', 'workbook', 'lecture', 'intensive'].includes(value)) {
     throw new Error(`${fieldPath} must be exam, textbook, workbook, lecture, or intensive`);
+  }
+}
+
+function expectSemester(value: unknown, fieldPath: string): asserts value is 1 | 2 {
+  if (value !== 1 && value !== 2) {
+    throw new Error(`${fieldPath} must be 1 or 2`);
   }
 }
 

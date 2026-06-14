@@ -1,4 +1,5 @@
 export type SourceKind = 'exam' | 'textbook' | 'workbook' | 'lecture' | 'intensive';
+export type Semester = 1 | 2;
 
 export interface Catalog {
   version: number;
@@ -8,6 +9,7 @@ export interface Catalog {
 export interface CatalogSubject {
   id: string;
   title: string;
+  semester: Semester;
   sources: CatalogSource[];
 }
 
