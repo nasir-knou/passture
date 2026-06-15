@@ -131,11 +131,22 @@ subjects:
         title: 연습문제
         path: subjects/java-programming/lecture-exercises.json
         kind: lecture
-  - id: second-semester-placeholder
-    title: 2학기 과목 추가 예정
+  - id: linear-algebra
+    title: 선형대수
     semester: 2
     sources:
-      - id: placeholder-set
-        title: 더미데이터 문제세트
-        path: subjects/second-semester-placeholder/placeholder-set.json
-        kind: lecture
+      - id: past-exams-2017
+        title: 2017 기말
+        path: subjects/linear-algebra/past-exams-2017.json
+        kind: exam
+        year: 2017
+      - id: past-exams-2018
+        title: 2018 기말
+        path: subjects/linear-algebra/past-exams-2018.json
+        kind: exam
+        year: 2018
+      - id: past-exams-2019
+        title: 2019 기말
+        path: subjects/linear-algebra/past-exams-2019.json
+        kind: exam
+        year: 2019

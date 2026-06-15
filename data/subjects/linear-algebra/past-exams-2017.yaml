@@ -1,0 +1,923 @@
+subjectId: linear-algebra
+sourceId: past-exams-2017
+title: 선형대수 2017 기말
+kind: exam
+year: 2017
+
+passages:
+  - id: g17-parametric-system-01
+    type: text
+    body: |
+      다음 연립방정식에 대해 물음에 답하시오.
+
+      $$
+      \begin{cases}
+      x+2y=3 \\
+      3x+ay=b
+      \end{cases}
+      $$
+
+  - id: g17-linear-system-01
+    type: text
+    body: |
+      다음 일차연립방정식에 대해 물음에 답하시오.
+
+      $$
+      \begin{cases}
+      x+2y=4 \\
+      2x+5y-z=9 \\
+      3y+z=3
+      \end{cases}
+      $$
+
+  - id: g17-matrices-a-b-01
+    type: text
+    body: |
+      다음 행렬 $A$와 $B$에 관련하여 물음에 답하시오.
+
+      $$
+      A=
+      \begin{pmatrix}
+      5 & 0 & 0 \\
+      0 & 5 & 0 \\
+      0 & 0 & 5
+      \end{pmatrix},
+      \quad
+      B=
+      \begin{pmatrix}
+      2 & 1 & 4 \\
+      0 & 1 & 3 \\
+      1 & 0 & 0
+      \end{pmatrix}
+      $$
+
+  - id: g17-vectors-r3-01
+    type: text
+    body: |
+      $R^3$ 벡터공간에서 벡터
+      $A=(1,0,0)$, $B=(0,1,1)$, $C=(0,0,1)$, $D=(1,2,3)$라고 할 때 다음 물음에 답하시오.
+
+  - id: g17-linear-transform-t-01
+    type: text
+    body: |
+      다음 주어진 선형변환 $T$에 대하여 물음에 답하시오.
+
+      $$
+      T:R^3 \to R^2,\qquad T(x,y,z)=(2x+y,\ y+2z)
+      $$
+
+  - id: g17-matrix-m-01
+    type: text
+    body: |
+      다음 행렬 $M$에 대해 물음에 답하시오.
+
+      $$
+      M=
+      \begin{pmatrix}
+      1 & 0 \\
+      1 & -1
+      \end{pmatrix}
+      $$
+
+questions:
+  - id: e17-01
+    type: multiple-choice
+    passageRefs: [g17-parametric-system-01]
+    prompt: 해를 갖지 못할 조건은?
+    choices:
+      - { id: '1', text: '$a=6,\ b=9$' }
+      - { id: '2', text: '$a \ne 6,\ b=9$' }
+      - { id: '3', text: '$a=6,\ b \ne 9$' }
+      - { id: '4', text: '$a \ne 6,\ b \ne 9$' }
+    answers: ['3']
+    explanation: |
+      선택지 1: 둘째 식이 첫째 식의 3배가 되어 같은 직선을 나타내므로 해가 무수히 많다.
+      선택지 2: 계수행렬의 행렬식이 0이 아니므로 유일한 해를 갖는다.
+      선택지 3: 왼쪽 계수는 첫째 식의 3배인데 오른쪽 상수항은 3배가 아니므로 서로 평행한 다른 직선이 되어 해가 없다.
+      선택지 4: $a \ne 6$이면 두 식은 서로 독립이어서 유일한 해를 갖는다.
+
+      핵심 개념:
+      두 일차방정식이 해를 갖지 않으려면 왼쪽 계수는 서로 비례하지만 상수항 비율은 달라야 한다.
+      첫 식을 3배 하면 $3x+6y=9$이다.
+      따라서 $a=6$인데 $b\ne9$이면 두 식은 모순된다.
+      이때 연립방정식은 해를 갖지 않는다.
+    tags: [linear-system, consistency]
+
+  - id: e17-02
+    type: multiple-choice
+    passageRefs: [g17-parametric-system-01]
+    prompt: 무수히 많은 해를 갖기 위한 조건은?
+    choices:
+      - { id: '1', text: '$a=6,\ b=9$' }
+      - { id: '2', text: '$a \ne 6,\ b=9$' }
+      - { id: '3', text: '$a=6,\ b \ne 9$' }
+      - { id: '4', text: '$a \ne 6,\ b \ne 9$' }
+    answers: ['1']
+    explanation: |
+      선택지 1: 둘째 식이 첫째 식의 3배와 완전히 같아져 같은 직선을 나타내므로 해가 무수히 많다.
+      선택지 2: $a\ne6$이면 두 식의 계수행렬이 정칙이므로 유일한 해를 갖는다.
+      선택지 3: 왼쪽은 비례하지만 상수항이 달라 해가 없다.
+      선택지 4: $a\ne6$이면 $b$ 값과 관계없이 보통 유일한 교점을 갖는다.
+
+      핵심 개념:
+      두 방정식이 같은 직선을 나타내면 해는 그 직선 위의 모든 점이 된다.
+      첫 식 $x+2y=3$의 3배는 $3x+6y=9$이다.
+      둘째 식이 이것과 같으려면 $a=6$, $b=9$이어야 한다.
+      따라서 이 조건에서 해가 무수히 많다.
+    tags: [linear-system, infinite-solutions]
+
+  - id: e17-03
+    type: multiple-choice
+    passageRefs: [g17-parametric-system-01]
+    prompt: 유일한 해를 갖기 위한 조건은?
+    choices:
+      - { id: '1', text: '$a=6$' }
+      - { id: '2', text: '$a \ne 6$' }
+      - { id: '3', text: '$b=9$' }
+      - { id: '4', text: '$b \ne 9$' }
+    answers: ['2']
+    explanation: |
+      선택지 1: $a=6$이면 두 식의 왼쪽 계수가 비례하여 유일한 해를 갖지 못한다.
+      선택지 2: 계수행렬의 행렬식 $a-6$이 0이 아니므로 유일한 해를 갖는다.
+      선택지 3: $b=9$만으로는 $a=6$인 경우 무수히 많은 해가 생길 수 있어 충분하지 않다.
+      선택지 4: $b\ne9$만으로는 $a=6$인 경우 해가 없을 수 있어 충분하지 않다.
+
+      핵심 개념:
+      $2 \times 2$ 연립일차방정식은 계수행렬의 행렬식이 0이 아니면 유일한 해를 갖는다.
+      계수행렬은 $\begin{pmatrix}1&2\\3&a\end{pmatrix}$이고 행렬식은 $a-6$이다.
+      따라서 $a\ne6$이 유일해 조건이다.
+      상수항 $b$는 유일해 여부가 아니라 실제 해의 위치에 영향을 준다.
+    tags: [linear-system, unique-solution, determinant]
+
+  - id: e17-04
+    type: multiple-choice
+    passageRefs: [g17-linear-system-01]
+    prompt: 주어진 일차연립방정식의 확대행렬 $A$를 구하면?
+    choices:
+      - id: '1'
+        text: |
+          $$
+          A=
+          \begin{pmatrix}
+          1 & 2 & 0 \\
+          2 & 5 & -1 \\
+          0 & 3 & 1
+          \end{pmatrix}
+          $$
+      - id: '2'
+        text: |
+          $$
+          A=
+          \begin{pmatrix}
+          1 & 2 & 4 \\
+          2 & 5 & 9 \\
+          0 & 3 & 3
+          \end{pmatrix}
+          $$
+      - id: '3'
+        text: |
+          $$
+          A=
+          \begin{pmatrix}
+          1 & 2 & 4 & 0 \\
+          2 & 5 & 9 & -1 \\
+          0 & 3 & 3 & 1
+          \end{pmatrix}
+          $$
+      - id: '4'
+        text: |
+          $$
+          A=
+          \begin{pmatrix}
+          1 & 2 & 0 & 4 \\
+          2 & 5 & -1 & 9 \\
+          0 & 3 & 1 & 3
+          \end{pmatrix}
+          $$
+    answers: ['4']
+    explanation: |
+      선택지 1: 계수행렬만 적은 형태라 우변 상수항 열이 빠져 있다.
+      선택지 2: $z$의 계수 대신 상수항을 세 번째 열에 넣은 형태이다.
+      선택지 3: 상수항과 $z$ 계수 열의 위치가 바뀌어 있다.
+      선택지 4: $x,y,z$의 계수 뒤에 우변 $4,9,3$을 붙인 확대행렬이므로 정답이다.
+
+      핵심 개념:
+      확대행렬은 미지수 계수들을 먼저 쓰고 마지막 열에 우변 상수항을 붙인다.
+      첫 번째 식에는 $z$ 항이 없으므로 $z$ 계수는 0이다.
+      세 번째 식에는 $x$ 항이 없으므로 $x$ 계수는 0이다.
+      따라서 확대행렬은 선택지 4와 같다.
+    tags: [augmented-matrix, linear-system]
+
+  - id: e17-05
+    type: multiple-choice
+    passageRefs: [g17-linear-system-01]
+    prompt: 문제 4에서 구한 행렬 $A$에 기본행연산 $R_{1,2}(-2)$, $R_{2,3}(-3)$, $R_3\left(\frac14\right)$을 차례로 적용한 결과는?
+    choices:
+      - id: '1'
+        text: |
+          $$
+          \begin{pmatrix}
+          1 & 0 & 0 & 4 \\
+          0 & 1 & 0 & 2 \\
+          0 & 0 & 1 & 1
+          \end{pmatrix}
+          $$
+      - id: '2'
+        text: |
+          $$
+          \begin{pmatrix}
+          1 & 2 & 0 & 4 \\
+          0 & 1 & -1 & 1 \\
+          0 & 3 & 1 & 3
+          \end{pmatrix}
+          $$
+      - id: '3'
+        text: |
+          $$
+          \begin{pmatrix}
+          1 & 2 & 0 & 4 \\
+          0 & 1 & -1 & 1 \\
+          0 & 0 & 1 & 0
+          \end{pmatrix}
+          $$
+      - id: '4'
+        text: |
+          $$
+          \begin{pmatrix}
+          1 & 2 & 0 & 4 \\
+          2 & 5 & -1 & 9 \\
+          0 & 0 & 1 & 0
+          \end{pmatrix}
+          $$
+    answers: ['3']
+    explanation: |
+      선택지 1: 뒤로부터 역대입까지 끝낸 소거행제형에 가까운 형태로, 주어진 세 연산만 적용한 결과가 아니다.
+      선택지 2: 첫 번째 연산만 적용한 뒤 세 번째 행이 아직 정리되지 않은 형태이다.
+      선택지 3: 세 연산을 순서대로 적용하면 둘째 행은 $(0,1,-1,1)$, 셋째 행은 $(0,0,1,0)$이 되어 정답이다.
+      선택지 4: 둘째 행에 첫 번째 연산이 반영되지 않았다.
+
+      핵심 개념:
+      $R_{1,2}(-2)$는 1행의 $-2$배를 2행에 더한다.
+      그 결과 2행은 $(0,1,-1,1)$이 된다.
+      $R_{2,3}(-3)$을 적용하면 3행은 $(0,0,4,0)$이고, 다시 $R_3(1/4)$로 나누면 $(0,0,1,0)$이다.
+      따라서 선택지 3의 행렬이 나온다.
+    tags: [row-operation, gaussian-elimination]
+
+  - id: e17-06
+    type: multiple-choice
+    passageRefs: [g17-linear-system-01]
+    prompt: 문제 5에서 구한 행렬을 이용하여 주어진 방정식의 해 $(x,y,z)$를 구하면?
+    choices:
+      - { id: '1', text: $(4,2,1)$ }
+      - { id: '2', text: $(2,1,0)$ }
+      - { id: '3', text: $(4,1,3)$ }
+      - { id: '4', text: $(2,-1,0)$ }
+    answers: ['2']
+    explanation: |
+      선택지 1: 행연산 결과에서 $z=0$이므로 맞지 않는다.
+      선택지 2: 문제 5의 행렬에서 $z=0$, $y=1$이고 첫 식에 대입하면 $x=2$이므로 정답이다.
+      선택지 3: $z=3$이어서 세 번째 행의 조건과 다르다.
+      선택지 4: 두 번째 행에서 $y-z=1$인데 $y=-1$, $z=0$은 이를 만족하지 않는다.
+
+      핵심 개념:
+      행제형 행렬은 아래 행부터 역대입하여 해를 구한다.
+      세 번째 행은 $z=0$을 준다.
+      두 번째 행은 $y-z=1$이므로 $y=1$이다.
+      첫 번째 식 $x+2y=4$에서 $x=2$를 얻는다.
+    tags: [linear-system, back-substitution]
+
+  - id: e17-07
+    type: multiple-choice
+    passageRefs: [g17-matrices-a-b-01]
+    prompt: 행렬 $A$에 대한 설명으로 부적절한 것은?
+    choices:
+      - { id: '1', text: 정방행렬이면서 상삼각행렬이다. }
+      - { id: '2', text: 대각행렬이면서 하삼각행렬이다. }
+      - { id: '3', text: 행제형행렬이면서 $|A|=25$이다. }
+      - { id: '4', text: 스칼라행렬이면서 $AB=5B$를 만족한다. }
+    answers: ['3']
+    explanation: |
+      선택지 1: $A$는 정방행렬이고 주대각선 아래 성분이 모두 0이므로 상삼각행렬이다.
+      선택지 2: $A$는 대각행렬이고 주대각선 위 성분도 모두 0이므로 하삼각행렬이다.
+      선택지 3: $|A|=5\cdot5\cdot5=125$이므로 $|A|=25$라는 설명이 부적절하다.
+      선택지 4: $A=5I_3$이므로 $AB=5B$가 성립한다.
+
+      핵심 개념:
+      스칼라행렬은 단위행렬의 상수배이다.
+      $A=5I_3$은 대각행렬, 상삼각행렬, 하삼각행렬에 모두 해당한다.
+      대각행렬의 행렬식은 대각 성분의 곱이다.
+      따라서 $|A|=125$이며 25가 아니다.
+    tags: [scalar-matrix, determinant]
+
+  - id: e17-08
+    type: multiple-choice
+    passageRefs: [g17-matrices-a-b-01]
+    prompt: 행렬 $A$의 역행렬을 구하면?
+    choices:
+      - { id: '1', text: '$A^{-1}=A$' }
+      - { id: '2', text: '$A^{-1}=5A$' }
+      - { id: '3', text: '$A^{-1}=5I_3$' }
+      - { id: '4', text: '$A^{-1}=\frac{1}{5}I_3$' }
+    answers: ['4']
+    explanation: |
+      선택지 1: $A=5I_3$이므로 자기 자신과 곱하면 $25I_3$이 되어 단위행렬이 아니다.
+      선택지 2: $5A=25I_3$이므로 역행렬이 아니다.
+      선택지 3: $5I_3$는 $A$ 자신이므로 역행렬이 아니다.
+      선택지 4: $A=5I_3$이므로 $A^{-1}=\frac15I_3$이다.
+
+      핵심 개념:
+      $cI_n$의 역행렬은 $c\ne0$일 때 $c^{-1}I_n$이다.
+      역행렬은 원래 행렬과 곱해서 단위행렬을 만드는 행렬이다.
+      $5I_3$에는 $\frac15I_3$을 곱해야 $I_3$이 된다.
+      따라서 정답은 $\frac15I_3$이다.
+    tags: [inverse-matrix, scalar-matrix]
+
+  - id: e17-09
+    type: multiple-choice
+    passageRefs: [g17-matrices-a-b-01]
+    prompt: 다음 중 행렬 $B$의 전치행렬은?
+    choices:
+      - id: '1'
+        text: |
+          $$
+          \begin{pmatrix}
+          2 & 0 & 1 \\
+          1 & 1 & 0 \\
+          4 & 3 & 0
+          \end{pmatrix}
+          $$
+      - id: '2'
+        text: |
+          $$
+          \begin{pmatrix}
+          -2 & 0 & -1 \\
+          -1 & -1 & 0 \\
+          -4 & -3 & 0
+          \end{pmatrix}
+          $$
+      - id: '3'
+        text: |
+          $$
+          \begin{pmatrix}
+          -1 & 0 & 0 \\
+          0 & -1 & 0 \\
+          0 & 0 & -1
+          \end{pmatrix}
+          $$
+      - id: '4'
+        text: |
+          $$
+          \begin{pmatrix}
+          -2 & -1 & -4 \\
+          0 & -1 & -3 \\
+          -1 & 0 & 0
+          \end{pmatrix}
+          $$
+    answers: ['1']
+    explanation: |
+      선택지 1: $B$의 행과 열을 바꾸면 첫 열 $(2,0,1)^T$, 둘째 열 $(1,1,0)^T$, 셋째 열 $(4,3,0)^T$가 행으로 놓이므로 정답이다.
+      선택지 2: 전치행렬이 아니라 선택지 1의 부호를 모두 바꾼 행렬이다.
+      선택지 3: $-I_3$ 형태로 원문 행렬의 전치와 관계가 없다.
+      선택지 4: 원문 행렬의 부호를 바꾼 형태에 가깝고 행과 열 교환도 맞지 않는다.
+
+      핵심 개념:
+      전치행렬은 행과 열을 서로 바꾼 행렬이다.
+      원래 행렬의 $(i,j)$ 성분은 전치행렬의 $(j,i)$ 성분이 된다.
+      부호는 전치 과정에서 바뀌지 않는다.
+      따라서 $B^T$는 선택지 1이다.
+    tags: [transpose]
+
+  - id: e17-10
+    type: multiple-choice
+    passageRefs: [g17-matrices-a-b-01]
+    prompt: 다음 중 행렬 $B$의 행렬식은?
+    choices:
+      - { id: '1', text: '$1$' }
+      - { id: '2', text: '$-1$' }
+      - { id: '3', text: '$4$' }
+      - { id: '4', text: '$-4$' }
+    answers: ['2']
+    explanation: |
+      선택지 1: 여인수 전개에서 양수 항과 음수 항을 모두 반영하면 1이 아니라 -1이다.
+      선택지 2: $|B|=2(0)-1(0-3)+4(0-1)=-1$이므로 정답이다.
+      선택지 3: 첫 행의 마지막 성분만 보고 계산한 값으로 전체 행렬식이 아니다.
+      선택지 4: 일부 항만 반영한 값이며 실제 행렬식은 -1이다.
+
+      핵심 개념:
+      $3 \times 3$ 행렬식은 여인수 전개로 계산할 수 있다.
+      첫 행 기준으로 전개하면 $2\begin{vmatrix}1&3\\0&0\end{vmatrix}-1\begin{vmatrix}0&3\\1&0\end{vmatrix}+4\begin{vmatrix}0&1\\1&0\end{vmatrix}$이다.
+      이는 $0+3-4=-1$이다.
+      따라서 $|B|=-1$이다.
+    tags: [determinant]
+
+  - id: e17-11
+    type: multiple-choice
+    passageRefs: [g17-matrices-a-b-01]
+    prompt: 다음 중 행렬 $B$의 역행렬은?
+    choices:
+      - id: '1'
+        text: |
+          $$
+          \begin{pmatrix}
+          2 & 0 & 1 \\
+          1 & 1 & 0 \\
+          4 & 3 & 0
+          \end{pmatrix}
+          $$
+      - id: '2'
+        text: |
+          $$
+          \begin{pmatrix}
+          1 & 0 & 0 \\
+          0 & 1 & 0 \\
+          0 & 0 & 1
+          \end{pmatrix}
+          $$
+      - id: '3'
+        text: |
+          $$
+          \begin{pmatrix}
+          -2 & 0 & -1 \\
+          -1 & -1 & 0 \\
+          -4 & -3 & 0
+          \end{pmatrix}
+          $$
+      - id: '4'
+        text: |
+          $$
+          \begin{pmatrix}
+          0 & 0 & 1 \\
+          -3 & 4 & 6 \\
+          1 & -1 & -2
+          \end{pmatrix}
+          $$
+    answers: ['4']
+    explanation: |
+      선택지 1: 이는 $B$의 전치행렬이며 역행렬이 아니다.
+      선택지 2: $B$가 단위행렬이 아니므로 단위행렬은 $B^{-1}$이 될 수 없다.
+      선택지 3: 전치행렬의 부호를 바꾼 형태로, $B$와 곱해도 단위행렬이 되지 않는다.
+      선택지 4: $B$와 곱하면 단위행렬이 되어 $B^{-1}$에 해당한다.
+
+      핵심 개념:
+      역행렬 후보는 원래 행렬과 곱해 단위행렬이 되는지 확인할 수 있다.
+      주어진 $B$는 행렬식이 $-1$이므로 역행렬이 존재한다.
+      선택지 4의 행렬을 곱하면 각 열이 선형방정식 $Bx=e_i$의 해가 된다.
+      따라서 선택지 4가 $B^{-1}$이다.
+    tags: [inverse-matrix]
+
+  - id: e17-12
+    type: multiple-choice
+    prompt: 행렬 $A,B,C$에 관한 다음 서술 중 옳은 것은?
+    choices:
+      - { id: '1', text: '$AB=BA$가 항상 성립한다.' }
+      - { id: '2', text: '$A \ne O,\ B \ne O$이면 항상 $AB \ne O$이다.' }
+      - { id: '3', text: '$A \ne O,\ B \ne C$이면 항상 $AB \ne AC$이다.' }
+      - { id: '4', text: '$A$가 정방행렬이 아니면 $A$는 대칭행렬이 아니다.' }
+    answers: ['4']
+    explanation: |
+      선택지 1: 행렬 곱셈은 일반적으로 교환법칙을 만족하지 않는다.
+      선택지 2: 영행렬이 아닌 두 행렬의 곱이 영행렬이 될 수 있다.
+      선택지 3: $B\ne C$라도 왼쪽에서 곱한 $A$가 차이를 없애면 $AB=AC$가 될 수 있다.
+      선택지 4: 대칭행렬은 $A=A^T$가 정의되어야 하므로 반드시 정방행렬이어야 한다.
+
+      핵심 개념:
+      행렬 곱셈에서는 교환법칙과 소거법칙이 일반적으로 성립하지 않는다.
+      또한 영인자가 존재할 수 있어 두 비영행렬의 곱이 영행렬이 될 수 있다.
+      대칭행렬은 주대각선을 기준으로 성분이 대칭인 정방행렬이다.
+      따라서 정방행렬이 아닌 행렬은 대칭행렬이 아니다.
+    tags: [matrix-operation, symmetric-matrix]
+
+  - id: e17-13
+    type: multiple-choice
+    prompt: $c$가 임의의 실수이고 $A$와 $B$가 $n$차 정칙행렬일 때 다음 중 부적절한 것은?
+    choices:
+      - { id: '1', text: '$A+B$도 정칙행렬이며 $(A+B)^{-1}=A^{-1}+B^{-1}$이다.' }
+      - { id: '2', text: '$cA$도 정칙행렬이며 $(cA)^{-1}=c^{-1}A^{-1}$이다. 단, $c\ne0$' }
+      - { id: '3', text: '$AB$도 정칙행렬이며 $(AB)^{-1}=B^{-1}A^{-1}$이다.' }
+      - { id: '4', text: '$A^T$도 정칙행렬이며 $(A^T)^{-1}=(A^{-1})^T$이다.' }
+    answers: ['1']
+    explanation: |
+      선택지 1: 정칙행렬의 합이 항상 정칙행렬인 것은 아니고, 합의 역행렬도 역행렬의 합으로 계산되지 않으므로 부적절하다.
+      선택지 2: $c\ne0$이면 $cA$는 정칙행렬이며 역행렬은 $c^{-1}A^{-1}$이다.
+      선택지 3: 정칙행렬의 곱은 정칙행렬이고 곱의 역행렬은 순서가 바뀐다.
+      선택지 4: 정칙행렬의 전치도 정칙행렬이며 역행렬과 전치의 관계식이 성립한다.
+
+      핵심 개념:
+      정칙행렬은 역행렬을 갖는 정방행렬이다.
+      곱, 전치, 0이 아닌 스칼라배는 정칙성을 보존한다.
+      그러나 두 정칙행렬의 합은 정칙성이 보장되지 않는다.
+      역행렬 연산은 행렬 덧셈에 대해 단순 분배되지 않는다.
+    tags: [invertible-matrix, inverse-matrix]
+
+  - id: e17-14
+    type: multiple-choice
+    prompt: 3차 기본행렬 $E_{2,3}(5)$은?
+    choices:
+      - id: '1'
+        text: |
+          $$
+          \begin{pmatrix}
+          1 & 0 & 0 \\
+          0 & 1 & 5 \\
+          0 & 0 & 1
+          \end{pmatrix}
+          $$
+      - id: '2'
+        text: |
+          $$
+          \begin{pmatrix}
+          1 & 0 & 0 \\
+          0 & 1 & 0 \\
+          0 & 5 & 1
+          \end{pmatrix}
+          $$
+      - id: '3'
+        text: |
+          $$
+          \begin{pmatrix}
+          1 & 0 & 5 \\
+          0 & 1 & 0 \\
+          0 & 0 & 1
+          \end{pmatrix}
+          $$
+      - id: '4'
+        text: |
+          $$
+          \begin{pmatrix}
+          1 & 0 & 0 \\
+          0 & 1 & 0 \\
+          5 & 0 & 1
+          \end{pmatrix}
+          $$
+    answers: ['2']
+    explanation: |
+      선택지 1: 3행이 아니라 2행에 3행의 5배를 더하는 위치에 해당한다.
+      선택지 2: 단위행렬에 2행의 5배를 3행에 더하면 $(3,2)$ 성분이 5가 되므로 정답이다.
+      선택지 3: 3행의 5배를 1행에 더하는 형태에 해당한다.
+      선택지 4: 1행의 5배를 3행에 더하는 형태에 해당한다.
+
+      핵심 개념:
+      기본행렬은 단위행렬에 기본행연산 하나를 적용해 만든다.
+      이 데이터셋의 표기에서 $E_{i,j}(k)$는 $i$행의 $k$배를 $j$행에 더하는 연산에 대응한다.
+      $E_{2,3}(5)$는 2행의 5배를 3행에 더하므로 단위행렬의 3행 2열에 5가 생긴다.
+      따라서 선택지 2가 맞다.
+    tags: [elementary-matrix, row-operation]
+
+  - id: e17-15
+    type: multiple-choice
+    prompt: |
+      다음 행렬 $A$의 역행렬을 구하면?
+
+      $$
+      A=
+      \begin{pmatrix}
+      1 & 0 & 0 \\
+      3 & 1 & 0 \\
+      0 & 0 & 1
+      \end{pmatrix}
+      $$
+    choices:
+      - id: '1'
+        text: |
+          $$
+          \begin{pmatrix}
+          1 & 0 & 0 \\
+          -3 & 1 & 0 \\
+          0 & 0 & 1
+          \end{pmatrix}
+          $$
+      - id: '2'
+        text: |
+          $$
+          \begin{pmatrix}
+          1 & 0 & 0 \\
+          0 & -1 & 0 \\
+          0 & -3 & 1
+          \end{pmatrix}
+          $$
+      - id: '3'
+        text: |
+          $$
+          \begin{pmatrix}
+          1 & 0 & 0 \\
+          0 & 1 & \frac13 \\
+          0 & 0 & 1
+          \end{pmatrix}
+          $$
+      - id: '4'
+        text: |
+          $$
+          \begin{pmatrix}
+          1 & 0 & 0 \\
+          \frac13 & 1 & 0 \\
+          0 & 0 & 1
+          \end{pmatrix}
+          $$
+    answers: ['1']
+    explanation: |
+      선택지 1: 1행의 3배를 2행에 더한 기본행렬의 역연산은 1행의 -3배를 2행에 더하는 것이므로 정답이다.
+      선택지 2: 두 번째 행과 세 번째 행의 위치 관계가 원문 행렬의 역연산과 맞지 않는다.
+      선택지 3: 3행 방향 성분을 조정하는 형태로 원문 행렬의 역행렬이 아니다.
+      선택지 4: 3을 없애기 위해 $\frac13$을 쓰는 것이 아니라 반대 행연산인 $-3$을 써야 한다.
+
+      핵심 개념:
+      주어진 행렬은 단위행렬에 1행의 3배를 2행에 더해 만든 기본행렬이다.
+      역행렬은 이 행연산을 되돌리는 기본행렬이다.
+      되돌리려면 1행의 $-3$배를 2행에 더해야 한다.
+      따라서 $(2,1)$ 성분이 $-3$인 선택지 1이 역행렬이다.
+    tags: [inverse-matrix, elementary-matrix]
+
+  - id: e17-16
+    type: multiple-choice
+    prompt: $A$, $B$가 정방행렬일 때, 다음 식 중 옳은 것은?
+    choices:
+      - { id: '1', text: '$|A^{-1}|=|A|$ 단, $A$는 정칙행렬' }
+      - { id: '2', text: '$|cA|=c|A|$ 단, $c$는 0이 아닌 상수' }
+      - { id: '3', text: '$|AB|=|A||B|$' }
+      - { id: '4', text: '$|A+B|=|A|+|B|$' }
+    answers: ['3']
+    explanation: |
+      선택지 1: 정칙행렬이면 $|A^{-1}|=1/|A|$이다.
+      선택지 2: $n$차 행렬에서는 $|cA|=c^n|A|$이므로 일반적으로 $c|A|$가 아니다.
+      선택지 3: 행렬식은 곱에 대해 $|AB|=|A||B|$를 만족하므로 정답이다.
+      선택지 4: 행렬식은 행렬 덧셈에 대해 일반적으로 분배되지 않는다.
+
+      핵심 개념:
+      행렬식의 대표적인 곱셈 법칙은 $|AB|=|A||B|$이다.
+      역행렬의 행렬식은 원래 행렬식의 역수이다.
+      행렬 전체를 상수배하면 차수만큼 행렬식에 반영된다.
+      행렬식은 일반적인 덧셈에 대해 선형적으로 작용하지 않는다.
+    tags: [determinant]
+
+  - id: e17-17
+    type: multiple-choice
+    passageRefs: [g17-vectors-r3-01]
+    prompt: 다음 중 틀린 것은?
+    choices:
+      - { id: '1', text: '$|A|=1$' }
+      - { id: '2', text: '$A \times B=4$' }
+      - { id: '3', text: '$A \cdot C=0$' }
+      - { id: '4', text: '$|D|=\sqrt{14}$' }
+    answers: ['2']
+    explanation: |
+      선택지 1: $A=(1,0,0)$이므로 길이는 1이다.
+      선택지 2: 외적 $A\times B$는 스칼라 4가 아니라 벡터이며, 실제로 $(0,-1,1)$이므로 틀렸다.
+      선택지 3: $(1,0,0)\cdot(0,0,1)=0$이므로 옳다.
+      선택지 4: $|D|=\sqrt{1^2+2^2+3^2}=\sqrt{14}$이므로 옳다.
+
+      핵심 개념:
+      내적은 스칼라를 만들지만 외적은 벡터를 만든다.
+      $A\times B$는 $A$와 $B$에 수직인 벡터이다.
+      벡터의 길이는 성분 제곱합의 제곱근으로 계산한다.
+      제시된 보기 중 외적을 스칼라 4로 둔 설명이 틀렸다.
+    tags: [cross-product, dot-product, vector-norm]
+
+  - id: e17-18
+    type: multiple-choice
+    passageRefs: [g17-vectors-r3-01]
+    prompt: 다음 중 $A$와 서로 수직인 벡터는?
+    choices:
+      - { id: '1', text: '$A$' }
+      - { id: '2', text: '$A,\ B$' }
+      - { id: '3', text: '$B,\ C$' }
+      - { id: '4', text: '$B,\ C,\ D$' }
+    answers: ['3']
+    explanation: |
+      선택지 1: $A\cdot A=1$이므로 $A$는 자기 자신과 수직이 아니다.
+      선택지 2: $B$는 $A$와 수직이지만 $A$ 자신은 수직이 아니다.
+      선택지 3: $A\cdot B=0$이고 $A\cdot C=0$이므로 두 벡터 모두 $A$와 수직이다.
+      선택지 4: $A\cdot D=1$이므로 $D$는 $A$와 수직이 아니다.
+
+      핵심 개념:
+      두 벡터가 수직이면 내적이 0이다.
+      $A=(1,0,0)$이므로 $A$와의 내적은 상대 벡터의 첫 번째 성분과 같다.
+      $B$와 $C$의 첫 번째 성분은 0이므로 $A$와 수직이다.
+      $D$의 첫 번째 성분은 1이므로 수직이 아니다.
+    tags: [orthogonal-vector, dot-product]
+
+  - id: e17-19
+    type: multiple-choice
+    passageRefs: [g17-vectors-r3-01]
+    prompt: $D$를 $A,B,C$의 일차결합으로 나타낸 것은?
+    choices:
+      - { id: '1', text: '$D=-A+2B+C$' }
+      - { id: '2', text: '$D=A-2B+C$' }
+      - { id: '3', text: '$D=2A+B+C$' }
+      - { id: '4', text: '$D=A+2B+C$' }
+    answers: ['4']
+    explanation: |
+      선택지 1: $-A+2B+C=(-1,2,3)$이므로 $D$와 다르다.
+      선택지 2: $A-2B+C=(1,-2,-1)$이므로 $D$와 다르다.
+      선택지 3: $2A+B+C=(2,1,2)$이므로 $D$와 다르다.
+      선택지 4: $A+2B+C=(1,2,3)$이므로 $D$와 일치한다.
+
+      핵심 개념:
+      일차결합은 벡터에 스칼라를 곱해 더한 형태이다.
+      $A$는 첫 번째 성분, $B$는 두 번째와 세 번째 성분, $C$는 세 번째 성분에 영향을 준다.
+      $A+2B+C=(1,0,0)+(0,2,2)+(0,0,1)=(1,2,3)$이다.
+      따라서 $D=A+2B+C$이다.
+    tags: [linear-combination, vector]
+
+  - id: e17-20
+    type: multiple-choice
+    prompt: 다음 서술 중 부적절한 것은?
+    choices:
+      - { id: '1', text: '$R^3$ 벡터공간에서 벡터집합 $\{A,B,C,D\}$는 일차독립이다.' }
+      - { id: '2', text: '$R^3$ 벡터공간에서 벡터집합 $\{A,B,C\}$는 일차독립이다.' }
+      - { id: '3', text: '$R^3$ 벡터공간에서 벡터집합 $\{A,B\}$는 일차독립이다.' }
+      - { id: '4', text: '$R^3$ 벡터공간에서 벡터집합 $\{A\}$는 일차독립이다.' }
+    answers: ['1']
+    explanation: |
+      선택지 1: $R^3$에서 네 개의 벡터는 항상 일차종속이므로 일차독립이라는 설명은 부적절하다.
+      선택지 2: $A,B,C$는 서로 독립인 세 벡터로 $R^3$에서 일차독립이다.
+      선택지 3: 영벡터가 아닌 서로 배수가 아닌 두 벡터이므로 일차독립이다.
+      선택지 4: 영벡터가 아닌 한 벡터만으로 된 집합은 일차독립이다.
+
+      핵심 개념:
+      $n$차원 벡터공간에서 $n$개를 초과하는 벡터 집합은 반드시 일차종속이다.
+      $R^3$에서는 네 개의 벡터가 일차독립일 수 없다.
+      적은 개수의 벡터 집합은 실제 선형관계를 확인해 판단한다.
+      이 문제에서는 $\{A,B,C,D\}$가 부적절한 설명이다.
+    tags: [linear-independence, vector-space]
+
+  - id: e17-21
+    type: multiple-choice
+    passageRefs: [g17-linear-transform-t-01]
+    prompt: $R^3$와 $R^2$의 표준기저를 이용한 $T$의 행렬은?
+    choices:
+      - id: '1'
+        text: |
+          $$
+          \begin{pmatrix}
+          2 & 1 & 0 \\
+          0 & 1 & 2
+          \end{pmatrix}
+          $$
+      - id: '2'
+        text: |
+          $$
+          \begin{pmatrix}
+          1 & 2 & 0 \\
+          0 & 2 & 1
+          \end{pmatrix}
+          $$
+      - id: '3'
+        text: |
+          $$
+          \begin{pmatrix}
+          1 & 0 \\
+          2 & 2 \\
+          0 & 1
+          \end{pmatrix}
+          $$
+      - id: '4'
+        text: |
+          $$
+          \begin{pmatrix}
+          1 & 1 \\
+          2 & 0 \\
+          1 & 1
+          \end{pmatrix}
+          $$
+    answers: ['1']
+    explanation: |
+      선택지 1: $T(x,y,z)=(2x+y,y+2z)$를 행렬곱으로 나타내면 첫 행은 $(2,1,0)$, 둘째 행은 $(0,1,2)$이므로 정답이다.
+      선택지 2: 첫 번째 출력 성분과 두 번째 출력 성분의 계수 배치가 원문과 다르다.
+      선택지 3: $R^3$에서 $R^2$로 가는 변환의 표준행렬은 $2 \times 3$이어야 하는데 $3 \times 2$ 행렬이다.
+      선택지 4: 행렬 크기와 성분 배치가 모두 원문 변환과 맞지 않는다.
+
+      핵심 개념:
+      $T:R^3\to R^2$의 표준행렬은 출력 차원 2를 행 수, 입력 차원 3을 열 수로 하는 $2 \times 3$ 행렬이다.
+      첫 번째 출력 성분 $2x+y$의 계수는 $(2,1,0)$이다.
+      두 번째 출력 성분 $y+2z$의 계수는 $(0,1,2)$이다.
+      따라서 표준행렬은 선택지 1이다.
+    tags: [linear-transformation, matrix-representation]
+
+  - id: e17-22
+    type: multiple-choice
+    passageRefs: [g17-linear-transform-t-01]
+    prompt: $\operatorname{Ker}(T)$를 구하면?
+    choices:
+      - { id: '1', text: '$\{(k,2k,k)\mid k\in R\}$' }
+      - { id: '2', text: '$\{(k,-2k,k)\mid k\in R\}$' }
+      - { id: '3', text: '$\{(k,2k,m)\mid k,m\in R\}$' }
+      - { id: '4', text: '$\{(k,m,n)\mid k,m,n\in R\}$' }
+    answers: ['2']
+    explanation: |
+      선택지 1: $2x+y=4k$가 되어 일반적으로 0이 아니다.
+      선택지 2: $x=k$, $y=-2k$, $z=k$이면 $2x+y=0$이고 $y+2z=0$이므로 정답이다.
+      선택지 3: 첫 번째 성분 조건도 맞지 않고 $m$이 자유이면 두 번째 성분 조건도 보장되지 않는다.
+      선택지 4: 모든 $R^3$ 벡터가 핵공간에 속하려면 영변환이어야 하지만 원문 변환은 영변환이 아니다.
+
+      핵심 개념:
+      핵공간은 $T(x,y,z)=(0,0)$을 만족하는 벡터들의 집합이다.
+      조건은 $2x+y=0$, $y+2z=0$이다.
+      $x=k$로 두면 $y=-2k$이고, 두 번째 식에서 $z=k$이다.
+      따라서 핵공간은 $\{(k,-2k,k)\mid k\in R\}$이다.
+    tags: [kernel, linear-transformation]
+
+  - id: e17-23
+    type: multiple-choice
+    passageRefs: [g17-matrix-m-01]
+    prompt: 행렬 $M$의 고유값은?
+    choices:
+      - { id: '1', text: '$1,\ -1$' }
+      - { id: '2', text: '$2,\ -2$' }
+      - { id: '3', text: '$1,\ 2$' }
+      - { id: '4', text: '$2,\ -1$' }
+    answers: ['1']
+    explanation: |
+      선택지 1: $M$은 하삼각행렬이므로 고유값은 주대각 성분 $1$과 $-1$이다.
+      선택지 2: 주대각 성분이나 특성방정식의 근과 맞지 않는다.
+      선택지 3: 1은 맞지만 다른 고유값은 2가 아니라 -1이다.
+      선택지 4: -1은 맞지만 다른 고유값은 2가 아니라 1이다.
+
+      핵심 개념:
+      삼각행렬의 고유값은 주대각 성분이다.
+      행렬 $M$은 주대각 성분이 $1$, $-1$인 하삼각행렬이다.
+      특성방정식으로 계산해도 $(1-\lambda)(-1-\lambda)=0$이 된다.
+      따라서 고유값은 $1$과 $-1$이다.
+    tags: [eigenvalue]
+
+  - id: e17-24
+    type: multiple-choice
+    passageRefs: [g17-matrix-m-01]
+    prompt: 행렬 $M$의 고유벡터로서 부적절한 것은?
+    choices:
+      - id: '1'
+        text: |
+          $$
+          \begin{pmatrix}
+          0 \\
+          1
+          \end{pmatrix}
+          $$
+      - id: '2'
+        text: |
+          $$
+          \begin{pmatrix}
+          0 \\
+          5
+          \end{pmatrix}
+          $$
+      - id: '3'
+        text: |
+          $$
+          \begin{pmatrix}
+          2 \\
+          1
+          \end{pmatrix}
+          $$
+      - id: '4'
+        text: |
+          $$
+          \begin{pmatrix}
+          1 \\
+          2
+          \end{pmatrix}
+          $$
+    answers: ['4']
+    explanation: |
+      선택지 1: $M(0,1)^T=(0,-1)^T=-(0,1)^T$이므로 고유벡터이다.
+      선택지 2: $M(0,5)^T=(0,-5)^T=-(0,5)^T$이므로 고유벡터이다.
+      선택지 3: $M(2,1)^T=(2,1)^T$이므로 고유벡터이다.
+      선택지 4: $M(1,2)^T=(1,-1)^T$로 $(1,2)^T$의 스칼라배가 아니므로 고유벡터가 아니다.
+
+      핵심 개념:
+      고유벡터는 행렬을 곱했을 때 자기 자신의 스칼라배가 되는 영이 아닌 벡터이다.
+      이 행렬의 고유값은 $1$과 $-1$이다.
+      선택지 1과 2는 고유값 $-1$에 대응하고, 선택지 3은 고유값 1에 대응한다.
+      선택지 4는 스칼라배 관계가 성립하지 않는다.
+    tags: [eigenvector]
+
+  - id: e17-25
+    type: multiple-choice
+    prompt: |
+      다음 벡터집합들 중 내적공간 $\{R^2,\bullet\}$에서 직교기저가 되는 것들을 모두 고르면?
+
+      $$
+      \begin{aligned}
+      A&=\{(1,0),(1,1)\}\\
+      B&=\{(1,2),(0,0)\}\\
+      C&=\{(2,1),(-1,2)\}\\
+      D&=\{(3,6),(4,-2)\}
+      \end{aligned}
+      $$
+    choices:
+      - { id: '1', text: '$A,\ B$' }
+      - { id: '2', text: '$C,\ D$' }
+      - { id: '3', text: '$B,\ D$' }
+      - { id: '4', text: '$B,\ C,\ D$' }
+    answers: ['2']
+    explanation: |
+      선택지 1: $A$의 두 벡터는 내적이 1이고, $B$는 영벡터를 포함하므로 둘 다 직교기저가 아니다.
+      선택지 2: $C$는 $(2,1)\cdot(-1,2)=0$, $D$는 $(3,6)\cdot(4,-2)=0$이고 두 집합 모두 영벡터를 포함하지 않아 직교기저이다.
+      선택지 3: $D$는 맞지만 $B$는 영벡터를 포함해 기저가 될 수 없다.
+      선택지 4: $C,D$는 맞지만 $B$가 포함되어 있어 모두 직교기저라고 할 수 없다.
+
+      핵심 개념:
+      $R^2$의 직교기저는 서로 직교하는 영이 아닌 두 벡터로 이루어진 기저이다.
+      영벡터는 기저에 포함될 수 없다.
+      $C$와 $D$의 두 벡터는 각각 내적이 0이고 서로 영벡터가 아니다.
+      따라서 직교기저가 되는 것은 $C,D$이다.
+    tags: [orthogonal-basis, dot-product]
