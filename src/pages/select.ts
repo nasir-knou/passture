@@ -1,4 +1,4 @@
-import type { Catalog, CatalogSource, SourceKind } from '../types/catalog';
+import type { Catalog, CatalogSource, CatalogSubject, Semester, SourceKind } from '../types/catalog';
 import {
   savePracticeOptions,
   savePracticeScope,
@@ -12,10 +12,15 @@ import { loadQuestionFile } from '../lib/data-loader';
 import { loadBookmarks, loadWrongAnswers } from '../lib/storage';
 import { escapeHtml, renderFooter, renderTopNav, semesterLabel, sourceKindLabel } from './shared';
 
+type SemesterFilter = 'all' | Semester;
+
 export function renderSelectPage(catalog: Catalog): HTMLElement {
   const page = document.createElement('main');
   page.className = 'app-shell';
-  const selectedSubjectId = readSubjectId(catalog);
+  const requestedSubjectId = readRequestedSubjectId();
+  const requestedSubject = catalog.subjects.find((subject) => subject.id === requestedSubjectId);
+  const selectedSemesterFilter = readSemesterFilterFromHash(requestedSubject);
+  const selectedSubjectId = readSubjectId(catalog, selectedSemesterFilter, requestedSubjectId);
   const visibleSubjects = catalog.subjects.filter((subject) => subject.id === selectedSubjectId);
   const selectedSubject = visibleSubjects[0];
   const learningStatus = readLearningStatus(selectedSubject?.id);
@@ -47,11 +52,11 @@ export function renderSelectPage(catalog: Catalog): HTMLElement {
     <section class="page-header">
       <p class="eyebrow">select</p>
       <h1>${escapeHtml(selectedSubject?.title ?? '문제 선택')}</h1>
-      ${
-        selectedSubject
-          ? `<p><span class="status-badge semester-badge">${semesterLabel(selectedSubject.semester)}</span></p>`
-          : ''
-      }
+      <section class="semester-filter" aria-label="학기별 과목 필터">
+        ${renderSemesterFilterButton('all', '전체', selectedSemesterFilter === 'all')}
+        ${renderSemesterFilterButton(1, '1학기', selectedSemesterFilter === 1)}
+        ${renderSemesterFilterButton(2, '2학기', selectedSemesterFilter === 2)}
+      </section>
       <p class="lead">선택한 과목의 문제 출처와 풀이 방식을 정합니다.</p>
     </section>
     <section class="subject-switcher panel" aria-label="과목 변경">
@@ -59,15 +64,7 @@ export function renderSelectPage(catalog: Catalog): HTMLElement {
         <label>
           <span>과목</span>
           <select data-subject-switcher>
-            ${catalog.subjects
-              .map(
-                (subject) => `
-                  <option value="${escapeHtml(subject.id)}" ${subject.id === selectedSubject?.id ? 'selected' : ''}>
-                    ${escapeHtml(`${semesterLabel(subject.semester)} · ${subject.title}`)}
-                  </option>
-                `,
-              )
-              .join('')}
+            ${renderSubjectOptions(catalog.subjects, selectedSubject, selectedSemesterFilter)}
           </select>
         </label>
       </div>
@@ -139,10 +136,66 @@ export function renderSelectPage(catalog: Catalog): HTMLElement {
         return;
       }
 
-      window.location.hash = `#/select?subject=${encodeURIComponent(select.value)}`;
+      window.location.hash = createSelectHash(select.value, readSemesterFilter(page));
     });
 
+  page.querySelectorAll<HTMLInputElement>('input[name="select-semester-filter"]').forEach((input) => {
+    input.addEventListener('change', () => {
+      const semester = readSemesterFilter(page);
+      const nextSubject = findFirstSubjectForFilter(catalog, semester);
+      if (nextSubject) {
+        window.location.hash = createSelectHash(nextSubject.id, semester);
+      }
+    });
+  });
+
   return page;
+}
+
+function renderSemesterFilterButton(
+  value: SemesterFilter,
+  label: string,
+  checked = false,
+): string {
+  return `
+    <label>
+      <input type="radio" name="select-semester-filter" value="${value}" ${checked ? 'checked' : ''} />
+      <span>${label}</span>
+    </label>
+  `;
+}
+
+function renderSubjectOptions(
+  subjects: CatalogSubject[],
+  selectedSubject: CatalogSubject | undefined,
+  semester: SemesterFilter,
+): string {
+  return subjects
+    .filter((subject) => semester === 'all' || subject.semester === semester)
+    .map(
+      (subject) => `
+        <option value="${escapeHtml(subject.id)}" ${subject.id === selectedSubject?.id ? 'selected' : ''}>
+          ${escapeHtml(`${semesterLabel(subject.semester)} · ${subject.title}`)}
+        </option>
+      `,
+    )
+    .join('');
+}
+
+function readSemesterFilter(page: HTMLElement): SemesterFilter {
+  const checked = page.querySelector<HTMLInputElement>(
+    'input[name="select-semester-filter"]:checked',
+  );
+  return checked?.value === '1' ? 1 : checked?.value === '2' ? 2 : 'all';
+}
+
+function findFirstSubjectForFilter(
+  catalog: Catalog,
+  semester: SemesterFilter,
+): CatalogSubject | undefined {
+  return catalog.subjects.find(
+    (subject) => subject.sources.length > 0 && (semester === 'all' || subject.semester === semester),
+  );
 }
 
 function renderSourceRow(source: CatalogSource, subjectId: string, subjectTitle: string): string {
@@ -346,12 +399,35 @@ function sourceKindClass(kind: SourceKind | string): string {
   }
 }
 
-function readSubjectId(catalog: Catalog): string | undefined {
+function readRequestedSubjectId(): string | null {
   const query = window.location.hash.split('?')[1] ?? '';
-  const subjectId = new URLSearchParams(query).get('subject');
+  return new URLSearchParams(query).get('subject');
+}
+
+function readSemesterFilterFromHash(subject: CatalogSubject | undefined): SemesterFilter {
+  const query = window.location.hash.split('?')[1] ?? '';
+  const value = new URLSearchParams(query).get('semester');
+  if (value === 'all') return 'all';
+  if (value === '1') return 1;
+  if (value === '2') return 2;
+  return subject?.semester ?? 'all';
+}
+
+function readSubjectId(
+  catalog: Catalog,
+  semester: SemesterFilter,
+  subjectId: string | null,
+): string | undefined {
   const requestedSubject = catalog.subjects.find((subject) => subject.id === subjectId);
-  const firstAvailableSubject = catalog.subjects.find((subject) => subject.sources.length > 0);
-  return requestedSubject?.id ?? firstAvailableSubject?.id;
+  const requestedSubjectMatchesFilter =
+    requestedSubject && (semester === 'all' || requestedSubject.semester === semester);
+  const firstAvailableSubject = findFirstSubjectForFilter(catalog, semester);
+  return requestedSubjectMatchesFilter ? requestedSubject.id : firstAvailableSubject?.id;
+}
+
+function createSelectHash(subjectId: string, semester: SemesterFilter): string {
+  const params = new URLSearchParams({ subject: subjectId, semester: String(semester) });
+  return `#/select?${params.toString()}`;
 }
 
 interface LearningStatus {

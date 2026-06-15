@@ -3229,6 +3229,11 @@ h1 {
   cursor: pointer;
 }
 
+.mock-subject-toggle .semester-badge {
+  margin: 0 0 0 auto;
+  white-space: nowrap;
+}
+
 .mock-subject-body {
   clear: both;
   padding: 14px 18px 18px;

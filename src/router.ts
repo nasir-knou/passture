@@ -9,6 +9,7 @@ export interface Router {
 
 export function createRouter(root: HTMLElement, routes: Routes): Router {
   let active = true;
+  let currentRoute: string | undefined;
 
   const render = async () => {
     root.replaceChildren(renderLoading());
@@ -20,11 +21,13 @@ export function createRouter(root: HTMLElement, routes: Routes): Router {
 
       if (active) {
         root.replaceChildren(page);
-        resetPageScroll();
+        if (shouldResetPageScroll(route, currentRoute)) {
+          resetPageScroll();
+        }
+        currentRoute = route;
       }
     } catch (error) {
       root.replaceChildren(renderError(error));
-      resetPageScroll();
     }
   };
 
@@ -51,6 +54,10 @@ export function normalizeRoute(hash: string): string {
   }
 
   return route.endsWith('/') ? route.slice(0, -1) : route;
+}
+
+export function shouldResetPageScroll(route: string, previousRoute: string | undefined): boolean {
+  return route === '/select' && previousRoute !== '/select';
 }
 
 function renderLoading(): HTMLElement {

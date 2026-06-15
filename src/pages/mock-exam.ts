@@ -1,4 +1,4 @@
-import type { Catalog, CatalogSource, SourceKind } from '../types/catalog';
+import type { Catalog, CatalogSource, CatalogSubject, Semester, SourceKind } from '../types/catalog';
 import {
   calcMockExamTimes,
   saveMockExamConfig,
@@ -7,11 +7,14 @@ import {
 } from '../lib/mock-exam-session';
 import type { OrderMode, PracticeOptions } from '../lib/quiz-session';
 import { loadQuestionFile } from '../lib/data-loader';
-import { escapeHtml, renderFooter, renderTopNav, sourceKindLabel } from './shared';
+import { escapeHtml, renderFooter, renderTopNav, semesterLabel, sourceKindLabel } from './shared';
+
+type SemesterFilter = 'all' | Semester;
 
 export function renderMockExamPage(catalog: Catalog): HTMLElement {
   const page = document.createElement('main');
   page.className = 'app-shell';
+  const defaultSemesterFilter = getDefaultSemesterFilter();
 
   page.innerHTML = `
     ${renderTopNav('mock-exam')}
@@ -21,8 +24,13 @@ export function renderMockExamPage(catalog: Catalog): HTMLElement {
       <p class="lead">유사 기말 시험 환경에서 시간 제한과 함께 풀어봅니다.<br>최대 3과목을 선택할 수 있습니다.</p>
     </section>
     <section class="mock-exam-setup" aria-label="시험 설정">
+      <section class="semester-filter" aria-label="학기별 과목 필터">
+        ${renderSemesterFilterButton('all', '전체', defaultSemesterFilter === 'all')}
+        ${renderSemesterFilterButton(1, '1학기', defaultSemesterFilter === 1)}
+        ${renderSemesterFilterButton(2, '2학기', defaultSemesterFilter === 2)}
+      </section>
       <div class="mock-subject-list">
-        ${catalog.subjects.map((subject) => renderSubjectCard(subject.id, subject.title, subject.sources)).join('')}
+        ${catalog.subjects.map((subject) => renderSubjectCard(subject)).join('')}
       </div>
       <div class="mock-time-summary panel" aria-label="시험 시간 요약">
         <dl>
@@ -54,14 +62,12 @@ export function renderMockExamPage(catalog: Catalog): HTMLElement {
 
   hydrateMissingQuestionCounts(page);
   bindSetupEvents(page, catalog);
+  filterSubjectCards(page, defaultSemesterFilter);
   return page;
 }
 
-function renderSubjectCard(
-  subjectId: string,
-  subjectTitle: string,
-  sources: CatalogSource[],
-): string {
+function renderSubjectCard(subject: CatalogSubject): string {
+  const { id: subjectId, title: subjectTitle, sources, semester } = subject;
   const sortedSources = [...sources].sort((a, b) => {
     if (a.kind === 'exam' && b.kind !== 'exam') return -1;
     if (b.kind === 'exam' && a.kind !== 'exam') return 1;
@@ -69,11 +75,12 @@ function renderSubjectCard(
   });
 
   return `
-    <fieldset class="mock-subject-card panel" data-subject-card data-subject-id="${escapeHtml(subjectId)}" data-subject-title="${escapeHtml(subjectTitle)}">
+    <fieldset class="mock-subject-card panel" data-subject-card data-subject-id="${escapeHtml(subjectId)}" data-subject-title="${escapeHtml(subjectTitle)}" data-semester="${semester}">
       <legend class="mock-subject-legend">
         <label class="mock-subject-toggle">
           <input type="checkbox" name="subject" value="${escapeHtml(subjectId)}" data-subject-checkbox />
           <strong>${escapeHtml(subjectTitle)}</strong>
+          <span class="status-badge semester-badge">${semesterLabel(semester)}</span>
         </label>
       </legend>
       <div class="mock-subject-body" hidden>
@@ -98,6 +105,19 @@ function renderSubjectCard(
         </fieldset>
       </div>
     </fieldset>
+  `;
+}
+
+function renderSemesterFilterButton(
+  value: SemesterFilter,
+  label: string,
+  checked = false,
+): string {
+  return `
+    <label>
+      <input type="radio" name="mock-semester-filter" value="${value}" ${checked ? 'checked' : ''} />
+      <span>${label}</span>
+    </label>
   `;
 }
 
@@ -177,6 +197,17 @@ function renderOrderSetting(
 }
 
 function bindSetupEvents(page: HTMLElement, catalog: Catalog): void {
+  page
+    .querySelectorAll<HTMLInputElement>('input[name="mock-semester-filter"]')
+    .forEach((input) => {
+      input.addEventListener('change', () => {
+        filterSubjectCards(page, readSemesterFilter(page), { clearHiddenSelections: true });
+        updateTimeSummary(page);
+        updateMockConfigSummary(page);
+        enforceMaxSubjects(page);
+      });
+    });
+
   // 과목 체크박스 토글 → 본체 표시/숨김
   page.querySelectorAll<HTMLInputElement>('[data-subject-checkbox]').forEach((checkbox) => {
     checkbox.addEventListener('change', () => {
@@ -209,6 +240,41 @@ function bindSetupEvents(page: HTMLElement, catalog: Catalog): void {
 
     saveMockExamConfig(config);
     window.location.hash = '#/mock-exam/test';
+  });
+}
+
+function getDefaultSemesterFilter(date = new Date()): SemesterFilter {
+  const month = date.getMonth() + 1;
+  return month >= 2 && month <= 7 ? 1 : 2;
+}
+
+function readSemesterFilter(page: HTMLElement): SemesterFilter {
+  const checked = page.querySelector<HTMLInputElement>(
+    'input[name="mock-semester-filter"]:checked',
+  );
+  return checked?.value === '1' ? 1 : checked?.value === '2' ? 2 : 'all';
+}
+
+function filterSubjectCards(
+  page: HTMLElement,
+  semester: SemesterFilter,
+  options: { clearHiddenSelections?: boolean } = {},
+): void {
+  page.querySelectorAll<HTMLElement>('[data-subject-card]').forEach((card) => {
+    const hidden = semester !== 'all' && card.dataset.semester !== String(semester);
+    card.hidden = hidden;
+
+    if (hidden && options.clearHiddenSelections) {
+      const checkbox = card.querySelector<HTMLInputElement>('[data-subject-checkbox]');
+      const body = card.querySelector<HTMLElement>('.mock-subject-body');
+      if (checkbox) {
+        checkbox.checked = false;
+        checkbox.disabled = false;
+      }
+      if (body) {
+        body.hidden = true;
+      }
+    }
   });
 }
 
