@@ -21,7 +21,7 @@ export function renderMockExamPage(catalog: Catalog): HTMLElement {
     <section class="page-header">
       <p class="eyebrow">mock exam</p>
       <h1>모의 시험</h1>
-      <p class="lead">유사 기말 시험 환경에서 시간 제한과 함께 풀어봅니다.<br>최대 3과목을 선택할 수 있습니다.</p>
+      <p class="lead">유사 기말 시험 환경에서 시간 제한과 함께 풀어봅니다.<br>최대 3과목을 선택할 수 있습니다. 웹/태블릿 환경 권장.</p>
     </section>
     <section class="mock-exam-setup" aria-label="시험 설정">
       <section class="semester-filter" aria-label="학기별 과목 필터">
