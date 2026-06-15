@@ -20,9 +20,11 @@ export function createRouter(root: HTMLElement, routes: Routes): Router {
 
       if (active) {
         root.replaceChildren(page);
+        resetPageScroll();
       }
     } catch (error) {
       root.replaceChildren(renderError(error));
+      resetPageScroll();
     }
   };
 
@@ -70,6 +72,10 @@ function renderError(error: unknown): HTMLElement {
     </section>
   `;
   return container;
+}
+
+function resetPageScroll(): void {
+  window.scrollTo({ left: 0, top: 0, behavior: 'auto' });
 }
 
 function escapeHtml(value: string): string {

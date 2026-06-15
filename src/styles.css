@@ -345,6 +345,10 @@ h1 {
   gap: 18px;
 }
 
+.subject-grid {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 320px));
+}
+
 .stack {
   display: grid;
   gap: 16px;
@@ -372,9 +376,63 @@ h1 {
     border-color 0.18s ease;
 }
 
+.card[hidden] {
+  display: none;
+}
+
 .subject-card {
   grid-template-rows: auto 1fr auto;
   align-content: stretch;
+}
+
+.semester-filter {
+  display: inline-grid;
+  grid-template-columns: repeat(3, minmax(76px, 1fr));
+  gap: 0;
+  margin: 0 0 18px;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  background: var(--paper);
+}
+
+.semester-filter label {
+  min-width: 0;
+}
+
+.semester-filter input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.semester-filter span {
+  display: grid;
+  min-height: 40px;
+  place-items: center;
+  padding: 0 14px;
+  color: var(--ink-soft);
+  font-weight: 800;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.semester-filter label + label span {
+  border-left: 1px solid var(--rule);
+}
+
+.semester-filter input:checked + span {
+  background: var(--field);
+  color: white;
+}
+
+.semester-filter input:focus-visible + span {
+  outline: 3px solid rgba(217, 171, 85, 0.45);
+  outline-offset: -3px;
+}
+
+.semester-badge {
+  margin-bottom: 10px;
 }
 
 .subject-card .card-action {
@@ -2169,6 +2227,10 @@ h1 {
   .home-lead,
   .backup-lead {
     white-space: normal;
+  }
+
+  .subject-grid {
+    grid-template-columns: 1fr;
   }
 
   .subject-switcher,

@@ -10,7 +10,7 @@ import {
 } from '../lib/quiz-session';
 import { loadQuestionFile } from '../lib/data-loader';
 import { loadBookmarks, loadWrongAnswers } from '../lib/storage';
-import { escapeHtml, renderFooter, renderTopNav, sourceKindLabel } from './shared';
+import { escapeHtml, renderFooter, renderTopNav, semesterLabel, sourceKindLabel } from './shared';
 
 export function renderSelectPage(catalog: Catalog): HTMLElement {
   const page = document.createElement('main');
@@ -47,6 +47,11 @@ export function renderSelectPage(catalog: Catalog): HTMLElement {
     <section class="page-header">
       <p class="eyebrow">select</p>
       <h1>${escapeHtml(selectedSubject?.title ?? '문제 선택')}</h1>
+      ${
+        selectedSubject
+          ? `<p><span class="status-badge semester-badge">${semesterLabel(selectedSubject.semester)}</span></p>`
+          : ''
+      }
       <p class="lead">선택한 과목의 문제 출처와 풀이 방식을 정합니다.</p>
     </section>
     <section class="subject-switcher panel" aria-label="과목 변경">
@@ -58,7 +63,7 @@ export function renderSelectPage(catalog: Catalog): HTMLElement {
               .map(
                 (subject) => `
                   <option value="${escapeHtml(subject.id)}" ${subject.id === selectedSubject?.id ? 'selected' : ''}>
-                    ${escapeHtml(subject.title)}
+                    ${escapeHtml(`${semesterLabel(subject.semester)} · ${subject.title}`)}
                   </option>
                 `,
               )
