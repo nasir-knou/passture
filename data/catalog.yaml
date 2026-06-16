@@ -150,3 +150,41 @@ subjects:
         path: subjects/linear-algebra/past-exams-2019.json
         kind: exam
         year: 2019
+  - id: introduction-to-computer-science
+    title: 컴퓨터과학개론
+    semester: 2
+    sources:
+      - id: past-exams-2019
+        title: 2019 기말
+        path: subjects/introduction-to-computer-science/past-exams-2019.json
+        kind: exam
+        year: 2019
+      - id: past-exams-2018
+        title: 2018 기말
+        path: subjects/introduction-to-computer-science/past-exams-2018.json
+        kind: exam
+        year: 2018
+      - id: past-exams-2017
+        title: 2017 기말
+        path: subjects/introduction-to-computer-science/past-exams-2017.json
+        kind: exam
+        year: 2017
+  - id: computer-architecture
+    title: 컴퓨터구조
+    semester: 2
+    sources:
+      - id: past-exams-2019
+        title: 2019 기말
+        path: subjects/computer-architecture/past-exams-2019.json
+        kind: exam
+        year: 2019
+      - id: past-exams-2018
+        title: 2018 기말
+        path: subjects/computer-architecture/past-exams-2018.json
+        kind: exam
+        year: 2018
+      - id: past-exams-2017
+        title: 2017 기말
+        path: subjects/computer-architecture/past-exams-2017.json
+        kind: exam
+        year: 2017
