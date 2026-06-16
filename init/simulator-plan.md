@@ -11,11 +11,13 @@
 ## 마일스톤 추적
 
 ### M1: 기반 구조 (데이터 모델 + 라우팅) ✅
+
 - [x] `src/lib/mock-exam-session.ts` — 타입 정의, 세션 저장/로드, 무작위 추출 로직
 - [x] `src/app.ts` — `/mock-exam/test`, `/mock-exam/result` 라우트 등록
 - [ ] 단위 테스트: 무작위 추출 균일 분포 검증
 
 ### M2: 설정 화면 ✅
+
 - [x] `src/pages/mock-exam.ts` — placeholder를 설정 UI로 교체
 - [x] 과목 선택 UI (최대 3과목, 체크박스)
 - [x] 과목별 출처 선택 UI (선택한 과목의 source 목록)
@@ -24,6 +26,7 @@
 - [x] "시험 시작" 버튼 → config 저장 → `#/mock-exam/test` 이동
 
 ### M3: 시험 화면 — 레이아웃 & 정적 렌더링 ✅
+
 - [x] `src/pages/mock-exam-test.ts` — 전체 레이아웃 골격
 - [x] 상단 바 (로고, 제목, 퇴실 버튼, 글자 크기, 타이머 자리)
 - [x] 교과목 탭 바 렌더링
@@ -31,6 +34,7 @@
 - [x] 정답기록 사이드바 — 시험 정보 + 문제번호 그리드 렌더링
 
 ### M4: 시험 화면 — 인터랙션 ✅
+
 - [x] 답안 선택 → 정답기록 영역 실시간 반영
 - [x] 정답기록 문제번호 클릭 → 문제풀이 영역 스크롤 이동
 - [x] 교과목 탭 전환 (답안/북마크 상태 유지)
@@ -39,6 +43,7 @@
 - [x] 좌우 화면비율 조절 버튼
 
 ### M5: 시험 화면 — 타이머 & 종료 ✅
+
 - [x] 카운트다운 타이머 (startedAt 기반, 1초 간격 갱신)
 - [x] 남은시간 5분 이하 시 빨간색 경고
 - [x] 시간 종료 → 자동 답안 제출 → 결과 화면 이동
@@ -47,6 +52,7 @@
 - [x] 새로고침 시 세션 복원
 
 ### M6: 결과 화면 ✅
+
 - [x] `src/pages/mock-exam-result.ts` — 결과 화면 구현
 - [x] 교과목 탭으로 과목별 결과 전환
 - [x] 과목별 점수 요약 (총 문항, 정답, 정답률)
@@ -54,12 +60,14 @@
 - [x] 문제별 리뷰 카드 (기존 rendering.ts 재활용)
 
 ### M7: 스타일링 & 마무리 ✅
+
 - [x] IBT 디자인 완전 재현 (아래 디자인 스펙 참조)
 - [x] 퇴실 확인 커스텀 모달 다이얼로그 스타일
 - [ ] 전체 동선 수동 테스트 (설정 → 시험 → 결과)
 - [x] 엣지 케이스 처리 (문제 0개, 1과목만 선택 등)
 
 ### M8: 개선 및 버그 수정 (마일스톤 이후 작업)
+
 - [x] 문제 목록에서 `[0점]` 표시 제거
 - [x] 교과목 탭 양옆 여백 추가, 탭 가운데 정렬
 - [x] 탭 버튼 두 줄 표시 (과목명 + 풀이수/전체)
@@ -86,14 +94,17 @@
 과목/출처 선정 및 시험 구성.
 
 **과목 선택 (최대 3과목)**
+
 - catalog에서 과목 목록을 불러와 최대 3개까지 선택
 - 각 과목마다 시험에 사용할 출처(source)를 하나 이상 선택
 
 **문제 추출 옵션 (과목별)**
+
 - `전체`: 선택한 출처의 모든 문제 사용
 - `무작위 25문제`: 문제 ID의 접두사(b02, l03 등 → 몇 강인지)를 파싱하여 강별로 균일 분포되도록 25문제 추출
 
 **시간 자동 계산**
+
 - 과목 수 x 25분 (1과목=25분, 2과목=50분, 3과목=75분)
 - 시작시간 13:30 고정, 종료시간 자동 계산
 
@@ -130,11 +141,13 @@
 ```
 
 #### 상단 바
+
 - 좌: 방송대 로고 + "20XX년 X학기 기말시험" 텍스트
 - 중: `시험실 퇴실` 버튼 (클릭 시 확인 다이얼로그)
 - 우: 글자크게/글자작게 버튼, 좌우 화면비율 조절 버튼, 남은시간 카운트다운 (MM:SS:ss 형식)
 
 #### 문제풀이 영역 (좌측)
+
 - 상단 탭: 교과목A(풀이수/전체수), 교과목B(풀이수/전체수), 교과목C(풀이수/전체수) — 탭으로 과목 전환
 - 전체 문제를 세로 스크롤로 표시 (한 번에 해당 과목 전체 문제 노출)
 - 각 문제: 번호, [0점] 표시, 문제 텍스트, 4지선다 라디오 버튼
@@ -143,6 +156,7 @@
 - 하단에 현재 문제 / 전체 문제 수 표시 (예: "0 / 3")
 
 #### 정답기록 영역 (우측 사이드바)
+
 - 시험시간 (예: 75분)
 - 시험 시작시간/종료시간 (13:30 ~ 14:45)
 - 응시자 정보: `[모의테스트] 20nnnn-123456 방송대`
@@ -153,12 +167,14 @@
 - 문제번호 클릭 → 문제풀이 영역의 해당 문제로 스크롤 이동
 
 #### 인터랙션
+
 - 문제풀이 영역에서 답 선택 → 정답기록 영역에 실시간 반영
 - 정답기록 영역 문제번호 클릭 → 문제풀이 영역 해당 문제로 스크롤
 - 교과목 탭 전환 시 답안/책갈피 상태 유지
 - 책갈피 토글 → 정답기록 영역에도 반영
 
 #### 시험 종료 조건
+
 - 남은시간 0 도달 → 자동 종료
 - `시험실 퇴실` 버튼 → 확인 다이얼로그 ("시험이 종료되면 더 이상 시험을 응시 할 수 없습니다. 시험을 종료 하시겠습니까?") → 예/아니오
 
@@ -181,10 +197,10 @@
 
 ```typescript
 interface MockExamConfig {
-  subjects: MockExamSubject[];  // 1~3개
-  totalMinutes: number;         // 25/50/75
-  startTime: string;            // "13:30"
-  endTime: string;              // 계산값
+  subjects: MockExamSubject[]; // 1~3개
+  totalMinutes: number; // 25/50/75
+  startTime: string; // "13:30"
+  endTime: string; // 계산값
 }
 
 interface MockExamSubject {
@@ -197,18 +213,18 @@ interface MockExamSubject {
 interface MockExamSession {
   id: string;
   config: MockExamConfig;
-  subjects: MockExamSubjectSession[];  // 과목별 문제/답안
+  subjects: MockExamSubjectSession[]; // 과목별 문제/답안
   activeSubjectIndex: number;
   startedAt: string;
-  bookmarks: Set<string>;              // questionKey set
+  bookmarks: Set<string>; // questionKey set
   status: 'in-progress' | 'finished';
 }
 
 interface MockExamSubjectSession {
   subjectId: string;
   subjectTitle: string;
-  questions: QuizSessionQuestion[];     // 기존 타입 재사용
-  answers: Record<string, string[]>;    // questionKey → 선택한 답
+  questions: QuizSessionQuestion[]; // 기존 타입 재사용
+  answers: Record<string, string[]>; // questionKey → 선택한 답
 }
 ```
 
@@ -229,12 +245,14 @@ interface MockExamSubjectSession {
 **파일: `src/pages/mock-exam-test.ts` (신규)**
 
 주요 컴포넌트:
+
 1. **상단 바**: 로고, 시험 제목, 퇴실 버튼, 남은시간 타이머
 2. **교과목 탭**: 과목 전환 탭 바
 3. **문제풀이 영역**: 전체 문제 목록 (스크롤), 선택지, 책갈피
 4. **정답기록 사이드바**: 시험 정보, 문제번호 그리드
 
 구현 포인트:
+
 - **타이머**: `setInterval` 1초 간격, `startedAt`에서 경과 시간 계산, 남은시간 표시
 - **2-column 레이아웃**: CSS Grid 기반 (`grid-template-columns: 1fr 300px`)
 - **과목 전환**: 탭 클릭 → `activeSubjectIndex` 변경 → 좌측 영역만 re-render
@@ -272,31 +290,31 @@ interface MockExamSubjectSession {
 
 ## 기존 코드 재활용 항목
 
-| 기존 모듈 | 재활용 내용 |
-|---|---|
-| `lib/quiz-session.ts` | `QuizSessionQuestion`, `QuizResponse` 타입, `createQuizSession` 로직 참고 |
-| `lib/data-loader.ts` | `loadQuestionFile`, `loadCatalog` |
-| `lib/scorer.ts` | `isCorrectAnswer` |
-| `lib/storage.ts` | 북마크/오답 기록 (선택적) |
-| `pages/rendering.ts` | `renderPassages`, `renderChoiceContent`, `renderRichText`, `renderQuestionImages` |
-| `pages/result.ts` | `renderReviewCard` 패턴 참고 |
-| `pages/shared.ts` | `escapeHtml` |
+| 기존 모듈             | 재활용 내용                                                                       |
+| --------------------- | --------------------------------------------------------------------------------- |
+| `lib/quiz-session.ts` | `QuizSessionQuestion`, `QuizResponse` 타입, `createQuizSession` 로직 참고         |
+| `lib/data-loader.ts`  | `loadQuestionFile`, `loadCatalog`                                                 |
+| `lib/scorer.ts`       | `isCorrectAnswer`                                                                 |
+| `lib/storage.ts`      | 북마크/오답 기록 (선택적)                                                         |
+| `pages/rendering.ts`  | `renderPassages`, `renderChoiceContent`, `renderRichText`, `renderQuestionImages` |
+| `pages/result.ts`     | `renderReviewCard` 패턴 참고                                                      |
+| `pages/shared.ts`     | `escapeHtml`                                                                      |
 
 ## 신규 파일 목록
 
-| 파일 | 설명 |
-|---|---|
-| `src/lib/mock-exam-session.ts` | 모의시험 세션 데이터 모델, 저장/로드, 문제 추출 로직 |
-| `src/pages/mock-exam-test.ts` | 시험 화면 렌더링 및 이벤트 |
-| `src/pages/mock-exam-result.ts` | 결과 화면 렌더링 |
+| 파일                            | 설명                                                 |
+| ------------------------------- | ---------------------------------------------------- |
+| `src/lib/mock-exam-session.ts`  | 모의시험 세션 데이터 모델, 저장/로드, 문제 추출 로직 |
+| `src/pages/mock-exam-test.ts`   | 시험 화면 렌더링 및 이벤트                           |
+| `src/pages/mock-exam-result.ts` | 결과 화면 렌더링                                     |
 
 ## 수정 파일 목록
 
-| 파일 | 변경 내용 |
-|---|---|
-| `src/pages/mock-exam.ts` | placeholder → 설정 화면 구현 |
-| `src/app.ts` | `/mock-exam/test`, `/mock-exam/result` 라우트 추가 |
-| `src/styles.css` | 시험 화면 전용 스타일 추가 |
+| 파일                     | 변경 내용                                          |
+| ------------------------ | -------------------------------------------------- |
+| `src/pages/mock-exam.ts` | placeholder → 설정 화면 구현                       |
+| `src/app.ts`             | `/mock-exam/test`, `/mock-exam/result` 라우트 추가 |
+| `src/styles.css`         | 시험 화면 전용 스타일 추가                         |
 
 ---
 
@@ -321,30 +339,30 @@ interface MockExamSubjectSession {
 ```css
 :root {
   /* 상단 바 */
-  --exam-topbar-bg: #3b3b3b;              /* 진한 차콜 (거의 검정) */
-  --exam-topbar-text: #ffffff;             /* 흰색 텍스트 */
+  --exam-topbar-bg: #3b3b3b; /* 진한 차콜 (거의 검정) */
+  --exam-topbar-text: #ffffff; /* 흰색 텍스트 */
   --exam-topbar-height: 44px;
 
   /* 시험실 퇴실 버튼 */
-  --exam-exit-bg: #4a9a8f;                /* 청록/틸 */
+  --exam-exit-bg: #4a9a8f; /* 청록/틸 */
   --exam-exit-text: #ffffff;
   --exam-exit-border: #3d8379;
   --exam-exit-hover-bg: #3d8379;
 
   /* 글자 크기 조절 버튼 */
-  --exam-font-control-text: #b0b0b0;      /* 밝은 회색 */
+  --exam-font-control-text: #b0b0b0; /* 밝은 회색 */
   --exam-font-control-icon: #cccccc;
 
   /* 타이머 */
   --exam-timer-text: #ffffff;
-  --exam-timer-bg: #2a2a2a;               /* 상단 바보다 약간 더 어두운 배경 */
-  --exam-timer-warning: #e53e3e;           /* 5분 이하 시 빨간색 */
+  --exam-timer-bg: #2a2a2a; /* 상단 바보다 약간 더 어두운 배경 */
+  --exam-timer-warning: #e53e3e; /* 5분 이하 시 빨간색 */
 
   /* 교과목 탭 */
-  --exam-tab-bg: #f5f5f5;                 /* 연한 회색 배경 */
+  --exam-tab-bg: #f5f5f5; /* 연한 회색 배경 */
   --exam-tab-border: #cccccc;
-  --exam-tab-active-bg: #ffffff;           /* 활성 탭: 흰색 */
-  --exam-tab-active-border: #333333;       /* 활성 탭: 진한 하단 테두리 */
+  --exam-tab-active-bg: #ffffff; /* 활성 탭: 흰색 */
+  --exam-tab-active-border: #333333; /* 활성 탭: 진한 하단 테두리 */
   --exam-tab-active-text: #000000;
   --exam-tab-inactive-text: #666666;
 
@@ -358,16 +376,16 @@ interface MockExamSubjectSession {
   /* 선택지 */
   --exam-choice-text: #333333;
   --exam-choice-hover-bg: #f0f0f0;
-  --exam-choice-selected-bg: #e8f4fd;     /* 선택 시 연한 파란 배경 */
-  --exam-choice-circle-color: #333333;     /* ①②③④ 원문자 색상 */
+  --exam-choice-selected-bg: #e8f4fd; /* 선택 시 연한 파란 배경 */
+  --exam-choice-circle-color: #333333; /* ①②③④ 원문자 색상 */
 
   /* 책갈피(북마크) 아이콘 */
-  --exam-bookmark-inactive: #d4a843;       /* 비활성: 연한 주황/금색 테두리 */
-  --exam-bookmark-active: #e8952e;         /* 활성: 진한 주황/오렌지 채움 */
+  --exam-bookmark-inactive: #d4a843; /* 비활성: 연한 주황/금색 테두리 */
+  --exam-bookmark-active: #e8952e; /* 활성: 진한 주황/오렌지 채움 */
   --exam-bookmark-size: 24px;
 
   /* 이전/다음 화살표 */
-  --exam-nav-arrow-color: #b0b0b0;         /* 연한 회색 */
+  --exam-nav-arrow-color: #b0b0b0; /* 연한 회색 */
   --exam-nav-arrow-hover: #666666;
   --exam-nav-arrow-size: 48px;
 
@@ -376,28 +394,28 @@ interface MockExamSubjectSession {
   --exam-page-indicator-bg: #e0e0e0;
 
   /* 정답기록 사이드바 (우측) */
-  --exam-sidebar-bg: #b8b8b8;             /* 중간 회색 배경 */
+  --exam-sidebar-bg: #b8b8b8; /* 중간 회색 배경 */
   --exam-sidebar-width: 280px;
   --exam-sidebar-header-text: #333333;
   --exam-sidebar-border: #a0a0a0;
 
   /* 사이드바 시험 정보 영역 */
-  --exam-info-bg: #d0d0d0;                /* 약간 밝은 회색 */
+  --exam-info-bg: #d0d0d0; /* 약간 밝은 회색 */
   --exam-info-text: #222222;
   --exam-info-label-text: #555555;
 
   /* 정답기록 그리드 (문제번호 테이블) */
-  --exam-grid-bg: #ffffff;                /* 셀 배경: 흰색 */
-  --exam-grid-border: #999999;            /* 셀 테두리: 중간 회색 */
-  --exam-grid-number-bg: #d8d8d8;         /* 번호 칸 배경: 연한 회색 */
+  --exam-grid-bg: #ffffff; /* 셀 배경: 흰색 */
+  --exam-grid-border: #999999; /* 셀 테두리: 중간 회색 */
+  --exam-grid-number-bg: #d8d8d8; /* 번호 칸 배경: 연한 회색 */
   --exam-grid-number-text: #000000;
-  --exam-grid-answer-text: #0066cc;       /* 입력된 답 표시: 파란색 */
+  --exam-grid-answer-text: #0066cc; /* 입력된 답 표시: 파란색 */
   --exam-grid-cell-height: 32px;
   --exam-grid-number-width: 32px;
   --exam-grid-answer-width: 120px;
 
   /* 정답기록 그리드 - 책갈피 표시 */
-  --exam-grid-bookmark-color: #e8952e;    /* 주황색 깃발 */
+  --exam-grid-bookmark-color: #e8952e; /* 주황색 깃발 */
 
   /* 퇴실 확인 모달 */
   --exam-modal-overlay: rgba(0, 0, 0, 0.5);
@@ -406,12 +424,12 @@ interface MockExamSubjectSession {
   --exam-modal-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   --exam-modal-title-text: #333333;
   --exam-modal-body-text: #555555;
-  --exam-modal-btn-yes-border: #e8952e;   /* "예" 버튼: 주황 원형 테두리 */
+  --exam-modal-btn-yes-border: #e8952e; /* "예" 버튼: 주황 원형 테두리 */
   --exam-modal-btn-yes-text: #333333;
   --exam-modal-btn-no-text: #333333;
 
   /* 좌우 비율 조절 버튼 */
-  --exam-resize-btn-bg: #4a9a8f;          /* 퇴실 버튼과 동일 청록 */
+  --exam-resize-btn-bg: #4a9a8f; /* 퇴실 버튼과 동일 청록 */
   --exam-resize-btn-text: #ffffff;
 
   /* 글자 크기 단계 */

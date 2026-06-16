@@ -83,6 +83,10 @@
       algorithms/
       artificial-intelligence/
       java-programming/
+      discrete-math/
+      linear-algebra/
+      introduction-to-computer-science/
+      computer-architecture/
   public/                               # Vite가 dist 루트로 자동 복사
     CNAME                               # passture.logonme.click
     data/                               # 빌드 산출물 (gitignore)
@@ -97,6 +101,7 @@
   tests/                                # vitest
     build-data.test.ts
     backup.test.ts
+    mock-exam-session.test.ts
     quiz-session.test.ts
     router.test.ts
     scorer.test.ts
@@ -107,7 +112,7 @@
       validate.yml
 ```
 
-`catalog.yaml`이 사이트 전체의 과목·출처 목록과 과목별 학기(`semester`)를 담는다. 새 과목 추가 시 앱 코드를 건드리지 않고 `catalog.yaml`과 문제 YAML만 추가하면 UI에 반영된다. 빌드 시 `public/data/`로 JSON이 출력되고 Vite가 dist 루트로 그대로 복사하므로, 브라우저는 `/data/...` 경로로 JSON만 fetch 한다. 개발 서버에서 JSON 산출물이 없고 Vite HTML fallback을 받은 경우에만 원본 YAML을 직접 읽는 fallback이 있다.
+`catalog.yaml`이 사이트 전체의 과목·출처 목록과 과목별 학기(`semester`)를 담는다. 현재 1학기 5과목(운영체제, 이산수학, 알고리즘, 인공지능, Java프로그래밍)과 2학기 3과목(선형대수, 컴퓨터과학개론, 컴퓨터구조)이 등록되어 있다. 새 과목 추가 시 앱 코드를 건드리지 않고 `catalog.yaml`과 문제 YAML만 추가하면 UI에 반영된다. 빌드 시 `public/data/`로 JSON이 출력되고 Vite가 dist 루트로 그대로 복사하므로, 브라우저는 `/data/...` 경로로 JSON만 fetch 한다. 개발 서버에서 JSON 산출물이 없고 Vite HTML fallback을 받은 경우에만 원본 YAML을 직접 읽는 fallback이 있다.
 
 현재 해시 라우트는 `#/`, `#/select`, `#/mock-exam`, `#/mock-exam/test`, `#/mock-exam/result`, `#/quiz`, `#/result`, `#/history`, `#/backup`이다. 과거 `#/bookmarks` 라우트는 호환용으로 남겨 두고 `#/history`로 이동시킨다.
 

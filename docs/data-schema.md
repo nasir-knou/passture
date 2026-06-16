@@ -22,81 +22,38 @@
 
 ## 2. catalog.yaml
 
+현재 `data/catalog.yaml`에는 8개 과목이 등록되어 있다.
+
+| 학기  | 과목                                                   |
+| ----- | ------------------------------------------------------ |
+| 1학기 | 운영체제, 이산수학, 알고리즘, 인공지능, Java프로그래밍 |
+| 2학기 | 선형대수, 컴퓨터과학개론, 컴퓨터구조                   |
+
+카탈로그 항목 예:
+
 ```yaml
 # data/catalog.yaml
 version: 1
 subjects:
-  - id: operating-systems
-    title: 운영체제
-    semester: 1
+  - id: computer-architecture
+    title: 컴퓨터구조
+    semester: 2
     sources:
+      - id: past-exams-2019
+        title: 2019 기말
+        path: subjects/computer-architecture/past-exams-2019.json
+        kind: exam
+        year: 2019
+      - id: past-exams-2018
+        title: 2018 기말
+        path: subjects/computer-architecture/past-exams-2018.json
+        kind: exam
+        year: 2018
       - id: past-exams-2017
         title: 2017 기말
-        path: subjects/operating-systems/past-exams-2017.json
+        path: subjects/computer-architecture/past-exams-2017.json
         kind: exam
         year: 2017
-      - id: past-exams-2018
-        title: 2018 기말
-        path: subjects/operating-systems/past-exams-2018.json
-        kind: exam
-        year: 2018
-      - id: past-exams-2019
-        title: 2019 기말
-        path: subjects/operating-systems/past-exams-2019.json
-        kind: exam
-        year: 2019
-      - id: workbook
-        title: 워크북 문제
-        path: subjects/operating-systems/workbook.json
-        kind: workbook
-      - id: lecture-exercises
-        title: 연습문제
-        path: subjects/operating-systems/lecture-exercises.json
-        kind: lecture
-  - id: algorithms
-    title: 알고리즘
-    semester: 1
-    sources:
-      - id: past-exams-2019
-        title: 2019 기말
-        path: subjects/algorithms/past-exams-2019.json
-        kind: exam
-        year: 2019
-      - id: textbook
-        title: 기본서 문제
-        path: subjects/algorithms/textbook.json
-        kind: textbook
-      - id: workbook
-        title: 워크북 문제
-        path: subjects/algorithms/workbook.json
-        kind: workbook
-      - id: lecture-exercises
-        title: 연습문제
-        path: subjects/algorithms/lecture-exercises.json
-        kind: lecture
-  - id: artificial-intelligence
-    title: 인공지능
-    semester: 1
-    sources:
-      - id: past-exams-2018
-        title: 2018 기말
-        path: subjects/artificial-intelligence/past-exams-2018.json
-        kind: exam
-        year: 2018
-      - id: past-exams-2019
-        title: 2019 기말
-        path: subjects/artificial-intelligence/past-exams-2019.json
-        kind: exam
-        year: 2019
-  - id: java-programming
-    title: Java프로그래밍
-    semester: 1
-    sources:
-      - id: past-exams-2019
-        title: 2019 기말
-        path: subjects/java-programming/past-exams-2019.json
-        kind: exam
-        year: 2019
 ```
 
 런타임용 `public/data/catalog.json`에는 빌드 시 각 출처의 `questions.length`를 계산한 `questionCount`가 추가된다. 선택 화면과 홈의 출처 목록은 이를 사용해 `2019 기말 (25문제)`처럼 표시한다. 원본 `catalog.yaml`에는 수동으로 문제 수를 적지 않는다.
@@ -420,7 +377,10 @@ SVG 기반 `diagram` 라벨 작성 규칙:
 - `nodes[].x`, `nodes[].y`: 다이어그램 내부 좌표
 - `nodes[].hideLabel`: 라벨을 숨길 때 사용한다. 필요할 때만 둔다.
 - `nodes[].hideNode`: 노드 도형을 숨기고 라벨만 표시할 때 사용한다. 필요할 때만 둔다.
+- `nodes[].shape`: `circle` 또는 `box`. 필요할 때만 둔다.
+- `nodes[].radius`, `nodes[].width`, `nodes[].height`: 노드 크기 보정. 필요할 때만 둔다.
 - `nodes[].labelDx`, `nodes[].labelDy`: 라벨 위치를 보정한다. 필요할 때만 둔다.
+- `nodes[].fontSize`, `nodes[].fillColor`, `nodes[].strokeColor`, `nodes[].strokeWidth`, `nodes[].textColor`, `nodes[].tone`: 노드 표시 스타일 보정. 필요할 때만 둔다.
 - `edges`: 간선 배열
 - `edges[].from`, `edges[].to`: `nodes[].id`를 참조한다.
 - `edges[].label`: 간선 라벨. KaTeX 수식 문자열은 넣지 않는다. 필요할 때만 둔다.
@@ -505,7 +465,7 @@ answers: ["O"]            # OX
 | J           | `["2", "3", "4"]`      |
 | K           | `["1", "2", "3", "4"]` |
 
-콘텐츠 입력 단계에서 공식 정오표/정답표를 아직 확인하지 못한 경우에도 `answers`는 비워두지 않는다. 문제 이미지 또는 원문을 판독해 직접 풀이한 임시 정답을 기재하고, 풀이 근거를 `explanation`에 남긴다. 공식 정답 대조는 M10 정답 검증 단계에서 수행한다.
+콘텐츠 입력 단계에서 공식 정오표/정답표를 아직 확인하지 못한 경우에도 `answers`는 비워두지 않는다. 문제 이미지 또는 원문을 판독해 직접 풀이한 임시 정답을 기재하고, 풀이 근거를 `explanation`에 남긴다. 공식 정답표나 정답 대조표가 있는 기출은 세트 입력 완료 후 `answers` 문자열을 원본 정답과 대조한다.
 
 ## 7. 해설 작성
 
@@ -517,7 +477,7 @@ answers: ["O"]            # OX
 - 정답 선택지는 핵심 판단 근거를 명확히 적는다.
 - 오답 선택지는 단순히 "틀렸다"가 아니라, 해당 선택지가 가리키는 개념이 무엇인지 설명하고 왜 문제의 조건 또는 질문과 맞지 않는지 적는다.
 - 문항의 핵심 개념에 대해 4~5줄 분량의 요약 설명을 함께 제공한다.
-- 공식 정답 검증 전 임시 해설도 같은 구조로 작성하고, M10에서 공식 정답 대조 후 필요한 경우 보정한다.
+- 공식 정답 검증 전 임시 해설도 같은 구조로 작성하고, 공식 정답 대조 후 필요한 경우 보정한다.
 
 권장 형식:
 
