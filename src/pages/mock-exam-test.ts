@@ -23,6 +23,8 @@ import {
 } from './rendering';
 
 let timerInterval: ReturnType<typeof setInterval> | null = null;
+let removeExamExitGuard: (() => void) | null = null;
+let suppressNextHashGuard = false;
 
 export async function renderMockExamTestPage(): Promise<HTMLElement> {
   const page = document.createElement('div');
@@ -50,6 +52,7 @@ export async function renderMockExamTestPage(): Promise<HTMLElement> {
 }
 
 function mountExam(page: HTMLElement, session: MockExamSession): void {
+  installExamExitGuard(() => loadMockExamSession() ?? session);
   renderExam(page, session);
   startTimer(page, session);
 }
@@ -488,6 +491,8 @@ function bindExamEvents(page: HTMLElement, initialSession: MockExamSession): voi
 
   // 모달 확인 → 시험 종료
   page.querySelector<HTMLButtonElement>('[data-modal-confirm]')?.addEventListener('click', () => {
+    removeExamExitGuard?.();
+    removeExamExitGuard = null;
     stopTimer();
     session = finishSession(session);
     window.location.hash = '#/mock-exam/result';
@@ -630,6 +635,8 @@ function startTimer(page: HTMLElement, session: MockExamSession): void {
     }
 
     if (remaining <= 0) {
+      removeExamExitGuard?.();
+      removeExamExitGuard = null;
       stopTimer();
       const finished = finishSession(session);
       saveMockExamSession(finished);
@@ -643,4 +650,53 @@ export function stopTimer(): void {
     clearInterval(timerInterval);
     timerInterval = null;
   }
+}
+
+function installExamExitGuard(getSession: () => MockExamSession): void {
+  removeExamExitGuard?.();
+
+  const handleBeforeUnload = (event: BeforeUnloadEvent) => {
+    const session = getSession();
+    if (session.status !== 'in-progress') {
+      return;
+    }
+
+    event.preventDefault();
+    event.returnValue = '';
+  };
+
+  const handleHashChange = () => {
+    if (suppressNextHashGuard) {
+      suppressNextHashGuard = false;
+      return;
+    }
+
+    const session = getSession();
+    if (session.status !== 'in-progress' || window.location.hash === '#/mock-exam/test') {
+      return;
+    }
+
+    const shouldLeave = window.confirm(
+      '시험을 나가면 현재 모의시험이 종료됩니다. 이동하시겠습니까?',
+    );
+
+    if (!shouldLeave) {
+      suppressNextHashGuard = true;
+      window.location.hash = '#/mock-exam/test';
+      return;
+    }
+
+    removeExamExitGuard?.();
+    removeExamExitGuard = null;
+    stopTimer();
+    finishSession(session);
+  };
+
+  window.addEventListener('beforeunload', handleBeforeUnload);
+  window.addEventListener('hashchange', handleHashChange);
+
+  removeExamExitGuard = () => {
+    window.removeEventListener('beforeunload', handleBeforeUnload);
+    window.removeEventListener('hashchange', handleHashChange);
+  };
 }
