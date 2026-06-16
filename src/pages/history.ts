@@ -1,4 +1,4 @@
-import type { Catalog } from '../types/catalog';
+import type { Catalog, Semester } from '../types/catalog';
 import type { Choice, Passage, Question } from '../types/question';
 import { loadQuestionFile } from '../lib/data-loader';
 import {
@@ -7,13 +7,15 @@ import {
   removeBookmark,
   type WrongAnswerRecord,
 } from '../lib/storage';
-import { escapeHtml, renderFooter, renderTopNav, sourceKindLabel } from './shared';
+import { escapeHtml, renderFooter, renderTopNav, semesterLabel, sourceKindLabel } from './shared';
 import { renderChoiceContent, renderPassages, renderRichText } from './rendering';
 
 type HistoryFilter = 'all' | 'bookmarked' | 'wrong';
+type SemesterFilter = 'all' | Semester;
 
 interface HistoryEntry {
   key: string;
+  semester: Semester;
   subjectId: string;
   subjectTitle: string;
   sourceId: string;
@@ -31,6 +33,7 @@ export async function renderHistoryPage(catalog: Catalog): Promise<HTMLElement> 
   const page = document.createElement('main');
   page.className = 'app-shell';
   const filter = readHistoryFilter();
+  const semester = readSemesterFilter();
   const subjectId = readSubjectFilter();
   const sourceKey = readSourceFilter();
   const entries = await readHistoryEntries(catalog);
@@ -39,6 +42,7 @@ export async function renderHistoryPage(catalog: Catalog): Promise<HTMLElement> 
       (filter === 'all' ||
         (filter === 'bookmarked' && entry.bookmarked) ||
         (filter === 'wrong' && entry.wrongAnswer)) &&
+      (semester === 'all' || entry.semester === semester) &&
       (subjectId === 'all' || entry.subjectId === subjectId) &&
       (sourceKey === 'all' || entry.sourceKey === sourceKey),
   );
@@ -50,7 +54,7 @@ export async function renderHistoryPage(catalog: Catalog): Promise<HTMLElement> 
       <h1>학습 기록</h1>
       <p class="lead">북마크한 문제와 오답 문제를 모아두는 공간입니다.</p>
     </section>
-    ${renderHistoryFilters(catalog, filter, subjectId, sourceKey, entries)}
+    ${renderHistoryFilters(catalog, filter, semester, subjectId, sourceKey, entries)}
     ${
       visibleEntries.length === 0
         ? renderEmptyState(filter)
@@ -66,6 +70,7 @@ export async function renderHistoryPage(catalog: Catalog): Promise<HTMLElement> 
         removeBookmark(key);
         window.location.hash = createHistoryHash(
           filter,
+          semester,
           subjectId,
           sourceKey,
           Date.now().toString(),
@@ -92,21 +97,38 @@ export async function renderHistoryPage(catalog: Catalog): Promise<HTMLElement> 
     .querySelector<HTMLSelectElement>('[data-history-filter]')
     ?.addEventListener('change', (event) => {
       const target = event.currentTarget as HTMLSelectElement;
-      window.location.hash = createHistoryHash(readFilterValue(target.value), subjectId, sourceKey);
+      window.location.hash = createHistoryHash(
+        readFilterValue(target.value),
+        semester,
+        subjectId,
+        sourceKey,
+      );
+    });
+
+  page
+    .querySelector<HTMLSelectElement>('[data-semester-filter]')
+    ?.addEventListener('change', (event) => {
+      const target = event.currentTarget as HTMLSelectElement;
+      window.location.hash = createHistoryHash(
+        filter,
+        readSemesterValue(target.value),
+        'all',
+        'all',
+      );
     });
 
   page
     .querySelector<HTMLSelectElement>('[data-subject-filter]')
     ?.addEventListener('change', (event) => {
       const target = event.currentTarget as HTMLSelectElement;
-      window.location.hash = createHistoryHash(filter, target.value, 'all');
+      window.location.hash = createHistoryHash(filter, semester, target.value, 'all');
     });
 
   page
     .querySelector<HTMLSelectElement>('[data-source-filter]')
     ?.addEventListener('change', (event) => {
       const target = event.currentTarget as HTMLSelectElement;
-      window.location.hash = createHistoryHash(filter, subjectId, target.value);
+      window.location.hash = createHistoryHash(filter, semester, subjectId, target.value);
     });
 
   return page;
@@ -135,6 +157,7 @@ async function readHistoryEntries(catalog: Catalog): Promise<HistoryEntry[]> {
 
           return {
             key,
+            semester: subject.semester,
             subjectId: subject.id,
             subjectTitle: subject.title,
             sourceId: source.id,
@@ -169,6 +192,15 @@ function readSubjectFilter(): string {
   return new URLSearchParams(query).get('subject') ?? 'all';
 }
 
+function readSemesterFilter(): SemesterFilter {
+  const query = window.location.hash.split('?')[1] ?? '';
+  return readSemesterValue(new URLSearchParams(query).get('semester') ?? 'all');
+}
+
+function readSemesterValue(value: string): SemesterFilter {
+  return value === '1' ? 1 : value === '2' ? 2 : 'all';
+}
+
 function readSourceFilter(): string {
   const query = window.location.hash.split('?')[1] ?? '';
   return new URLSearchParams(query).get('source') ?? 'all';
@@ -177,6 +209,7 @@ function readSourceFilter(): string {
 function renderHistoryFilters(
   catalog: Catalog,
   filter: HistoryFilter,
+  semester: SemesterFilter,
   subjectId: string,
   sourceKey: string,
   entries: readonly HistoryEntry[],
@@ -202,14 +235,23 @@ function renderHistoryFilters(
             </select>
           </label>
           <label>
+            <span>학기</span>
+            <select data-semester-filter>
+              <option value="all" ${semester === 'all' ? 'selected' : ''}>전체</option>
+              <option value="1" ${semester === 1 ? 'selected' : ''}>1학기</option>
+              <option value="2" ${semester === 2 ? 'selected' : ''}>2학기</option>
+            </select>
+          </label>
+          <label>
             <span>과목</span>
             <select data-subject-filter>
               <option value="all" ${subjectId === 'all' ? 'selected' : ''}>전체 과목</option>
               ${catalog.subjects
+                .filter((subject) => semester === 'all' || subject.semester === semester)
                 .map(
                   (subject) => `
                     <option value="${escapeHtml(subject.id)}" ${subjectId === subject.id ? 'selected' : ''}>
-                      ${escapeHtml(subject.title)}
+                      ${escapeHtml(`${semesterLabel(subject.semester)} · ${subject.title}`)}
                     </option>
                   `,
                 )
@@ -220,7 +262,7 @@ function renderHistoryFilters(
             <span>출처</span>
             <select data-source-filter>
               <option value="all" ${sourceKey === 'all' ? 'selected' : ''}>전체 출처</option>
-              ${renderSourceFilterOptions(catalog, subjectId, sourceKey)}
+              ${renderSourceFilterOptions(catalog, semester, subjectId, sourceKey)}
             </select>
           </label>
         </div>
@@ -235,11 +277,16 @@ function renderHistoryFilters(
 
 function renderSourceFilterOptions(
   catalog: Catalog,
+  semester: SemesterFilter,
   subjectId: string,
   selectedSourceKey: string,
 ): string {
   return catalog.subjects
-    .filter((subject) => subjectId === 'all' || subject.id === subjectId)
+    .filter(
+      (subject) =>
+        (semester === 'all' || subject.semester === semester) &&
+        (subjectId === 'all' || subject.id === subjectId),
+    )
     .flatMap((subject) =>
       subject.sources.map((source) => {
         const sourceKey = `${subject.id}:${source.id}`;
@@ -322,6 +369,7 @@ function renderHistoryEntry(entry: HistoryEntry): string {
 
 function createHistoryHash(
   filter: HistoryFilter,
+  semester: SemesterFilter,
   subjectId: string,
   sourceKey: string,
   ts?: string,
@@ -329,6 +377,10 @@ function createHistoryHash(
   const params = new URLSearchParams();
   if (filter !== 'all') {
     params.set('filter', filter);
+  }
+
+  if (semester !== 'all') {
+    params.set('semester', String(semester));
   }
 
   if (subjectId !== 'all') {
