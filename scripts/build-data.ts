@@ -647,6 +647,17 @@ function validateSimpleGraphDiagram(diagram: Record<string, unknown>, fieldPath:
     if (node.labelDy !== undefined) {
       expectNumber(node.labelDy, `${fieldPath}.nodes[${nodeIndex}].labelDy`);
     }
+    if (node.shape !== undefined) {
+      const shape = expectString(node.shape, `${fieldPath}.nodes[${nodeIndex}].shape`);
+      if (!['circle', 'box', 'diamond', 'ellipse'].includes(shape)) {
+        throw new Error(
+          `${fieldPath}.nodes[${nodeIndex}].shape must be circle, box, diamond, or ellipse`,
+        );
+      }
+    }
+    if (node.underline !== undefined && typeof node.underline !== 'boolean') {
+      throw new Error(`${fieldPath}.nodes[${nodeIndex}].underline must be boolean`);
+    }
     expectNumber(node.x, `${fieldPath}.nodes[${nodeIndex}].x`);
     expectNumber(node.y, `${fieldPath}.nodes[${nodeIndex}].y`);
   }

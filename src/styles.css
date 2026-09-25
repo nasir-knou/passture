@@ -1789,6 +1789,8 @@ h1 {
 }
 
 .simple-graph .simple-graph-node circle,
+.simple-graph .simple-graph-node ellipse,
+.simple-graph .simple-graph-node polygon,
 .simple-graph .simple-graph-node rect {
   fill: #ffffff;
   stroke: currentColor;
@@ -1796,6 +1798,8 @@ h1 {
 }
 
 .simple-graph .simple-graph-node-filled circle,
+.simple-graph .simple-graph-node-filled ellipse,
+.simple-graph .simple-graph-node-filled polygon,
 .simple-graph .simple-graph-node-filled rect {
   fill: currentColor;
 }

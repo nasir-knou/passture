@@ -465,8 +465,9 @@ SVG 기반 `diagram` 라벨 작성 규칙:
 - `nodes[].x`, `nodes[].y`: 다이어그램 내부 좌표
 - `nodes[].hideLabel`: 라벨을 숨길 때 사용한다. 필요할 때만 둔다.
 - `nodes[].hideNode`: 노드 도형을 숨기고 라벨만 표시할 때 사용한다. 필요할 때만 둔다.
-- `nodes[].shape`: `circle` 또는 `box`. 필요할 때만 둔다.
+- `nodes[].shape`: `circle`, `box`, `diamond`, `ellipse` 중 하나. 생략하면 `circle`. `diamond`·`ellipse`는 `width`, `height`로 크기를 정하고 간선이 윤곽선에서 끝난다(E-R 다이어그램의 관계·속성 등). 필요할 때만 둔다.
 - `nodes[].radius`, `nodes[].width`, `nodes[].height`: 노드 크기 보정. 필요할 때만 둔다.
+- `nodes[].underline`: 라벨에 밑줄을 긋는다(E-R 다이어그램의 키 속성 등). 필요할 때만 둔다.
 - `nodes[].labelDx`, `nodes[].labelDy`: 라벨 위치를 보정한다. 필요할 때만 둔다.
 - `nodes[].fontSize`, `nodes[].fillColor`, `nodes[].strokeColor`, `nodes[].strokeWidth`, `nodes[].textColor`, `nodes[].tone`: 노드 표시 스타일 보정. 필요할 때만 둔다.
 - `edges`: 간선 배열

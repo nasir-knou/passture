@@ -9,6 +9,7 @@ import type {
   Passage,
   QuestionImage,
   ResourceAllocationGraphNode,
+  SimpleGraphNodeShape,
 } from '../types/question';
 import { findNextMathToken } from '../lib/math-tokens';
 import { escapeHtml } from './shared';
@@ -350,7 +351,7 @@ function renderSimpleGraphDiagram(diagram: ChoiceDiagram & { type: 'simple-graph
               ${
                 node.hideLabel
                   ? ''
-                  : `<text x="${node.x + (node.labelDx ?? 0)}" y="${node.y + (node.labelDy ?? 0)}" text-anchor="${node.labelDx === undefined ? 'middle' : node.labelDx < 0 ? 'end' : 'start'}" dominant-baseline="central"${renderSimpleGraphTextStyle(node)}>${renderMathText(node.label)}</text>`
+                  : `<text x="${node.x + (node.labelDx ?? 0)}" y="${node.y + (node.labelDy ?? 0)}" text-anchor="${node.labelDx === undefined ? 'middle' : node.labelDx < 0 ? 'end' : 'start'}" ${node.underline ? 'dy="0.35em"' : 'dominant-baseline="central"'}${renderSimpleGraphTextStyle(node)}>${renderMathText(node.label)}</text>`
               }
             </g>
           `,
@@ -364,7 +365,7 @@ function renderSimpleGraphNodeShape(node: {
   fillColor?: string;
   height?: number;
   radius?: number;
-  shape?: 'circle' | 'box';
+  shape?: SimpleGraphNodeShape;
   strokeColor?: string;
   strokeWidth?: number;
   width?: number;
@@ -377,6 +378,24 @@ function renderSimpleGraphNodeShape(node: {
     const width = node.width ?? 36;
     const height = node.height ?? 18;
     return `<rect x="${node.x - width / 2}" y="${node.y - height / 2}" width="${width}" height="${height}" rx="2"${style}></rect>`;
+  }
+
+  if (node.shape === 'ellipse') {
+    const width = node.width ?? 60;
+    const height = node.height ?? 28;
+    return `<ellipse cx="${node.x}" cy="${node.y}" rx="${width / 2}" ry="${height / 2}"${style}></ellipse>`;
+  }
+
+  if (node.shape === 'diamond') {
+    const halfWidth = (node.width ?? 80) / 2;
+    const halfHeight = (node.height ?? 40) / 2;
+    const points = [
+      `${node.x},${node.y - halfHeight}`,
+      `${node.x + halfWidth},${node.y}`,
+      `${node.x},${node.y + halfHeight}`,
+      `${node.x - halfWidth},${node.y}`,
+    ].join(' ');
+    return `<polygon points="${points}"${style}></polygon>`;
   }
 
   return `<circle cx="${node.x}" cy="${node.y}" r="${node.radius ?? 20}"${style}></circle>`;
@@ -404,6 +423,7 @@ function renderSimpleGraphShapeStyle(node: {
 function renderSimpleGraphTextStyle(node: {
   fontSize?: number;
   textColor?: string;
+  underline?: boolean;
 }): string {
   const styles: string[] = [];
   if (node.fontSize) {
@@ -412,19 +432,32 @@ function renderSimpleGraphTextStyle(node: {
   if (node.textColor) {
     styles.push(`fill: ${escapeHtml(node.textColor)}`);
   }
+  if (node.underline) {
+    styles.push('text-decoration: underline');
+  }
 
   return styles.length > 0 ? ` style="${styles.join('; ')}"` : '';
 }
 
+interface SimpleGraphEndpointNode {
+  x: number;
+  y: number;
+  height?: number;
+  hideNode?: boolean;
+  radius?: number;
+  shape?: SimpleGraphNodeShape;
+  width?: number;
+}
+
 function simpleGraphEdgeEndpoint(
-  from: { x: number; y: number; hideNode?: boolean; radius?: number },
-  to: { x: number; y: number; hideNode?: boolean; radius?: number },
+  from: SimpleGraphEndpointNode,
+  to: SimpleGraphEndpointNode,
 ): { x1: number; y1: number; x2: number; y2: number } {
-  const fromRadius = from.hideNode ? 0 : (from.radius ?? 20);
-  const toRadius = to.hideNode ? 0 : (to.radius ?? 20);
   const dx = to.x - from.x;
   const dy = to.y - from.y;
   const length = Math.hypot(dx, dy) || 1;
+  const fromRadius = simpleGraphBoundaryDistance(from, dx / length, dy / length);
+  const toRadius = simpleGraphBoundaryDistance(to, dx / length, dy / length);
 
   return {
     x1: from.x + (dx / length) * fromRadius,
@@ -432,6 +465,23 @@ function simpleGraphEdgeEndpoint(
     x2: to.x - (dx / length) * toRadius,
     y2: to.y - (dy / length) * toRadius,
   };
+}
+
+// Distance from the node centre to its outline along the unit direction (ux, uy).
+function simpleGraphBoundaryDistance(node: SimpleGraphEndpointNode, ux: number, uy: number): number {
+  if (node.hideNode) {
+    return 0;
+  }
+
+  if (node.shape === 'ellipse' || node.shape === 'diamond') {
+    const halfWidth = (node.width ?? (node.shape === 'ellipse' ? 60 : 80)) / 2;
+    const halfHeight = (node.height ?? (node.shape === 'ellipse' ? 28 : 40)) / 2;
+    return node.shape === 'ellipse'
+      ? 1 / Math.hypot(ux / halfWidth, uy / halfHeight)
+      : 1 / (Math.abs(ux) / halfWidth + Math.abs(uy) / halfHeight);
+  }
+
+  return node.radius ?? 20;
 }
 
 function simpleGraphCurvePath(

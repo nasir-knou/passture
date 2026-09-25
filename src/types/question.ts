@@ -67,6 +67,8 @@ export interface SimpleGraphDiagram {
   edges: SimpleGraphEdge[];
 }
 
+export type SimpleGraphNodeShape = 'circle' | 'box' | 'diamond' | 'ellipse';
+
 export interface SimpleGraphNode {
   id: string;
   label: string;
@@ -77,11 +79,12 @@ export interface SimpleGraphNode {
   labelDx?: number;
   labelDy?: number;
   radius?: number;
-  shape?: 'circle' | 'box';
+  shape?: SimpleGraphNodeShape;
   strokeColor?: string;
   strokeWidth?: number;
   textColor?: string;
   tone?: 'filled';
+  underline?: boolean;
   width?: number;
   x: number;
   y: number;
