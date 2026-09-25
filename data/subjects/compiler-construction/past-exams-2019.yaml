@@ -354,8 +354,8 @@ questions:
     choices:
       - { id: '1', text: 'a' }
       - { id: '2', text: 'a, b' }
-      - { id: '3', text: 'a, b, ε' }
-      - { id: '4', text: 'a, b, \$' }
+      - { id: '3', text: 'a,b,ε' }
+      - { id: '4', text: 'a,b,\$' }
     answers: ['2']
     explanation: |
       선택지 1: A → SbA, A → SS에서 First(S) = {a}가 들어가지만 A → b의 b가 빠져 있다.
@@ -575,7 +575,7 @@ questions:
     choices:
       - { id: '1', text: 'id' }
       - { id: '2', text: 'E → id' }
-      - { id: '3', text: 'E → E * E' }
+      - { id: '3', text: 'E → E*E' }
       - { id: '4', text: 'E → E-E' }
     answers: ['1']
     explanation: |
@@ -599,7 +599,7 @@ questions:
     choices:
       - { id: '1', text: 'id' }
       - { id: '2', text: 'E → id' }
-      - { id: '3', text: 'E → E * E' }
+      - { id: '3', text: 'E → E*E' }
       - { id: '4', text: 'E → E-E' }
     answers: ['2']
     explanation: |
@@ -623,7 +623,7 @@ questions:
     choices:
       - { id: '1', text: 'id' }
       - { id: '2', text: 'E → id' }
-      - { id: '3', text: 'E → E * E' }
+      - { id: '3', text: 'E → E*E' }
       - { id: '4', text: 'E → E-E' }
     answers: ['3']
     explanation: |
@@ -647,7 +647,7 @@ questions:
     choices:
       - { id: '1', text: 'id' }
       - { id: '2', text: 'E → id' }
-      - { id: '3', text: 'E → E * E' }
+      - { id: '3', text: 'E → E*E' }
       - { id: '4', text: 'E → E-E' }
     answers: ['4']
     explanation: |
@@ -1003,7 +1003,7 @@ questions:
     type: multiple-choice
     chapter: 5
     passageRefs: [g19-ll-01, g19-ll-table-01]
-    prompt: 다음은 Top-Down 구문분석에서 주어진 문법에 대하여 predictive 파싱표를 구성하는 과정이다. 빈칸 ‘가’에 들어갈 내용은?
+    prompt: 다음은 Top-Down 구문분석에서 아래 주어진 문법에 대하여 predictive 파싱표를 구성하는 과정이다. 빈칸 ‘가’에 들어갈 내용은?
     choices:
       - { id: '1', text: 'E′ → ε' }
       - { id: '2', text: 'E → TE′' }
@@ -1106,7 +1106,7 @@ questions:
       - { id: '4', text: 'quadruple 표현' }
     answers: ['4']
     explanation: |
-      선택지 1: 후위표현은 B uminus C D + * A := 처럼 연산자를 피연산자 뒤에 나열하는 방식으로 표 형태가 아니다.
+      선택지 1: 후위표현은 A B uminus C D + * := 처럼 연산자를 피연산자 뒤에 나열하는 방식으로 표 형태가 아니다.
       선택지 2: triple 표현은 (op, 피연산자 1, 피연산자 2)의 세 필드만 쓰고 결과는 명령어 번호로 참조한다.
       선택지 3: 간접 triple 표현은 triple 목록을 가리키는 포인터 배열을 두어 명령 순서를 바꾸기 쉽게 한 방식이다.
       선택지 4: op, 피연산자 1, 피연산자 2, 결과(T₁, T₂, T₃, A)의 네 필드를 가지므로 quadruple 표현이다.

@@ -128,7 +128,7 @@ questions:
   - id: e19-02
     type: multiple-choice
     chapter: 4
-    prompt: 구문을 표현하는 방법과 거리가 ==먼== 것은?
+    prompt: 구문을 표현하는 방법과 거리가 먼 것은?
     choices:
       - { id: '1', text: BNF }
       - { id: '2', text: EBNF }
@@ -152,7 +152,7 @@ questions:
     type: multiple-choice
     chapter: 4
     passageRefs: [g19-ebnf-unsigned-integer-01]
-    prompt: EBNF로 표현된 다음 구문을 실수로 BNF 표현으로 간주하고 해석하였다. EBNF일 때의 해석과 달라진 부분은?
+    prompt: EBNF로 표현된 다음 구문을 실수로 BNF 표현으로 간주하고 해석하였다. EBNF일때의 해석과 달라진 부분은?
     choices:
       - { id: '1', text: '<unsigned integer>는 비단말 기호임' }
       - { id: '2', text: '::=는 정의를 나타내는 메타 기호임' }
@@ -501,7 +501,7 @@ questions:
       핵심 개념:
       언어는 타입 오류를 얼마나 엄격하게 검출하느냐에 따라 강타입, 약타입, 무타입 언어로 나뉜다.
       강타입 언어는 모든 타입 오류를 검출하고, 약타입 언어는 일부를 허용한다.
-      일반적으로 무타입 언어는 "타입 개념이 없는 언어"로 정의되지만, 이 문제의 공식 정답은 교재 고유의 정의(타입이 바뀔 수 있는 언어)를 따른 것으로 보이며, 교재 원문과 대조해 확인이 필요하다.
+      일반적으로 무타입 언어는 "타입 개념이 없는 언어"로 정의되지만, 이 문제의 공식 정답은 3번(선택지 4를 옳은 설명으로 봄)이다.
       시험 대비로는 공식 정답(3번) 기준으로 기억한다.
     tags: [strong-typing, weak-typing, untyped-language]
 
@@ -648,7 +648,7 @@ questions:
     type: multiple-choice
     chapter: 13
     passageRefs: [g19-parameter-passing-01]
-    prompt: 값 전달 방식의 인수 전달을 가정할 때, 위 프로그램에서 fun의 ==호출이 끝난 후== 배열 list의 값은?
+    prompt: 값 전달 방식의 인수 전달을 가정할 때, 위 프로그램에서 fun의 호출이 끝난 후 배열 list의 값은?
     choices:
       - { id: '1', text: '1, 2, 3' }
       - { id: '2', text: '0, 2, 3' }
@@ -672,7 +672,7 @@ questions:
     type: multiple-choice
     chapter: 13
     passageRefs: [g19-parameter-passing-01]
-    prompt: 참조 전달 방식의 인수 전달을 가정할 때, 위 프로그램에서 fun의 ==호출이 끝난 후== 배열 list의 값은?
+    prompt: 참조 전달 방식의 인수 전달을 가정할 때, 위 프로그램에서 fun의 호출이 끝난 후 배열 list의 값은?
     choices:
       - { id: '1', text: '1, 2, 3' }
       - { id: '2', text: '0, 2, 3' }

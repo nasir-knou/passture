@@ -8,7 +8,7 @@ passages:
   - id: g18-declaration-start-01
     type: code
     language: c
-    highlights: ['start']
+    highlights: ['a']
     body: |
       int start;
   - id: g18-bnf-digit-01

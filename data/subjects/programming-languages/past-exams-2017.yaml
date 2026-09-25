@@ -18,18 +18,18 @@ passages:
       height: 130
       nodes:
         - { id: start, label: '<number>', hideNode: true, x: 50, y: 40 }
-        - { id: split, label: split, hideNode: true, hideLabel: true, x: 115, y: 40 }
-        - { id: digit1, label: digit, shape: box, width: 64, height: 30, radius: 32, x: 180, y: 40 }
-        - { id: join, label: join, hideNode: true, hideLabel: true, x: 280, y: 40 }
-        - { id: end, label: end, hideNode: true, hideLabel: true, x: 360, y: 40 }
-        - { id: digit2, label: digit, shape: box, width: 64, height: 30, radius: 32, x: 215, y: 100 }
+        - { id: digit1, label: digit, shape: box, width: 64, height: 30, radius: 32, x: 150, y: 40 }
+        - { id: back, label: back, hideNode: true, hideLabel: true, x: 225, y: 40 }
+        - { id: join, label: join, hideNode: true, hideLabel: true, x: 320, y: 40 }
+        - { id: end, label: end, hideNode: true, hideLabel: true, x: 390, y: 40 }
+        - { id: digit2, label: digit, shape: box, width: 64, height: 30, radius: 32, x: 272, y: 100 }
       edges:
-        - { from: start, to: split }
-        - { from: split, to: digit1, directed: true }
-        - { from: digit1, to: join }
+        - { from: start, to: digit1, directed: true }
+        - { from: digit1, to: back }
+        - { from: back, to: join }
         - { from: join, to: end, directed: true }
         - { from: join, to: digit2, directed: true }
-        - { from: digit2, to: split, directed: true }
+        - { from: digit2, to: back, directed: true }
   - id: g17-parse-trees-01
     type: diagram
     diagram:
