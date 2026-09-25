@@ -52,6 +52,7 @@
     pages/
       home.ts
       select.ts
+      select-chapters.ts                  # 선택 화면의 챕터별 모드 패널
       quiz.ts
       result.ts
       history.ts
@@ -61,6 +62,8 @@
       backup.ts
     lib/
       data-loader.ts
+      chapter.ts                          # 출처 분류, ID 그룹 파싱, 문제 → 교재 장 결정
+      chapter-practice.ts                 # 챕터 인덱스, 챕터별 세션 입력, 챕터 선택 저장
       quiz-session.ts
       mock-exam-session.ts
       shuffle.ts
@@ -70,6 +73,7 @@
     types/
       question.ts
       catalog.ts
+      syllabus.ts
       user-data.ts
   data/                                 # YAML 원본 (사람이 작성, commit)
     catalog.yaml
@@ -80,6 +84,9 @@
         past-exams-2019.yaml
         workbook.yaml
         lecture-exercises.yaml
+      linear-algebra/
+        syllabus.yaml                   # 교재 장·강의 목록 (챕터별 풀이 과목만)
+        past-exams-2017.yaml
       algorithms/
       artificial-intelligence/
       java-programming/
@@ -100,6 +107,7 @@
     crop-png.mjs
   tests/                                # vitest
     build-data.test.ts
+    chapter.test.ts
     backup.test.ts
     mock-exam-session.test.ts
     quiz-session.test.ts
@@ -112,7 +120,7 @@
       validate.yml
 ```
 
-`catalog.yaml`이 사이트 전체의 과목·출처 목록과 과목별 학기(`semester`)를 담는다. 현재 1학기 5과목(운영체제, 이산수학, 알고리즘, 인공지능, Java프로그래밍)과 2학기 3과목(선형대수, 컴퓨터과학개론, 컴퓨터구조)이 등록되어 있다. 새 과목 추가 시 앱 코드를 건드리지 않고 `catalog.yaml`과 문제 YAML만 추가하면 UI에 반영된다. 빌드 시 `public/data/`로 JSON이 출력되고 Vite가 dist 루트로 그대로 복사하므로, 브라우저는 `/data/...` 경로로 JSON만 fetch 한다. 개발 서버에서 JSON 산출물이 없고 Vite HTML fallback을 받은 경우에만 원본 YAML을 직접 읽는 fallback이 있다.
+`catalog.yaml`이 사이트 전체의 과목·출처 목록과 과목별 학기(`semester`)를 담는다. 현재 1학기 5과목(운영체제, 이산수학, 알고리즘, 인공지능, Java프로그래밍)과 2학기 5과목(선형대수, 컴퓨터과학개론, 컴퓨터구조, 프로그래밍언어론, 컴파일러구성)이 등록되어 있다. 새 과목 추가 시 앱 코드를 건드리지 않고 `catalog.yaml`과 문제 YAML만 추가하면 UI에 반영된다. 빌드 시 `public/data/`로 JSON이 출력되고 Vite가 dist 루트로 그대로 복사하므로, 브라우저는 `/data/...` 경로로 JSON만 fetch 한다. 개발 서버(`import.meta.env.DEV`)에서는 `src/lib/data-loader.ts`가 빌드 산출물 대신 원본 YAML(catalog, 문제 파일, syllabus)을 직접 읽는다. 따라서 챕터 계산처럼 런타임에 필요한 값은 빌드 산출물에 의존하지 않고 브라우저에서 계산한다.
 
 현재 해시 라우트는 `#/`, `#/select`, `#/mock-exam`, `#/mock-exam/test`, `#/mock-exam/result`, `#/quiz`, `#/result`, `#/history`, `#/backup`이다. 과거 `#/bookmarks` 라우트는 호환용으로 남겨 두고 `#/history`로 이동시킨다.
 
@@ -129,7 +137,8 @@
    - `images.path` 파일이 저장소에 실제 존재
    - `diagram` 타입별 필수 필드와 참조 무결성이 맞음
    - 출처 종류별 문제 ID 형식 검증 (`e{yy}-{nn}`, `t{chapter}-{nn}`, `b{chapter}-{nn}`, `l{lecture}-{nn}`, `i{unit}-{nn}`)
-4. `public/data/{subject}/{source}.json` 산출
+   - syllabus가 있는 과목은 모든 문제의 교재 장이 결정되는지, `outdated: true` 문제가 `docs/outdated.md`와 일치하는지 ([data-schema.md §4.4](./data-schema.md))
+4. `public/data/{subject}/{source}.json`, `public/data/subjects/{subject}/syllabus.json` 산출
 5. `public/data/catalog.json` 산출
 6. 실패 시 빌드 중단, GitHub Actions에서도 동일 실행
 
