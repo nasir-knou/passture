@@ -10,14 +10,8 @@ import type {
   QuestionImage,
   ResourceAllocationGraphNode,
 } from '../types/question';
+import { findNextMathToken } from '../lib/math-tokens';
 import { escapeHtml } from './shared';
-
-type MathToken = {
-  displayMode: boolean;
-  end: number;
-  raw: string;
-  start: number;
-};
 
 export function renderRichText(value: string, className?: string): string {
   const body = renderMathText(value);
@@ -825,60 +819,6 @@ function renderPlainRichText(value: string): string {
 /** 수식 밖 일반 텍스트. `\$`는 수식 구분자가 아닌 글자 그대로의 `$`로 표시한다. */
 function renderPlainSegment(value: string): string {
   return escapeHtml(value.replaceAll('\\$', '$')).replaceAll('\n', '<br />');
-}
-
-/** 앞에 백슬래시가 홀수 개 붙은 `\$`를 건너뛰고 needle의 위치를 찾는다. */
-function indexOfUnescaped(value: string, needle: string, from: number): number {
-  let index = value.indexOf(needle, from);
-
-  while (index !== -1) {
-    let backslashes = 0;
-    for (let cursor = index - 1; cursor >= 0 && value[cursor] === '\\'; cursor -= 1) {
-      backslashes += 1;
-    }
-
-    if (backslashes % 2 === 0) {
-      return index;
-    }
-
-    index = value.indexOf(needle, index + 1);
-  }
-
-  return -1;
-}
-
-function findNextMathToken(value: string, from: number): MathToken | undefined {
-  const displayStart = indexOfUnescaped(value, '$$', from);
-  const inlineStart = indexOfUnescaped(value, '$', from);
-
-  if (displayStart === -1 && inlineStart === -1) {
-    return undefined;
-  }
-
-  if (displayStart !== -1 && (inlineStart === -1 || displayStart <= inlineStart)) {
-    const end = indexOfUnescaped(value, '$$', displayStart + 2);
-    if (end !== -1) {
-      return {
-        displayMode: true,
-        start: displayStart,
-        end: end + 2,
-        raw: value.slice(displayStart + 2, end).trim(),
-      };
-    }
-  }
-
-  const start = inlineStart;
-  const end = indexOfUnescaped(value, '$', start + 1);
-  if (start !== -1 && end !== -1) {
-    return {
-      displayMode: false,
-      start,
-      end: end + 1,
-      raw: value.slice(start + 1, end).trim(),
-    };
-  }
-
-  return undefined;
 }
 
 function renderMathToken(value: string, displayMode: boolean): string {

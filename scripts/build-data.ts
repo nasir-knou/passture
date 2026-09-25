@@ -2,11 +2,13 @@ import fs from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
 import yaml from 'js-yaml';
+import katex from 'katex';
 
 import type { Catalog, CatalogSource, SourceKind } from '../src/types/catalog';
 import type { Choice, Passage, Question, QuestionFile } from '../src/types/question';
 import type { Syllabus } from '../src/types/syllabus';
 import { resolveQuestionChapter, sourceCategory } from '../src/lib/chapter';
+import { extractMathTokens } from '../src/lib/math-tokens';
 
 const repoRoot = process.cwd();
 const outdatedDocPath = path.join('docs', 'outdated.md');
@@ -177,7 +179,10 @@ function validatePassage(
   }
 
   if (passage.body !== undefined) {
-    expectString(passage.body, `${fieldPath}.body`);
+    const body = expectString(passage.body, `${fieldPath}.body`);
+    if (type === 'text') {
+      validateMath(body, `${fieldPath}.body`);
+    }
   }
 
   if (passage.highlights !== undefined) {
@@ -213,8 +218,12 @@ function validateQuestion(
     throw new Error(`${fieldPath}.type must be multiple-choice, multi-answer, or ox`);
   }
 
-  expectString(question.prompt, `${fieldPath}.prompt`);
-  expectString(question.explanation, `${fieldPath}.explanation`);
+  validateMath(expectString(question.prompt, `${fieldPath}.prompt`), `${fieldPath}.prompt`);
+  const explanation = expectString(question.explanation, `${fieldPath}.explanation`);
+  // 해설은 선택지별 줄 단위로 렌더링되므로 줄마다 검사한다.
+  for (const [lineIndex, line] of explanation.split('\n').entries()) {
+    validateMath(line, `${fieldPath}.explanation line ${lineIndex + 1}`);
+  }
 
   const choices = expectArray(question.choices, `${fieldPath}.choices`) as Choice[];
   const choiceIds = new Set<string>();
@@ -463,6 +472,8 @@ function validateChoice(value: unknown, fieldPath: string, root: string): assert
   if (typeof choice.text !== 'string') {
     throw new Error(`${fieldPath}.text must be a string`);
   }
+
+  validateMath(choice.text, `${fieldPath}.text`);
 
   if (choice.text.length === 0 && choice.image === undefined && choice.diagram === undefined) {
     throw new Error(`${fieldPath}.text must be non-empty when image or diagram is missing`);
@@ -762,7 +773,10 @@ function validateDataTableDiagram(diagram: Record<string, unknown>, fieldPath: s
     }
 
     for (const [cellIndex, cell] of row.entries()) {
-      expectString(cell, `${fieldPath}.rows[${rowIndex}][${cellIndex}]`);
+      const text = expectString(cell, `${fieldPath}.rows[${rowIndex}][${cellIndex}]`);
+      if (diagram.cellFormat !== 'code') {
+        validateMath(text, `${fieldPath}.rows[${rowIndex}][${cellIndex}]`);
+      }
     }
   }
 }
@@ -791,6 +805,22 @@ function validateClockPageReplacementDiagram(
   const pointerIndex = expectNumber(diagram.pointerIndex, `${fieldPath}.pointerIndex`);
   if (pointerIndex < 0 || pointerIndex >= entries.length || !Number.isInteger(pointerIndex)) {
     throw new Error(`${fieldPath}.pointerIndex must point to an entry index`);
+  }
+}
+
+/** 리치 텍스트의 모든 수식 구간이 KaTeX로 파싱되는지 확인한다. 글자 그대로의 `$`는 `\$`로 쓴다. */
+function validateMath(value: string, fieldPath: string): void {
+  for (const token of extractMathTokens(value)) {
+    try {
+      katex.renderToString(token.raw, {
+        displayMode: token.displayMode,
+        throwOnError: true,
+        strict: 'ignore',
+      });
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error);
+      throw new Error(`${fieldPath} has invalid math "${token.raw.slice(0, 60)}": ${message}`);
+    }
   }
 }
 

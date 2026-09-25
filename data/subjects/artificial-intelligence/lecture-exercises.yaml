@@ -894,17 +894,17 @@ questions:
   - id: l05-06
     type: multiple-choice
     prompt: |
-      행렬 $A=\\begin{bmatrix}1&1&1\\\\0&1&0\\\\0&1&1\\end{bmatrix}$,
-      $B=\\begin{bmatrix}1&1&1\\\\0&1&1\\\\1&1&0\\end{bmatrix}$일 때 행렬의 곱 $A\\times B$를 구하면?
+      행렬 $A=\begin{bmatrix}1&1&1\\0&1&0\\0&1&1\end{bmatrix}$,
+      $B=\begin{bmatrix}1&1&1\\0&1&1\\1&1&0\end{bmatrix}$일 때 행렬의 곱 $A\times B$를 구하면?
     choices:
       - id: '1'
-        text: '$\\begin{bmatrix}1&1&1\\\\0&1&0\\\\0&1&0\\end{bmatrix}$'
+        text: '$\begin{bmatrix}1&1&1\\0&1&0\\0&1&0\end{bmatrix}$'
       - id: '2'
-        text: '$\\begin{bmatrix}2&3&2\\\\0&1&1\\\\1&2&1\\end{bmatrix}$'
+        text: '$\begin{bmatrix}2&3&2\\0&1&1\\1&2&1\end{bmatrix}$'
       - id: '3'
-        text: '$\\begin{bmatrix}2&1&2\\\\0&1&1\\\\1&0&1\\end{bmatrix}$'
+        text: '$\begin{bmatrix}2&1&2\\0&1&1\\1&0&1\end{bmatrix}$'
       - id: '4'
-        text: '$\\begin{bmatrix}1&1&2\\\\0&1&1\\\\1&0&1\\end{bmatrix}$'
+        text: '$\begin{bmatrix}1&1&2\\0&1&1\\1&0&1\end{bmatrix}$'
     answers: ['2']
     explanation: 행렬곱은 각 행과 열의 내적으로 계산한다. 첫 행과 세 열의 값은 각각 2, 3, 2이고, 나머지 행도 같은 방식으로 계산하면 선택지 2의 행렬이 된다.
     tags: [matrix, matrix-multiplication]
@@ -915,16 +915,16 @@ questions:
       다음 일차연립방정식의 해를 가우스 소거법을 통해서 구하시오.
 
       $$
-      \\begin{aligned}
-      x_1+2x_2&=-1\\\\
+      \begin{aligned}
+      x_1+2x_2&=-1\\
       2x_1+3x_2&=5
-      \\end{aligned}
+      \end{aligned}
       $$
     choices:
-      - { id: '1', text: '$x_1=-7,\\ x_2=13$' }
-      - { id: '2', text: '$x_1=1,\\ x_2=-1$' }
-      - { id: '3', text: '$x_1=13,\\ x_2=-7$' }
-      - { id: '4', text: '$x_1=3,\\ x_2=-2$' }
+      - { id: '1', text: '$x_1=-7,\ x_2=13$' }
+      - { id: '2', text: '$x_1=1,\ x_2=-1$' }
+      - { id: '3', text: '$x_1=13,\ x_2=-7$' }
+      - { id: '4', text: '$x_1=3,\ x_2=-2$' }
     answers: ['3']
     explanation: 첫 식에서 두 배를 뺀 형태로 소거하면 $-x_2=7$이므로 $x_2=-7$이다. 이를 $x_1+2x_2=-1$에 대입하면 $x_1=13$이다.
     tags: [linear-equation, gaussian-elimination]
@@ -934,11 +934,11 @@ questions:
     prompt: |
       다음 지문의 행렬
       $$
-      \\begin{bmatrix}
-      2&0&0\\\\
-      0&2&0\\\\
+      \begin{bmatrix}
+      2&0&0\\
+      0&2&0\\
       0&0&2
-      \\end{bmatrix}
+      \end{bmatrix}
       $$
       을 설명한 것으로 옳지 않은 것은?
     choices:
@@ -955,22 +955,22 @@ questions:
     prompt: |
       행렬
       $$
-      A=\\begin{bmatrix}
-      1&1&1&1\\\\
-      0&1&0&0\\\\
+      A=\begin{bmatrix}
+      1&1&1&1\\
+      0&1&0&0\\
       1&0&0&1
-      \\end{bmatrix}
+      \end{bmatrix}
       $$
       의 전치행렬로 옳은 것은?
     choices:
       - id: '1'
-        text: '$A^T=\\begin{bmatrix}1&1&1&1\\\\0&1&0&0\\\\1&0&0&1\\end{bmatrix}$'
+        text: '$A^T=\begin{bmatrix}1&1&1&1\\0&1&0&0\\1&0&0&1\end{bmatrix}$'
       - id: '2'
-        text: '$A^T=\\begin{bmatrix}1&0&0&1\\\\0&1&0&0\\\\1&1&1&1\\end{bmatrix}$'
+        text: '$A^T=\begin{bmatrix}1&0&0&1\\0&1&0&0\\1&1&1&1\end{bmatrix}$'
       - id: '3'
-        text: '$A^T=\\begin{bmatrix}1&0&1\\\\1&1&0\\\\1&0&0\\\\1&0&1\\end{bmatrix}$'
+        text: '$A^T=\begin{bmatrix}1&0&1\\1&1&0\\1&0&0\\1&0&1\end{bmatrix}$'
       - id: '4'
-        text: '$A^T=\\begin{bmatrix}1&0&1\\\\0&1&1\\\\0&0&1\\\\1&0&1\\end{bmatrix}$'
+        text: '$A^T=\begin{bmatrix}1&0&1\\0&1&1\\0&0&1\\1&0&1\end{bmatrix}$'
     answers: ['3']
     explanation: 전치행렬은 원래 행렬의 행과 열을 서로 바꾼 행렬이다. 원래 행렬의 네 열 $(1,0,1)$, $(1,1,0)$, $(1,0,0)$, $(1,0,1)$이 전치행렬의 네 행이 된다.
     tags: [matrix, transpose]
@@ -978,17 +978,17 @@ questions:
   - id: l05-10
     type: multiple-choice
     prompt: |
-      두 개의 부울행렬 $A=\\begin{bmatrix}1&0&1\\\\0&1&0\\\\0&1&0\\end{bmatrix}$,
-      $B=\\begin{bmatrix}1&0&1\\\\1&1&1\\\\0&1&1\\end{bmatrix}$가 다음과 같을 때 $A$와 $B$의 합(join)을 구하면?
+      두 개의 부울행렬 $A=\begin{bmatrix}1&0&1\\0&1&0\\0&1&0\end{bmatrix}$,
+      $B=\begin{bmatrix}1&0&1\\1&1&1\\0&1&1\end{bmatrix}$가 다음과 같을 때 $A$와 $B$의 합(join)을 구하면?
     choices:
       - id: '1'
-        text: '$\\begin{bmatrix}1&1&1\\\\0&1&0\\\\0&1&0\\end{bmatrix}$'
+        text: '$\begin{bmatrix}1&1&1\\0&1&0\\0&1&0\end{bmatrix}$'
       - id: '2'
-        text: '$\\begin{bmatrix}1&0&1\\\\1&1&1\\\\0&1&1\\end{bmatrix}$'
+        text: '$\begin{bmatrix}1&0&1\\1&1&1\\0&1&1\end{bmatrix}$'
       - id: '3'
-        text: '$\\begin{bmatrix}1&1&1\\\\0&1&1\\\\1&0&1\\end{bmatrix}$'
+        text: '$\begin{bmatrix}1&1&1\\0&1&1\\1&0&1\end{bmatrix}$'
       - id: '4'
-        text: '$\\begin{bmatrix}1&1&1\\\\1&1&1\\\\1&1&1\\end{bmatrix}$'
+        text: '$\begin{bmatrix}1&1&1\\1&1&1\\1&1&1\end{bmatrix}$'
     answers: ['2']
     explanation: 부울행렬의 join은 같은 위치 원소에 논리합 OR을 적용한다. $A$에서 1인 위치는 이미 $B$에서도 1이거나 $B$의 1과 합쳐져 결과가 $B$와 같은 선택지 2가 된다.
     tags: [boolean-matrix]
@@ -1112,11 +1112,11 @@ questions:
     prompt: |
       다음 부울행렬
       $$
-      \\begin{bmatrix}
-      1&1&0\\\\
-      1&1&1\\\\
+      \begin{bmatrix}
+      1&1&0\\
+      1&1&1\\
       0&1&1
-      \\end{bmatrix}
+      \end{bmatrix}
       $$
       에 대한 설명으로 옳은 것은?
     choices:
@@ -1328,13 +1328,13 @@ questions:
     prompt: 다음 중 소벨 연산자의 마스크에 속하는 것은?
     choices:
       - id: '1'
-        text: '$\\frac14\\begin{bmatrix}-1&0&1\\\\-2&0&2\\\\-1&0&1\\end{bmatrix}$'
+        text: '$\frac14\begin{bmatrix}-1&0&1\\-2&0&2\\-1&0&1\end{bmatrix}$'
       - id: '2'
-        text: '$\\frac19\\begin{bmatrix}1&1&1\\\\1&1&1\\\\1&1&1\\end{bmatrix}$'
+        text: '$\frac19\begin{bmatrix}1&1&1\\1&1&1\\1&1&1\end{bmatrix}$'
       - id: '3'
-        text: '$\\frac1{16}\\begin{bmatrix}1&2&1\\\\2&4&2\\\\1&2&1\\end{bmatrix}$'
+        text: '$\frac1{16}\begin{bmatrix}1&2&1\\2&4&2\\1&2&1\end{bmatrix}$'
       - id: '4'
-        text: '$\\begin{bmatrix}1&-2&1\\\\-2&4&-2\\\\1&-2&1\\end{bmatrix}$'
+        text: '$\begin{bmatrix}1&-2&1\\-2&4&-2\\1&-2&1\end{bmatrix}$'
     answers: ['1']
     explanation: 소벨 연산자는 한 방향의 밝기 변화와 수직 방향의 밝기 변화를 계산하는 1차 미분 마스크를 사용한다. 선택지 1은 대표적인 소벨 마스크 형태이다.
     tags: [image-processing, sobel]
@@ -1482,13 +1482,13 @@ questions:
     prompt: 다음 그래프를 인접 행렬로 표현한 것 중 옳은 것은?
     choices:
       - id: '1'
-        text: '$\\begin{bmatrix}0&1&0&1\\\\1&0&2&1\\\\0&2&0&0\\\\1&1&0&0\\end{bmatrix}$'
+        text: '$\begin{bmatrix}0&1&0&1\\1&0&2&1\\0&2&0&0\\1&1&0&0\end{bmatrix}$'
       - id: '2'
-        text: '$\\begin{bmatrix}1&1&1&0\\\\1&2&1&1\\\\0&1&2&0\\\\1&1&1&1\\end{bmatrix}$'
+        text: '$\begin{bmatrix}1&1&1&0\\1&2&1&1\\0&1&2&0\\1&1&1&1\end{bmatrix}$'
       - id: '3'
-        text: '$\\begin{bmatrix}0&2&0&1\\\\2&0&2&1\\\\0&2&0&0\\\\1&1&0&0\\end{bmatrix}$'
+        text: '$\begin{bmatrix}0&2&0&1\\2&0&2&1\\0&2&0&0\\1&1&0&0\end{bmatrix}$'
       - id: '4'
-        text: '$\\begin{bmatrix}0&1&1&0\\\\1&0&1&0\\\\1&1&0&2\\\\0&0&2&0\\end{bmatrix}$'
+        text: '$\begin{bmatrix}0&1&1&0\\1&0&1&0\\1&1&0&2\\0&0&2&0\end{bmatrix}$'
     answers: ['1']
     explanation: v2와 v3 사이에는 평행한 두 변이 있으므로 인접 행렬의 해당 위치는 2가 된다. 나머지 연결을 반영하면 선택지 1의 행렬이다.
     tags: [graph, adjacency-matrix]
@@ -1499,13 +1499,13 @@ questions:
     prompt: 다음 그래프를 발생행렬로 표현한 것 중 옳은 것은?
     choices:
       - id: '1'
-        text: '$\\begin{bmatrix}1&1&0&1&0\\\\1&1&0&0&1\\\\1&1&0&0&0\\\\1&1&0&1&1\\end{bmatrix}$'
+        text: '$\begin{bmatrix}1&1&0&1&0\\1&1&0&0&1\\1&1&0&0&0\\1&1&0&1&1\end{bmatrix}$'
       - id: '2'
-        text: '$\\begin{bmatrix}1&1&0&0\\\\0&1&1&0\\\\1&0&1&0\\\\1&0&0&1\\\\0&1&0&1\\end{bmatrix}$'
+        text: '$\begin{bmatrix}1&1&0&0\\0&1&1&0\\1&0&1&0\\1&0&0&1\\0&1&0&1\end{bmatrix}$'
       - id: '3'
-        text: '$\\begin{bmatrix}1&0&1&1&0\\\\1&1&0&0&1\\\\0&1&1&0&0\\\\0&0&0&1&1\\end{bmatrix}$'
+        text: '$\begin{bmatrix}1&0&1&1&0\\1&1&0&0&1\\0&1&1&0&0\\0&0&0&1&1\end{bmatrix}$'
       - id: '4'
-        text: '$\\begin{bmatrix}0&1&0&0\\\\0&0&1&0\\\\0&1&0&0\\\\1&0&0&0\\\\0&1&0&1\\end{bmatrix}$'
+        text: '$\begin{bmatrix}0&1&0&0\\0&0&1&0\\0&1&0&0\\1&0&0&0\\0&1&0&1\end{bmatrix}$'
     answers: ['3']
     explanation: 발생행렬은 각 행을 꼭짓점, 각 열을 변으로 두고 해당 꼭짓점이 변에 접속하면 1을 기록한다. e1=(v1,v2), e2=(v2,v3), e3=(v1,v3), e4=(v1,v4), e5=(v2,v4)이므로 선택지 3이다.
     tags: [graph, incidence-matrix]
