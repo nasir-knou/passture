@@ -567,10 +567,10 @@ questions:
     type: multiple-choice
     prompt: 다음 중 병렬처리기를 처리기의 상호연결망 구조에 따라 분류한 것으로 옳은 것은?
     choices:
-      - { id: '1', text: SISD, SIMD, MISD, MIMD }
-      - { id: '2', text: 다중장치 처리기, 파이프라인 처리기 }
-      - { id: '3', text: 버스, 크로스바, 트리, 입방체 }
-      - { id: '4', text: 공유 기억장치시스템, 메시지 전달시스템 }
+      - { id: '1', text: 'SISD, SIMD, MISD, MIMD' }
+      - { id: '2', text: '다중장치 처리기, 파이프라인 처리기' }
+      - { id: '3', text: '버스, 크로스바, 트리, 입방체' }
+      - { id: '4', text: '공유 기억장치시스템, 메시지 전달시스템' }
     answers: ['3']
     explanation: |
       상호연결망 구조에 따른 분류는 버스, 크로스바, 트리, 입방체 등 연결 형태를 기준으로 한다.

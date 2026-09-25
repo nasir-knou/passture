@@ -450,6 +450,16 @@ function expectChapterRefs(value: unknown, fieldPath: string, chapterNumbers: Se
 function validateChoice(value: unknown, fieldPath: string, root: string): asserts value is Choice {
   const choice = expectRecord(value, fieldPath);
   expectString(choice.id, `${fieldPath}.id`);
+
+  // YAML flow mapping에서 따옴표 없는 text에 쉼표가 있으면 값이 잘리고 나머지가 키가 된다.
+  const unknownKeys = Object.keys(choice).filter(
+    (key) => !['id', 'text', 'image', 'diagram'].includes(key),
+  );
+  if (unknownKeys.length > 0) {
+    throw new Error(
+      `${fieldPath} has unknown keys (${unknownKeys.join(', ')}); quote text that contains commas`,
+    );
+  }
   if (typeof choice.text !== 'string') {
     throw new Error(`${fieldPath}.text must be a string`);
   }
