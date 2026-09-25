@@ -9,10 +9,18 @@ import {
   type SelectedSource,
 } from '../lib/quiz-session';
 import { loadQuestionFile } from '../lib/data-loader';
+import { saveChapterSelection } from '../lib/chapter-practice';
 import { loadBookmarks, loadWrongAnswers } from '../lib/storage';
 import { escapeHtml, renderFooter, renderTopNav, semesterLabel, sourceKindLabel } from './shared';
+import {
+  hydrateChapterPanel,
+  readChapterSelection,
+  readChapterSummary,
+  renderChapterPanelShell,
+} from './select-chapters';
 
 type SemesterFilter = 'all' | Semester;
+type SelectMode = 'source' | 'chapter';
 
 export function renderSelectPage(catalog: Catalog): HTMLElement {
   const page = document.createElement('main');
@@ -24,6 +32,8 @@ export function renderSelectPage(catalog: Catalog): HTMLElement {
   const visibleSubjects = catalog.subjects.filter((subject) => subject.id === selectedSubjectId);
   const selectedSubject = visibleSubjects[0];
   const learningStatus = readLearningStatus(selectedSubject?.id);
+  const requestedMode = readModeFromHash();
+  const chapterMode = requestedMode === 'chapter' && Boolean(selectedSubject?.syllabus);
 
   const subjects = visibleSubjects
     .map((subject) => {
@@ -70,7 +80,8 @@ export function renderSelectPage(catalog: Catalog): HTMLElement {
       </div>
       ${renderLearningStatus(learningStatus, selectedSubject?.id)}
     </section>
-    <section class="stack">${subjects}</section>
+    ${selectedSubject?.syllabus ? renderModeToggle(chapterMode ? 'chapter' : 'source') : ''}
+    <section class="stack">${chapterMode ? renderChapterPanelShell() : subjects}</section>
     <section class="settings-grid" aria-label="풀이 설정">
       ${renderScopeSetting()}
       ${renderOrderSetting('문제순서 설정', 'question-order', 'questionOrder')}
@@ -79,17 +90,17 @@ export function renderSelectPage(catalog: Catalog): HTMLElement {
     <section class="selection-summary panel" aria-live="polite" aria-label="선택 요약">
       <div>
         <span class="status-badge">선택 요약</span>
-        <strong data-selected-source-count>선택된 출처 0개</strong>
+        <strong data-selected-source-count>${chapterMode ? '선택된 장 0개' : '선택된 출처 0개'}</strong>
       </div>
       <p class="muted" data-selected-question-count>총 0문항</p>
       <div class="selected-chip-list" data-selected-source-list>
-        <span class="empty-state-inline">선택된 출처가 없습니다.</span>
+        <span class="empty-state-inline">${chapterMode ? '선택된 장이 없습니다.' : '선택된 출처가 없습니다.'}</span>
       </div>
     </section>
     <section class="start-panel" aria-label="풀이 시작">
       <div>
         <strong>설정한 조건으로 풀이를 시작합니다.</strong>
-        <p class="muted">출처를 하나 이상 선택하면 선택한 범위와 순서 옵션이 세션에 저장됩니다.</p>
+        <p class="muted">${chapterMode ? '장과 문제 종류를 하나 이상 선택하면' : '출처를 하나 이상 선택하면'} 선택한 범위와 순서 옵션이 세션에 저장됩니다.</p>
         <p class="form-message" data-select-message></p>
       </div>
       <button class="primary-button" type="button" data-start-quiz>풀이 시작</button>
@@ -97,12 +108,42 @@ export function renderSelectPage(catalog: Catalog): HTMLElement {
     ${renderFooter()}
   `;
 
-  hydrateMissingQuestionCounts(page);
-  hydrateSourceSearchText(page);
-  bindSelectionSummary(page);
-  bindSourceSearch(page);
+  if (chapterMode && selectedSubject) {
+    void hydrateChapterPanel(page, selectedSubject, () =>
+      updateChapterSelectionSummary(page, selectedSubject.id),
+    );
+    page.querySelectorAll<HTMLInputElement>('input[name="scope"]').forEach((input) => {
+      input.addEventListener('change', () =>
+        updateChapterSelectionSummary(page, selectedSubject.id),
+      );
+    });
+  } else {
+    hydrateMissingQuestionCounts(page);
+    hydrateSourceSearchText(page);
+    bindSelectionSummary(page);
+    bindSourceSearch(page);
+  }
+
+  page.querySelectorAll<HTMLInputElement>('input[name="select-mode"]').forEach((input) => {
+    input.addEventListener('change', () => {
+      if (!selectedSubject) {
+        return;
+      }
+
+      window.location.hash = createSelectHash(
+        selectedSubject.id,
+        readSemesterFilter(page),
+        input.value === 'chapter' ? 'chapter' : 'source',
+      );
+    });
+  });
 
   page.querySelector<HTMLButtonElement>('[data-start-quiz]')?.addEventListener('click', () => {
+    if (chapterMode && selectedSubject) {
+      startChapterPractice(page, selectedSubject.id);
+      return;
+    }
+
     const selectedSources = Array.from(
       page.querySelectorAll<HTMLInputElement>('input[name="source"]:checked'),
     ).map<SelectedSource>((input) => ({
@@ -136,7 +177,7 @@ export function renderSelectPage(catalog: Catalog): HTMLElement {
         return;
       }
 
-      window.location.hash = createSelectHash(select.value, readSemesterFilter(page));
+      window.location.hash = createSelectHash(select.value, readSemesterFilter(page), requestedMode);
     });
 
   page.querySelectorAll<HTMLInputElement>('input[name="select-semester-filter"]').forEach((input) => {
@@ -144,7 +185,7 @@ export function renderSelectPage(catalog: Catalog): HTMLElement {
       const semester = readSemesterFilter(page);
       const nextSubject = findFirstSubjectForFilter(catalog, semester);
       if (nextSubject) {
-        window.location.hash = createSelectHash(nextSubject.id, semester);
+        window.location.hash = createSelectHash(nextSubject.id, semester, requestedMode);
       }
     });
   });
@@ -425,9 +466,114 @@ function readSubjectId(
   return requestedSubjectMatchesFilter ? requestedSubject.id : firstAvailableSubject?.id;
 }
 
-function createSelectHash(subjectId: string, semester: SemesterFilter): string {
+function createSelectHash(
+  subjectId: string,
+  semester: SemesterFilter,
+  mode: SelectMode = 'source',
+): string {
   const params = new URLSearchParams({ subject: subjectId, semester: String(semester) });
+  if (mode === 'chapter') {
+    params.set('mode', 'chapter');
+  }
   return `#/select?${params.toString()}`;
+}
+
+function readModeFromHash(): SelectMode {
+  const query = window.location.hash.split('?')[1] ?? '';
+  return new URLSearchParams(query).get('mode') === 'chapter' ? 'chapter' : 'source';
+}
+
+function renderModeToggle(mode: SelectMode): string {
+  return `
+    <section class="select-mode-toggle" aria-label="풀이 방식">
+      <div class="segmented-control" role="radiogroup" aria-label="출처별 또는 챕터별 풀이">
+        <label>
+          <input type="radio" name="select-mode" value="source" ${mode === 'source' ? 'checked' : ''} />
+          <span>출처별</span>
+        </label>
+        <label>
+          <input type="radio" name="select-mode" value="chapter" ${mode === 'chapter' ? 'checked' : ''} />
+          <span>챕터별</span>
+        </label>
+      </div>
+      <p class="muted">${
+        mode === 'chapter'
+          ? '교재 장 단위로 강의·교재·기출 문제를 모아 풉니다.'
+          : '연도별 기출, 워크북, 강의 연습문제를 출처 단위로 풉니다.'
+      }</p>
+    </section>
+  `;
+}
+
+function scopeAllowedKeys(scope: PracticeScope): ReadonlySet<string> | undefined {
+  if (scope === 'bookmarked') {
+    return new Set(loadBookmarks());
+  }
+
+  return scope === 'wrong' ? new Set(Object.keys(loadWrongAnswers())) : undefined;
+}
+
+function updateChapterSelectionSummary(page: HTMLElement, subjectId: string): void {
+  const scope = readPracticeScope(page);
+  const summary = readChapterSummary(page, subjectId, scopeAllowedKeys(scope));
+  const countEl = page.querySelector<HTMLElement>('[data-selected-source-count]');
+  const questionEl = page.querySelector<HTMLElement>('[data-selected-question-count]');
+  const listEl = page.querySelector<HTMLElement>('[data-selected-source-list]');
+
+  if (countEl) {
+    countEl.textContent = `선택된 장 ${summary.chapterCount}개`;
+  }
+  if (questionEl) {
+    const scopeText = scope === 'bookmarked' ? ' (북마크만)' : scope === 'wrong' ? ' (오답만)' : '';
+    questionEl.textContent = `총 ${summary.questionCount}문항${scopeText}`;
+  }
+  if (listEl) {
+    listEl.innerHTML = summary.chapterLabels.length
+      ? summary.chapterLabels
+          .map((label) => `<span class="selected-chip"><strong>${escapeHtml(label)}</strong></span>`)
+          .join('')
+      : '<span class="empty-state-inline">선택된 장이 없습니다.</span>';
+  }
+}
+
+function startChapterPractice(page: HTMLElement, subjectId: string): void {
+  const message = page.querySelector<HTMLElement>('[data-select-message]');
+  const selection = readChapterSelection(page, subjectId);
+  const setMessage = (text: string) => {
+    if (message) {
+      message.textContent = text;
+    }
+  };
+
+  if (!selection) {
+    setMessage('장 정보를 불러오는 중입니다. 잠시 후 다시 시도해 주세요.');
+    return;
+  }
+
+  if (selection.chapters.length === 0) {
+    setMessage('장을 하나 이상 선택해야 합니다.');
+    return;
+  }
+
+  if (selection.categories.length === 0) {
+    setMessage('문제 종류를 하나 이상 선택해야 합니다.');
+    return;
+  }
+
+  const scope = readPracticeScope(page);
+  if (readChapterSummary(page, subjectId, scopeAllowedKeys(scope)).questionCount === 0) {
+    setMessage(
+      scope === 'all'
+        ? '선택한 장과 문제 종류에 해당하는 문제가 없습니다.'
+        : `선택한 장에 ${scope === 'bookmarked' ? '북마크한' : '오답'} 문제가 없습니다.`,
+    );
+    return;
+  }
+
+  saveChapterSelection(selection);
+  savePracticeScope(readPracticeScope(page));
+  savePracticeOptions(readPracticeOptions(page));
+  window.location.hash = '#/quiz';
 }
 
 interface LearningStatus {

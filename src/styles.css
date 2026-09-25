@@ -767,6 +767,82 @@ h1 {
   padding-top: 12px;
 }
 
+.select-mode-toggle {
+  display: grid;
+  gap: 8px;
+  margin: 16px 0;
+}
+
+.select-mode-toggle .segmented-control {
+  max-width: 320px;
+  margin-top: 0;
+}
+
+.select-mode-toggle p {
+  margin: 0;
+}
+
+.chapter-category-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.chapter-category {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  font-weight: 800;
+}
+
+.chapter-category.is-unavailable {
+  color: var(--ink-faint);
+}
+
+.chapter-bulk-actions {
+  display: flex;
+  gap: 14px;
+  margin-top: 8px;
+}
+
+.chapter-part + .chapter-part {
+  margin-top: 18px;
+}
+
+.chapter-part-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 14px;
+  color: var(--field);
+}
+
+.chapter-part-header + .chapter-list {
+  margin-top: 8px;
+}
+
+.chapter-meta {
+  display: flex !important;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+}
+
+.chapter-lectures {
+  color: var(--ink-soft);
+}
+
+.chapter-row.is-empty {
+  opacity: 0.55;
+}
+
+.chapter-note {
+  margin: 14px 0 0;
+}
+
 .source-search {
   display: grid;
   gap: 8px;
