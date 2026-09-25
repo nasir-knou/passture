@@ -32,6 +32,12 @@ export function semesterLabel(semester: Semester): string {
   return `${semester}학기`;
 }
 
+// 기말고사 시기에 맞춰 2월~7월은 1학기, 8월~1월은 2학기를 기본으로 고른다 (기기 로컬 시간 기준).
+export function getDefaultSemester(date = new Date()): Semester {
+  const month = date.getMonth() + 1;
+  return month >= 2 && month <= 7 ? 1 : 2;
+}
+
 export function renderTopNav(
   activeId: string,
   items: readonly NavItem[] = defaultNavItems,

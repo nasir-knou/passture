@@ -11,7 +11,14 @@ import {
 import { loadQuestionFile } from '../lib/data-loader';
 import { saveChapterSelection } from '../lib/chapter-practice';
 import { loadBookmarks, loadWrongAnswers } from '../lib/storage';
-import { escapeHtml, renderFooter, renderTopNav, semesterLabel, sourceKindLabel } from './shared';
+import {
+  escapeHtml,
+  getDefaultSemester,
+  renderFooter,
+  renderTopNav,
+  semesterLabel,
+  sourceKindLabel,
+} from './shared';
 import {
   hydrateChapterPanel,
   readChapterSelection,
@@ -451,7 +458,8 @@ function readSemesterFilterFromHash(subject: CatalogSubject | undefined): Semest
   if (value === 'all') return 'all';
   if (value === '1') return 1;
   if (value === '2') return 2;
-  return subject?.semester ?? 'all';
+  // 홈 과목 카드로 들어오면 그 과목의 학기, 상단바 등으로 과목 없이 들어오면 현재 시기의 학기.
+  return subject?.semester ?? getDefaultSemester();
 }
 
 function readSubjectId(
