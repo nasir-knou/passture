@@ -5,8 +5,11 @@ import yaml from 'js-yaml';
 
 import type { Catalog, CatalogSource, SourceKind } from '../src/types/catalog';
 import type { Choice, Passage, Question, QuestionFile } from '../src/types/question';
+import type { Syllabus } from '../src/types/syllabus';
+import { resolveQuestionChapter, sourceCategory } from '../src/lib/chapter';
 
 const repoRoot = process.cwd();
+const outdatedDocPath = path.join('docs', 'outdated.md');
 
 type BuildResult = {
   catalog: Catalog;
@@ -22,12 +25,27 @@ export function buildData(root = repoRoot): BuildResult {
   resetDirectory(publicDataDir);
 
   const filesWritten: string[] = [];
+  const outdatedKeys: string[] = [];
 
   for (const subject of catalog.subjects) {
+    let syllabus: Syllabus | undefined;
+
+    if (subject.syllabus !== undefined) {
+      const syllabusPath = path.join(root, 'data', subject.syllabus.replace(/\.json$/, '.yaml'));
+      const loadedSyllabus = readYamlFile<Syllabus>(syllabusPath, root);
+      validateSyllabus(loadedSyllabus, subject.id);
+      syllabus = loadedSyllabus;
+
+      const syllabusOutputPath = path.join(publicDataDir, subject.syllabus);
+      writeJson(syllabusOutputPath, syllabus);
+      filesWritten.push(path.relative(root, syllabusOutputPath));
+    }
+
     for (const source of subject.sources) {
       const questionPath = path.join(root, 'data', source.path.replace(/\.json$/, '.yaml'));
       const questionFile = readYamlFile<QuestionFile>(questionPath, root);
       validateQuestionFile(questionFile, subject.id, source, root);
+      outdatedKeys.push(...validateQuestionChapters(questionFile, source, syllabus));
       source.questionCount = questionFile.questions.length;
 
       const outputPath = path.join(publicDataDir, source.path);
@@ -35,6 +53,8 @@ export function buildData(root = repoRoot): BuildResult {
       filesWritten.push(path.relative(root, outputPath));
     }
   }
+
+  validateOutdatedDocument(outdatedKeys, root);
 
   const catalogOutputPath = path.join(publicDataDir, 'catalog.json');
   writeJson(catalogOutputPath, catalog);
@@ -56,6 +76,13 @@ export function validateCatalog(value: unknown): asserts value is Catalog {
     expectUnique(subjectIds, subjectId, `${subjectPath}.id`);
     expectString(subject.title, `${subjectPath}.title`);
     expectSemester(subject.semester, `${subjectPath}.semester`);
+
+    if (subject.syllabus !== undefined) {
+      const syllabusPath = expectString(subject.syllabus, `${subjectPath}.syllabus`);
+      if (!syllabusPath.endsWith('.json')) {
+        throw new Error(`${subjectPath}.syllabus must end with .json`);
+      }
+    }
 
     const sources = expectArray(subject.sources, `${subjectPath}.sources`);
     const sourceIds = new Set<string>();
@@ -235,6 +262,188 @@ function validateQuestion(
 
   if (question.answerKey !== undefined) {
     expectString(question.answerKey, `${fieldPath}.answerKey`);
+  }
+
+  if (question.chapter !== undefined) {
+    const chapter = expectNumber(question.chapter, `${fieldPath}.chapter`);
+    if (!Number.isInteger(chapter) || chapter < 1) {
+      throw new Error(`${fieldPath}.chapter must be a positive integer`);
+    }
+  }
+
+  if (question.outdated !== undefined && question.outdated !== true) {
+    throw new Error(`${fieldPath}.outdated must be true when present`);
+  }
+
+  if (question.chapter !== undefined && question.outdated !== undefined) {
+    throw new Error(`${fieldPath} must not have both chapter and outdated`);
+  }
+}
+
+export function validateSyllabus(
+  value: unknown,
+  expectedSubjectId: string,
+): asserts value is Syllabus {
+  const syllabus = expectRecord(value, 'syllabus');
+  const subjectId = expectString(syllabus.subjectId, 'syllabus.subjectId');
+  if (subjectId !== expectedSubjectId) {
+    throw new Error(`syllabus.subjectId must be ${expectedSubjectId}, got ${subjectId}`);
+  }
+  expectString(syllabus.title, 'syllabus.title');
+
+  const chapters = expectArray(syllabus.chapters, 'syllabus.chapters');
+  if (chapters.length === 0) {
+    throw new Error('syllabus.chapters must not be empty');
+  }
+
+  const chapterNumbers = new Set<number>();
+  for (const [index, rawChapter] of chapters.entries()) {
+    const fieldPath = `syllabus.chapters[${index}]`;
+    const chapter = expectRecord(rawChapter, fieldPath);
+    const no = expectPositiveInteger(chapter.no, `${fieldPath}.no`);
+    if (chapterNumbers.has(no)) {
+      throw new Error(`${fieldPath}.no must be unique: ${no}`);
+    }
+    chapterNumbers.add(no);
+    expectString(chapter.title, `${fieldPath}.title`);
+
+    if (chapter.sections !== undefined) {
+      const sections = expectArray(chapter.sections, `${fieldPath}.sections`);
+      for (const [sectionIndex, rawSection] of sections.entries()) {
+        const section = expectRecord(rawSection, `${fieldPath}.sections[${sectionIndex}]`);
+        expectString(section.no, `${fieldPath}.sections[${sectionIndex}].no`);
+        expectString(section.title, `${fieldPath}.sections[${sectionIndex}].title`);
+      }
+    }
+  }
+
+  if (syllabus.parts !== undefined) {
+    const parts = expectArray(syllabus.parts, 'syllabus.parts');
+    const partNumbers = new Set<number>();
+    const partChapters = new Set<number>();
+    for (const [index, rawPart] of parts.entries()) {
+      const fieldPath = `syllabus.parts[${index}]`;
+      const part = expectRecord(rawPart, fieldPath);
+      const no = expectPositiveInteger(part.no, `${fieldPath}.no`);
+      if (partNumbers.has(no)) {
+        throw new Error(`${fieldPath}.no must be unique: ${no}`);
+      }
+      partNumbers.add(no);
+      expectString(part.title, `${fieldPath}.title`);
+      expectChapterRefs(part.chapters, `${fieldPath}.chapters`, chapterNumbers);
+      for (const chapter of part.chapters as number[]) {
+        if (partChapters.has(chapter)) {
+          throw new Error(`${fieldPath}.chapters: chapter ${chapter} belongs to another part`);
+        }
+        partChapters.add(chapter);
+      }
+    }
+
+    // 부 구분이 있으면 모든 장이 정확히 한 부에 속해야 선택 화면에 빠짐없이 나온다.
+    const missing = [...chapterNumbers].filter((chapter) => !partChapters.has(chapter));
+    if (missing.length > 0) {
+      throw new Error(`syllabus.parts must include every chapter; missing ${missing.join(', ')}`);
+    }
+  }
+
+  const lectures = expectArray(syllabus.lectures, 'syllabus.lectures');
+  const lectureNumbers = new Set<number>();
+  for (const [index, rawLecture] of lectures.entries()) {
+    const fieldPath = `syllabus.lectures[${index}]`;
+    const lecture = expectRecord(rawLecture, fieldPath);
+    const no = expectPositiveInteger(lecture.no, `${fieldPath}.no`);
+    if (lectureNumbers.has(no)) {
+      throw new Error(`${fieldPath}.no must be unique: ${no}`);
+    }
+    lectureNumbers.add(no);
+    expectString(lecture.title, `${fieldPath}.title`);
+    expectChapterRefs(lecture.chapters, `${fieldPath}.chapters`, chapterNumbers);
+  }
+}
+
+/**
+ * syllabus가 있는 과목은 모든 문제가 교재 장 하나에 배정되거나 outdated여야 한다.
+ * outdated 문제의 키 목록을 돌려준다.
+ */
+export function validateQuestionChapters(
+  file: QuestionFile,
+  source: CatalogSource,
+  syllabus: Syllabus | undefined,
+): string[] {
+  const outdatedKeys: string[] = [];
+
+  for (const [index, question] of file.questions.entries()) {
+    const fieldPath = `${file.subjectId}:${source.id}:${question.id}`;
+
+    if (!syllabus) {
+      if (question.chapter !== undefined || question.outdated !== undefined) {
+        throw new Error(`${fieldPath} uses chapter/outdated but the subject has no syllabus`);
+      }
+      continue;
+    }
+
+    if (question.outdated) {
+      if (sourceCategory(source.kind) !== 'exam') {
+        throw new Error(`${fieldPath} outdated: true is only allowed on exam questions`);
+      }
+      outdatedKeys.push(fieldPath);
+      continue;
+    }
+
+    const chapter = resolveQuestionChapter(question, source.kind, syllabus);
+    if (chapter === undefined) {
+      const hint =
+        source.kind === 'lecture'
+          ? 'lecture number is missing from syllabus.lectures'
+          : 'add chapter or outdated: true';
+      throw new Error(`questionFile.questions[${index}] ${fieldPath} has no chapter (${hint})`);
+    }
+
+    if (!syllabus.chapters.some((item) => item.no === chapter)) {
+      throw new Error(`${fieldPath} chapter ${chapter} is not in syllabus.chapters`);
+    }
+  }
+
+  return outdatedKeys;
+}
+
+/** outdated: true 문제와 docs/outdated.md에 적힌 문제 키가 정확히 일치해야 한다. */
+export function validateOutdatedDocument(outdatedKeys: readonly string[], root = repoRoot): void {
+  const docPath = path.join(root, outdatedDocPath);
+  const documented = new Set<string>();
+
+  if (fs.existsSync(docPath)) {
+    // 목록 항목(`- \`{subjectId}:{sourceId}:{questionId}\` — ...`)의 첫 백틱 키만 읽는다.
+    const text = fs.readFileSync(docPath, 'utf8');
+    for (const match of text.matchAll(/^\s*[-*]\s+`([a-z0-9-]+:[a-z0-9-]+:[a-z0-9-]+)`/gim)) {
+      documented.add(match[1]!);
+    }
+  }
+
+  const expected = new Set(outdatedKeys);
+  const undocumented = [...expected].filter((key) => !documented.has(key));
+  const stale = [...documented].filter((key) => !expected.has(key));
+
+  if (undocumented.length > 0) {
+    throw new Error(`${outdatedDocPath} is missing outdated questions: ${undocumented.join(', ')}`);
+  }
+
+  if (stale.length > 0) {
+    throw new Error(`${outdatedDocPath} lists questions not marked outdated: ${stale.join(', ')}`);
+  }
+}
+
+function expectChapterRefs(value: unknown, fieldPath: string, chapterNumbers: Set<number>): void {
+  const refs = expectArray(value, fieldPath);
+  if (refs.length === 0) {
+    throw new Error(`${fieldPath} must not be empty`);
+  }
+
+  for (const [index, ref] of refs.entries()) {
+    const chapter = expectPositiveInteger(ref, `${fieldPath}[${index}]`);
+    if (!chapterNumbers.has(chapter)) {
+      throw new Error(`${fieldPath}[${index}] references missing chapter ${chapter}`);
+    }
   }
 }
 
@@ -676,6 +885,15 @@ function expectNumber(value: unknown, fieldPath: string): number {
   }
 
   return value;
+}
+
+function expectPositiveInteger(value: unknown, fieldPath: string): number {
+  const number = expectNumber(value, fieldPath);
+  if (!Number.isInteger(number) || number < 1) {
+    throw new Error(`${fieldPath} must be a positive integer`);
+  }
+
+  return number;
 }
 
 function expectUnique(seen: Set<string>, value: string, fieldPath: string): void {

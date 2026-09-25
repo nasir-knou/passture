@@ -1,6 +1,7 @@
 import type { SourceKind } from '../types/catalog';
 import type { QuestionFile } from '../types/question';
 import type { PracticeOptions, QuizSessionQuestion } from './quiz-session';
+import { parseQuestionGroup } from './chapter';
 import { loadQuestionFile } from './data-loader';
 import { shuffled } from './shuffle';
 
@@ -273,11 +274,6 @@ function extractGroupedRandom25(
   }
 
   return picks.slice(0, target);
-}
-
-function parseQuestionGroup(questionId: string): number {
-  const match = /^[a-z]+(\d+)/i.exec(questionId);
-  return match ? Number(match[1]) : 0;
 }
 
 // ─── 세션 업데이트 헬퍼 ──────────────────────────────────────────────────

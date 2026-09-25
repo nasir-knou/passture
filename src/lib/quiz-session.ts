@@ -8,6 +8,7 @@ const selectedSourcesKey = 'pt.selectedSources';
 const practiceScopeKey = 'pt.practiceScope';
 const practiceOptionsKey = 'pt.practiceOptions';
 const sessionKey = 'pt.currentSession';
+export const chapterSelectionKey = 'pt.chapterSelection';
 
 export type PracticeScope = 'all' | 'bookmarked' | 'wrong';
 export type OrderMode = 'default' | 'random';
@@ -32,6 +33,15 @@ export interface LoadedQuestionSource extends SelectedSource {
   file: QuestionFile;
 }
 
+/** 챕터별 풀이 세션을 만들 때 쓰는 추가 옵션 */
+export interface SessionGrouping {
+  /** 세션 재사용 판단용 시그니처에 덧붙일 값 (선택한 장·문제 종류) */
+  signature: string;
+  chapterOf: (key: string) => number | undefined;
+  /** 문제 순서가 기본일 때 적용할 정렬 */
+  compare: (left: QuizSessionQuestion, right: QuizSessionQuestion) => number;
+}
+
 export interface QuizSession {
   id: string;
   createdAt: string;
@@ -51,6 +61,7 @@ export interface QuizSessionQuestion {
   question: Question;
   passages: Passage[];
   choices: Choice[];
+  chapter?: number;
 }
 
 export interface QuizResponse {
@@ -68,6 +79,7 @@ export interface QuizScore {
 
 export function saveSelectedSources(sources: SelectedSource[]): void {
   sessionStorage.setItem(selectedSourcesKey, JSON.stringify(sources));
+  sessionStorage.removeItem(chapterSelectionKey);
   sessionStorage.removeItem(sessionKey);
 }
 
@@ -157,6 +169,7 @@ export function clearPracticeState(): void {
   sessionStorage.removeItem(selectedSourcesKey);
   sessionStorage.removeItem(practiceScopeKey);
   sessionStorage.removeItem(practiceOptionsKey);
+  sessionStorage.removeItem(chapterSelectionKey);
   sessionStorage.removeItem(sessionKey);
 }
 
@@ -164,6 +177,7 @@ export function createQuizSession(
   sources: LoadedQuestionSource[],
   includeQuestion: (key: string) => boolean = () => true,
   options: PracticeOptions = defaultPracticeOptions(),
+  grouping?: SessionGrouping,
 ): QuizSession {
   const questions = sources.flatMap((source) => {
     const passagesById = new Map(source.file.passages?.map((passage) => [passage.id, passage]));
@@ -183,6 +197,7 @@ export function createQuizSession(
         question,
         passages: question.passageRefs?.flatMap((id) => passagesById.get(id) ?? []) ?? [],
         choices: options.choiceOrder === 'random' ? shuffled(question.choices) : question.choices,
+        ...(grouping ? { chapter: grouping.chapterOf(key) } : {}),
       };
     });
   });
@@ -192,7 +207,12 @@ export function createQuizSession(
     createdAt: new Date().toISOString(),
     sourceSignature: sourceSignature(sources),
     currentIndex: 0,
-    questions: options.questionOrder === 'random' ? shuffled(questions) : questions,
+    questions:
+      options.questionOrder === 'random'
+        ? shuffled(questions)
+        : grouping
+          ? [...questions].sort(grouping.compare)
+          : questions,
     draftAnswers: {},
     responses: {},
   };
@@ -203,16 +223,18 @@ export function getOrCreateSession(
   scope: PracticeScope = 'all',
   includeQuestion: (key: string) => boolean = () => true,
   options: PracticeOptions = defaultPracticeOptions(),
+  grouping?: SessionGrouping,
 ): QuizSession {
   const existing = loadSession();
-  const signature = `${sourceSignature(sources)}|scope:${scope}|question:${options.questionOrder}|choice:${options.choiceOrder}`;
+  const groupingSignature = grouping ? `|${grouping.signature}` : '';
+  const signature = `${sourceSignature(sources)}|scope:${scope}|question:${options.questionOrder}|choice:${options.choiceOrder}${groupingSignature}`;
 
   if (existing && existing.sourceSignature === signature && existing.questions.length > 0) {
     return existing;
   }
 
   const session = {
-    ...createQuizSession(sources, includeQuestion, options),
+    ...createQuizSession(sources, includeQuestion, options, grouping),
     sourceSignature: signature,
   };
   saveSession(session);

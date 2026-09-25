@@ -34,6 +34,8 @@ export interface Question {
   answerKey?: string;
   explanation: string;
   tags?: string[];
+  chapter?: number;
+  outdated?: boolean;
 }
 
 export interface Choice {
