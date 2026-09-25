@@ -113,6 +113,7 @@ PASSture는 그 양떼가 풀을 뜯는 목초지를 뜻한다. 사용자가 문
 | 2026-09-25 | M12 챕터별 풀이       | 진행 | `feat/chapter-practice`         | 선형대수·컴퓨터과학개론·프로그래밍언어론·컴파일러구성 syllabus 등록, 기출 장 배정(outdated 0), 프로그래밍언어론(기말 3·출석대체 2)·컴파일러구성(기말 3) 기출 입력 및 정답 대조, 빌드 검증·챕터 세션·선택/결과 UI. `pnpm data:build`, `pnpm test` 성공    |
 | 2026-09-25 | 데이터 점검·렌더러    | 완료 | `feat/chapter-practice`         | `\$` 리터럴 달러 렌더링, 따옴표 없는 flow 값이 쉼표에서 잘린 선택지 62개 복구, 인공지능 이중 백슬래시 수식 37건 복구, 이산수학 K 정답(전항 정답) 2문항 정정, 빌드에 선택지 키·KaTeX 수식 검증 추가                                                       |
 | 2026-09-25 | 컴파일러구성 워크북   | 완료 | `feat/chapter-practice`         | 워크북 스캔 134쪽(1~8장) 315문제 입력, 쪽 범위별 병렬 입력 후 병합·재번호, 쪽 범위별 적대적 검증(정답·판독 불일치 0). ID↔스캔 쪽 대응표는 `origin/reviews/compiler-construction-workbook-pages.md`                                                       |
+| 2026-09-25 | 컴퓨터과학개론 강의   | 완료 | `feat/chapter-practice`         | LMS 연습문제 캡처 65장(1~15강) 입력, Q1 위치로 강 번호 부여, 적대적 검증(정답·판독 불일치 0, 해설 보강 11건, 논리 게이트 선택지는 crop 이미지). ID↔이미지 대응표는 `origin/reviews/introduction-to-computer-science-lecture-images.md`                   |
 
 ## 8. 이어서 작업할 때 참고
 

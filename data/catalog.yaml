@@ -171,6 +171,10 @@ subjects:
         path: subjects/introduction-to-computer-science/past-exams-2017.json
         kind: exam
         year: 2017
+      - id: lecture-exercises
+        title: 연습문제
+        path: subjects/introduction-to-computer-science/lecture-exercises.json
+        kind: lecture
   - id: computer-architecture
     title: 컴퓨터구조
     semester: 2
