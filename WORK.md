@@ -114,6 +114,7 @@ PASSture는 그 양떼가 풀을 뜯는 목초지를 뜻한다. 사용자가 문
 | 2026-09-25 | 데이터 점검·렌더러    | 완료 | `feat/chapter-practice`         | `\$` 리터럴 달러 렌더링, 따옴표 없는 flow 값이 쉼표에서 잘린 선택지 62개 복구, 인공지능 이중 백슬래시 수식 37건 복구, 이산수학 K 정답(전항 정답) 2문항 정정, 빌드에 선택지 키·KaTeX 수식 검증 추가                                                       |
 | 2026-09-25 | 컴파일러구성 워크북   | 완료 | `feat/chapter-practice`         | 워크북 스캔 134쪽(1~8장) 315문제 입력, 쪽 범위별 병렬 입력 후 병합·재번호, 쪽 범위별 적대적 검증(정답·판독 불일치 0). ID↔스캔 쪽 대응표는 `origin/reviews/compiler-construction-workbook-pages.md`                                                       |
 | 2026-09-25 | 컴퓨터과학개론 강의   | 완료 | `feat/chapter-practice`         | LMS 연습문제 캡처 65장(1~15강) 입력, Q1 위치로 강 번호 부여, 적대적 검증(정답·판독 불일치 0, 해설 보강 11건, 논리 게이트 선택지는 crop 이미지). ID↔이미지 대응표는 `origin/reviews/introduction-to-computer-science-lecture-images.md`                   |
+| 2026-09-25 | 선형대수 강의         | 완료 | `feat/chapter-practice`         | LMS 연습문제 캡처 30장(1~15강, 강당 2문제) 입력, 저장 HTML(1강)과 원문 대조 일치, 적대적 검증(정답·판독 불일치 0, 계산 오류 1건·용어 통일·원문 표기 의심 1건 반영). 대응표 `origin/reviews/linear-algebra-lecture-images.md`                             |
 
 ## 8. 이어서 작업할 때 참고
 

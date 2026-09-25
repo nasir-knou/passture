@@ -151,6 +151,10 @@ subjects:
         path: subjects/linear-algebra/past-exams-2019.json
         kind: exam
         year: 2019
+      - id: lecture-exercises
+        title: 연습문제
+        path: subjects/linear-algebra/lecture-exercises.json
+        kind: lecture
   - id: introduction-to-computer-science
     title: 컴퓨터과학개론
     semester: 2
