@@ -240,3 +240,7 @@ subjects:
         path: subjects/compiler-construction/past-exams-2017.json
         kind: exam
         year: 2017
+      - id: workbook
+        title: 워크북 문제
+        path: subjects/compiler-construction/workbook.json
+        kind: workbook
