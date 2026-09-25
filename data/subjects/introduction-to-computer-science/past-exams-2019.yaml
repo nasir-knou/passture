@@ -77,6 +77,7 @@ passages:
 questions:
   - id: e19-01
     type: multiple-choice
+    chapter: 1
     prompt: 폰 노이만의 내장 프로그램(stored program) 방식에 기반을 둔 최초의 컴퓨터는?
     choices:
       - { id: '1', text: EDVAC }
@@ -99,6 +100,7 @@ questions:
 
   - id: e19-02
     type: multiple-choice
+    chapter: 1
     prompt: 자료의 양을 나타내는 단위 중에서 MB에 비해 대략 $10^6$배의 더 많은 양을 나타내는 단위는?
     choices:
       - { id: '1', text: GB }
@@ -121,6 +123,7 @@ questions:
 
   - id: e19-03
     type: multiple-choice
+    chapter: 1
     prompt: 8비트로 표현되는 정수 중에서 가장 큰 양의 정수를 나타낼 수 있는 것은?
     choices:
       - { id: '1', text: 부호화-크기 }
@@ -143,6 +146,7 @@ questions:
 
   - id: e19-04
     type: multiple-choice
+    chapter: 1
     prompt: 2의 보수 방법으로 표현된 8비트 정수 10010011은 10진수로 얼마인가?
     choices:
       - { id: '1', text: '-108' }
@@ -165,6 +169,7 @@ questions:
 
   - id: e19-05
     type: multiple-choice
+    chapter: 1
     prompt: 이진수 110100.1001을 컴퓨터 내에 표현할 때 지수 부분의 표현으로 올바른 것은? 단, 초과-31을 사용한다.
     choices:
       - { id: '1', text: '011111' }
@@ -187,6 +192,7 @@ questions:
 
   - id: e19-06
     type: multiple-choice
+    chapter: 3
     prompt: 알고리즘이 만족해야 할 조건에 대한 설명으로 적절하지 못한 것은?
     choices:
       - { id: '1', text: 범용성 - 다양한 문제에 폭 넓게 적용될 수 있어야 한다. }
@@ -208,6 +214,7 @@ questions:
 
   - id: e19-07
     type: multiple-choice
+    chapter: 3
     prompt: 알고리즘의 대표적인 설계 기법에 해당하는 것은?
     choices:
       - { id: '1', text: 상각분석법 }
@@ -229,6 +236,7 @@ questions:
 
   - id: e19-08
     type: multiple-choice
+    chapter: 3
     prompt: 알고리즘의 시간 복잡도에 대한 설명으로 틀린 것은?
     choices:
       - { id: '1', text: 입력 데이터의 크기의 함수로 표현한다. }
@@ -250,6 +258,7 @@ questions:
 
   - id: e19-09
     type: multiple-choice
+    chapter: 3
     prompt: 피벗을 기준으로 주어진 입력 리스트의 원소들을 두 개의 서브리스트로 분할하고, 각 서브리스트에 대해서 독립적으로 해당 정렬 알고리즘을 순환적으로 적용하는 방식의 정렬 알고리즘은?
     choices:
       - { id: '1', text: 삽입 정렬 }
@@ -271,6 +280,7 @@ questions:
 
   - id: e19-10
     type: multiple-choice
+    chapter: 3
     passageRefs: [g19-binary-search-tree-01]
     prompt: 다음과 같은 이진 탐색 트리에서 루트 노드를 삭제하였을 때 삭제된 노드의 위치로 이동하는 노드는?
     choices:
@@ -293,6 +303,7 @@ questions:
 
   - id: e19-11
     type: multiple-choice
+    chapter: 5
     prompt: 두 입력 A와 B가 서로 다른 값을 갖는 경우에 한해서 출력값이 1이 되는 논리 게이트는?
     choices:
       - { id: '1', text: XOR 게이트 }
@@ -314,6 +325,7 @@ questions:
 
   - id: e19-12
     type: multiple-choice
+    chapter: 5
     prompt: 주소 방식으로 주어진 입력으로부터 각각의 하드웨어 구성 요소를 개별적으로 구동하기 위해서 주로 사용되는 논리 회로는?
     choices:
       - { id: '1', text: 레지스터 }
@@ -335,6 +347,7 @@ questions:
 
   - id: e19-13
     type: multiple-choice
+    chapter: 5
     prompt: 연산의 대상이 되는 데이터를 스택에서 추출하고 또한 연산의 결과를 스택에 저장하는 형태의 명령어 형식은?
     choices:
       - { id: '1', text: 3-주소 명령어 }
@@ -356,6 +369,7 @@ questions:
 
   - id: e19-14
     type: multiple-choice
+    chapter: 5
     prompt: 주기억장치에서 가져와서 현재 실행 중인 명령어를 저장하고 있는 레지스터는?
     choices:
       - { id: '1', text: MAR }
@@ -377,6 +391,7 @@ questions:
 
   - id: e19-15
     type: multiple-choice
+    chapter: 7
     prompt: 데이터베이스의 개념 또는 정의의 일부를 설명하는 내용 중에서 적절하지 못한 것은?
     choices:
       - { id: '1', text: 입출력 데이터를 중심으로 하는 운영 데이터 집합 }
@@ -398,6 +413,7 @@ questions:
 
   - id: e19-16
     type: multiple-choice
+    chapter: 7
     prompt: 모든 응용에 대한 전체적이고 통합된 데이터 구조를 정의하는 스키마는?
     choices:
       - { id: '1', text: 개념 스키마 }
@@ -419,6 +435,7 @@ questions:
 
   - id: e19-17
     type: multiple-choice
+    chapter: 7
     prompt: 관계형 데이터 모델에서 사용되는 용어에 대한 설명으로 올바른 것은?
     choices:
       - { id: '1', text: 튜플 - 필드의 개수 }
@@ -440,6 +457,7 @@ questions:
 
   - id: e19-18
     type: multiple-choice
+    chapter: 7
     passageRefs: [g19-er-account-transaction-01]
     prompt: 다음 E-R 다이어그램에서 개체 집합 간의 대응성을 나타내는 관계 타입은?
     choices:
@@ -462,6 +480,7 @@ questions:
 
   - id: e19-19
     type: multiple-choice
+    chapter: 2
     prompt: 다양한 객체를 컴퓨터에서 표현하고 활용하기 위해 필요한 데이터의 구조에 대해서 공통의 특징만을 뽑아 정의한 것을 무엇이라고 하는가?
     choices:
       - { id: '1', text: 알고리즘의 추상화 }
@@ -483,6 +502,7 @@ questions:
 
   - id: e19-20
     type: multiple-choice
+    chapter: 2
     prompt: 동일한 열에 있는 각 행의 원소를 먼저 차례대로 컴퓨터 메모리에 저장하고 다음 열로 이동하여 첫 번째 행에 있는 원소부터 차례대로 컴퓨터 메모리에 저장하는 2차원 배열 저장 방법은 무엇인가?
     choices:
       - { id: '1', text: 열우선 순서 저장 방법 }
@@ -504,6 +524,7 @@ questions:
 
   - id: e19-21
     type: multiple-choice
+    chapter: 2
     passageRefs: [g19-tree-postorder-01]
     prompt: 다음 트리의 후위순회 결과는 무엇인가?
     choices:
@@ -526,6 +547,7 @@ questions:
 
   - id: e19-22
     type: multiple-choice
+    chapter: 2
     prompt: 각 레벨에서 빈자리가 없이 노드를 모두 가지고 있고, 모든 내부 노드들은 2개의 자식 노드를 가지고 있는 트리는 무엇인가?
     choices:
       - { id: '1', text: 경사이진트리 }
@@ -547,6 +569,7 @@ questions:
 
   - id: e19-23
     type: multiple-choice
+    chapter: 2
     passageRefs: [g19-graph-matrix-01]
     prompt: 다음의 (가) 그래프를 (나)와 같이 표현하는 방법을 무엇이라고 하는가?
     choices:
@@ -569,6 +592,7 @@ questions:
 
   - id: e19-24
     type: multiple-choice
+    chapter: 4
     prompt: 시스템 측면, 즉 개발자 측면에서 제한적인 컴퓨터 자원을 효율적으로 사용하기 위한 컴퓨터 자원 관리의 효율성을 제공하는 것은 무엇인가?
     choices:
       - { id: '1', text: 운영체제 }
@@ -590,6 +614,7 @@ questions:
 
   - id: e19-25
     type: multiple-choice
+    chapter: 4
     prompt: 고정 분할 다중 프로그래밍 기법의 단편화 문제를 해결하기 위해 개발된 것은 무엇인가?
     choices:
       - { id: '1', text: 가상기억장치 }
@@ -611,6 +636,7 @@ questions:
 
   - id: e19-26
     type: multiple-choice
+    chapter: 4
     prompt: 프로그램 코드나 데이터의 입출력의 단위이며, 보조기억장치로부터 주기억장치에 적재되는 동일한 크기의 블록을 무엇이라고 하는가?
     choices:
       - { id: '1', text: 메모리테이블 }
@@ -632,6 +658,7 @@ questions:
 
   - id: e19-27
     type: multiple-choice
+    chapter: 4
     prompt: 먼저 도착한 디스크 접근 요청이 가장 먼저 서비스를 받는 방식의 디스크 스케줄링 기법은 무엇인가?
     choices:
       - { id: '1', text: FCFS 기법 }
@@ -653,6 +680,7 @@ questions:
 
   - id: e19-28
     type: multiple-choice
+    chapter: 6
     prompt: 조건문과 반복문을 사용하여 실행 흐름을 제어하고, 블록 구조, 함수 호출 등 주요 개념을 기반으로 하는 언어는 무엇인가?
     choices:
       - { id: '1', text: 논리형 프로그래밍 언어 }
@@ -674,6 +702,7 @@ questions:
 
   - id: e19-29
     type: multiple-choice
+    chapter: 8
     prompt: 중앙에 있는 컴퓨터가 모든 메시지의 중계자 역할을 수행하고, 모든 메시지는 먼저 중앙의 컴퓨터로 보내진 뒤 목적지 컴퓨터에 전달되는 특징을 가진 LAN의 위상 구조는 무엇인가?
     choices:
       - { id: '1', text: 버스형 }
@@ -695,6 +724,7 @@ questions:
 
   - id: e19-30
     type: multiple-choice
+    chapter: 6
     prompt: 함수 안에서 선언된 변수에 대한 연산이 형식매개변수에 의해 이루어지고, 프로그램 안에서의 실매개변수의 값에는 아무런 영향을 주지 않는 함수 호출 방식의 매개변수 호출 방법을 무엇이라고 하는가?
     choices:
       - { id: '1', text: 형식 호출 }
@@ -716,6 +746,7 @@ questions:
 
   - id: e19-31
     type: multiple-choice
+    chapter: 6
     prompt: 변수가 값을 저장하기 위해 기억장소를 할당받고 있는 시간을 의미하는 것을 무엇이라고 하는가?
     choices:
       - { id: '1', text: 변수의 수명 }
@@ -737,6 +768,7 @@ questions:
 
   - id: e19-32
     type: multiple-choice
+    chapter: 6
     prompt: 컴파일 과정 중에서 프로그램을 구성하는 문자들의 나열로부터 단어(토큰)를 추출해 내는 과정은 무엇인가?
     choices:
       - { id: '1', text: 프로그램 작성 }
@@ -758,6 +790,7 @@ questions:
 
   - id: e19-33
     type: multiple-choice
+    chapter: 8
     prompt: 컴퓨터 통신을 위해 통신을 하는 노드 간의 합의된 통신 약속을 무엇이라고 하는가?
     choices:
       - { id: '1', text: 주파수 }
@@ -779,6 +812,7 @@ questions:
 
   - id: e19-34
     type: multi-answer
+    chapter: 8
     prompt: 두 개의 버스에 동시에 연결된 장비이며, 목적지에 해당하는 버스 방향으로만 브로드캐스트 하는 것은 무엇인가?
     choices:
       - { id: '1', text: 리피터 }
@@ -800,6 +834,7 @@ questions:
 
   - id: e19-35
     type: multiple-choice
+    chapter: 8
     prompt: 패킷 단위로 전송이 이루어지며, 계층적인 방식으로 주소 지정을 하고, 인터넷의 IP(internet protocol)가 정의되는 계층은 무엇인가?
     choices:
       - { id: '1', text: 네트워크 계층 }

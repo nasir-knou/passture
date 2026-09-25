@@ -1,0 +1,119 @@
+subjectId: linear-algebra
+title: 선형대수
+textbook:
+  authors: [손진곤, 강태원, 김진욱]
+  publisher: 한국방송통신대학교출판문화원
+  publishedAt: '2024-07-25'
+parts:
+  - { no: 1, title: 일차연립방정식과 행렬, chapters: [1, 2, 3, 4, 5, 6] }
+  - { no: 2, title: 벡터공간과 선형변환, chapters: [7, 8, 9, 10, 11] }
+  - { no: 3, title: 고유값과 벡터의 직교성, chapters: [12, 13, 14, 15] }
+chapters:
+  - no: 1
+    title: 일차연립방정식
+    sections:
+      - { no: '1.1', title: 일차연립방정식 }
+      - { no: '1.2', title: 소거법 }
+      - { no: '1.3', title: 일차연립방정식의 응용 }
+  - no: 2
+    title: 행렬과 가우스 소거법
+    sections:
+      - { no: '2.1', title: 행렬과 일차연립방정식 }
+      - { no: '2.2', title: 기본행연산 }
+      - { no: '2.3', title: 가우스 소거법 }
+      - { no: '2.4', title: 가우스-조르단 소거법 }
+  - no: 3
+    title: 행렬연산
+    sections:
+      - { no: '3.1', title: 기본개념 }
+      - { no: '3.2', title: 행렬의 합 }
+      - { no: '3.3', title: 행렬의 스칼라곱 }
+      - { no: '3.4', title: 행렬의 곱 }
+      - { no: '3.5', title: 행렬의 전치 }
+  - no: 4
+    title: 역행렬
+    sections:
+      - { no: '4.1', title: 정칙행렬과 역행렬 }
+      - { no: '4.2', title: 역행렬 구하는 방법 }
+      - { no: '4.3', title: 일차연립방정식과 역행렬 }
+  - no: 5
+    title: 행렬식
+    sections:
+      - { no: '5.1', title: 행렬식 }
+      - { no: '5.2', title: 행렬식의 성질 }
+      - { no: '5.3', title: 행렬연산과 행렬식 }
+  - no: 6
+    title: 크래머 공식과 역행렬
+    sections:
+      - { no: '6.1', title: 크래머 공식 }
+      - { no: '6.2', title: 행렬식과 역행렬 }
+  - no: 7
+    title: 평면벡터와 공간벡터
+    sections:
+      - { no: '7.1', title: 평면벡터 }
+      - { no: '7.2', title: R3 공간벡터 }
+      - { no: '7.3', title: Rn 공간벡터 }
+      - { no: '7.4', title: 벡터의 내적 }
+      - { no: '7.5', title: 벡터의 외적 }
+  - no: 8
+    title: 벡터공간
+    sections:
+      - { no: '8.1', title: 벡터와 벡터공간 }
+      - { no: '8.2', title: 부분공간 }
+  - no: 9
+    title: 기저와 차원
+    sections:
+      - { no: '9.1', title: 일차결합 }
+      - { no: '9.2', title: 벡터들의 일차독립성 }
+      - { no: '9.3', title: 벡터공간의 기저와 차원 }
+  - no: 10
+    title: 선형변환
+    sections:
+      - { no: '10.1', title: 선형변환 }
+      - { no: '10.2', title: 선형변환의 성질 }
+      - { no: '10.3', title: 상과 핵 }
+  - no: 11
+    title: 선형변환과 행렬
+    sections:
+      - { no: '11.1', title: 좌표계 }
+      - { no: '11.2', title: 선형변환의 행렬표현 }
+  - no: 12
+    title: 고유값과 고유벡터
+    sections:
+      - { no: '12.1', title: 고유값과 고유벡터 }
+      - { no: '12.2', title: 특성방정식 }
+  - no: 13
+    title: 행렬의 대각화
+    sections:
+      - { no: '13.1', title: 행렬의 대각화 가능성 }
+      - { no: '13.2', title: 행렬의 대각화 }
+      - { no: '13.3', title: '응용: 피보나치 수열' }
+  - no: 14
+    title: 내적공간과 직교벡터
+    sections:
+      - { no: '14.1', title: 내적공간과 직교벡터 }
+      - { no: '14.2', title: 직교행렬 }
+      - { no: '14.3', title: 직교변환 }
+  - no: 15
+    title: 직교화 과정과 최소자승법
+    sections:
+      - { no: '15.1', title: 직교기저 }
+      - { no: '15.2', title: 그램-슈미트 직교화 }
+      - { no: '15.3', title: 정사영벡터 }
+      - { no: '15.4', title: 최소자승법 }
+lectures:
+  - { no: 1, title: '일차연립방정식', chapters: [1] }
+  - { no: 2, title: '행렬과 가우스 소거법', chapters: [2] }
+  - { no: 3, title: '행렬연산', chapters: [3] }
+  - { no: 4, title: '역행렬', chapters: [4] }
+  - { no: 5, title: '행렬식', chapters: [5] }
+  - { no: 6, title: '크래머 공식과 역행렬', chapters: [6] }
+  - { no: 7, title: '평면벡터와 공간벡터', chapters: [7] }
+  - { no: 8, title: '벡터공간', chapters: [8] }
+  - { no: 9, title: '기저와 차원', chapters: [9] }
+  - { no: 10, title: '선형변환', chapters: [10] }
+  - { no: 11, title: '선형변환과 행렬', chapters: [11] }
+  - { no: 12, title: '고유값과 고유벡터', chapters: [12] }
+  - { no: 13, title: '행렬의 대각화', chapters: [13] }
+  - { no: 14, title: '내적공간과 직교행렬', chapters: [14], note: '강의 제목 "내적공간과 직교행렬"이 교재 14장 제목 "내적공간과 직교벡터"와 다름' }
+  - { no: 15, title: '직교화과정과 최소자승법', chapters: [15] }

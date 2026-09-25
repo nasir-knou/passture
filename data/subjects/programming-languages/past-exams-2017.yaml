@@ -1,0 +1,746 @@
+subjectId: programming-languages
+sourceId: past-exams-2017
+title: 프로그래밍언어론 2017 기말
+kind: exam
+year: 2017
+
+passages:
+  - id: g17-bnf-letter-01
+    type: code
+    language: text
+    body: |
+      <letter> ::= a | b | c | d | e
+  - id: g17-syntax-diagram-number-01
+    type: diagram
+    diagram:
+      type: simple-graph
+      width: 420
+      height: 130
+      nodes:
+        - { id: start, label: '<number>', hideNode: true, x: 50, y: 40 }
+        - { id: split, label: split, hideNode: true, hideLabel: true, x: 115, y: 40 }
+        - { id: digit1, label: digit, shape: box, width: 64, height: 30, radius: 32, x: 180, y: 40 }
+        - { id: join, label: join, hideNode: true, hideLabel: true, x: 280, y: 40 }
+        - { id: end, label: end, hideNode: true, hideLabel: true, x: 360, y: 40 }
+        - { id: digit2, label: digit, shape: box, width: 64, height: 30, radius: 32, x: 215, y: 100 }
+      edges:
+        - { from: start, to: split }
+        - { from: split, to: digit1, directed: true }
+        - { from: digit1, to: join }
+        - { from: join, to: end, directed: true }
+        - { from: join, to: digit2, directed: true }
+        - { from: digit2, to: split, directed: true }
+  - id: g17-parse-trees-01
+    type: diagram
+    diagram:
+      type: simple-graph
+      width: 540
+      height: 200
+      nodes:
+        - { id: t1root, label: '<exp>', shape: box, width: 52, height: 24, radius: 14, x: 130, y: 20 }
+        - { id: t1left, label: '<exp>', shape: box, width: 52, height: 24, radius: 14, x: 50, y: 72 }
+        - { id: t1minus, label: '-', x: 130, y: 72, radius: 11 }
+        - { id: t1right, label: '<exp>', shape: box, width: 52, height: 24, radius: 14, x: 210, y: 72 }
+        - { id: t1rl, label: '<exp>', shape: box, width: 52, height: 24, radius: 14, x: 160, y: 124 }
+        - { id: t1times, label: '*', x: 210, y: 124, radius: 11 }
+        - { id: t1rr, label: '<exp>', shape: box, width: 52, height: 24, radius: 14, x: 260, y: 124 }
+        - { id: t1three, label: '3', x: 50, y: 176, radius: 12 }
+        - { id: t1two, label: '2', x: 160, y: 176, radius: 12 }
+        - { id: t1five, label: '5', x: 260, y: 176, radius: 12 }
+        - { id: t2root, label: '<exp>', shape: box, width: 52, height: 24, radius: 14, x: 420, y: 20 }
+        - { id: t2left, label: '<exp>', shape: box, width: 52, height: 24, radius: 14, x: 350, y: 72 }
+        - { id: t2times, label: '*', x: 420, y: 72, radius: 11 }
+        - { id: t2right, label: '<exp>', shape: box, width: 52, height: 24, radius: 14, x: 490, y: 72 }
+        - { id: t2ll, label: '<exp>', shape: box, width: 52, height: 24, radius: 14, x: 310, y: 124 }
+        - { id: t2minus, label: '-', x: 350, y: 124, radius: 11 }
+        - { id: t2lr, label: '<exp>', shape: box, width: 52, height: 24, radius: 14, x: 390, y: 124 }
+        - { id: t2three, label: '3', x: 310, y: 176, radius: 12 }
+        - { id: t2two, label: '2', x: 390, y: 176, radius: 12 }
+        - { id: t2five, label: '5', x: 490, y: 176, radius: 12 }
+      edges:
+        - { from: t1root, to: t1left }
+        - { from: t1root, to: t1minus }
+        - { from: t1root, to: t1right }
+        - { from: t1right, to: t1rl }
+        - { from: t1right, to: t1times }
+        - { from: t1right, to: t1rr }
+        - { from: t1left, to: t1three }
+        - { from: t1rl, to: t1two }
+        - { from: t1rr, to: t1five }
+        - { from: t2root, to: t2left }
+        - { from: t2root, to: t2times }
+        - { from: t2root, to: t2right }
+        - { from: t2left, to: t2ll }
+        - { from: t2left, to: t2minus }
+        - { from: t2left, to: t2lr }
+        - { from: t2ll, to: t2three }
+        - { from: t2lr, to: t2two }
+        - { from: t2right, to: t2five }
+  - id: g17-barron-int-code-01
+    type: code
+    language: text
+    body: |
+      int k := 100
+  - id: g17-barron-int-memory-01
+    type: diagram
+    diagram:
+      type: data-table
+      columns: ['주소', '메모리', '변수']
+      rows:
+        - ['⋮', '⋮', '-']
+        - ['FA08', '100', 'k']
+        - ['⋮', '⋮', '-']
+  - id: g17-exchange-01
+    type: code
+    language: c
+    body: |
+      void EXCHANGE (X, Y)
+      {
+          int TEMP;
+          TEMP = X;
+          X = Y;
+          Y = TEMP;
+      }
+
+      main()
+      {
+          X = 10;
+          Y = 20;
+          EXCHANGE (X, Y);
+          printf (X, Y);
+      }
+
+questions:
+  - id: e17-01
+    type: multiple-choice
+    chapter: 1
+    prompt: 프로그래밍 언어에서의 추상화에 대한 설명으로 바른 것은?
+    choices:
+      - { id: '1', text: 프로그래머의 의도를 추상화하여 컴퓨터에게 전달 }
+      - { id: '2', text: 컴퓨터의 CPU를 변수로 추상화 }
+      - { id: '3', text: '제어를 추상화한 것으로 문자열, 수 등이 있음' }
+      - { id: '4', text: '자료를 추상화한 것으로 반복문, 조건문 등이 있음' }
+    answers: ['1']
+    explanation: |
+      선택지 1: 프로그래밍 언어는 기계의 세부 동작 대신 프로그래머의 의도를 추상화된 형태로 표현해 컴퓨터에게 전달하므로 정답이다.
+      선택지 2: 변수는 CPU(Central Processing Unit)가 아니라 기억 장소(메모리 셀)를 추상화한 것이다.
+      선택지 3: 문자열, 수는 자료를 추상화한 것이다. 제어 추상화의 예는 반복문, 조건문, 프로시저 호출이다.
+      선택지 4: 반복문, 조건문은 제어를 추상화한 것이다. 3번과 설명이 서로 바뀌었다.
+
+      핵심 개념:
+      추상화는 복잡한 세부 사항을 감추고 핵심만 드러내는 것이다.
+      자료 추상화는 문자열, 수, 배열, 레코드처럼 데이터 표현을 추상화한다.
+      제어 추상화는 조건문, 반복문, 프로시저처럼 실행 흐름을 추상화한다.
+      고급 언어는 추상화 수준이 높아 기계를 몰라도 프로그램을 작성할 수 있게 한다.
+    tags: [abstraction]
+
+  - id: e17-02
+    type: multiple-choice
+    chapter: 3
+    prompt: 명령형 언어에 대한 설명으로 바른 것은?
+    choices:
+      - { id: '1', text: 순차적인 명령의 수행을 기본 개념으로 하는 언어 }
+      - { id: '2', text: 알려진 값들을 함수에 적용하는 방식으로 프로그램을 기술하는 언어 }
+      - { id: '3', text: 무엇을 하려고 하는가를 선언하듯 기술하는 언어 }
+      - { id: '4', text: 자료형과 연산으로 이루어지는 객체에 기반하는 언어 }
+    answers: ['1']
+    explanation: |
+      선택지 1: 명령형 언어는 변수의 상태를 바꾸는 명령들을 순서대로 실행하는 것을 기본으로 하므로 정답이다(예: C, Pascal, Fortran).
+      선택지 2: 값들을 함수에 적용해 프로그램을 기술하는 것은 함수형 언어이다(예: LISP, Haskell).
+      선택지 3: 무엇을 원하는지 선언하듯 기술하는 것은 논리형 언어이다(예: Prolog).
+      선택지 4: 자료와 연산을 묶은 객체에 기반하는 것은 객체 지향 언어이다(예: Java, C++).
+
+      핵심 개념:
+      명령형 언어는 폰 노이만 구조를 반영해 기억 장소의 값을 대입문으로 바꾸어 가며 계산한다.
+      함수형 언어는 부작용 없는 함수 적용과 합성으로 계산한다.
+      논리형 언어는 사실과 규칙을 선언하고 추론으로 답을 구한다.
+      객체 지향 언어는 객체와 클래스, 상속, 다형성으로 프로그램을 구성한다.
+    tags: [paradigm, imperative]
+
+  - id: e17-03
+    type: multiple-choice
+    chapter: 2
+    prompt: 프로그래밍 언어의 설계 기준 중 정의에 의존하여 프로그래밍 언어의 행위를 예측할 수 있음을 의미하는 것은?
+    choices:
+      - { id: '1', text: 효율성 }
+      - { id: '2', text: 일반성 }
+      - { id: '3', text: 표현력 }
+      - { id: '4', text: 정확성 }
+    answers: ['4']
+    explanation: |
+      선택지 1: 효율성은 번역과 실행이 빠르고 자원을 적게 쓰는 정도를 뜻한다.
+      선택지 2: 일반성은 특별한 경우를 두지 않고 관련 개념을 하나로 일반화하는 성질이다.
+      선택지 3: 표현력은 복잡한 과정이나 구조를 쉽게 표현할 수 있는 정도이다.
+      선택지 4: 정확성은 언어의 정의(명세)만 보고도 프로그램의 행위를 정확히 예측할 수 있음을 뜻하므로 정답이다.
+
+      핵심 개념:
+      프로그래밍 언어의 설계 기준에는 효율성, 일반성, 직교성, 정확성, 안전성, 표현력, 확장성, 부분성 등이 있다.
+      정확성은 언어가 모호함 없이 정의되어 행위를 예측할 수 있는지를 본다.
+      이를 위해 BNF(Backus-Naur Form) 같은 형식적 구문 정의와 의미 정의가 사용된다.
+      안전성은 오류를 줄이고 쉽게 발견하게 하는 성질로 정확성과 구분된다.
+    tags: [design-criteria, preciseness]
+
+  - id: e17-04
+    type: multiple-choice
+    chapter: 1
+    prompt: 프로그래밍 언어의 구조를 분석하기 위해 다음 중 가장 마지막에 분석하는 것은?
+    choices:
+      - { id: '1', text: 문자 }
+      - { id: '2', text: 어휘 }
+      - { id: '3', text: 토큰 }
+      - { id: '4', text: 구문 }
+    answers: ['4']
+    explanation: |
+      선택지 1: 문자는 가장 먼저 읽는 최소 단위이다.
+      선택지 2: 어휘는 문자를 모아 만든 단어로 문자 다음 단계에서 분석한다.
+      선택지 3: 토큰은 어휘 분석의 결과로 얻는 의미 단위이며 구문 분석 이전에 만들어진다.
+      선택지 4: 구문은 토큰(어휘)들이 결합된 구조를 분석하는 단계로 가장 마지막에 분석하므로 정답이다.
+
+      핵심 개념:
+      프로그래밍 언어의 구조는 문자 → 어휘(토큰) → 구문 순으로 분석한다.
+      어휘 분석은 문자열을 토큰으로 나누고, 구문 분석은 토큰의 결합 구조를 검사한다.
+      구문 분석 결과는 파스 트리(구문 트리)로 나타낸다.
+      컴파일러에서도 어휘 분석기 다음에 구문 분석기가 동작한다.
+    tags: [lexical-structure, syntax]
+
+  - id: e17-05
+    type: multiple-choice
+    chapter: 4
+    passageRefs: [g17-bnf-letter-01]
+    prompt: 비단말 기호는?
+    choices:
+      - { id: '1', text: '<letter>' }
+      - { id: '2', text: '::=' }
+      - { id: '3', text: a }
+      - { id: '4', text: '|' }
+    answers: ['1']
+    explanation: |
+      선택지 1: < >로 묶인 <letter>는 생성 규칙으로 정의되는 비단말 기호이므로 정답이다.
+      선택지 2: ::=는 "정의한다"를 뜻하는 메타 기호이다.
+      선택지 3: a는 실제 문장에 나타나는 단말 기호이다.
+      선택지 4: |는 택일을 뜻하는 메타 기호이다.
+
+      핵심 개념:
+      BNF 생성 규칙은 "비단말 기호 ::= 정의"의 형태이다.
+      비단말 기호는 < >로 묶고, 단말 기호는 그대로 적는다.
+      메타 기호 ::=는 정의, |는 여러 정의 중 하나를 고르는 택일을 뜻한다.
+      <letter> ::= a | b | c | d | e는 <letter>가 a~e 중 하나임을 뜻한다.
+    tags: [bnf, nonterminal]
+
+  - id: e17-06
+    type: multiple-choice
+    chapter: 4
+    passageRefs: [g17-bnf-letter-01]
+    prompt: 택일을 나타내는 메타 기호는?
+    choices:
+      - { id: '1', text: '<letter>' }
+      - { id: '2', text: '::=' }
+      - { id: '3', text: a }
+      - { id: '4', text: '|' }
+    answers: ['4']
+    explanation: |
+      선택지 1: <letter>는 비단말 기호이다.
+      선택지 2: ::=는 정의를 나타내는 메타 기호이다.
+      선택지 3: a는 단말 기호이다.
+      선택지 4: |는 "또는"의 의미로 여러 대안 중 하나를 택하는 메타 기호이므로 정답이다.
+
+      핵심 개념:
+      BNF의 메타 기호는 ::=(정의), |(택일), < >(비단말 표시)이다.
+      택일 기호 |로 여러 생성 규칙을 한 줄에 묶어 쓸 수 있다.
+      메타 기호는 문법을 설명하기 위한 기호로 실제 프로그램에는 나타나지 않는다.
+      EBNF(Extended BNF)는 여기에 { }, [ ], ( )를 추가한다.
+    tags: [bnf, meta-symbol]
+
+  - id: e17-07
+    type: multiple-choice
+    chapter: 4
+    prompt: BNF 표기법과 EBNF 표기법에 모두 해당하는 메타 기호는?
+    choices:
+      - { id: '1', text: '[ ]' }
+      - { id: '2', text: '{ }' }
+      - { id: '3', text: '( | )' }
+      - { id: '4', text: '::=' }
+    answers: ['4']
+    explanation: |
+      선택지 1: [ ]는 생략 가능(0번 또는 1번)을 나타내는 EBNF 전용 메타 기호이다.
+      선택지 2: { }는 0번 이상 반복을 나타내는 EBNF 전용 메타 기호이다.
+      선택지 3: ( | )처럼 괄호로 택일을 묶는 그룹 표기는 EBNF에서 추가된 것이다.
+      선택지 4: ::=는 BNF에서 정의를 나타내며 EBNF에서도 그대로 쓰이므로 정답이다.
+
+      핵심 개념:
+      BNF 메타 기호: ::=, |, < >.
+      EBNF는 BNF의 메타 기호를 모두 쓰면서 { }(반복), [ ](선택), ( )(그룹)를 추가했다.
+      따라서 두 표기법에 공통인 메타 기호는 ::=, |, < >이다.
+      EBNF를 쓰면 재귀 규칙 없이 반복을 간결하게 표현할 수 있다.
+    tags: [bnf, ebnf, meta-symbol]
+
+  - id: e17-08
+    type: multiple-choice
+    chapter: 4
+    passageRefs: [g17-syntax-diagram-number-01]
+    prompt: 다음 구문 도표를 EBNF로 올바르게 표현한 것은?
+    choices:
+      - { id: '1', text: '<number> ::= { <digit> }' }
+      - { id: '2', text: '<number> ::= <digit> { <digit> }' }
+      - { id: '3', text: '<number> ::= <digit> [ <digit> ]' }
+      - { id: '4', text: '<number> ::= [ <digit> ]' }
+    answers: ['2']
+    explanation: |
+      선택지 1: { <digit> }만 있으면 digit이 0번 나올 수도 있다. 도표는 digit을 최소 한 번 거쳐야 하므로 맞지 않는다.
+      선택지 2: 처음 digit을 반드시 한 번 지나고, 아래 되돌이 경로로 digit을 0번 이상 더 반복하므로 <digit> { <digit> }이다. 정답이다.
+      선택지 3: [ <digit> ]는 추가 digit이 0번 또는 1번만 온다는 뜻이라, 되돌이 경로로 여러 번 반복하는 도표를 표현하지 못한다.
+      선택지 4: [ <digit> ]만 있으면 digit이 없거나 한 개뿐이어서 도표와 다르다.
+
+      핵심 개념:
+      구문 도표에서 앞으로 되돌아가는 화살표는 반복을 뜻하며 EBNF의 { }에 대응한다.
+      건너뛰는 우회 경로는 생략 가능을 뜻하며 [ ]에 대응한다.
+      "한 번 이상 반복"은 X { X } 형태로 표현한다.
+      <number> ::= <digit> { <digit> }는 한 자리 이상의 숫자열을 정의한다.
+    tags: [syntax-diagram, ebnf, repetition]
+
+  - id: e17-09
+    type: multiple-choice
+    chapter: 5
+    passageRefs: [g17-parse-trees-01]
+    prompt: 다음 두 파스 트리가 동일한 문법으로 만들어졌을 때 이 문법을 일컫는 표현은?
+    choices:
+      - { id: '1', text: 명확한 문법 }
+      - { id: '2', text: 단순한 문법 }
+      - { id: '3', text: 모호한 문법 }
+      - { id: '4', text: 다양한 문법 }
+    answers: ['3']
+    explanation: |
+      선택지 1: 명확한 문법은 한 표현에 파스 트리가 하나만 존재하는 문법이다. 여기서는 같은 3-2*5에 트리가 두 개 있다.
+      선택지 2: 단순한 문법은 모호성을 가리키는 용어가 아니다.
+      선택지 3: 같은 표현 3-2*5에 대해 3-(2*5)와 (3-2)*5로 해석되는 서로 다른 파스 트리가 존재하므로 모호한 문법이다. 정답이다.
+      선택지 4: 다양한 문법은 교재에서 쓰는 분류 용어가 아니다.
+
+      핵심 개념:
+      모호한 문법은 하나의 표현에 대해 둘 이상의 파스 트리가 존재하는 문법이다.
+      왼쪽 트리는 -의 오른쪽에 2*5가 묶여 3-(2*5) = -7이 된다.
+      오른쪽 트리는 3-2가 먼저 묶여 (3-2)*5 = 5가 된다.
+      연산자 우선순위와 결합 규칙을 문법에 반영하면 모호성을 제거할 수 있다.
+    tags: [ambiguous-grammar, parse-tree]
+
+  - id: e17-10
+    type: multiple-choice
+    chapter: 6
+    prompt: 컴파일 기법에 대한 설명으로 바른 것은?
+    choices:
+      - { id: '1', text: 주어진 프로그램을 기계어로 번역 후 실행하는 방법 }
+      - { id: '2', text: 어셈블러는 고급 언어를 저급 언어로 번역 }
+      - { id: '3', text: 프리프로세서는 고급 언어를 저급 언어로 번역 }
+      - { id: '4', text: 고급 언어를 직접 실행하는 방법 }
+    answers: ['1']
+    explanation: |
+      선택지 1: 컴파일 기법은 원시 프로그램을 기계어(목적 프로그램)로 먼저 번역한 뒤 실행하므로 정답이다.
+      선택지 2: 어셈블러는 어셈블리어(저급 언어)를 기계어로 번역한다. 고급 언어를 번역하는 것은 컴파일러이다.
+      선택지 3: 프리프로세서(전처리기)는 매크로 확장 등으로 고급 언어 프로그램을 같은 수준의 고급 언어 프로그램으로 바꾼다.
+      선택지 4: 고급 언어를 번역 없이 직접 실행하는 것은 인터프리트 기법이다.
+
+      핵심 개념:
+      번역기에는 컴파일러, 어셈블러, 프리프로세서, 링커·로더 등이 있다.
+      컴파일러는 고급 언어를 저급 언어(기계어, 어셈블리어)로 번역한다.
+      어셈블러는 어셈블리어를 기계어로, 프리프로세서는 고급 언어를 고급 언어로 변환한다.
+      컴파일 기법은 실행이 빠르고, 인터프리트 기법은 유연하다.
+    tags: [compiler, translator]
+
+  - id: e17-11
+    type: multiple-choice
+    chapter: 7
+    passageRefs: [g17-barron-int-code-01, g17-barron-int-memory-01]
+    prompt: 다음 변수의 정의를 Barron(배런)의 표기법으로 바르게 나타낸 것은?
+    choices:
+      - id: '1'
+        text: '①'
+        diagram:
+          type: simple-graph
+          width: 330
+          height: 80
+          nodes:
+            - { id: name, label: '100', x: 50, y: 52, radius: 28 }
+            - { id: attr, label: FA08, shape: box, width: 80, height: 30, radius: 40, x: 165, y: 52 }
+            - { id: value, label: 정수, shape: box, width: 70, height: 30, radius: 35, x: 280, y: 52 }
+            - { id: above, label: k, hideNode: true, x: 280, y: 16 }
+          edges:
+            - { from: name, to: attr }
+            - { from: attr, to: value }
+      - id: '2'
+        text: '②'
+        diagram:
+          type: simple-graph
+          width: 330
+          height: 80
+          nodes:
+            - { id: name, label: k, x: 50, y: 52, radius: 28 }
+            - { id: attr, label: 정수, shape: box, width: 80, height: 30, radius: 40, x: 165, y: 52 }
+            - { id: value, label: FA08, shape: box, width: 70, height: 30, radius: 35, x: 280, y: 52 }
+            - { id: above, label: '100', hideNode: true, x: 280, y: 16 }
+          edges:
+            - { from: name, to: attr }
+            - { from: attr, to: value }
+      - id: '3'
+        text: '③'
+        diagram:
+          type: simple-graph
+          width: 330
+          height: 80
+          nodes:
+            - { id: name, label: k, x: 50, y: 52, radius: 28 }
+            - { id: attr, label: 정수, shape: box, width: 80, height: 30, radius: 40, x: 165, y: 52 }
+            - { id: value, label: '100', shape: box, width: 70, height: 30, radius: 35, x: 280, y: 52 }
+            - { id: above, label: FA08, hideNode: true, x: 280, y: 16 }
+          edges:
+            - { from: name, to: attr }
+            - { from: attr, to: value }
+      - id: '4'
+        text: '④'
+        diagram:
+          type: simple-graph
+          width: 330
+          height: 80
+          nodes:
+            - { id: name, label: k, x: 50, y: 52, radius: 28 }
+            - { id: attr, label: '100', shape: box, width: 80, height: 30, radius: 40, x: 165, y: 52 }
+            - { id: value, label: FA08, shape: box, width: 70, height: 30, radius: 35, x: 280, y: 52 }
+            - { id: above, label: 정수, hideNode: true, x: 280, y: 16 }
+          edges:
+            - { from: name, to: attr }
+            - { from: attr, to: value }
+    answers: ['3']
+    explanation: |
+      선택지 1: 이름 자리에 값 100이, 타입 자리에 주소가, 값 자리에 타입이 들어가 모든 속성이 뒤섞였다.
+      선택지 2: 값 자리에 주소 FA08이, 주소 자리에 값 100이 들어가 서로 바뀌었다.
+      선택지 3: 이름 k, 타입 정수, 값 100, 주소 FA08이 모두 올바른 자리에 있으므로 정답이다.
+      선택지 4: 타입 자리에 값이, 값 자리에 주소가, 주소 자리에 타입이 들어가 틀렸다.
+
+      핵심 개념:
+      배런 표기법은 이름 – 타입 – 값을 연결하고 값 위에 주소를 적어 변수의 네 속성을 표현한다.
+      원본 도식에서 이름은 타원, 타입은 육각형, 값은 사각형이다. 이 앱의 그림에서는 이름을 원, 타입과 값을 사각형으로 단순화했다.
+      int k := 100은 이름 k, 타입 정수, 값 100이며 주소는 메모리 그림의 FA08이다.
+      주소와 값을 혼동하지 않는 것이 핵심이다.
+    tags: [barron-notation, variable-attributes]
+
+  - id: e17-12
+    type: multiple-choice
+    chapter: 7
+    prompt: 이름에 어떤 속성을 연결하는 과정을 의미하는 용어는?
+    choices:
+      - { id: '1', text: 컴파일 }
+      - { id: '2', text: 스칼라 }
+      - { id: '3', text: 바인딩 }
+      - { id: '4', text: 인터프리트 }
+    answers: ['3']
+    explanation: |
+      선택지 1: 컴파일은 고급 언어 프로그램을 기계어로 번역하는 과정이다.
+      선택지 2: 스칼라는 하나의 값만 갖는 단순 자료(정수, 실수 등)를 가리키는 말이다.
+      선택지 3: 바인딩은 이름(변수, 서브프로그램 등)에 타입, 주소, 값 같은 속성을 연결하는 과정이므로 정답이다.
+      선택지 4: 인터프리트는 프로그램을 번역하지 않고 직접 실행하는 방식이다.
+
+      핵심 개념:
+      바인딩(binding)은 프로그램 요소와 그 속성을 연결하는 것이다.
+      바인딩이 일어나는 시점을 바인딩 시간이라 하며 언어 정의·구현·번역·실행 시간 등이 있다.
+      실행 전에 이루어지면 정적 바인딩, 실행 중에 이루어지면 동적 바인딩이다.
+      변수는 이름에 타입, 주소, 값이 차례로 바인딩된다.
+    tags: [binding]
+
+  - id: e17-13
+    type: multiple-choice
+    chapter: 12
+    prompt: 프로그램에서 조건에 따라 실행되는 부분이 달라질 때 사용하는 문장은?
+    choices:
+      - { id: '1', text: 할당문 }
+      - { id: '2', text: 조건문 }
+      - { id: '3', text: 반복문 }
+      - { id: '4', text: 상수문 }
+    answers: ['2']
+    explanation: |
+      선택지 1: 할당문은 수식의 값을 변수에 저장하는 문장이다.
+      선택지 2: 조건문(if, case/switch)은 조건의 참/거짓에 따라 서로 다른 부분을 실행하므로 정답이다.
+      선택지 3: 반복문은 조건이 만족되는 동안 같은 부분을 되풀이해 실행한다.
+      선택지 4: 상수문은 제어 구조를 나타내는 문장 종류가 아니다.
+
+      핵심 개념:
+      문장은 크게 선언문과 실행문으로 나뉜다.
+      실행문에는 할당문, 조건문, 반복문, 분기문 등이 있다.
+      조건문은 선택 구조, 반복문은 반복 구조를 만든다.
+      조건문의 중첩에서는 else의 소속을 정하는 규칙이 필요하다.
+    tags: [conditional-statement]
+
+  - id: e17-14
+    type: multiple-choice
+    chapter: 10
+    prompt: 원소를 식별자로 구별하는 이질형 자료의 집합체는?
+    choices:
+      - { id: '1', text: 배열 }
+      - { id: '2', text: 연상배열 }
+      - { id: '3', text: 레코드 }
+      - { id: '4', text: 포인터 }
+    answers: ['3']
+    explanation: |
+      선택지 1: 배열은 같은 형(동질형)의 원소를 모아 첨자로 구별한다.
+      선택지 2: 연상배열은 원소를 키로 접근하는 순서 없는 집합체이다.
+      선택지 3: 레코드는 서로 다른 형(이질형)의 원소를 필드 이름(식별자)으로 구별하는 집합체이므로 정답이다.
+      선택지 4: 포인터는 다른 자료의 주소를 값으로 갖는 형이다.
+
+      핵심 개념:
+      복합 자료형에는 배열, 레코드(구조체), 공용체, 연상배열, 포인터 등이 있다.
+      배열은 동질형 원소를 위치(첨자)로, 레코드는 이질형 원소를 필드명으로 접근한다.
+      C의 struct, Pascal의 record가 레코드에 해당한다.
+      공용체는 여러 필드가 같은 기억 장소를 공유한다는 점에서 레코드와 다르다.
+    tags: [record, composite-type]
+
+  - id: e17-15
+    type: multiple-choice
+    chapter: 9
+    prompt: 자료형에 대한 동적 형 검사는 언제 수행되는가?
+    choices:
+      - { id: '1', text: 언어의 정의 시간 }
+      - { id: '2', text: 언어의 구현 시간 }
+      - { id: '3', text: 컴파일 시간 }
+      - { id: '4', text: 실행 시간 }
+    answers: ['4']
+    explanation: |
+      선택지 1: 언어 정의 시간에는 어떤 자료형이 있는지 등이 정해질 뿐 형 검사가 이루어지지 않는다.
+      선택지 2: 언어 구현 시간에는 자료형의 기계 표현 등이 정해진다.
+      선택지 3: 컴파일 시간에 하는 형 검사는 정적 형 검사이다.
+      선택지 4: 동적 형 검사는 프로그램이 실행되는 동안 값의 형을 확인하므로 정답이다.
+
+      핵심 개념:
+      형 검사는 연산이나 대입에 쓰인 값의 형이 올바른지 확인하는 과정이다.
+      정적 형 검사는 컴파일 시간에 선언 정보를 이용해 수행한다.
+      동적 형 검사는 실행 시간에 값에 붙은 형 정보를 확인해 수행한다.
+      동적 바인딩을 쓰는 언어는 동적 형 검사가 필요하며 실행 속도가 느려진다.
+    tags: [type-checking, dynamic-type-checking]
+
+  - id: e17-16
+    type: multiple-choice
+    chapter: 8
+    prompt: 프로그램에서 사용되는 식별자가 의미를 가질 수 있는 범위를 일컫는 용어는?
+    choices:
+      - { id: '1', text: 할당 }
+      - { id: '2', text: 영역 }
+      - { id: '3', text: 수명 }
+      - { id: '4', text: 링크 }
+    answers: ['2']
+    explanation: |
+      선택지 1: 할당은 변수에 기억 장소를 배정하거나 값을 저장하는 것이다.
+      선택지 2: 영역(scope)은 식별자가 유효하게 참조될 수 있는 프로그램의 범위이므로 정답이다.
+      선택지 3: 수명(lifetime)은 변수가 기억 장소를 차지하고 존재하는 실행 시간의 구간이다.
+      선택지 4: 링크는 활성화 레코드 사이를 연결하는 포인터(정적·동적 링크) 등을 뜻한다.
+
+      핵심 개념:
+      영역은 프로그램 텍스트상의 공간적 범위, 수명은 실행 중 시간적 범위이다.
+      영역 규칙은 이름의 사용이 어느 선언을 가리키는지 결정한다.
+      정적 영역 규칙은 블록 중첩 구조, 동적 영역 규칙은 호출 순서를 기준으로 한다.
+      영역과 수명은 일치하지 않을 수 있다(예: C의 static 지역 변수).
+    tags: [scope, lifetime]
+
+  - id: e17-17
+    type: multiple-choice
+    chapter: 8
+    prompt: 자유 변수에 대한 설명으로 바른 것은?
+    choices:
+      - { id: '1', text: 현 블록에서 정의된 변수 }
+      - { id: '2', text: 정적 영역 규칙에서는 현 블록을 내포하고 있는 가장 바깥쪽의 블록부터 조사 }
+      - { id: '3', text: 동적 영역 규칙에서는 프로그램의 실행 순서로 해결 }
+      - { id: '4', text: 선언을 찾지 못하면 0으로 초기화 }
+    answers: ['3']
+    explanation: |
+      선택지 1: 자유 변수는 현 블록에서 정의되지 않은 채 사용되는 변수이다. 현 블록에서 정의된 변수는 지역 변수이다.
+      선택지 2: 정적 영역 규칙은 현 블록을 감싼 블록 중 가장 안쪽(가까운) 블록부터 바깥쪽으로 조사한다.
+      선택지 3: 동적 영역 규칙에서는 서브프로그램이 호출된 실행 순서를 거슬러 올라가며 자유 변수의 선언을 찾으므로 정답이다.
+      선택지 4: 선언을 찾지 못하면 오류로 처리하며 0으로 초기화하지 않는다.
+
+      핵심 개념:
+      자유 변수는 사용되는 블록 안에 선언이 없는 변수이다.
+      영역 규칙은 자유 변수가 어느 선언을 가리키는지 결정한다.
+      정적 영역 규칙은 가장 가까운 바깥 블록부터 텍스트 구조를 따라 찾는다.
+      동적 영역 규칙은 가장 최근에 호출된 서브프로그램부터 호출 순서를 따라 찾는다.
+    tags: [free-variable, scope-rule]
+
+  - id: e17-18
+    type: multiple-choice
+    chapter: 8
+    prompt: C 언어에서 외부 파일에 있는 변수를 연결하여 사용할 수 있도록 하는 명령어는?
+    choices:
+      - { id: '1', text: extern }
+      - { id: '2', text: static }
+      - { id: '3', text: float }
+      - { id: '4', text: void }
+    answers: ['1']
+    explanation: |
+      선택지 1: extern은 다른 파일에서 정의된 전역 변수나 함수를 현재 파일에서 참조하겠다고 선언하는 키워드이므로 정답이다.
+      선택지 2: static은 변수의 수명을 프로그램 전체로 늘리거나, 전역 변수의 영역을 해당 파일 안으로 제한한다.
+      선택지 3: float는 실수 자료형 키워드이다.
+      선택지 4: void는 반환값이 없음이나 형이 정해지지 않은 포인터를 나타내는 키워드이다.
+
+      핵심 개념:
+      C는 여러 파일로 나뉜 프로그램에서 이름의 영역을 extern과 static으로 조절한다.
+      extern 선언은 기억 장소를 새로 만들지 않고 다른 곳의 정의를 참조한다.
+      static 전역 변수는 선언된 파일 안에서만 보인다.
+      이렇게 이름이 보이는 범위를 나누는 것은 이름 공간 관리의 한 방법이다.
+    tags: [extern, c-language, scope]
+
+  - id: e17-19
+    type: multiple-choice
+    chapter: 14
+    prompt: 단위 활성화에 대한 설명으로 바른 것은?
+    choices:
+      - { id: '1', text: '코드부, 실행부, 활성화 레코드로 구성' }
+      - { id: '2', text: 코드부의 내용은 프로그램의 실행 동안 변하지 않음 }
+      - { id: '3', text: 실행부는 고정된 크기임 }
+      - { id: '4', text: 지역 변수는 자신의 활성화 레코드에 저장되지 않음 }
+    answers: ['2']
+    explanation: |
+      선택지 1: 단위 활성화는 코드부와 활성화 레코드 두 부분으로 구성된다. 실행부라는 구성 요소는 없다.
+      선택지 2: 코드부에는 명령어가 들어 있어 실행 중에 바뀌지 않으므로 정답이다.
+      선택지 3: 실행부는 단위 활성화의 구성 요소가 아니다. 또한 활성화 레코드는 가변 크기 자료에 따라 크기가 달라질 수 있다.
+      선택지 4: 지역 변수는 해당 서브프로그램의 활성화 레코드에 저장된다.
+
+      핵심 개념:
+      서브프로그램이 실행되는 한 번의 단위를 단위 활성화라 한다.
+      단위 활성화는 변하지 않는 코드부와 실행 중 변하는 활성화 레코드로 이루어진다.
+      활성화 레코드에는 지역 변수, 매개변수, 복귀 주소, 정적·동적 링크 등이 저장된다.
+      재귀 호출이 가능하려면 호출마다 새 활성화 레코드가 만들어져야 한다.
+    tags: [unit-activation, activation-record]
+
+  - id: e17-20
+    type: multiple-choice
+    chapter: 14
+    prompt: 활성화 레코드에 대한 설명으로 바른 것은?
+    choices:
+      - { id: '1', text: 동적 링크는 호출한 단위 활성화로 되돌아갈 주소값을 저장하는 포인터로 코드부를 가리킴 }
+      - { id: '2', text: 반환 주소는 호출한 활성화 레코드를 가리키는 주소 }
+      - { id: '3', text: '매개변수, 정적링크 등을 포함' }
+      - { id: '4', text: 활성화 레코드의 크기는 변하지 않음 }
+    answers: ['3']
+    explanation: |
+      선택지 1: 동적 링크는 호출한 단위 활성화의 활성화 레코드를 가리키는 포인터이다. 코드부의 되돌아갈 위치를 저장하는 것은 반환 주소이다.
+      선택지 2: 반환 주소는 호출한 쪽 코드부에서 다음에 실행할 명령어의 위치이다. 호출한 활성화 레코드를 가리키는 것은 동적 링크이다. 1번과 설명이 서로 바뀌었다.
+      선택지 3: 활성화 레코드는 지역 변수, 매개변수, 반환 주소, 정적 링크, 동적 링크 등을 포함하므로 정답이다.
+      선택지 4: 가변 크기 배열 같은 자료가 있으면 활성화 레코드 크기가 호출마다 달라질 수 있다.
+
+      핵심 개념:
+      활성화 레코드는 서브프로그램 실행에 필요한 자료를 담는 기억 장소이다.
+      반환 주소는 호출자 코드의 복귀 지점, 동적 링크는 호출자의 활성화 레코드를 가리킨다.
+      정적 링크는 소스 코드상 자신을 감싼 블록의 활성화 레코드를 가리킨다.
+      스택 기반 구현에서는 호출 시 활성화 레코드를 쌓고 복귀 시 제거한다.
+    tags: [activation-record, dynamic-link, static-link]
+
+  - id: e17-21
+    type: multiple-choice
+    chapter: 14
+    prompt: 디스플레이 사용 기법에 대한 설명으로 바른 것은?
+    choices:
+      - { id: '1', text: 지역 변수들의 자료값에 대한 참조 시간을 줄이기 위한 구현 기법 }
+      - { id: '2', text: 정적 체인 사용 기법과 달리 어떤 지역 변수에 대한 참조 시간도 동일 }
+      - { id: '3', text: 디스플레이라는 1차원 가변 배열을 사용 }
+      - { id: '4', text: 지역 변수들의 사용이 증가할 경우 매력적 }
+    answers: ['3']
+    explanation: |
+      선택지 1: 디스플레이는 지역 변수가 아니라 비지역 변수의 참조 시간을 줄이기 위한 기법이다.
+      선택지 2: 참조 시간이 동일해지는 대상은 비지역 변수이다. 지역 변수는 원래 자신의 활성화 레코드에서 바로 찾는다.
+      선택지 3: 디스플레이 기법은 중첩 수준별 활성화 레코드 주소를 담는 1차원 가변 배열(디스플레이)을 사용하므로 정답이다.
+      선택지 4: 디스플레이가 매력적인 경우는 비지역 변수의 사용이 많을 때이다.
+
+      핵심 개념:
+      디스플레이는 정적 영역 규칙에서 비지역 변수를 빠르게 찾는 구현 기법이다.
+      디스플레이 배열의 i번째 원소는 중첩 수준 i의 활성화 레코드를 가리킨다.
+      비지역 변수는 디스플레이[수준] + 변위로 한 번에 접근하므로 참조 시간이 일정하다.
+      대신 서브프로그램 호출과 복귀 때 디스플레이를 갱신하는 비용이 든다.
+    tags: [display, nonlocal-variable]
+
+  - id: e17-22
+    type: multiple-choice
+    chapter: 13
+    prompt: 부프로그램이 실행되는 동안 호출자가 보내준 식 또는 다른 이름을 대신하여 그 프로그램에서 사용되는 이름을 일컫는 용어는?
+    choices:
+      - { id: '1', text: 실 매개변수 }
+      - { id: '2', text: 형식 매개변수 }
+      - { id: '3', text: 원본 매개변수 }
+      - { id: '4', text: 프로시저 }
+    answers: ['2']
+    explanation: |
+      선택지 1: 실 매개변수는 호출자가 호출문에서 실제로 보내는 식이나 변수이다.
+      선택지 2: 형식 매개변수는 부프로그램 정의부에서 호출자가 보낸 값이나 이름을 대신해 쓰는 이름이므로 정답이다.
+      선택지 3: 원본 매개변수는 교재에서 쓰는 용어가 아니다.
+      선택지 4: 프로시저는 반환값 없이 작업을 수행하는 부프로그램 자체를 가리킨다.
+
+      핵심 개념:
+      매개변수는 호출자와 부프로그램 사이에서 자료를 주고받는 수단이다.
+      형식 매개변수는 부프로그램 정의에 적힌 이름이고, 실 매개변수는 호출 시 넘기는 인수이다.
+      호출하면 실 매개변수와 형식 매개변수가 전달 방식(값, 참조, 이름 등)에 따라 연결된다.
+      부프로그램은 반환값이 있는 함수와 없는 프로시저로 나뉜다.
+    tags: [formal-parameter, actual-parameter]
+
+  - id: e17-23
+    type: multiple-choice
+    chapter: 13
+    passageRefs: [g17-exchange-01]
+    prompt: 참조호출을 사용하는 프로그래밍 언어에서 위 프로그램의 출력 결과는 무엇인가?
+    choices:
+      - { id: '1', text: '10 20' }
+      - { id: '2', text: '10 10' }
+      - { id: '3', text: '20 20' }
+      - { id: '4', text: '20 10' }
+    answers: ['4']
+    explanation: |
+      선택지 1: X, Y가 바뀌지 않은 결과로 값호출일 때의 출력이다.
+      선택지 2: 한 값만 덮어쓴 경우로 TEMP를 이용한 교환 과정과 맞지 않는다.
+      선택지 3: 2번과 마찬가지로 교환이 불완전할 때의 결과이다.
+      선택지 4: 참조호출에서는 형식 매개변수 X, Y가 main의 X, Y와 같은 기억 장소를 가리키므로 EXCHANGE가 실제로 값을 교환한다. 출력은 20 10이므로 정답이다.
+
+      핵심 개념:
+      참조호출은 실 매개변수의 주소를 넘겨 부프로그램이 호출자의 변수를 직접 바꾸게 한다.
+      EXCHANGE는 TEMP를 이용해 두 값을 교환하는 부프로그램이다.
+      참조호출이면 교환 결과가 main에 반영되어 X = 20, Y = 10이 된다.
+      이름이 같아도 main의 X, Y와 EXCHANGE의 X, Y는 서로 다른 영역의 이름이다.
+    tags: [call-by-reference, parameter-passing]
+
+  - id: e17-24
+    type: multiple-choice
+    chapter: 13
+    passageRefs: [g17-exchange-01]
+    prompt: 값호출을 사용하는 프로그래밍 언어에서 위 프로그램의 출력 결과는 무엇인가?
+    choices:
+      - { id: '1', text: '10 20' }
+      - { id: '2', text: '10 10' }
+      - { id: '3', text: '20 20' }
+      - { id: '4', text: '20 10' }
+    answers: ['1']
+    explanation: |
+      선택지 1: 값호출에서는 main의 X, Y 값이 복사되어 전달될 뿐이라 EXCHANGE 안에서 교환해도 main의 X, Y는 10, 20 그대로이다. 정답이다.
+      선택지 2: 한쪽 값만 덮어쓴 결과로 이 프로그램과 맞지 않는다.
+      선택지 3: 2번과 마찬가지로 나올 수 없는 결과이다.
+      선택지 4: 교환이 호출자에게 반영된 참조호출의 결과이다.
+
+      핵심 개념:
+      값호출은 실 매개변수의 값을 형식 매개변수에 복사한다.
+      형식 매개변수를 바꿔도 복사본만 바뀌므로 호출자 변수에는 영향이 없다.
+      그래서 값호출 방식의 EXCHANGE는 main의 변수를 교환하지 못한다.
+      교환 결과를 호출자에게 돌려주려면 참조호출이나 포인터 전달이 필요하다.
+    tags: [call-by-value, parameter-passing]
+
+  - id: e17-25
+    type: multiple-choice
+    chapter: 15
+    prompt: 한 개체가 두 가지 이상의 개념으로 사용되는 것을 의미하는 용어는?
+    choices:
+      - { id: '1', text: 별명 }
+      - { id: '2', text: 중복정의 }
+      - { id: '3', text: 부작용 }
+      - { id: '4', text: 포인터 }
+    answers: ['2']
+    explanation: |
+      선택지 1: 별명(alias)은 하나의 기억 장소를 두 개 이상의 이름으로 참조하는 것이다.
+      선택지 2: 중복정의(overloading)는 하나의 이름이나 연산자(개체)가 문맥에 따라 두 가지 이상의 의미로 쓰이는 것이므로 정답이다(예: +가 정수 덧셈과 문자열 연결에 모두 쓰임).
+      선택지 3: 부작용(side effect)은 함수가 값을 반환하는 것 외에 비지역 변수나 매개변수를 바꾸는 것이다.
+      선택지 4: 포인터는 다른 자료의 주소를 값으로 갖는 자료형이다.
+
+      핵심 개념:
+      중복정의는 같은 이름의 연산자나 서브프로그램을 매개변수 형이나 개수에 따라 다르게 정의하는 것이다.
+      컴파일러는 인수의 형을 보고 어떤 정의를 쓸지 결정한다.
+      중복정의는 다형성의 한 형태(임시 다형성)이다.
+      별명은 여러 이름이 한 개체를, 중복정의는 한 이름이 여러 개체를 가리킨다는 점에서 반대 개념이다.
+    tags: [overloading, polymorphism]

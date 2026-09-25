@@ -1,0 +1,87 @@
+subjectId: introduction-to-computer-science
+title: 컴퓨터과학개론
+textbook:
+  authors: [이관용, 정광식]
+  publisher: 한국방송통신대학교출판문화원
+  publishedAt: '2021-07-25'
+chapters:
+  - no: 1
+    title: 컴퓨터와 데이터
+    sections:
+      - { no: '1.1', title: 컴퓨터와 컴퓨터과학 }
+      - { no: '1.2', title: 컴퓨터 시스템 }
+      - { no: '1.3', title: 데이터 표현 }
+  - no: 2
+    title: 자료구조
+    sections:
+      - { no: '2.1', title: 기본 개념 }
+      - { no: '2.2', title: 배열 }
+      - { no: '2.3', title: 리스트 }
+      - { no: '2.4', title: 스택과 큐 }
+      - { no: '2.5', title: 트리 }
+      - { no: '2.6', title: 그래프 }
+  - no: 3
+    title: 알고리즘
+    sections:
+      - { no: '3.1', title: 알고리즘의 개념 }
+      - { no: '3.2', title: 알고리즘의 설계 }
+      - { no: '3.3', title: 알고리즘의 분석 }
+      - { no: '3.4', title: 정렬 알고리즘 }
+      - { no: '3.5', title: 탐색 알고리즘 }
+  - no: 4
+    title: 운영체제
+    sections:
+      - { no: '4.1', title: 운영체제의 개념 }
+      - { no: '4.2', title: 운영체제의 주기억장치 관리 }
+      - { no: '4.3', title: 프로세서 관리 }
+      - { no: '4.4', title: 장치 관리와 파일 관리 }
+  - no: 5
+    title: 컴퓨터 구조
+    sections:
+      - { no: '5.1', title: 컴퓨터 하드웨어의 기본 구성 }
+      - { no: '5.2', title: 불 대수와 논리 게이트 }
+      - { no: '5.3', title: 논리회로 }
+      - { no: '5.4', title: 기억장치 }
+      - { no: '5.5', title: 명령어 }
+      - { no: '5.6', title: 중앙처리장치 }
+      - { no: '5.7', title: 입출력장치 }
+      - { no: '5.8', title: 병렬처리 }
+  - no: 6
+    title: 프로그래밍 언어
+    sections:
+      - { no: '6.1', title: 개요 }
+      - { no: '6.2', title: 프로그래밍 언어의 분석과 변환 과정 }
+      - { no: '6.3', title: 프로그래밍 언어의 기본 공통 개념 }
+      - { no: '6.4', title: 변수의 수명 }
+      - { no: '6.5', title: 객체지향 프로그램 }
+  - no: 7
+    title: 데이터베이스
+    sections:
+      - { no: '7.1', title: 데이터베이스 개념 }
+      - { no: '7.2', title: 데이터베이스 시스템 }
+      - { no: '7.3', title: 데이터 모델링과 설계 }
+      - { no: '7.4', title: SQL }
+  - no: 8
+    title: 컴퓨터 네트워크
+    sections:
+      - { no: '8.1', title: 컴퓨터 네트워크의 개요 및 발전 역사 }
+      - { no: '8.2', title: 통신의 기초 }
+      - { no: '8.3', title: 컴퓨터 네트워크의 구성 }
+      - { no: '8.4', title: 네트워크 시스템의 계층적 구조 }
+      - { no: '8.5', title: 인터넷 }
+lectures:
+  - { no: 1, title: '컴퓨터와 자료 (1)', chapters: [1] }
+  - { no: 2, title: '컴퓨터와 자료 (2)', chapters: [1] }
+  - { no: 3, title: '자료구조 (1)', chapters: [2] }
+  - { no: 4, title: '자료구조 (2)', chapters: [2] }
+  - { no: 5, title: '알고리즘 (1)', chapters: [3] }
+  - { no: 6, title: '알고리즘 (2)', chapters: [3] }
+  - { no: 7, title: '운영체제 (1)', chapters: [4] }
+  - { no: 8, title: '운영체제 (2)', chapters: [4] }
+  - { no: 9, title: '컴퓨터 구조 (1)', chapters: [5] }
+  - { no: 10, title: '컴퓨터 구조 (2)', chapters: [5] }
+  - { no: 11, title: '프로그래밍 언어 (1)', chapters: [6] }
+  - { no: 12, title: '프로그래밍 언어 (2)', chapters: [6] }
+  - { no: 13, title: '데이터베이스 (1)', chapters: [7] }
+  - { no: 14, title: '데이터베이스 (2)', chapters: [7] }
+  - { no: 15, title: '컴퓨터 네트워크', chapters: [8] }
