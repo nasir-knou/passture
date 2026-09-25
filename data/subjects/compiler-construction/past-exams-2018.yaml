@@ -347,13 +347,13 @@ questions:
       - { id: '1', text: 'a' }
       - { id: '2', text: 'a, b' }
       - { id: '3', text: 'a, b, ε' }
-      - { id: '4', text: 'a, b, $' }
+      - { id: '4', text: 'a, b, \$' }
     answers: ['2']
     explanation: |
       선택지 1: A → SbA, A → SS에서 First(S) = {a}를 얻지만 A → ba의 b가 빠져 있다.
       선택지 2: A → SbA, A → SS에서 First(S) = {a}, A → ba에서 b를 얻으므로 First(A) = {a, b}이다.
       선택지 3: A와 S 모두 ε을 유도하지 않으므로 ε은 포함되지 않는다.
-      선택지 4: 입력 끝 표시(＄)는 FIRST 집합에 들어가지 않는다.
+      선택지 4: 입력 끝 표시(\$)는 FIRST 집합에 들어가지 않는다.
 
       핵심 개념:
       FIRST(A)는 A의 각 생성규칙 오른쪽의 첫 기호를 기준으로 구한다.
@@ -371,13 +371,13 @@ questions:
       - { id: '1', text: 'a' }
       - { id: '2', text: 'b' }
       - { id: '3', text: 'a, b' }
-      - { id: '4', text: 'a, b, $' }
+      - { id: '4', text: 'a, b, \$' }
     answers: ['1']
     explanation: |
       선택지 1: S → aAS에서 A 뒤에 S가 오므로 First(S) = {a}가 Follow(A)에 들어간다. A → SbA에서는 A가 끝에 있어 Follow(A) 자신만 더하므로 Follow(A) = {a}이다.
       선택지 2: b는 A → SbA에서 S 바로 뒤에 오므로 Follow(S)의 원소이다.
       선택지 3: b는 A 뒤에 올 수 없으므로 포함되지 않는다.
-      선택지 4: A 뒤에는 항상 S가 오므로 입력 끝 표시(＄)도 Follow(A)에 들어가지 않는다.
+      선택지 4: A 뒤에는 항상 S가 오므로 입력 끝 표시(\$)도 Follow(A)에 들어가지 않는다.
 
       핵심 개념:
       FOLLOW(A)는 생성규칙 오른쪽에서 A 바로 뒤에 오는 기호들의 FIRST로 구한다.
@@ -571,7 +571,7 @@ questions:
       - { id: '4', text: 'E → E+E' }
     answers: ['1']
     explanation: |
-      선택지 1: 0단계에서 입력의 첫 기호 id를 스택으로 옮기므로 shift id이다. 1단계 스택 ＄id와 일치한다.
+      선택지 1: 0단계에서 입력의 첫 기호 id를 스택으로 옮기므로 shift id이다. 1단계 스택 \$id와 일치한다.
       선택지 2: E → id는 스택 꼭대기의 id를 환원하는 동작이다.
       선택지 3: E → E * E는 스택에 E * E가 있을 때의 환원이다.
       선택지 4: E → E+E는 스택에 E + E가 있을 때의 환원이다.
@@ -596,7 +596,7 @@ questions:
     answers: ['2']
     explanation: |
       선택지 1: id는 shift 대상이며 reduce 동작의 내용이 아니다.
-      선택지 2: 스택 꼭대기 id가 핸들이므로 E → id로 환원해 스택이 ＄E가 된다.
+      선택지 2: 스택 꼭대기 id가 핸들이므로 E → id로 환원해 스택이 \$E가 된다.
       선택지 3: 스택에 E * E가 없으므로 환원할 수 없다.
       선택지 4: 스택에 E + E가 없으므로 환원할 수 없다.
 
@@ -622,7 +622,7 @@ questions:
       선택지 1: 입력이 모두 소비되어 shift할 기호가 없다.
       선택지 2: 스택 꼭대기가 id가 아니므로 E → id 환원이 아니다.
       선택지 3: 스택 꼭대기 세 기호는 E + E이므로 E * E로 환원할 수 없다.
-      선택지 4: 8단계 스택 ＄E*E+E의 꼭대기 E + E가 핸들이므로 E → E+E로 환원한다. 9단계 스택이 ＄E*E가 된다.
+      선택지 4: 8단계 스택 \$E*E+E의 꼭대기 E + E가 핸들이므로 E → E+E로 환원한다. 9단계 스택이 \$E*E가 된다.
 
       핵심 개념:
       5단계에서 E * E를 환원하지 않고 +를 shift했기 때문에 +가 나중에 들어온 연산이 먼저 환원된다.
@@ -645,7 +645,7 @@ questions:
     explanation: |
       선택지 1: 입력이 남아 있지 않아 shift할 수 없다.
       선택지 2: 스택 꼭대기가 id가 아니다.
-      선택지 3: 9단계 스택 ＄E*E 전체가 핸들이므로 E → E * E로 환원하고, 10단계에서 E만 남아 accept한다.
+      선택지 3: 9단계 스택 \$E*E 전체가 핸들이므로 E → E * E로 환원하고, 10단계에서 E만 남아 accept한다.
       선택지 4: E + E는 이미 8단계에서 환원되었다.
 
       핵심 개념:
@@ -818,7 +818,7 @@ questions:
 
       핵심 개념:
       I₂ = {[E → T·], [T → T·*F]}는 *에서 shift, FOLLOW(E)에서 reduce를 가진다.
-      FOLLOW(E) = { +, ), ＄ }에는 *가 없으므로 충돌이 없다.
+      FOLLOW(E) = { +, ), \$ }에는 *가 없으므로 충돌이 없다.
       SLR은 FOLLOW로 reduce 위치를 제한해 shift/reduce 충돌을 줄인다.
       그래서 이 식 문법은 SLR(1) 문법이다.
     tags: [slr-parsing-table]
@@ -862,11 +862,11 @@ questions:
       선택지 1: S6은 상태 2에서 c를 읽을 때의 동작으로 이미 표에 있다.
       선택지 2: I2에서 d를 읽으면 I7로 전이하므로 ACTION[2, d] = S7이다.
       선택지 3: r3(C → d)은 I4, I7처럼 완료 항목 [C → d·]가 있는 상태에서 나온다.
-      선택지 4: acc는 [S′ → S·, ＄]가 있는 상태 1에서만 나온다.
+      선택지 4: acc는 [S′ → S·, \$]가 있는 상태 1에서만 나온다.
 
       핵심 개념:
       CLR 파싱표의 shift 항목은 LR(1) 항목 집합 사이의 터미널 전이에서 얻는다.
-      I2의 항목들은 lookahead가 ＄이므로 두 번째 C를 분석하는 상태이다.
+      I2의 항목들은 lookahead가 \$이므로 두 번째 C를 분석하는 상태이다.
       같은 d라도 I0·I3에서는 I4, I2·I6에서는 I7로 전이한다.
       lookahead가 다른 상태를 구분하는 것이 CLR의 특징이다.
     tags: [clr-parsing-table]
@@ -883,14 +883,14 @@ questions:
       - { id: '4', text: 'r7' }
     answers: ['1']
     explanation: |
-      선택지 1: I7 = {[C → d·, ＄]}는 lookahead ＄에서 C → d(3번 규칙)로 환원한다. ACTION[7, ＄] = r3이다.
+      선택지 1: I7 = {[C → d·, \$]}는 lookahead \$에서 C → d(3번 규칙)로 환원한다. ACTION[7, \$] = r3이다.
       선택지 2: 이 문법의 규칙은 S → CC, C → cC, C → d 세 개뿐이므로 r5는 없다.
       선택지 3: r6도 존재하지 않는 규칙 번호이다.
       선택지 4: r7은 규칙 번호가 아니다. S7(shift 7)과 혼동하지 않아야 한다.
 
       핵심 개념:
       CLR에서 완료 항목 [A → α·, a]는 lookahead a 칸에만 reduce를 넣는다.
-      I4는 lookahead c/d, I7은 ＄이므로 같은 C → d라도 reduce 위치가 다르다.
+      I4는 lookahead c/d, I7은 \$이므로 같은 C → d라도 reduce 위치가 다르다.
       reduce 번호 rk의 k는 규칙 번호, shift 번호 Sj의 j는 상태 번호이다.
       규칙 번호는 1) S → CC, 2) C → cC, 3) C → d이다.
     tags: [clr-parsing-table, lr1-items]
@@ -962,7 +962,7 @@ questions:
 
       핵심 개념:
       같은 기호 c라도 현재 상태에 따라 shift 대상 상태가 다르다.
-      상태 2는 두 번째 C를 분석하는 상태이므로 lookahead ＄를 가진 I6으로 간다.
+      상태 2는 두 번째 C를 분석하는 상태이므로 lookahead \$를 가진 I6으로 간다.
       CLR 파싱표는 상태와 입력의 조합마다 하나의 동작을 가진다.
       분석 표의 다음 단계 스택으로 답을 검증할 수 있다.
     tags: [lr-parsing]
@@ -985,7 +985,7 @@ questions:
       선택지 4: 스택 꼭대기 상태 6에서 입력 d를 보면 ACTION[6, d] = S7이므로 shift 7이다. 다음 스택 0C2c6d7과 일치한다.
 
       핵심 개념:
-      I6은 [C → c·C, ＄] 등을 가진 상태로 d에서 I7로 전이한다.
+      I6은 [C → c·C, \$] 등을 가진 상태로 d에서 I7로 전이한다.
       이후 상태 7에서 입력 끝 표시를 보고 reduce 3, GOTO[6, C] = 9로 진행한다.
       상태 9에서 reduce 2, 상태 5에서 reduce 1을 거쳐 accept한다.
       분석 과정 전체가 파싱표의 칸을 차례로 읽는 것이다.
@@ -995,7 +995,7 @@ questions:
     type: multiple-choice
     chapter: 5
     passageRefs: [g18-ll-01, g18-ll-table-01]
-    prompt: 다음은 Top-Down 구문분석에서 predictive 파싱표를 구성하는 과정이다. FOLLOW(E′) = { ), $ }로부터 빈칸 ‘가’에 알맞은 내용은?
+    prompt: 다음은 Top-Down 구문분석에서 predictive 파싱표를 구성하는 과정이다. FOLLOW(E′) = { ), \$ }로부터 빈칸 ‘가’에 알맞은 내용은?
     choices:
       - { id: '1', text: 'E′ → ε' }
       - { id: '2', text: 'E → TE′' }
@@ -1019,7 +1019,7 @@ questions:
     type: multiple-choice
     chapter: 5
     passageRefs: [g18-ll-01, g18-ll-table-01]
-    prompt: FOLLOW(E′) = { ), $ }로부터 빈칸 ‘나’에 알맞은 내용은?
+    prompt: FOLLOW(E′) = { ), \$ }로부터 빈칸 ‘나’에 알맞은 내용은?
     choices:
       - { id: '1', text: 'E′ → ε' }
       - { id: '2', text: 'E → TE′' }
@@ -1034,7 +1034,7 @@ questions:
 
       핵심 개념:
       ε-규칙은 FOLLOW 집합의 모든 터미널 칸에 넣는다.
-      FOLLOW(E′) = FOLLOW(E) = { ), ＄ }이므로 두 칸 모두 E′ → ε이다.
+      FOLLOW(E′) = FOLLOW(E) = { ), \$ }이므로 두 칸 모두 E′ → ε이다.
       파싱표의 한 칸에 규칙이 하나씩만 있으면 LL(1) 문법이다.
       이 식 문법은 left recursion을 제거해 LL(1)이 되었다.
     tags: [predictive-parsing, ll1-parsing-table]

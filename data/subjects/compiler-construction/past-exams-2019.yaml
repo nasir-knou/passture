@@ -355,13 +355,13 @@ questions:
       - { id: '1', text: 'a' }
       - { id: '2', text: 'a, b' }
       - { id: '3', text: 'a, b, ε' }
-      - { id: '4', text: 'a, b, $' }
+      - { id: '4', text: 'a, b, \$' }
     answers: ['2']
     explanation: |
       선택지 1: A → SbA, A → SS에서 First(S) = {a}가 들어가지만 A → b의 b가 빠져 있다.
       선택지 2: A → SbA와 A → SS에서 First(S) = {a}, A → b에서 b를 얻으므로 First(A) = {a, b}이다.
       선택지 3: A나 S에는 ε-생성규칙이 없으므로 ε은 First(A)에 포함되지 않는다.
-      선택지 4: 입력 끝 표시(＄)는 FOLLOW 집합에만 들어가며 FIRST 집합의 원소가 아니다.
+      선택지 4: 입력 끝 표시(\$)는 FOLLOW 집합에만 들어가며 FIRST 집합의 원소가 아니다.
 
       핵심 개념:
       FIRST(X)는 X로부터 유도되는 문자열의 첫 터미널 기호들의 집합이다.
@@ -378,20 +378,20 @@ questions:
     choices:
       - { id: '1', text: 'a' }
       - { id: '2', text: 'a, b' }
-      - { id: '3', text: 'a, b, $' }
-      - { id: '4', text: 'ε, a, b, $' }
+      - { id: '3', text: 'a, b, \$' }
+      - { id: '4', text: 'ε, a, b, \$' }
     answers: ['1']
     explanation: |
       선택지 1: S → aAS에서 A 뒤에 S가 오므로 First(S) = {a}가 Follow(A)에 들어간다. A → SbA는 A가 끝에 있어 Follow(A) 자신을 더할 뿐이므로 Follow(A) = {a}이다.
       선택지 2: b는 A → SbA에서 S 뒤에 오는 기호이므로 Follow(S)에 들어가며 Follow(A)와는 관계없다.
-      선택지 3: 입력 끝 표시(＄)는 A가 시작기호 S의 오른쪽 끝에 올 때 들어가는데, S → aAS에서 A 뒤에는 항상 S가 온다.
+      선택지 3: 입력 끝 표시(\$)는 A가 시작기호 S의 오른쪽 끝에 올 때 들어가는데, S → aAS에서 A 뒤에는 항상 S가 온다.
       선택지 4: ε은 FOLLOW 집합에 들어가지 않는다.
 
       핵심 개념:
       FOLLOW(A)는 문장형에서 A 바로 뒤에 나타날 수 있는 터미널의 집합이다.
       B → αAβ이면 FIRST(β)에서 ε을 뺀 것을 FOLLOW(A)에 넣는다.
       B → αA이거나 β가 ε을 유도하면 FOLLOW(B)를 FOLLOW(A)에 넣는다.
-      시작기호의 FOLLOW에는 입력 끝 표시(＄)를 넣는다.
+      시작기호의 FOLLOW에는 입력 끝 표시(\$)를 넣는다.
     tags: [follow-set]
 
   - id: e19-06
@@ -579,7 +579,7 @@ questions:
       - { id: '4', text: 'E → E-E' }
     answers: ['1']
     explanation: |
-      선택지 1: 0단계에서 스택은 비어 있고 입력의 첫 기호가 id이므로 shift id를 수행한다. 1단계 스택이 $id인 것과 일치한다.
+      선택지 1: 0단계에서 스택은 비어 있고 입력의 첫 기호가 id이므로 shift id를 수행한다. 1단계 스택이 \$id인 것과 일치한다.
       선택지 2: E → id는 스택 꼭대기에 id가 있을 때 하는 reduce 동작으로, shift 대상이 아니다.
       선택지 3: E → E * E는 스택에 E * E가 있을 때의 환원 규칙이다.
       선택지 4: E → E-E는 스택에 E - E가 있을 때의 환원 규칙이다.
@@ -604,7 +604,7 @@ questions:
     answers: ['2']
     explanation: |
       선택지 1: id는 shift할 때 적는 입력 기호이며 reduce 동작의 내용이 아니다.
-      선택지 2: 1단계 스택 ＄id의 꼭대기 id가 핸들이므로 E → id로 환원한다. 2단계 스택이 ＄E가 된 것과 일치한다.
+      선택지 2: 1단계 스택 \$id의 꼭대기 id가 핸들이므로 E → id로 환원한다. 2단계 스택이 \$E가 된 것과 일치한다.
       선택지 3: 스택에 E * E가 없으므로 E → E * E로 환원할 수 없다.
       선택지 4: 스택에 E - E가 없으므로 E → E-E로 환원할 수 없다.
 
@@ -629,7 +629,7 @@ questions:
     explanation: |
       선택지 1: 8단계에서 입력은 이미 모두 소비되어 shift할 기호가 없다.
       선택지 2: 스택 꼭대기가 id가 아니라 E이므로 E → id로 환원할 수 없다.
-      선택지 3: 8단계 스택 ＄E-E*E의 꼭대기 E * E가 핸들이므로 E → E * E로 환원한다. 9단계 스택이 ＄E-E가 된 것과 일치한다.
+      선택지 3: 8단계 스택 \$E-E*E의 꼭대기 E * E가 핸들이므로 E → E * E로 환원한다. 9단계 스택이 \$E-E가 된 것과 일치한다.
       선택지 4: E - E 환원은 E * E를 먼저 환원한 다음 단계(9단계)에서 일어난다.
 
       핵심 개념:
@@ -654,7 +654,7 @@ questions:
       선택지 1: 9단계에서도 입력이 남아 있지 않아 shift할 수 없다.
       선택지 2: 스택 꼭대기가 id가 아니므로 E → id 환원이 아니다.
       선택지 3: E * E는 이미 8단계에서 환원되어 스택에 남아 있지 않다.
-      선택지 4: 9단계 스택 ＄E-E 전체가 핸들이므로 E → E-E로 환원하고, 10단계에서 스택에 E만 남아 accept한다.
+      선택지 4: 9단계 스택 \$E-E 전체가 핸들이므로 E → E-E로 환원하고, 10단계에서 스택에 E만 남아 accept한다.
 
       핵심 개념:
       shift-reduce 구문분석은 입력이 끝난 뒤에도 스택에 남은 핸들을 차례로 환원한다.
@@ -900,7 +900,7 @@ questions:
       CLR에서 완료 항목 [A → α·, a]는 lookahead a에 대해서만 reduce를 넣는다.
       SLR이 FOLLOW 전체에 reduce를 넣는 것과 다른 점이다.
       규칙 번호는 1) S → CC, 2) C → cC, 3) C → d이다.
-      I8은 lookahead가 c/d, I9는 ＄이므로 reduce 위치가 서로 다르다.
+      I8은 lookahead가 c/d, I9는 \$이므로 reduce 위치가 서로 다르다.
     tags: [clr-parsing-table, lr1-items]
 
   - id: e19-27
@@ -1011,7 +1011,7 @@ questions:
       - { id: '4', text: 'E′ → +TE′' }
     answers: ['1']
     explanation: |
-      선택지 1: E′ → ε는 FOLLOW(E′) = { ), ＄ }의 각 터미널에 넣는다. 따라서 [E′, )] = E′ → ε이다.
+      선택지 1: E′ → ε는 FOLLOW(E′) = { ), \$ }의 각 터미널에 넣는다. 따라서 [E′, )] = E′ → ε이다.
       선택지 2: E → TE′는 E 행의 FIRST(TE′) = { (, id } 칸에 들어간다.
       선택지 3: F → (E)는 F 행의 ( 칸에 들어간다.
       선택지 4: E′ → +TE′는 FIRST(+TE′) = {+}이므로 E′ 행의 + 칸에 들어가며 이미 표에 있다.
@@ -1043,7 +1043,7 @@ questions:
       핵심 개념:
       ε-규칙은 FIRST가 아니라 FOLLOW를 기준으로 파싱표에 넣는다.
       E′는 식의 끝에서 사라져야 하므로 ) 와 입력 끝 표시에서 E′ → ε를 적용한다.
-      T′ → ε도 같은 원리로 FOLLOW(T′) = { +, ), ＄ } 칸에 들어간다.
+      T′ → ε도 같은 원리로 FOLLOW(T′) = { +, ), \$ } 칸에 들어간다.
       FIRST와 FOLLOW를 정확히 구하는 것이 LL(1) 파싱표 구성의 핵심이다.
     tags: [predictive-parsing, ll1-parsing-table]
 
