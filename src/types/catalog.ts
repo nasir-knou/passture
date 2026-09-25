@@ -10,6 +10,7 @@ export interface CatalogSubject {
   id: string;
   title: string;
   semester: Semester;
+  syllabus?: string;
   sources: CatalogSource[];
 }
 

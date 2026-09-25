@@ -58,6 +58,50 @@ describe('data validation', () => {
     ).toThrow(/missing passage/);
   });
 
+  it('rejects choices whose unquoted text was split on commas', () => {
+    expect(() =>
+      validateQuestionFile(
+        {
+          subjectId: 'operating-systems',
+          sourceId: 'past-exams-2019',
+          title: '운영체제 2019 기출',
+          kind: 'exam',
+          year: 2019,
+          questions: [
+            {
+              ...validQuestion('e19-01'),
+              choices: [
+                { id: '1', text: '$(4', '2': null, '1)$': null },
+                { id: '2', text: '문서 편집' },
+              ],
+            },
+          ],
+        },
+        'operating-systems',
+        examSource,
+      ),
+    ).toThrow(/unknown keys/);
+  });
+
+  it('rejects math that KaTeX cannot parse', () => {
+    expect(() =>
+      validateQuestionFile(
+        {
+          subjectId: 'operating-systems',
+          sourceId: 'past-exams-2019',
+          title: '운영체제 2019 기출',
+          kind: 'exam',
+          year: 2019,
+          questions: [
+            { ...validQuestion('e19-01'), prompt: '$\\\\begin{bmatrix}1&2\\end{bmatrix}$의 값은?' },
+          ],
+        },
+        'operating-systems',
+        examSource,
+      ),
+    ).toThrow(/invalid math/);
+  });
+
   it('rejects answers that are not choice IDs', () => {
     expect(() =>
       validateQuestionFile(

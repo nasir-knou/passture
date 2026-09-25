@@ -1,8 +1,10 @@
 import type { Catalog } from '../types/catalog';
 import type { QuestionFile } from '../types/question';
+import type { Syllabus } from '../types/syllabus';
 
 const catalogPath = 'data/catalog.json';
 const questionFileCache = new Map<string, Promise<QuestionFile>>();
+const syllabusCache = new Map<string, Promise<Syllabus>>();
 let catalogCache: Promise<Catalog> | undefined;
 
 export function loadCatalog(): Promise<Catalog> {
@@ -39,6 +41,22 @@ export function loadQuestionFile(path: string): Promise<QuestionFile> {
     throw error;
   });
   questionFileCache.set(path, request);
+  return request;
+}
+
+export function loadSyllabus(path: string): Promise<Syllabus> {
+  if (import.meta.env.DEV) {
+    return fetchYaml<Syllabus>(`data/${path.replace(/\.json$/, '.yaml')}`);
+  }
+
+  const cached = syllabusCache.get(path);
+
+  if (cached) {
+    return cached;
+  }
+
+  const request = fetchJson<Syllabus>(`data/${path}`);
+  syllabusCache.set(path, request);
   return request;
 }
 

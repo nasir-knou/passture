@@ -1,0 +1,711 @@
+subjectId: programming-languages
+sourceId: past-exams-2018
+title: 프로그래밍언어론 2018 기말
+kind: exam
+year: 2018
+
+passages:
+  - id: g18-declaration-start-01
+    type: code
+    language: c
+    highlights: ['a']
+    body: |
+      int start;
+  - id: g18-bnf-digit-01
+    type: code
+    language: text
+    body: |
+      <digit> ::= 0 | 1 | 2 | 3 | 4
+  - id: g18-syntax-diagram-ex-01
+    type: diagram
+    diagram:
+      type: simple-graph
+      width: 460
+      height: 150
+      nodes:
+        - { id: start, label: '<ex>', hideNode: true, x: 40, y: 60 }
+        - { id: split, label: split, hideNode: true, hideLabel: true, x: 110, y: 60 }
+        - { id: zero, label: '0', x: 280, y: 25, radius: 18 }
+        - { id: lp, label: '(', x: 170, y: 112, radius: 18 }
+        - { id: ex1, label: ex1, shape: box, width: 60, height: 32, radius: 30, x: 260, y: 112 }
+        - { id: rp, label: ')', x: 350, y: 112, radius: 18 }
+        - { id: join, label: join, hideNode: true, hideLabel: true, x: 410, y: 60 }
+        - { id: end, label: end, hideNode: true, hideLabel: true, x: 450, y: 60 }
+      edges:
+        - { from: start, to: split }
+        - { from: split, to: zero, directed: true }
+        - { from: split, to: lp, directed: true }
+        - { from: lp, to: ex1, directed: true }
+        - { from: ex1, to: rp, directed: true }
+        - { from: zero, to: join }
+        - { from: rp, to: join }
+        - { from: join, to: end, directed: true }
+  - id: g18-barron-float-code-01
+    type: code
+    language: text
+    body: |
+      float d := 3.14
+  - id: g18-barron-float-memory-01
+    type: diagram
+    diagram:
+      type: data-table
+      columns: ['주소', '메모리', '변수']
+      rows:
+        - ['⋮', '⋮', '-']
+        - ['FF00', '3.14', 'd']
+        - ['⋮', '⋮', '-']
+  - id: g18-swap-01
+    type: code
+    language: c
+    body: |
+      void SWAP (a, b)
+      {
+          int TEMP;
+          TEMP = a;
+          a = b;
+          b = TEMP;
+      }
+
+      main()
+      {
+          X = 7;
+          Y = 3;
+          SWAP (X, Y);
+          printf (X, Y);
+      }
+
+questions:
+  - id: e18-01
+    type: multiple-choice
+    chapter: 1
+    prompt: 프로그래밍 언어에 대한 설명으로 가장 적절한 것은?
+    choices:
+      - { id: '1', text: 컴퓨터와 사람이 모두 읽을 수 있는 언어 }
+      - { id: '2', text: 'C, Java 뿐만 아니라 한국어, 영어도 해당' }
+      - { id: '3', text: 프로그래머가 사용자에게 의사를 전달하는 방법 }
+      - { id: '4', text: 오랜 시간을 통해 형성된 비형식적인 표현 방법 }
+    answers: ['1']
+    explanation: |
+      선택지 1: 프로그래밍 언어는 사람이 작성하고 읽을 수 있으면서 컴퓨터도 해석·실행할 수 있는 언어이므로 정답이다.
+      선택지 2: 한국어, 영어는 자연어이다. 프로그래밍 언어는 C, Java처럼 컴퓨터가 처리하도록 형식이 정해진 인공 언어이다.
+      선택지 3: 프로그래밍 언어는 프로그래머가 컴퓨터에게 의사(명령)를 전달하는 수단이다. 전달 대상이 사용자가 아니다.
+      선택지 4: 오랜 시간 자연스럽게 형성된 비형식적 표현은 자연어의 특징이다. 프로그래밍 언어는 구문과 의미가 엄밀하게 정의된 형식 언어이다.
+
+      핵심 개념:
+      프로그래밍 언어는 사람과 컴퓨터가 모두 이해할 수 있도록 설계된 형식 언어이다.
+      프로그래머의 의도를 컴퓨터에게 전달하고, 다른 프로그래머와도 의사소통하게 한다.
+      자연어와 달리 모호성이 없도록 구문과 의미를 엄밀히 정의한다.
+      기계어·어셈블리어 같은 저급 언어와 C, Java 같은 고급 언어로 나눌 수 있다.
+    tags: [programming-language-definition]
+
+  - id: e18-02
+    type: multiple-choice
+    chapter: 3
+    prompt: 다음 중 객체 지향 언어의 개념을 설명한 것은?
+    choices:
+      - { id: '1', text: 순차적 명령의 수행을 기본 개념으로 하는 언어 }
+      - { id: '2', text: 무엇을 하려고 하는가를 선언하듯 기술하는 언어 }
+      - { id: '3', text: 자료형과 연산으로 이루어지는 객체에 기반하는 언어 }
+      - { id: '4', text: 알려진 값들을 함수에 적용하는 방식으로 프로그램을 기술하는 언어 }
+    answers: ['3']
+    explanation: |
+      선택지 1: 순차적 명령 수행을 기본으로 하는 것은 명령형(절차형) 언어이다.
+      선택지 2: 무엇을 하려는지 선언하듯 기술하는 것은 논리형(선언형) 언어이다.
+      선택지 3: 객체 지향 언어는 데이터(자료형)와 그 데이터를 다루는 연산을 하나로 묶은 객체를 기반으로 프로그램을 구성하므로 정답이다.
+      선택지 4: 값들을 함수에 적용하는 방식으로 프로그램을 기술하는 것은 함수형 언어이다.
+
+      핵심 개념:
+      프로그래밍 언어 패러다임은 명령형, 함수형, 논리형, 객체 지향으로 구분한다.
+      명령형은 상태를 바꾸는 명령의 순차 실행, 함수형은 함수 적용과 합성이 중심이다.
+      논리형은 사실과 규칙을 선언하고 질의로 답을 구한다(예: Prolog).
+      객체 지향은 데이터와 연산을 묶은 객체와 클래스, 상속, 다형성을 핵심으로 한다.
+    tags: [paradigm, object-oriented]
+
+  - id: e18-03
+    type: multiple-choice
+    chapter: 2
+    prompt: 프로그래밍 언어의 설계기준 중 프로그래밍 언어가 복잡한 과정이나 구조를 표현하는데 용이함을 의미하는 것은?
+    choices:
+      - { id: '1', text: 일반성 }
+      - { id: '2', text: 확장성 }
+      - { id: '3', text: 표현력 }
+      - { id: '4', text: 부분성 }
+    answers: ['3']
+    explanation: |
+      선택지 1: 일반성은 특별한 경우를 따로 두지 않고 관련 개념을 하나로 일반화해 적용할 수 있는 성질이다.
+      선택지 2: 확장성은 사용자가 언어에 새로운 기능(자료형, 연산 등)을 추가할 수 있는 성질이다.
+      선택지 3: 표현력은 복잡한 과정이나 구조를 쉽고 간결하게 표현할 수 있는 정도를 뜻하므로 정답이다.
+      선택지 4: 부분성은 언어의 일부만 이해해도 프로그램을 작성할 수 있는 성질이다.
+
+      핵심 개념:
+      프로그래밍 언어의 설계(평가) 기준에는 효율성, 일반성, 직교성, 정확성, 안전성, 표현력, 확장성, 부분성 등이 있다.
+      표현력은 복잡한 계산을 자연스럽게 나타낼 수 있는지를 본다.
+      일반성과 직교성은 규칙이 예외 없이 일관되게 조합되는지를 본다.
+      부분성은 초보자가 언어의 일부만으로도 프로그래밍할 수 있게 한다.
+    tags: [design-criteria, expressiveness]
+
+  - id: e18-04
+    type: multiple-choice
+    chapter: 1
+    passageRefs: [g18-declaration-start-01]
+    prompt: 다음 선언문에서 식별자 start의 세 번째 글자 'a'에 대한 설명으로 가장 올바른 것은?
+    choices:
+      - { id: '1', text: 문자 }
+      - { id: '2', text: 토큰 }
+      - { id: '3', text: 예약어 }
+      - { id: '4', text: 미리 정의된 식별자 }
+    answers: ['1']
+    explanation: |
+      선택지 1: start 안의 a는 프로그램을 이루는 가장 작은 단위인 문자이므로 정답이다.
+      선택지 2: 토큰은 문자들이 모여 의미를 갖는 최소 단위로, 이 문장에서는 int, start, ;가 토큰이다. a 한 글자는 토큰이 아니다.
+      선택지 3: 예약어는 int처럼 언어가 특별한 의미로 미리 정해 둔 단어이다.
+      선택지 4: 미리 정의된 식별자는 printf처럼 언어나 라이브러리가 미리 의미를 부여해 둔 이름이다.
+
+      핵심 개념:
+      프로그래밍 언어의 구조는 문자 → 어휘(토큰) → 구문 순으로 쌓인다.
+      문자는 알파벳, 숫자, 특수 문자 같은 가장 작은 단위이다.
+      토큰은 문자를 모아 만든 의미 단위로 예약어, 식별자, 상수, 연산자, 구분자 등이 있다.
+      구문은 토큰을 결합해 문장을 만드는 규칙이다.
+    tags: [character, token, lexical-structure]
+
+  - id: e18-05
+    type: multiple-choice
+    chapter: 4
+    passageRefs: [g18-bnf-digit-01]
+    prompt: 비단말 기호는?
+    choices:
+      - { id: '1', text: '<digit>' }
+      - { id: '2', text: '4' }
+      - { id: '3', text: '|' }
+      - { id: '4', text: '::=' }
+    answers: ['1']
+    explanation: |
+      선택지 1: < >로 묶인 <digit>은 다른 기호들로 정의되는 비단말 기호이므로 정답이다.
+      선택지 2: 4는 더 이상 다른 기호로 바뀌지 않는 단말 기호이다.
+      선택지 3: |는 "또는"을 뜻하는 메타 기호이다.
+      선택지 4: ::=는 "정의한다"를 뜻하는 메타 기호이다.
+
+      핵심 개념:
+      BNF(Backus-Naur Form)는 단말 기호, 비단말 기호, 메타 기호로 구문을 정의한다.
+      비단말 기호는 < >로 묶어 표시하며 생성 규칙의 왼쪽에 와서 정의된다.
+      단말 기호는 실제 프로그램에 나타나는 문자열(숫자, 예약어 등)이다.
+      메타 기호 ::=는 정의, |는 선택(택일)을 나타낸다.
+    tags: [bnf, nonterminal]
+
+  - id: e18-06
+    type: multiple-choice
+    chapter: 4
+    passageRefs: [g18-bnf-digit-01]
+    prompt: 단말 기호는?
+    choices:
+      - { id: '1', text: '<digit>' }
+      - { id: '2', text: '4' }
+      - { id: '3', text: '|' }
+      - { id: '4', text: '::=' }
+    answers: ['2']
+    explanation: |
+      선택지 1: <digit>은 < >로 묶인 비단말 기호이다.
+      선택지 2: 4는 프로그램에 그대로 나타나는 기호로 더 이상 치환되지 않는 단말 기호이므로 정답이다.
+      선택지 3: |는 택일을 나타내는 메타 기호이다.
+      선택지 4: ::=는 정의를 나타내는 메타 기호이다.
+
+      핵심 개념:
+      단말 기호는 문법이 최종적으로 만들어 내는 실제 문자열이다.
+      비단말 기호는 생성 규칙으로 계속 치환되는 중간 기호이다.
+      메타 기호는 문법 자체를 기술하기 위한 기호로 프로그램에는 나타나지 않는다.
+      <digit> ::= 0 | 1 | 2 | 3 | 4에서 0~4가 단말 기호이다.
+    tags: [bnf, terminal]
+
+  - id: e18-07
+    type: multiple-choice
+    chapter: 4
+    prompt: BNF가 EBNF로 확장되면서 추가된 메타 기호는?
+    choices:
+      - { id: '1', text: '::=' }
+      - { id: '2', text: '{ }' }
+      - { id: '3', text: '< >' }
+      - { id: '4', text: '|' }
+    answers: ['2']
+    explanation: |
+      선택지 1: ::=는 BNF에 원래 있던 정의 메타 기호이다.
+      선택지 2: { }는 0번 이상 반복을 나타내기 위해 EBNF(Extended BNF)에서 추가된 메타 기호이므로 정답이다.
+      선택지 3: < >는 BNF에서 비단말 기호를 묶는 메타 기호이다.
+      선택지 4: |는 BNF에서 택일을 나타내는 메타 기호이다.
+
+      핵심 개념:
+      EBNF(Extended BNF)는 BNF를 간결하게 만들기 위해 메타 기호를 추가했다.
+      { }는 반복(0번 이상), [ ]는 선택(0번 또는 1번), ( )는 그룹 안의 택일을 뜻한다.
+      BNF에서는 반복을 재귀 규칙으로 써야 했지만 EBNF에서는 { }로 짧게 쓴다.
+      EBNF에서 메타 기호 문자를 단말 기호로 쓰려면 '{'처럼 따옴표로 묶는다.
+    tags: [ebnf, meta-symbol]
+
+  - id: e18-08
+    type: multiple-choice
+    chapter: 4
+    passageRefs: [g18-syntax-diagram-ex-01]
+    prompt: 다음 구문 도표를 EBNF로 올바르게 표현한 것은?
+    choices:
+      - { id: '1', text: '<ex> ::= 0 | ( ex1 )' }
+      - { id: '2', text: '<ex> ::= 0 | ( <ex1> )' }
+      - { id: '3', text: '<ex> ::= <0> | ( ex1 )' }
+      - { id: '4', text: "<ex> ::= 0 | '(' <ex1> ')'" }
+    answers: ['4']
+    explanation: |
+      선택지 1: ex1은 사각형으로 그려진 비단말 기호이므로 <ex1>로 써야 한다. 또 괄호가 따옴표 없이 쓰여 EBNF 그룹 메타 기호로 해석된다.
+      선택지 2: <ex1>은 맞지만, 원으로 그려진 ( )는 단말 기호이다. EBNF에서 ( )는 그룹 메타 기호이므로 단말 기호로 쓰려면 따옴표로 묶어야 한다.
+      선택지 3: 0은 원으로 그려진 단말 기호이므로 <0>처럼 비단말로 쓰면 안 된다.
+      선택지 4: 0 또는 단말 기호 '(' 다음 비단말 <ex1> 다음 단말 기호 ')'로, 도표의 두 갈래를 정확히 표현하므로 정답이다.
+
+      핵심 개념:
+      구문 도표에서 원(타원)은 단말 기호, 사각형은 비단말 기호, 갈라지는 화살표는 택일을 뜻한다.
+      택일은 EBNF에서 |로 표현한다.
+      EBNF에서 { } [ ] ( ) |는 메타 기호이므로, 같은 문자를 단말 기호로 쓰려면 따옴표로 구분한다.
+      구문 도표를 EBNF로 옮길 때는 각 도형의 종류와 경로를 차례로 읽는다.
+    tags: [syntax-diagram, ebnf]
+
+  - id: e18-09
+    type: multiple-choice
+    chapter: 5
+    prompt: 모호한 문법에 대한 설명으로 바른 것은?
+    choices:
+      - { id: '1', text: 다른 표현에 대해 같은 파스 트리가 만들어지는 문법 }
+      - { id: '2', text: 다른 표현에 대해 서로 다른 파스 트리가 만들어지는 문법 }
+      - { id: '3', text: 동일 표현에 대해 같은 파스 트리가 만들어지는 문법 }
+      - { id: '4', text: 동일 표현에 대해 서로 다른 파스 트리가 만들어지는 문법 }
+    answers: ['4']
+    explanation: |
+      선택지 1: 파스 트리의 리프를 읽으면 표현이 정해지므로 다른 표현이 같은 파스 트리를 가질 수 없다.
+      선택지 2: 다른 표현이 서로 다른 파스 트리를 갖는 것은 당연한 일로 모호성과 관계없다.
+      선택지 3: 같은 표현에 파스 트리가 하나로 정해지는 것은 모호하지 않은 문법이다.
+      선택지 4: 하나의 표현에 대해 서로 다른 파스 트리가 두 개 이상 만들어지면 모호한 문법이므로 정답이다.
+
+      핵심 개념:
+      모호한 문법은 같은 문장에 대해 여러 파스 트리(유도 방법)가 존재하는 문법이다.
+      파스 트리가 다르면 연산 순서나 else의 소속 같은 의미가 달라진다.
+      연산자 우선순위와 결합 규칙을 문법에 반영하면 수식의 모호성을 없앨 수 있다.
+      프로그래밍 언어의 문법은 모호하지 않도록 설계해야 한다.
+    tags: [ambiguous-grammar, parse-tree]
+
+  - id: e18-10
+    type: multiple-choice
+    chapter: 5
+    prompt: 다음 다양한 언어의 조건문 중 A에 1이 할당되는 것은 무엇인가?
+    choices:
+      - { id: '1', text: 'Pascal : if 5>3 then if 5>7 then A=2 else A=1' }
+      - { id: '2', text: 'Pascal : if 5>3 then if 5>7 then A=2 else else A=1' }
+      - { id: '3', text: 'Algol68: if 5>3 then if 5>7 then A=2 fi else A=1 fi' }
+      - { id: '4', text: 'Algol60: if 5>3 then begin if 5>7 then A=2 end else A=1' }
+    answers: ['1']
+    explanation: |
+      선택지 1: Pascal은 else를 짝이 없는 가장 가까운 if(if 5>7)에 연결한다. 5>3이 참이라 안쪽 if를 실행하고, 5>7이 거짓이므로 else 쪽 A=1이 실행된다. 정답이다.
+      선택지 2: else가 연속으로 두 번 나오는 형태는 Pascal 문법에 맞지 않는 문장이다.
+      선택지 3: fi로 안쪽 if가 먼저 닫혔으므로 else A=1은 바깥 if 5>3에 속한다. 5>3이 참이라 else가 실행되지 않고, 안쪽 5>7도 거짓이라 A에는 아무것도 할당되지 않는다.
+      선택지 4: begin-end로 안쪽 if를 묶었으므로 else는 바깥 if에 속한다. 결과는 3번과 같이 A에 할당되지 않는다.
+
+      핵심 개념:
+      중첩 if문에서 else가 어느 if에 속하는지 모호해지는 문제를 dangling else라고 한다.
+      Pascal, C 등은 가장 가까운 짝 없는 if에 else를 연결하는 규칙을 쓴다.
+      Algol68은 fi 같은 종결 키워드로, Algol60은 begin-end 블록으로 if의 범위를 명시한다.
+      if의 범위가 달라지면 같은 조건이라도 실행되는 문장이 달라진다.
+    tags: [dangling-else, conditional-statement]
+
+  - id: e18-11
+    type: multiple-choice
+    chapter: 6
+    prompt: 인터프리트 기법에 대한 설명으로 바른 것은?
+    choices:
+      - { id: '1', text: 고급 언어를 직접 실행하는 방법 }
+      - { id: '2', text: 실행시간이 중요한 경우에 적합한 방법 }
+      - { id: '3', text: 한번 번역된 코드는 다시 번역할 필요 없음 }
+      - { id: '4', text: 주어진 프로그램을 기계어로 번역 후 실행하는 방법 }
+    answers: ['1']
+    explanation: |
+      선택지 1: 인터프리트 기법은 고급 언어 프로그램을 기계어로 따로 번역해 두지 않고 문장을 읽는 대로 직접 실행하므로 정답이다.
+      선택지 2: 인터프리트 기법은 실행할 때마다 해석하므로 느리다. 실행 시간이 중요하면 컴파일 기법이 적합하다.
+      선택지 3: 한 번 번역한 목적 코드를 재사용하는 것은 컴파일 기법의 장점이다.
+      선택지 4: 기계어로 번역한 후 실행하는 것은 컴파일 기법이다.
+
+      핵심 개념:
+      언어 구현 방법에는 컴파일 기법, 인터프리트 기법, 중간 코드(혼합) 기법이 있다.
+      컴파일 기법은 전체를 기계어로 번역해 실행 속도가 빠르다.
+      인터프리트 기법은 번역 없이 직접 실행하여 유연하고 디버깅이 쉽지만 느리다.
+      Java처럼 중간 코드(바이트코드)로 번역한 뒤 가상 기계가 실행하는 혼합 방식도 있다.
+    tags: [interpreter, language-implementation]
+
+  - id: e18-12
+    type: multiple-choice
+    chapter: 7
+    passageRefs: [g18-barron-float-code-01, g18-barron-float-memory-01]
+    prompt: 다음 변수의 정의를 Barron(배런)의 표기법으로 바르게 나타낸 것은?
+    choices:
+      - id: '1'
+        text: '①'
+        diagram:
+          type: simple-graph
+          width: 330
+          height: 80
+          nodes:
+            - { id: name, label: d, x: 50, y: 52, radius: 28 }
+            - { id: attr, label: 실수, shape: box, width: 80, height: 30, radius: 40, x: 165, y: 52 }
+            - { id: value, label: '3.14', shape: box, width: 70, height: 30, radius: 35, x: 280, y: 52 }
+            - { id: above, label: FF00, hideNode: true, x: 280, y: 16 }
+          edges:
+            - { from: name, to: attr }
+            - { from: attr, to: value }
+      - id: '2'
+        text: '②'
+        diagram:
+          type: simple-graph
+          width: 330
+          height: 80
+          nodes:
+            - { id: name, label: d, x: 50, y: 52, radius: 28 }
+            - { id: attr, label: '3.14', shape: box, width: 80, height: 30, radius: 40, x: 165, y: 52 }
+            - { id: value, label: FF00, shape: box, width: 70, height: 30, radius: 35, x: 280, y: 52 }
+            - { id: above, label: 실수, hideNode: true, x: 280, y: 16 }
+          edges:
+            - { from: name, to: attr }
+            - { from: attr, to: value }
+      - id: '3'
+        text: '③'
+        diagram:
+          type: simple-graph
+          width: 330
+          height: 80
+          nodes:
+            - { id: name, label: d, x: 50, y: 52, radius: 28 }
+            - { id: attr, label: '3.14', shape: box, width: 80, height: 30, radius: 40, x: 165, y: 52 }
+            - { id: value, label: 실수, shape: box, width: 70, height: 30, radius: 35, x: 280, y: 52 }
+            - { id: above, label: FF00, hideNode: true, x: 280, y: 16 }
+          edges:
+            - { from: name, to: attr }
+            - { from: attr, to: value }
+      - id: '4'
+        text: '④'
+        diagram:
+          type: simple-graph
+          width: 330
+          height: 80
+          nodes:
+            - { id: name, label: 실수, x: 50, y: 52, radius: 28 }
+            - { id: attr, label: '3.14', shape: box, width: 80, height: 30, radius: 40, x: 165, y: 52 }
+            - { id: value, label: d, shape: box, width: 70, height: 30, radius: 35, x: 280, y: 52 }
+            - { id: above, label: FF00, hideNode: true, x: 280, y: 16 }
+          edges:
+            - { from: name, to: attr }
+            - { from: attr, to: value }
+    answers: ['1']
+    explanation: |
+      선택지 1: 이름 d, 타입 실수, 값 3.14, 주소 FF00이 각각 이름·타입·값·주소 자리에 있으므로 정답이다.
+      선택지 2: 타입 자리에 값 3.14가, 값 자리에 주소 FF00이, 주소 자리에 타입이 들어가 속성이 뒤섞였다.
+      선택지 3: 타입 자리에 값이, 값 자리에 타입이 들어가 서로 바뀌었다.
+      선택지 4: 이름 자리에 타입(실수)이, 값 자리에 이름 d가 들어가 틀렸다.
+
+      핵심 개념:
+      배런 표기법은 변수의 이름 – 타입 – 값을 연결해 그리고, 값 위에 주소를 적는다.
+      원본 도식에서 이름은 타원, 타입은 육각형, 값은 사각형이다. 이 앱의 그림에서는 이름을 원, 타입과 값을 사각형으로 단순화했다.
+      float d := 3.14는 이름 d, 타입 실수(float), 값 3.14이며 주소는 메모리 그림의 FF00이다.
+      각 도형 자리에 올바른 속성이 들어갔는지 확인하는 것이 핵심이다.
+    tags: [barron-notation, variable-attributes]
+
+  - id: e18-13
+    type: multiple-choice
+    chapter: 7
+    prompt: 바인딩 시간과 예시가 바르게 짝지어진 것은?
+    choices:
+      - { id: '1', text: '언어의 정의 시간 - 레코드의 각 항목의 형 확정' }
+      - { id: '2', text: '언어의 구현 시간 - 수의 기계 내에서의 표기법 확정' }
+      - { id: '3', text: '번역 시간 - 변수의 값 확정' }
+      - { id: '4', text: '실행 시간 - 정수의 자릿수 확정' }
+    answers: ['2']
+    explanation: |
+      선택지 1: 레코드 각 항목의 형은 프로그램을 번역할 때 선언을 보고 정해지므로 번역 시간에 해당한다.
+      선택지 2: 정수·실수가 기계 안에서 어떤 비트 표기법으로 표현될지는 언어를 특정 기계에 구현할 때 정해지므로 정답이다.
+      선택지 3: 변수의 값은 대입문이 실행될 때 정해지므로 실행 시간에 해당한다.
+      선택지 4: 정수의 자릿수(표현 범위)는 언어 구현 시간에 기계의 워드 크기 등에 맞춰 정해진다.
+
+      핵심 개념:
+      바인딩 시간은 언어 정의 시간, 언어 구현 시간, 번역(컴파일) 시간, 링크·적재 시간, 실행 시간으로 나눈다.
+      언어 정의 시간에는 허용되는 자료형의 종류와 연산자 기호의 의미 등이 정해진다.
+      언어 구현 시간에는 수의 기계 내부 표현과 정수 자릿수 같은 구현 세부가 정해진다.
+      번역 시간에는 변수의 형이, 실행 시간에는 변수의 값이 정해진다.
+    tags: [binding-time]
+
+  - id: e18-14
+    type: multiple-choice
+    chapter: 7
+    prompt: 명시적 선언을 통해 얻을 수 있는 이점은?
+    choices:
+      - { id: '1', text: 동적 형 검사가 가능해짐 }
+      - { id: '2', text: 정적 바인딩을 제공할 수 있음 }
+      - { id: '3', text: '자료형의 표현 범위가 넓어짐(2바이트 → 4바이트)' }
+      - { id: '4', text: 한 변수가 동시에 다양한 자료형을 표현할 수 있음 }
+    answers: ['2']
+    explanation: |
+      선택지 1: 명시적 선언을 하면 번역 시간에 형을 알 수 있어 정적 형 검사가 가능해진다. 동적 형 검사는 실행 중에 하는 검사이다.
+      선택지 2: 선언문으로 변수의 형을 미리 밝히면 번역 시간에 형을 바인딩(정적 바인딩)할 수 있으므로 정답이다.
+      선택지 3: 자료형의 표현 범위는 형의 종류와 구현에 따라 정해지며 선언 방식과는 관계없다.
+      선택지 4: 명시적 선언은 변수의 형을 하나로 고정한다. 여러 형을 표현하는 것은 오히려 동적 바인딩의 특징이다.
+
+      핵심 개념:
+      선언은 변수의 이름과 속성(형 등)을 번역기에 알려 주는 문장이다.
+      명시적 선언은 선언문으로 형을 직접 적고, 묵시적 선언은 이름 규칙 등으로 형을 정한다.
+      선언이 있으면 번역 시간에 형이 정해져 정적 바인딩과 정적 형 검사가 가능하다.
+      정적 형 검사는 오류를 실행 전에 발견하고 효율적인 코드를 생성하게 한다.
+    tags: [explicit-declaration, static-binding]
+
+  - id: e18-15
+    type: multiple-choice
+    chapter: 12
+    prompt: 다음 중 할당문에 해당하는 것은?
+    choices:
+      - { id: '1', text: 'K == J' }
+      - { id: '2', text: 'K <= J' }
+      - { id: '3', text: 'K += J' }
+      - { id: '4', text: 'K - J' }
+    answers: ['3']
+    explanation: |
+      선택지 1: K == J는 두 값이 같은지 비교하는 관계 연산이다.
+      선택지 2: K <= J는 K가 J 이하인지 비교하는 관계 연산이다.
+      선택지 3: K += J는 K = K + J를 줄인 복합 할당문으로, 계산 결과를 K에 저장하므로 정답이다.
+      선택지 4: K - J는 값을 계산하는 산술 수식일 뿐 결과를 저장하지 않는다.
+
+      핵심 개념:
+      할당문(대입문)은 수식의 값을 변수에 저장하는 문장이다.
+      =, +=, -=, *=, /= 같은 할당 연산자가 있고 ++, --도 할당 효과를 가진다.
+      ==, <=, != 등은 비교 결과(참/거짓)를 만드는 관계 연산자이다.
+      할당 여부는 연산 결과가 변수에 저장되는지로 판단한다.
+    tags: [assignment-statement]
+
+  - id: e18-16
+    type: multiple-choice
+    chapter: 10
+    prompt: '열우선 프로그래밍 언어에서 선언된 2차원 배열 M(1:2, 1:2)이 기억장소에 저장되는 순서로 올바른 것은?'
+    choices:
+      - { id: '1', text: 'M[1][1] M[2][1] M[1][2] M[2][2]' }
+      - { id: '2', text: 'M[1][1] M[2][1] M[2][2] M[1][2]' }
+      - { id: '3', text: 'M[1][1] M[1][2] M[2][1] M[2][2]' }
+      - { id: '4', text: 'M[1][1] M[1][2] M[2][2] M[2][1]' }
+    answers: ['1']
+    explanation: |
+      선택지 1: 열우선 저장은 한 열의 원소를 모두 저장한 뒤 다음 열로 넘어간다. 1열의 M[1][1], M[2][1] 다음에 2열의 M[1][2], M[2][2]가 오므로 정답이다.
+      선택지 2: 2열에서 행 순서가 뒤바뀌어 규칙적인 저장 순서가 아니다.
+      선택지 3: 한 행을 먼저 저장하는 행우선 순서이다(C, Pascal 방식).
+      선택지 4: 행과 열의 순서가 섞여 있어 어느 규칙에도 맞지 않는다.
+
+      핵심 개념:
+      다차원 배열은 1차원 기억장소에 행우선 또는 열우선으로 저장된다.
+      행우선(row-major)은 첫 번째 첨자가 가장 느리게 변하며 C, Pascal이 사용한다.
+      열우선(column-major)은 첫 번째 첨자가 가장 빠르게 변하며 Fortran이 사용한다.
+      저장 순서를 알면 원소의 주소를 계산 공식으로 구할 수 있다.
+    tags: [array, column-major]
+
+  - id: e18-17
+    type: multiple-choice
+    chapter: 10
+    prompt: 키에 의해 접근되는, 순서를 갖지 않는 자료의 집합체는?
+    choices:
+      - { id: '1', text: 배열 }
+      - { id: '2', text: 레코드 }
+      - { id: '3', text: 포인터 }
+      - { id: '4', text: 연상배열 }
+    answers: ['4']
+    explanation: |
+      선택지 1: 배열은 같은 형의 원소를 순서대로 저장하고 정수 첨자(위치)로 접근한다.
+      선택지 2: 레코드는 서로 다른 형의 원소를 이름(필드명)으로 구별해 묶은 집합체이다.
+      선택지 3: 포인터는 다른 변수의 주소를 값으로 갖는 형으로 자료의 집합체가 아니다.
+      선택지 4: 연상배열은 원소를 순서가 아닌 키로 접근하는 순서 없는 집합체이므로 정답이다(예: 해시, 딕셔너리).
+
+      핵심 개념:
+      연상배열(associative array)은 키-값 쌍의 모음으로 키를 이용해 값을 찾는다.
+      내부적으로 해싱을 사용해 빠르게 검색하는 경우가 많다.
+      Perl의 해시, Python의 딕셔너리, Java의 Map이 대표적이다.
+      배열은 위치(첨자), 레코드는 필드명, 연상배열은 키로 원소를 식별한다.
+    tags: [associative-array, composite-type]
+
+  - id: e18-18
+    type: multiple-choice
+    chapter: 11
+    prompt: 형 변환에 대한 설명으로 바른 것은?
+    choices:
+      - { id: '1', text: 묵시적 형 변환은 캐스트 명령어를 사용함 }
+      - { id: '2', text: 묵시적 형 변환은 컴파일러에서 자동으로 수행 }
+      - { id: '3', text: '실수형 변수 A, B에 대해 A+B를 계산할 때 발생' }
+      - { id: '4', text: 명시적 형 변환은 프로그래머가 명시할 필요 없음 }
+    answers: ['2']
+    explanation: |
+      선택지 1: 캐스트 연산자를 사용하는 것은 명시적 형 변환이다.
+      선택지 2: 묵시적 형 변환은 프로그래머가 따로 적지 않아도 컴파일러가 자동으로 수행하므로 정답이다.
+      선택지 3: A와 B가 모두 실수형이면 형이 같아 변환이 필요 없다.
+      선택지 4: 명시적 형 변환은 프로그래머가 (int)처럼 변환할 형을 직접 명시하는 것이다.
+
+      핵심 개념:
+      형 변환은 한 형의 값을 다른 형의 값으로 바꾸는 것이다.
+      묵시적 형 변환(coercion)은 서로 다른 형이 섞인 연산이나 대입에서 컴파일러가 자동으로 수행한다.
+      명시적 형 변환(cast)은 프로그래머가 변환할 형을 직접 지정한다.
+      묵시적 변환은 주로 정보 손실이 없는 확대 변환으로 일어난다.
+    tags: [type-conversion, implicit-conversion]
+
+  - id: e18-19
+    type: multiple-choice
+    chapter: 8
+    prompt: Java에서의 영역에 대한 설명으로 바른 것은?
+    choices:
+      - { id: '1', text: 전역변수 선언은 COMMON 문을 사용 }
+      - { id: '2', text: BEGIN-END 그룹을 도입 }
+      - { id: '3', text: 변수 정의는 어느 부분에서도 나타날 수 있음 }
+      - { id: '4', text: 모든 변수를 명시적으로 선언하지 않아도 됨 }
+    answers: ['3']
+    explanation: |
+      선택지 1: COMMON 문으로 전역 공유 영역을 선언하는 것은 Fortran의 방식이다.
+      선택지 2: BEGIN-END로 블록을 만드는 것은 Algol, Pascal 계열의 방식이다. Java는 { }로 블록을 만든다.
+      선택지 3: Java에서는 블록 안 어느 위치에서든 변수를 정의할 수 있고, 그 변수의 영역은 정의된 곳부터 블록 끝까지이다. 정답이다.
+      선택지 4: Java는 모든 변수를 사용 전에 형과 함께 명시적으로 선언해야 한다.
+
+      핵심 개념:
+      영역(scope)은 이름이 유효한 프로그램 범위이다.
+      Fortran은 COMMON 문, Algol·Pascal은 begin-end 블록으로 영역을 구성한다.
+      C, C++, Java는 { } 블록을 사용하며 Java는 블록 내 어디서든 변수 정의를 허용한다.
+      Java의 지역 변수 영역은 선언 위치부터 해당 블록의 끝까지이다.
+    tags: [scope, java]
+
+  - id: e18-20
+    type: multiple-choice
+    chapter: 14
+    prompt: 정적 기억장소 할당에 대한 설명으로 바른 것은?
+    choices:
+      - { id: '1', text: 실행 중 배열의 크기 변화 가능 }
+      - { id: '2', text: 단순하여 쉽게 구현 가능 }
+      - { id: '3', text: 재귀호출이 허용됨 }
+      - { id: '4', text: 프로그래밍 언어에 대한 유연성이 많음 }
+    answers: ['2']
+    explanation: |
+      선택지 1: 정적 할당은 실행 전에 크기가 정해지므로 실행 중 배열 크기를 바꿀 수 없다.
+      선택지 2: 정적 할당은 번역 시간에 모든 기억 장소의 위치와 크기를 정하므로 구조가 단순하고 구현이 쉽다. 정답이다.
+      선택지 3: 서브프로그램마다 활성 레코드가 하나로 고정되므로 재귀 호출을 허용할 수 없다.
+      선택지 4: 크기와 개수가 고정되어 유연성이 적다. 유연성은 동적(스택·힙) 할당의 장점이다.
+
+      핵심 개념:
+      기억장소 할당은 정적 할당, 스택 기반 할당, 힙 기반 동적 할당으로 나뉜다.
+      정적 할당은 실행 전에 모든 변수의 기억 장소를 고정 배정한다(예: 초기 Fortran).
+      구현이 단순하고 접근이 빠르지만 재귀 호출과 가변 크기 자료를 지원하지 못한다.
+      스택 기반 할당은 호출마다 활성 레코드를 만들어 재귀 호출을 지원한다.
+    tags: [static-allocation, storage-allocation]
+
+  - id: e18-21
+    type: multiple-choice
+    chapter: 7
+    prompt: 변수의 종류와 사용하는 기억장소가 바르게 짝지어진 것은?
+    choices:
+      - { id: '1', text: '힙 - 준정적 변수, 준동적 변수' }
+      - { id: '2', text: '힙 - 준정적 변수, 동적 변수' }
+      - { id: '3', text: '스택 - 동적 변수' }
+      - { id: '4', text: '스택 - 준동적 변수' }
+    answers: ['4']
+    explanation: |
+      선택지 1: 준정적 변수와 준동적 변수는 서브프로그램이 활성화될 때 스택에 할당된다. 힙이 아니다.
+      선택지 2: 동적 변수는 힙에 할당되지만, 준정적 변수는 스택에 할당된다.
+      선택지 3: 동적 변수는 실행 중 명령(new, malloc 등)으로 생성되어 힙에 할당된다.
+      선택지 4: 준동적 변수는 활성화될 때마다 크기가 정해져 스택에 할당되므로 정답이다.
+
+      핵심 개념:
+      변수는 기억장소 할당 시점과 위치에 따라 정적, 준정적, 준동적, 동적 변수로 나뉜다.
+      정적 변수는 실행 전에 고정 영역에 할당된다.
+      준정적 변수(크기 고정)와 준동적 변수(활성화 시 크기 결정)는 서브프로그램 활성화 때 스택에 할당된다.
+      동적 변수는 실행 중 명시적 할당 명령으로 힙에 생성된다.
+    tags: [storage-binding, stack, heap]
+
+  - id: e18-22
+    type: multiple-choice
+    chapter: 14
+    prompt: 비지역 변수 참조 방법에 대한 설명으로 바른 것은?
+    choices:
+      - { id: '1', text: 정적 체인 사용 기법은 검색 시간이 짧아 많이 사용함 }
+      - { id: '2', text: 디스플레이 사용 기법은 지역 변수들의 사용이 증가할 경우 매력적 }
+      - { id: '3', text: 정적 체인 사용 기법은 모든 활성화 레코드에 정적 링크를 할당 }
+      - { id: '4', text: 디스플레이 사용 기법은 비지역 변수에 따라 참조 시간이 다름 }
+    answers: ['3']
+    explanation: |
+      선택지 1: 정적 체인 기법은 선언된 블록까지 정적 링크를 여러 번 따라가야 하므로 중첩이 깊으면 검색 시간이 길어진다.
+      선택지 2: 디스플레이 기법이 유리한 경우는 지역 변수가 아니라 비지역 변수 참조가 많아질 때이다.
+      선택지 3: 정적 체인 기법은 각 활성화 레코드에 자신을 감싼 블록의 활성화 레코드를 가리키는 정적 링크를 둔다. 정답이다.
+      선택지 4: 디스플레이 기법은 디스플레이 배열로 해당 블록에 바로 접근하므로 어떤 비지역 변수든 참조 시간이 같다.
+
+      핵심 개념:
+      정적 영역 규칙에서 비지역 변수는 정적 체인이나 디스플레이로 찾는다.
+      정적 체인은 활성화 레코드마다 정적 링크를 두고 체인 변위만큼 링크를 따라간다.
+      디스플레이는 중첩 수준별 활성화 레코드 주소를 1차원 배열에 저장해 한 번에 접근한다.
+      비지역 참조가 많으면 디스플레이가, 호출이 잦으면 유지 비용이 적은 정적 체인이 유리하다.
+    tags: [static-chain, display, nonlocal-variable]
+
+  - id: e18-23
+    type: multiple-choice
+    chapter: 13
+    passageRefs: [g18-swap-01]
+    prompt: 변수명과 매개변수의 종류가 바르게 짝지어진 것은?
+    choices:
+      - { id: '1', text: 'a, b - 실 매개변수' }
+      - { id: '2', text: 'a, X - 실 매개변수' }
+      - { id: '3', text: 'X, Y - 실 매개변수' }
+      - { id: '4', text: 'TEMP - 형식 매개변수' }
+    answers: ['3']
+    explanation: |
+      선택지 1: a, b는 SWAP의 정의에 적힌 매개변수이므로 형식 매개변수이다.
+      선택지 2: X는 실 매개변수지만 a는 형식 매개변수라 짝이 틀렸다.
+      선택지 3: X, Y는 main에서 SWAP(X, Y)를 호출할 때 실제로 넘기는 값이므로 실 매개변수이다. 정답이다.
+      선택지 4: TEMP는 SWAP 안에서 선언한 지역 변수이며 매개변수가 아니다.
+
+      핵심 개념:
+      형식 매개변수는 서브프로그램 정의부에 적혀 전달받을 값을 대신하는 이름이다.
+      실 매개변수(인수)는 호출문에서 실제로 전달하는 식이나 변수이다.
+      호출 시 실 매개변수와 형식 매개변수가 순서대로 대응된다.
+      서브프로그램 내부에서 따로 선언한 변수는 지역 변수이다.
+    tags: [formal-parameter, actual-parameter]
+
+  - id: e18-24
+    type: multiple-choice
+    chapter: 13
+    passageRefs: [g18-swap-01]
+    prompt: 값호출을 사용하는 프로그래밍 언어에서 위 프로그램의 출력 결과는 무엇인가?
+    choices:
+      - { id: '1', text: '3 3' }
+      - { id: '2', text: '7 7' }
+      - { id: '3', text: '3 7' }
+      - { id: '4', text: '7 3' }
+    answers: ['4']
+    explanation: |
+      선택지 1: 두 변수가 같은 값이 되는 경우는 교환 과정이 잘못되었을 때로, 이 프로그램과 맞지 않는다.
+      선택지 2: 1번과 마찬가지로 이 프로그램으로는 나올 수 없는 결과이다.
+      선택지 3: X와 Y가 실제로 교환된 결과로, 참조 호출일 때의 출력이다.
+      선택지 4: 값호출에서는 X, Y의 값이 a, b에 복사될 뿐이라 SWAP 안에서 a, b를 바꿔도 X, Y는 그대로 7, 3이다. 정답이다.
+
+      핵심 개념:
+      값호출(call by value)은 실 매개변수의 값을 형식 매개변수에 복사한다.
+      서브프로그램 안의 변경은 복사본에만 적용되어 호출한 쪽 변수에 영향을 주지 않는다.
+      그래서 값호출로 작성한 SWAP은 호출한 쪽의 두 변수를 교환하지 못한다.
+      호출한 쪽 변수를 바꾸려면 참조호출이 필요하다.
+    tags: [call-by-value, parameter-passing]
+
+  - id: e18-25
+    type: multiple-choice
+    chapter: 13
+    passageRefs: [g18-swap-01]
+    prompt: 참조호출을 사용하는 프로그래밍 언어에서 위 프로그램의 출력 결과는 무엇인가?
+    choices:
+      - { id: '1', text: '3 3' }
+      - { id: '2', text: '7 7' }
+      - { id: '3', text: '3 7' }
+      - { id: '4', text: '7 3' }
+    answers: ['3']
+    explanation: |
+      선택지 1: TEMP를 쓰지 않고 한쪽 값만 덮어썼을 때 나올 수 있는 결과로 이 프로그램과 맞지 않는다.
+      선택지 2: 1번과 마찬가지로 교환이 불완전할 때의 결과이다.
+      선택지 3: 참조호출에서 a, b는 X, Y 자체를 가리키므로 SWAP이 X와 Y를 실제로 교환한다. 출력은 3 7이므로 정답이다.
+      선택지 4: X, Y가 바뀌지 않은 값호출의 결과이다.
+
+      핵심 개념:
+      참조호출(call by reference)은 실 매개변수의 주소를 전달해 형식 매개변수가 같은 기억 장소를 공유하게 한다.
+      서브프로그램에서 형식 매개변수를 바꾸면 호출한 쪽 변수도 바뀐다.
+      SWAP처럼 호출자의 변수를 교환하는 함수는 참조호출(또는 포인터)이 필요하다.
+      값호출과 참조호출의 차이는 호출이 끝난 뒤 실 매개변수 값이 바뀌었는지로 확인한다.
+    tags: [call-by-reference, parameter-passing]

@@ -1,0 +1,983 @@
+subjectId: simulation
+sourceId: past-exams-2019
+title: 시뮬레이션 2019 기말
+kind: exam
+year: 2019
+
+passages:
+  - id: g19-montecarlo-pi-01
+    type: text
+    body: |
+      ※ (40~41) 다음은 2차원 난수를 사용하여 $\pi$를 구하는 몬테칼로 시뮬레이션의 예이다.
+
+      <해결방법>
+      반지름의 길이가 1인 원의 면적은 $\pi$이므로 이 면적을 구하면 곧 $\pi$값을 구하게 된다. 난수 U[0,1)를 두 개씩 발생시킨 후  앞의 것을 x 뒤의 것을 y 라 하면 좌표 (x, y)는  2차원 좌표에서 하나의 난수가 되어 아래 그림처럼 점으로 표현된다. 즉,  1사분면에 있는 면적이 1인 사각형과 1/4 원 A 안에 들어가는 각각의 점의 개수를 비율로 계산하면 $\pi$/4 값에 근사한 값을 구할 수 있다. 다음은 전체 알고리즘으로 2차원 난수 50,000개를 발생시켰다.
+      50,000 : 사각형의 면적 = count  : A
+      ⇒  50,000 : 1 = count : A
+      ⇒  ∴  A= count/50,000
+      ⇒  ∴  $\pi$ = 4*A
+  - id: g19-montecarlo-pi-figure-01
+    type: diagram
+    diagram:
+      type: simple-graph
+      width: 300
+      height: 260
+      nodes:
+        - { id: o, label: '0', hideNode: true, radius: 0, x: 60, y: 220, labelDx: -10, labelDy: 4 }
+        - { id: xend, label: pt, hideLabel: true, hideNode: true, radius: 0, x: 270, y: 220 }
+        - { id: yend, label: pt, hideLabel: true, hideNode: true, radius: 0, x: 60, y: 30 }
+        - { id: top, label: '1', hideNode: true, radius: 0, x: 60, y: 60, labelDx: -10 }
+        - { id: right, label: '1', hideNode: true, radius: 0, x: 220, y: 220, labelDy: 18 }
+        - { id: corner, label: pt, hideLabel: true, hideNode: true, radius: 0, x: 220, y: 60 }
+        - { id: xlabel, label: x, hideNode: true, x: 150, y: 242 }
+        - { id: ylabel, label: y, hideNode: true, x: 36, y: 130 }
+        - { id: area, label: 'A = π/4', hideNode: true, x: 120, y: 160 }
+      edges:
+        - { from: o, to: xend, directed: true }
+        - { from: o, to: yend, directed: true }
+        - { from: top, to: corner }
+        - { from: corner, to: right }
+        - { from: top, to: right, curve: -94 }
+  - id: g19-montecarlo-pi-algorithm-intro-01
+    type: text
+    body: 이는 알고리즘으로 다음과 같이 표현된다.
+  - id: g19-montecarlo-pi-code-01
+    type: code
+    language: text
+    body: |
+      {
+        while i  ≤  limit do
+         {
+          call random(n,U)
+              x=U
+          call random(n,U)
+              y=U
+          if x²+y² ≦ 1  then
+               count=count+1
+          i=i+1
+         }
+         s  =  count/limit
+         s  =  s*4
+         print 'result', s
+  - id: g19-multi-server-condition-01
+    type: text
+    body: |
+      ※ (44~50) 다음은 복수창구 대기행렬 시뮬레이션의 조건과 알고리즘 일부이다.
+
+      <조  건>
+      도착상태 = 시간당 평균 15대
+      봉사시간 = 평균 5분의 포아송 분포
+      봉사창구 = 2
+      시뮬레이션 시간 = 150
+      난수의 초기값 = 35213
+
+      <알고리즘>
+  - id: g19-multi-server-code-01
+    type: code
+    language: text
+    body: |
+      {
+            :
+         while time < tlimit do
+           {time = time+tstep
+            arrive = 0
+            call random(seed, U)
+            if U < prarr*tstep then
+              { arrive = 1
+                queue = queue+arrive
+                totarr=totarr+1   }
+                i = 0
+              while(i < 2   ) do
+                { i = i + 1
+               if (tpump(i) > 0.0) then
+                   { tpump(i) = tpump(i) - tstep
+                        if (tpump(i)   < 0.0) then
+                           tpump(i) = 0.0 }
+               if (tpump(i) = 0.0 and queue ≠ 0) then
+                       {   queue = queue - 1
+                           call poissn(seed,mean,p)
+                           tpump(i) = p}
+                                        }// end of   while1
+               totque = totque+queue }// end of while2
+        aveque = totque/(tlimit/tstep)
+        print aveque, totarr
+        stop   }
+  - id: g19-multi-server-output-intro-01
+    type: text
+    body: |
+      ※ (51~54) 다음은 복수창구 대기행렬 시뮬레이션 출력결과의 일부이다. 결과를 보고 다음 물음에 답하라. 단, 시뮬레이션 시간은 1 부터 시작한다.
+  - id: g19-multi-server-output-01
+    type: diagram
+    diagram:
+      type: data-table
+      columns: ['TIME', 'ARRIVE', 'QUEUE', 'TPUMP[1]', 'TPUMP[2]']
+      rows:
+        - ['1', '1', '0', '4', '0']
+        - ['2', '1', '0', '3', '5']
+        - ['3', '0', '0', '2', '4']
+        - ['4', '1', '1', '1', '3']
+        - ['5', '0', '0', '4', '2']
+        - ['6', '1', '1', '3', '1']
+        - ['7', '0', '0', '2', '3']
+        - ['8', '1', '1', '1', '2']
+        - ['9', '0', '0', '6', '1']
+  - id: g19-normal-service-condition-01
+    type: text
+    body: |
+      단일 창구 대기행렬 시뮬레이션에서 봉사시간에 다음과 같은 조건을 추가하였다.
+
+      <조  건>
+      고객의 도착상태 : 시간당 평균 15대의 일양분포
+      연료탱크 : 평균 = 20 liter, 표준편차 = 3인 정규분포
+      급유시간계산 : 1 liter 당 1/8분
+
+      다음은 이를 위하여 봉사시간을 계산하는 알고리즘을 수정한 것이다.
+  - id: g19-normal-service-code-01
+    type: code
+    language: text
+    body: |
+      if (tpump > 0.0)   then
+            { tpump = tpump - tstep
+                  if (tpump < 0.0) then
+                         tpump = 0.0
+            }
+      if ((tpump = 0) & (queue ≠ 0))   then
+            { queue = queue - 1
+              call normal(nseed,nmean,stdev,liters);
+              tpump = 1.0 + 1.0 / 8.0 * liters;
+            }
+      totque = totque + queue;
+      print, time,arrive,queue,tpump
+  - id: g19-discrete-event-main-01
+    type: text
+    body: |
+      ※ (58~60) 다음은 대기행렬 문제를 이산사건 진행 방식으로 시뮬레이션 한 것이다.
+      다음은 주 프로그램에 대한 알고리즘이다.
+  - id: g19-discrete-event-main-code-01
+    type: code
+    language: text
+    body: |
+      main
+      {          marrvt = 5.0
+                 mservt = 2.5
+                 totarr = 1000
+               call init
+           while( numcus < totarr )
+             {    call  timing
+                  if(next = 1) then
+                         call arrive
+                  else
+                         call  depart }
+
+          call report }
+  - id: g19-mixed-congruential-01
+    type: text
+    body: |
+      ※ (64~67) 다음은 난수의 발생식이다. 물음에 답하라.
+
+      $X_i =2X_{i-1} + 3\ (\text{mod } 10)$
+  - id: g19-chi-square-01
+    type: text
+    body: |
+      ※ (68~69) $\chi^2$-검정에 관한 사항이다.
+
+      6000개의 난수를 발생시켜서 100개의 구간으로 나누었다.
+      $\chi^2 = k/n \sum_{i=1}^{k}(f_i - n/k)^2$
+
+questions:
+  - id: e19-01
+    type: multiple-choice
+    chapter: 2
+    prompt: 시뮬레이션 모델은 다음과 같은 4가지 수준에서 이용될 수 있다. 이 중에서 공장의 제조공정이나 물류시스템을 분석하고 개선점을 찾는 시뮬레이션과 관련 있는 것은?
+    choices:
+      - { id: '1', text: '시스템이나 문제를 정의하는 설명적 장치' }
+      - { id: '2', text: '한계적(critical) 구성요소를 결정하는 분석 도구' }
+      - { id: '3', text: '제안된 해결방안을 종합하고 평가하는 설계평가도구' }
+      - { id: '4', text: '해석적 문제를 풀이하고 해를 구하는 계산 도구' }
+    answers: ['3']
+    explanation: |
+      선택지 1: 설명적 장치는 시스템이나 문제 자체를 정의하고 기술하는 수준으로, 현재 시스템을 이해하는 데 쓰인다. 개선안을 평가하는 용도는 아니다.
+      선택지 2: 분석 도구는 시스템 성능에 결정적 영향을 주는 한계적(critical) 구성요소를 찾아내는 수준이다. 개선점 도출의 앞 단계에 해당한다.
+      선택지 3: 공장의 제조공정이나 물류시스템에 대해 여러 개선안(해결방안)을 모델에 적용해 보고 결과를 비교·평가하는 것은 설계평가도구로서의 이용이므로 정답이다.
+      선택지 4: 계산 도구는 해석적(수학적) 방법으로 풀기 어려운 문제의 해를 수치적으로 구하는 수준이다. 몬테칼로 적분 같은 예가 여기에 해당한다.
+
+      핵심 개념:
+      시뮬레이션 모델은 설명적 장치, 분석 도구, 설계평가도구, 계산 도구의 4가지 수준에서 이용된다.
+      설계평가도구는 제안된 여러 대안을 실제로 구축하지 않고 모델에서 실험해 성능을 비교한다.
+      제조공정·물류시스템의 병목 개선, 설비 배치 변경 등은 대표적인 설계평가 사례이다.
+    tags: [simulation-model, model-usage]
+
+  - id: e19-02
+    type: multiple-choice
+    chapter: 2
+    prompt: 다음은 시스템에 대한 설명이다. 설명이 ==틀린== 것은?
+    choices:
+      - { id: '1', text: '관심의 대상이 되는 실세계의 부분집합.' }
+      - { id: '2', text: '어느 목적을 위하여 하나 이상 서로 관련 있는 구성요소가 결합된 것' }
+      - { id: '3', text: '따라서 이러한 시스템은 상대적인 것이 된다.' }
+      - { id: '4', text: '범위를 고려할 때 모든 외적요인들은 입력 데이터가 된다.' }
+    answers: ['4']
+    explanation: |
+      선택지 1: 시스템은 실세계 전체가 아니라 관심의 대상이 되는 일부분, 즉 실세계의 부분집합이다.
+      선택지 2: 시스템은 어떤 목적을 달성하기 위해 서로 관련 있는 구성요소들이 결합된 것으로 정의된다.
+      선택지 3: 무엇을 시스템으로 보는지는 연구 목적과 관심에 따라 달라지므로 시스템은 상대적인 개념이다.
+      선택지 4: 시스템의 범위를 정하면 범위 밖의 외적요인 중 시스템에 영향을 주는 것만 입력으로 고려한다. 모든 외적요인이 입력 데이터가 되는 것은 아니므로 틀린 설명이며 정답이다.
+
+      핵심 개념:
+      시스템은 목적을 위해 상호 관련된 구성요소의 집합이며 관심 대상이 되는 실세계의 부분집합이다.
+      같은 대상도 연구 목적에 따라 시스템이 되기도 하고 다른 시스템의 구성요소가 되기도 하므로 상대적이다.
+      시스템의 범위(경계)를 정하면 경계 밖에서 시스템에 영향을 주는 요인만 환경(입력)으로 다룬다.
+    tags: [system, system-boundary]
+
+  - id: e19-03
+    type: multiple-choice
+    chapter: 2
+    prompt: 다음 중  모델링을 하기 쉬운 경우는?
+    choices:
+      - { id: '1', text: '인간의 의사결정이 시스템의 절대적인 부분을 차지한다.' }
+      - { id: '2', text: '시스템에 부수되는 물리적인 규칙이 이용 가능하다.' }
+      - { id: '3', text: '랜덤한 구성요소들이 중요한 요인이 된다.' }
+      - { id: '4', text: '이용 가능한 기본 규칙이 거의 없다.' }
+    answers: ['2']
+    explanation: |
+      선택지 1: 인간의 의사결정은 규칙으로 정형화하기 어려워 이 비중이 클수록 모델링이 어려워진다.
+      선택지 2: 시스템을 지배하는 물리적인 법칙(규칙)을 이용할 수 있으면 이를 수식과 논리로 그대로 표현할 수 있어 모델링이 쉬우므로 정답이다.
+      선택지 3: 랜덤한 구성요소가 중요한 요인이면 확률분포를 추정하고 불확실성을 다뤄야 하므로 모델링이 어려워진다.
+      선택지 4: 이용 가능한 기본 규칙이 거의 없으면 구성요소 간 관계를 정의할 근거가 없어 모델링이 어렵다.
+
+      핵심 개념:
+      모델은 시스템을 수학적·논리적 관계로 추상화한 것이다.
+      물리 법칙처럼 명확한 규칙이 있는 시스템은 모델링이 쉽다.
+      인간의 의사결정, 랜덤한 요소, 규칙의 부재는 모델링을 어렵게 만드는 요인이다.
+    tags: [modeling, model]
+
+  - id: e19-04
+    type: multiple-choice
+    chapter: 2
+    prompt: 다음 중 특정 시각에서의 시스템 표현으로 몬테칼로 시뮬레이션 등과 관계있는 모델은?
+    choices:
+      - { id: '1', text: '결정적 모델' }
+      - { id: '2', text: '정적모델' }
+      - { id: '3', text: '이산모델' }
+      - { id: '4', text: '수리적 모델' }
+    answers: ['2']
+    explanation: |
+      선택지 1: 결정적 모델은 확률적 요소가 없어 입력이 정해지면 출력이 하나로 결정되는 모델이다. 시간 관점의 분류가 아니다.
+      선택지 2: 정적모델은 시간의 흐름을 고려하지 않고 특정 시각에서의 시스템을 표현하는 모델이며, 몬테칼로 시뮬레이션이 대표적인 예이므로 정답이다.
+      선택지 3: 이산모델은 상태변수가 이산적인 시점에서만 변하는 모델로, 시간에 따른 변화를 다루는 동적 모델의 한 종류이다.
+      선택지 4: 수리적 모델은 시스템을 수식과 논리적 관계로 표현한 모델을 뜻하며, 물리적 모델과 대비되는 분류이다.
+
+      핵심 개념:
+      시뮬레이션 모델은 시간 개념에 따라 정적 모델과 동적 모델로 나뉜다.
+      정적 모델은 특정 시각의 시스템 상태만 표현하며 몬테칼로 시뮬레이션에 쓰인다.
+      동적 모델은 시간에 따라 변하는 시스템을 표현하며 이산형·연속형으로 다시 나뉜다.
+      확률적 요소 유무에 따라서는 결정적 모델과 확률적 모델로 분류한다.
+    tags: [model-classification, static-model, monte-carlo]
+
+  - id: e19-05
+    type: multiple-choice
+    chapter: 1
+    passageRefs: [g19-montecarlo-pi-01, g19-montecarlo-pi-figure-01, g19-montecarlo-pi-algorithm-intro-01, g19-montecarlo-pi-code-01]
+    prompt: 난수 U는 총 몇 개 발생되는가?
+    choices:
+      - { id: '1', text: '30,000' }
+      - { id: '2', text: '50,000' }
+      - { id: '3', text: '100,000' }
+      - { id: '4', text: '150,000' }
+    answers: ['3']
+    explanation: |
+      선택지 1: 30,000은 지문의 어떤 반복 횟수와도 맞지 않는다.
+      선택지 2: 50,000은 발생시킨 2차원 난수 (x, y)의 개수, 즉 while 반복 횟수(limit)이다. 난수 U의 개수가 아니다.
+      선택지 3: 반복 한 번마다 call random(n,U)를 두 번 호출해 x와 y를 만든다. 2차원 난수 50,000개를 발생시켰으므로 U는 50,000 × 2 = 100,000개 발생하여 정답이다.
+      선택지 4: 150,000은 반복 한 번에 난수를 세 개씩 발생시킬 때의 개수이다.
+
+      핵심 개념:
+      몬테칼로 시뮬레이션으로 $\pi$를 구할 때 U[0,1) 난수 두 개로 점 (x, y) 하나를 만든다.
+      점이 $x^2+y^2 \le 1$을 만족하면 1/4 원 안에 들어간 것으로 보고 count를 증가시킨다.
+      count/limit는 1/4 원의 면적 $\pi/4$의 추정값이므로 4를 곱하면 $\pi$의 추정값이 된다.
+    tags: [monte-carlo, random-number]
+
+  - id: e19-06
+    type: multiple-choice
+    chapter: 1
+    passageRefs: [g19-montecarlo-pi-01, g19-montecarlo-pi-figure-01, g19-montecarlo-pi-algorithm-intro-01, g19-montecarlo-pi-code-01]
+    prompt: 원안에 들어가는 점의 개수를 나타내는 변수는?
+    choices:
+      - { id: '1', text: s }
+      - { id: '2', text: y }
+      - { id: '3', text: limit }
+      - { id: '4', text: count }
+    answers: ['4']
+    explanation: |
+      선택지 1: s는 count/limit로 구한 비율에 4를 곱한 $\pi$의 추정값이다.
+      선택지 2: y는 두 번째로 발생시킨 난수 U를 저장하는 점의 y좌표이다.
+      선택지 3: limit는 발생시킬 2차원 난수(점)의 총 개수, 즉 반복 횟수의 상한이다.
+      선택지 4: if x²+y² ≦ 1 then count=count+1에서 점이 1/4 원 안에 들어갈 때마다 1씩 증가하므로 원 안에 들어가는 점의 개수를 나타내며 정답이다.
+
+      핵심 개념:
+      몬테칼로 방법은 난수로 표본을 만들어 비율로 면적이나 확률을 추정한다.
+      50,000 : 1 = count : A 관계에서 A = count/50,000이다.
+      1/4 원의 면적이 $\pi/4$이므로 $\pi \approx 4 \times count/limit$이다.
+    tags: [monte-carlo, estimation]
+
+  - id: e19-07
+    type: multiple-choice
+    chapter: 2
+    prompt: 시뮬레이션의 장점들이다. ==관계없는== 것은?
+    choices:
+      - { id: '1', text: '실시스템의 실질적인 구축 없이도 평가할 수 있다.' }
+      - { id: '2', text: '확률적 시뮬레이션은 정확한 값이 아니라 추정량을 산출한다.' }
+      - { id: '3', text: '실시스템이 위험성을 내포한 경우 시뮬레이션이 유용하다.' }
+      - { id: '4', text: '실현 불가능한 경우도 시뮬레이션으로 실험 및 평가가 가능하다.' }
+    answers: ['2']
+    explanation: |
+      선택지 1: 실제 시스템을 만들지 않고 모델로 성능을 평가할 수 있는 것은 시뮬레이션의 대표적 장점이다.
+      선택지 2: 확률적 시뮬레이션은 난수에 따라 결과가 달라지는 추정량만 산출하고 정확한 값을 주지 못한다. 이는 시뮬레이션의 단점이므로 장점과 관계없어 정답이다.
+      선택지 3: 원자력 발전소 사고처럼 실제로 실험하기 위험한 경우에도 안전하게 실험할 수 있어 장점이다.
+      선택지 4: 현실에서 실현할 수 없는 조건도 모델에서는 설정해 실험·평가할 수 있어 장점이다.
+
+      핵심 개념:
+      시뮬레이션의 특징에는 장점과 단점이 함께 있다.
+      장점은 실시스템 없이 평가, 위험·고비용·실현 불가능한 상황의 실험, 시간 압축·확대 등이다.
+      단점은 모델 개발 비용과 시간, 확률적 시뮬레이션 결과가 추정값이라는 점, 최적해를 직접 주지 않는다는 점 등이다.
+    tags: [simulation-characteristics, advantages]
+
+  - id: e19-08
+    type: multiple-choice
+    chapter: 2
+    prompt: 다음은 시뮬레이션 과정에 대한 설명이다. ==틀린== 것은?
+    choices:
+      - { id: '1', text: '문제의 정의 : 문제해결의 목적을 포함하여 연구하고자 하는 문제를 정의 함.' }
+      - { id: '2', text: '모델 설계 : 문제의 정의에 따라서 시스템을 수학적이고 논리적인 관계로 추상화 함.' }
+      - { id: '3', text: '모델 변환 : 컴퓨터에서의 처리에 적절하게 모델을 변환 함.' }
+      - { id: '4', text: '타당성 검토 : 모델이 의도한 대로 컴퓨터 프로그램이 수행될 수 있도록 준비함.' }
+    answers: ['4']
+    explanation: |
+      선택지 1: 문제의 정의 단계에서는 연구 목적을 포함해 해결하려는 문제를 명확히 정의한다.
+      선택지 2: 모델 설계 단계에서는 정의된 문제에 따라 시스템을 수학적·논리적 관계로 추상화한다.
+      선택지 3: 모델 변환 단계에서는 설계된 모델을 컴퓨터에서 처리할 수 있는 프로그램 형태로 바꾼다.
+      선택지 4: 모델이 의도한 대로 컴퓨터 프로그램이 수행되는지 확인하는 것은 검증(verification)이다. 타당성 검토(validation)는 모델이 실제 시스템을 정확하게 표현하는지 확인하는 단계이므로 틀린 설명이며 정답이다.
+
+      핵심 개념:
+      시뮬레이션 과정은 문제의 정의, 모델 설계, 자료 수집, 모델 변환, 검증, 타당성 검토, 실험 및 결과 분석 순으로 진행된다.
+      검증은 프로그램이 모델을 의도대로 구현했는지를 확인한다.
+      타당성 검토는 모델이 실제 시스템을 올바르게 대표하는지를 확인한다.
+    tags: [simulation-process, verification, validation]
+
+  - id: e19-09
+    type: multiple-choice
+    chapter: 3
+    passageRefs: [g19-multi-server-condition-01, g19-multi-server-code-01]
+    prompt: 35213을 초기값으로 갖는 변수는?
+    choices:
+      - { id: '1', text: tlimit }
+      - { id: '2', text: prarr }
+      - { id: '3', text: seed }
+      - { id: '4', text: mean }
+    answers: ['3']
+    explanation: |
+      선택지 1: tlimit는 시뮬레이션 시간 150을 갖는 종료 시간 변수이다.
+      선택지 2: prarr는 단위 시간(분)당 도착 확률로 15/60 = 0.25를 갖는다.
+      선택지 3: 난수의 초기값 35213은 call random(seed, U)와 call poissn(seed,mean,p)에 전달되는 난수 발생의 씨앗(seed) 값이므로 정답이다.
+      선택지 4: mean은 포아송 분포 봉사시간의 평균 5분을 갖는다.
+
+      핵심 개념:
+      복수창구 대기행렬 시뮬레이션은 고정시간 간격(tstep)마다 도착과 봉사를 처리한다.
+      seed는 난수 발생기의 초기값이며 같은 seed를 쓰면 같은 난수열이 재현된다.
+      조건의 각 값은 tlimit=150, prarr=0.25, mean=5, seed=35213으로 초기화된다.
+    tags: [multi-server-queue, random-seed]
+
+  - id: e19-10
+    type: multiple-choice
+    chapter: 3
+    passageRefs: [g19-multi-server-condition-01, g19-multi-server-code-01]
+    prompt: 0.25를 초기값으로 갖는 변수는?
+    choices:
+      - { id: '1', text: tstep }
+      - { id: '2', text: prarr }
+      - { id: '3', text: seed }
+      - { id: '4', text: mean }
+    answers: ['2']
+    explanation: |
+      선택지 1: tstep은 시간 증가 단위(1분)로, time = time+tstep에서 쓰인다.
+      선택지 2: 도착상태가 시간당 평균 15대이므로 1분당 도착 확률은 15/60 = 0.25이다. if U < prarr*tstep then에서 도착 여부를 판정하는 prarr가 0.25를 가지므로 정답이다.
+      선택지 3: seed는 난수의 초기값 35213을 갖는다.
+      선택지 4: mean은 봉사시간 평균 5분을 갖는다.
+
+      핵심 개념:
+      고정시간 간격 시뮬레이션에서는 각 시간 단위마다 난수 U를 발생시켜 도착 여부를 결정한다.
+      U < prarr × tstep이면 그 시간에 고객이 도착한 것으로 본다.
+      시간당 평균 도착 수를 분 단위 확률로 바꾸면 prarr = 15/60 = 0.25이다.
+    tags: [multi-server-queue, arrival-probability]
+
+  - id: e19-11
+    type: multiple-choice
+    chapter: 3
+    passageRefs: [g19-multi-server-condition-01, g19-multi-server-code-01]
+    prompt: 150을 초기값으로 갖는 변수는?
+    choices:
+      - { id: '1', text: tlimit }
+      - { id: '2', text: prarr }
+      - { id: '3', text: seed }
+      - { id: '4', text: mean }
+    answers: ['1']
+    explanation: |
+      선택지 1: 시뮬레이션 시간 150은 while time < tlimit do의 종료 조건으로 쓰이는 tlimit의 값이므로 정답이다.
+      선택지 2: prarr는 분당 도착 확률 0.25를 갖는다.
+      선택지 3: seed는 난수의 초기값 35213을 갖는다.
+      선택지 4: mean은 봉사시간 평균 5를 갖는다.
+
+      핵심 개념:
+      tlimit는 전체 시뮬레이션 시간이며 time이 tlimit에 도달하면 반복을 끝낸다.
+      평균 대기행렬 길이는 aveque = totque/(tlimit/tstep)로 구한다.
+      tlimit/tstep은 시뮬레이션에서 관측한 시간 단위의 총 개수이다.
+    tags: [multi-server-queue, simulation-time]
+
+  - id: e19-12
+    type: multiple-choice
+    chapter: 3
+    passageRefs: [g19-multi-server-condition-01, g19-multi-server-code-01]
+    prompt: 5를 초기값으로 갖는 변수는?
+    choices:
+      - { id: '1', text: tlimit }
+      - { id: '2', text: prarr }
+      - { id: '3', text: seed }
+      - { id: '4', text: mean }
+    answers: ['4']
+    explanation: |
+      선택지 1: tlimit는 시뮬레이션 시간 150을 갖는다.
+      선택지 2: prarr는 분당 도착 확률 0.25를 갖는다.
+      선택지 3: seed는 난수의 초기값 35213을 갖는다.
+      선택지 4: 봉사시간이 평균 5분의 포아송 분포이므로 call poissn(seed,mean,p)에 전달되는 평균 mean이 5를 가져 정답이다.
+
+      핵심 개념:
+      봉사시간은 포아송 분포를 따르는 확률변수로 발생시킨다.
+      poissn 서브루틴은 seed와 평균 mean을 받아 봉사시간 p를 돌려준다.
+      발생된 p는 빈 창구의 tpump(i)에 저장되어 남은 봉사시간이 된다.
+    tags: [multi-server-queue, poisson-distribution]
+
+  - id: e19-13
+    type: multiple-choice
+    chapter: 3
+    passageRefs: [g19-multi-server-condition-01, g19-multi-server-code-01]
+    prompt: 현재 봉사하려는 고객의 봉사시간을 구한 것은?
+    choices:
+      - { id: '1', text: p }
+      - { id: '2', text: queue }
+      - { id: '3', text: prarr }
+      - { id: '4', text: totque }
+    answers: ['1']
+    explanation: |
+      선택지 1: 창구가 비고 대기 고객이 있으면 call poissn(seed,mean,p)로 포아송 분포 봉사시간 p를 구하고 tpump(i) = p로 저장하므로 정답이다.
+      선택지 2: queue는 현재 대기행렬에 있는 고객 수이다.
+      선택지 3: prarr는 분당 도착 확률이다.
+      선택지 4: totque는 매 시간 단위의 대기행렬 길이를 누적한 합이다.
+
+      핵심 개념:
+      tpump(i)는 i번 창구의 남은 봉사시간이며 매 tstep마다 감소한다.
+      tpump(i)가 0이고 queue ≠ 0이면 대기 고객 한 명을 꺼내 봉사를 시작한다.
+      이때 새 고객의 봉사시간 p를 확률분포로 발생시켜 tpump(i)에 넣는다.
+    tags: [multi-server-queue, service-time]
+
+  - id: e19-14
+    type: multiple-choice
+    chapter: 3
+    passageRefs: [g19-multi-server-condition-01, g19-multi-server-code-01]
+    prompt: 평균 대기행렬길이는?
+    choices:
+      - { id: '1', text: aveque }
+      - { id: '2', text: queue }
+      - { id: '3', text: prarr }
+      - { id: '4', text: tpump }
+    answers: ['1']
+    explanation: |
+      선택지 1: aveque = totque/(tlimit/tstep)는 누적 대기행렬 길이를 관측 시간 단위 수로 나눈 값으로 평균 대기행렬길이이므로 정답이다.
+      선택지 2: queue는 특정 시점의 대기행렬 길이이며 평균이 아니다.
+      선택지 3: prarr는 분당 도착 확률이다.
+      선택지 4: tpump는 각 창구의 남은 봉사시간이다.
+
+      핵심 개념:
+      매 시간 단위마다 totque = totque+queue로 대기행렬 길이를 누적한다.
+      시뮬레이션이 끝나면 누적값을 전체 시간 단위 수 tlimit/tstep로 나누어 평균 대기행렬 길이를 구한다.
+      totarr는 총 도착 고객 수로 함께 출력된다.
+    tags: [multi-server-queue, average-queue-length]
+
+  - id: e19-15
+    type: multiple-choice
+    chapter: 3
+    passageRefs: [g19-multi-server-condition-01, g19-multi-server-code-01]
+    prompt: 평균 대기시간을 구하는 공식을 만들려고 한다. 가장 적당한 것은?
+    choices:
+      - { id: '1', text: 'totque / totarr' }
+      - { id: '2', text: 'totque / arrive' }
+      - { id: '3', text: 'totque / queue' }
+      - { id: '4', text: 'totque / (tlimit/tstep)' }
+    answers: ['1']
+    explanation: |
+      선택지 1: totque는 매 시간 단위 대기 고객 수의 합이므로 전체 고객이 기다린 총 시간(고객·시간 단위)이다. 이를 총 도착 고객 수 totarr로 나누면 고객 한 명당 평균 대기시간이 되므로 정답이다.
+      선택지 2: arrive는 현재 시간 단위의 도착 여부(0 또는 1)이므로 분모로 적절하지 않다.
+      선택지 3: queue는 특정 시점의 대기행렬 길이로 평균 대기시간과 관계없다.
+      선택지 4: totque를 시간 단위 수로 나누면 평균 대기행렬 길이(aveque)가 된다.
+
+      핵심 개념:
+      대기 고객 수를 매 시간 단위 누적한 totque는 모든 고객의 대기시간 합과 같다.
+      평균 대기행렬 길이 = totque / (tlimit/tstep)이다.
+      평균 대기시간 = totque / totarr이다.
+    tags: [multi-server-queue, average-waiting-time]
+
+  - id: e19-16
+    type: multiple-choice
+    chapter: 3
+    passageRefs: [g19-multi-server-output-intro-01, g19-multi-server-output-01]
+    prompt: 고객들에 대한 도착 시간을 순서대로 나열한 것은?
+    choices:
+      - { id: '1', text: '1,2,4,6,8' }
+      - { id: '2', text: '1,2,3,5,9' }
+      - { id: '3', text: '3,5,6,7,8' }
+      - { id: '4', text: '4,6,7,8,9' }
+    answers: ['1']
+    explanation: |
+      선택지 1: ARRIVE가 1인 TIME은 1, 2, 4, 6, 8이므로 고객은 이 순서로 도착했으며 정답이다.
+      선택지 2: TIME 3과 9는 ARRIVE가 0이므로 도착이 없다.
+      선택지 3: ARRIVE가 0인 TIME 3, 5, 7이 포함되어 있다.
+      선택지 4: ARRIVE가 0인 TIME 7, 9가 포함되어 있고 TIME 1, 2의 도착이 빠져 있다.
+
+      핵심 개념:
+      출력결과의 ARRIVE는 해당 시간 단위에 고객이 도착했는지(1) 아닌지(0)를 나타낸다.
+      QUEUE는 봉사를 기다리는 고객 수, TPUMP[1]·TPUMP[2]는 각 창구의 남은 봉사시간이다.
+      도착 시간은 ARRIVE = 1인 TIME을 차례로 읽으면 된다.
+    tags: [multi-server-queue, arrival-time]
+
+  - id: e19-17
+    type: multiple-choice
+    chapter: 3
+    passageRefs: [g19-multi-server-output-intro-01, g19-multi-server-output-01]
+    prompt: 고객들의 도착시간 간격을 순서대로 구한 것은?
+    choices:
+      - { id: '1', text: '0,1,2,2,2' }
+      - { id: '2', text: '1,1,2,2,2' }
+      - { id: '3', text: '1,1,1,2,3' }
+      - { id: '4', text: '1,1,2,3,2' }
+    answers: ['1']
+    explanation: |
+      선택지 1: 시뮬레이션 시간은 1부터 시작하고 도착 시간은 1, 2, 4, 6, 8이다. 첫 고객은 시작 시각 1에 바로 도착하므로 간격 0, 이후 2-1=1, 4-2=2, 6-4=2, 8-6=2가 되어 정답이다.
+      선택지 2: 첫 고객의 도착시간 간격을 1로 보면 시작 시각 1과 도착 시각 1의 차이 0과 맞지 않는다.
+      선택지 3: 세 번째 간격은 4-2=2이므로 1이 될 수 없다.
+      선택지 4: 네 번째 간격은 6-4=2이므로 3이 될 수 없다.
+
+      핵심 개념:
+      도착시간 간격은 연속된 두 고객의 도착 시각 차이이다.
+      첫 고객은 시뮬레이션 시작 시각과의 차이로 간격을 구한다.
+      시작 시각이 1이고 첫 도착도 1이므로 첫 간격은 0이다.
+    tags: [multi-server-queue, interarrival-time]
+
+  - id: e19-18
+    type: multiple-choice
+    chapter: 3
+    passageRefs: [g19-multi-server-output-intro-01, g19-multi-server-output-01]
+    prompt: 고객들에 대한 봉사 시간을 순서대로 구한 것은?
+    choices:
+      - { id: '1', text: '4,2,4,4,6' }
+      - { id: '2', text: '4,3,4,3,6' }
+      - { id: '3', text: '4,5,4,3,6' }
+      - { id: '4', text: '4,4,4,5,6' }
+    answers: ['3']
+    explanation: |
+      선택지 1: 두 번째 고객의 봉사시간은 TIME 2에 TPUMP[2]에 들어간 5이므로 2가 아니다.
+      선택지 2: 두 번째 고객의 봉사시간 5를 3으로 잘못 읽었다.
+      선택지 3: 봉사시간은 새 값이 창구에 들어가는 시점에서 읽는다. 1번 고객은 TIME 1에 TPUMP[1]=4, 2번 고객은 TIME 2에 TPUMP[2]=5, 3번 고객(TIME 4 도착, 대기)은 TIME 5에 TPUMP[1]=4, 4번 고객(TIME 6 도착, 대기)은 TIME 7에 TPUMP[2]=3, 5번 고객(TIME 8 도착, 대기)은 TIME 9에 TPUMP[1]=6이다. 따라서 4,5,4,3,6이므로 정답이다.
+      선택지 4: 두 번째 고객은 5, 네 번째 고객은 3이므로 순서가 맞지 않는다.
+
+      핵심 개념:
+      TPUMP 값은 매 시간 단위 1씩 줄어들다가, 창구가 비고 대기 고객이 있으면 새 봉사시간으로 다시 채워진다.
+      값이 줄지 않고 갑자기 커지는 시점이 새 고객의 봉사가 시작되는 시점이다.
+      두 창구가 모두 바쁠 때 도착한 고객은 QUEUE에 1로 나타난 뒤 다음 시간 단위에 빈 창구로 들어간다.
+    tags: [multi-server-queue, service-time]
+
+  - id: e19-19
+    type: multiple-choice
+    chapter: 3
+    passageRefs: [g19-multi-server-output-intro-01, g19-multi-server-output-01]
+    prompt: 4번 고객까지 출발 시간을 순서대로 구한 것은?
+    choices:
+      - { id: '1', text: '1,4,6,8' }
+      - { id: '2', text: '4,6,8,9' }
+      - { id: '3', text: '5,7,9,10' }
+      - { id: '4', text: '5,6,10,12' }
+    answers: ['3']
+    explanation: |
+      선택지 1: 1, 4, 6, 8은 도착 시간 일부로 출발 시간이 아니다.
+      선택지 2: 봉사 시작 시각에 봉사시간을 더한 값보다 1씩 작게 계산한 결과이다.
+      선택지 3: 출발 시간 = 봉사 시작 시각 + 봉사시간이다. 1번 고객 1+4=5, 2번 고객 2+5=7, 3번 고객 5+4=9, 4번 고객 7+3=10이다. 실제로 TPUMP[1]은 TIME 5, 9에, TPUMP[2]는 TIME 7에 새 고객으로 바뀌므로 정답이다.
+      선택지 4: 2번 고객은 TIME 7에 창구 2를 비우므로 6이 될 수 없고, 4번 고객도 봉사시간 3을 더하면 10이다.
+
+      핵심 개념:
+      고객의 출발 시간은 봉사 시작 시각에 봉사시간을 더해 구한다.
+      대기한 고객은 도착 시각이 아니라 창구가 비어 봉사를 시작한 시각을 기준으로 한다.
+      창구의 TPUMP가 새 값으로 바뀌는 시각이 이전 고객이 떠난 시각이다.
+    tags: [multi-server-queue, departure-time]
+
+  - id: e19-20
+    type: multiple-choice
+    chapter: 3
+    passageRefs: [g19-normal-service-condition-01, g19-normal-service-code-01]
+    prompt: 다음 중 정규확률변수의 평균 값으로 연료탱크의 평균을 나타내는 것은?
+    choices:
+      - { id: '1', text: liters }
+      - { id: '2', text: nseed }
+      - { id: '3', text: nmean }
+      - { id: '4', text: stdev }
+    answers: ['3']
+    explanation: |
+      선택지 1: liters는 정규분포에서 발생시킨 급유량(연료탱크 크기) 확률변수 값으로, 봉사시간 계산에 쓰인다.
+      선택지 2: nseed는 정규 난수 발생을 위한 난수의 초기값이다.
+      선택지 3: call normal(nseed,nmean,stdev,liters)에서 정규분포의 평균 20 liter를 전달하는 변수가 nmean이므로 정답이다.
+      선택지 4: stdev는 정규분포의 표준편차 3을 나타낸다.
+
+      핵심 개념:
+      봉사시간의 변화에서는 봉사시간을 고정값이 아니라 급유량에 따라 계산한다.
+      급유량 liters는 평균 20, 표준편차 3인 정규분포에서 발생시킨다.
+      봉사시간은 tpump = 1.0 + 1.0/8.0 × liters로 1 liter당 1/8분을 반영한다.
+    tags: [service-time, normal-distribution]
+
+  - id: e19-21
+    type: multiple-choice
+    chapter: 4
+    prompt: 다음 중 모델링 월드뷰에 대한 설명 중 ==틀린== 것은?
+    choices:
+      - { id: '1', text: '시뮬레이션 모델 개발에 있어서 분석가는 모델 대상이 되는 시스템을 설명하기 위하여 개념적인 기본구조(frame work)를 갖고 있어야 한다.' }
+      - { id: '2', text: '이 기본구조는 시스템의 기능적인 관계를 잘 이해해서 그것을 표현할 수 있는 전체적인 시각인 월드뷰(world view)에 의하여 결정된다.' }
+      - { id: '3', text: '만일 모델 작성자가 시뮬레이션 언어를 사용한다면 기본구조는 언어에 의해 자연히 암시적으로 표현된다.' }
+      - { id: '4', text: '혼합형 시뮬레이션 모델링의 경우 사건중심 진행방법, 액티비티 관찰중심방법, 프로세스중심 진행방법들이 있다.' }
+    answers: ['4']
+    explanation: |
+      선택지 1: 분석가는 대상 시스템을 설명하기 위한 개념적 기본구조(frame work)를 갖추어야 한다는 옳은 설명이다.
+      선택지 2: 기본구조는 시스템의 기능적 관계를 표현하는 전체적인 시각인 월드뷰에 의해 결정된다는 옳은 설명이다.
+      선택지 3: 시뮬레이션 언어는 특정 월드뷰를 바탕으로 만들어져 있어, 언어를 사용하면 기본구조가 언어에 의해 암시적으로 표현된다.
+      선택지 4: 사건중심 진행방법, 액티비티 관찰중심방법, 프로세스중심 진행방법은 이산형 시뮬레이션 모델링의 세 가지 방법이다. 혼합형의 방법으로 설명했으므로 틀린 설명이며 정답이다.
+
+      핵심 개념:
+      모델링 월드뷰는 시스템을 바라보는 전체적인 시각으로 모델의 기본구조를 결정한다.
+      시뮬레이션 모델링은 이산형, 연속형, 혼합형으로 나뉜다.
+      이산형 시뮬레이션 모델링에는 사건중심, 액티비티 관찰중심, 프로세스중심 진행방법이 있다.
+      혼합형은 이산적 변화와 연속적 변화가 함께 있는 시스템을 다룬다.
+    tags: [world-view, discrete-modeling]
+
+  - id: e19-22
+    type: multiple-choice
+    chapter: 5
+    prompt: 다음 중 고정시간법의 특징은?
+    choices:
+      - { id: '1', text: '사건중심으로 진행하는 경우 효율적이다.' }
+      - { id: '2', text: '종료조건을 봉사 고객 수로 한다.' }
+      - { id: '3', text: '종료조건을 처리 시간으로 한다.' }
+      - { id: '4', text: '언제 끝날지 종료 시간을 미리 알 수 없다.' }
+    answers: ['3']
+    explanation: |
+      선택지 1: 사건이 발생하는 시점으로 시간을 건너뛰며 진행하는 방식은 다음사건 시간 진행법(변동시간법)이며, 사건 사이 간격이 불규칙할 때 효율적이다.
+      선택지 2: 종료조건을 봉사 고객 수로 하는 것은 다음사건 시간 진행법에서 주로 쓰는 방식이다.
+      선택지 3: 고정시간법은 일정한 시간 간격 Δt씩 시간을 증가시키며 진행하므로 정해진 처리 시간(시뮬레이션 시간)에 도달하면 종료한다. 따라서 정답이다.
+      선택지 4: 고정시간법은 종료 시간을 미리 정해 두므로 언제 끝날지 알 수 있다. 종료 시간을 미리 알 수 없는 것은 고객 수로 종료하는 다음사건 방식이다.
+
+      핵심 개념:
+      시간 진행법에는 고정시간 진행법과 다음사건 시간 진행법이 있다.
+      고정시간 진행법은 일정 간격으로 시간을 증가시키고 그 구간에 일어난 사건을 처리한다.
+      다음사건 시간 진행법은 가장 가까운 다음 사건 시점으로 시계를 옮긴다.
+      앞의 복수창구 알고리즘(while time < tlimit)은 고정시간법의 예이다.
+    tags: [time-advance, fixed-increment]
+
+  - id: e19-23
+    type: multiple-choice
+    chapter: 5
+    passageRefs: [g19-discrete-event-main-01, g19-discrete-event-main-code-01]
+    prompt: 고객의 평균 도착시간 간격을 나타내는 변수는?
+    choices:
+      - { id: '1', text: marrvt }
+      - { id: '2', text: mservt }
+      - { id: '3', text: totarr }
+      - { id: '4', text: numcus }
+    answers: ['1']
+    explanation: |
+      선택지 1: marrvt는 mean arrival time의 약자로 평균 도착시간 간격 5.0을 저장하므로 정답이다.
+      선택지 2: mservt는 mean service time으로 평균 봉사시간 2.5를 저장한다.
+      선택지 3: totarr는 시뮬레이션을 끝낼 총 고객 수 1000을 저장한다.
+      선택지 4: numcus는 지금까지 처리한 고객 수로, totarr와 비교해 종료 여부를 판단한다.
+
+      핵심 개념:
+      이산사건 시뮬레이션의 주 프로그램은 init으로 초기화한 뒤 timing으로 다음 사건을 결정한다.
+      next = 1이면 도착 사건(arrive), 아니면 출발 사건(depart)을 처리한다.
+      numcus가 totarr에 도달하면 반복을 끝내고 report로 결과를 출력한다.
+    tags: [discrete-event, arrival-time]
+
+  - id: e19-24
+    type: multiple-choice
+    chapter: 5
+    passageRefs: [g19-discrete-event-main-01, g19-discrete-event-main-code-01]
+    prompt: 고객의 평균 봉사시간을 나타내는 변수는?
+    choices:
+      - { id: '1', text: marrvt }
+      - { id: '2', text: mservt }
+      - { id: '3', text: totarr }
+      - { id: '4', text: numcus }
+    answers: ['2']
+    explanation: |
+      선택지 1: marrvt는 평균 도착시간 간격 5.0이다.
+      선택지 2: mservt는 mean service time의 약자로 평균 봉사시간 2.5를 저장하므로 정답이다.
+      선택지 3: totarr는 종료조건이 되는 총 고객 수 1000이다.
+      선택지 4: numcus는 처리된 고객 수를 세는 변수이다.
+
+      핵심 개념:
+      이산사건 시뮬레이션에서는 도착시간 간격과 봉사시간을 확률분포로부터 발생시킨다.
+      marrvt와 mservt는 각 분포의 평균을 나타내는 입력 매개변수이다.
+      도착 사건 처리 시 다음 도착 시각을, 봉사 시작 시 출발 시각을 사건 목록에 등록한다.
+    tags: [discrete-event, service-time]
+
+  - id: e19-25
+    type: multiple-choice
+    chapter: 5
+    passageRefs: [g19-discrete-event-main-01, g19-discrete-event-main-code-01]
+    prompt: 시뮬레이션 종료조건으로 총 고객 수를 나타내는 변수는?
+    choices:
+      - { id: '1', text: totarr }
+      - { id: '2', text: timing }
+      - { id: '3', text: next }
+      - { id: '4', text: marrvt }
+    answers: ['1']
+    explanation: |
+      선택지 1: while( numcus < totarr )에서 처리한 고객 수 numcus가 totarr(1000)에 도달하면 종료하므로 totarr가 총 고객 수를 나타내며 정답이다.
+      선택지 2: timing은 다음에 일어날 사건과 그 시각을 결정하는 서브루틴이다.
+      선택지 3: next는 timing이 정한 다음 사건의 종류(1이면 도착, 아니면 출발)를 나타낸다.
+      선택지 4: marrvt는 평균 도착시간 간격이다.
+
+      핵심 개념:
+      다음사건 시간 진행법에서는 종료 시간 대신 처리 고객 수로 종료조건을 정하는 경우가 많다.
+      timing 루틴은 사건 목록에서 가장 이른 사건을 골라 시뮬레이션 시계를 그 시각으로 옮긴다.
+      사건 종류에 따라 arrive 또는 depart 루틴을 호출해 상태를 갱신한다.
+    tags: [discrete-event, termination-condition]
+
+  - id: e19-26
+    type: multiple-choice
+    chapter: 6
+    prompt: 다음 중 네트워크 설계 및 성능평가, 네트워크상의 문제해결, 응용프로그램 성능 분석 및 진단 등 네트워크 전반에 걸쳐서 활용되는 네트워크 시뮬레이션 전용언어는?
+    choices:
+      - { id: '1', text: 'Riverbed Modeler(OPNET)' }
+      - { id: '2', text: AweSim }
+      - { id: '3', text: ProModel }
+      - { id: '4', text: SLAM }
+    answers: ['1']
+    explanation: |
+      선택지 1: Riverbed Modeler(구 OPNET)는 네트워크 설계와 성능평가, 문제해결, 응용프로그램 성능 분석 등에 쓰이는 네트워크 시뮬레이션 전용언어이므로 정답이다.
+      선택지 2: AweSim은 SLAM 계열을 기반으로 한 범용 시뮬레이션 환경으로 네트워크 전용이 아니다.
+      선택지 3: ProModel은 제조·서비스 시스템 분석에 주로 쓰이는 시뮬레이션 소프트웨어이다.
+      선택지 4: SLAM은 이산형·연속형·혼합형 모델을 모두 다룰 수 있는 범용 시뮬레이션 언어이다.
+
+      핵심 개념:
+      시뮬레이션 언어는 범용 시뮬레이션 언어와 특정 분야 전용 언어로 나눌 수 있다.
+      네트워크 분야에서는 Riverbed Modeler(OPNET)가 대표적인 전용 도구이다.
+      Riverbed Modeler Academic Edition은 교재의 네트워크 시뮬레이션 실습에도 사용된다.
+    tags: [simulation-language, network-simulation]
+
+  - id: e19-27
+    type: multiple-choice
+    chapter: 6
+    prompt: 다음 중 시뮬레이션에서 범용언어를 사용하는 경우의 장점은?
+    choices:
+      - { id: '1', text: '시뮬레이션 모델 설계에 일반화된 구조를 제공한다.' }
+      - { id: '2', text: '사용자가 사용하기 쉽고 융통성이 많다.' }
+      - { id: '3', text: '모델링과 프로그래밍 시간이 적게 걸린다.' }
+      - { id: '4', text: '출력결과를 다양한 그래픽과 애니메이션으로 표현한다.' }
+    answers: ['2']
+    explanation: |
+      선택지 1: 모델 설계에 일반화된 구조(월드뷰)를 제공하는 것은 시뮬레이션 언어의 장점이다.
+      선택지 2: 범용 고급언어는 사용자가 이미 알고 있는 경우가 많아 사용하기 쉽고, 제약 없이 원하는 논리를 자유롭게 구현할 수 있어 융통성이 크므로 정답이다.
+      선택지 3: 시간 진행, 난수 발생, 통계 수집 기능이 내장되어 있어 모델링과 프로그래밍 시간이 줄어드는 것은 시뮬레이션 언어의 장점이다.
+      선택지 4: 다양한 그래픽과 애니메이션 출력 기능은 시뮬레이션 언어가 제공하는 장점이다.
+
+      핵심 개념:
+      범용 고급언어는 익숙하고 융통성이 크며 실행 효율과 이식성이 좋다.
+      시뮬레이션 언어는 모델링 구조, 시간 관리, 난수·통계·출력 기능을 기본 제공해 개발 시간을 줄인다.
+      두 방식의 장단점을 비교해 목적에 맞는 언어를 선택한다.
+    tags: [general-purpose-language, simulation-language]
+
+  - id: e19-28
+    type: multiple-choice
+    chapter: 7
+    prompt: 컴퓨터를 이용하여 난수를 발생하는 경우 갖추어야 할 점이 ==아닌== 것은?
+    choices:
+      - { id: '1', text: '반복발생이 가능해야 한다.' }
+      - { id: '2', text: '상관관계가 없어야 한다.' }
+      - { id: '3', text: '난수들 상호간에 종속적이어야 한다.' }
+      - { id: '4', text: '[0,1) 범위에서 일양분포를 만족해야 한다.' }
+    answers: ['3']
+    explanation: |
+      선택지 1: 같은 초기값으로 같은 난수열을 다시 만들 수 있어야 실험을 재현하고 비교할 수 있다.
+      선택지 2: 난수들 사이에 상관관계가 없어야 무작위성을 가진다.
+      선택지 3: 난수는 서로 독립이어야 하며 상호간에 종속적이면 무작위성이 깨진다. 갖추어야 할 점이 아니므로 정답이다.
+      선택지 4: 난수는 [0,1) 범위에서 일양분포를 따라야 다른 확률분포로 변환하는 기초가 된다.
+
+      핵심 개념:
+      컴퓨터로 만드는 난수는 알고리즘으로 생성되는 의사난수이다.
+      좋은 난수는 일양성, 독립성(무상관), 재현성, 긴 주기, 빠른 발생 속도를 갖추어야 한다.
+      난수의 검정은 이러한 성질, 특히 일양성과 독립성을 통계적으로 확인하는 과정이다.
+    tags: [random-number, pseudo-random]
+
+  - id: e19-29
+    type: multiple-choice
+    chapter: 7
+    passageRefs: [g19-mixed-congruential-01]
+    prompt: 이 방법의 이름은?
+    choices:
+      - { id: '1', text: 중앙 이승법 }
+      - { id: '2', text: shift 연산법 }
+      - { id: '3', text: 승산식 합동법 }
+      - { id: '4', text: 혼합식 합동법 }
+    answers: ['4']
+    explanation: |
+      선택지 1: 중앙 이승법은 이전 난수를 제곱한 뒤 가운데 자릿수를 취하는 방법이다.
+      선택지 2: shift 연산법은 비트를 이동하고 결합해 난수를 만드는 방법이다.
+      선택지 3: 승산식 합동법은 증분 c = 0인 $X_i = aX_{i-1} \pmod m$ 형태이다.
+      선택지 4: $X_i = aX_{i-1} + c \pmod m$에서 a = 2, c = 3, m = 10으로 곱셈과 덧셈을 함께 사용하므로 혼합식 합동법이며 정답이다.
+
+      핵심 개념:
+      합동법은 나머지 연산으로 난수열을 만드는 방법이다.
+      혼합식 합동법은 $X_i = (aX_{i-1} + c) \bmod m$ (c ≠ 0)이다.
+      승산식 합동법은 c = 0인 경우이다.
+      발생된 정수를 m으로 나누면 [0,1) 범위의 난수가 된다.
+    tags: [congruential-method, mixed-congruential]
+
+  - id: e19-30
+    type: multiple-choice
+    chapter: 7
+    passageRefs: [g19-mixed-congruential-01]
+    prompt: $X_0$ = 3 을 대입하여 $X_1$ 을 구하면?
+    choices:
+      - { id: '1', text: '1' }
+      - { id: '2', text: '3' }
+      - { id: '3', text: '5' }
+      - { id: '4', text: '9' }
+    answers: ['4']
+    explanation: |
+      선택지 1: 1은 $X_2$의 값이다.
+      선택지 2: 3은 초기값 $X_0$이다.
+      선택지 3: 5는 $X_3$의 값이다.
+      선택지 4: $X_1 = 2 \times 3 + 3 = 9$이고 $9 \bmod 10 = 9$이므로 정답이다.
+
+      핵심 개념:
+      혼합식 합동법은 직전 값에 a를 곱하고 c를 더한 뒤 m으로 나눈 나머지를 다음 값으로 한다.
+      여기서는 a = 2, c = 3, m = 10이다.
+      $X_1 = (2X_0 + 3) \bmod 10$이다.
+    tags: [mixed-congruential, calculation]
+
+  - id: e19-31
+    type: multiple-choice
+    chapter: 7
+    passageRefs: [g19-mixed-congruential-01]
+    prompt: 계속해서 $X_2$ 을 구하면?
+    choices:
+      - { id: '1', text: '1' }
+      - { id: '2', text: '3' }
+      - { id: '3', text: '5' }
+      - { id: '4', text: '9' }
+    answers: ['1']
+    explanation: |
+      선택지 1: $X_2 = 2 \times 9 + 3 = 21$이고 $21 \bmod 10 = 1$이므로 정답이다.
+      선택지 2: 3은 $X_0$(그리고 $X_4$)의 값이다.
+      선택지 3: 5는 $X_3 = (2 \times 1 + 3) \bmod 10$의 값이다.
+      선택지 4: 9는 $X_1$의 값이다.
+
+      핵심 개념:
+      합동법은 앞에서 구한 값을 다시 식에 넣어 다음 값을 구한다.
+      $X_1 = 9$를 대입하면 $X_2 = (2 \times 9 + 3) \bmod 10 = 1$이다.
+      나머지 연산 때문에 값은 항상 0 이상 m-1 이하이다.
+    tags: [mixed-congruential, calculation]
+
+  - id: e19-32
+    type: multiple-choice
+    chapter: 7
+    passageRefs: [g19-mixed-congruential-01]
+    prompt: 주기는?
+    choices:
+      - { id: '1', text: '3' }
+      - { id: '2', text: '4' }
+      - { id: '3', text: '5' }
+      - { id: '4', text: '6' }
+    answers: ['2']
+    explanation: |
+      선택지 1: 3개 값 뒤에는 아직 초기값 3이 다시 나오지 않는다.
+      선택지 2: $X_0=3$, $X_1=9$, $X_2=1$, $X_3=(2+3) \bmod 10=5$, $X_4=(10+3) \bmod 10=3$으로 $X_4$에서 초기값 3이 다시 나온다. 3, 9, 1, 5가 반복되므로 주기는 4이며 정답이다.
+      선택지 3: 5개 값을 발생시키면 이미 3이 한 번 반복된다.
+      선택지 4: 6은 수열 3, 9, 1, 5, 3, 9, …의 반복 길이와 맞지 않는다.
+
+      핵심 개념:
+      주기는 난수열이 같은 값으로 되돌아와 반복되기까지 발생되는 서로 다른 값의 개수이다.
+      혼합식 합동법의 주기는 최대 m이며, 여기서는 m = 10이지만 주기는 4에 그친다.
+      좋은 난수 발생기는 매개변수 a, c, m을 적절히 골라 주기를 최대한 길게 한다.
+    tags: [mixed-congruential, period]
+
+  - id: e19-33
+    type: multiple-choice
+    chapter: 7
+    passageRefs: [g19-chi-square-01]
+    prompt: 구간별 기대값인 n/k 의 값은?
+    choices:
+      - { id: '1', text: '30' }
+      - { id: '2', text: '40' }
+      - { id: '3', text: '50' }
+      - { id: '4', text: '60' }
+    answers: ['4']
+    explanation: |
+      선택지 1: 30은 6000개를 200개 구간으로 나눌 때의 값이다.
+      선택지 2: 40은 6000개를 150개 구간으로 나눌 때의 값이다.
+      선택지 3: 50은 6000개를 120개 구간으로 나눌 때의 값이다.
+      선택지 4: 난수 개수 n = 6000, 구간 수 k = 100이므로 기대값 n/k = 6000/100 = 60이며 정답이다.
+
+      핵심 개념:
+      $\chi^2$-검정은 난수의 일양성을 검정하는 방법이다.
+      [0,1)을 k개 구간으로 나누면 일양분포에서 각 구간의 기대 빈도는 n/k이다.
+      관측 빈도 $f_i$와 기대 빈도의 차이로 $\chi^2 = \frac{k}{n}\sum_{i=1}^{k}(f_i - n/k)^2$을 계산해 임계값과 비교한다.
+    tags: [chi-square-test, uniformity-test]
+
+  - id: e19-34
+    type: multiple-choice
+    chapter: 7
+    passageRefs: [g19-chi-square-01]
+    prompt: 계속해서 2차원의 연속형 검정을 하려고 한다. 같은 수의 난수 6000개로 2차원의 (x, y)난수를 만들고 100(10*10)개의 2차원 구간을 선정하였다. 기대 값 $n/k^2$ 은?
+    choices:
+      - { id: '1', text: '30' }
+      - { id: '2', text: '40' }
+      - { id: '3', text: '50' }
+      - { id: '4', text: '60' }
+    answers: ['1']
+    explanation: |
+      선택지 1: 난수 두 개로 (x, y) 한 쌍을 만들므로 6000개 난수에서 쌍의 개수는 n = 3000이다. 각 축을 k = 10개로 나누어 $k^2 = 100$개 구간이 되므로 기대값은 $n/k^2 = 3000/100 = 30$이며 정답이다.
+      선택지 2: 40은 쌍의 개수 n을 4000으로 계산한 값이다.
+      선택지 3: 50은 쌍의 개수 n을 5000으로 계산한 값이다.
+      선택지 4: 60은 난수 6000개를 그대로 쌍의 개수로 보고 100으로 나눈 값이다. 2차원에서는 난수 두 개가 하나의 점이 된다.
+
+      핵심 개념:
+      연속형 검정(serial test)은 연속된 난수 쌍의 독립성을 2차원 $\chi^2$-검정으로 확인한다.
+      n개의 쌍을 $k \times k$개 구간에 배정하면 각 구간의 기대 빈도는 $n/k^2$이다.
+      난수 개수가 N이면 겹치지 않는 쌍은 N/2개이다.
+    tags: [chi-square-test, serial-test]
+
+  - id: e19-35
+    type: multiple-choice
+    chapter: 2
+    prompt: 다음은 시뮬레이션의 응용사례들이다. 시뮬레이션 목적이 미래를 예측하는 것으로 나머지 셋과 가장 관련 ==없==는 것은?
+    choices:
+      - { id: '1', text: 원자력 발전소 시뮬레이터 }
+      - { id: '2', text: 운전연습 시뮬레이터 }
+      - { id: '3', text: 성형 시뮬레이션 }
+      - { id: '4', text: 파일러트(조종사) 시뮬레이션 }
+    answers: ['3']
+    explanation: |
+      선택지 1: 원자력 발전소 시뮬레이터는 운전원이 정상·비상 상황의 조작을 익히는 교육훈련용이다.
+      선택지 2: 운전연습 시뮬레이터는 실제 차량 없이 운전 기술을 익히는 교육훈련용이다.
+      선택지 3: 성형 시뮬레이션은 수술 후의 얼굴 모습을 미리 보여 주는 것으로 미래를 예측하는 것이 목적이다. 나머지 셋(교육훈련)과 목적이 달라 정답이다.
+      선택지 4: 파일러트(조종사) 시뮬레이션은 비행 조종 기술을 안전하게 익히는 교육훈련용이다.
+
+      핵심 개념:
+      시뮬레이션은 목적에 따라 분석·설계 평가, 미래 예측, 교육훈련 등에 활용된다.
+      교육훈련용 시뮬레이터는 위험하거나 비용이 큰 실제 조작을 안전하게 반복 연습하게 한다.
+      미래 예측용 시뮬레이션은 아직 일어나지 않은 결과를 모델로 미리 보여 준다.
+    tags: [simulation-applications, training-simulator]

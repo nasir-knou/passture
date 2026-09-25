@@ -7,14 +7,21 @@ import {
 } from '../lib/mock-exam-session';
 import type { OrderMode, PracticeOptions } from '../lib/quiz-session';
 import { loadQuestionFile } from '../lib/data-loader';
-import { escapeHtml, renderFooter, renderTopNav, semesterLabel, sourceKindLabel } from './shared';
+import {
+  escapeHtml,
+  getDefaultSemester,
+  renderFooter,
+  renderTopNav,
+  semesterLabel,
+  sourceKindLabel,
+} from './shared';
 
 type SemesterFilter = 'all' | Semester;
 
 export function renderMockExamPage(catalog: Catalog): HTMLElement {
   const page = document.createElement('main');
   page.className = 'app-shell';
-  const defaultSemesterFilter = getDefaultSemesterFilter();
+  const defaultSemesterFilter = getDefaultSemester() as SemesterFilter;
 
   page.innerHTML = `
     ${renderTopNav('mock-exam')}
@@ -241,11 +248,6 @@ function bindSetupEvents(page: HTMLElement, catalog: Catalog): void {
     saveMockExamConfig(config);
     window.location.hash = '#/mock-exam/test';
   });
-}
-
-function getDefaultSemesterFilter(date = new Date()): SemesterFilter {
-  const month = date.getMonth() + 1;
-  return month >= 2 && month <= 7 ? 1 : 2;
 }
 
 function readSemesterFilter(page: HTMLElement): SemesterFilter {

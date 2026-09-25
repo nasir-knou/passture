@@ -68,7 +68,7 @@
 ### 3.1 완료된 범위
 
 - Vite+TS 스캐폴딩, base 설정, GitHub Pages 배포
-- catalog.yaml + 1학기 5과목, 2학기 3과목 출처 등록
+- catalog.yaml + 1학기 5과목, 2학기 6과목 출처 등록
 - 데이터 빌드 스크립트(YAML→JSON, 기본 검증)
 - 과목/출처 선택 화면 (과목 select + 출처 체크리스트)
 - 문제 풀이 화면 (셔플, 문제 지도, 답안 체크 진행률, 개별 정답 확인, 전체 채점, 해설)
@@ -79,9 +79,13 @@
 - 북마크/오답 내보내기·가져오기
 - 모의 시험 설정/풀이/결과 화면 (1~3과목, 과목당 단일 출처, 과목당 25분, 25문항 구성, 학기 필터, 제출/시간 종료 처리)
 - KaTeX 수식 렌더링
-- 구조화 다이어그램 렌더링 (`resource-allocation-graph`, `memory-free-list`, `data-table`, `clock-page-replacement`)
+- 구조화 다이어그램 렌더링 (`resource-allocation-graph`, `simple-graph`, `ui-window`, `memory-free-list`, `data-table`, `clock-page-replacement`)
+- 챕터별 풀이 (syllabus가 있는 과목: 교재 장 단위로 강의·교재·기출 문제 모아 풀기, 장별 결과)
 
 ### 3.2 다음 개선 후보
+
+- 챕터별 풀이 과목의 강의 연습문제·워크북 문제 입력 (컴파일러구성 워크북·컴퓨터과학개론·선형대수 강의 완료, 나머지는 기출만)
+- `docs/outdated.md` 문제 검토 (교재 개정으로 빠진 기출)
 
 - 모의 시험 UX 개선: ID 그룹 기반 균등 추출의 설명과 예외 안내를 보강한다.
 - 학기 필터 확장: 학습 기록에도 1학기/2학기 필터를 추가한다.

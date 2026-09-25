@@ -22,6 +22,8 @@ import {
   renderQuestionImages,
   renderRichText,
 } from './rendering';
+import { chapterLabel } from '../lib/chapter';
+import { clearChapterSelection, loadChapterSelection } from '../lib/chapter-practice';
 
 export function renderResultPage(catalog: Catalog): HTMLElement {
   const page = document.createElement('main');
@@ -76,6 +78,7 @@ export function renderResultPage(catalog: Catalog): HTMLElement {
     </section>
     ${renderResultReport(report)}
     ${renderSourceBreakdown(session)}
+    ${renderChapterBreakdown(session)}
     ${renderResultNavigator(session, selectedIndex)}
     ${selectedQuestion ? renderReviewCard(selectedQuestion, session.responses[selectedQuestion.key]) : ''}
     <div class="action-row">
@@ -91,6 +94,7 @@ export function renderResultPage(catalog: Catalog): HTMLElement {
 
   page.querySelector<HTMLButtonElement>('[data-new-session]')?.addEventListener('click', () => {
     clearSession();
+    clearChapterSelection();
     window.location.hash = '#/select';
   });
 
@@ -173,6 +177,63 @@ function renderSourceBreakdown(session: QuizSession): string {
               </article>
             `,
           )
+          .join('')}
+      </div>
+    </section>
+  `;
+}
+
+function renderChapterBreakdown(session: QuizSession): string {
+  const stats = new Map<number, { total: number; answered: number; correct: number }>();
+
+  session.questions.forEach((question) => {
+    if (question.chapter === undefined) {
+      return;
+    }
+
+    const current = stats.get(question.chapter) ?? { total: 0, answered: 0, correct: 0 };
+    const response = session.responses[question.key];
+    current.total += 1;
+    if (response) {
+      current.answered += 1;
+      if (response.correct) {
+        current.correct += 1;
+      }
+    }
+    stats.set(question.chapter, current);
+  });
+
+  if (stats.size === 0) {
+    return '';
+  }
+
+  const chapters = [...stats.entries()].sort(([left], [right]) => left - right);
+
+  return `
+    <section class="result-source-set panel" aria-label="장별 결과 요약">
+      <div class="result-report-header">
+        <div>
+          <span class="status-badge">장별 결과</span>
+          <strong>${chapters.length}개 장</strong>
+        </div>
+      </div>
+      <div class="source-stat-grid">
+        ${chapters
+          .map(([chapter, stat]) => {
+            const percent =
+              stat.answered === 0 ? 0 : Math.round((stat.correct / stat.answered) * 100);
+            return `
+              <article class="source-stat-card">
+                <div>
+                  <strong>${chapterLabel(chapter)}</strong>
+                </div>
+                <div class="source-stat-meta">
+                  <span>${percent}%</span>
+                  <small>${stat.correct}/${stat.answered} 정답 · ${stat.total}문항</small>
+                </div>
+              </article>
+            `;
+          })
           .join('')}
       </div>
     </section>
@@ -271,18 +332,36 @@ function renderResultNavigator(session: QuizSession, selectedIndex: number): str
 function bindRetryActions(page: HTMLElement, session: QuizSession, catalog: Catalog): void {
   const retrySources = createSelectedSourcesFromSession(session, catalog);
 
+  const chapterSession = isChapterSession(session);
+
   page.querySelector<HTMLButtonElement>('[data-retry-wrong]')?.addEventListener('click', () => {
-    startScopedRetry(retrySources, 'wrong');
+    startScopedRetry(retrySources, 'wrong', chapterSession);
   });
 
   page
     .querySelector<HTMLButtonElement>('[data-retry-bookmarked]')
     ?.addEventListener('click', () => {
-      startScopedRetry(retrySources, 'bookmarked');
+      startScopedRetry(retrySources, 'bookmarked', chapterSession);
     });
 }
 
-function startScopedRetry(sources: SelectedSource[], scope: 'wrong' | 'bookmarked'): void {
+function isChapterSession(session: QuizSession): boolean {
+  return session.questions.some((question) => question.chapter !== undefined);
+}
+
+function startScopedRetry(
+  sources: SelectedSource[],
+  scope: 'wrong' | 'bookmarked',
+  chapterSession: boolean,
+): void {
+  // 챕터별 풀이는 선택한 장·문제 종류를 유지한 채 범위만 바꾼다.
+  if (chapterSession && loadChapterSelection()) {
+    savePracticeScope(scope);
+    clearSession();
+    window.location.hash = '#/quiz';
+    return;
+  }
+
   if (sources.length === 0) {
     window.location.hash = '#/select';
     return;
@@ -334,7 +413,7 @@ function renderReviewCard(
   return `
     <article class="question-card result-review-card">
       <div>
-        <p class="eyebrow">${escapeHtml(sourceDisplayLabel(question.subjectTitle, question.sourceTitle))}</p>
+        <p class="eyebrow">${escapeHtml(sourceDisplayLabel(question.subjectTitle, question.sourceTitle, question.chapter))}</p>
         <p class="question-prompt">${renderRichText(question.question.prompt)}</p>
       </div>
       ${renderPassages(question.passages)}
@@ -390,8 +469,9 @@ function renderExplanation(
   `;
 }
 
-function sourceDisplayLabel(subjectTitle: string, sourceTitle: string): string {
-  return `${subjectTitle} - ${sourceTitle}`;
+function sourceDisplayLabel(subjectTitle: string, sourceTitle: string, chapter?: number): string {
+  const chapterText = chapter === undefined ? '' : ` · ${chapterLabel(chapter)}`;
+  return `${subjectTitle} - ${sourceTitle}${chapterText}`;
 }
 
 function choiceClass(id: string, answers: readonly string[], selected: Set<string>): string {

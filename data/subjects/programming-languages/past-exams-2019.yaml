@@ -1,0 +1,740 @@
+subjectId: programming-languages
+sourceId: past-exams-2019
+title: 프로그래밍언어론 2019 기말
+kind: exam
+year: 2019
+
+passages:
+  - id: g19-ebnf-unsigned-integer-01
+    type: code
+    language: text
+    body: |
+      <unsigned integer> ::= <digit> { <digit> }
+  - id: g19-barron-char-code-01
+    type: code
+    language: c
+    body: |
+      char x = 'A';
+  - id: g19-barron-char-memory-01
+    type: diagram
+    diagram:
+      type: data-table
+      columns: ['주소', '메모리', '변수']
+      rows:
+        - ['⋮', '⋮', '-']
+        - ['FFD0', 'A', 'x']
+        - ['⋮', '⋮', '-']
+  - id: g19-java-assignment-01
+    type: code
+    language: java
+    body: |
+      int i1=1, i2=2;
+      double d1=1.0, d2=2.0;
+      int x;
+      double y;
+  - id: g19-parameter-passing-01
+    type: code
+    language: c
+    body: |
+      void fun(int a, int b) {
+        int temp = a;
+        a = b;
+        b = temp;
+      }
+      int main() {
+        int list[3] = {1, 2, 3};
+        int i = 0;
+        fun(i, list[i]);
+        return 0;
+      }
+  - id: g19-static-chain-code-01
+    type: code
+    language: pascal
+    body: |
+      program Main;
+        A, B, C: Integer;
+        procedure S1;
+          A, D: Integer;
+        begin {S1}
+          A:=B+C
+        end;
+        procedure S2(B: Integer);
+          E: Integer;
+          procedure S3;
+            C, E: Integer;
+          begin {S3}
+            S1;
+            E:=B+A   { A 지점 }
+          end;
+        begin {S2}
+          S3;
+          A:=D+E
+        end;
+      begin
+        S2(C)
+      end.
+  - id: g19-static-chain-stack-01
+    type: diagram
+    diagram:
+      type: data-table
+      columns: ['활성화 레코드', '항목 (스택 위 → 아래)', '링크 대상']
+      rows:
+        - ['S1', '지역변수 D', '-']
+        - ['S1', '지역변수 A', '-']
+        - ['S1', '동적 링크', 'S3']
+        - ['S1', '정적 링크', 'Main']
+        - ['S1', '복귀 주소', '-']
+        - ['S3', '지역변수 E', '-']
+        - ['S3', '지역변수 C', '-']
+        - ['S3', '동적 링크', 'S2']
+        - ['S3', '정적 링크', 'S2']
+        - ['S3', '복귀 주소', '-']
+        - ['S2', '지역변수 E', '-']
+        - ['S2', '매개변수 B', '-']
+        - ['S2', '동적 링크', 'Main']
+        - ['S2', '정적 링크', 'Main']
+        - ['S2', '복귀 주소', '-']
+        - ['Main', '지역변수 C', '-']
+        - ['Main', '지역변수 B', '-']
+        - ['Main', '지역변수 A', '-']
+        - ['Main', '동적 링크', '없음']
+        - ['Main', '정적 링크', '없음']
+        - ['Main', '복귀 주소', '-']
+
+questions:
+  - id: e19-01
+    type: multiple-choice
+    chapter: 4
+    prompt: 다음 중 설명이 바르게 짝지어진 것은?
+    choices:
+      - { id: '1', text: '구문론 - 프로그램의 내용적인 효과를 정의' }
+      - { id: '2', text: '의미론 - 프로그램의 표면적인 구조를 정의' }
+      - { id: '3', text: '구문론 - 프로그램 작성 시 어떤 형태로 작성해야 하는지를 기술' }
+      - { id: '4', text: '의미론 - 문자들을 모아 최소한의 의미를 갖는 단어를 기술' }
+    answers: ['3']
+    explanation: |
+      선택지 1: 프로그램의 내용적인 효과(의미)를 정의하는 것은 의미론이다. 구문론은 형태를 다룬다.
+      선택지 2: 프로그램의 표면적인 구조(형태)를 정의하는 것은 구문론이다. 구문론과 의미론이 뒤바뀌었다.
+      선택지 3: 구문론은 프로그램을 어떤 형태로 작성해야 하는지, 즉 문법적으로 올바른 구조를 기술하므로 정답이다.
+      선택지 4: 문자들을 모아 최소 의미 단위인 단어(어휘, 토큰)를 만드는 것은 어휘 구조의 설명이며 의미론이 아니다.
+
+      핵심 개념:
+      구문론(syntax)은 프로그램의 형태, 즉 올바른 문장 구조를 정의한다.
+      의미론(semantics)은 올바른 구조의 프로그램이 실행될 때 갖는 의미와 효과를 정의한다.
+      어휘는 문자를 모아 만든 최소 의미 단위이며, 구문은 어휘들을 결합하는 규칙이다.
+      같은 구문이라도 언어마다 의미가 다를 수 있어 두 개념을 구분해야 한다.
+    tags: [syntax, semantics]
+
+  - id: e19-02
+    type: multiple-choice
+    chapter: 4
+    prompt: 구문을 표현하는 방법과 거리가 먼 것은?
+    choices:
+      - { id: '1', text: BNF }
+      - { id: '2', text: EBNF }
+      - { id: '3', text: WORA }
+      - { id: '4', text: 구문 도표 }
+    answers: ['3']
+    explanation: |
+      선택지 1: BNF(Backus-Naur Form)는 생성 규칙으로 구문을 형식적으로 정의하는 대표적 표기법이다.
+      선택지 2: EBNF(Extended BNF)는 BNF에 반복 { }, 선택 [ ], 그룹 ( ) 등의 메타 기호를 추가한 구문 표기법이다.
+      선택지 3: WORA(Write Once, Run Anywhere)는 한 번 작성하면 어디서나 실행된다는 Java의 이식성 표어로, 구문 표현 방법이 아니므로 정답이다.
+      선택지 4: 구문 도표는 BNF/EBNF 규칙을 도형과 화살표로 그림처럼 나타낸 구문 표현 방법이다.
+
+      핵심 개념:
+      구문은 BNF, EBNF, 구문 도표로 표현할 수 있다.
+      BNF는 ::=, |, < > 같은 메타 기호를 사용한다.
+      EBNF는 반복·선택을 간결하게 표현하도록 BNF를 확장한 것이다.
+      구문 도표는 비단말 기호를 사각형, 단말 기호를 원(타원)으로 그려 흐름으로 보여준다.
+    tags: [bnf, ebnf, syntax-diagram]
+
+  - id: e19-03
+    type: multiple-choice
+    chapter: 4
+    passageRefs: [g19-ebnf-unsigned-integer-01]
+    prompt: EBNF로 표현된 다음 구문을 실수로 BNF 표현으로 간주하고 해석하였다. EBNF일때의 해석과 달라진 부분은?
+    choices:
+      - { id: '1', text: '<unsigned integer>는 비단말 기호임' }
+      - { id: '2', text: '::=는 정의를 나타내는 메타 기호임' }
+      - { id: '3', text: '<digit>는 비단말 기호임' }
+      - { id: '4', text: '{는 단말 기호임' }
+    answers: ['4']
+    explanation: |
+      선택지 1: < >로 묶인 <unsigned integer>는 BNF와 EBNF 모두에서 비단말 기호이므로 해석이 달라지지 않는다.
+      선택지 2: ::=는 BNF와 EBNF 모두에서 "정의한다"는 뜻의 메타 기호이다.
+      선택지 3: <digit> 역시 두 표기법 모두에서 비단말 기호이다.
+      선택지 4: EBNF에서 { }는 0번 이상 반복을 뜻하는 메타 기호이지만, BNF에는 { } 메타 기호가 없으므로 BNF로 읽으면 { 는 그대로 쓰이는 단말 기호가 된다. 따라서 해석이 달라진 부분이다.
+
+      핵심 개념:
+      BNF의 메타 기호는 ::=, |, < > 정도이다.
+      EBNF는 여기에 { }(반복), [ ](선택적 생략), ( )(그룹)를 추가했다.
+      같은 문자라도 어느 표기법으로 읽느냐에 따라 메타 기호인지 단말 기호인지가 달라진다.
+      그래서 EBNF에서 { 같은 문자를 단말 기호로 쓰려면 '{'처럼 따옴표로 구분한다.
+    tags: [bnf, ebnf, meta-symbol]
+
+  - id: e19-04
+    type: multiple-choice
+    chapter: 5
+    prompt: 파스 트리에 대한 설명으로 바른 것은?
+    choices:
+      - { id: '1', text: 유도를 트리 형태로 나타낸 것 }
+      - { id: '2', text: 루트 노드는 단말 기호가 됨 }
+      - { id: '3', text: 단말 노드는 비단말 기호가 됨 }
+      - { id: '4', text: 비단말 노드를 차례로 나열하면 주어진 프로그램이 됨 }
+    answers: ['1']
+    explanation: |
+      선택지 1: 파스 트리는 시작 기호에서 생성 규칙을 적용해 문장을 만들어 가는 유도 과정을 트리로 나타낸 것이므로 정답이다.
+      선택지 2: 루트 노드는 시작 기호, 즉 비단말 기호이다.
+      선택지 3: 단말(리프) 노드에는 단말 기호가 온다. 비단말 기호는 내부 노드가 된다.
+      선택지 4: 주어진 프로그램(표현)이 되는 것은 단말 노드들을 왼쪽부터 차례로 나열한 결과이다.
+
+      핵심 개념:
+      파스 트리는 BNF 규칙으로 어떤 표현이 생성되는 과정을 계층 구조로 보여준다.
+      루트는 시작 비단말 기호, 내부 노드는 비단말 기호, 리프는 단말 기호이다.
+      리프를 왼쪽에서 오른쪽으로 읽으면 원래 표현이 된다.
+      파스 트리를 만들 수 있으면 그 표현은 주어진 문법으로 생성 가능한 것이다.
+    tags: [parse-tree, derivation]
+
+  - id: e19-05
+    type: multiple-choice
+    chapter: 5
+    prompt: 모호한 문법에 대한 설명으로 바른 것은?
+    choices:
+      - { id: '1', text: 동일한 표현에 대해 동일한 파스 트리가 만들어지는 문법 }
+      - { id: '2', text: 동일한 표현에 대해 서로 다른 파스 트리가 만들어지는 문법 }
+      - { id: '3', text: 주어진 표현에 대해 파스 트리가 존재하지 않는 문법 }
+      - { id: '4', text: 서로 다른 표현에 대해 동일한 파스 트리가 만들어지는 문법 }
+    answers: ['2']
+    explanation: |
+      선택지 1: 한 표현에 대해 파스 트리가 하나로 정해지는 것은 모호하지 않은(명확한) 문법의 성질이다.
+      선택지 2: 하나의 표현에 대해 두 개 이상의 서로 다른 파스 트리가 존재하면 모호한 문법이므로 정답이다.
+      선택지 3: 파스 트리가 존재하지 않는다는 것은 그 표현이 문법으로 생성될 수 없다는 뜻으로, 모호성과는 관계없다.
+      선택지 4: 파스 트리의 리프를 읽으면 표현이 정해지므로, 서로 다른 표현이 같은 파스 트리를 가질 수는 없다.
+
+      핵심 개념:
+      모호한 문법은 같은 문장에 대해 파스 트리가 여러 개 존재하는 문법이다.
+      파스 트리가 다르면 연산 순서 등 의미 해석이 달라질 수 있다.
+      대표 예로 3-2*5 같은 수식의 연산 우선순위와 중첩 if문의 else 대응 문제가 있다.
+      모호성은 문법을 고치거나 우선순위·결합 규칙을 정해 해소한다.
+    tags: [ambiguous-grammar, parse-tree]
+
+  - id: e19-06
+    type: multiple-choice
+    chapter: 5
+    prompt: 중첩된 if문의 else 문제를 해결하기 위해 다수의 언어들이 적용하고 있는 방법은?
+    choices:
+      - { id: '1', text: else를 사용하지 못하게 함 }
+      - { id: '2', text: if문 개수만큼 else를 사용하게 함 }
+      - { id: '3', text: else문 앞에 나온 if문들 중 가장 가까운 if문과 짝이 되게 함 }
+      - { id: '4', text: else문 앞에 나온 if문들 중 다른 else문과 짝이 되지 않은 가장 가까운 if문과 짝이 되게 함 }
+    answers: ['4']
+    explanation: |
+      선택지 1: else를 금지하면 조건문의 표현력이 크게 떨어지므로 실제 언어가 쓰는 방법이 아니다.
+      선택지 2: if문마다 else를 강제하는 것은 else가 필요 없는 조건문까지 불필요하게 길게 만든다.
+      선택지 3: 단순히 가장 가까운 if와 짝을 지으면, 그 if가 이미 다른 else와 짝이 된 경우를 처리하지 못한다.
+      선택지 4: C, Pascal, Java 등 다수 언어는 else를 "아직 else와 짝이 되지 않은 가장 가까운 if"와 연결하는 규칙으로 모호성을 없애므로 정답이다.
+
+      핵심 개념:
+      if-then-if-then-else 구조는 else가 어느 if에 속하는지 두 가지로 해석될 수 있어 모호하다(dangling else).
+      많은 언어는 짝이 없는 가장 가까운 if에 else를 연결하는 규칙을 둔다.
+      Algol68의 fi, Ada의 end if처럼 if문의 끝을 표시하는 키워드를 두어 해결하는 방법도 있다.
+      블록(begin-end, { })으로 감싸 짝을 명시적으로 지정할 수도 있다.
+    tags: [dangling-else, ambiguous-grammar]
+
+  - id: e19-07
+    type: multiple-choice
+    chapter: 6
+    prompt: '함수 모형으로 프로그래밍 언어 구현을 설명하였을 때, 프로그래밍 언어 $L$의 인터프리터 $Int_L$을 바르게 나타낸 것은? 단, $P_A$는 언어 혹은 기계어 $A$로 작성된 프로그램을 뜻하며, $in$은 입력, $out$은 출력, $M$은 기계어를 뜻한다.'
+    choices:
+      - { id: '1', text: '$Int_L \llbracket P_L \rrbracket = P_M$' }
+      - { id: '2', text: '$Int_L \llbracket P_L \rrbracket (in) = (out)$' }
+      - { id: '3', text: '$Int_L \llbracket P_M \rrbracket = P_L$' }
+      - { id: '4', text: '$Int_L \llbracket P_L \rrbracket (out) = (in)$' }
+    answers: ['2']
+    explanation: |
+      선택지 1: $L$ 프로그램을 받아 기계어 프로그램 $P_M$을 만들어 내는 것은 컴파일러(번역기)의 함수 모형이다.
+      선택지 2: 인터프리터는 $L$ 프로그램 $P_L$을 번역하지 않고 곧바로 실행하므로, 입력 $in$을 주면 출력 $out$을 내는 함수로 표현된다. 정답이다.
+      선택지 3: 기계어 프로그램을 $L$ 프로그램으로 바꾸는 것은 역번역에 해당하며 $L$의 인터프리터가 아니다.
+      선택지 4: 입력과 출력의 방향이 뒤바뀌었다. 프로그램은 입력을 받아 출력을 만든다.
+
+      핵심 개념:
+      함수 모형은 언어 구현기를 "프로그램을 받아 무엇을 내놓는 함수"로 설명한다.
+      컴파일러는 $P_L$을 받아 목적 프로그램 $P_M$을 출력한다.
+      인터프리터는 $P_L$과 입력을 받아 곧바로 실행 결과(출력)를 낸다.
+      두 방식의 차이는 번역 결과물을 따로 만드는지, 즉시 실행하는지에 있다.
+    tags: [interpreter, compiler, language-implementation]
+
+  - id: e19-08
+    type: multiple-choice
+    chapter: 6
+    prompt: |
+      언어 구현에 필요한 자료 구조 중 다음 설명에 해당하는 것은?
+
+      - 컴파일러 구현에 사용
+      - 식별자의 정보(타입, 선언 위치 등)를 저장
+    choices:
+      - { id: '1', text: 구문 트리 }
+      - { id: '2', text: 심볼 테이블 }
+      - { id: '3', text: 환경 }
+      - { id: '4', text: 실행 환경 }
+    answers: ['2']
+    explanation: |
+      선택지 1: 구문 트리는 프로그램의 구문 구조를 트리로 표현한 것으로, 식별자 정보를 모아 두는 표가 아니다.
+      선택지 2: 심볼 테이블(기호표)은 컴파일러가 식별자의 이름, 타입, 선언 위치 등의 정보를 저장하고 조회하는 자료 구조이므로 정답이다.
+      선택지 3: 환경은 이름과 그 이름이 가리키는 대상(값, 위치)의 대응을 뜻하며, 주로 인터프리터의 실행 모델에서 쓰인다.
+      선택지 4: 실행 환경은 프로그램이 실행되는 동안의 메모리 구성(스택, 힙 등)과 상태를 말한다.
+
+      핵심 개념:
+      컴파일러는 어휘 분석, 구문 분석, 의미 분석 과정에서 여러 자료 구조를 사용한다.
+      구문 트리는 프로그램 구조를, 심볼 테이블은 식별자 속성을 담는다.
+      의미 분석과 코드 생성 단계는 심볼 테이블을 조회해 타입 검사와 주소 배정을 한다.
+      환경·실행 환경은 실행 시점의 이름-값 대응과 메모리 상태를 나타낸다.
+    tags: [symbol-table, compiler]
+
+  - id: e19-09
+    type: multiple-choice
+    chapter: 7
+    prompt: 변수의 네 가지 속성에 해당하지 ==않는== 것은?
+    choices:
+      - { id: '1', text: 인수 }
+      - { id: '2', text: 타입 }
+      - { id: '3', text: 주소 }
+      - { id: '4', text: 변수명 }
+    answers: ['1']
+    explanation: |
+      선택지 1: 인수는 서브프로그램을 호출할 때 전달하는 값(실 매개변수)으로, 변수 자체의 속성이 아니므로 정답이다.
+      선택지 2: 타입은 변수가 가질 수 있는 값의 집합과 연산을 정하는 속성이다.
+      선택지 3: 주소는 변수 값이 저장된 기억 장소의 위치이다.
+      선택지 4: 변수명(이름)은 변수를 식별하는 속성이다.
+
+      핵심 개념:
+      변수는 이름, 주소, 값, 타입의 네 가지 속성을 가진다.
+      이름은 식별, 주소는 저장 위치, 값은 저장된 내용, 타입은 허용 값과 연산을 나타낸다.
+      각 속성이 언제 정해지는지를 바인딩 시간으로 설명한다.
+      배런(Barron) 표기법은 이 속성들을 도형으로 연결해 표현한다.
+    tags: [variable-attributes]
+
+  - id: e19-10
+    type: multiple-choice
+    chapter: 7
+    passageRefs: [g19-barron-char-code-01, g19-barron-char-memory-01]
+    prompt: 다음 변수의 정의를 배런의 표기법으로 바르게 나타낸 것은?
+    choices:
+      - id: '1'
+        text: '①'
+        diagram:
+          type: simple-graph
+          width: 330
+          height: 80
+          nodes:
+            - { id: name, label: x, x: 50, y: 52, radius: 28 }
+            - { id: attr, label: int, shape: box, width: 80, height: 30, radius: 40, x: 165, y: 52 }
+            - { id: value, label: A, shape: box, width: 70, height: 30, radius: 35, x: 280, y: 52 }
+            - { id: above, label: FFD0, hideNode: true, x: 280, y: 16 }
+          edges:
+            - { from: name, to: attr }
+            - { from: attr, to: value }
+      - id: '2'
+        text: '②'
+        diagram:
+          type: simple-graph
+          width: 330
+          height: 80
+          nodes:
+            - { id: name, label: A, x: 50, y: 52, radius: 28 }
+            - { id: attr, label: char, shape: box, width: 80, height: 30, radius: 40, x: 165, y: 52 }
+            - { id: value, label: FFD0, shape: box, width: 70, height: 30, radius: 35, x: 280, y: 52 }
+            - { id: above, label: x, hideNode: true, x: 280, y: 16 }
+          edges:
+            - { from: name, to: attr }
+            - { from: attr, to: value }
+      - id: '3'
+        text: '③'
+        diagram:
+          type: simple-graph
+          width: 330
+          height: 80
+          nodes:
+            - { id: name, label: A, x: 50, y: 52, radius: 28 }
+            - { id: attr, label: int, shape: box, width: 80, height: 30, radius: 40, x: 165, y: 52 }
+            - { id: value, label: x, shape: box, width: 70, height: 30, radius: 35, x: 280, y: 52 }
+            - { id: above, label: FFD0, hideNode: true, x: 280, y: 16 }
+          edges:
+            - { from: name, to: attr }
+            - { from: attr, to: value }
+      - id: '4'
+        text: '④'
+        diagram:
+          type: simple-graph
+          width: 330
+          height: 80
+          nodes:
+            - { id: name, label: x, x: 50, y: 52, radius: 28 }
+            - { id: attr, label: char, shape: box, width: 80, height: 30, radius: 40, x: 165, y: 52 }
+            - { id: value, label: A, shape: box, width: 70, height: 30, radius: 35, x: 280, y: 52 }
+            - { id: above, label: FFD0, hideNode: true, x: 280, y: 16 }
+          edges:
+            - { from: name, to: attr }
+            - { from: attr, to: value }
+    answers: ['4']
+    explanation: |
+      선택지 1: 이름 x와 값 A, 주소 FFD0는 맞지만 타입이 int로 되어 있다. 선언된 타입은 char이다.
+      선택지 2: 이름 자리에 값 A가, 값 자리에 주소 FFD0가, 주소 자리에 이름 x가 들어가 속성 위치가 뒤섞였다.
+      선택지 3: 이름과 값이 서로 바뀌었고 타입도 int로 틀렸다.
+      선택지 4: 이름(타원) x, 타입(육각형) char, 값(사각형) A, 사각형 위의 주소 FFD0로 모든 속성이 올바른 자리에 있으므로 정답이다.
+
+      핵심 개념:
+      배런 표기법은 변수의 이름, 타입, 값, 주소를 하나의 그림으로 표현한다.
+      원본 도식에서는 이름을 타원, 타입을 육각형, 값을 사각형으로 그리고 주소는 값 사각형 위에 적는다. 이 앱의 그림에서는 이름을 원, 타입과 값을 사각형으로 단순화했다.
+      char x = 'A';는 이름 x, 타입 char, 값 'A'이며, 메모리 그림에서 주소는 FFD0이다.
+      네 속성을 제자리에 배치할 수 있는지가 이 유형의 판단 기준이다.
+    tags: [barron-notation, variable-attributes]
+
+  - id: e19-11
+    type: multiple-choice
+    chapter: 7
+    prompt: 타입 바인딩에 대한 설명으로 바른 것은?
+    choices:
+      - { id: '1', text: 명시적 선언은 변수명으로부터 정해지는 타입으로 바인딩 }
+      - { id: '2', text: 묵시적 선언은 선언문에 명시된 타입으로 바인딩 }
+      - { id: '3', text: 동적 바인딩은 대입할 값에 맞추어 타입을 계속 변화시킴 }
+      - { id: '4', text: 정적 바인딩은 명시적 선언만 가능 }
+    answers: ['3']
+    explanation: |
+      선택지 1: 변수명(예: Fortran의 첫 글자 규칙)으로 타입이 정해지는 것은 묵시적 선언이다. 명시적 선언은 선언문에 타입을 적는다.
+      선택지 2: 선언문에 명시된 타입으로 바인딩하는 것은 명시적 선언이다. 1번과 설명이 서로 바뀌었다.
+      선택지 3: 동적 타입 바인딩은 실행 중 대입되는 값에 따라 변수의 타입이 정해지고 바뀔 수 있으므로 정답이다.
+      선택지 4: 정적 바인딩은 명시적 선언뿐 아니라 묵시적 선언으로도 이루어진다. 두 방식 모두 번역 시간에 타입이 정해진다.
+
+      핵심 개념:
+      타입 바인딩은 변수에 타입을 연결하는 것으로, 시점에 따라 정적·동적 바인딩으로 나뉜다.
+      정적 바인딩은 실행 전에 정해지며 명시적 선언이나 묵시적 선언으로 이루어진다.
+      명시적 선언은 선언문에 타입을 적고, 묵시적 선언은 이름 규칙 등 기본 규칙으로 타입을 정한다.
+      동적 바인딩은 대입되는 값에 따라 실행 중 타입이 정해져 유연하지만 오류 검출이 늦어진다.
+    tags: [type-binding, static-binding, dynamic-binding]
+
+  - id: e19-12
+    type: multiple-choice
+    chapter: 8
+    prompt: 영역 규칙에 대한 설명으로 바르지 ==않은== 것은?
+    choices:
+      - { id: '1', text: 영역 규칙은 변수의 참조 위치를 결정하는 방법임 }
+      - { id: '2', text: 정적 영역 규칙은 블록들의 문맥적 포함 관계를 이용 }
+      - { id: '3', text: 동적 영역 규칙은 서브프로그램의 호출 관계를 이용 }
+      - { id: '4', text: 동적 영역 규칙은 컴파일 시점에만 판단 가능 }
+    answers: ['4']
+    explanation: |
+      선택지 1: 영역 규칙은 어떤 이름의 사용이 어느 선언을 가리키는지, 즉 참조 위치를 정하는 규칙이므로 옳다.
+      선택지 2: 정적 영역 규칙은 프로그램 텍스트에서 블록이 어떻게 포함되어 있는지를 보고 선언을 찾으므로 옳다.
+      선택지 3: 동적 영역 규칙은 실행 중 서브프로그램이 호출된 순서를 거슬러 올라가 선언을 찾으므로 옳다.
+      선택지 4: 동적 영역 규칙은 호출 관계가 실행 중에 정해지므로 실행 시간에 판단한다. 컴파일 시점에만 판단한다는 설명은 틀렸으므로 정답이다.
+
+      핵심 개념:
+      영역(scope)은 이름이 유효하게 쓰일 수 있는 프로그램 범위이다.
+      정적 영역 규칙은 소스 코드의 블록 중첩 구조로 비지역 변수를 결정하며 컴파일 시간에 알 수 있다.
+      동적 영역 규칙은 호출 순서로 비지역 변수를 결정하므로 실행 시간에야 알 수 있다.
+      대부분의 현대 언어는 이해와 검증이 쉬운 정적 영역 규칙을 사용한다.
+    tags: [scope-rule, static-scope, dynamic-scope]
+
+  - id: e19-13
+    type: multiple-choice
+    chapter: 8
+    prompt: 변수의 종류와 설명이 바르게 짝지어진 것은?
+    choices:
+      - { id: '1', text: '지역변수 - 블록 밖에서 선언된 변수' }
+      - { id: '2', text: '비지역변수 - 블록 안에서 선언된 변수' }
+      - { id: '3', text: '자유변수 - 어떤 블록에도 포함되지 않는 곳에서 선언된 변수' }
+      - { id: '4', text: '전역변수 - 모든 블록에서 비지역변수임' }
+    answers: ['4']
+    explanation: |
+      선택지 1: 지역변수는 해당 블록 안에서 선언된 변수이다.
+      선택지 2: 비지역변수는 해당 블록 밖에서 선언되었지만 그 블록에서 사용되는 변수이다. 1번과 설명이 서로 바뀌었다.
+      선택지 3: 자유변수는 현재 블록 안에서 선언되지 않은 채 사용되는 변수를 말한다. 선언 위치가 "어떤 블록에도 포함되지 않는 곳"이라는 설명은 틀렸다.
+      선택지 4: 전역변수는 가장 바깥에서 선언되어 모든 블록에서 사용할 수 있으므로, 각 블록 입장에서는 비지역변수이다. 정답이다.
+
+      핵심 개념:
+      변수는 사용되는 블록을 기준으로 지역변수와 비지역변수로 나뉜다.
+      지역변수는 그 블록 안에서 선언된 변수이고, 비지역변수는 바깥 블록에서 선언된 변수이다.
+      전역변수는 프로그램 최상위에서 선언되어 모든 블록에서 비지역변수로 보인다.
+      자유변수는 현재 블록에서 선언 없이 쓰인 변수로, 영역 규칙에 따라 어느 선언을 가리키는지 결정된다.
+    tags: [local-variable, nonlocal-variable, global-variable]
+
+  - id: e19-14
+    type: multiple-choice
+    chapter: 9
+    prompt: 변수의 속성 중 한 가지로, 데이터 집합과 연산 집합의 결합으로 나타내는 것은?
+    choices:
+      - { id: '1', text: 인수 }
+      - { id: '2', text: 타입 }
+      - { id: '3', text: 주소 }
+      - { id: '4', text: 변수명 }
+    answers: ['2']
+    explanation: |
+      선택지 1: 인수는 서브프로그램 호출 시 전달하는 값으로 변수의 속성이 아니다.
+      선택지 2: 타입은 변수가 가질 수 있는 값(데이터)의 집합과 그 값에 적용할 수 있는 연산의 집합을 함께 정의하므로 정답이다.
+      선택지 3: 주소는 값이 저장된 기억 장소의 위치를 나타내는 속성이다.
+      선택지 4: 변수명은 변수를 식별하는 이름 속성이다.
+
+      핵심 개념:
+      타입은 "값의 집합 + 연산의 집합"으로 정의된다.
+      예를 들어 정수형은 정수 값들과 +, -, *, / 같은 연산을 가진다.
+      타입 정보로 컴파일러는 잘못된 연산을 검출(타입 검사)하고 기억 공간 크기를 정한다.
+      변수의 네 속성은 이름, 주소, 값, 타입이다.
+    tags: [type]
+
+  - id: e19-15
+    type: multiple-choice
+    chapter: 9
+    prompt: 언어의 타입에 대한 설명으로 바르지 ==않은== 것은?
+    choices:
+      - { id: '1', text: '강타입 언어 - 타입 오류를 모두 검출하는 언어' }
+      - { id: '2', text: '약타입 언어 - 일부 타입 오류를 허용하는 언어' }
+      - { id: '3', text: '무타입 언어 - 타입 개념이 없는 언어' }
+      - { id: '4', text: '무타입 언어 - 타입이 계속 바뀔 수 있는 언어' }
+    answers: ['3']
+    explanation: |
+      선택지 1: 강타입(strongly typed) 언어는 모든 타입 오류를 컴파일 시간이나 실행 시간에 검출하는 언어로 옳은 설명이다.
+      선택지 2: 약타입 언어는 일부 타입 오류를 검출하지 않고 허용하는 언어로 옳다.
+      선택지 3: 공식 정답은 3번으로, "타입 개념이 없는 언어"를 무타입 언어의 설명으로 바르지 않다고 본다.
+      선택지 4: 공식 정답에 따르면 "변수의 타입이 고정되지 않고 계속 바뀔 수 있는 언어"를 무타입 언어의 설명으로 인정한다.
+
+      핵심 개념:
+      언어는 타입 오류를 얼마나 엄격하게 검출하느냐에 따라 강타입, 약타입, 무타입 언어로 나뉜다.
+      강타입 언어는 모든 타입 오류를 검출하고, 약타입 언어는 일부를 허용한다.
+      일반적으로 무타입 언어는 "타입 개념이 없는 언어"로 정의되지만, 이 문제의 공식 정답은 3번(선택지 4를 옳은 설명으로 봄)이다.
+      시험 대비로는 공식 정답(3번) 기준으로 기억한다.
+    tags: [strong-typing, weak-typing, untyped-language]
+
+  - id: e19-16
+    type: multiple-choice
+    chapter: 9
+    prompt: 타입 분류가 바르게 된 것은?
+    choices:
+      - { id: '1', text: '정수형 - 원시타입' }
+      - { id: '2', text: '실수형 - 사용자정의타입' }
+      - { id: '3', text: '배열 - 단순타입' }
+      - { id: '4', text: '열거형 - 복합타입' }
+    answers: ['1']
+    explanation: |
+      선택지 1: 정수형은 언어가 기본으로 제공하는 원시(primitive) 타입이므로 정답이다.
+      선택지 2: 실수형도 언어가 기본 제공하는 원시 타입이며 사용자 정의 타입이 아니다.
+      선택지 3: 배열은 여러 원소를 모아 구성하는 복합 타입이다.
+      선택지 4: 열거형은 값들을 나열해 정의하는 단순 타입(순서 타입)이며, 여러 값을 묶은 복합 타입이 아니다.
+
+      핵심 개념:
+      타입은 크게 단순 타입과 복합 타입으로 나뉜다.
+      단순 타입에는 정수형, 실수형, 문자형, 논리형 같은 원시 타입과 열거형, 부분범위형이 있다.
+      복합 타입은 배열, 문자열, 레코드(구조체), 공용체, 포인터처럼 다른 타입을 조합해 만든다.
+      원시 타입은 언어가 미리 제공하는 타입이고, 사용자 정의 타입은 프로그래머가 새로 만든 타입이다.
+    tags: [type-classification, primitive-type]
+
+  - id: e19-17
+    type: multiple-choice
+    chapter: 11
+    prompt: 수식에 대한 설명으로 바른 것은?
+    choices:
+      - { id: '1', text: 값을 나타내는 표현 }
+      - { id: '2', text: 하나 이상의 피연산자와 하나 이상의 연산자로 구성 }
+      - { id: '3', text: '"abc"+"def"는 수식이 아님' }
+      - { id: '4', text: 5 - 3과 1 + 1은 서로 값이 다른 수식임 }
+    answers: ['1']
+    explanation: |
+      선택지 1: 수식은 계산하면 하나의 값을 나타내는 표현이므로 정답이다.
+      선택지 2: 수식은 연산자 없이 피연산자 하나(예: 상수 5, 변수 x)만으로도 성립한다. "하나 이상의 연산자"가 반드시 필요한 것은 아니다.
+      선택지 3: "abc"+"def"는 문자열 연결 연산으로 값 "abcdef"를 나타내므로 수식이다.
+      선택지 4: 5 - 3과 1 + 1은 모두 값이 2이므로 값이 같은 수식이다.
+
+      핵심 개념:
+      수식(expression)은 평가(계산)되어 값을 만드는 표현이다.
+      수식은 피연산자와 연산자로 구성되며, 피연산자 하나만으로도 수식이 된다.
+      숫자뿐 아니라 문자열, 논리값 등 어떤 타입의 값을 만들어도 수식이다.
+      문장(statement)은 동작을 수행하는 단위로, 값을 만드는 수식과 구분된다.
+    tags: [expression]
+
+  - id: e19-18
+    type: multiple-choice
+    chapter: 11
+    prompt: 타입 변환에 대한 설명으로 바르지 ==않은== 것은?
+    choices:
+      - { id: '1', text: 주어진 타입의 값을 다른 타입의 값으로 변환하는 것 }
+      - { id: '2', text: 묵시적 타입 변환은 대부분 데이터 집합이 커지는 방향의 타입으로 확대변환 }
+      - { id: '3', text: '실수형 변수 A, B에 대해 A+B를 계산할 때 발생' }
+      - { id: '4', text: 명시적 타입 변환은 프로그래머가 명시한 타입으로 변환 }
+    answers: ['3']
+    explanation: |
+      선택지 1: 타입 변환은 어떤 타입의 값을 다른 타입의 값으로 바꾸는 것으로 옳은 정의이다.
+      선택지 2: 묵시적 변환은 정보 손실을 막기 위해 보통 int → double처럼 표현 범위가 넓어지는 확대 변환으로 일어나므로 옳다.
+      선택지 3: A와 B가 모두 실수형이면 두 피연산자의 타입이 같으므로 A+B 계산에 타입 변환이 필요 없다. 따라서 바르지 않으며 정답이다.
+      선택지 4: 명시적 변환(캐스트)은 프로그래머가 (int)x처럼 변환할 타입을 직접 적는 것이므로 옳다.
+
+      핵심 개념:
+      타입 변환은 서로 다른 타입의 값을 함께 연산하거나 대입할 때 필요하다.
+      묵시적 변환은 컴파일러가 자동으로 수행하며 주로 확대 변환이다.
+      명시적 변환은 프로그래머가 캐스트 연산자로 지정하며 축소 변환도 가능하다.
+      피연산자 타입이 같으면 변환이 일어나지 않는다.
+    tags: [type-conversion, implicit-conversion, cast]
+
+  - id: e19-19
+    type: multiple-choice
+    chapter: 12
+    prompt: 다음 중 대입문과 거리가 ==먼== 것은?
+    choices:
+      - { id: '1', text: 'A++;' }
+      - { id: '2', text: 'A = 2;' }
+      - { id: '3', text: 'A += 3;' }
+      - { id: '4', text: 'A == 4;' }
+    answers: ['4']
+    explanation: |
+      선택지 1: A++는 A = A + 1과 같은 효과를 가지는 증가 대입이다.
+      선택지 2: A = 2는 가장 기본적인 대입문이다.
+      선택지 3: A += 3은 A = A + 3을 줄여 쓴 복합 대입문이다.
+      선택지 4: A == 4는 A가 4와 같은지 비교하는 관계 연산으로 값을 저장하지 않으므로 대입문이 아니다. 정답이다.
+
+      핵심 개념:
+      대입문은 오른쪽 수식의 값을 왼쪽 변수에 저장하는 문장이다.
+      C 계열 언어는 =, +=, -=, ++, -- 등 다양한 대입 연산자를 제공한다.
+      ==는 같음을 비교하는 관계 연산자로 결과는 참/거짓 값이다.
+      = 와 == 를 혼동하면 논리 오류가 생기기 쉽다.
+    tags: [assignment-statement]
+
+  - id: e19-20
+    type: multiple-choice
+    chapter: 11
+    passageRefs: [g19-java-assignment-01]
+    prompt: Java에서 다음과 같이 선언된 변수를 이용할 때 오류가 발생하는 대입문은?
+    choices:
+      - { id: '1', text: 'x = d1 + d2;' }
+      - { id: '2', text: 'y = d1 + d2;' }
+      - { id: '3', text: 'x = i1 + i2;' }
+      - { id: '4', text: 'y = i1 + i2;' }
+    answers: ['1']
+    explanation: |
+      선택지 1: d1 + d2는 double 값인데 int 변수 x에 대입하면 정보가 손실되는 축소 변환이 필요하다. Java는 이를 묵시적으로 허용하지 않아 컴파일 오류가 발생하므로 정답이다.
+      선택지 2: double + double의 결과를 double 변수 y에 대입하므로 변환이 필요 없다.
+      선택지 3: int + int의 결과를 int 변수 x에 대입하므로 문제가 없다.
+      선택지 4: int 결과를 double 변수에 대입하는 것은 확대 변환이므로 Java가 자동으로 변환한다.
+
+      핵심 개념:
+      Java는 확대 변환(int → double)은 묵시적으로 허용하지만 축소 변환(double → int)은 허용하지 않는다.
+      축소 변환이 필요하면 (int)(d1 + d2)처럼 명시적으로 캐스트해야 한다.
+      이는 정보 손실을 컴파일 시간에 막기 위한 강한 타입 검사 정책이다.
+      대입문에서는 오른쪽 수식의 타입이 왼쪽 변수 타입과 호환되는지 확인해야 한다.
+    tags: [type-conversion, java, assignment-statement]
+
+  - id: e19-21
+    type: multiple-choice
+    chapter: 12
+    prompt: 제어문에 대한 설명으로 바르지 ==않은== 것은?
+    choices:
+      - { id: '1', text: 프로그램의 수행 흐름을 제어함 }
+      - { id: '2', text: 조건문은 조건에 따라 서로 다른 처리를 하도록 제어함 }
+      - { id: '3', text: '반복문에는 for문, while문, do-while문 등이 있음' }
+      - { id: '4', text: 'do-while문은 필요한 문장을 0번 이상 반복 수행함' }
+    answers: ['4']
+    explanation: |
+      선택지 1: 제어문은 문장의 실행 순서, 즉 수행 흐름을 바꾸는 문장이므로 옳다.
+      선택지 2: 조건문(if, switch)은 조건의 참/거짓에 따라 다른 문장을 실행하므로 옳다.
+      선택지 3: 반복문에는 for, while, do-while 등이 있으므로 옳다.
+      선택지 4: do-while문은 본문을 먼저 실행한 뒤 조건을 검사하므로 최소 1번 이상 실행된다. 0번 이상 반복하는 것은 while문이다. 정답이다.
+
+      핵심 개념:
+      제어문은 조건문, 반복문, 분기문(goto, break, continue) 등으로 나뉜다.
+      while문은 조건을 먼저 검사하므로 본문이 한 번도 실행되지 않을 수 있다(0번 이상).
+      do-while문은 조건을 나중에 검사하므로 본문이 적어도 한 번 실행된다(1번 이상).
+      for문은 초기화·조건·증감을 한 줄에 모은 반복문이다.
+    tags: [control-statement, loop]
+
+  - id: e19-22
+    type: multiple-choice
+    chapter: 13
+    passageRefs: [g19-parameter-passing-01]
+    prompt: 값 전달 방식의 인수 전달을 가정할 때, 위 프로그램에서 fun의 호출이 끝난 후 배열 list의 값은?
+    choices:
+      - { id: '1', text: '1, 2, 3' }
+      - { id: '2', text: '0, 2, 3' }
+      - { id: '3', text: '1, 0, 3' }
+      - { id: '4', text: '1, 2, 0' }
+    answers: ['1']
+    explanation: |
+      선택지 1: 값 전달에서는 i와 list[0]의 값(0과 1)이 형식 매개변수 a, b에 복사될 뿐이다. fun 안에서 a와 b를 바꿔도 호출한 쪽의 변수는 변하지 않으므로 list는 1, 2, 3 그대로이다. 정답이다.
+      선택지 2: list[0]이 0으로 바뀌는 것은 참조 전달일 때의 결과이다.
+      선택지 3: list[1]은 fun에 전달되지 않았으므로 바뀔 이유가 없다.
+      선택지 4: list[2]도 전달되지 않았으므로 바뀌지 않는다.
+
+      핵심 개념:
+      값 전달(call by value)은 실 매개변수의 값을 형식 매개변수에 복사한다.
+      서브프로그램 안에서 형식 매개변수를 바꿔도 실 매개변수에는 영향이 없다.
+      그래서 값 전달로는 swap 함수가 호출한 쪽의 변수를 교환하지 못한다.
+      호출 쪽 변수를 바꾸려면 참조 전달이나 포인터 전달이 필요하다.
+    tags: [call-by-value, parameter-passing]
+
+  - id: e19-23
+    type: multiple-choice
+    chapter: 13
+    passageRefs: [g19-parameter-passing-01]
+    prompt: 참조 전달 방식의 인수 전달을 가정할 때, 위 프로그램에서 fun의 호출이 끝난 후 배열 list의 값은?
+    choices:
+      - { id: '1', text: '1, 2, 3' }
+      - { id: '2', text: '0, 2, 3' }
+      - { id: '3', text: '1, 0, 3' }
+      - { id: '4', text: '1, 2, 0' }
+    answers: ['2']
+    explanation: |
+      선택지 1: 1, 2, 3이 그대로인 것은 값 전달일 때의 결과이다.
+      선택지 2: 참조 전달에서 a는 i를, b는 호출 시점에 결정된 list[0]을 가리킨다. temp = a(0), a = b로 i = 1, b = temp로 list[0] = 0이 되므로 list는 0, 2, 3이다. 정답이다.
+      선택지 3: list[1]이 0이 되려면 b가 list[1]을 가리켜야 한다. 참조 전달은 호출 시점(i = 0)에 list[0]의 위치를 넘기므로, 나중에 i가 1로 바뀌어도 b는 계속 list[0]을 가리킨다.
+      선택지 4: list[2]는 전달되지 않았으므로 바뀌지 않는다.
+
+      핵심 개념:
+      참조 전달(call by reference)은 실 매개변수의 주소를 넘겨 형식 매개변수가 같은 기억 장소를 가리키게 한다.
+      따라서 서브프로그램 안의 변경이 호출한 쪽 변수에 그대로 반영된다.
+      배열 원소 list[i]를 넘길 때는 호출 시점의 i 값으로 위치가 결정된다.
+      이름 전달(call by name)이었다면 사용 시점마다 list[i]를 다시 계산하므로 결과가 달라질 수 있다.
+    tags: [call-by-reference, parameter-passing]
+
+  - id: e19-24
+    type: multiple-choice
+    chapter: 14
+    passageRefs: [g19-static-chain-code-01, g19-static-chain-stack-01]
+    prompt: 다음 Pascal 형태의 프로그램이 정적 영역 규칙을 따른다고 할 때, A 지점에서 A, B, E의 체인 변위는?
+    choices:
+      - { id: '1', text: '0, 1, 2' }
+      - { id: '2', text: '1, 2, 3' }
+      - { id: '3', text: '2, 1, 0' }
+      - { id: '4', text: '2, 2, 1' }
+    answers: ['3']
+    explanation: |
+      선택지 1: 변위 순서를 거꾸로 적은 것이다. E가 S3의 지역변수라 0이다.
+      선택지 2: 모든 변위를 1씩 크게 센 것으로, 현재 블록 자신의 변위를 0으로 두는 규칙과 맞지 않는다.
+      선택지 3: A 지점은 S3 안이다. E는 S3의 지역변수이므로 변위 0, B는 S3을 감싼 S2의 매개변수이므로 변위 1, A는 S2를 감싼 Main의 변수이므로 변위 2이다. A, B, E 순서로 2, 1, 0이므로 정답이다.
+      선택지 4: B를 Main의 변수로 보면 2가 되지만, S2의 매개변수 B가 Main의 B를 가리므로 정적 영역 규칙에서 B의 변위는 1이다.
+
+      핵심 개념:
+      체인 변위는 현재 블록에서 변수가 선언된 블록까지 정적 링크를 몇 번 따라가야 하는지를 나타낸다.
+      정적 영역 규칙에서는 소스 코드의 중첩 관계(S3 ⊂ S2 ⊂ Main)를 기준으로 센다.
+      같은 이름이 여러 블록에 있으면 가장 가까운 바깥 블록의 선언이 사용된다.
+      호출 순서(S3가 S1을 호출)는 동적 링크에만 영향을 주고 정적 체인 변위에는 영향을 주지 않는다.
+    tags: [static-chain, static-scope, activation-record]
+
+  - id: e19-25
+    type: multiple-choice
+    chapter: 14
+    prompt: 동적 체인에 대한 설명으로 바르지 ==않은== 것은?
+    choices:
+      - { id: '1', text: 비지역변수를 찾을 때까지 동적 링크를 거슬러 올라감 }
+      - { id: '2', text: 호출 순서와 무관하게 참조하는 비지역변수가 결정됨 }
+      - { id: '3', text: 활성 레코드에 변수 이름을 저장해야 함 }
+      - { id: '4', text: 동적 체인의 길이는 정적 체인의 길이보다 길 수 있음 }
+    answers: ['2']
+    explanation: |
+      선택지 1: 동적 체인 기법은 동적 링크를 따라 호출한 쪽 활성 레코드를 차례로 거슬러 올라가며 비지역변수를 찾으므로 옳다.
+      선택지 2: 동적 링크는 호출한 순서대로 연결되므로, 동적 체인으로 찾는 비지역변수는 호출 순서에 따라 달라진다. "호출 순서와 무관"이라는 설명은 틀렸으므로 정답이다.
+      선택지 3: 이름으로 변수를 찾아야 하므로 활성 레코드에 변수 이름 정보를 함께 저장해야 한다는 설명은 옳다.
+      선택지 4: 재귀 호출 등으로 호출 깊이가 깊어지면 동적 체인이 소스 코드 중첩 깊이에 따른 정적 체인보다 길어질 수 있으므로 옳다.
+
+      핵심 개념:
+      동적 체인은 동적 영역 규칙을 구현하기 위해 동적 링크를 따라 비지역변수를 찾는 기법이다.
+      동적 링크는 호출한 서브프로그램의 활성 레코드를 가리킨다.
+      정적 체인은 소스 코드의 중첩 관계를 따르는 정적 링크를 사용한다.
+      동적 체인은 실행 시 이름 검색이 필요해 느리고, 결과가 호출 순서에 의존한다.
+    tags: [dynamic-chain, dynamic-scope, activation-record]

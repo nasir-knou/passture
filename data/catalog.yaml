@@ -134,6 +134,7 @@ subjects:
   - id: linear-algebra
     title: 선형대수
     semester: 2
+    syllabus: subjects/linear-algebra/syllabus.json
     sources:
       - id: past-exams-2017
         title: 2017 기말
@@ -150,9 +151,14 @@ subjects:
         path: subjects/linear-algebra/past-exams-2019.json
         kind: exam
         year: 2019
+      - id: lecture-exercises
+        title: 연습문제
+        path: subjects/linear-algebra/lecture-exercises.json
+        kind: lecture
   - id: introduction-to-computer-science
     title: 컴퓨터과학개론
     semester: 2
+    syllabus: subjects/introduction-to-computer-science/syllabus.json
     sources:
       - id: past-exams-2019
         title: 2019 기말
@@ -169,6 +175,10 @@ subjects:
         path: subjects/introduction-to-computer-science/past-exams-2017.json
         kind: exam
         year: 2017
+      - id: lecture-exercises
+        title: 연습문제
+        path: subjects/introduction-to-computer-science/lecture-exercises.json
+        kind: lecture
   - id: computer-architecture
     title: 컴퓨터구조
     semester: 2
@@ -186,5 +196,79 @@ subjects:
       - id: past-exams-2017
         title: 2017 기말
         path: subjects/computer-architecture/past-exams-2017.json
+        kind: exam
+        year: 2017
+  - id: programming-languages
+    title: 프로그래밍언어론
+    semester: 2
+    syllabus: subjects/programming-languages/syllabus.json
+    sources:
+      - id: past-exams-2019
+        title: 2019 기말
+        path: subjects/programming-languages/past-exams-2019.json
+        kind: exam
+        year: 2019
+      - id: past-exams-2018
+        title: 2018 기말
+        path: subjects/programming-languages/past-exams-2018.json
+        kind: exam
+        year: 2018
+      - id: attendance-exams-2018
+        title: 2018 출석대체
+        path: subjects/programming-languages/attendance-exams-2018.json
+        kind: exam
+        year: 2018
+      - id: past-exams-2017
+        title: 2017 기말
+        path: subjects/programming-languages/past-exams-2017.json
+        kind: exam
+        year: 2017
+      - id: attendance-exams-2017
+        title: 2017 출석대체
+        path: subjects/programming-languages/attendance-exams-2017.json
+        kind: exam
+        year: 2017
+  - id: compiler-construction
+    title: 컴파일러구성
+    semester: 2
+    syllabus: subjects/compiler-construction/syllabus.json
+    sources:
+      - id: past-exams-2019
+        title: 2019 기말
+        path: subjects/compiler-construction/past-exams-2019.json
+        kind: exam
+        year: 2019
+      - id: past-exams-2018
+        title: 2018 기말
+        path: subjects/compiler-construction/past-exams-2018.json
+        kind: exam
+        year: 2018
+      - id: past-exams-2017
+        title: 2017 기말
+        path: subjects/compiler-construction/past-exams-2017.json
+        kind: exam
+        year: 2017
+      - id: workbook
+        title: 워크북 문제
+        path: subjects/compiler-construction/workbook.json
+        kind: workbook
+  - id: simulation
+    title: 시뮬레이션
+    semester: 2
+    syllabus: subjects/simulation/syllabus.json
+    sources:
+      - id: past-exams-2019
+        title: 2019 기말
+        path: subjects/simulation/past-exams-2019.json
+        kind: exam
+        year: 2019
+      - id: past-exams-2018
+        title: 2018 기말
+        path: subjects/simulation/past-exams-2018.json
+        kind: exam
+        year: 2018
+      - id: past-exams-2017
+        title: 2017 기말
+        path: subjects/simulation/past-exams-2017.json
         kind: exam
         year: 2017

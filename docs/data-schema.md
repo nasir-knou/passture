@@ -22,12 +22,12 @@
 
 ## 2. catalog.yaml
 
-현재 `data/catalog.yaml`에는 8개 과목이 등록되어 있다.
+현재 `data/catalog.yaml`에는 10개 과목이 등록되어 있다.
 
-| 학기  | 과목                                                   |
-| ----- | ------------------------------------------------------ |
-| 1학기 | 운영체제, 이산수학, 알고리즘, 인공지능, Java프로그래밍 |
-| 2학기 | 선형대수, 컴퓨터과학개론, 컴퓨터구조                   |
+| 학기  | 과목                                                                 |
+| ----- | -------------------------------------------------------------------- |
+| 1학기 | 운영체제, 이산수학, 알고리즘, 인공지능, Java프로그래밍               |
+| 2학기 | 선형대수, 컴퓨터과학개론, 컴퓨터구조, 프로그래밍언어론, 컴파일러구성 |
 
 카탈로그 항목 예:
 
@@ -57,6 +57,15 @@ subjects:
 ```
 
 런타임용 `public/data/catalog.json`에는 빌드 시 각 출처의 `questions.length`를 계산한 `questionCount`가 추가된다. 선택 화면과 홈의 출처 목록은 이를 사용해 `2019 기말 (25문제)`처럼 표시한다. 원본 `catalog.yaml`에는 수동으로 문제 수를 적지 않는다.
+
+과목에 교재 목차 파일이 있으면 `subjects[].syllabus`에 `subjects/{subjectId}/syllabus.json` 경로를 적는다. 이 필드가 있는 과목만 챕터별 풀이를 제공한다(§4.4).
+
+```yaml
+- id: linear-algebra
+  title: 선형대수
+  semester: 2
+  syllabus: subjects/linear-algebra/syllabus.json
+```
 
 과목의 학기 정보는 `subjects[].semester`에 단일값으로 저장한다.
 
@@ -150,7 +159,7 @@ questions:
       - { id: '3', text: '전자결제 처리' }
       - { id: '4', text: '장치 관리' }
     answers: ['1', '2', '4']
-    answerKey: F # 출제표기 보존(선택)
+    answerKey: H # 출제표기 보존(선택)
     explanation: 운영체제 핵심 기능은 프로세스/메모리/장치 관리이다.
 ```
 
@@ -216,6 +225,9 @@ i02-03 -> 02
 - 인라인 수식: `$T(n)=O(n\log n)$`
 - 블록 수식: `$$ ... $$`
 - 수식이 없는 일반 텍스트는 HTML escape 후 그대로 표시한다.
+- 수식이 아닌 글자 그대로의 달러 기호(예: 입력 끝 표시 `$`)는 `\$`로 쓴다. 렌더러는 `\$`를 수식 구분자로 보지 않고 `$`로 표시한다. 한 문자열에 `$`가 두 개 이상 있으면 그 사이가 수식으로 해석되므로 반드시 이스케이프한다. 전각 `＄`로 대신하지 않는다.
+- YAML에서 `\$`의 백슬래시가 유지되도록 작은따옴표나 블록 문자열(`|`)을 쓴다. 큰따옴표 안에서는 `\\$`로 써야 한다.
+- 코드 지문(`type: code`)과 `cellFormat: code` 표는 수식 렌더링을 하지 않으므로 `$`를 그대로 쓴다.
 - 수식 렌더링 실패 시 원문 수식 문자열을 안전하게 표시한다.
 - 긴 수식은 모바일에서 가로 스크롤될 수 있도록 UI에서 처리한다.
 - 원본 문제에서 굵게 표시된 핵심 문구는 문제 본문, 선택지, 해설에서 `==강조==`로 감싸면 하이라이트로 렌더링한다.
@@ -276,6 +288,82 @@ choices:
 ```
 
 도표가 문제 본문에만 필요한 경우에는 `question.images`, `passages.type: image`, 또는 `passages.type: diagram`을 사용한다. 선택지마다 다른 그림을 골라야 하는 경우에는 `choices[].image`나 `choices[].diagram`을 사용한다.
+
+## 4.4 교재 장(syllabus)과 챕터별 풀이
+
+챕터별 풀이는 문제를 새로 복사하지 않고, 기존 출처의 문제를 **교재 장** 기준으로 모아 보여준다. 기준 축은 교재 장이며, 강의는 장에 연결한다. 문제 하나는 **주 장 하나**에만 속한다. 절 단위 분류는 하지 않는다.
+
+### syllabus 파일
+
+`data/subjects/{subjectId}/syllabus.yaml` (빌드 후 `public/data/subjects/{subjectId}/syllabus.json`)
+
+```yaml
+# data/subjects/introduction-to-computer-science/syllabus.yaml (발췌)
+subjectId: introduction-to-computer-science
+title: 컴퓨터과학개론
+textbook:
+  authors: [이관용, 정광식]
+  publisher: 한국방송통신대학교출판문화원
+  publishedAt: '2021-07-25' # 따옴표 필수 (없으면 YAML Date로 읽힘)
+chapters:
+  - no: 1
+    title: 컴퓨터와 데이터
+    sections: # 참고용. 문제 분류에는 쓰지 않는다
+      - { no: '1.1', title: 컴퓨터와 컴퓨터과학 }
+lectures:
+  - { no: 1, title: '컴퓨터와 자료 (1)', chapters: [1] }
+  - { no: 2, title: '컴퓨터와 자료 (2)', chapters: [1] }
+```
+
+부 구분이 있는 교재(선형대수)는 `parts`를, 한 강이 여러 장을 다루는 과목(컴파일러구성)은 `chapters`에 여러 장을 적는다.
+
+```yaml
+# linear-algebra/syllabus.yaml (발췌)
+parts:
+  - { no: 1, title: 일차연립방정식과 행렬, chapters: [1, 2, 3, 4, 5, 6] }
+
+# compiler-construction/syllabus.yaml (발췌)
+lectures:
+  - { no: 14, title: 의미분석과 중간언어, chapters: [6, 7], note: 추정 } # 첫 장(6장)이 주 장
+```
+
+- `chapters[].no`, `lectures[].no`, `parts[].no`는 파일 안에서 유일한 양의 정수다.
+- `parts[].chapters`, `lectures[].chapters`는 존재하는 장 번호만 참조한다.
+- `parts`가 있으면 모든 장이 정확히 한 부에 속해야 한다.
+- `lectures[].sections`, `lectures[].note`는 사람이 참고하는 선택 필드다.
+
+### 문제의 장 결정 규칙
+
+| 출처 종류                            | 장 결정 방법                                             | 문제 파일에 적을 것                                  |
+| ------------------------------------ | -------------------------------------------------------- | ---------------------------------------------------- |
+| 기출 (`exam`)                        | `chapter` 필드                                           | `chapter: N` 또는 `outdated: true` (둘 중 하나 필수) |
+| 교재·워크북 (`textbook`, `workbook`) | ID 첫 숫자 그룹 = 장 (`b03-07` → 3장)                    | 없음                                                 |
+| 강의 (`lecture`)                     | ID 첫 숫자 그룹 = 강 → `syllabus.lectures[].chapters[0]` | 없음 (강이 syllabus에 있어야 함)                     |
+| 특강 (`intensive`)                   | `chapter` 필드 (특강 단원 번호는 교재 장·강과 무관)      | `chapter: N`                                         |
+
+- 어느 종류든 `chapter`를 명시하면 ID보다 우선한다. 강 하나가 여러 장을 다룰 때 특정 문제를 다른 장에 두고 싶으면 `chapter`를 적는다.
+- 여러 장에 걸친 문제는 문제가 실제로 묻는 핵심 개념이 속한 장 하나를 주 장으로 정한다.
+
+```yaml
+- id: e19-07
+  type: multiple-choice
+  chapter: 4
+  prompt: ...
+```
+
+### outdated 문제
+
+현재 교재 목차에 해당 주제가 없는 기출(교재 개정으로 빠진 내용)은 `chapter` 대신 `outdated: true`를 적고, [outdated.md](./outdated.md)에 문제 키와 근거를 기록한다.
+
+- outdated 문제는 챕터별 풀이에서 제외한다. 연도별 풀이와 모의 시험에는 그대로 나온다.
+- `outdated`는 기출 문제에만 쓸 수 있다. 강의·교재 문제는 현재 교재 기준으로 만들어지므로 장이 없으면 데이터 오류로 본다.
+- 빌드는 `outdated: true`인 문제와 `docs/outdated.md`의 목록 항목(``- `{subjectId}:{sourceId}:{questionId}` — …``)에 적힌 문제 키가 정확히 일치하는지 검사한다.
+
+### 빌드 검증
+
+- syllabus가 있는 과목: 모든 문제의 장이 결정되어야 하고(outdated 제외), 그 장이 `syllabus.chapters`에 있어야 한다.
+- syllabus가 없는 과목: `chapter`, `outdated` 필드를 쓰면 빌드가 실패한다.
+- `chapter`와 `outdated`를 한 문제에 함께 쓰면 빌드가 실패한다.
 
 ## 5. 공통 지문 처리
 
@@ -377,8 +465,9 @@ SVG 기반 `diagram` 라벨 작성 규칙:
 - `nodes[].x`, `nodes[].y`: 다이어그램 내부 좌표
 - `nodes[].hideLabel`: 라벨을 숨길 때 사용한다. 필요할 때만 둔다.
 - `nodes[].hideNode`: 노드 도형을 숨기고 라벨만 표시할 때 사용한다. 필요할 때만 둔다.
-- `nodes[].shape`: `circle` 또는 `box`. 필요할 때만 둔다.
+- `nodes[].shape`: `circle`, `box`, `diamond`, `ellipse` 중 하나. 생략하면 `circle`. `diamond`·`ellipse`는 `width`, `height`로 크기를 정하고 간선이 윤곽선에서 끝난다(E-R 다이어그램의 관계·속성 등). 필요할 때만 둔다.
 - `nodes[].radius`, `nodes[].width`, `nodes[].height`: 노드 크기 보정. 필요할 때만 둔다.
+- `nodes[].underline`: 라벨에 밑줄을 긋는다(E-R 다이어그램의 키 속성 등). 필요할 때만 둔다.
 - `nodes[].labelDx`, `nodes[].labelDy`: 라벨 위치를 보정한다. 필요할 때만 둔다.
 - `nodes[].fontSize`, `nodes[].fillColor`, `nodes[].strokeColor`, `nodes[].strokeWidth`, `nodes[].textColor`, `nodes[].tone`: 노드 표시 스타일 보정. 필요할 때만 둔다.
 - `edges`: 간선 배열

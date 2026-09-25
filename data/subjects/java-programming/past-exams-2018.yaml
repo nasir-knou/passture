@@ -348,14 +348,14 @@ questions:
     explanation: |
       선택지 1: `AnonymousTest.class` 하나만 생성되는 것이 아니다. 같은 소스에 정의된 `CSuper`와 익명 클래스도 각각 클래스 파일로 컴파일된다.
       선택지 2: `CSuper.class`와 `AnonymousTest.class`만 세면 익명 클래스의 클래스 파일을 빠뜨린 것이다.
-      선택지 3: `CSuper.class`, `AnonymousTest.class`, `AnonymousTest$1.class`처럼 익명 클래스 파일까지 총 3개가 생성되므로 정답이다.
+      선택지 3: `CSuper.class`, `AnonymousTest.class`, `AnonymousTest\$1.class`처럼 익명 클래스 파일까지 총 3개가 생성되므로 정답이다.
       선택지 4: 코드에 이름 있는 클래스는 `CSuper`와 `AnonymousTest` 두 개이고 익명 클래스는 하나뿐이므로 네 번째 클래스 파일은 생성되지 않는다.
 
       핵심 개념:
       하나의 소스 파일에 여러 클래스가 있으면 각 클래스별 .class 파일이 생성된다.
       익명 클래스도 컴파일 시 별도 클래스 파일로 만들어진다.
       public 클래스 이름은 소스 파일 이름과 일치해야 한다.
-      익명 클래스 파일은 보통 바깥클래스$1.class 형식이다.
+      익명 클래스 파일은 보통 바깥클래스\$1.class 형식이다.
     tags: [compile, anonymous-class]
 
   - id: e18-08

@@ -1,5 +1,12 @@
 import type { Catalog } from '../types/catalog';
 import { loadQuestionFile } from '../lib/data-loader';
+import { chapterLabel } from '../lib/chapter';
+import {
+  clearChapterSelection,
+  createChapterSessionInput,
+  loadChapterIndex,
+  loadChapterSelection,
+} from '../lib/chapter-practice';
 import {
   answerAllDraftQuestions,
   answerCurrentQuestion,
@@ -26,6 +33,41 @@ import {
 } from './rendering';
 
 export async function renderQuizPage(catalog: Catalog): Promise<HTMLElement> {
+  const scope = loadPracticeScope();
+  const options = loadPracticeOptions();
+  const allowedKeys =
+    scope === 'bookmarked'
+      ? new Set(loadBookmarks())
+      : scope === 'wrong'
+        ? new Set(Object.keys(loadWrongAnswers()))
+        : undefined;
+
+  const chapterSelection = loadChapterSelection();
+  const chapterSubject = catalog.subjects.find(
+    (subject) => subject.id === chapterSelection?.subjectId && subject.syllabus,
+  );
+
+  if (chapterSelection && chapterSubject) {
+    const index = await loadChapterIndex(chapterSubject);
+    const input = createChapterSessionInput(index, chapterSelection);
+    const session = getOrCreateSession(
+      input.sources,
+      scope,
+      (key) => input.include(key) && (!allowedKeys || allowedKeys.has(key)),
+      options,
+      input.grouping,
+    );
+    return renderSession(
+      session,
+      `#/select?${new URLSearchParams({ subject: chapterSubject.id, semester: String(chapterSubject.semester), mode: 'chapter' }).toString()}`,
+    );
+  }
+
+  if (chapterSelection) {
+    // 과목에서 syllabus가 빠지는 등 더 이상 챕터별로 풀 수 없는 선택은 버린다.
+    clearChapterSelection();
+  }
+
   const selectedSources = loadSelectedSources();
   const fallbackSubject = catalog.subjects.find((subject) => subject.sources.length > 0);
   const effectiveSources =
@@ -42,14 +84,6 @@ export async function renderQuizPage(catalog: Catalog): Promise<HTMLElement> {
     })),
   );
 
-  const scope = loadPracticeScope();
-  const options = loadPracticeOptions();
-  const allowedKeys =
-    scope === 'bookmarked'
-      ? new Set(loadBookmarks())
-      : scope === 'wrong'
-        ? new Set(Object.keys(loadWrongAnswers()))
-        : undefined;
   const session = getOrCreateSession(
     loadedSources,
     scope,
@@ -59,7 +93,7 @@ export async function renderQuizPage(catalog: Catalog): Promise<HTMLElement> {
   return renderSession(session);
 }
 
-function renderSession(session: QuizSession): HTMLElement {
+function renderSession(session: QuizSession, selectHref = '#/select'): HTMLElement {
   const page = document.createElement('main');
   page.className = 'app-shell quiz-page';
 
@@ -71,9 +105,9 @@ function renderSession(session: QuizSession): HTMLElement {
       <section class="page-header">
         <p class="eyebrow">quiz</p>
         <h1>풀이할 문제가 없습니다</h1>
-        <p class="lead">문제 선택 화면에서 출처를 선택해 주세요.</p>
+        <p class="lead">문제 선택 화면에서 출처나 장, 문제 범위를 다시 선택해 주세요.</p>
       </section>
-      <a class="primary-link" href="#/select">문제 선택</a>
+      <a class="primary-link" href="${escapeHtml(selectHref)}">문제 선택</a>
       ${renderFooter()}
     `;
     return page;
@@ -102,7 +136,7 @@ function renderSession(session: QuizSession): HTMLElement {
     ${renderNav()}
     <section class="quiz-header">
       <div class="quiz-progress-panel">
-        <p class="eyebrow">${escapeHtml(sourceDisplayLabel(current.subjectTitle, current.sourceTitle))}</p>
+        <p class="eyebrow">${escapeHtml(sourceDisplayLabel(current.subjectTitle, current.sourceTitle, current.chapter))}</p>
         <h1>문제 ${progress}</h1>
         <div class="progress-track" aria-label="답안 체크 진행률 ${progressPercent}%">
           <span style="width: ${progressPercent}%"></span>
@@ -258,8 +292,9 @@ function optionModeLabel(mode: 'default' | 'random'): string {
   return mode === 'random' ? '무작위' : '기본';
 }
 
-function sourceDisplayLabel(subjectTitle: string, sourceTitle: string): string {
-  return `${subjectTitle} - ${sourceTitle}`;
+function sourceDisplayLabel(subjectTitle: string, sourceTitle: string, chapter?: number): string {
+  const chapterText = chapter === undefined ? '' : ` · ${chapterLabel(chapter)}`;
+  return `${subjectTitle} - ${sourceTitle}${chapterText}`;
 }
 
 function renderBookmarkIcon(bookmarked: boolean): string {

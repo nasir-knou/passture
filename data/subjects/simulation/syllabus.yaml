@@ -1,0 +1,102 @@
+subjectId: simulation
+title: 시뮬레이션
+textbook:
+  authors: [김강현, 백두권]
+  publisher: 한국방송통신대학교출판문화원
+  publishedAt: '2022-09-01'
+  isbn: '9788920044151'
+chapters:
+  - no: 1
+    title: 시뮬레이션이란?
+    sections:
+      - { no: '1.1', title: 시뮬레이션의 개요 }
+      - { no: '1.2', title: 결정적 시뮬레이션 }
+      - { no: '1.3', title: 확률적 시뮬레이션 }
+      - { no: '1.4', title: 확률변수의 발생 }
+      - { no: '1.5', title: 대기행렬 시스템 문제 }
+  - no: 2
+    title: 모델링과 시뮬레이션
+    sections:
+      - { no: '2.1', title: 개요 }
+      - { no: '2.2', title: 시스템 }
+      - { no: '2.3', title: 모델(model) }
+      - { no: '2.4', title: 시뮬레이션 모델의 분류 }
+      - { no: '2.5', title: 시뮬레이션 모델의 예 }
+      - { no: '2.6', title: 시뮬레이션의 특징 }
+      - { no: '2.7', title: 시뮬레이션 과정 }
+  - no: 3
+    title: 대기행렬 문제
+    sections:
+      - { no: '3.1', title: 개요 }
+      - { no: '3.2', title: 복수창구의 대기행렬 시스템 문제 }
+      - { no: '3.3', title: 봉사시간의 변화 }
+      - { no: '3.4', title: 대기시간 }
+  - no: 4
+    title: 시뮬레이션 모델링
+    sections:
+      - { no: '4.1', title: 개요 }
+      - { no: '4.2', title: 모델링 월드뷰 }
+      - { no: '4.3', title: 이산형 시뮬레이션 모델링 }
+      - { no: '4.4', title: 연속형 시뮬레이션 모델링 }
+      - { no: '4.5', title: 혼합형 시뮬레이션 모델링 }
+  - no: 5
+    title: 이산사건 시뮬레이션
+    sections:
+      - { no: '5.1', title: 개요 }
+      - { no: '5.2', title: 대기행렬에서의 사건 모델 }
+      - { no: '5.3', title: 시간 진행법 }
+      - { no: '5.4', title: 이산사건 시뮬레이션의 예 }
+      - { no: '5.5', title: 전체 알고리즘 }
+  - no: 6
+    title: 시뮬레이션 언어
+    sections:
+      - { no: '6.1', title: 개요 }
+      - { no: '6.2', title: 시뮬레이션 언어의 예 }
+      - { no: '6.3', title: 시뮬레이션 언어의 종류 }
+      - { no: '6.4', title: 범용 고급언어와 시뮬레이션 언어의 비교 }
+      - { no: '6.5', title: 시뮬레이션 언어의 선택기준 및 동향 }
+  - no: 7
+    title: 난수의 발생
+    sections:
+      - { no: '7.1', title: 개요 }
+      - { no: '7.2', title: 합동법 }
+      - { no: '7.3', title: 난수의 검정 }
+  - no: 8
+    title: 확률변수의 발생
+    sections:
+      - { no: '8.1', title: 확률변수의 기본개념 }
+      - { no: '8.2', title: 확률변수의 발생방법 }
+      - { no: '8.3', title: 연속형 확률변수의 발생 }
+      - { no: '8.4', title: 이산형 확률변수의 발생 }
+      - { no: '8.5', title: 경험적 분포 }
+  - no: 9
+    title: 입력 확률분포의 선택
+    sections:
+      - { no: '9.1', title: 확률분포의 기본개념 }
+      - { no: '9.2', title: 이론적 확률분포 }
+      - { no: '9.3', title: 확률분포의 가정 }
+      - { no: '9.4', title: 적합도 검정 }
+  - no: 10
+    title: 네트워크 시뮬레이션 실습
+    sections:
+      - { no: '10.1', title: 개요 }
+      - { no: '10.2', title: Riverbed Modeler Academic Edition 실행 }
+      - { no: '10.3', title: Shared Ethernet Network 모델 설계 }
+      - { no: '10.4', title: 시뮬레이션 실행 }
+      - { no: '10.5', title: 시뮬레이션 결과분석 }
+lectures:
+  - { no: 1, title: '결정적 시뮬레이션', chapters: [1], sections: ['1.1', '1.2'], note: '추정: 1.1 개요 포함 여부' }
+  - { no: 2, title: '확률적 시뮬레이션', chapters: [1], sections: ['1.3'] }
+  - { no: 3, title: '확률변수의 발생', chapters: [1], sections: ['1.4'], note: '13강과 제목이 같지만 1장 1.4절(입문)로 추정' }
+  - { no: 4, title: '시뮬레이션 응용문제', chapters: [1], sections: ['1.5'], note: '추정: 1장 남은 절(1.5 대기행렬 시스템 문제)' }
+  - { no: 5, title: '모델링과 시뮬레이션', chapters: [2] }
+  - { no: 6, title: '대기행렬 문제1', chapters: [3], sections: ['3.1', '3.2'], note: '추정: 3장 절 분할' }
+  - { no: 7, title: '대기행렬 문제2', chapters: [3], sections: ['3.3', '3.4'], note: '추정: 3장 절 분할' }
+  - { no: 8, title: '모델링 월드뷰', chapters: [4], note: '강의 제목은 4.2절 제목. 4장 전체로 추정' }
+  - { no: 9, title: '이산사건 시뮬레이션', chapters: [5] }
+  - { no: 10, title: '시뮬레이션 언어', chapters: [6] }
+  - { no: 11, title: '난수의 발생', chapters: [7], sections: ['7.1', '7.2'] }
+  - { no: 12, title: '난수의 검정', chapters: [7], sections: ['7.3'] }
+  - { no: 13, title: '확률변수의 발생', chapters: [8] }
+  - { no: 14, title: '입력확률분포 선택', chapters: [9], note: '강의 제목 "입력확률분포 선택" ≈ 교재 9장 "입력 확률분포의 선택"' }
+  - { no: 15, title: '네트워크 시뮬레이션 실습', chapters: [10] }

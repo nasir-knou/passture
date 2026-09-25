@@ -666,12 +666,12 @@ questions:
 
   - id: b07-02
     type: multiple-choice
-    prompt: 퍼지집합 $A$의 소속함수 $\mu_A(x)$에 대하여 적절히 표현한 것은? 단, $[a,b]$는 집합 $\{y\\mid a\\le y\\le b\\}$인 실수 구간을 나타낸다.
+    prompt: 퍼지집합 $A$의 소속함수 $\mu_A(x)$에 대하여 적절히 표현한 것은? 단, $[a,b]$는 집합 $\{y\mid a\le y\le b\}$인 실수 구간을 나타낸다.
     choices:
-      - { id: '1', text: '$\\mu_A(x)\\in\\{0,1\\}$' }
-      - { id: '2', text: '$\\mu_A(x)\\in\\{-1,0,1\\}$' }
-      - { id: '3', text: '$\\mu_A(x)\\in[-1,1]$' }
-      - { id: '4', text: '$\\mu_A(x)\\in[0,1]$' }
+      - { id: '1', text: '$\mu_A(x)\in\{0,1\}$' }
+      - { id: '2', text: '$\mu_A(x)\in\{-1,0,1\}$' }
+      - { id: '3', text: '$\mu_A(x)\in[-1,1]$' }
+      - { id: '4', text: '$\mu_A(x)\in[0,1]$' }
     answers: ['4']
     explanation: 퍼지집합의 소속함수값은 원소가 집합에 속할 가능성을 나타내므로 0 이상 1 이하의 값을 가진다.
     tags: [fuzzy-set, membership-function]
@@ -794,10 +794,10 @@ questions:
     type: multiple-choice
     prompt: 다음 중 영상의 평활화를 위한 필터 마스크는?
     choices:
-      - { id: '1', text: '${1\\over16}\\begin{bmatrix}1&2&1\\\\2&4&2\\\\1&2&1\\end{bmatrix}$' }
-      - { id: '2', text: '$\\begin{bmatrix}1&-2&1\\\\-2&4&-2\\\\1&-2&1\\end{bmatrix}$' }
-      - { id: '3', text: '${1\\over4}\\begin{bmatrix}-1&0&1\\\\-2&0&2\\\\-1&0&1\\end{bmatrix}$' }
-      - { id: '4', text: '${1\\over4}\\begin{bmatrix}-1&-2&-1\\\\0&0&0\\\\1&2&1\\end{bmatrix}$' }
+      - { id: '1', text: '${1\over16}\begin{bmatrix}1&2&1\\2&4&2\\1&2&1\end{bmatrix}$' }
+      - { id: '2', text: '$\begin{bmatrix}1&-2&1\\-2&4&-2\\1&-2&1\end{bmatrix}$' }
+      - { id: '3', text: '${1\over4}\begin{bmatrix}-1&0&1\\-2&0&2\\-1&0&1\end{bmatrix}$' }
+      - { id: '4', text: '${1\over4}\begin{bmatrix}-1&-2&-1\\0&0&0\\1&2&1\end{bmatrix}$' }
     answers: ['1']
     explanation: ①은 가우시안 평활화 마스크이며, 나머지는 에지 검출에 쓰이는 라플라스 또는 소벨 계열 마스크이다.
     tags: [image-processing, smoothing-filter]
