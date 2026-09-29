@@ -205,6 +205,7 @@ passages:
 questions:
   - id: e17-01
     type: multiple-choice
+    chapter: 1
     prompt: 다음 중 사용자 정의 명칭으로 올바른 것은?
     choices:
       - { id: '1', text: 'For' }
@@ -226,6 +227,7 @@ questions:
 
   - id: e17-02
     type: multiple-choice
+    chapter: 2
     prompt: |
       다음 중 변수선언 형식으로 올바른 것은?
       (여기서 a는 변수명이다)
@@ -249,6 +251,7 @@ questions:
 
   - id: e17-03
     type: multiple-choice
+    chapter: 3
     passageRefs: [g17-code-01]
     prompt: 다음과 같은 프로그램의 실행결과로 올바른 것은?
     choices:
@@ -271,6 +274,7 @@ questions:
 
   - id: e17-04
     type: multiple-choice
+    chapter: 3
     passageRefs: [g17-code-02]
     prompt: 다음 프로그램의 결과로 올바른 것은?
     choices:
@@ -293,6 +297,7 @@ questions:
 
   - id: e17-05
     type: multiple-choice
+    chapter: 4
     passageRefs: [g17-code-03]
     prompt: 다음 프로그램의 출력결과로 올바른 것은?
     choices:
@@ -315,6 +320,7 @@ questions:
 
   - id: e17-06
     type: multiple-choice
+    chapter: 3
     passageRefs: [g17-code-04]
     prompt: 다음 프로그램의 출력결과로 올바른 것은?
     choices:
@@ -337,6 +343,7 @@ questions:
 
   - id: e17-07
     type: multiple-choice
+    chapter: 2
     passageRefs: [g17-display-line-intro-01, g17-display-line-code-01]
     prompt: 위에서 변수 선언은 어디에서 이루어지고 있는가?
     choices:
@@ -359,6 +366,7 @@ questions:
 
   - id: e17-08
     type: multiple-choice
+    chapter: 1
     passageRefs: [g17-display-line-intro-01, g17-display-line-code-01]
     prompt: 위에서 설명문은 어디인가?
     choices:
@@ -381,6 +389,7 @@ questions:
 
   - id: e17-09
     type: multiple-choice
+    chapter: 2
     passageRefs: [g17-display-line-intro-01, g17-display-line-code-01]
     prompt: 위에서 선행처리기는 어느 부분인가?
     choices:
@@ -403,6 +412,7 @@ questions:
 
   - id: e17-10
     type: multiple-choice
+    chapter: 5
     passageRefs: [g17-display-line-intro-01, g17-display-line-code-01]
     prompt: 위에서 사용자정의함수의 원형선언이 이루어지는 부분은?
     choices:
@@ -425,6 +435,7 @@ questions:
 
   - id: e17-11
     type: multiple-choice
+    chapter: 5
     passageRefs: [g17-display-line-intro-01, g17-display-line-code-01]
     prompt: 위에서 사용자정의함수의 호출이 일어나는 부분은?
     choices:
@@ -447,6 +458,7 @@ questions:
 
   - id: e17-12
     type: multiple-choice
+    chapter: 5
     passageRefs: [g17-code-05]
     prompt: 다음과 같은 프로그램의 실행결과로서 올바른 것은?
     choices:
@@ -469,6 +481,7 @@ questions:
 
   - id: e17-13
     type: multiple-choice
+    chapter: 4
     passageRefs: [g17-code-06]
     prompt: 다음과 같은 프로그램의 실행결과로서 올바른 것은?
     choices:
@@ -491,6 +504,7 @@ questions:
 
   - id: e17-14
     type: multiple-choice
+    chapter: 5
     prompt: 다음 중 표준함수에 대한 설명으로 올바르지 ==않은== 것은?
     choices:
       - { id: '1', text: '표준함수의 원형은 헤더파일에 선언되어 있다.' }
@@ -512,6 +526,7 @@ questions:
 
   - id: e17-15
     type: multiple-choice
+    chapter: 5
     passageRefs: [g17-fcn-desc-01]
     prompt: 다음의 설명에 대한 함수 헤더의 정의로 올바른 것은?
     choices:
@@ -534,6 +549,7 @@ questions:
 
   - id: e17-16
     type: multiple-choice
+    chapter: 6
     prompt: 다음의 배열에 대한 설명 중 올바르지 ==않은== 것은?
     choices:
       - { id: '1', text: '배열의 각 원소를 변수처럼 사용한다.' }
@@ -555,6 +571,7 @@ questions:
 
   - id: e17-17
     type: multiple-choice
+    chapter: 6
     passageRefs: [g17-code-07]
     prompt: 다음 프로그램의 결과로서 올바른 것은?
     choices:
@@ -577,6 +594,7 @@ questions:
 
   - id: e17-18
     type: multiple-choice
+    chapter: 6
     passageRefs: [g17-code-08]
     prompt: 다음과 같은 프로그램의 실행결과로서 올바른 것은?
     choices:
@@ -599,6 +617,7 @@ questions:
 
   - id: e17-19
     type: multiple-choice
+    chapter: 6
     passageRefs: [g17-code-09]
     prompt: 다음 프로그램의 실행결과로서 올바른 것은?
     choices:
@@ -621,6 +640,7 @@ questions:
 
   - id: e17-20
     type: multiple-choice
+    chapter: 6
     passageRefs: [g17-code-10]
     prompt: 다음 프로그램의 실행결과로서 올바른 것은?
     choices:
@@ -643,6 +663,7 @@ questions:
 
   - id: e17-21
     type: multiple-choice
+    chapter: 7
     passageRefs: [g17-struct-intro-01, g17-struct-code-01]
     prompt: 위에서 ㉠의 결과로 올바른 것은?
     choices:
@@ -665,6 +686,7 @@ questions:
 
   - id: e17-22
     type: multiple-choice
+    chapter: 7
     passageRefs: [g17-struct-intro-01, g17-struct-code-01]
     prompt: 위에서 ㉡의 결과로 올바른 것은?
     choices:
@@ -687,6 +709,7 @@ questions:
 
   - id: e17-23
     type: multiple-choice
+    chapter: 8
     passageRefs: [g17-file-intro-01, g17-file-code-01]
     prompt: 위에서 빈칸 ㉠에 들어갈 내용으로 올바른 것은?
     choices:
@@ -709,6 +732,7 @@ questions:
 
   - id: e17-24
     type: multiple-choice
+    chapter: 8
     passageRefs: [g17-file-intro-01, g17-file-code-01]
     prompt: 위에서 빈칸 ㉡에 들어갈 내용으로 올바른 것은?
     choices:
@@ -731,6 +755,7 @@ questions:
 
   - id: e17-25
     type: multiple-choice
+    chapter: 9
     prompt: 다음 중 기억공간 힙(heap)에 대한 설명으로 ==잘못된== 것은?
     choices:
       - { id: '1', text: '메모리 동적할당을 위해 프로그래머가 사용하는 영역이다.' }

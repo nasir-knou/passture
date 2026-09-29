@@ -208,6 +208,7 @@ passages:
 questions:
   - id: e18-01
     type: multiple-choice
+    chapter: 1
     prompt: C 프로그램 작성 시 반드시 작성해야 하는 함수는?
     choices:
       - { id: '1', text: 'scanf()' }
@@ -229,6 +230,7 @@ questions:
 
   - id: e18-02
     type: multiple-choice
+    chapter: 3
     prompt: 다음 중 출력양식 변환기호의 설명으로 ==잘못된== 것은?
     choices:
       - { id: '1', text: '%d는 출력 값을 지수형식으로 나타낸다.' }
@@ -250,6 +252,7 @@ questions:
 
   - id: e18-03
     type: multiple-choice
+    chapter: 2
     passageRefs: [g18-macro-code-01]
     prompt: 다음과 같은 프로그램의 실행결과로서 올바른 것은?
     choices:
@@ -272,6 +275,7 @@ questions:
 
   - id: e18-04
     type: multiple-choice
+    chapter: 3
     passageRefs: [g18-if-else-code-01]
     prompt: 다음 프로그램을 조건 연산자를 사용하여 바꾼다면 가장 올바른 것은?
     choices:
@@ -294,6 +298,7 @@ questions:
 
   - id: e18-05
     type: multiple-choice
+    chapter: 3
     passageRefs: [g18-relational-code-01]
     prompt: 다음 프로그램의 실행결과로 올바른 것은?
     choices:
@@ -316,6 +321,7 @@ questions:
 
   - id: e18-06
     type: multiple-choice
+    chapter: 4
     passageRefs: [g18-nested-for-code-01]
     prompt: 다음 프로그램이 실행됐을 때 x는 몇 번 출력되는가?
     choices:
@@ -338,6 +344,7 @@ questions:
 
   - id: e18-07
     type: multiple-choice
+    chapter: 4
     passageRefs: [g18-nested-if-code-01]
     prompt: 다음 프로그램의 출력결과로 올바른 것은?
     choices:
@@ -360,6 +367,7 @@ questions:
 
   - id: e18-08
     type: multiple-choice
+    chapter: 3
     passageRefs: [g18-string-io-intro-01, g18-string-io-code-01]
     prompt: 위에서 문자열 자료를 입력받기 위해 ㉠의 위치에 사용될 수 있는 표준 입력함수로서 올바르게 나타낸 것은?
     choices:
@@ -382,6 +390,7 @@ questions:
 
   - id: e18-09
     type: multiple-choice
+    chapter: 3
     passageRefs: [g18-string-io-intro-01, g18-string-io-code-01]
     prompt: 위에서 입력된 문자열 자료를 출력하기 위해 ㉡의 위치에 사용될 수 있는 표준 출력함수로서 올바르게 나타낸 것은?
     choices:
@@ -404,6 +413,7 @@ questions:
 
   - id: e18-10
     type: multiple-choice
+    chapter: 5
     passageRefs: [g18-static-block-code-01]
     prompt: 다음과 같은 프로그램의 실행결과로서 올바른 것은?
     choices:
@@ -426,6 +436,7 @@ questions:
 
   - id: e18-11
     type: multiple-choice
+    chapter: 5
     prompt: 다음 중 함수에 대한 설명으로 ==잘못된== 것은?
     choices:
       - { id: '1', text: '하나의 프로그램에서 반드시 main()함수를 쓸 필요는 없다.' }
@@ -447,6 +458,7 @@ questions:
 
   - id: e18-12
     type: multiple-choice
+    chapter: 6
     prompt: 다음의 배열에 대한 설명 중 올바르지 ==않은== 것은?
     choices:
       - { id: '1', text: '모든 배열은 자료형과 기억 클래스를 갖는다.' }
@@ -468,6 +480,7 @@ questions:
 
   - id: e18-13
     type: multiple-choice
+    chapter: 5
     passageRefs: [g18-global-intro-01, g18-global-code-01]
     prompt: 위에서 ㉠에 대한 결과로서 올바른 것은?
     choices:
@@ -490,6 +503,7 @@ questions:
 
   - id: e18-14
     type: multiple-choice
+    chapter: 5
     passageRefs: [g18-global-intro-01, g18-global-code-01]
     prompt: 위에서 ㉡에 대한 결과로서 올바른 것은?
     choices:
@@ -512,6 +526,7 @@ questions:
 
   - id: e18-15
     type: multiple-choice
+    chapter: 6
     passageRefs: [g18-array-init-code-01]
     prompt: 다음과 같은 프로그램의 결과로 올바른 것은?
     choices:
@@ -534,6 +549,7 @@ questions:
 
   - id: e18-16
     type: multiple-choice
+    chapter: 6
     passageRefs: [g18-2d-array-code-01]
     prompt: 다음과 같은 프로그램의 결과로 올바른 것은?
     choices:
@@ -556,6 +572,7 @@ questions:
 
   - id: e18-17
     type: multiple-choice
+    chapter: 6
     passageRefs: [g18-pointer-array-code-01]
     prompt: 다음 프로그램의 실행결과로서 올바른 것은?
     choices:
@@ -578,6 +595,7 @@ questions:
 
   - id: e18-18
     type: multiple-choice
+    chapter: 6
     passageRefs: [g18-pointer-arith-intro-01, g18-pointer-arith-code-01]
     prompt: 위에서 ㉠의 결과로서 올바른 것은?
     choices:
@@ -600,6 +618,7 @@ questions:
 
   - id: e18-19
     type: multiple-choice
+    chapter: 6
     passageRefs: [g18-pointer-arith-intro-01, g18-pointer-arith-code-01]
     prompt: 위에서 ㉡의 결과로서 올바른 것은?
     choices:
@@ -622,6 +641,7 @@ questions:
 
   - id: e18-20
     type: multiple-choice
+    chapter: 6
     passageRefs: [g18-float-var-intro-01, g18-float-var-code-01]
     prompt: 위에서 실수형 포인터 변수 fptr을 선언한다면 올바른 표현은?
     choices:
@@ -644,6 +664,7 @@ questions:
 
   - id: e18-21
     type: multiple-choice
+    chapter: 6
     passageRefs: [g18-float-var-intro-01, g18-float-var-code-01]
     prompt: 위에서 포인터 변수 fptr에 주소를 할당하는 방법으로 올바른 것은?
     choices:
@@ -666,6 +687,7 @@ questions:
 
   - id: e18-22
     type: multiple-choice
+    chapter: 7
     prompt: '다음 중 “int형 멤버와 double형 멤버를 갖는 구조체 명이 data인 구조체를 정의하고, 구조체 변수명이 var 인 구조체를 선언”한 것으로 올바른 것은?'
     choices:
       - id: '1'
@@ -710,6 +732,7 @@ questions:
 
   - id: e18-23
     type: multiple-choice
+    chapter: 8
     passageRefs: [g18-file-intro-01, g18-file-code-01]
     prompt: 위에서 빈칸 ㉠에 들어갈 내용으로 올바른 것은?
     choices:
@@ -732,6 +755,7 @@ questions:
 
   - id: e18-24
     type: multiple-choice
+    chapter: 8
     passageRefs: [g18-file-intro-01, g18-file-code-01]
     prompt: 위에서 빈칸 ㉡에 들어갈 내용으로 올바른 것은?
     choices:
@@ -754,6 +778,7 @@ questions:
 
   - id: e18-25
     type: multi-answer
+    chapter: 9
     prompt: 다음 중 동적할당에 대한 설명으로 ==잘못된== 것은?
     choices:
       - { id: '1', text: '동적할당을 동해 기억공간의 낭비를 막을 수 있다.' }

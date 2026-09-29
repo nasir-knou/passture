@@ -583,6 +583,7 @@ passages:
 questions:
   - id: b01-01
     type: multiple-choice
+    chapter: 1
     prompt: 다음 중 C 프로그램 완성 과정의 순서로 올바른 것은?
     choices:
       - id: '1'
@@ -609,6 +610,7 @@ questions:
 
   - id: b01-02
     type: multiple-choice
+    chapter: 1
     prompt: C 프로그램 작성 시 반드시 작성해야 하는 함수는?
     choices:
       - id: '1'
@@ -635,6 +637,7 @@ questions:
 
   - id: b01-03
     type: multiple-choice
+    chapter: 1
     prompt: 다음 중 C 프로그램 언어의 예약어(reserved word)가 ==아닌== 것은?
     choices:
       - id: '1'
@@ -663,6 +666,7 @@ questions:
 
   - id: b01-04
     type: multiple-choice
+    chapter: 1
     prompt: 다음 중 사용자 정의 명칭으로 올바른 것은?
     choices:
       - id: '1'
@@ -689,6 +693,7 @@ questions:
 
   - id: b01-05
     type: multiple-choice
+    chapter: 1
     prompt: 다음 중 C 언어에 대한 일반적인 설명으로 ==잘못된== 것은?
     choices:
       - id: '1'
@@ -714,6 +719,7 @@ questions:
 
   - id: b01-06
     type: multiple-choice
+    chapter: 1
     passageRefs: [gcp006-wrong-statement-code]
     prompt: 다음 프로그램 중 ==잘못된== 문장은?
     choices:
@@ -741,6 +747,7 @@ questions:
 
   - id: b01-07
     type: multiple-choice
+    chapter: 1
     passageRefs: [gcp007-wrong-statement-code]
     prompt: 다음 프로그램 중 ==잘못된== 문장은?
     choices:
@@ -770,6 +777,7 @@ questions:
 
   - id: b01-08
     type: multiple-choice
+    chapter: 1
     prompt: 다음 중 원시 프로그램이 번역되어 실행될 때의 파일 확장자로서 올바른 것은?
     choices:
       - id: '1'
@@ -796,6 +804,7 @@ questions:
 
   - id: b01-09
     type: multiple-choice
+    chapter: 1
     prompt: 다음 중 변수 선언 형식으로 올바른 것은?
     choices:
       - id: '1'
@@ -822,6 +831,7 @@ questions:
 
   - id: b01-10
     type: multiple-choice
+    chapter: 2
     prompt: 다음 중 escape 문자에 대한 설명이 ==잘못된== 것은?
     choices:
       - id: '1'
@@ -849,6 +859,7 @@ questions:
 
   - id: b02-01
     type: multiple-choice
+    chapter: 1
     prompt: 다음 중 C 프로그램 작성 시 고려하는 일반적인 규칙이라고 할 수 ==없는== 것은?
     choices:
       - id: '1'
@@ -874,6 +885,7 @@ questions:
 
   - id: b02-02
     type: multiple-choice
+    chapter: 2
     prompt: 다음 중 변수에 대한 설명으로 올바르지 ==않은== 것은?
     choices:
       - id: '1'
@@ -899,6 +911,7 @@ questions:
 
   - id: b02-03
     type: multiple-choice
+    chapter: 2
     prompt: 다음 중 변수 선언 형식으로 올바른 것은? (여기서 a는 변수명)
     choices:
       - id: '1'
@@ -925,6 +938,7 @@ questions:
 
   - id: b02-04
     type: multiple-choice
+    chapter: 2
     passageRefs: [gcp014-macro-sum-code]
     prompt: 다음과 같은 프로그램의 실행 결과로서 올바른 것은?
     choices:
@@ -952,6 +966,7 @@ questions:
 
   - id: b02-05
     type: multiple-choice
+    chapter: 3
     passageRefs: [gcp015-operator-precedence-code]
     prompt: 다음과 같은 프로그램의 실행 결과로 올바른 것은?
     choices:
@@ -979,6 +994,7 @@ questions:
 
   - id: b02-06
     type: multiple-choice
+    chapter: 2
     prompt: 다음 중 문자열 상수에 대한 설명으로 올바르지 ==않은== 것은?
     choices:
       - id: '1'
@@ -1005,6 +1021,7 @@ questions:
 
   - id: b02-07
     type: multiple-choice
+    chapter: 2
     prompt: 다음 중 매크로 정의가 올바르게 된 것은?
     choices:
       - id: '1'
@@ -1031,6 +1048,7 @@ questions:
 
   - id: b02-08
     type: multiple-choice
+    chapter: 2
     prompt: 다음 중 매크로의 설명으로 올바르지 ==않은== 것은?
     choices:
       - id: '1'
@@ -1056,6 +1074,7 @@ questions:
 
   - id: b02-09
     type: multiple-choice
+    chapter: 2
     prompt: 선행처리기(preprocessor)의 설명으로 올바르지 ==않은== 것은?
     choices:
       - id: '1'
@@ -1082,6 +1101,7 @@ questions:
 
   - id: b02-10
     type: multiple-choice
+    chapter: 3
     prompt: 다음 설명 중 ==잘못된== 것은?
     choices:
       - id: '1'
@@ -1108,6 +1128,7 @@ questions:
 
   - id: b03-01
     type: multiple-choice
+    chapter: 2
     prompt: 다음 중 상수에 대한 설명으로 올바르지 ==않은== 것은?
     choices:
       - id: '1'
@@ -1134,6 +1155,7 @@ questions:
 
   - id: b03-02
     type: multiple-choice
+    chapter: 3
     passageRefs: [gcp022-putchar-code]
     prompt: 다음 프로그램의 결과로 올바른 것은?
     choices:
@@ -1161,6 +1183,7 @@ questions:
 
   - id: b03-03
     type: multiple-choice
+    chapter: 3
     prompt: 다음 중 논리 연산자가 ==아닌== 것은?
     choices:
       - id: '1'
@@ -1187,6 +1210,7 @@ questions:
 
   - id: b03-04
     type: multiple-choice
+    chapter: 3
     passageRefs: [gcp024-string-io-code]
     prompt: |
       ※ (24~25) 다음과 같은 프로그램이 있을 때 물음에 답하시오.
@@ -1216,6 +1240,7 @@ questions:
 
   - id: b03-05
     type: multiple-choice
+    chapter: 3
     passageRefs: [gcp024-string-io-code]
     prompt: 위에서 입력된 문자열 자료를 출력하기 위해 ㉡의 위치에서 사용될 수 있는 출력함수로서 올바른 것은?
     choices:
@@ -1243,6 +1268,7 @@ questions:
 
   - id: b03-06
     type: multiple-choice
+    chapter: 3
     passageRefs: [gcp026-char-output-code]
     prompt: |
       ※ (26~27) 다음과 같은 프로그램이 있을 때 물음에 답하시오.
@@ -1273,6 +1299,7 @@ questions:
 
   - id: b03-07
     type: multiple-choice
+    chapter: 3
     passageRefs: [gcp026-char-output-code]
     prompt: 위에서 ㉡의 결과로 올바른 것은?
     choices:
@@ -1300,6 +1327,7 @@ questions:
 
   - id: b03-08
     type: multiple-choice
+    chapter: 3
     passageRefs: [gcp028-relational-code]
     prompt: 다음 프로그램의 실행 결과로 올바른 것은?
     choices:
@@ -1323,6 +1351,7 @@ questions:
 
   - id: b03-09
     type: multiple-choice
+    chapter: 3
     passageRefs: [gcp029-conditional-code]
     prompt: 다음 프로그램의 출력 결과로 올바른 것은?
     choices:
@@ -1346,6 +1375,7 @@ questions:
 
   - id: b03-10
     type: multiple-choice
+    chapter: 3
     passageRefs: [gcp030-logical-code]
     prompt: 다음 프로그램이 실행된 후 출력되는 값으로 올바른 것은?
     choices:
@@ -1369,6 +1399,7 @@ questions:
 
   - id: b04-01
     type: multiple-choice
+    chapter: 3
     prompt: 다음 중 문자열의 입출력에 사용되는 함수가 ==아닌== 것은?
     choices:
       - { id: '1', text: 'puts( )' }
@@ -1391,6 +1422,7 @@ questions:
 
   - id: b04-02
     type: multiple-choice
+    chapter: 3
     passageRefs: [gcp032-format-code]
     prompt: 다음 프로그램의 ㉠, ㉡, ㉢에서 각각 10진수, 8진수, 16진수를 출력하려고 한다. 출력 양식 변환기호가 순서대로 올바르게 나열된 것은?
     choices:
@@ -1414,6 +1446,7 @@ questions:
 
   - id: b04-03
     type: multiple-choice
+    chapter: 3
     prompt: 다음 중 대입 연산자의 사용 예와 기능을 ==잘못== 연결한 것은?
     choices:
       - { id: '1', text: 'A+=10 ← A의 값에 10을 더한 후 결과를 A에 저장' }
@@ -1435,6 +1468,7 @@ questions:
 
   - id: b04-04
     type: multiple-choice
+    chapter: 3
     passageRefs: [gcp034-if-else-code]
     prompt: 다음 프로그램을 조건 연산자를 사용하여 바꾼다면 가장 올바른 것은?
     choices:
@@ -1458,6 +1492,7 @@ questions:
 
   - id: b04-05
     type: multiple-choice
+    chapter: 4
     prompt: for, while, do～while 루프 실행 중 루프를 다시 실행하고자 할 때, 루프를 빠져나오는 것이 아니라 그 루프의 선두로 다시 제어를 옮기는 기능을 가진 명령어는?
     choices:
       - { id: '1', text: 'for' }
@@ -1479,6 +1514,7 @@ questions:
 
   - id: b04-06
     type: multiple-choice
+    chapter: 4
     passageRefs: [gcp036-nested-if-code]
     prompt: 다음 프로그램의 출력 결과로 올바른 것은?
     choices:
@@ -1502,6 +1538,7 @@ questions:
 
   - id: b04-07
     type: multiple-choice
+    chapter: 4
     passageRefs: [gcp037-dangling-else-code]
     prompt: 다음 프로그램의 출력 결과로 올바른 것은?
     choices:
@@ -1525,6 +1562,7 @@ questions:
 
   - id: b04-08
     type: multiple-choice
+    chapter: 4
     prompt: 다음 중 특정 동작을 반복하기 위해 사용되는 명령어로서 적절하지 ==않은== 것은?
     choices:
       - { id: '1', text: 'goto' }
@@ -1549,6 +1587,7 @@ questions:
 
   - id: b04-09
     type: multiple-choice
+    chapter: 4
     passageRefs: [gcp039-nested-for-code]
     prompt: 다음 프로그램의 출력 결과로 올바른 것은?
     choices:
@@ -1574,6 +1613,7 @@ questions:
 
   - id: b04-10
     type: multiple-choice
+    chapter: 4
     passageRefs: [gcp040-switch-code]
     prompt: 다음과 같은 프로그램의 실행 결과로서 올바른 것은?
     choices:
@@ -1597,6 +1637,7 @@ questions:
 
   - id: b05-01
     type: multiple-choice
+    chapter: 4
     passageRefs: [gcp041-for-puts-code]
     prompt: 다음 문장이 완전히 수행되었을 때 x는 몇 번 출력되는가?
     choices:
@@ -1619,6 +1660,7 @@ questions:
 
   - id: b05-02
     type: multiple-choice
+    chapter: 4
     passageRefs: [gcp042-triple-for-code]
     prompt: 다음 프로그램이 실행되었을 때 x는 몇 번 출력되는가?
     choices:
@@ -1642,6 +1684,7 @@ questions:
 
   - id: b05-03
     type: multiple-choice
+    chapter: 5
     prompt: 다음 중 함수에 대한 설명이 ==잘못된== 것은?
     choices:
       - { id: '1', text: '하나의 프로그램에서 반드시 main( ) 함수를 쓸 필요는 없다.' }
@@ -1664,6 +1707,7 @@ questions:
 
   - id: b05-04
     type: multiple-choice
+    chapter: 5
     prompt: 다음 중 레지스터(register) 변수에 대한 설명이 올바르지 ==않은== 것은?
     choices:
       - { id: '1', text: '함수 내에서만 사용이 가능하다.' }
@@ -1687,6 +1731,7 @@ questions:
 
   - id: b05-05
     type: multiple-choice
+    chapter: 5
     prompt: 다음 중 표준함수에 대한 설명이 ==잘못된== 것은?
     choices:
       - { id: '1', text: '표준함수의 원형은 헤더 파일에 선언되어 있다.' }
@@ -1709,6 +1754,7 @@ questions:
 
   - id: b05-06
     type: multiple-choice
+    chapter: 5
     prompt: 다음 중 지역변수와 전역변수의 차이점이 ==잘못된== 것은?
     choices:
       - { id: '1', text: '변수의 선언 위치가 다르다.' }
@@ -1731,6 +1777,7 @@ questions:
 
   - id: b05-07
     type: multiple-choice
+    chapter: 5
     passageRefs: [gcp047-block-scope-code]
     prompt: 다음과 같은 프로그램의 실행 결과로서 올바른 것은?
     choices:
@@ -1754,6 +1801,7 @@ questions:
 
   - id: b05-08
     type: multiple-choice
+    chapter: 5
     passageRefs: [gcp048-function-spec]
     prompt: 다음과 같이 주어진 사용자 정의 함수의 헤더를 정의할 때 올바른 것은?
     choices:
@@ -1776,6 +1824,7 @@ questions:
 
   - id: b05-09
     type: multiple-choice
+    chapter: 5
     passageRefs: [gcp049-function-spec]
     prompt: 다음 설명에 대한 함수 헤더의 정의로 올바른 것은?
     choices:
@@ -1799,6 +1848,7 @@ questions:
 
   - id: b05-10
     type: multiple-choice
+    chapter: 5
     prompt: main( ) 함수가 a, b, c, d를 갖는 함수 fun( )을 3개의 인수를 사용해서 호출할 때 발생하는 결과는?
     choices:
       - { id: '1', text: '컴파일 에러가 발생한다.' }
@@ -1822,6 +1872,7 @@ questions:
 
   - id: b06-01
     type: multiple-choice
+    chapter: 5
     passageRefs: [gcp051-static-code]
     prompt: 다음과 같은 프로그램의 실행 결과로서 올바른 것은?
     choices:
@@ -1845,6 +1896,7 @@ questions:
 
   - id: b06-02
     type: multiple-choice
+    chapter: 5
     prompt: 다음은 표준함수와 해당되는 헤더 파일을 나타낸 것이다. 올바르지 ==않은== 것은?
     choices:
       - { id: '1', text: 'stdio.h → printf( ), scanf( )' }
@@ -1868,6 +1920,7 @@ questions:
 
   - id: b06-03
     type: multiple-choice
+    chapter: 5
     passageRefs: [gcp053-prototype-code]
     prompt: 다음의 함수가 호출된 다음 되돌아갈 때의 반환 자료형은?
     choices:
@@ -1890,6 +1943,7 @@ questions:
 
   - id: b06-04
     type: multiple-choice
+    chapter: 5
     passageRefs: [gcp054-max-min-code]
     prompt: 다음과 같은 프로그램의 실행 결과로서 올바른 것은?
     choices:
@@ -1913,6 +1967,7 @@ questions:
 
   - id: b06-05
     type: multiple-choice
+    chapter: 1
     passageRefs: [gcp055-display-line-code]
     prompt: |
       ※ (55~57) 다음과 같은 프로그램이 있을 때 물음에 답하시오.
@@ -1938,6 +1993,7 @@ questions:
 
   - id: b06-06
     type: multiple-choice
+    chapter: 5
     passageRefs: [gcp055-display-line-code]
     prompt: 위에서 함수의 원형 선언이 이루어지는 부분은 어디인가?
     choices:
@@ -1961,6 +2017,7 @@ questions:
 
   - id: b06-07
     type: multiple-choice
+    chapter: 5
     passageRefs: [gcp055-display-line-code]
     prompt: 위에서 사용자 정의 함수의 호출이 일어나는 부분은?
     choices:
@@ -1984,6 +2041,7 @@ questions:
 
   - id: b06-08
     type: multiple-choice
+    chapter: 6
     prompt: 다음 중 배열에 대한 설명으로 올바르지 ==않은== 것은?
     choices:
       - id: '1'
@@ -2010,6 +2068,7 @@ questions:
 
   - id: b06-09
     type: multiple-choice
+    chapter: 6
     prompt: 다음 중 배열과 포인터에 대한 설명으로 올바르지 ==않은== 것은?
     choices:
       - id: '1'
@@ -2038,6 +2097,7 @@ questions:
 
   - id: b06-10
     type: multiple-choice
+    chapter: 6
     passageRefs: [gcp060-pointer-sum-code]
     prompt: |
       ※ (60~61) 다음과 같은 프로그램이 있을 때 물음에 답하시오.
@@ -2067,6 +2127,7 @@ questions:
 
   - id: b07-01
     type: multiple-choice
+    chapter: 6
     passageRefs: [gcp060-pointer-sum-code]
     prompt: 위에서 ㉡의 결과로서 올바른 것은?
     choices:
@@ -2094,6 +2155,7 @@ questions:
 
   - id: b07-02
     type: multiple-choice
+    chapter: 6
     passageRefs: [gcp062-array-init-code]
     prompt: 다음 프로그램의 실행 결과로서 올바른 것은?
     choices:
@@ -2121,6 +2183,7 @@ questions:
 
   - id: b07-03
     type: multiple-choice
+    chapter: 6
     passageRefs: [gcp063-pointer-add-code]
     prompt: 다음 프로그램의 실행 결과로서 올바른 것은?
     choices:
@@ -2150,6 +2213,7 @@ questions:
 
   - id: b07-04
     type: multiple-choice
+    chapter: 6
     passageRefs: [gcp064-pointer-array-code]
     prompt: 다음 프로그램의 실행 결과로서 올바른 것은?
     choices:
@@ -2177,6 +2241,7 @@ questions:
 
   - id: b07-05
     type: multiple-choice
+    chapter: 6
     passageRefs: [gcp065-pointer-diff-code]
     prompt: |
       ※ (65~67) 다음과 같은 프로그램이 있을 때 물음에 답하시오.
@@ -2206,6 +2271,7 @@ questions:
 
   - id: b07-06
     type: multiple-choice
+    chapter: 6
     passageRefs: [gcp065-pointer-diff-code]
     prompt: 위에서 ㉡의 결과로서 올바른 것은?
     choices:
@@ -2233,6 +2299,7 @@ questions:
 
   - id: b07-07
     type: multiple-choice
+    chapter: 6
     passageRefs: [gcp065-pointer-diff-code]
     prompt: 위에서 ㉢의 결과로서 올바른 것은?
     choices:
@@ -2260,6 +2327,7 @@ questions:
 
   - id: b07-08
     type: multiple-choice
+    chapter: 6
     passageRefs: [gcp068-float-var-code]
     prompt: |
       ※ (68~69) 다음과 같이 변수 선언과 초기화가 되어 있을 때 물음에 답하시오.
@@ -2289,6 +2357,7 @@ questions:
 
   - id: b07-09
     type: multiple-choice
+    chapter: 6
     passageRefs: [gcp068-float-var-code]
     prompt: 위에서 포인터 변수 fptr에 주소를 할당하는 방법으로 올바른 것은?
     choices:
@@ -2316,6 +2385,7 @@ questions:
 
   - id: b07-10
     type: multiple-choice
+    chapter: 6
     passageRefs: [gcp070-2d-array-code]
     prompt: 다음 프로그램의 실행 결과로서 올바른 것은?
     choices:
@@ -2343,6 +2413,7 @@ questions:
 
   - id: b08-01
     type: multiple-choice
+    chapter: 6
     passageRefs: [gcp071-static-2d-array-code]
     prompt: |
       ※ (71~72) 다음과 같은 프로그램이 있을 때 물음에 답하시오.
@@ -2372,6 +2443,7 @@ questions:
 
   - id: b08-02
     type: multiple-choice
+    chapter: 6
     passageRefs: [gcp071-static-2d-array-code]
     prompt: 위에서 ㉡의 결과로 올바른 것은?
     choices:
@@ -2399,6 +2471,7 @@ questions:
 
   - id: b08-03
     type: multiple-choice
+    chapter: 6
     passageRefs: [gcp073-char-array-code]
     prompt: 다음과 같은 배열을 선언할 때 배열의 크기는 어떻게 되는가?
     choices:
@@ -2426,6 +2499,7 @@ questions:
 
   - id: b08-04
     type: multiple-choice
+    chapter: 6
     passageRefs: [gcp074-string-pointer-array-code]
     prompt: 다음 프로그램의 실행 결과로서 올바른 것은?
     choices:
@@ -2453,6 +2527,7 @@ questions:
 
   - id: b08-05
     type: multiple-choice
+    chapter: 6
     passageRefs: [gcp075-char-pointer-code]
     prompt: 다음과 같은 배열이 선언되어 있을 때 *(cp+2)의 값은?
     choices:
@@ -2480,6 +2555,7 @@ questions:
 
   - id: b08-06
     type: multiple-choice
+    chapter: 6
     passageRefs: [gcp076-array-init-code]
     prompt: 다음과 같은 배열 선언에서 초기화 값으로 올바른 것은?
     choices:
@@ -2506,6 +2582,7 @@ questions:
 
   - id: b08-07
     type: multiple-choice
+    chapter: 6
     passageRefs: [gcp077-pointer-postincrement-code]
     prompt: |
       ※ (77~78) 다음과 같은 프로그램이 있을 때 물음에 답하시오.
@@ -2535,6 +2612,7 @@ questions:
 
   - id: b08-08
     type: multiple-choice
+    chapter: 6
     passageRefs: [gcp077-pointer-postincrement-code]
     prompt: 위에서 ㉡의 결과로 올바른 것은?
     choices:
@@ -2562,6 +2640,7 @@ questions:
 
   - id: b08-09
     type: multiple-choice
+    chapter: 6
     passageRefs: [gcp077-pointer-postincrement-code]
     prompt: 위에서 ㉢의 결과로 올바른 것은?
     choices:
@@ -2588,6 +2667,7 @@ questions:
 
   - id: b08-10
     type: multiple-choice
+    chapter: 7
     prompt: 다음 중 구조체의 특성을 설명한 것으로 ==잘못된== 것은?
     choices:
       - id: '1'
@@ -2614,6 +2694,7 @@ questions:
 
   - id: b09-01
     type: multiple-choice
+    chapter: 7
     prompt: 다음은 구조체 포인터 연산자의 설명이다. pa가 구조체 포인터일 때 pa->name이란 표현과 동일한 표현은?
     choices:
       - id: '1'
@@ -2640,6 +2721,7 @@ questions:
 
   - id: b09-02
     type: multiple-choice
+    chapter: 7
     passageRefs: [gcp082-struct-person-code]
     prompt: 다음과 같은 구조체가 선언되어 있을 때 초기화 방법으로 알맞은 것은?
     choices:
@@ -2667,6 +2749,7 @@ questions:
 
   - id: b09-03
     type: multiple-choice
+    chapter: 7
     prompt: 다음 중 ‘int형 멤버와 double형 멤버를 갖는 구조체명이 data인 구조체를 정의하고, 구조체 변수명이 var인 구조체를 선언’한 것으로 올바른 것은?
     choices:
       - id: '1'
@@ -2712,6 +2795,7 @@ questions:
 
   - id: b09-04
     type: multiple-choice
+    chapter: 7
     passageRefs: [gcp084-struct-array-code]
     prompt: |
       ※ (84~85) 다음과 같은 프로그램이 있을 때 물음에 답하시오.
@@ -2741,6 +2825,7 @@ questions:
 
   - id: b09-05
     type: multiple-choice
+    chapter: 7
     passageRefs: [gcp084-struct-array-code]
     prompt: 위에서 ㉡의 결과로 올바른 것은?
     choices:
@@ -2768,6 +2853,7 @@ questions:
 
   - id: b09-06
     type: multiple-choice
+    chapter: 7
     passageRefs: [gcp086-struct-pointer-code]
     prompt: 다음 프로그램의 실행 결과로서 올바른 것은?
     choices:
@@ -2795,6 +2881,7 @@ questions:
 
   - id: b09-07
     type: multiple-choice
+    chapter: 7
     passageRefs: [gcp087-union-var-code]
     prompt: 다음과 같은 공용체가 선언되어 있을 때 공용체 변수 참조 방법으로 올바른 것은?
     choices:
@@ -2833,6 +2920,7 @@ questions:
 
   - id: b09-08
     type: multiple-choice
+    chapter: 7
     passageRefs: [gcp088-union-hold-code]
     prompt: 정수형 변수의 크기가 16비트인 시스템에서 다음과 같이 공용체가 정의되어 있을 경우 공용체 hold가 갖는 기억공간의 크기는?
     choices:
@@ -2859,6 +2947,7 @@ questions:
 
   - id: b09-09
     type: multiple-choice
+    chapter: 7
     passageRefs: [gcp089-struct-someone-code]
     prompt: 다음과 같은 구조체가 선언되어 있을 때 빈칸에 알맞은 것은?
     choices:
@@ -2885,6 +2974,7 @@ questions:
 
   - id: b09-10
     type: multiple-choice
+    chapter: 8
     prompt: 다음 중 파일 입출력함수가 ==아닌== 것은?
     choices:
       - id: '1'
@@ -2909,6 +2999,7 @@ questions:
 
   - id: b10-01
     type: multiple-choice
+    chapter: 8
     prompt: 랜덤 파일의 특정 부분을 파일 포인터를 이용하여 임의 위치로 이동시키는 함수는?
     choices:
       - id: '1'
@@ -2934,6 +3025,7 @@ questions:
 
   - id: b10-02
     type: multiple-choice
+    chapter: 8
     prompt: 다음 중 2진 파일을 다루는 사용 모드는?
     choices:
       - id: '1'
@@ -2959,6 +3051,7 @@ questions:
 
   - id: b10-03
     type: multiple-choice
+    chapter: 8
     prompt: 2진 모드 파일에서 파일의 끝을 판별할 때 사용되는 함수는?
     choices:
       - id: '1'
@@ -2983,6 +3076,7 @@ questions:
 
   - id: b10-04
     type: multiple-choice
+    chapter: 8
     passageRefs: [gcp094-fprintf-stdout-code]
     prompt: 다음과 같은 fprintf( ) 함수의 설명으로 올바른 것은?
     choices:
@@ -3009,6 +3103,7 @@ questions:
 
   - id: b10-05
     type: multiple-choice
+    chapter: 8
     prompt: 다음 중 랜덤 파일을 다루는 입출력함수는?
     choices:
       - id: '1'
@@ -3034,6 +3129,7 @@ questions:
 
   - id: b10-06
     type: multiple-choice
+    chapter: 8
     prompt: 다음 중 순차 파일과 랜덤 파일에 대한 설명으로 ==잘못된== 것은?
     choices:
       - id: '1'
@@ -3060,6 +3156,7 @@ questions:
 
   - id: b10-07
     type: multiple-choice
+    chapter: 8
     passageRefs: [gcp097-file-pointer-code]
     prompt: 다음과 같은 파일포인터가 있을 때 fopen( ) 함수의 사용이 올바른 것은?
     choices:
@@ -3087,6 +3184,7 @@ questions:
 
   - id: b10-08
     type: multiple-choice
+    chapter: 8
     passageRefs: [gcp098-fopen-fclose-code]
     prompt: |
       ※ (98~99) 다음과 같은 프로그램이 있을 때 물음에 답하시오.
@@ -3116,6 +3214,7 @@ questions:
 
   - id: b10-09
     type: multiple-choice
+    chapter: 8
     passageRefs: [gcp098-fopen-fclose-code]
     prompt: 위에서 빈칸 ㉡에 들어갈 내용으로 올바른 것은?
     choices:
@@ -3142,6 +3241,7 @@ questions:
 
   - id: b10-10
     type: multiple-choice
+    chapter: 8
     passageRefs: [gcp100-fgetc-stdout-code]
     prompt: |
       ※ (100~101) 다음과 같은 프로그램이 있을 때 물음에 답하시오.
@@ -3171,6 +3271,7 @@ questions:
 
   - id: b11-01
     type: multiple-choice
+    chapter: 8
     passageRefs: [gcp100-fgetc-stdout-code]
     prompt: 위에서 빈칸 ㉡에 들어갈 내용으로 올바른 것은?
     choices:
@@ -3198,6 +3299,7 @@ questions:
 
   - id: b11-02
     type: multiple-choice
+    chapter: 9
     prompt: 스택에 대한 설명으로 ==틀린== 것은?
     choices:
       - id: '1'
@@ -3223,6 +3325,7 @@ questions:
 
   - id: b11-03
     type: multiple-choice
+    chapter: 9
     prompt: 다음 중 힙(heap)에 대한 설명으로 ==틀린== 것은?
     choices:
       - id: '1'
@@ -3248,6 +3351,7 @@ questions:
 
   - id: b11-04
     type: multiple-choice
+    chapter: 9
     prompt: 다음 중 힙에 대한 설명으로 올바르지 ==않은== 것은?
     choices:
       - id: '1'
@@ -3274,6 +3378,7 @@ questions:
 
   - id: b11-05
     type: multiple-choice
+    chapter: 9
     prompt: 다음의 기억공간 할당 함수에 대한 설명으로 ==틀린== 것은?
     choices:
       - id: '1'
@@ -3300,6 +3405,7 @@ questions:
 
   - id: b11-06
     type: multiple-choice
+    chapter: 9
     prompt: 다음 중 동적 할당을 이용한 프로그램을 작성할 때 등장하는 함수의 순서가 올바르게 나열된 것은?
     choices:
       - id: '1'
@@ -3325,6 +3431,7 @@ questions:
 
   - id: b11-07
     type: multiple-choice
+    chapter: 9
     passageRefs: [gcp107-memset-code]
     prompt: 다음은 문자열 배열에 보관된 자료를 ‘*’를 이용하여 삭제하려 이를 위해 빈칸 안에 들어갈 함수로 적당한 것은?
     choices:

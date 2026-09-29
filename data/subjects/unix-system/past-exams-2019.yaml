@@ -45,6 +45,7 @@ passages:
 questions:
   - id: e19-01
     type: multiple-choice
+    chapter: 3
     prompt: CentOS 리눅스에서 기본으로 주어지는 쉘의 종류는 무엇인가?
     choices:
       - { id: '1', text: 'Bourne Shell(sh)' }
@@ -66,6 +67,7 @@ questions:
 
   - id: e19-02
     type: multiple-choice
+    chapter: 3
     prompt: 셸 프롬프트에서 사용된 명령을 해석할 때, 명령의 종류에 해당하지 ==않는== 것은?
     choices:
       - { id: '1', text: '셸 예약어' }
@@ -87,6 +89,7 @@ questions:
 
   - id: e19-03
     type: multiple-choice
+    chapter: 2
     prompt: 리눅스 시스템에서 표준 디렉터리의 용도에 관한 설명으로 ==잘못된== 것은?
     choices:
       - { id: '1', text: '/etc – 시스템의 주요 환경 설정 파일이 위치하는 디렉터리' }
@@ -108,6 +111,7 @@ questions:
 
   - id: e19-04
     type: multiple-choice
+    chapter: 3
     prompt: 셸의 명령 행에서 사용하는 특수 문자에 관한 설명으로 ==잘못된== 것은?
     choices:
       - { id: '1', text: '| – 앞 명령의 출력을 다음 명령의 입력으로 연결시킴' }
@@ -129,6 +133,7 @@ questions:
 
   - id: e19-05
     type: multiple-choice
+    chapter: 4
     prompt: 리눅스 명령에 관한 설명이다. ==잘못된== 것은?
     choices:
       - { id: '1', text: 'type – 텍스트 파일의 내용을 화면에 출력하는 명령' }
@@ -150,6 +155,7 @@ questions:
 
   - id: e19-06
     type: multiple-choice
+    chapter: 4
     prompt: cd 명령으로 특정 디렉터리로 이동하여 해당 디렉터리에 존재하는 파일의 목록을 ls 명령으로 확인하고자 한다. 이 디렉터리에 어떤 권한을 가지고 있어야 가능한가?
     choices:
       - { id: '1', text: '읽기 권한만 가지고 있으면 가능하다.' }
@@ -171,6 +177,7 @@ questions:
 
   - id: e19-07
     type: multiple-choice
+    chapter: 6
     prompt: 다음 중 관리자가 아닌 일반 사용자도 수행할 수 있는 명령은 무엇인가?
     choices:
       - { id: '1', text: 'useradd' }
@@ -192,6 +199,7 @@ questions:
 
   - id: e19-08
     type: multiple-choice
+    chapter: 6
     prompt: 사용자가 단지 자신의 암호만 아는 상황에서도 sudo 명령을 사용하면 해당 사용자에게 허용된 특별한 명령을 수행할 수 있다. 단, 관리자가 “누가 어디서 어떤 명령을 할 수 있는가”를 설정해야 한다. 어느 파일에 설정하는가?
     choices:
       - { id: '1', text: '/etc/login.defs' }
@@ -213,6 +221,7 @@ questions:
 
   - id: e19-09
     type: multiple-choice
+    chapter: 7
     prompt: vi 편집기가 명령 모드에 있을 때, 파일 전체를 대상으로 문자열 패턴을 검색하는 명령키는?
     choices:
       - { id: '1', text: ':pattern Enter' }
@@ -234,6 +243,7 @@ questions:
 
   - id: e19-10
     type: multiple-choice
+    chapter: 7
     prompt: find 명령의 사용에 관한 설명이다. ==잘못된== 것은?
     choices:
       - { id: '1', text: '사용자 홈 디렉터리에서 단순히 find 명령을 실행하면 현재 디렉터리와 서브 디렉터리에 있는 모든 파일과 디렉터리의 이름을 라인 단위로 출력한다.' }
@@ -255,6 +265,7 @@ questions:
 
   - id: e19-11
     type: multiple-choice
+    chapter: 8
     prompt: 보기는 파일 시스템 관리와 관련이 있는 설명이다. ==잘못된== 것은?
     choices:
       - { id: '1', text: '마운트는 파일 시스템을 특정 디렉터리에 붙여서 사용할 수 있게 하는 것이다.' }
@@ -276,6 +287,7 @@ questions:
 
   - id: e19-12
     type: multiple-choice
+    chapter: 8
     prompt: 보기는 파일 시스템 또는 디스크 관리를 위해 사용되는 명령(또는 도구)에 관한 설명이다. ==잘못된== 것은?
     choices:
       - { id: '1', text: 'fdisk – 하드 디스크 파티션을 관리하는 대화식 유틸리티' }
@@ -297,6 +309,7 @@ questions:
 
   - id: e19-13
     type: multiple-choice
+    chapter: 9
     prompt: 백그라운드 프로세스의 실행에 관한 설명이다. ==잘못된== 것은?
     choices:
       - { id: '1', text: '셸 프롬프트에서 명령의 끝에 &를 추가하여 실행하면 백그라운드 프로세스로 실행된다.' }
@@ -318,6 +331,7 @@ questions:
 
   - id: e19-14
     type: multiple-choice
+    chapter: 9
     prompt: 프로세스 관리를 위한 명령이 ==아닌== 것은?
     choices:
       - { id: '1', text: 'rpm' }
@@ -339,6 +353,7 @@ questions:
 
   - id: e19-15
     type: multiple-choice
+    chapter: 10
     passageRefs: [g19-yum-cmd-01]
     prompt: 다음 명령의 의미는 무엇인가?
     choices:
@@ -361,6 +376,7 @@ questions:
 
   - id: e19-16
     type: multiple-choice
+    chapter: 10
     passageRefs: [g19-tar-cmd-01]
     prompt: 다음 명령의 의미는 무엇인가?
     choices:
@@ -383,6 +399,7 @@ questions:
 
   - id: e19-17
     type: multiple-choice
+    chapter: 11
     passageRefs: [g19-testwhile-intro-01, g19-testwhile-code-01]
     prompt: 조건 검사를 위해 밑줄 친 ㄱ에 들어가야 할 내용은?
     choices:
@@ -407,6 +424,7 @@ questions:
 
   - id: e19-18
     type: multiple-choice
+    chapter: 11
     passageRefs: [g19-testwhile-intro-01, g19-testwhile-code-01]
     prompt: 합을 계산하기 위한 수식으로 밑줄 친 ㄴ에 들어가야 할 내용은?
     choices:
@@ -433,6 +451,7 @@ questions:
 
   - id: e19-19
     type: multiple-choice
+    chapter: 11
     passageRefs: [g19-testwhile-intro-01, g19-testwhile-code-01]
     prompt: 셸 스크립트를 실행하기 위해 밑줄 친 ㄷ에 들어갈 명령으로 적당하지 ==않은== 것은?
     choices:
@@ -457,6 +476,7 @@ questions:
 
   - id: e19-20
     type: multiple-choice
+    outdated: true
     prompt: 네트워크 명령에 관한 일반적 설명으로 ==잘못된== 것은?
     choices:
       - { id: '1', text: 'traceroute – 현재 호스트에서 특정 호스트까지 통신이 이루어진 경로를 확인한다.' }
@@ -478,6 +498,7 @@ questions:
 
   - id: e19-21
     type: multiple-choice
+    outdated: true
     prompt: ifconfig 명령의 기능은?
     choices:
       - { id: '1', text: '현재 시스템의 TCP/IP 서비스를 이용할 수 있는(또는 이용할 수 없는) 호스트를 설정한다.' }
@@ -499,6 +520,7 @@ questions:
 
   - id: e19-22
     type: multiple-choice
+    chapter: 5
     prompt: 시스템을 부팅할 때 자동으로 SSH 데몬을 시작하도록 설정하는 명령으로 올바른 것은?
     choices:
       - { id: '1', text: 'chkconfig --list sshd' }
@@ -520,6 +542,7 @@ questions:
 
   - id: e19-23
     type: multiple-choice
+    outdated: true
     prompt: 원격 관리 또는 원격 접속을 위한 다음 명령 중 SSH 프로토콜을 사용하지 않아 보안에 ==취약한== 것은?
     choices:
       - { id: '1', text: 'rcp' }
@@ -541,6 +564,7 @@ questions:
 
   - id: e19-24
     type: multiple-choice
+    outdated: true
     prompt: 아파치 웹 서버의 설정 파일에서 클라이언트가 “.../디렉터리/”와 같이 디렉터리를 요청하는 경우에 기본으로 사용할 웹 페이지의 파일 이름을 설정하는 항목은?
     choices:
       - { id: '1', text: 'ServerRoot' }
@@ -562,6 +586,7 @@ questions:
 
   - id: e19-25
     type: multiple-choice
+    chapter: 5
     prompt: 설정을 변경한 후에 아파치 웹서버를 다시 시작하는 명령으로 적당한 것은?
     choices:
       - { id: '1', text: 'service httpd status' }
