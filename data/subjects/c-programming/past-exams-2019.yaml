@@ -242,6 +242,7 @@ passages:
 questions:
   - id: e19-01
     type: multiple-choice
+    chapter: 1
     prompt: 다음 중 원시 프로그램이 번역되어 실행될 때의 파일 확장자로서 올바른 것은?
     choices:
       - { id: '1', text: 'example.exe' }
@@ -263,6 +264,7 @@ questions:
 
   - id: e19-02
     type: multiple-choice
+    chapter: 2
     prompt: 다음 중 상수에 대한 설명으로 올바르지 ==않는== 것은?
     choices:
       - { id: '1', text: '8진 상수를 표현할 때는 숫자 앞에 0(영)을 붙인다.' }
@@ -284,6 +286,7 @@ questions:
 
   - id: e19-03
     type: multiple-choice
+    chapter: 3
     passageRefs: [g19-char-intro-01, g19-char-code-01]
     prompt: 위에서 ㉠의 결과로 올바른 것은?
     choices:
@@ -306,6 +309,7 @@ questions:
 
   - id: e19-04
     type: multiple-choice
+    chapter: 3
     passageRefs: [g19-char-intro-01, g19-char-code-01]
     prompt: 위에서 ㉡의 결과로 올바른 것은?
     choices:
@@ -328,6 +332,7 @@ questions:
 
   - id: e19-05
     type: multiple-choice
+    chapter: 3
     passageRefs: [g19-format-code-01]
     prompt: 다음 프로그램의 ㉠, ㉡, ㉢에서 각각 10진수, 8진수, 16진수를 출력하려고 한다. 출력양식변환기호가 순서대로 올바르게 나열된 것은?
     choices:
@@ -350,6 +355,7 @@ questions:
 
   - id: e19-06
     type: multiple-choice
+    chapter: 5
     passageRefs: [g19-scope-code-01]
     prompt: 다음과 같은 프로그램의 실행결과로서 올바른 것은?
     choices:
@@ -372,6 +378,7 @@ questions:
 
   - id: e19-07
     type: multiple-choice
+    chapter: 3
     passageRefs: [g19-ternary-code-01]
     prompt: 다음과 같은 프로그램의 실행결과로서 올바른 것은?
     choices:
@@ -394,6 +401,7 @@ questions:
 
   - id: e19-08
     type: multiple-choice
+    chapter: 4
     passageRefs: [g19-nested-if-code-01]
     prompt: 다음 프로그램의 출력결과로 올바른 것은?
     choices:
@@ -416,6 +424,7 @@ questions:
 
   - id: e19-09
     type: multiple-choice
+    chapter: 5
     passageRefs: [g19-block-scope-code-01]
     prompt: 다음과 같은 프로그램의 실행결과로서 올바른 것은?
     choices:
@@ -438,6 +447,7 @@ questions:
 
   - id: e19-10
     type: multiple-choice
+    chapter: 4
     passageRefs: [g19-nested-for-code-01]
     prompt: 다음 프로그램의 출력결과로 올바른 것은?
     choices:
@@ -462,6 +472,7 @@ questions:
 
   - id: e19-11
     type: multiple-choice
+    chapter: 6
     passageRefs: [g19-array2d-code-01]
     prompt: 다음과 같은 프로그램의 결과로 올바른 것은?
     choices:
@@ -484,6 +495,7 @@ questions:
 
   - id: e19-12
     type: multiple-choice
+    chapter: 1
     passageRefs: [g19-function-intro-01, g19-function-code-01]
     prompt: 위에서 설명문은 어느 부분인가?
     choices:
@@ -506,6 +518,7 @@ questions:
 
   - id: e19-13
     type: multiple-choice
+    chapter: 5
     passageRefs: [g19-function-intro-01, g19-function-code-01]
     prompt: 위에서 사용자 정의 함수의 원형선언이 이루어지는 부분은 어디인가?
     choices:
@@ -528,6 +541,7 @@ questions:
 
   - id: e19-14
     type: multiple-choice
+    chapter: 5
     passageRefs: [g19-function-intro-01, g19-function-code-01]
     prompt: 위에서 사용자 정의 함수의 호출이 일어나는 부분은?
     choices:
@@ -550,6 +564,7 @@ questions:
 
   - id: e19-15
     type: multiple-choice
+    chapter: 6
     passageRefs: [g19-string-array-code-01]
     prompt: 다음과 같은 배열을 선언할 때 배열의 크기는 어떻게 되는가?
     choices:
@@ -572,6 +587,7 @@ questions:
 
   - id: e19-16
     type: multiple-choice
+    chapter: 6
     prompt: 다음의 포인터에 대한 설명으로 올바르지 ==않은== 것은?
     choices:
       - { id: '1', text: '메모리를 정적으로 할당받을 수 있다.' }
@@ -593,6 +609,7 @@ questions:
 
   - id: e19-17
     type: multiple-choice
+    chapter: 6
     passageRefs: [g19-string-pointer-array-code-01]
     prompt: 다음 프로그램의 실행결과로서 올바른 것은?
     choices:
@@ -615,6 +632,7 @@ questions:
 
   - id: e19-18
     type: multiple-choice
+    chapter: 6
     passageRefs: [g19-pointer-sum-intro-01, g19-pointer-sum-code-01]
     prompt: 위에서 ㉠의 결과로서 올바른 것은?
     choices:
@@ -637,6 +655,7 @@ questions:
 
   - id: e19-19
     type: multiple-choice
+    chapter: 6
     passageRefs: [g19-pointer-sum-intro-01, g19-pointer-sum-code-01]
     prompt: 위에서 ㉡의 결과로서 올바른 것은?
     choices:
@@ -659,6 +678,7 @@ questions:
 
   - id: e19-20
     type: multiple-choice
+    chapter: 6
     passageRefs: [g19-char-pointer-code-01]
     prompt: 다음과 같은 배열이 선언되어 있을 때 *(cp+2)의 값?
     choices:
@@ -681,6 +701,7 @@ questions:
 
   - id: e19-21
     type: multiple-choice
+    chapter: 7
     passageRefs: [g19-struct-person-code-01]
     prompt: 다음과 같은 구조체가 선언되어 있을 때 초기화 방법으로 알맞은 것은?
     choices:
@@ -703,6 +724,7 @@ questions:
 
   - id: e19-22
     type: multiple-choice
+    chapter: 7
     passageRefs: [g19-struct-pointer-code-01]
     prompt: 다음과 같은 프로그램의 결과로 올바른 것은?
     choices:
@@ -725,6 +747,7 @@ questions:
 
   - id: e19-23
     type: multiple-choice
+    chapter: 8
     passageRefs: [g19-file-intro-01, g19-file-code-01]
     prompt: 위에서 빈칸 ㉠에 들어갈 내용으로 올바른 것은?
     choices:
@@ -747,6 +770,7 @@ questions:
 
   - id: e19-24
     type: multiple-choice
+    chapter: 8
     passageRefs: [g19-file-intro-01, g19-file-code-01]
     prompt: 위에서 빈칸 ㉡에 들어갈 내용으로 올바른 것은?
     choices:
@@ -769,6 +793,7 @@ questions:
 
   - id: e19-25
     type: multiple-choice
+    chapter: 9
     prompt: 다음 기억공간 할당함수들에 대한 설명으로 ==잘못된== 것은?
     choices:
       - { id: '1', text: 'malloc()함수는 가장 대표적인 기억공간 할당 표준함수이다.' }

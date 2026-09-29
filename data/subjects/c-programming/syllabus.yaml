@@ -1,0 +1,76 @@
+subjectId: c-programming
+title: C프로그래밍
+chapters:
+  - no: 1
+    title: C 언어의 개요
+    sections:
+      - { no: '1.1', title: C 언어의 정의 }
+      - { no: '1.2', title: C 언어의 역사 및 특징 }
+      - { no: '1.3', title: C 프로그램의 작성 및 준비 }
+      - { no: '1.4', title: C 프로그램의 구성 }
+      - { no: '1.5', title: 에러와 경고 }
+  - no: 2
+    title: 자료형과 선행처리기
+    sections:
+      - { no: '2.1', title: 상수와 변수 }
+      - { no: '2.2', title: 자료형과 변수 선언 }
+      - { no: '2.3', title: 선행처리기 }
+  - no: 3
+    title: 입출력함수와 연산자
+    sections:
+      - { no: '3.1', title: 표준입출력함수 }
+      - { no: '3.2', title: 연산자 }
+  - no: 4
+    title: 선택 제어문과 반복 제어문
+    sections:
+      - { no: '4.1', title: 선택 제어문 }
+      - { no: '4.2', title: 반복 제어문 }
+      - { no: '4.3', title: 기타 제어문 }
+  - no: 5
+    title: 함수와 기억 클래스
+    sections:
+      - { no: '5.1', title: 함수의 개념 }
+      - { no: '5.2', title: 표준함수 }
+      - { no: '5.3', title: 사용자 정의 함수 }
+      - { no: '5.4', title: 기억 클래스 }
+  - no: 6
+    title: 배열과 포인터
+    sections:
+      - { no: '6.1', title: 배열 }
+      - { no: '6.2', title: 포인터 }
+  - no: 7
+    title: 구조체와 공용체
+    sections:
+      - { no: '7.1', title: 구조체 }
+      - { no: '7.2', title: 공용체 }
+  - no: 8
+    title: 파일처리함수
+    sections:
+      - { no: '8.1', title: 파일 입출력의 개념 }
+      - { no: '8.2', title: 파일 포인터를 이용한 파일 입출력 }
+      - { no: '8.3', title: 순차 파일 처리 }
+      - { no: '8.4', title: 랜덤 파일 처리 }
+  - no: 9
+    title: 메모리 동적 할당
+    sections:
+      - { no: '9.1', title: C 언어에서의 기억공간 }
+      - { no: '9.2', title: 메모리 정적 할당 }
+      - { no: '9.3', title: 메모리 동적 할당 }
+      - { no: '9.4', title: 기타 동적 할당 함수 }
+      - { no: '9.5', title: 기억공간 관리 }
+# 15강 'C++언어의 개요'는 교재 목차에 대응하는 장이 없어 lectures에서 제외했다.
+lectures:
+  - { no: 1, title: 'C 언어의 개요', chapters: [1] }
+  - { no: 2, title: '자료형과 선행처리기', chapters: [2] }
+  - { no: 3, title: '입.출력 함수와 연산자(1)', chapters: [3], note: '추정: 3장 전반(3.1 표준입출력함수 중심)' }
+  - { no: 4, title: '입.출력 함수와 연산자(2)', chapters: [3], note: '추정: 3장 후반(3.2 연산자 중심)' }
+  - { no: 5, title: '선택 제어문과 반복 제어문', chapters: [4] }
+  - { no: 6, title: '함수와 기억 클래스(1)', chapters: [5], note: '추정: 5장 절 분할' }
+  - { no: 7, title: '함수와 기억 클래스(2)', chapters: [5], note: '추정: 5장 절 분할' }
+  - { no: 8, title: '배열과 포인터(1)', chapters: [6], note: '추정: 6장 절 분할' }
+  - { no: 9, title: '배열과 포인터(2)', chapters: [6], note: '추정: 6장 절 분할' }
+  - { no: 10, title: '배열과 포인터(3)', chapters: [6], note: '추정: 6장 절 분할' }
+  - { no: 11, title: '구조체와 공용체(1)', chapters: [7], note: '추정: 7장 절 분할' }
+  - { no: 12, title: '구조체와 공용체(2)', chapters: [7], note: '추정: 7장 절 분할' }
+  - { no: 13, title: '파일처리 함수', chapters: [8] }
+  - { no: 14, title: '메모리 동적 할당', chapters: [9] }

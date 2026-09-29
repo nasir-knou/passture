@@ -247,7 +247,7 @@ questions:
 1. `data/subjects/{과목}/syllabus.yaml`에 교재 장(`chapters`)과 강의 목록(`lectures`, 강 → 장 대응)을 적고, catalog 과목 항목에 `syllabus: subjects/{과목}/syllabus.json`을 추가한다.
 2. 기출 문제에는 `chapter: N`을 직접 적는다. 문제는 **주 장 하나**에만 배정하고, 절 단위는 적지 않는다.
 3. 현재 교재 목차에 없는 주제의 기출은 `chapter` 대신 `outdated: true`를 적고, [docs/outdated.md](docs/outdated.md)에 문제 키와 근거를 추가한다.
-4. 워크북·기본서 문제는 ID(`b03-07` → 3장), 강의 문제는 ID의 강 번호와 `syllabus.lectures`로 장이 정해지므로 따로 적지 않는다.
+4. 워크북·기본서 문제는 ID(`b03-07` → 3장), 강의 문제는 ID의 강 번호와 `syllabus.lectures`로 장이 정해지므로 따로 적지 않는다. 단, C프로그래밍 워크북처럼 ID 번호가 장이 아닌 순번인 출처는 문제마다 `chapter`를 적는다.
 
 ```yaml
 - id: e19-07

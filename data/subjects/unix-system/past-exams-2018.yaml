@@ -69,6 +69,7 @@ passages:
 questions:
   - id: e18-01
     type: multiple-choice
+    chapter: 1
     prompt: 리눅스 커널을 포함하여 리눅스 배포판에서 사용되는 많은 소프트웨어들은 주로 어떤 라이선스를 따르고 있는가?
     choices:
       - { id: '1', text: 'Apache' }
@@ -90,6 +91,7 @@ questions:
 
   - id: e18-02
     type: multiple-choice
+    chapter: 1
     prompt: 다음 중 레드햇 계열의 리눅스 배포판이 ==아닌== 것은?
     choices:
       - { id: '1', text: 'CentOS' }
@@ -111,6 +113,7 @@ questions:
 
   - id: e18-03
     type: multiple-choice
+    chapter: 2
     prompt: 리눅스 시스템에서 표준 디렉터리의 용도에 관한 설명으로 올바른 것은?
     choices:
       - { id: '1', text: '/etc - 시스템의 주요 환경 설정 파일이 위치하는 디렉터리' }
@@ -132,6 +135,7 @@ questions:
 
   - id: e18-04
     type: multiple-choice
+    chapter: 3
     prompt: 셸의 명령 행에서 사용하는 특수 문자에 관한 설명으로 올바른 것은?
     choices:
       - { id: '1', text: '| : 특수 문자 앞에 붙어 특수 문자의 기능을 제거함' }
@@ -153,6 +157,7 @@ questions:
 
   - id: e18-05
     type: multiple-choice
+    chapter: 3
     passageRefs: [g18-type-cd-01]
     prompt: 셸에서 사용되는 명령이 어떻게 해석되는지 알기 위해 아래 밑줄 부분에서 사용해야 하는 명령은 무엇인가? \$는 셸 프롬프트이며 cd는 셸의 내장 명령이다.
     choices:
@@ -175,6 +180,7 @@ questions:
 
   - id: e18-06
     type: multiple-choice
+    chapter: 4
     prompt: 파일이냐 디렉터리냐에 따라 접근권한의 의미가 약간 다르다. 다음 중 ‘디렉터리의 읽기 권한’을 의미하는 설명은?
     choices:
       - { id: '1', text: '디렉터리에 존재하는 파일의 내용을 읽을 수 있다.' }
@@ -196,6 +202,7 @@ questions:
 
   - id: e18-07
     type: multiple-choice
+    chapter: 5
     prompt: 리눅스 시스템의 런레벨(runlevel)에 관한 설명으로 ==잘못된== 것은?
     choices:
       - { id: '1', text: '0 - 시스템 종료' }
@@ -217,6 +224,7 @@ questions:
 
   - id: e18-08
     type: multiple-choice
+    chapter: 6
     prompt: 관리자가 사용자 계정을 생성할 때, 사용자 계정의 기본적 환경 설정이 필요하다. 이때 사용되는 설정 파일(또는 디렉터리)이 ==아닌== 것은?
     choices:
       - { id: '1', text: '/etc/skel/' }
@@ -238,6 +246,7 @@ questions:
 
   - id: e18-09
     type: multiple-choice
+    chapter: 7
     prompt: vi를 사용한 편집 작업 중에 Esc 키를 두 번 치면 항상 어떤 모드로 이동하는가?
     choices:
       - { id: '1', text: '입력 모드' }
@@ -259,6 +268,7 @@ questions:
 
   - id: e18-10
     type: multiple-choice
+    chapter: 8
     passageRefs: [g18-umount-01]
     prompt: 다음 명령이 의미하는 것으로 적당한 것은? \$는 셸 프롬프트이다.
     choices:
@@ -283,6 +293,7 @@ questions:
 
   - id: e18-11
     type: multiple-choice
+    chapter: 8
     prompt: 볼륨 관리에서 사용되는 용어의 설명이다. ==잘못된== 것은?
     choices:
       - { id: '1', text: '물리볼륨(pv) - 하나의 물리적 디스크를 말함' }
@@ -304,6 +315,7 @@ questions:
 
   - id: e18-12
     type: multiple-choice
+    chapter: 8
     prompt: 파일 시스템 유형에 관한 설명으로 ==잘못된== 것은?
     choices:
       - { id: '1', text: 'XFS - 리눅스의 차세대 파일 시스템으로 여러 서버에서 동시 마운트와 동시 접근이 가능한 공유 파일 시스템이다.' }
@@ -325,6 +337,7 @@ questions:
 
   - id: e18-13
     type: multiple-choice
+    chapter: 9
     passageRefs: [g18-ps-01]
     prompt: 다음 명령의 결과를 정확히 설명한 것은? \$는 셸 프롬프트이다.
     choices:
@@ -347,6 +360,7 @@ questions:
 
   - id: e18-14
     type: multiple-choice
+    chapter: 9
     prompt: 특정 작업을 주기적으로 실행시키는 cron 서비스에 관한 설명이다. ==잘못된== 것은?
     choices:
       - { id: '1', text: 'crond 데몬 프로그램이 1분 간격으로 설정 파일을 검사하여 수행한다.' }
@@ -368,6 +382,7 @@ questions:
 
   - id: e18-15
     type: multiple-choice
+    chapter: 4
     passageRefs: [g18-passwd-ls-01]
     prompt: 다음 명령은 /usr/bin/passwd 파일의 자세한 정보를 보여준다. 이 파일에 적용된 특수권한과 관련된 설명 중 ==잘못된== 것은? \$는 셸 프롬프트이다.
     choices:
@@ -390,6 +405,7 @@ questions:
 
   - id: e18-16
     type: multiple-choice
+    chapter: 10
     prompt: 다음은 RPM 패키지 관리에 대한 설명이다. ==잘못된== 것은?
     choices:
       - { id: '1', text: 'RPM은 레드햇 계열 리눅스에서 패키지 파일의 표준 형식이다.' }
@@ -411,6 +427,7 @@ questions:
 
   - id: e18-17
     type: multiple-choice
+    chapter: 10
     prompt: yum 명령의 사용법을 설명한 것이다. ==잘못된== 것은?
     choices:
       - { id: '1', text: 'yum list installed [패키지명] - 패키지를 설치' }
@@ -432,6 +449,7 @@ questions:
 
   - id: e18-18
     type: multiple-choice
+    chapter: 10
     prompt: 두 파일을 압축하고 연결시켜 하나의 압축 파일(bar.gz)을 만드는 명령으로 적당하지 ==않은== 것은 무엇인가? gzip 명령의 -c 옵션은 결과를 표준 출력으로 내보낸다.
     choices:
       - { id: '1', text: 'cat file1 file2 | gzip > bar.gz' }
@@ -453,6 +471,7 @@ questions:
 
   - id: e18-19
     type: multiple-choice
+    outdated: true
     passageRefs: [g18-httpd-listen-01]
     prompt: Apache 웹 서버의 설정 파일인 httpd.conf에서 다음 항목이 의미하는 것은 무엇인가?
     choices:
@@ -475,6 +494,7 @@ questions:
 
   - id: e18-20
     type: multiple-choice
+    chapter: 5
     prompt: 실행 중인 Apache 웹 서버의 설정을 변경한 후에는 프로그램을 다시 시작해야 효력이 발생한다. 이때 적당한 명령을 보기에서 찾으면 무엇인가?
     choices:
       - { id: '1', text: 'chkconfig httpd on' }
@@ -496,6 +516,7 @@ questions:
 
   - id: e18-21
     type: multiple-choice
+    chapter: 11
     passageRefs: [g18-script-intro-01, g18-script-code-01]
     prompt: 2개의 인수가 제공되었는지 확인하기 위해 밑줄 친 ㄱ에 들어갈 내용으로 적당한 것은?
     choices:
@@ -520,6 +541,7 @@ questions:
 
   - id: e18-22
     type: multiple-choice
+    chapter: 11
     passageRefs: [g18-script-intro-01, g18-script-code-01]
     prompt: 두 정수의 합을 출력하기 위해 밑줄 친 ㄴ에 들어갈 내용으로 적당한 것은?
     choices:
@@ -544,6 +566,7 @@ questions:
 
   - id: e18-23
     type: multiple-choice
+    chapter: 11
     passageRefs: [g18-script-intro-01, g18-script-code-01]
     prompt: 셸 스크립트를 실행하기 위해 밑줄 친 ㄷ에 들어갈 명령으로 적당한 것은?
     choices:
@@ -568,6 +591,7 @@ questions:
 
   - id: e18-24
     type: multiple-choice
+    outdated: true
     prompt: 네트워크 점검 명령에 관한 일반적 설명으로 ==잘못된== 것은?
     choices:
       - { id: '1', text: 'ifconfig - 네트워크 인터페이스 정보를 확인하거나 설정' }
@@ -589,6 +613,7 @@ questions:
 
   - id: e18-25
     type: multiple-choice
+    outdated: true
     prompt: 보호된 원격 로그인이나 원격 데이터 통신에 사용되는 프로토콜로서 전자서명으로 연결을 인증하고 패킷을 암호화하여 전송하는 방식은?
     choices:
       - { id: '1', text: 'Telnet' }

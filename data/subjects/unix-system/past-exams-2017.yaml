@@ -71,6 +71,7 @@ passages:
 questions:
   - id: e17-01
     type: multiple-choice
+    chapter: 1
     prompt: 다음 중 GNU 프로젝트와의 관련성이 가장 ==적은== 것은?
     choices:
       - { id: '1', text: '리처드 스톨먼' }
@@ -92,6 +93,7 @@ questions:
 
   - id: e17-02
     type: multiple-choice
+    chapter: 2
     prompt: 리눅스 표준 디렉터리의 용도에 관한 설명으로 ==잘못된== 것은?
     choices:
       - { id: '1', text: '/proc – 커널이 사용하는 가상의 파일 시스템' }
@@ -113,6 +115,7 @@ questions:
 
   - id: e17-03
     type: multiple-choice
+    chapter: 3
     prompt: 셸의 명령 행에서 사용하는 특수 문자에 관한 설명이다. ==잘못된== 것은?
     choices:
       - { id: '1', text: '| : 특수 문자 앞에 붙어 특수 문자의 기능을 제거함' }
@@ -134,6 +137,7 @@ questions:
 
   - id: e17-04
     type: multiple-choice
+    chapter: 3
     passageRefs: [g17-cmd-which-01]
     prompt: 다음 명령의 실행 결과로 생각되는 것은? 맨 앞의 \$는 셸 프롬프트이며 passwd는 비밀번호를 바꿀 때 사용하는 명령이다.
     choices:
@@ -156,6 +160,7 @@ questions:
 
   - id: e17-05
     type: multiple-choice
+    chapter: 4
     prompt: 텍스트 파일의 내용을 화면에 출력할 때 사용하는 명령이 ==아닌== 것은?
     choices:
       - { id: '1', text: 'cat' }
@@ -177,6 +182,7 @@ questions:
 
   - id: e17-06
     type: multiple-choice
+    chapter: 5
     prompt: 그래픽 사용자 환경과 네트워크 서비스 및 다중 사용자 환경을 지원하는 런레벨로서 최근 리눅스 배포판에서 기본으로 설정된 런레벨은 무엇인가?
     choices:
       - { id: '1', text: '3' }
@@ -198,6 +204,7 @@ questions:
 
   - id: e17-07
     type: multiple-choice
+    chapter: 5
     prompt: 웹 서버 데몬인 httpd를 재시작 시키는 명령은?
     choices:
       - { id: '1', text: 'service httpd start' }
@@ -219,6 +226,7 @@ questions:
 
   - id: e17-08
     type: multiple-choice
+    chapter: 6
     prompt: sudo 명령은 허가된 사용자로 하여금 관리자 명령을 수행할 수 있게 한다. 이 명령과 깊은 관련이 있는 파일은?
     choices:
       - { id: '1', text: '/bin/chown' }
@@ -240,6 +248,7 @@ questions:
 
   - id: e17-09
     type: multi-answer
+    chapter: 6
     prompt: 사용자의 비밀번호 만료에 관한 정보를 변경하기 위한 관리자 명령은 무엇인가?
     choices:
       - { id: '1', text: 'chage' }
@@ -263,6 +272,7 @@ questions:
 
   - id: e17-10
     type: multiple-choice
+    chapter: 7
     prompt: vi를 사용한 편집 작업 중에 Esc 키를 두 번 치면 어떤 모드로 이동하는가?
     choices:
       - { id: '1', text: '입력 모드' }
@@ -284,6 +294,7 @@ questions:
 
   - id: e17-11
     type: multiple-choice
+    chapter: 7
     passageRefs: [g17-cmd-find-01]
     prompt: 다음 명령이 의미하는 것은?
     choices:
@@ -306,6 +317,7 @@ questions:
 
   - id: e17-12
     type: multiple-choice
+    chapter: 8
     prompt: 파일 시스템이나 디스크 관리를 위해 사용되는 명령의 일반적 설명으로 올바른 것은?
     choices:
       - { id: '1', text: 'du – 저장 장치에 파티션을 생성' }
@@ -327,6 +339,7 @@ questions:
 
   - id: e17-13
     type: multiple-choice
+    chapter: 9
     passageRefs: [g17-cmd-firefox-01]
     prompt: 다음 명령이 의미하는 것은?
     choices:
@@ -349,6 +362,7 @@ questions:
 
   - id: e17-14
     type: multiple-choice
+    chapter: 9
     prompt: cron 서비스에 관한 설명으로 올바른 것은?
     choices:
       - { id: '1', text: '파일 시스템의 복구를 대비해 저널링을 수행한다.' }
@@ -370,6 +384,7 @@ questions:
 
   - id: e17-15
     type: multiple-choice
+    chapter: 10
     prompt: RPM과 비교했을 때 YUM을 이용한 패키지 관리의 장점은 무엇인가?
     choices:
       - { id: '1', text: '이미 설치된 패키지의 업그레이드가 가능하다.' }
@@ -391,6 +406,7 @@ questions:
 
   - id: e17-16
     type: multiple-choice
+    chapter: 10
     passageRefs: [g17-cmd-yum-01]
     prompt: 다음 명령이 의미하는 것은?
     choices:
@@ -413,6 +429,7 @@ questions:
 
   - id: e17-17
     type: multiple-choice
+    chapter: 11
     passageRefs: [g17-whoson-intro-01, g17-whoson-code-01]
     prompt: 셸 스크립트 whoson.sh(접근권한은 755로 가정)를 실행시키기 위한 명령으로 ==잘못된== 것은?
     choices:
@@ -437,6 +454,7 @@ questions:
 
   - id: e17-18
     type: multiple-choice
+    chapter: 11
     passageRefs: [g17-whoson-intro-01, g17-whoson-code-01]
     prompt: 다음 중 셸 스크립트 whoson.sh의 실행 결과로 생각되는 것은?
     choices:
@@ -474,6 +492,7 @@ questions:
 
   - id: e17-19
     type: multiple-choice
+    chapter: 11
     passageRefs: [g17-code-bashrc-01]
     prompt: 다음은 셸 스크립트의 일부이다. 밑줄 그은 부분의 의미를 바르게 설명한 것은?
     choices:
@@ -496,6 +515,7 @@ questions:
 
   - id: e17-20
     type: multiple-choice
+    outdated: true
     prompt: 네트워크 관련 명령에 관한 일반적 설명으로 ==잘못된== 것은?
     choices:
       - { id: '1', text: 'ping – ICMP를 이용하여 원격 호스트와의 연결 여부를 점검' }
@@ -517,6 +537,7 @@ questions:
 
   - id: e17-21
     type: multiple-choice
+    outdated: true
     prompt: 다음 중 네트워크 관련 설정 파일로 볼 수 ==없는== 것은?
     choices:
       - { id: '1', text: '/etc/sysconfig/network' }
@@ -538,6 +559,7 @@ questions:
 
   - id: e17-22
     type: multiple-choice
+    outdated: true
     prompt: 다음 중 암호화된 방식으로 데이터를 송수신하는 프로그램은?
     choices:
       - { id: '1', text: 'sftp' }
@@ -559,6 +581,7 @@ questions:
 
   - id: e17-23
     type: multiple-choice
+    outdated: true
     prompt: SSH 서버를 운영하여 서비스를 제공하고자 할 때, 점검해야 할 사항과 거리가 ==먼== 것은?
     choices:
       - { id: '1', text: '방화벽 설정에서 해당 포트를 열어둔다.' }
@@ -580,6 +603,7 @@ questions:
 
   - id: e17-24
     type: multiple-choice
+    outdated: true
     passageRefs: [g17-httpd-conf-01]
     prompt: Apache 웹 서버의 설정 파일인 httpd.conf에서 다음 항목이 의미하는 것은 무엇인가?
     choices:
@@ -602,6 +626,7 @@ questions:
 
   - id: e17-25
     type: multiple-choice
+    outdated: true
     prompt: 간단히 웹 사이트를 구축하고자 할 때 설치해야 하는 프로그램으로 보기 ==어려운== 것은?
     choices:
       - { id: '1', text: 'Apache 웹 서버' }

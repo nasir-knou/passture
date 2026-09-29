@@ -190,6 +190,7 @@ subjects:
   - id: c-programming
     title: C프로그래밍
     semester: 2
+    syllabus: subjects/c-programming/syllabus.json
     sources:
       - id: past-exams-2019
         title: 2019 기말
@@ -213,6 +214,7 @@ subjects:
   - id: unix-system
     title: UNIX시스템
     semester: 2
+    syllabus: subjects/unix-system/syllabus.json
     sources:
       - id: past-exams-2019
         title: 2019 기말
