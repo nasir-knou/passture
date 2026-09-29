@@ -1,0 +1,4043 @@
+subjectId: introduction-to-computer-science
+sourceId: workbook
+title: 컴퓨터과학개론 워크북 문제
+kind: workbook
+
+passages:
+  - id: gb01-cs-def-01
+    type: text
+    body: |
+      (a) 컴퓨터과학은 (      ), (      ), (      ), (      )의 연구를 통해 효율적인 데이터 처리를 위한 기술과 방법을 제공하는 학문이다.
+
+      (b) 컴퓨터과학은 문제 해결을 위해 (      )와(과) 관련된 이슈를 다루는 학문으로, 컴퓨터과학과 관련된 모든 분야는 이를 중심으로 설명될 수 있다.
+
+  - id: gb01-radix-values-01
+    type: text
+    body: |
+      $11100101_{(2)}$ $343_{(8)}$ $227_{(10)}$ $\mathrm{E7}_{(16)}$
+
+  - id: gb01-unicode-desc-01
+    type: text
+    body: |
+      - 알파벳만을 부호화하는 데 사용되는 기존 코드의 한계점을 극복하고 전 세계의 문자를 표현하기 위한 코드 체계이다.
+      - 사용 중인 플랫폼, 프로그램, 언어에 무관한 특징을 가진다.
+      - 컴퓨터 하드웨어 및 소프트웨어 업체들이 모여서 1990년에 첫 버전을 발표하였고, 1995년에 국제 표준으로 제정되었다.
+
+  - id: gb02-sparse-matrix-01
+    type: text
+    body: |
+      $$
+      A = \begin{pmatrix}
+      0 & 20 & 0 & 0 & 9 & 0 & 0 & 11 & 0 \\
+      0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+      78 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+      0 & 0 & 0 & 0 & 67 & 0 & 0 & 0 & 0 \\
+      0 & 31 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+      0 & 0 & 0 & 91 & 0 & 0 & 44 & 0 & 0 \\
+      0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+      0 & 0 & 0 & 0 & 19 & 0 & 0 & 27 & 0
+      \end{pmatrix}
+      $$
+
+  - id: gb02-stack-ops-01
+    type: code
+    language: text
+    body: |
+      push(S, 10)
+      push(S, 2)
+      pop(S)
+      push(S, 3)
+      if not empty(S), then pop(S)
+      push (S, 7)
+
+  - id: gb02-tree-01
+    type: diagram
+    diagram:
+      type: simple-graph
+      width: 470
+      height: 225
+      nodes:
+        - { id: A, label: A, x: 240, y: 30 }
+        - { id: B, label: B, x: 120, y: 85 }
+        - { id: C, label: C, x: 240, y: 85 }
+        - { id: D, label: D, x: 360, y: 85 }
+        - { id: E, label: E, x: 80, y: 140 }
+        - { id: F, label: F, x: 165, y: 140 }
+        - { id: G, label: G, x: 300, y: 140 }
+        - { id: H, label: H, x: 360, y: 140 }
+        - { id: I, label: I, x: 420, y: 140 }
+        - { id: J, label: J, x: 50, y: 195 }
+        - { id: K, label: K, x: 135, y: 195 }
+        - { id: L, label: L, x: 195, y: 195 }
+        - { id: M, label: M, x: 300, y: 195 }
+        - { id: N, label: N, x: 360, y: 195 }
+      edges:
+        - { from: A, to: B }
+        - { from: A, to: C }
+        - { from: A, to: D }
+        - { from: B, to: E }
+        - { from: B, to: F }
+        - { from: D, to: G }
+        - { from: D, to: H }
+        - { from: D, to: I }
+        - { from: E, to: J }
+        - { from: F, to: K }
+        - { from: F, to: L }
+        - { from: G, to: M }
+        - { from: H, to: N }
+
+  - id: gb02-binary-tree-01
+    type: diagram
+    diagram:
+      type: simple-graph
+      width: 380
+      height: 225
+      nodes:
+        - { id: A, label: A, x: 200, y: 30 }
+        - { id: B, label: B, x: 140, y: 85 }
+        - { id: C, label: C, x: 260, y: 85 }
+        - { id: D, label: D, x: 110, y: 140 }
+        - { id: E, label: E, x: 170, y: 140 }
+        - { id: F, label: F, x: 230, y: 140 }
+        - { id: G, label: G, x: 290, y: 140 }
+        - { id: H, label: H, x: 140, y: 195 }
+        - { id: I, label: I, x: 260, y: 195 }
+        - { id: J, label: J, x: 320, y: 195 }
+      edges:
+        - { from: A, to: B }
+        - { from: A, to: C }
+        - { from: B, to: D }
+        - { from: B, to: E }
+        - { from: C, to: F }
+        - { from: C, to: G }
+        - { from: E, to: H }
+        - { from: G, to: I }
+        - { from: G, to: J }
+
+  - id: gb02-binary-tree-02
+    type: diagram
+    diagram:
+      type: simple-graph
+      width: 400
+      height: 225
+      nodes:
+        - { id: H, label: H, x: 200, y: 30 }
+        - { id: E, label: E, x: 110, y: 85 }
+        - { id: N, label: N, x: 290, y: 85 }
+        - { id: B, label: B, x: 60, y: 140 }
+        - { id: G, label: G, x: 160, y: 140 }
+        - { id: K, label: K, x: 240, y: 140 }
+        - { id: P, label: P, x: 340, y: 140 }
+        - { id: J, label: J, x: 200, y: 195 }
+        - { id: M, label: M, x: 280, y: 195 }
+      edges:
+        - { from: H, to: E }
+        - { from: H, to: N }
+        - { from: E, to: B }
+        - { from: E, to: G }
+        - { from: N, to: K }
+        - { from: N, to: P }
+        - { from: K, to: J }
+        - { from: K, to: M }
+
+  - id: gb02-traversal-box-01
+    type: text
+    body: |
+      - 노드 G를 노드 H보다 먼저 방문하였다.
+      - 노드 P를 노드 N보다 먼저 방문하였다.
+      - 노드 J를 노드 M보다 먼저 방문하였다.
+
+  - id: gb02-dfs-graph-01
+    type: diagram
+    diagram:
+      type: simple-graph
+      width: 320
+      height: 225
+      nodes:
+        - { id: n1, label: '1', x: 160, y: 30 }
+        - { id: n2, label: '2', x: 118, y: 85 }
+        - { id: n3, label: '3', x: 202, y: 85 }
+        - { id: n4, label: '4', x: 96, y: 145 }
+        - { id: n5, label: '5', x: 139, y: 145 }
+        - { id: n6, label: '6', x: 181, y: 145 }
+        - { id: n7, label: '7', x: 224, y: 145 }
+        - { id: n8, label: '8', x: 160, y: 200 }
+      edges:
+        - { from: n1, to: n2 }
+        - { from: n1, to: n3 }
+        - { from: n2, to: n4 }
+        - { from: n2, to: n5 }
+        - { from: n3, to: n6 }
+        - { from: n3, to: n7 }
+        - { from: n4, to: n8 }
+        - { from: n5, to: n8 }
+        - { from: n6, to: n8 }
+        - { from: n7, to: n8 }
+
+  - id: gb02-adjacency-01
+    type: diagram
+    diagram:
+      type: simple-graph
+      width: 460
+      height: 230
+      nodes:
+        - { id: v1, label: '1', x: 110, y: 50 }
+        - { id: v2, label: '2', x: 60, y: 100 }
+        - { id: v3, label: '3', x: 160, y: 100 }
+        - { id: v4, label: '4', x: 110, y: 150 }
+        - { id: capA, label: '(가)', hideNode: true, radius: 0, x: 110, y: 205 }
+        - { id: h1, label: '1', hideNode: true, radius: 0, x: 290, y: 22 }
+        - { id: h2, label: '2', hideNode: true, radius: 0, x: 324, y: 22 }
+        - { id: h3, label: '3', hideNode: true, radius: 0, x: 358, y: 22 }
+        - { id: h4, label: '4', hideNode: true, radius: 0, x: 392, y: 22 }
+        - { id: r1, label: '1', hideNode: true, radius: 0, x: 260, y: 50 }
+        - { id: r2, label: '2', hideNode: true, radius: 0, x: 260, y: 84 }
+        - { id: r3, label: '3', hideNode: true, radius: 0, x: 260, y: 118 }
+        - { id: r4, label: '4', hideNode: true, radius: 0, x: 260, y: 152 }
+        - { id: c11, label: '0', shape: box, width: 34, height: 34, x: 290, y: 50 }
+        - { id: c12, label: '1', shape: box, width: 34, height: 34, x: 324, y: 50 }
+        - { id: c13, label: '0', shape: box, width: 34, height: 34, x: 358, y: 50 }
+        - { id: c14, label: '1', shape: box, width: 34, height: 34, x: 392, y: 50 }
+        - { id: c21, label: '1', shape: box, width: 34, height: 34, x: 290, y: 84 }
+        - { id: c22, label: '0', shape: box, width: 34, height: 34, x: 324, y: 84 }
+        - { id: c23, label: '1', shape: box, width: 34, height: 34, x: 358, y: 84 }
+        - { id: c24, label: '0', shape: box, width: 34, height: 34, x: 392, y: 84 }
+        - { id: c31, label: '0', shape: box, width: 34, height: 34, x: 290, y: 118 }
+        - { id: c32, label: '1', shape: box, width: 34, height: 34, x: 324, y: 118 }
+        - { id: c33, label: '0', shape: box, width: 34, height: 34, x: 358, y: 118 }
+        - { id: c34, label: '1', shape: box, width: 34, height: 34, x: 392, y: 118 }
+        - { id: c41, label: '1', shape: box, width: 34, height: 34, x: 290, y: 152 }
+        - { id: c42, label: '0', shape: box, width: 34, height: 34, x: 324, y: 152 }
+        - { id: c43, label: '1', shape: box, width: 34, height: 34, x: 358, y: 152 }
+        - { id: c44, label: '0', shape: box, width: 34, height: 34, x: 392, y: 152 }
+        - { id: capB, label: '(나)', hideNode: true, radius: 0, x: 341, y: 205 }
+      edges:
+        - { from: v1, to: v2 }
+        - { from: v1, to: v3 }
+        - { from: v2, to: v4 }
+        - { from: v3, to: v4 }
+
+  - id: gb03-knapsack-01
+    type: text
+    body: |
+      $M = 10,\quad n = 4$
+
+      $(p_1,\ p_2,\ p_3,\ p_4) = (15,\ 20,\ 16,\ 24),\quad (w_1,\ w_2,\ w_3,\ w_4) = (4,\ 5,\ 3,\ 7)$
+  - id: gb03-omega-def-01
+    type: text
+    body: |
+      함수 $f$와 $g$를 각각 양의 정수를 갖는 함수라고 할 때, 어떤 양의 상수 $c$와 $n_0$이 존재하여 모든 $n \ge n_0$에 대하여 $f(n) \ge c \cdot g(n)$이다.
+  - id: gb03-bubble-data-01
+    type: text
+    body: |
+      25 10 5 15 30 20 ==35== ==40==
+  - id: gb03-quick-data-01
+    type: text
+    body: |
+      30 20 40 35 5 10 45 50 25 15
+  - id: gb03-quick-data-02
+    type: text
+    body: |
+      35 26 15 77 10 61 11 59 17 48 19 40
+  - id: gb03-bst-01
+    type: diagram
+    diagram:
+      type: simple-graph
+      width: 360
+      height: 240
+      nodes:
+        - { id: n35, label: '35', x: 180, y: 30, radius: 18 }
+        - { id: n30, label: '30', x: 110, y: 80, radius: 18 }
+        - { id: n55, label: '55', x: 250, y: 80, radius: 18 }
+        - { id: n15, label: '15', x: 75, y: 130, radius: 18 }
+        - { id: n44, label: '44', x: 215, y: 130, radius: 18 }
+        - { id: n88, label: '88', x: 285, y: 130, radius: 18 }
+        - { id: n7, label: '7', x: 40, y: 190, radius: 18 }
+        - { id: n22, label: '22', x: 110, y: 190, radius: 18 }
+        - { id: n40, label: '40', x: 180, y: 190, radius: 18 }
+      edges:
+        - { from: n35, to: n30 }
+        - { from: n35, to: n55 }
+        - { from: n30, to: n15 }
+        - { from: n15, to: n7 }
+        - { from: n15, to: n22 }
+        - { from: n55, to: n44 }
+        - { from: n55, to: n88 }
+        - { from: n44, to: n40 }
+
+  - id: gb05-nor-truth-table-01
+    type: diagram
+    diagram:
+      type: data-table
+      columns: ['X', 'Y', 'F']
+      rows:
+        - ['0', '0', '1']
+        - ['0', '1', '0']
+        - ['1', '0', '0']
+        - ['1', '1', '0']
+
+  - id: gb05-decoder-desc-01
+    type: text
+    body: |
+      •$n$비트의 입력에 대해서 최대 $2^n$개의 서로 다른 출력을 생성한다.
+      •하나의 출력만 1이 되고 나머지 모든 출력은 0이 된다.
+
+  - id: gb06-lisp-code-01
+    type: code
+    language: text
+    body: |
+      (+ 3 2);
+      (length (a b c));
+      (+ 1 (if t 2 3));
+
+  - id: gb07-three-level-01
+    type: diagram
+    diagram:
+      type: simple-graph
+      width: 460
+      height: 320
+      nodes:
+        - { id: u1, label: 사용자1, hideNode: true, fontSize: 13, x: 100, y: 18 }
+        - { id: u2, label: 사용자2, hideNode: true, fontSize: 13, x: 230, y: 18 }
+        - { id: un, label: 사용자n, hideNode: true, fontSize: 13, x: 380, y: 18 }
+        - { id: q1, label: 질의어, shape: box, width: 90, height: 26, fontSize: 13, x: 100, y: 50 }
+        - { id: ap, label: 응용프로그램, shape: box, width: 110, height: 26, fontSize: 13, x: 230, y: 50 }
+        - { id: qn, label: 질의어, shape: box, width: 90, height: 26, fontSize: 13, x: 380, y: 50 }
+        - { id: dots1, label: ······, hideNode: true, fontSize: 13, x: 305, y: 50 }
+        - { id: A, label: A, shape: box, width: 110, height: 26, fontSize: 13, x: 100, y: 100 }
+        - { id: B, label: B, shape: box, width: 110, height: 26, fontSize: 13, x: 230, y: 100 }
+        - { id: C, label: C, shape: box, width: 110, height: 26, fontSize: 13, x: 380, y: 100 }
+        - { id: dots2, label: ······, hideNode: true, fontSize: 13, x: 305, y: 100 }
+        - { id: D, label: D, shape: box, width: 110, height: 26, fontSize: 13, x: 230, y: 180 }
+        - { id: E, label: E, shape: box, width: 110, height: 26, fontSize: 13, x: 230, y: 240 }
+        - { id: db, label: 저장 DB, shape: box, width: 70, height: 30, fontSize: 13, x: 230, y: 296 }
+      edges:
+        - { from: q1, to: A }
+        - { from: ap, to: B }
+        - { from: qn, to: C }
+        - { from: A, to: D }
+        - { from: B, to: D }
+        - { from: C, to: D }
+        - { from: D, to: E }
+        - { from: E, to: db }
+
+  - id: gb07-network-model-01
+    type: diagram
+    diagram:
+      type: simple-graph
+      width: 400
+      height: 215
+      directed: true
+      nodes:
+        - { id: prof, label: 교수, shape: box, width: 80, height: 30, fontSize: 14, x: 200, y: 25 }
+        - { id: stu, label: 학생, shape: box, width: 80, height: 30, fontSize: 14, x: 110, y: 155 }
+        - { id: subj, label: 과목, shape: box, width: 80, height: 30, fontSize: 14, x: 290, y: 155 }
+        - { id: stu-out, label: 학생, hideNode: true, hideLabel: true, x: 150, y: 150 }
+        - { id: subj-in, label: 과목, hideNode: true, hideLabel: true, x: 248, y: 150 }
+        - { id: subj-out, label: 과목, hideNode: true, hideLabel: true, x: 250, y: 160 }
+        - { id: stu-in, label: 학생, hideNode: true, hideLabel: true, x: 152, y: 160 }
+      edges:
+        - { from: prof, to: stu, label: 지도 }
+        - { from: prof, to: subj, label: 강의 }
+        - { from: stu-out, to: subj-in, label: 등록, curve: -24 }
+        - { from: subj-out, to: stu-in, label: 수강, curve: -44 }
+
+  - id: gb07-er-advise-01
+    type: diagram
+    diagram:
+      type: simple-graph
+      width: 500
+      height: 170
+      nodes:
+        - { id: stu, label: 학생, shape: box, width: 64, height: 36, fontSize: 14, x: 120, y: 30 }
+        - { id: adv, label: 지도, shape: diamond, width: 100, height: 50, fontSize: 14, x: 250, y: 30 }
+        - { id: prof, label: 교수, shape: box, width: 64, height: 36, fontSize: 14, x: 380, y: 30 }
+        - { id: sno, label: 학번, shape: ellipse, width: 64, height: 40, underline: true, fontSize: 14, x: 45, y: 140 }
+        - { id: sname, label: 이름, shape: ellipse, width: 64, height: 40, fontSize: 14, x: 120, y: 140 }
+        - { id: sdept, label: 학과, shape: ellipse, width: 64, height: 40, fontSize: 14, x: 195, y: 140 }
+        - { id: pno, label: 교수번호, shape: ellipse, width: 72, height: 40, underline: true, fontSize: 13, x: 305, y: 140 }
+        - { id: pname, label: 이름, shape: ellipse, width: 64, height: 40, fontSize: 14, x: 380, y: 140 }
+        - { id: pdept, label: 학과, shape: ellipse, width: 64, height: 40, fontSize: 14, x: 455, y: 140 }
+      edges:
+        - { from: stu, to: adv }
+        - { from: adv, to: prof }
+        - { from: stu, to: sno }
+        - { from: stu, to: sname }
+        - { from: stu, to: sdept }
+        - { from: prof, to: pno }
+        - { from: prof, to: pname }
+        - { from: prof, to: pdept }
+
+  - id: gb07-relational-tables-01
+    type: diagram
+    diagram:
+      type: simple-graph
+      width: 460
+      height: 160
+      nodes:
+        - { id: t1, label: 고객, hideNode: true, fontSize: 14, x: 45, y: 25 }
+        - { id: t1a, label: 주민등록번호, shape: box, width: 90, height: 30, underline: true, fontSize: 13, x: 130, y: 25 }
+        - { id: t1b, label: 고객 이름, shape: box, width: 90, height: 30, fontSize: 13, x: 220, y: 25 }
+        - { id: t1c, label: 직장 주소, shape: box, width: 90, height: 30, fontSize: 13, x: 310, y: 25 }
+        - { id: t1d, label: 집 주소, shape: box, width: 90, height: 30, fontSize: 13, x: 400, y: 25 }
+        - { id: t2, label: 계좌, hideNode: true, fontSize: 14, x: 45, y: 80 }
+        - { id: t2a, label: 계좌번호, shape: box, width: 90, height: 30, underline: true, fontSize: 13, x: 130, y: 80 }
+        - { id: t2b, label: 잔고, shape: box, width: 90, height: 30, fontSize: 13, x: 220, y: 80 }
+        - { id: t3, label: 계좌 거래, hideNode: true, fontSize: 14, x: 45, y: 135 }
+        - { id: t3a, label: 주민등록번호, shape: box, width: 90, height: 30, fontSize: 13, x: 130, y: 135 }
+        - { id: t3b, label: 계좌번호, shape: box, width: 90, height: 30, fontSize: 13, x: 220, y: 135 }
+        - { id: t3c, label: 거래일자, shape: box, width: 90, height: 30, fontSize: 13, x: 310, y: 135 }
+      edges: []
+
+  - id: gb07-student-table-01
+    type: diagram
+    diagram:
+      type: data-table
+      columns: ['학번', '이름', '나이', '성별', '주소', '학과']
+      rows:
+        - ['0100', '김이사', '45', '남', '서울', '컴퓨터과학']
+        - ['0233', '박과장', '35', '남', '경기', '경영학']
+        - ['0420', '이주임', '25', '여', '제주', '심리학']
+        - ['0550', '남대리', '23', '남', '경상', '도시공학']
+
+  - id: gb07-employee-table-01
+    type: diagram
+    diagram:
+      type: data-table
+      columns: ['번호', '이름', '전화번호', '성별', '나이', '봉급', '부서번호']
+      rows:
+        - ['100', '김영선', '630', 'F', '20', '180', 'A']
+        - ['150', '홍성철', '650', 'M', '25', '200', 'B']
+        - ['201', '박남진', '640', 'M', '28', '230', 'D']
+        - ['330', '이영철', '632', 'M', '21', '180', 'A']
+        - ['340', '박기동', '642', 'M', '45', '350', 'B']
+        - ['450', '이남영', '635', 'F', '30', '230', 'A']
+        - ['478', '정희선', '645', 'F', '37', '300', 'C']
+
+  - id: gb07-group-by-sql-01
+    type: code
+    language: sql
+    body: |
+      SELECT 부서번호
+      FROM 직원
+      GROUP BY 부서번호
+      HAVING COUNT(*) >= 3;
+
+  - id: gb08-message-switching-01
+    type: text
+    body: |
+      - 송신하려는 메시지 전체를 한 단계씩 목적지 방향으로 스위치(또는 컴퓨터, 라우터 등)를 거쳐서 전송하는 방식
+      - 중간 단계의 스위치들은 수신한 메시지를 메시지의 크기에 상관없이 목적지 방향에 있는 스위치로 전달함
+  - id: gb08-osi-order-01
+    type: text
+    body: |
+      응용 계층－( ⓐ )－( ⓑ )－( ⓒ )－( ⓓ )－( ⓔ )－물리 계층
+  - id: gb08-presentation-01
+    type: text
+    body: |
+      데이터 표현 형식의 변환, 데이터 압축, 데이터 암호화
+  - id: gb08-application-01
+    type: text
+    body: |
+      웹에서 사용하는 HTTP, 파일 전송을 위한 FTP, 이메일 전송을 위한 SMTP 등과 같은 응용 프로토콜의 기능 지원
+
+questions:
+  - id: b01-01
+    type: multiple-choice
+    prompt: 컴퓨터라는 데이터 처리기에서 처리 가능한 작업의 유형과 연산의 집합을 결정하는 것은?
+    choices:
+      - { id: '1', text: '인터넷' }
+      - { id: '2', text: '정보' }
+      - { id: '3', text: '프로그램' }
+      - { id: '4', text: '데이터' }
+    answers: ['3']
+    explanation: |
+      선택지 1: 인터넷은 전 세계 컴퓨터를 연결하는 통신망으로, 데이터 처리기가 수행할 작업과 연산을 정하는 요소가 아니다.
+      선택지 2: 정보는 데이터를 처리한 결과물이므로 처리 가능한 작업을 결정하는 쪽이 아니라 처리의 산출물이다.
+      선택지 3: 컴퓨터는 프로그램이 가능한 데이터 처리기(programmable data processor)이며, 프로그램이 컴퓨터가 처리 가능한 작업의 유형과 연산의 집합을 결정하므로 정답이다.
+      선택지 4: 데이터는 입력되어 처리되는 대상(원재료)이지 작업과 연산의 종류를 정하는 것이 아니다.
+
+      핵심 개념:
+      컴퓨터는 프로그램이 가능한 데이터 처리기이다.
+      데이터 처리기의 기본 기능은 입력(input) → 처리(process) → 출력(output)이다.
+      프로그램이 처리 가능한 작업의 유형과 연산의 집합을 결정한다.
+      따라서 프로그램을 바꾸면 같은 하드웨어로 다른 작업을 수행할 수 있다.
+
+  - id: b01-02
+    type: multiple-choice
+    prompt: 컴퓨터를 특수 목적의 작업만을 처리하는 기계가 아닌, 다양한 유형의 작업을 처리할 수 있는 범용의 기계로 만드는 역할을 담당하는 것은?
+    choices:
+      - { id: '1', text: '중앙처리장치' }
+      - { id: '2', text: '프로그램' }
+      - { id: '3', text: '기억장치' }
+      - { id: '4', text: '데이터' }
+    answers: ['2']
+    explanation: |
+      선택지 1: 중앙처리장치(CPU, Central Processing Unit)는 명령어를 해석·실행하는 하드웨어로, 무엇을 실행할지는 프로그램이 정하므로 범용성을 부여하는 주체가 아니다.
+      선택지 2: 프로그램이 컴퓨터에서 처리 가능한 작업을 결정하므로 원하는 프로그램을 실행하면 컴퓨터는 다양한 유형의 작업을 처리하는 범용 기계가 된다. 정답이다.
+      선택지 3: 기억장치는 프로그램과 데이터를 저장하는 하드웨어로, 저장 기능만으로 작업의 종류가 달라지지 않는다.
+      선택지 4: 데이터는 처리 대상일 뿐 작업의 유형을 결정하지 않는다.
+
+      핵심 개념:
+      컴퓨터가 범용 기계인 이유는 프로그램으로 작업을 바꿀 수 있기 때문이다.
+      하드웨어는 고정되어 있어도 프로그램을 교체하면 다른 작업을 수행한다.
+      프로그램은 처리 가능한 작업과 연산의 집합을 결정한다.
+      특수 목적 기계는 정해진 한 가지 작업만 처리한다.
+
+  - id: b01-03
+    type: multiple-choice
+    prompt: 다음 시간 단위 중에서 $10^{-9}$초를 나타내는 것은?
+    choices:
+      - { id: '1', text: 'ps' }
+      - { id: '2', text: 'ms' }
+      - { id: '3', text: 'ns' }
+      - { id: '4', text: 'µs' }
+    answers: ['3']
+    explanation: |
+      선택지 1: ps(picosecond, 피코초)는 $10^{-12}$초이다.
+      선택지 2: ms(millisecond, 밀리초)는 $10^{-3}$초이다.
+      선택지 3: ns(nanosecond, 나노초)는 $10^{-9}$초이므로 정답이다.
+      선택지 4: µs(microsecond, 마이크로초)는 $10^{-6}$초이다.
+
+      핵심 개념:
+      시간 단위는 $10^{-3}$씩 작아진다.
+      ms = $10^{-3}$초, µs = $10^{-6}$초.
+      ns = $10^{-9}$초, ps = $10^{-12}$초.
+      작은 순서: ps < ns < µs < ms.
+
+  - id: b01-04
+    type: multiple-choice
+    passageRefs: [gb01-cs-def-01]
+    prompt: 다음과 같은 두 관점의 컴퓨터과학 정의 (a)와 (b)의 빈칸에 공통으로 들어갈 수 있는 가장 적절한 단어는?
+    choices:
+      - { id: '1', text: '컴퓨터' }
+      - { id: '2', text: '프로그램' }
+      - { id: '3', text: '데이터' }
+      - { id: '4', text: '알고리즘' }
+    answers: ['4']
+    explanation: |
+      선택지 1: 컴퓨터는 (a)의 빈칸 네 개 중 하나에는 들어가지만, (b)의 "문제 해결을 위해 관련된 이슈를 다루는" 중심 개념은 아니다.
+      선택지 2: 프로그램은 (a)에는 들어가지만 (b)에서 모든 관련 분야를 설명하는 중심 개념은 아니다.
+      선택지 3: 데이터는 (a)에는 들어가지만 (b)의 중심 개념이 아니다.
+      선택지 4: (a)는 컴퓨터, 데이터, 프로그램, 알고리즘 분야의 연구를 통한 학문이고, (b)는 알고리즘과 관련된 이슈를 다루는 학문이며 모든 관련 분야는 알고리즘을 중심으로 이해할 수 있으므로 공통으로 들어갈 단어는 알고리즘이다. 정답이다.
+
+      핵심 개념:
+      컴퓨터과학의 다양한 정의가 있다.
+      데이터의 획득·표현·처리·저장·통신·접근 방법의 실행 가능성, 구조화, 표현, 기계화를 다루는 학문이다.
+      컴퓨터, 데이터, 프로그램, 알고리즘 분야의 연구로 효율적인 데이터 처리 기술과 방법을 제공하는 학문이다.
+      알고리즘과 관련된 이슈를 다루는 학문으로, 모든 관련 분야는 알고리즘을 중심으로 이해할 수 있다.
+
+  - id: b01-05
+    type: multiple-choice
+    prompt: 하나의 완전한 컴퓨터 시스템이 갖추어야 할 요소로서 거리가 ==먼== 것은?
+    choices:
+      - { id: '1', text: '소프트웨어' }
+      - { id: '2', text: '하드웨어' }
+      - { id: '3', text: '사용자' }
+      - { id: '4', text: '정보' }
+    answers: ['4']
+    explanation: |
+      선택지 1: 소프트웨어는 컴퓨터 시스템의 구성요소이다.
+      선택지 2: 하드웨어는 컴퓨터 시스템의 구성요소이다.
+      선택지 3: 사용자는 컴퓨터 시스템의 구성요소이다.
+      선택지 4: 정보는 데이터를 처리한 결과이며 컴퓨터 시스템의 구성요소가 아니다. 구성요소에 해당하는 것은 정보가 아니라 데이터이므로 정답이다.
+
+      핵심 개념:
+      컴퓨터는 여러 요소로 이루어진 시스템으로 존재한다.
+      하나의 완전한 컴퓨터 시스템의 구성요소는 하드웨어, 소프트웨어, 데이터, 사용자이다.
+      정보는 데이터를 처리한 결과물로 구성요소와 구별된다.
+      구성요소 중 데이터와 정보를 혼동하지 않도록 한다.
+
+  - id: b01-06
+    type: multiple-choice
+    prompt: 폰 노이만 모델에 관련된 설명으로 올바른 것은?
+    choices:
+      - { id: '1', text: '컴퓨터의 내부 구조, 처리 과정 및 데이터의 저장 형태를 정의한 모델이다.' }
+      - { id: '2', text: '폰 노이만 모델은 하드웨어, 소프트웨어, 사용자, 데이터로 구성된다.' }
+      - { id: '3', text: '데이터만 메모리에 저장되어 처리된다.' }
+      - { id: '4', text: '프로그램은 유한개의 기본 명령어로 구성되어 순차적으로 실행된다.' }
+    answers: ['4']
+    explanation: |
+      선택지 1: 폰 노이만 모델은 컴퓨터의 내부 구조와 처리 과정을 정의한 모델이지만, 데이터가 컴퓨터에 어떻게 저장되어야 하는지는 실제로 정의하지 않는다.
+      선택지 2: 하드웨어, 소프트웨어, 사용자, 데이터는 컴퓨터 시스템의 구성요소이다. 폰 노이만 모델은 기억장치, 산술논리연산장치, 제어장치, 입출력장치의 4개 서브시스템으로 구성된다.
+      선택지 3: 데이터만 기억장치에 적재되어 처리되던 것은 폰 노이만 모델 이전의 방식이다. 폰 노이만 모델은 내장 프로그램(stored program) 방식으로 프로그램도 데이터와 함께 메모리에 저장된다.
+      선택지 4: 프로그램은 유한개의 기본 명령어로 구성되며, 제어장치가 메모리의 명령어를 하나씩 가져와 해석하고 산술논리연산장치가 실행하므로 정답이다.
+
+      핵심 개념:
+      폰 노이만 모델은 컴퓨터의 내부 구조와 처리 과정을 정의한 모델이다.
+      4개 서브시스템: 기억장치, 산술논리연산장치, 제어장치, 입출력장치.
+      내장 프로그램 방식: 프로그램과 데이터가 같은 기억장치에 같은 형식으로 저장된다.
+      프로그램은 유한개의 기본 명령어로 구성되어 하나씩 가져와 해석·실행된다.
+
+  - id: b01-07
+    type: multiple-choice
+    prompt: 다음 설명 중 적절한 것은?
+    choices:
+      - { id: '1', text: '데이터는 적절한 의사결정을 수행할 수 있게 하는 지식으로 직접 사용된다.' }
+      - { id: '2', text: '정보는 현실 세계로부터 관찰이나 측정을 통해 단순히 얻어지는 사실이나 값을 나타낸다.' }
+      - { id: '3', text: '정보처리란 정보를 처리해서 데이터로 가공/변환하는 일련의 과정을 일컫는다.' }
+      - { id: '4', text: '컴퓨터에서 데이터는 유형에 상관없이 동일한 방식으로 표현된다.' }
+    answers: ['4']
+    explanation: |
+      선택지 1: 적절한 의사결정을 수행할 수 있게 하는 지식은 데이터가 아니라 정보에 대한 설명이다.
+      선택지 2: 현실 세계로부터 관찰이나 측정을 통해 단순히 얻어지는 사실이나 값은 정보가 아니라 데이터에 대한 설명이다.
+      선택지 3: 정보처리(데이터 처리)는 데이터를 정보로 가공·변환하는 과정이므로 방향이 반대로 서술되어 있다.
+      선택지 4: 모든 데이터는 문자, 숫자, 이미지, 오디오, 비디오 등 유형에 상관없이 비트 패턴(비트의 나열)이라는 일관된 방식으로 표현되므로 정답이다.
+
+      핵심 개념:
+      데이터와 정보의 관계는 I = P(D)이다(D: 데이터, P: 처리기, I: 정보).
+      데이터는 관찰·측정으로 얻은 사실이나 값으로, 처리 대상이자 정보의 원재료이다.
+      정보는 의사결정에 쓰이는 지식으로, 데이터를 처리한 결과이다.
+      컴퓨터에서 모든 유형의 데이터는 비트 패턴으로 표현된다.
+
+  - id: b01-08
+    type: multiple-choice
+    prompt: 컴퓨터에서 연산의 기본 단위가 되는 정보의 양을 무엇이라 하는가?
+    choices:
+      - { id: '1', text: '워드' }
+      - { id: '2', text: '바이트' }
+      - { id: '3', text: '패킷' }
+      - { id: '4', text: '비트' }
+    answers: ['1']
+    explanation: |
+      선택지 1: 워드(word)는 컴퓨터 연산의 기본 단위가 되는 정보의 양으로, 크기는 시스템에 따라 달라진다. 정답이다.
+      선택지 2: 바이트(byte)는 길이가 8인 비트의 나열로 $2^8=256$가지를 표현하는 단위이며, 연산의 기본 단위라는 정의와는 다르다.
+      선택지 3: 패킷(packet)은 네트워크에서 데이터를 전송할 때 쓰는 전송 단위로 연산 단위가 아니다.
+      선택지 4: 비트(bit)는 0 또는 1의 두 상태 중 하나를 표시하는 논리적인 최소 단위이지 연산의 기본 단위는 아니다.
+
+      핵심 개념:
+      비트: 0 또는 1을 나타내는 논리적 최소 단위.
+      바이트: 8비트, 256가지 표현 가능.
+      워드: 연산의 기본 단위, 시스템마다 크기가 다르다.
+      KB($2^{10}$), MB($2^{20}$), GB($2^{30}$), TB($2^{40}$), PB($2^{50}$), EB($2^{60}$), ZB($2^{70}$), YB($2^{80}$) 바이트 순으로 커진다.
+
+  - id: b01-09
+    type: multiple-choice
+    prompt: 다음 단위 중에서 가장 적은 데이터의 양을 나타내는 것은?
+    choices:
+      - { id: '1', text: 'EB' }
+      - { id: '2', text: 'PB' }
+      - { id: '3', text: 'TB' }
+      - { id: '4', text: 'YB' }
+    answers: ['3']
+    explanation: |
+      선택지 1: EB(exabyte)는 $2^{60} \approx 10^{18}$바이트로 TB보다 크다.
+      선택지 2: PB(petabyte)는 $2^{50} \approx 10^{15}$바이트로 TB보다 크다.
+      선택지 3: TB(terabyte)는 $2^{40} \approx 10^{12}$바이트로 보기 중 가장 작으므로 정답이다.
+      선택지 4: YB(yottabyte)는 $2^{80} \approx 10^{24}$바이트로 보기 중 가장 크다.
+
+      핵심 개념:
+      바이트 단위는 $2^{10}$배씩 커진다.
+      KB < MB < GB < TB < PB < EB < ZB < YB.
+      TB = $2^{40}$, PB = $2^{50}$, EB = $2^{60}$, YB = $2^{80}$바이트.
+      각 단위는 대략 $10^3$배씩 커진다.
+
+  - id: b01-10
+    type: multiple-choice
+    prompt: 10진수 43.6875를 8진수와 16진수로 각각 올바르게 표현한 것은?
+    choices:
+      - { id: '1', text: '53.54   2B.B' }
+      - { id: '2', text: '54.53   2C.C' }
+      - { id: '3', text: '53.54   2C.C' }
+      - { id: '4', text: '54.53   2B.B' }
+    answers: ['1']
+    explanation: |
+      선택지 1: $43 = 101011_{(2)}$, $0.6875 = 0.1011_{(2)}$이므로 $43.6875_{(10)} = 101011.1011_{(2)}$이다. 3자리씩 묶으면 $101\ 011.101\ 100 = 53.54_{(8)}$, 4자리씩 묶으면 $0010\ 1011.1011 = \mathrm{2B.B}_{(16)}$이므로 정답이다.
+      선택지 2: 8진수 54.53과 16진수 2C.C는 모두 올바른 변환 결과가 아니다.
+      선택지 3: 8진수 53.54는 맞지만 16진수는 2C.C가 아니라 2B.B이다.
+      선택지 4: 16진수 2B.B는 맞지만 8진수는 54.53이 아니라 53.54이다.
+
+      핵심 개념:
+      10진수를 r진수로 바꿀 때는 정수 부분과 소수 부분을 나눠서 변환한 후 합친다.
+      정수 부분은 r로 나눈 나머지를, 소수 부분은 r을 곱한 정수 부분을 차례로 취한다.
+      2진수 3자리는 8진수 1자리, 2진수 4자리는 16진수 1자리에 대응한다.
+      소수점을 기준으로 좌우 방향으로 묶는다.
+
+  - id: b01-11
+    type: multiple-choice
+    prompt: $159.\mathrm{F}_{(16)}$를 8진수로 올바르게 표현한 것은?
+    choices:
+      - { id: '1', text: '530.17' }
+      - { id: '2', text: '531.74' }
+      - { id: '3', text: '531.17' }
+      - { id: '4', text: '530.74' }
+    answers: ['2']
+    explanation: |
+      선택지 1: 정수 부분 530과 소수 부분 17 모두 올바르지 않다.
+      선택지 2: 16진수 한 자리를 2진수 네 자리로 바꾸면 $0001\ 0101\ 1001.1111_{(2)}$이고, 소수점을 기준으로 좌우 3비트씩 묶으면 $101\ 011\ 001.111\ 100_{(2)} = 531.74_{(8)}$이므로 정답이다.
+      선택지 3: 정수 부분 531은 맞지만 소수 부분은 $.111\ 100 = .74$이다. 소수 부분을 오른쪽 끝에서부터 묶으면 17이 되는 잘못이 생긴다.
+      선택지 4: 소수 부분 74는 맞지만 정수 부분은 530이 아니라 531이다.
+
+      핵심 개념:
+      2진수와 8진수/16진수 간 변환은 소수점을 중심으로 좌우로 묶는다.
+      2진수 세 자리는 8진수 한 자리, 네 자리는 16진수 한 자리이다.
+      16진수 → 8진수는 2진수를 거쳐 변환한다.
+      소수 부분은 소수점 바로 오른쪽부터 묶고 모자라는 자리에 0을 채운다.
+
+  - id: b01-12
+    type: multiple-choice
+    prompt: 다음 중에서 나머지와 ==다른== 하나의 값을 나타내는 것은?
+    choices:
+      - { id: '1', text: '$13.59375_{(10)}$' }
+      - { id: '2', text: '$15.43_{(8)}$' }
+      - { id: '3', text: '$\mathrm{D.98}_{(16)}$' }
+      - { id: '4', text: '$1101.10011_{(2)}$' }
+    answers: ['2']
+    explanation: |
+      선택지 1: $13 = 1101_{(2)}$, $0.59375 = 0.10011_{(2)}$이므로 $1101.10011_{(2)}$이다.
+      선택지 2: $15.43_{(8)} = 001\ 101.100\ 011 = 1101.100011_{(2)}$로, 소수점 이하 부분에서 다른 값들과 차이가 나므로 정답이다.
+      선택지 3: $\mathrm{D.98}_{(16)} = 1101.1001\ 1000 = 1101.10011_{(2)}$이다.
+      선택지 4: $1101.10011_{(2)}$ 그대로이다.
+
+      핵심 개념:
+      서로 다른 진법의 값은 2진수로 변환해 비교하면 편리하다.
+      8진수 한 자리는 2진수 세 자리, 16진수 한 자리는 2진수 네 자리이다.
+      10진수 소수 부분은 2를 곱해 나오는 정수 부분을 차례로 취한다.
+      소수 부분 끝의 0은 값에 영향을 주지 않는다.
+
+  - id: b01-13
+    type: multiple-choice
+    passageRefs: [gb01-radix-values-01]
+    prompt: 다음 중 가장 큰 수를 나타내는 진법은?
+    choices:
+      - { id: '1', text: '2진법' }
+      - { id: '2', text: '8진법' }
+      - { id: '3', text: '10진법' }
+      - { id: '4', text: '16진법' }
+    answers: ['4']
+    explanation: |
+      선택지 1: $11100101_{(2)} = 2^7+2^6+2^5+2^2+2^0 = 229$이다.
+      선택지 2: $343_{(8)} = 3\times8^2+4\times8^1+3\times8^0 = 227$이다.
+      선택지 3: $227_{(10)}$은 그대로 227이다.
+      선택지 4: $\mathrm{E7}_{(16)} = 14\times16+7 = 231$로 가장 크므로 정답이다.
+
+      핵심 개념:
+      r진수를 10진수로 바꿀 때는 각 자리 숫자에 자리값 $r^i$를 곱해 모두 더한다.
+      r진법은 0부터 r−1까지의 숫자만 사용한다.
+      16진수에서 A~F는 10~15를 나타낸다.
+      서로 다른 진법의 수는 10진수로 통일해 비교한다.
+
+  - id: b01-14
+    type: multiple-choice
+    prompt: 8비트 패턴 10000000을 정수로 해석할 때 가장 큰 값을 나타내는 표현 방법은?
+    choices:
+      - { id: '1', text: '부호화-크기 방식' }
+      - { id: '2', text: '1의 보수 방식' }
+      - { id: '3', text: '2의 보수 방식' }
+      - { id: '4', text: '부호 없는 정수' }
+    answers: ['4']
+    explanation: |
+      선택지 1: 부호화-크기 방식은 최상위 비트가 부호, 나머지가 절댓값이다. 부호 비트 1, 크기 0000000 = 0이므로 −0이다.
+      선택지 2: 1의 보수 방식은 음수를 양수의 각 비트 보수로 표현한다. 부호 비트가 1이므로 음수이고 보수를 취하면 01111111 = 127이므로 −127이다.
+      선택지 3: 2의 보수 방식은 1의 보수에 1을 더해 음수를 표현한다. 1을 뺀 01111111의 보수 10000000 = 128이므로 −128이다.
+      선택지 4: 부호 없는 정수는 0과 양수만 표현하며 패턴을 그대로 10진수로 바꾸면 128이다. 네 값 중 가장 크므로 정답이다.
+
+      핵심 개념:
+      부호 있는 정수는 최상위 1비트를 부호 비트로 쓰며 0이면 양수, 1이면 음수이다.
+      부호화-크기, 1의 보수, 2의 보수 방식은 양수 표현은 같고 음수 표현이 다르다.
+      부호 없는 정수는 비트 패턴을 그대로 2진수 값으로 해석한다.
+      10000000은 부호 없는 정수 128, 부호화-크기 −0, 1의 보수 −127, 2의 보수 −128이다.
+
+  - id: b01-15
+    type: multiple-choice
+    prompt: 10진수 −109를 8비트 2의 보수 방식으로 올바르게 표현한 것은?
+    choices:
+      - { id: '1', text: '11101100' }
+      - { id: '2', text: '11101101' }
+      - { id: '3', text: '10010010' }
+      - { id: '4', text: '10010011' }
+    answers: ['4']
+    explanation: |
+      선택지 1: 11101100은 부호화-크기 방식으로 −108에 해당하는 패턴으로, −109의 2의 보수 표현이 아니다.
+      선택지 2: 11101101은 −109를 부호화-크기 방식으로 표현한 것(부호 비트 1 + 절댓값 1101101)이다.
+      선택지 3: 10010010은 109의 각 비트에 보수만 취한 1의 보수 표현으로, 1을 더하지 않았다.
+      선택지 4: 109 = $01101101_{(2)}$의 각 비트 보수 10010010에 1을 더하면 10010011이 되므로 정답이다.
+
+      핵심 개념:
+      음수를 2의 보수로 표현하는 절차는 세 단계이다.
+      ㉠ 절댓값을 2진수로 변환한다.
+      ㉡ 각 비트의 보수(0↔1)를 취한다.
+      ㉢ 그 결과에 1을 더한다.
+
+  - id: b01-16
+    type: multiple-choice
+    prompt: 2의 보수 방식으로 표현된 8비트 패턴 10001101은 10진수로 얼마인가?
+    choices:
+      - { id: '1', text: '−110' }
+      - { id: '2', text: '−115' }
+      - { id: '3', text: '−120' }
+      - { id: '4', text: '−124' }
+    answers: ['2']
+    explanation: |
+      선택지 1: −110의 2의 보수 표현은 10010010이므로 주어진 패턴과 다르다.
+      선택지 2: 10001101에서 1을 빼면 10001100, 보수를 취하면 01110011 = 115이고 부호 비트가 1이므로 −115이다. 정답이다.
+      선택지 3: −120의 2의 보수 표현은 10001000이므로 주어진 패턴과 다르다.
+      선택지 4: −124의 2의 보수 표현은 10000100이므로 주어진 패턴과 다르다.
+
+      핵심 개념:
+      2의 보수로 표현된 음수의 값은 표현 과정의 역순으로 구한다.
+      ㉠ 1을 뺀다.
+      ㉡ 각 비트의 보수를 취한다.
+      ㉢ 10진수로 변환하고 부호 비트(맨 왼쪽)가 1이면 음수를 붙인다.
+
+  - id: b01-17
+    type: multiple-choice
+    prompt: $1.001011\times2^{-7}$과 같은 형태의 수를 컴퓨터 내에 표현할 때 −7에 해당하는 지수 부분을 표현하기 위한 정수 표현 방법은?
+    choices:
+      - { id: '1', text: '초과표기법' }
+      - { id: '2', text: '1의 보수 방식' }
+      - { id: '3', text: '부호화-크기 방식' }
+      - { id: '4', text: '2의 보수 방식' }
+    answers: ['1']
+    explanation: |
+      선택지 1: 부동소수점의 지수 부분은 양수와 음수가 모두 가능하므로 부호 비트를 따로 쓰지 않고 매직넘버를 더해 부호와 값을 함께 표현하는 초과표기법을 사용한다. 정답이다.
+      선택지 2: 1의 보수 방식은 부호 비트를 사용하는 일반적인 정수 표현 방법으로 지수 표현에 쓰지 않는다.
+      선택지 3: 부호화-크기 방식도 부호 비트를 별도로 사용하는 일반 정수 표현 방법이다.
+      선택지 4: 2의 보수 방식은 일반 정수 표현에 널리 쓰이지만 부동소수점 지수 부분에는 초과표기법을 쓴다.
+
+      핵심 개념:
+      실수는 부동소수점 방식 $(-1)^{\text{부호}}\times\text{가수}\times2^{\text{지수}}$ 형태로 표현한다.
+      지수 부분은 양수·음수가 모두 가능하다.
+      초과표기법은 n비트에서 매직넘버 $2^{n-1}$ 또는 $2^{n-1}-1$을 더해 표현한다.
+      부호 비트 없이 부호와 값을 함께 표현한다.
+
+  - id: b01-18
+    type: multiple-choice
+    prompt: 부호화-크기 방식으로 표현된 8비트 패턴이 11100111이다. 이 값을 8비트 초과표기법으로 올바르게 표현한 것은? (단, 초과_127을 사용한다.)
+    choices:
+      - { id: '1', text: '00011000' }
+      - { id: '2', text: '00011001' }
+      - { id: '3', text: '01100110' }
+      - { id: '4', text: '01100111' }
+    answers: ['1']
+    explanation: |
+      선택지 1: 부호 비트 1을 제외한 1100111 = 103이므로 값은 −103이다. 매직넘버 127을 더하면 −103 + 127 = 24 = 00011000이므로 정답이다.
+      선택지 2: 00011001은 25로, 초과_127에서는 −102에 해당한다.
+      선택지 3: 01100110은 102로, 초과_127에서는 −25에 해당한다.
+      선택지 4: 01100111은 103으로, 부호 비트를 떼어 낸 절댓값을 그대로 쓴 것이며 초과_127에서는 −24에 해당한다.
+
+      핵심 개념:
+      초과표기법은 주어진 값에 매직넘버를 더해 n비트 2진수로 나타낸다.
+      8비트 초과_127은 값 + 127을 저장한다.
+      부호화-크기 방식은 최상위 비트가 부호, 나머지가 절댓값이다.
+      먼저 10진수로 바꾼 뒤 매직넘버를 더한다.
+
+  - id: b01-19
+    type: multiple-choice
+    prompt: 부동소수점의 지수를 8비트 초과표기법으로 나타낸 결과가 10000101일 때 지수에 해당하는 10진수 값은 얼마인가? (단, 초과_127을 사용한다.)
+    choices:
+      - { id: '1', text: '−5' }
+      - { id: '2', text: '6' }
+      - { id: '3', text: '122' }
+      - { id: '4', text: '133' }
+    answers: ['2']
+    explanation: |
+      선택지 1: −5는 10000101을 부호화-크기 방식으로 해석한 값이다.
+      선택지 2: 10000101 = 133에서 매직넘버 127을 빼면 6이므로 정답이다.
+      선택지 3: 122는 초과_127로 −5를 표현한 저장값(−5 + 127)이다.
+      선택지 4: 133은 10000101을 2진수로 변환한 값으로, 매직넘버를 빼지 않았다.
+
+      핵심 개념:
+      초과표기법으로 표시된 지수는 표현 과정의 역순으로 해석한다.
+      ㉠ 2진수를 10진수로 변환한다.
+      ㉡ 그 결과에서 매직넘버를 뺀다.
+      8비트 초과_127에서 저장값 − 127이 실제 지수이다.
+
+  - id: b01-20
+    type: multiple-choice
+    prompt: 110101.0101을 부동소수점으로 표현할 때 지수 부분의 표현으로 알맞은 것은? (단, 초과_127을 사용한다.)
+    choices:
+      - { id: '1', text: '00000101' }
+      - { id: '2', text: '10000001' }
+      - { id: '3', text: '10000100' }
+      - { id: '4', text: '10000101' }
+    answers: ['3']
+    explanation: |
+      선택지 1: 00000101은 지수값 5를 매직넘버 없이 그대로 2진수로 쓴 것이다.
+      선택지 2: 10000001은 129로, 초과_127에서 지수 2에 해당한다.
+      선택지 3: 소수점을 왼쪽으로 다섯 칸 옮겨 정규화하면 $1.101010101\times2^5$이고, $5+127=132 = 10000100_{(2)}$이므로 정답이다.
+      선택지 4: 10000101은 133으로, 초과_127에서 지수 6에 해당한다.
+
+      핵심 개념:
+      정규화는 소수점 바로 왼쪽에 1이 하나만 오도록 소수점 위치를 조정하는 과정이다.
+      정규화된 가수는 소수점 왼쪽의 1을 생략하고 소수점 이하만 저장한다.
+      지수값에 매직넘버를 더해 지수 부분을 표현한다.
+      저장된 가수를 사용할 때는 맨 왼쪽에 '1.'을 붙여 해석한다.
+
+  - id: b01-21
+    type: multiple-choice
+    prompt: 주어진 컴퓨터 시스템은 부동소수점을 표현하기 위해 16비트를 사용하며, 이 중에서 지수 부분은 5비트를 할당하여 초과_15로 표현하고 나머지 비트는 부호와 가수를 표현한다. 이와 같은 시스템에서 부동소수점으로 표현된 0 10010 1011110000은 10진수로 얼마인가?
+    choices:
+      - { id: '1', text: '2.9375' }
+      - { id: '2', text: '11.75' }
+      - { id: '3', text: '13.875' }
+      - { id: '4', text: '23.5' }
+    answers: ['3']
+    explanation: |
+      선택지 1: 2.9375 = $10.1111_{(2)}$로, 주어진 패턴을 해석한 값 $1.1011110000\times2^3$과 다르다.
+      선택지 2: 11.75 = $1011.11_{(2)}$로, 주어진 패턴을 해석한 값 $1101.111_{(2)}$와 다르다.
+      선택지 3: 부호 0이므로 양수, 지수 10010 = 18에서 매직넘버 15를 빼면 3, 가수 앞에 1.을 붙이면 $1.1011110000\times2^3 = 1101.1110000_{(2)} = 13.875$이므로 정답이다.
+      선택지 4: 23.5 = $10111.1_{(2)}$로, 주어진 패턴을 해석한 값 $1101.111_{(2)}$와 다르다.
+
+      핵심 개념:
+      부동소수점 비트 패턴은 부호, 지수, 가수 순으로 나눠 해석한다.
+      부호 비트 0은 양수, 1은 음수이다.
+      지수는 저장값에서 매직넘버를 빼서 구한다.
+      가수 앞에 '1.'을 붙인 뒤 지수만큼 소수점을 옮겨 10진수로 변환한다.
+
+  - id: b01-22
+    type: multiple-choice
+    passageRefs: [gb01-unicode-desc-01]
+    prompt: 다음 설명에 해당하는 문자 코드 체계는 무엇인가?
+    choices:
+      - { id: '1', text: 'ASCII' }
+      - { id: '2', text: 'EBCDIC' }
+      - { id: '3', text: '유니코드' }
+      - { id: '4', text: '확장된 ASCII' }
+    answers: ['3']
+    explanation: |
+      선택지 1: ASCII(American Standard Code for Information Interchange)는 미국표준협회에서 개발한 7비트 코드로 128개($2^7$) 문자만 표현하므로 전 세계 문자를 표현하지 못한다.
+      선택지 2: EBCDIC(Extended Binary Coded Decimal Interchange Code)은 IBM이 초기에 개발한 8비트 코드로 256개를 표현할 수 있으나 실제 사용 문자는 128개이며, IBM 메인프레임 외에는 쓰이지 않는다.
+      선택지 3: 기존 코드의 한계를 극복하고 전 세계 문자를 표현하며, 플랫폼·프로그램·언어에 무관하고, 1990년 첫 버전 발표 후 1995년 국제 표준이 된 것은 유니코드이므로 정답이다.
+      선택지 4: 확장된 ASCII는 ASCII를 1바이트에 맞추려고 왼쪽에 1비트를 추가한 형태로, 추가 비트는 0으로 채우거나 패리티(parity) 비트로 쓴다. 전 세계 문자를 표현하지 못한다.
+
+      핵심 개념:
+      ASCII는 7비트, 128개 문자를 표현한다.
+      확장된 ASCII는 8비트로 맞춘 것이며 추가 비트는 0 또는 패리티 비트이다.
+      EBCDIC은 IBM의 8비트 코드이다.
+      유니코드는 전 세계 문자를 표현하는 국제 표준 코드 체계이다.
+
+  - id: b01-23
+    type: multiple-choice
+    prompt: 컴퓨터의 문자 코드 체계 중에서 가장 많은 문자를 나타낼 수 있는 것은?
+    choices:
+      - { id: '1', text: 'EBCDIC' }
+      - { id: '2', text: 'ASCII' }
+      - { id: '3', text: '유니코드' }
+      - { id: '4', text: '확장 ASCII' }
+    answers: ['3']
+    explanation: |
+      선택지 1: EBCDIC(Extended Binary Coded Decimal Interchange Code)은 8비트 코드로 최대 256개이며 실제 사용 문자는 128개이다.
+      선택지 2: ASCII(American Standard Code for Information Interchange)는 7비트로 128개 문자를 표현한다.
+      선택지 3: 유니코드는 전 세계의 문자를 표현하기 위한 코드 체계로 보기 중 가장 많은 문자를 나타낼 수 있으므로 정답이다.
+      선택지 4: 확장 ASCII는 ASCII에 1비트를 추가해 8비트로 맞춘 것이며, 추가 비트를 0이나 패리티 비트로 쓰므로 표현 문자 수가 크게 늘지 않는다.
+
+      핵심 개념:
+      문자 코드 체계는 표현 가능한 문자 수가 다르다.
+      ASCII는 7비트, 128개 문자이다.
+      확장 ASCII와 EBCDIC은 8비트 코드이다.
+      유니코드는 전 세계 문자를 표현하므로 가장 많은 문자를 나타낸다.
+
+  - id: b02-01
+    type: multiple-choice
+    prompt: 추상화를 통해 자료의 논리적 관계를 구조화한 것을 무엇이라고 하는가?
+    choices:
+      - { id: '1', text: 자료구조 }
+      - { id: '2', text: 계층구조 }
+      - { id: '3', text: 알고리즘 }
+      - { id: '4', text: 프로세스 }
+    answers: ['1']
+    explanation: |
+      선택지 1: 자료의 구조화된 형태를 표현하려면 자료의 추상화가 필요하며, 추상화를 통해 자료의 논리적 관계를 구조화한 것이 자료구조(data structures)이다.
+      선택지 2: 계층구조는 상위·하위 관계로 요소를 배치하는 구조 형태의 한 종류일 뿐, 추상화로 자료의 논리적 관계를 구조화한 것 전체를 가리키는 용어가 아니다.
+      선택지 3: 알고리즘은 일렬화된 추상화된 명령어들, 즉 문제를 해결하는 명령의 순서이므로 자료의 관계를 구조화한 것과 다르다.
+      선택지 4: 프로세스는 실행 중인 프로그램을 뜻하는 운영체제 용어로, 자료의 논리적 관계와 무관하다.
+
+      핵심 개념:
+      추상화는 공통적인 개념을 이용하여 같은 종류의 다양한 객체를 정의하는 것이다.
+      데이터의 추상화는 객체를 컴퓨터에서 표현·활용하기 위해 데이터 구조의 공통 특징만 뽑아 정의한 것이다.
+      자료구조는 추상화를 통해 자료의 논리적 관계를 구조화한 것이다.
+      자료의 추상화와 구조화가 적절하지 못하면 소프트웨어가 비효율적으로 수행되거나 확장성에 문제가 생긴다.
+
+  - id: b02-02
+    type: multiple-choice
+    prompt: 배열에 대한 설명으로 올바른 것은?
+    choices:
+      - { id: '1', text: 삽입과 삭제 연산 수행 시 추가적인 연산으로 인해 오버헤드가 발생하는 정적 구조를 갖는다. }
+      - { id: '2', text: 2개 이상의 서로 다른 구조를 가진 데이터 항목을 하나의 변수 이름으로 묶고 인덱스를 사용해서 구분하는 자료구조이다. }
+      - { id: '3', text: 배열의 기억공간은 포트란과 코볼에서처럼 항상 동적으로 할당이 이루어진다. }
+      - { id: '4', text: 배열에서 각 원소에 대한 접근 시간은 원소가 어느 위치에 저장되어 있느냐에 따라 차이가 발생한다. }
+    answers: ['1']
+    explanation: |
+      선택지 1: 배열은 크기가 선언 시 정해지는 정적 구조이므로, 중간에 원소를 삽입·삭제하면 뒤 원소들을 옮기는 추가 연산이 필요해 오버헤드가 발생한다.
+      선택지 2: 서로 다른 구조를 가진 데이터 항목을 하나의 이름으로 묶는 것은 레코드 자료구조이다. 배열은 동일한 자료형의 데이터를 모은 집합체이다.
+      선택지 3: 배열의 기억공간은 선언문을 통해 정의되어 정적으로 할당된다. 항상 동적으로 할당된다는 설명은 틀리다.
+      선택지 4: 배열 원소는 인덱스로 직접 접근하므로 모든 원소의 접근 시간이 동일하다. 위치에 따라 접근 시간이 달라지는 대표적인 자료구조는 리스트이다.
+
+      핵심 개념:
+      배열(array)은 동일한 자료형의 여러 데이터를 동일한 변수 이름의 방에 일렬로 저장하는 자료의 집합체이다.
+      원소는 배열의 각 자료 항목이고, 인덱스(첨자)는 원소가 저장된 방 번호에 해당한다.
+      배열은 선언 시 기억공간이 정적으로 할당되고, 인덱스로 모든 원소에 같은 시간에 접근한다.
+      삽입·삭제 시에는 원소 이동이 필요해 오버헤드가 생긴다.
+
+  - id: b02-03
+    type: multiple-choice
+    passageRefs: [gb02-sparse-matrix-01]
+    prompt: 다음 행렬 A를 ‘희소행렬 표현 행렬 B’로 구현할 경우에 B[1,0]의 값은 무엇인가?
+    choices:
+      - { id: '1', text: '0' }
+      - { id: '2', text: '1' }
+      - { id: '3', text: '2' }
+      - { id: '4', text: '3' }
+    answers: ['1']
+    explanation: |
+      선택지 1: 희소행렬 표현 B의 첫 번째 행 B[0]은 (8, 9, 10)으로 A의 행 크기·열 크기·0이 아닌 원소 개수이다. 두 번째 행 B[1]부터 0이 아닌 원소를 행 우선으로 (행번호, 열번호, 원소값) 형태로 저장하므로 B[1]은 첫 원소 20의 (0, 1, 20)이고, B[1,0]은 행번호 0이다.
+      선택지 2: 1은 B[1]의 열번호인 B[1,1]의 값이다. B[1,0]은 행번호이므로 1이 아니다.
+      선택지 3: 2는 원소 78의 행번호로 B[4,0]의 값이다. B[1]에는 첫 번째 0이 아닌 원소가 들어가므로 해당하지 않는다.
+      선택지 4: 3은 원소 67의 행번호로 B[5,0]의 값이다. B[1,0]과는 다른 위치이다.
+
+      핵심 개념:
+      희소행렬(sparse matrix)은 원소값이 0인 원소가 그렇지 않은 원소보다 상대적으로 많은 행렬이다.
+      0을 저장하는 메모리 낭비를 막기 위해 0이 아닌 원소만 (행번호, 열번호, 원소값)으로 모아 저장한다.
+      표현 행렬의 첫 번째 행은 원래 행렬의 행 크기, 열 크기, 0이 아닌 원소의 개수를 나타낸다.
+      두 번째 행부터 0이 아닌 원소의 행 좌표값, 열 좌표값, 원소값을 차례로 나타낸다.
+
+  - id: b02-04
+    type: multiple-choice
+    passageRefs: [gb02-stack-ops-01]
+    prompt: 다음 스택 연산을 완료한 후, 스택에 남아 있는 모든 값을 더하면 얼마인가?
+    choices:
+      - { id: '1', text: '10' }
+      - { id: '2', text: '12' }
+      - { id: '3', text: '13' }
+      - { id: '4', text: '17' }
+    answers: ['4']
+    explanation: |
+      선택지 1: 10은 마지막 push(S, 7)을 빼고 계산한 값이다. 마지막에 7이 삽입되므로 답이 아니다.
+      선택지 2: 12는 첫 pop(S)으로 제거된 2를 남아 있다고 본 값(10+2)이다. 2는 pop 함수로 제거되었다.
+      선택지 3: 13은 if문의 pop(S)으로 제거된 3을 남아 있다고 본 값(10+3)이다. 스택이 비어 있지 않으므로 pop이 수행되어 3은 삭제된다.
+      선택지 4: push로 10, 2가 삽입되고 pop으로 2가 제거된다. 다시 3이 삽입되고, 스택이 빈 상태가 아니므로 pop으로 3이 삭제된다. 마지막으로 7이 삽입되어 스택에는 10과 7이 남으므로 합은 10+7=17이다.
+
+      핵심 개념:
+      스택(stack)은 데이터의 삽입과 삭제가 한쪽 끝(더미의 가장 위쪽)에서만 이루어지는 자료구조이다.
+      push는 맨 위에 삽입하고, pop은 맨 위(가장 최근에 삽입된) 원소를 삭제하는 후입선출(LIFO, Last In First Out) 방식이다.
+      연산을 순서대로 따라가며 스택 상태를 적어 보면 남은 원소를 정확히 구할 수 있다.
+      조건 연산(if not empty)은 스택이 비었는지 먼저 확인한 뒤 수행한다.
+
+  - id: b02-05
+    type: multiple-choice
+    prompt: 한쪽 끝에서 모든 삽입을 수행하고 다른 쪽 끝에서 모든 삭제를 수행하는 구조의 리스트 자료구조를 무엇이라 하는가?
+    choices:
+      - { id: '1', text: 큐 }
+      - { id: '2', text: 스택 }
+      - { id: '3', text: 이중 연결 리스트 }
+      - { id: '4', text: 배열 }
+    answers: ['1']
+    explanation: |
+      선택지 1: 기차표를 사려고 줄 선 사람들이 앞에서 표를 사서 빠지고 새로 온 사람은 줄 맨 끝에 서듯이, 한쪽 끝에서는 삭제만, 다른 한쪽 끝에서는 삽입만 이루어지는 자료구조가 큐(queue)이다.
+      선택지 2: 스택은 쌓인 접시 더미처럼 삽입과 삭제가 같은 한쪽 끝에서만 이루어지므로 조건과 다르다.
+      선택지 3: 이중 연결 리스트는 각 노드가 앞뒤 노드를 가리키는 포인터를 가져 임의 위치에서 삽입·삭제가 가능한 리스트로, 삽입과 삭제 위치가 양 끝으로 나뉘어 고정된 구조가 아니다.
+      선택지 4: 배열은 똑같이 생긴 방을 연속해서 만들고 그 안에 같은 종류의 자료를 저장하는 구조로, 삽입·삭제 위치에 대한 제한 규칙이 없다.
+
+      핵심 개념:
+      큐는 리스트의 한쪽 끝에서는 데이터의 삭제만, 다른 한쪽 끝에서는 데이터의 삽입만 이루어지는 자료구조이다.
+      먼저 들어온 데이터가 먼저 나가는 선입선출(FIFO, First In First Out) 방식이다.
+      스택은 한쪽 끝에서만 삽입·삭제가 이루어지는 후입선출(LIFO) 방식이다.
+      큐는 대기 줄, 스택은 쌓인 접시·책 더미로 비유된다.
+
+  - id: b02-06
+    type: multiple-choice
+    prompt: 트리의 루트 노드에서 리프 노드에 이르는 가장 긴 경로를 무엇이라고 하는가?
+    choices:
+      - { id: '1', text: 가지 수 }
+      - { id: '2', text: 차수 }
+      - { id: '3', text: 레벨 }
+      - { id: '4', text: 깊이 }
+    answers: ['4']
+    explanation: |
+      선택지 1: 노드를 연결하는 것을 가지(branch, edge)라고 하며, 가지 수는 연결선의 개수일 뿐 루트에서 리프까지의 가장 긴 경로를 뜻하지 않는다.
+      선택지 2: 차수(degree)는 각 노드에 있는 가지의 수이므로 경로의 길이와 다른 개념이다.
+      선택지 3: 레벨은 루트 노드로부터 특정 노드까지의 거리(가지의 개수)로, 노드마다 다를 수 있는 개별 노드의 값이다.
+      선택지 4: 레벨에서 가장 큰 값에 1을 더한 값, 즉 루트에서 리프에 이르는 가장 긴 경로에 해당하는 값을 트리의 깊이라고 한다.
+
+      핵심 개념:
+      트리는 노드와 노드를 연결하는 가지로 이루어진, 계층적 관계를 갖는 비선형 자료구조이다.
+      차수는 노드에 있는 가지의 수, 레벨은 루트로부터의 거리이다.
+      트리의 깊이(depth) 또는 높이(height)는 가장 긴 경로에 있는 단말 노드의 레벨에 1을 더한 값이다.
+      루트 레벨이 0이면 최대 레벨이 k인 트리의 깊이는 k+1이다.
+
+  - id: b02-07
+    type: multiple-choice
+    passageRefs: [gb02-tree-01]
+    prompt: 주어진 트리에 대한 설명으로 올바르지 ==않은== 것은? (단, 루트 레벨은 0부터 시작한다.)
+    choices:
+      - { id: '1', text: 트리의 차수는 3이다. }
+      - { id: '2', text: 비단말 노드의 수는 모두 7이다. }
+      - { id: '3', text: '단말 노드는 C, J, K, L, M, N, I밖에 없다.' }
+      - { id: '4', text: 트리의 깊이는 3이다. }
+    answers: ['4']
+    explanation: |
+      선택지 1: 노드 A의 차수는 3, B는 2, C는 0, D는 3, G는 1이다. 트리의 차수는 모든 노드의 차수 중 가장 큰 값이므로 3이 맞다.
+      선택지 2: 자식 노드를 가진 노드는 A, B, D, E, F, G, H로 모두 7개이므로 비단말 노드의 수는 7이 맞다.
+      선택지 3: 단말 노드(terminal node, 잎 노드)는 차수가 0인 노드로 C, J, K, L, M, N, I의 7개이므로 맞다.
+      선택지 4: 트리의 깊이는 가장 긴 경로에 있는 단말 노드의 레벨에 1을 더한 값이다. 이 트리는 레벨 0, 1, 2, 3의 노드를 가지므로 깊이는 4이다. 따라서 3이라는 설명이 틀리다.
+
+      핵심 개념:
+      차수(degree)는 노드에서 아래로 향하는 가지의 수이고, 트리의 차수는 노드 차수 중 최댓값이다.
+      단말 노드(잎 노드)는 차수가 0인 노드이고, 자식을 가진 나머지 노드는 비단말 노드이다.
+      레벨은 루트로부터의 거리(가지의 개수)이며 루트 레벨은 0이다.
+      트리의 깊이(높이)는 최대 레벨에 1을 더한 값이다.
+
+  - id: b02-08
+    type: multiple-choice
+    prompt: 트리의 최대 레벨이 $k$일 때, 레벨 $k-1$까지는 포화 이진트리를 형성하고, 레벨 $k$에서는 왼쪽부터 오른쪽으로 채워진 트리는 무엇인가?
+    choices:
+      - { id: '1', text: 불완전 트리 }
+      - { id: '2', text: 완전 이진트리 }
+      - { id: '3', text: 경사 이진트리 }
+      - { id: '4', text: 불포화 이진트리 }
+    answers: ['2']
+    explanation: |
+      선택지 1: 불완전 트리는 이진트리의 분류 용어가 아니며, 마지막 레벨을 왼쪽부터 채운다는 조건을 정의하지 않는다.
+      선택지 2: 완전 이진트리(complete binary tree)는 최대 레벨이 $k$일 때 레벨 $k-1$까지 포화 이진트리를 이루고 레벨 $k$는 왼쪽부터 오른쪽으로 채워진 트리이다. 루트를 1번으로 레벨별 왼쪽에서 오른쪽으로 번호를 붙이면 포화 이진트리의 번호와 연속적으로 일치한다.
+      선택지 3: 경사 이진트리는 모든 노드가 한쪽 방향 자식만 가져 한쪽으로 기울어진 트리이므로 각 레벨이 채워지는 조건과 맞지 않는다.
+      선택지 4: 불포화 이진트리는 표준 분류 용어가 아니며, 마지막 레벨의 채움 순서를 규정하지 않는다.
+
+      핵심 개념:
+      포화 이진트리는 각 레벨에 빈 자리 없이 노드를 모두 가진 이진트리이다.
+      완전 이진트리는 마지막 레벨 직전까지 포화 상태이고 마지막 레벨은 왼쪽부터 채운 이진트리이다.
+      완전 이진트리의 노드 수는 $2^{k+1}-1$을 넘지 않으며 노드 번호가 연속적이다.
+      경사 이진트리는 한쪽 방향으로만 자식이 이어진 트리이다.
+
+  - id: b02-09
+    type: multiple-choice
+    passageRefs: [gb02-binary-tree-01]
+    prompt: 다음의 이진트리를 전위 순회할 때, 노드 C는 몇 번째로 방문되는가?
+    choices:
+      - { id: '1', text: '5' }
+      - { id: '2', text: '6' }
+      - { id: '3', text: '7' }
+      - { id: '4', text: '8' }
+    answers: ['2']
+    explanation: |
+      선택지 1: 5번째로 방문되는 노드는 H이다. C는 A의 왼쪽 서브트리(B, D, E, H)를 모두 방문한 뒤에 방문되므로 5번째가 될 수 없다.
+      선택지 2: 전위 순회 순서는 A, B, D, E, H, C, F, G, I, J이다. 루트 A 다음 왼쪽 서브트리 B, D, E, H를 모두 방문한 후 C를 방문하므로 C는 여섯 번째이다.
+      선택지 3: 7번째로 방문되는 노드는 C의 왼쪽 자식 F이다.
+      선택지 4: 8번째로 방문되는 노드는 G이다.
+
+      핵심 개념:
+      전위(preorder) 순회는 루트 → 왼쪽 서브트리 → 오른쪽 서브트리 순으로 방문한다.
+      중위(inorder) 순회는 왼쪽 서브트리 → 루트 → 오른쪽 서브트리 순이다.
+      후위(postorder) 순회는 왼쪽 서브트리 → 오른쪽 서브트리 → 루트 순이다.
+      서브트리도 같은 규칙을 재귀적으로 적용하므로, 왼쪽 서브트리 전체를 방문한 뒤에 오른쪽 자식으로 넘어간다.
+
+  - id: b02-10
+    type: multiple-choice
+    passageRefs: [gb02-binary-tree-02, gb02-traversal-box-01]
+    prompt: 주어진 이진트리를 순회하였더니, 다음과 같은 순회 결과를 얻었다. 어떤 순회 방법을 사용하였는가?
+    choices:
+      - { id: '1', text: 너비 우선 순회 }
+      - { id: '2', text: 중위 순회 }
+      - { id: '3', text: 후위 순회 }
+      - { id: '4', text: 전위 순회 }
+    answers: ['3']
+    explanation: |
+      선택지 1: 너비 우선 순회는 레벨 순서로 방문하므로 루트 H를 가장 먼저 방문한다. G를 H보다 먼저 방문했다는 조건과 맞지 않는다.
+      선택지 2: 중위 순회 결과는 B, E, G, H, J, K, M, N, P로, N을 P보다 먼저 방문하므로 P를 N보다 먼저 방문했다는 조건과 맞지 않는다.
+      선택지 3: 후위 순회 결과는 B, G, E, J, M, K, P, N, H이다. G는 H보다 먼저, P는 N보다 먼저, J는 M보다 먼저 방문되어 세 조건을 모두 만족한다.
+      선택지 4: 전위 순회는 루트 H를 가장 먼저 방문하므로 G를 H보다 먼저 방문했다는 조건과 맞지 않는다.
+
+      핵심 개념:
+      G는 H의 왼쪽 서브트리, P는 N의 오른쪽 자식, J는 M의 왼쪽 형제이다.
+      루트(부모)보다 왼쪽·오른쪽 자식을 먼저 방문하고, 왼쪽을 오른쪽보다 먼저 방문하는 순회는 후위 순회이다.
+      후위 순회는 왼쪽 노드 - 오른쪽 노드 - 루트 노드 순서로 방문한다.
+      전위 순회와 너비 우선 순회는 루트를 가장 먼저 방문한다.
+
+  - id: b02-11
+    type: multiple-choice
+    prompt: 이진트리에 대한 설명으로 올바른 것은?
+    choices:
+      - { id: '1', text: 각 노드의 차수 중에서 최소 차수가 2 이상이다. }
+      - { id: '2', text: 포화 이진트리는 각 레벨에서 빈 자리가 없이 노드를 모두 가진다. }
+      - { id: '3', text: 루트 레벨이 0이고 깊이가 2인 이진트리의 최대 노드의 수는 8개이다. }
+      - { id: '4', text: 한 노드에 대한 서브트리의 순서는 대칭적인 관계를 갖기 때문에 중요하지 않다. }
+    answers: ['2']
+    explanation: |
+      선택지 1: 이진트리의 최대 차수가 2로, 각 노드는 2개까지의 자식 노드를 가질 수 있다. 최소 차수가 2 이상이라는 조건은 없으며 단말 노드의 차수는 0이다.
+      선택지 2: 포화 이진트리는 각 레벨에서 빈 자리 없이 노드를 모두 가진 이진트리이므로 올바르다.
+      선택지 3: 루트 레벨이 0일 때 깊이는 최대 레벨에 1을 더한 값이므로, 깊이가 2인 이진트리는 레벨 0과 1만 가진다. 최대 노드 수는 $2^2-1=3$개이므로 8개라는 설명은 틀리다.
+      선택지 4: 이진트리에서 왼쪽 서브트리와 오른쪽 서브트리는 구별되므로 서브트리는 대칭적인 관계를 갖지 않고 순서가 중요하다.
+
+      핵심 개념:
+      이진트리는 모든 노드의 차수가 최대 2이고 최대 2개의 서브트리를 갖는 트리이다.
+      왼쪽 서브트리와 오른쪽 서브트리는 순서가 있어 서로 구별된다.
+      레벨 $i$(루트 0)에 올 수 있는 최대 노드 수는 $2^i$이다.
+      포화 이진트리는 모든 레벨이 빈 자리 없이 채워진 이진트리이다.
+
+  - id: b02-12
+    type: multiple-choice
+    prompt: 각 레벨에서 빈 자리가 없이 노드를 모두 가지고 있고, 모든 내부 노드는 2개의 자식 노드를 가지고 있는 트리는 무엇인가?
+    choices:
+      - { id: '1', text: 경사 이진트리 }
+      - { id: '2', text: 탐색 이진트리 }
+      - { id: '3', text: 완전 이진트리 }
+      - { id: '4', text: 포화 이진트리 }
+    answers: ['4']
+    explanation: |
+      선택지 1: 경사 이진트리는 모든 노드가 한쪽 방향 자식만 가진 트리이므로 내부 노드가 2개의 자식을 갖는다는 조건과 맞지 않는다.
+      선택지 2: 탐색 이진트리는 왼쪽 서브트리의 키는 작고 오른쪽 서브트리의 키는 큰 값의 대소 규칙으로 정의되는 트리로, 모양(레벨이 가득 찼는지)과 무관하다.
+      선택지 3: 완전 이진트리는 마지막 레벨이 왼쪽부터 채워지기만 하면 되므로 마지막 레벨에 빈 자리가 있을 수 있어 조건과 다르다.
+      선택지 4: 포화 이진트리(full binary tree)는 각 레벨에서 빈 자리 없이 노드를 모두 가지고, 모든 내부 노드가 2개의 자식 노드를 갖는다.
+
+      핵심 개념:
+      포화 이진트리는 깊이가 $k$인 이진트리 중 노드의 개수가 $2^k-1$개인 이진트리이다.
+      깊이가 $k$인 이진트리가 가질 수 있는 노드의 최대 개수가 $2^k-1$이며, 이때 단말 노드는 $2^{k-1}$개이다.
+      완전 이진트리는 마지막 레벨만 왼쪽부터 채워져 있으면 되므로 포화 이진트리보다 조건이 약하다.
+      모든 포화 이진트리는 완전 이진트리이지만 그 역은 성립하지 않는다.
+
+  - id: b02-13
+    type: multiple-choice
+    prompt: 그래프 관련 용어에 대한 설명으로 ==틀린== 것은?
+    choices:
+      - { id: '1', text: 간선이 두 정점을 직접적으로 연결시키고 있을 때 두 정점을 인접한 정점이라고 한다. }
+      - { id: '2', text: 각 정점과 인접해 있는 정점들의 나열을 사이클이라고 한다. }
+      - { id: '3', text: 두 정점 사이에 경로가 존재하는 경우를 연결되었다고 한다. }
+      - { id: '4', text: 방향 그래프에서 적어도 두 정점이 어느 한 방향의 경로만 존재할 때 약하게 연결되었다고 한다. }
+    answers: ['2']
+    explanation: |
+      선택지 1: 간선으로 직접 연결된 두 정점을 인접한(adjacent) 정점이라고 하므로 옳은 설명이다.
+      선택지 2: 인접한 정점들을 차례로 나열한 것은 경로(path)이다. 사이클(cycle)은 3개 이상의 정점을 가진 경로 중에서 시작 정점과 끝 정점이 같은 경로이므로 틀린 설명이다.
+      선택지 3: 두 정점 사이에 경로가 존재하면 두 정점이 연결되었다(connected)고 하므로 옳은 설명이다.
+      선택지 4: 방향 그래프에서 어떤 두 정점 사이에 한 방향의 경로만 존재하면 약하게 연결되었다고 하므로 옳은 설명이다.
+
+      핵심 개념:
+      인접: 간선이 두 정점을 직접 연결하는 관계이다.
+      경로: 인접한 정점들을 간선을 따라 나열한 순서이다.
+      사이클: 3개 이상의 정점을 가진 경로에서 시작 정점과 끝 정점이 같은 경로이다.
+      연결: 두 정점 사이에 경로가 존재하는 것이며, 방향 그래프에서 한 방향 경로만 있으면 약하게 연결되었다고 한다.
+
+  - id: b02-14
+    type: multiple-choice
+    prompt: 그래프 순회 방법 중에서 최근의 주변 정점을 먼저 방문하는 방식은 무엇인가?
+    choices:
+      - { id: '1', text: 피보나치 탐색 }
+      - { id: '2', text: 깊이 우선 탐색 }
+      - { id: '3', text: 이진 탐색 }
+      - { id: '4', text: 너비 우선 탐색 }
+    answers: ['2']
+    explanation: |
+      선택지 1: 피보나치 탐색은 정렬된 배열에서 피보나치 수열로 구간을 나누어 값을 찾는 탐색 기법으로, 그래프 순회 방법이 아니다.
+      선택지 2: 깊이 우선 탐색(DFS, Depth First Search)은 가장 최근에 방문한 정점을 중심으로, 그 정점과 인접했지만 방문하지 않은 정점 중 하나를 다음 방문 정점으로 결정하므로 최근의 주변 정점을 먼저 방문한다.
+      선택지 3: 이진 탐색은 정렬된 자료에서 중간값과 비교해 범위를 절반씩 줄이는 탐색 기법으로, 그래프 순회 방법이 아니다.
+      선택지 4: 너비 우선 탐색은 한 정점에 인접한 정점들을 모두 차례로 방문한 뒤 다음 단계로 넘어가므로, 최근 방문 정점의 주변을 먼저 파고드는 방식이 아니다.
+
+      핵심 개념:
+      그래프 탐색은 그래프의 모든 정점을 체계적으로 방문하는 것이다.
+      깊이 우선 탐색은 가장 최근에 방문한 정점의 방문하지 않은 인접 정점으로 계속 깊이 들어가고, 더 없으면 되돌아간다.
+      너비 우선 탐색(BFS, Breadth First Search)은 한 정점의 인접 정점을 모두 차례로 방문한 후 다음 정점으로 넘어간다.
+      피보나치 탐색과 이진 탐색은 배열 탐색 기법이다.
+
+  - id: b02-15
+    type: multiple-choice
+    prompt: 그래프 순회 방법 중에서 인접했지만 방문하지 않은 모든 정점을 하나씩 차례로 방문하는 방식은 무엇인가?
+    choices:
+      - { id: '1', text: 피보나치 탐색 }
+      - { id: '2', text: 깊이 우선 탐색 }
+      - { id: '3', text: 이진 탐색 }
+      - { id: '4', text: 너비 우선 탐색 }
+    answers: ['4']
+    explanation: |
+      선택지 1: 피보나치 탐색은 정렬된 배열에서 피보나치 수열로 구간을 나누어 값을 찾는 기법으로, 그래프 순회 방법이 아니다.
+      선택지 2: 깊이 우선 탐색은 인접한 미방문 정점 중 하나만 골라 계속 깊이 들어가므로, 인접한 모든 정점을 차례로 방문하는 방식이 아니다.
+      선택지 3: 이진 탐색은 정렬된 자료에서 범위를 절반씩 줄이는 탐색 기법으로, 그래프 순회 방법이 아니다.
+      선택지 4: 너비 우선 탐색(BFS, Breadth First Search)은 현재 정점과 인접했지만 방문하지 않은 정점들을 하나씩 모두 차례로 방문한 뒤, 방문한 정점들의 인접 정점으로 넘어간다.
+
+      핵심 개념:
+      너비 우선 탐색은 시작 정점에서 가까운 정점부터 레벨 순서처럼 넓게 방문한다.
+      깊이 우선 탐색(DFS, Depth First Search)은 한 방향으로 끝까지 들어갔다가 되돌아오며 방문한다.
+      너비 우선 탐색은 보통 큐, 깊이 우선 탐색은 스택(또는 재귀)으로 구현한다.
+      두 방법 모두 그래프의 모든 정점을 체계적으로 방문하는 그래프 탐색 방법이다.
+
+  - id: b02-16
+    type: multiple-choice
+    passageRefs: [gb02-dfs-graph-01]
+    prompt: 다음과 같은 무방향 그래프를 깊이 우선 탐색을 수행할 때 방문한 노드를 순서대로 나열한 것은?
+    choices:
+      - { id: '1', text: '1 − 2 − 4 − 5 − 8 − 6 − 7 − 3' }
+      - { id: '2', text: '1 − 2 − 4 − 8 − 5 − 6 − 3 − 7' }
+      - { id: '3', text: '1 − 2 − 3 − 4 − 5 − 6 − 7 − 8' }
+      - { id: '4', text: '1 − 2 − 4 − 8 − 5 − 6 − 7 − 3' }
+    answers: ['2']
+    explanation: |
+      선택지 1: 정점 4를 방문한 뒤 4와 인접한 정점(2, 8) 중 방문하지 않은 정점은 8뿐이므로 다음은 8이어야 한다. 4 다음에 5를 방문하는 것은 깊이 우선 탐색이 아니다.
+      선택지 2: 1에서 시작해 인접한 2를 방문하고, 2와 인접한 4, 4의 유일한 미방문 인접 정점 8, 8의 미방문 인접 정점 5, 6, 7 중 번호가 가장 작은 5를 방문한다. 5에는 방문하지 않은 인접 정점이 없어 8로 되돌아가 6을 방문하고, 6과 인접한 미방문 정점 3을 방문한다. 3과 인접한 정점 중 7이 아직 방문되지 않았으므로 7을 방문하여 1−2−4−8−5−6−3−7이다.
+      선택지 3: 1−2−3−4−5−6−7−8은 가까운 정점부터 차례로 방문한 너비 우선 탐색의 순서이다.
+      선택지 4: 6을 방문한 뒤에는 6과 인접한 미방문 정점 3으로 먼저 깊이 들어가야 하므로, 6 다음에 7을 방문하는 것은 깊이 우선 탐색 순서가 아니다.
+
+      핵심 개념:
+      깊이 우선 탐색은 현재 정점과 인접했지만 방문하지 않은 정점 중 하나를 골라 계속 진행한다.
+      더 이상 방문할 인접 정점이 없으면 직전 정점으로 되돌아가(backtracking) 다른 미방문 정점을 찾는다.
+      후보가 여러 개일 때는 번호가 작은 정점부터 선택하는 것이 일반적이다.
+      모든 정점을 방문하면 탐색을 마친다.
+
+  - id: b02-17
+    type: multiple-choice
+    passageRefs: [gb02-adjacency-01]
+    prompt: 다음의 (가) 그래프를 (나)와 같이 표현하는 방법을 무엇이라고 하는가?
+    choices:
+      - { id: '1', text: 그래프리스트 }
+      - { id: '2', text: 인접 리스트 }
+      - { id: '3', text: 인접행렬 }
+      - { id: '4', text: 그래프 행렬 }
+    answers: ['3']
+    explanation: |
+      선택지 1: 그래프리스트는 그래프 표현 방법의 표준 용어가 아니다.
+      선택지 2: 인접 리스트(adjacency list)는 각 정점 $v_i$에 인접한 정점들을 1개의 연결 리스트로 표현해 $n$개의 연결 리스트를 만드는 방법으로, (나)처럼 2차원 배열로 나타내지 않는다.
+      선택지 3: 인접행렬(adjacency matrix)은 $n$개의 정점을 가진 그래프를 $n \times n$ 크기의 2차원 배열로 표현하고, 정점 $i$와 정점 $j$ 사이에 간선이 있으면 $A[i][j]$를 1, 없으면 0으로 정한다. (나)는 4개의 정점을 $4 \times 4$ 배열의 0과 1로 나타낸 인접행렬이다.
+      선택지 4: 그래프 행렬은 그래프 표현 방법의 표준 용어가 아니다.
+
+      핵심 개념:
+      그래프를 프로그래밍 언어로 구현할 때는 인접행렬이나 인접 리스트를 이용한다.
+      인접행렬은 $n \times n$ 2차원 배열로, 간선이 있으면 1, 없으면 0을 저장한다.
+      무방향 그래프의 인접행렬은 대각선을 기준으로 대칭이다.
+      인접 리스트는 정점마다 인접 정점을 연결 리스트로 저장하며, 각 노드는 (정점번호, 포인터) 2개의 필드로 구성된다.
+
+      ※ 원본 표기: (나)의 행렬은 간선 1-2, 1-4, 2-3, 3-4를 나타내어, (가) 그림의 간선 1-2, 1-3, 2-4, 3-4와 맞지 않는다.
+
+  - id: b03-01
+    type: multiple-choice
+    prompt: 알고리즘이 만족해야 할 조건에 해당하지 ==않는== 것은?
+    choices:
+      - { id: '1', text: '외부에서 1개 이상의 입력이 제공되어야 한다.' }
+      - { id: '2', text: '각 명령은 모호하지 않고 단순 명확해야 한다.' }
+      - { id: '3', text: '한정된 수의 단계를 거친 후에는 반드시 종료해야 한다.' }
+      - { id: '4', text: '모든 명령은 컴퓨터에서 실행 가능해야 한다.' }
+    answers: ['1']
+    explanation: |
+      선택지 1: 입출력 조건은 0개 이상의 외부 입력과 1개 이상의 출력을 요구한다. 입력은 없어도 되므로 "1개 이상의 입력"은 조건이 아니며 정답이다.
+      선택지 2: 명확성 조건으로, 각 명령은 모호하지 않고 단순 명확해야 한다.
+      선택지 3: 유한성 조건으로, 한정된 수의 단계를 거친 후에는 반드시 종료해야 한다.
+      선택지 4: 유효성 조건으로, 모든 명령은 컴퓨터에서 실행 가능해야 한다.
+
+      핵심 개념:
+      알고리즘은 주어진 문제의 결과를 생성하기 위해 모호하지 않고 간단하며 컴퓨터가 수행 가능한 유한개의 명령을 순서에 따라 구성한 것이다.
+      입출력: 0개 이상의 외부 입력과 1개 이상의 출력이 있어야 한다.
+      명확성: 각 명령은 모호하지 않고 단순 명확해야 한다.
+      유한성: 한정된 수의 단계 후 반드시 종료해야 하고, 유효성: 모든 명령은 실행 가능해야 한다.
+      실용적 관점에서는 효율성(알고리즘은 효율적이어야 함)이 추가된다.
+
+  - id: b03-02
+    type: multiple-choice
+    prompt: 컴퓨터를 사용한 문제 해결의 가능성이라는 이론적인 측면에서 알고리즘이 만족하지 ==않아도== 되는 조건은?
+    choices:
+      - { id: '1', text: '효율성' }
+      - { id: '2', text: '유한성' }
+      - { id: '3', text: '명확성' }
+      - { id: '4', text: '유효성' }
+    answers: ['1']
+    explanation: |
+      선택지 1: 효율성은 알고리즘이 효율적이어야 한다는 실용적인 관점의 조건이다. 문제 해결 가능성이라는 이론적 측면에서는 필수 조건이 아니므로 정답이다.
+      선택지 2: 유한성은 한정된 수의 단계 후 반드시 종료해야 한다는 조건으로, 종료하지 않으면 결과를 얻을 수 없으므로 이론적으로도 필수다.
+      선택지 3: 명확성은 각 명령이 모호하지 않고 단순 명확해야 한다는 조건으로 필수다.
+      선택지 4: 유효성은 모든 명령이 컴퓨터에서 실행 가능해야 한다는 조건으로 필수다.
+
+      핵심 개념:
+      알고리즘의 기본 조건은 입출력, 명확성, 유한성, 유효성이다.
+      효율성은 실용적인 관점에서 덧붙는 조건이다.
+      이론적으로는 비효율적이어도 네 가지 기본 조건을 만족하면 문제를 해결하는 알고리즘이다.
+      실제 프로그램에서는 효율성이 중요한 평가 기준이 된다.
+
+  - id: b03-03
+    type: multiple-choice
+    prompt: 알고리즘의 대표적인 설계 기법으로 거리가 ==먼== 것은?
+    choices:
+      - { id: '1', text: '욕심쟁이 방법' }
+      - { id: '2', text: '선형회귀 방법' }
+      - { id: '3', text: '동적 프로그래밍 방법' }
+      - { id: '4', text: '분할정복 방법' }
+    answers: ['2']
+    explanation: |
+      선택지 1: 욕심쟁이 방법은 각 선택 단계에서 국부적인 최적해를 선택해 전체 최적해를 구하려는 대표적인 설계 기법이다.
+      선택지 2: 선형회귀는 데이터 사이의 선형 관계를 추정하는 통계·예측 기법으로, 알고리즘 설계 기법이 아니므로 정답이다.
+      선택지 3: 동적 프로그래밍 방법은 작은 소문제의 해를 테이블에 저장하고 이를 이용해 큰 문제의 해를 만들어 가는 대표적인 설계 기법이다.
+      선택지 4: 분할정복 방법은 문제를 더 이상 나눌 수 없을 때까지 나누어 해결한 뒤 결합하는 대표적인 설계 기법이다.
+
+      핵심 개념:
+      욕심쟁이 방법: 전후 단계와 상관없이 해당 단계에서 가장 최선인 국부적 최적해를 선택해 나가는 방법이다(거스름돈 문제, 배낭 문제).
+      동적 프로그래밍 방법: 소문제의 해를 테이블에 저장해 원래 문제의 해를 점진적으로 만드는 상향식 접근이다(모든 정점 간의 최단 경로 문제, 플로이드 알고리즘).
+      분할정복 방법: 나누어진 문제들을 각각 해결한 후 해를 결합하는 하향식 접근이다(이진 탐색, 퀵 정렬, 합병 정렬).
+      세 가지가 교재에서 다루는 대표적인 알고리즘 설계 기법이다.
+
+  - id: b03-04
+    type: multiple-choice
+    prompt: 분할정복 방법에 대한 설명으로 적합하지 ==않은== 것은?
+    choices:
+      - { id: '1', text: '하향식 접근 방법이다.' }
+      - { id: '2', text: '분할된 작은 문제들은 서로 독립적이다.' }
+      - { id: '3', text: '거스름돈 문제의 해결에 적합하다.' }
+      - { id: '4', text: '각 순환 호출마다 분할, 정복, 결합의 단계를 거친다.' }
+    answers: ['3']
+    explanation: |
+      선택지 1: 분할정복은 큰 문제를 작은 문제로 나누어 내려가는 하향식 접근 방법이므로 옳은 설명이다.
+      선택지 2: 분할된 작은 문제들은 서로 독립적으로 해결되므로 옳은 설명이다.
+      선택지 3: 거스름돈 문제는 욕심쟁이 방법을 적용해서 해결하는 대표적인 문제이므로 적합하지 않은 설명이며 정답이다.
+      선택지 4: 분할정복은 각 순환 호출마다 분할, 정복, 결합의 단계를 거치므로 옳은 설명이다.
+
+      핵심 개념:
+      분할정복 방법은 주어진 문제를 더 이상 나눌 수 없을 때까지 나누고, 나누어진 문제를 각각 해결한 후 해를 결합하는 하향식 접근 방법이다.
+      분할정복을 적용한 대표적인 알고리즘은 이진 탐색, 퀵 정렬, 합병 정렬이다.
+      거스름돈 문제와 배낭 문제는 욕심쟁이 방법으로 해결한다.
+      모든 정점 간의 최단 경로 문제는 동적 프로그래밍 방법으로 해결한다.
+
+  - id: b03-05
+    type: multiple-choice
+    prompt: 쪼갤 수 있는 n개의 물체에 대한 배낭 문제의 해결에 가장 적합한 알고리즘 설계 기법은?
+    choices:
+      - { id: '1', text: '선형회귀 방법' }
+      - { id: '2', text: '분할정복 방법' }
+      - { id: '3', text: '욕심쟁이 방법' }
+      - { id: '4', text: '동적 프로그래밍 방법' }
+    answers: ['3']
+    explanation: |
+      선택지 1: 선형회귀는 데이터의 선형 관계를 추정하는 통계 기법으로 알고리즘 설계 기법이 아니다.
+      선택지 2: 분할정복은 이진 탐색, 퀵 정렬, 합병 정렬처럼 문제를 독립적인 작은 문제로 나누어 결합하는 기법으로, 배낭 문제의 대표 해법이 아니다.
+      선택지 3: 물체를 쪼갤 수 있는 배낭 문제는 단위 무게당 이익이 큰 순서대로 최대한 배낭에 넣는 욕심쟁이 방법으로 최적해를 구할 수 있으므로 정답이다.
+      선택지 4: 동적 프로그래밍은 소문제의 해를 테이블에 저장해 사용하는 기법으로, 교재에서는 모든 정점 간의 최단 경로 문제(플로이드 알고리즘)에 적용한다.
+
+      핵심 개념:
+      배낭 문제는 배낭의 용량을 초과하지 않는 범위에서 물체 이익의 합이 최대가 되도록 물체를 넣는 방법을 찾는 문제이다.
+      물체를 쪼갤 수 있으면 단위 무게당 이익을 계산하고, 그 값이 큰 순서대로 최대한 배낭에 넣는 욕심쟁이 방법으로 해결한다.
+      0/1 배낭 문제(물체를 쪼갤 수 없는 배낭 문제)는 욕심쟁이 방법으로 해결할 수 없다.
+      거스름돈 문제(동전 개수를 최소로 해서 거스름돈을 돌려주는 문제)도 욕심쟁이 방법을 적용하는 대표 문제이다.
+
+  - id: b03-06
+    type: multiple-choice
+    passageRefs: [gb03-knapsack-01]
+    prompt: 다음과 같은 조건의 배낭 문제에 대해 욕심쟁이 방법으로 해를 구하였을 때 배낭에 들어가지 ==않는== 물체는? (단, 물체를 쪼갤 수 있다고 가정하고, 각 물체는 $X_i$로 표시한다.)
+    choices:
+      - { id: '1', text: '$X_1$' }
+      - { id: '2', text: '$X_2$' }
+      - { id: '3', text: '$X_3$' }
+      - { id: '4', text: '$X_4$' }
+    answers: ['4']
+    explanation: |
+      선택지 1: $X_1$은 단위 무게당 이익이 $15/4 = 3.75$로 세 번째로 크다. $X_3$, $X_2$를 넣은 뒤 남은 용량 2만큼 절반으로 쪼개져 들어가므로 배낭에 들어간다.
+      선택지 2: $X_2$는 단위 무게당 이익이 $20/5 = 4$로 두 번째로 크고, 남은 용량 7에 무게 5가 모두 들어가므로 배낭에 들어간다.
+      선택지 3: $X_3$은 단위 무게당 이익이 $16/3 \approx 5.33$으로 가장 커서 가장 먼저 배낭에 들어간다.
+      선택지 4: $X_4$는 단위 무게당 이익이 $24/7 \approx 3.43$으로 가장 작다. 앞의 세 물체로 용량 10이 모두 채워지므로 배낭에 들어가지 않아 정답이다.
+
+      핵심 개념:
+      쪼갤 수 있는 배낭 문제는 각 물체의 단위 무게당 이익 $p_i/w_i$를 구하고 큰 순서대로 넣는다.
+      순서는 $X_3(5.33) \rightarrow X_2(4) \rightarrow X_1(3.75) \rightarrow X_4(3.43)$이다.
+      용량은 $10 \rightarrow 7$($X_3$) $\rightarrow 2$($X_2$)가 되고, $X_1$은 무게 4 중 절반만 넣는다.
+      최대 이익은 $16 + 20 + 15/2 = 43.5$이다.
+
+  - id: b03-07
+    type: multiple-choice
+    prompt: 알고리즘 설계 기법과 이를 적용해서 해결할 수 있는 문제와의 연결이 ==잘못된== 것은?
+    choices:
+      - { id: '1', text: '분할정복 방법 – 이진 탐색' }
+      - { id: '2', text: '분할정복 방법 – 퀵 정렬' }
+      - { id: '3', text: '동적 프로그래밍 방법 – 모든 정점 간의 최단 경로 문제' }
+      - { id: '4', text: '동적 프로그래밍 방법 – 거스름돈 문제' }
+    answers: ['4']
+    explanation: |
+      선택지 1: 이진 탐색은 탐색 범위를 절반씩 나누어 찾는 분할정복 방법의 적용 예이므로 올바른 연결이다.
+      선택지 2: 퀵 정렬은 피벗을 기준으로 두 부분배열로 나누어 정렬하는 분할정복 방법의 적용 예이므로 올바른 연결이다.
+      선택지 3: 모든 정점 간의 최단 경로 문제(플로이드 알고리즘)는 동적 프로그래밍 방법의 적용 예이므로 올바른 연결이다.
+      선택지 4: 거스름돈 문제는 욕심쟁이 방법으로 해결하는 문제이므로 동적 프로그래밍 방법과의 연결은 잘못되어 정답이다.
+
+      핵심 개념:
+      분할정복 방법: 이진 탐색, 퀵 정렬, 합병 정렬.
+      동적 프로그래밍 방법: 모든 정점 간의 최단 경로 문제(플로이드 알고리즘).
+      욕심쟁이 방법: 거스름돈 문제, 배낭 문제.
+      각 설계 기법과 대표 문제의 짝을 함께 기억한다.
+
+  - id: b03-08
+    type: multiple-choice
+    prompt: 알고리즘 시간 복잡도에 대한 설명으로 적절한 것은?
+    choices:
+      - { id: '1', text: '시간 복잡도는 입력 프로그램의 길이의 함수로 표현한다.' }
+      - { id: '2', text: '알고리즘의 수행 시간은 입력 데이터의 상태와 무관하다.' }
+      - { id: '3', text: '알고리즘의 수행 시간은 알고리즘을 실행시켜 완료될 때까지의 시간을 측정해서 나타낸다.' }
+      - { id: '4', text: '최악의 수행 시간을 일반적인 척도로 사용한다.' }
+    answers: ['4']
+    explanation: |
+      선택지 1: 시간 복잡도는 프로그램의 길이가 아니라 입력 크기(입력되는 데이터의 크기)의 함수로 표현한다.
+      선택지 2: 수행 시간은 같은 입력 크기라도 입력 데이터의 상태(예: 이미 정렬되었는지)에 영향을 받는다.
+      선택지 3: 시간 복잡도는 실제 실행 시간을 측정하는 것이 아니라 각 단위 문장(연산)의 수행 횟수의 합으로 나타낸다.
+      선택지 4: 수행 시간이 입력 데이터의 상태에 영향을 받으므로 최악의 수행 시간을 일반적인 척도로 사용한다. 정답이다.
+
+      핵심 개념:
+      효율성 분석은 알고리즘 수행에 필요한 컴퓨터 자원의 양을 측정하며, 공간 복잡도와 시간 복잡도로 나눈다.
+      공간 복잡도는 알고리즘을 실행시켜 완료될 때까지 필요한 총 메모리의 양이다.
+      시간 복잡도는 각 단위 문장(연산)의 수행 횟수의 합이며 입력 크기의 함수로 표현한다.
+      입력 데이터의 상태에 영향을 받으므로 최악의 수행 시간으로 표현한다.
+
+  - id: b03-09
+    type: multiple-choice
+    prompt: 알고리즘의 점근성능이란 무엇인가?
+    choices:
+      - { id: '1', text: '알고리즘의 해가 얼마만큼의 오차를 포함하는지를 나타내는 성능이다.' }
+      - { id: '2', text: '확률적으로 구한 성능의 추정치이다.' }
+      - { id: '3', text: '입력 크기가 충분히 커질 때 결정되는 성능이다.' }
+      - { id: '4', text: '입력 데이터 상태가 최악인 경우의 알고리즘 성능이다.' }
+    answers: ['3']
+    explanation: |
+      선택지 1: 해의 오차 정도는 근사 알고리즘의 정확도에 관한 개념으로 점근성능과 관계없다.
+      선택지 2: 확률적으로 구한 추정치는 평균적 분석이나 확률 알고리즘에 관한 개념으로 점근성능의 정의가 아니다.
+      선택지 3: 점근성능은 입력 크기 $n$이 충분히 커짐에 따라 결정되는 성능이므로 정답이다.
+      선택지 4: 입력 데이터 상태가 최악인 경우의 성능은 최악의 수행 시간을 말하며, 점근성능의 정의가 아니다.
+
+      핵심 개념:
+      점근성능은 입력 크기 $n$이 충분히 커짐에 따라 결정되는 성능이다.
+      다항식으로 표현된 수행 시간의 함수에서 계수 없이 최고차항만을 취해서 표현한다.
+      표기법으로 점근적 상한 $O$, 점근적 하한 $\Omega$, 점근적 상하한 $\Theta$가 있다.
+      정확한 수행 시간은 알 수 없지만 알고리즘 간 성능 비교와 증가 추이 파악이 쉽다.
+
+  - id: b03-10
+    type: multiple-choice
+    prompt: 점근성능의 표기법을 나타내는 그림 중에서 수행 시간이 $f(n) = O(g(n))$에 해당하는 것은?
+    choices:
+      - id: '1'
+        text: ''
+        image:
+          path: images/subjects/introduction-to-computer-science/workbook/b03-10-1.png
+          alt: '선택지 1 그래프: n0 이후 f(n)이 c·g(n)보다 항상 위에 있음'
+      - id: '2'
+        text: ''
+        image:
+          path: images/subjects/introduction-to-computer-science/workbook/b03-10-2.png
+          alt: '선택지 2 그래프: n0 이후 f(n)이 c1·g(n)과 c2·g(n) 사이에 있음'
+      - id: '3'
+        text: ''
+        image:
+          path: images/subjects/introduction-to-computer-science/workbook/b03-10-3.png
+          alt: '선택지 3 그래프: n0 이후 f(n)이 c·g(n)보다 항상 아래에 있음'
+      - id: '4'
+        text: ''
+        image:
+          path: images/subjects/introduction-to-computer-science/workbook/b03-10-4.png
+          alt: '선택지 4 그래프: n0부터 n1 사이에서만 f(n)이 c·g(n)보다 아래에 있음'
+    answers: ['3']
+    explanation: |
+      선택지 1: $n_0$ 이후 $f(n)$이 항상 $c \cdot g(n)$ 위에 있으므로 $c \cdot g(n)$이 하한이 되는 Big-omega $\Omega$ 표기에 해당한다.
+      선택지 2: $n_0$ 이후 $f(n)$이 $c_1 \cdot g(n)$과 $c_2 \cdot g(n)$ 사이에 있으므로 상한과 하한을 동시에 표현하는 Big-theta $\Theta$ 표기에 해당한다.
+      선택지 3: $n_0$ 이후 $f(n)$이 항상 $c \cdot g(n)$ 아래에 있으므로 $c \cdot g(n)$이 점근적 상한이 되는 Big-oh $O$ 표기에 해당하여 정답이다.
+      선택지 4: $f(n)$이 $c \cdot g(n)$ 아래에 있는 구간이 $n_0$부터 $n_1$까지로 한정되고 이후 다시 위로 올라가므로, 충분히 큰 모든 $n$에서 상한이 성립하지 않아 $O$ 표기가 아니다.
+
+      핵심 개념:
+      Big-oh $O$: 점근적 상한, 즉 수행 시간 $f(n)$의 상한을 표현한다.
+      Big-omega $\Omega$: 점근적 하한, 즉 $f(n)$의 하한을 표현한다.
+      Big-theta $\Theta$: 점근적 상하한, $f(n)$의 상한과 하한을 동시에 표현한다.
+      점근 표기는 $n_0$ 이상의 모든 입력 크기에서 관계가 성립해야 한다.
+
+  - id: b03-11
+    type: multiple-choice
+    passageRefs: [gb03-omega-def-01]
+    prompt: 다음과 같은 정의에 해당하는 점근성능의 표기법은?
+    choices:
+      - { id: '1', text: '$f(n) = \Theta(g(n))$' }
+      - { id: '2', text: '$f(n) = \Omega(g(n))$' }
+      - { id: '3', text: '$f(n) = O(g(n))$' }
+      - { id: '4', text: '$f(n) = \Phi(g(n))$' }
+    answers: ['2']
+    explanation: |
+      선택지 1: $\Theta$는 $c_1 \cdot g(n) \le f(n) \le c_2 \cdot g(n)$처럼 상한과 하한을 동시에 표현하는 점근적 상하한이므로 정의와 맞지 않는다.
+      선택지 2: 모든 $n \ge n_0$에서 $f(n) \ge c \cdot g(n)$이라는 것은 $c \cdot g(n)$이 $f(n)$의 하한이라는 뜻이므로 점근적 하한 $\Omega$이며 정답이다.
+      선택지 3: $O$는 $f(n) \le c \cdot g(n)$인 점근적 상한이므로 부등호 방향이 반대이다.
+      선택지 4: $\Phi$는 교재에서 다루는 점근성능 표기법이 아니다.
+
+      핵심 개념:
+      $f(n) = O(g(n))$: 모든 $n \ge n_0$에 대해 $f(n) \le c \cdot g(n)$(점근적 상한).
+      $f(n) = \Omega(g(n))$: 모든 $n \ge n_0$에 대해 $f(n) \ge c \cdot g(n)$(점근적 하한).
+      $f(n) = \Theta(g(n))$: 모든 $n \ge n_0$에 대해 $c_1 \cdot g(n) \le f(n) \le c_2 \cdot g(n)$(점근적 상하한).
+      부등호의 방향으로 상한과 하한을 구분한다.
+
+  - id: b03-12
+    type: multiple-choice
+    prompt: 일반적으로 ‘알고리즘의 수행 시간이 $O(n^2)$이다’라는 표현의 의미로 올바른 것은?
+    choices:
+      - { id: '1', text: '최악의 수행 시간이 $O(n^2)$이다.' }
+      - { id: '2', text: '최선의 수행 시간이 $O(n^2)$이다.' }
+      - { id: '3', text: '평균 수행 시간이 $O(n^2)$이다.' }
+      - { id: '4', text: '최악 및 최선 수행 시간이 모두 $O(n^2)$이다.' }
+    answers: ['1']
+    explanation: |
+      선택지 1: 빅오 $O$는 점근적 상한, 즉 알고리즘의 최악의 수행 시간을 나타내므로 정답이다.
+      선택지 2: 최선의 수행 시간은 입력이 가장 유리한 경우의 시간으로, 상한인 $O$ 표기가 일반적으로 뜻하는 바가 아니다.
+      선택지 3: 평균 수행 시간은 가능한 입력 전반의 기대 시간으로, 일반적인 $O$ 표현의 의미가 아니다.
+      선택지 4: 일반적으로 '수행 시간이 $O(n^2)$이다'라는 표현은 최악의 수행 시간을 가리키는 것이며, 최선 수행 시간까지 함께 말하는 표현이 아니다(예: 삽입 정렬은 최악 $O(n^2)$이지만 최선은 $O(n)$으로 따로 말한다).
+
+      핵심 개념:
+      빅오 $O$는 점근적 상한으로, 알고리즘의 최악의 수행 시간을 나타낸다.
+      시간 복잡도는 입력 데이터의 상태에 영향을 받으므로 최악의 수행 시간을 척도로 쓴다.
+      예를 들어 삽입 정렬은 최악 $O(n^2)$, 최선 $O(n)$이다.
+      "수행 시간이 $O(n^2)$"는 어떤 입력이든 $n^2$에 비례하는 시간을 넘지 않는다는 의미이다.
+
+  - id: b03-13
+    type: multiple-choice
+    prompt: 빅오 함수 중에서 가장 효율적인 성능을 나타내는 것은?
+    choices:
+      - { id: '1', text: '$O(\log n)$' }
+      - { id: '2', text: '$O(n)$' }
+      - { id: '3', text: '$O(n \log n)$' }
+      - { id: '4', text: '$O(n^2)$' }
+    answers: ['1']
+    explanation: |
+      선택지 1: $O(\log n)$은 보기 중 연산시간이 가장 느리게 증가하므로 가장 효율적이며 정답이다.
+      선택지 2: $O(n)$은 입력 크기에 비례하여 증가하므로 $O(\log n)$보다 비효율적이다.
+      선택지 3: $O(n \log n)$은 $O(n)$보다 빠르게 증가하므로 더 비효율적이다.
+      선택지 4: $O(n^2)$은 보기 중 가장 빠르게 증가하므로 가장 비효율적이다.
+
+      핵심 개념:
+      주요 빅오 함수의 크기 관계: $O(1) < O(\log n) < O(n) < O(n \log n) < O(n^2) < O(n^3) < O(2^n)$.
+      연산시간이 크다는 것은 알고리즘 수행에 더 많은 시간이 필요하다는 뜻이다.
+      크기 관계에서 오른쪽에 위치할수록 비효율적인 함수이다.
+      이진 탐색 $O(\log n)$, 순차 탐색 $O(n)$, 합병 정렬 $O(n \log n)$, 버블 정렬 $O(n^2)$이 대표 예이다.
+
+  - id: b03-14
+    type: multiple-choice
+    prompt: 입력 크기 $n$에 대해서 $O(n^2)$보다 적은 횟수의 데이터 간의 비교를 통해서 정렬을 수행하는 알고리즘은?
+    choices:
+      - { id: '1', text: '버블 정렬' }
+      - { id: '2', text: '합병 정렬' }
+      - { id: '3', text: '삽입 정렬' }
+      - { id: '4', text: '선택 정렬' }
+    answers: ['2']
+    explanation: |
+      선택지 1: 버블 정렬은 인접한 두 값을 차례로 비교·교환하며, $n$개의 데이터에 $O(n^2)$의 비교가 필요하다.
+      선택지 2: 합병 정렬은 분할정복 방법으로 $O(n \log n)$의 비교만 수행하므로 $O(n^2)$보다 적어 정답이다.
+      선택지 3: 삽입 정렬은 데이터를 하나씩 정렬된 부분의 제자리에 삽입하며, 최악의 경우 $O(n^2)$의 비교가 필요하다.
+      선택지 4: 선택 정렬은 미정렬 부분에서 최솟값을 고르는 과정을 반복하며, 언제나 $O(n^2)$의 비교가 필요하다.
+
+      핵심 개념:
+      비교 기반 정렬은 데이터의 키값을 직접 비교해서 정렬한다.
+      선택 정렬, 버블 정렬, 삽입 정렬은 $O(n^2)$의 비교가 필요하다.
+      향상된 성능의 합병 정렬과 퀵 정렬은 $O(n \log n)$의 비교를 수행한다(퀵 정렬은 최악 $O(n^2)$).
+      합병 정렬은 최선·최악·평균 모두 $O(n \log n)$이다.
+
+  - id: b03-16
+    type: multiple-choice
+    prompt: 미정렬 데이터 중에서 최소값을 선택하고, 이를 미정렬 부분의 첫 번째 데이터와 교환하기 때문에 데이터의 입력 순서에 무관하게 언제나 동일한 시간 복잡도를 갖는 정렬 알고리즘은?
+    choices:
+      - { id: '1', text: '퀵 정렬' }
+      - { id: '2', text: '삽입 정렬' }
+      - { id: '3', text: '버블 정렬' }
+      - { id: '4', text: '선택 정렬' }
+    answers: ['4']
+    explanation: |
+      선택지 1: 퀵 정렬은 피벗을 기준으로 두 부분배열로 분할하는 방식이며, 분할 비율에 따라 최선·평균 $O(n \log n)$, 최악 $O(n^2)$로 성능이 달라진다.
+      선택지 2: 삽입 정렬은 데이터를 하나씩 정렬된 부분의 제자리에 삽입하며, 거의 정렬된 입력이면 $O(n)$, 최악 $O(n^2)$로 입력 순서에 민감하다.
+      선택지 3: 버블 정렬은 인접한 두 값을 비교·교환하며, 정렬된 입력이면 $O(n)$, 역순이면 $O(n^2)$로 입력 순서에 민감하다.
+      선택지 4: 선택 정렬은 미정렬 데이터에서 최솟값을 골라 미정렬 부분의 첫 번째 데이터와 교환하며, 입력 상태와 무관하게 언제나 $O(n^2)$이므로 정답이다.
+
+      핵심 개념:
+      선택 정렬: 가장 작은 값, 두 번째로 작은 값 등을 순서대로 골라 재배열하며 최악·최선·평균이 모두 $O(n^2)$이다.
+      버블 정렬: 모든 인접한 두 값을 차례로 비교해 필요하면 자리를 바꾸며, 최선 $O(n)$, 최악 $O(n^2)$이다.
+      삽입 정렬: 데이터를 하나씩 뽑아 정렬된 부분의 제자리에 삽입하며, 최선 $O(n)$, 최악 $O(n^2)$이다.
+      입력 순서에 무관한 성능은 선택 정렬의 특징이다.
+
+  - id: b03-17
+    type: multiple-choice
+    passageRefs: [gb03-bubble-data-01]
+    prompt: 주어진 데이터를 버블 정렬로 정렬할 때, 밑줄 친 부분이 이미 정렬된 부분이라면 다음 단계에 해당하는 결과는? (단, 오름차순으로 정렬한다.)
+    choices:
+      - { id: '1', text: '10 5 15 25 20 30 35 40' }
+      - { id: '2', text: '10 15 5 20 25 30 35 40' }
+      - { id: '3', text: '10 5 15 20 25 30 35 40' }
+      - { id: '4', text: '10 15 5 25 20 30 35 40' }
+    answers: ['1']
+    explanation: |
+      선택지 1: 왼쪽부터 인접한 두 값을 비교하면 25↔10, 25↔5, 25↔15 교환 후 25와 30은 그대로, 30↔20 교환으로 단계가 끝나 10 5 15 25 20 30 35 40이 되므로 정답이다.
+      선택지 2: 한 단계에서 25가 10, 5, 15와 차례로 자리를 바꾸므로 앞부분은 10 5 15가 되어야 한다. 10 15 5는 이와 맞지 않고, 25와 20도 아직 교환되지 않아 25 20 순서여야 한다.
+      선택지 3: 한 단계에서는 25와 30을 비교한 뒤 30과 20을 교환하므로 25와 20은 교환되지 않는다. 20 25 순서는 한 단계 결과가 아니며, 다음 단계에서는 10과 5도 교환되어 5 10 15 20 25 30 35 40이 된다.
+      선택지 4: 25가 5, 15와 차례로 자리를 바꾸면 10 5 15 순서가 되므로 10 15 5는 한 단계 결과와 맞지 않는다.
+
+      핵심 개념:
+      버블 정렬은 왼쪽부터 모든 인접한 두 값을 비교해 왼쪽 값이 더 크면 자리를 바꾸는 과정을 반복한다.
+      한 단계가 끝나면 미정렬 부분의 최댓값(여기서는 30)이 정렬된 부분 바로 앞에 놓인다.
+      처리 과정: 25 10 5 15 30 20 → 10 25 5 … → 10 5 25 15 … → 10 5 15 25 30 20 → (30과 20 교환) 10 5 15 25 20 30 35 40.
+      최선 $O(n)$(이미 정렬된 경우), 최악 $O(n^2)$(역순으로 정렬된 경우)이며, 선택 정렬보다 교환이 많이 발생한다.
+
+  - id: b03-18
+    type: multiple-choice
+    prompt: 데이터가 이미 제 순서로 나열된 상태로 주어지면 가장 빠른 성능을 보이는 정렬 알고리즘은?
+    choices:
+      - { id: '1', text: '퀵 정렬' }
+      - { id: '2', text: '선택 정렬' }
+      - { id: '3', text: '삽입 정렬' }
+      - { id: '4', text: '합병 정렬' }
+    answers: ['3']
+    explanation: |
+      선택지 1: 퀵 정렬은 첫 번째 원소를 피벗으로 할 때 이미 정렬된 입력에서 한쪽으로만 분할되어 최악의 수행 시간 $O(n^2)$이 된다.
+      선택지 2: 선택 정렬은 입력 상태와 무관하게 언제나 $O(n^2)$이다.
+      선택지 3: 삽입 정렬은 이미 정렬된 입력이면 각 데이터가 한 번의 비교로 제자리에 놓여 최선의 경우 $O(n)$이 되므로 정답이다.
+      선택지 4: 합병 정렬은 입력 상태와 무관하게 최선·최악·평균 모두 $O(n \log n)$이다.
+
+      핵심 개념:
+      삽입 정렬은 미정렬 부분의 왼쪽부터 한 데이터씩 꺼내어 정렬 부분에서 제자리를 찾아 삽입하는 방식이다.
+      최선의 경우(이미 원하는 순서로 정렬된 경우) $O(n)$이다.
+      최악의 경우(역순으로 정렬된 경우) $O(n^2)$이다.
+      정렬된 입력은 퀵 정렬에는 최악의 경우가 되지만 삽입 정렬에는 최선의 경우가 된다.
+
+  - id: b03-19
+    type: multiple-choice
+    prompt: 피벗이 제자리를 잡도록 해서 정렬하는 알고리즘은?
+    choices:
+      - { id: '1', text: '퀵 정렬' }
+      - { id: '2', text: '합병 정렬' }
+      - { id: '3', text: '삽입 정렬' }
+      - { id: '4', text: '히프 정렬' }
+    answers: ['1']
+    explanation: |
+      선택지 1: 퀵 정렬은 피벗(분할원소)을 기준으로 데이터를 두 부분배열로 나누어 피벗이 제자리를 잡게 하고, 각 부분배열에 순환적으로 퀵 정렬을 적용하므로 정답이다.
+      선택지 2: 합병 정렬은 배열을 같은 크기로 나누어 정렬한 뒤 두 정렬된 부분배열을 합병하는 방식으로 피벗을 사용하지 않는다.
+      선택지 3: 삽입 정렬은 데이터를 하나씩 뽑아 정렬된 부분의 제자리에 삽입하는 방식으로 피벗을 사용하지 않는다.
+      선택지 4: 히프 정렬은 히프(완전 이진 트리 형태의 우선순위 구조)에서 최댓값이나 최솟값을 반복해서 꺼내는 방식으로 피벗을 사용하지 않는다.
+
+      핵심 개념:
+      퀵 정렬은 분할정복 방법을 적용한 정렬 알고리즘이며, 일반적으로 배열의 첫 번째 원소를 피벗으로 지정한다.
+      최악의 경우(피벗이 항상 부분배열의 최솟값/최댓값, 즉 입력이 이미 정렬된 경우) $O(n^2)$이다.
+      최선의 경우(동일한 크기의 두 부분배열로 나뉘는 경우)와 평균적인 경우는 $O(n \log n)$이다.
+      분할 과정은 $O(n)$이며, 피벗 선택의 임의성이 보장되면 평균 수행 시간을 보일 가능성이 크다.
+
+  - id: b03-20
+    type: multiple-choice
+    prompt: 다음 중 평균 수행 시간은 $O(n\log n)$이고, 최악 수행 시간은 $O(n^2)$인 정렬 알고리즘은?
+    choices:
+      - { id: '1', text: '합병 정렬' }
+      - { id: '2', text: '퀵 정렬' }
+      - { id: '3', text: '버블 정렬' }
+      - { id: '4', text: '선택 정렬' }
+    answers: ['2']
+    explanation: |
+      선택지 1: 합병 정렬은 최악의 경우에도 $O(n \log n)$이므로 조건에 맞지 않는다.
+      선택지 2: 퀵 정렬은 평균·최선 $O(n \log n)$이고, 피벗이 항상 최솟값/최댓값이 되는 최악의 경우 $O(n^2)$이므로 정답이다.
+      선택지 3: 버블 정렬은 평균적으로도 $O(n^2)$이다.
+      선택지 4: 선택 정렬은 입력 상태와 무관하게 언제나 $O(n^2)$이다.
+
+      핵심 개념:
+      퀵 정렬: 최선·평균 $O(n \log n)$, 최악 $O(n^2)$.
+      합병 정렬: 최선·최악·평균 모두 $O(n \log n)$.
+      선택·버블·삽입 정렬: 성능 $O(n^2)$(버블·삽입은 최선 $O(n)$).
+      퀵 정렬은 피벗으로 선택되는 값에 따른 부분배열의 분할 비율 차이에 의해 성능이 달라진다.
+
+  - id: b03-21
+    type: multiple-choice
+    prompt: 퀵 정렬에 대한 설명으로 올바른 것은? (단, 피벗은 배열의 첫 번째 원소로 정한다.)
+    choices:
+      - { id: '1', text: '피벗을 기준으로 같은 크기의 두 부분배열로 분할될 때의 수행 시간은 $O(\log n)$이다.' }
+      - { id: '2', text: '최악의 경우에도 수행 시간 $O(n\log n)$이 보장된다.' }
+      - { id: '3', text: '입력 데이터가 제 순서대로 정렬된 경우 최악의 수행 시간을 나타낸다.' }
+      - { id: '4', text: '피벗 선택의 임의성이 보장된다면 평균적인 수행 시간 $O(n^2)$이 보장된다.' }
+    answers: ['3']
+    explanation: |
+      선택지 1: 같은 크기의 두 부분배열로 분할되는 최선의 경우 수행 시간은 $O(\log n)$이 아니라 $O(n \log n)$이다.
+      선택지 2: 퀵 정렬의 최악 수행 시간은 $O(n^2)$이므로 $O(n \log n)$이 보장되지 않는다.
+      선택지 3: 첫 번째 원소를 피벗으로 하면 이미 정렬된 입력에서 피벗이 항상 부분배열의 최솟값이 되어 한쪽으로만 분할되므로 최악의 수행 시간 $O(n^2)$을 나타낸다. 정답이다.
+      선택지 4: 피벗 선택의 임의성이 보장되면 평균 수행 시간 $O(n^2)$이 아니라 $O(n \log n)$을 보일 가능성이 크다.
+
+      핵심 개념:
+      퀵 정렬의 최악의 경우는 피벗만 제자리를 잡고 나머지 모든 데이터가 하나의 부분배열로 분할되는 경우이다.
+      첫 번째 원소를 피벗으로 하면 입력이 이미 정렬된 경우가 최악이 되며 $O(n^2)$이다.
+      피벗을 중심으로 동일한 크기의 두 부분배열로 나뉘는 최선의 경우와 평균적인 경우는 $O(n \log n)$이다.
+      한 번의 분할 과정은 $O(n)$이다.
+
+  - id: b03-22
+    type: multiple-choice
+    passageRefs: [gb03-quick-data-01]
+    prompt: 주어진 데이터에 대해 퀵 정렬의 분할 과정을 한 번 적용한 후 왼쪽 부분 배열에 존재하는 데이터의 개수는? (단, 피벗은 배열의 첫 번째 원소로 정한다.)
+    choices:
+      - { id: '1', text: '6' }
+      - { id: '2', text: '5' }
+      - { id: '3', text: '4' }
+      - { id: '4', text: '3' }
+    answers: ['2']
+    explanation: |
+      선택지 1: 피벗 30보다 작은 값은 20, 5, 10, 25, 15의 5개뿐이므로 6개가 될 수 없다.
+      선택지 2: 분할 과정 후 10 20 15 25 5 30 45 50 35 40이 되어, 피벗 30의 왼쪽 부분 배열에 10, 20, 15, 25, 5의 5개가 존재하므로 정답이다.
+      선택지 3: 분할 후 왼쪽 부분 배열은 10, 20, 15, 25, 5의 5개이므로 4개가 아니다. 4개는 오른쪽 부분 배열(45, 50, 35, 40)의 개수이다.
+      선택지 4: 분할 후 왼쪽 부분 배열은 5개이므로 3개가 아니다.
+
+      핵심 개념:
+      피벗 30에 대해 왼쪽에서 오른쪽으로 피벗보다 큰 값, 오른쪽 끝에서 왼쪽으로 피벗보다 작은 값을 찾아 교환한다.
+      40↔15 교환: 30 20 15 35 5 10 45 50 25 40, 35↔25 교환: 30 20 15 25 5 10 45 50 35 40.
+      다음에 찾은 큰 값 45가 작은 값 10보다 오른쪽에 있어(탐색이 교차) 교환하지 않고, 피벗 30과 10을 교환해 분할을 끝낸다.
+      결과 10 20 15 25 5 | 30 | 45 50 35 40에서 왼쪽 5개, 오른쪽 4개이다.
+
+  - id: b03-23
+    type: multiple-choice
+    passageRefs: [gb03-quick-data-02]
+    prompt: 배열에 저장된 데이터에 대해서 퀵 정렬의 분할 과정을 오직 한 번 적용하였을 때 왼쪽 부분 배열의 첫 번째 데이터는 무엇인가? (단, 피벗은 배열의 첫 번째 원소로 정한다.)
+    choices:
+      - { id: '1', text: '10' }
+      - { id: '2', text: '11' }
+      - { id: '3', text: '15' }
+      - { id: '4', text: '17' }
+    answers: ['2']
+    explanation: |
+      선택지 1: 10은 분할 과정에서 5번째 자리에 그대로 남으며 첫 번째 자리로 오지 않는다.
+      선택지 2: 마지막에 피벗 35와 교환되는 값이 11이므로 분할 후 배열의 첫 번째 자리, 즉 왼쪽 부분 배열의 첫 번째 데이터가 11이 되어 정답이다.
+      선택지 3: 15는 3번째 자리에 그대로 남는다.
+      선택지 4: 17은 61과 교환되어 6번째 자리로 이동할 뿐 첫 번째 자리로 오지 않는다.
+
+      핵심 개념:
+      피벗 35에 대해 왼쪽에서 큰 값, 오른쪽에서 작은 값을 찾아 교환한다.
+      (a) 77↔19 교환: 35 26 15 19 10 61 11 59 17 48 77 40, (b) 61↔17 교환: 35 26 15 19 10 17 11 59 61 48 77 40.
+      (c) 큰 값 59가 작은 값 11보다 오른쪽에 있어 교환하지 않고, 피벗 35와 11을 교환한다.
+      결과: 11 26 15 19 10 17 | 35 | 59 61 48 77 40.
+
+  - id: b03-24
+    type: multiple-choice
+    prompt: 정렬 알고리즘 중에서 최악의 경우 가장 효율적인 것은?
+    choices:
+      - { id: '1', text: '퀵 정렬' }
+      - { id: '2', text: '버블 정렬' }
+      - { id: '3', text: '삽입 정렬' }
+      - { id: '4', text: '합병 정렬' }
+    answers: ['4']
+    explanation: |
+      선택지 1: 퀵 정렬은 최선·평균 $O(n \log n)$이지만 최악의 경우 $O(n^2)$이다.
+      선택지 2: 버블 정렬은 최악의 경우 $O(n^2)$이다.
+      선택지 3: 삽입 정렬은 최악의 경우 $O(n^2)$이다.
+      선택지 4: 합병 정렬은 최선·최악·평균 모두 $O(n \log n)$이므로 최악의 경우 가장 효율적이며 정답이다.
+
+      핵심 개념:
+      합병 정렬은 분할정복 방법을 적용한 정렬 알고리즘이다.
+      동일한 크기의 두 부분배열로 나눈 뒤 각 부분배열을 순환적으로 정렬하고, 정렬된 두 부분배열을 합병하여 하나의 정렬된 배열을 만든다.
+      최선/최악/평균 수행 시간이 모두 $O(n \log n)$이다.
+      선택·버블·삽입 정렬은 최악 $O(n^2)$, 퀵 정렬은 최악 $O(n^2)$이다.
+
+  - id: b03-25
+    type: multiple-choice
+    prompt: 분할정복 방법이 적용된 정렬 알고리즘끼리 올바르게 나열된 것은?
+    choices:
+      - { id: '1', text: '합병 정렬, 퀵 정렬' }
+      - { id: '2', text: '합병 정렬, 삽입 정렬' }
+      - { id: '3', text: '퀵 정렬, 버블 정렬' }
+      - { id: '4', text: '버블 정렬, 삽입 정렬' }
+    answers: ['1']
+    explanation: |
+      선택지 1: 합병 정렬은 반으로 나누어 정렬한 뒤 합병하고, 퀵 정렬은 피벗으로 분할한 뒤 순환 정렬하므로 둘 다 분할정복 방법이 적용되어 정답이다.
+      선택지 2: 삽입 정렬은 데이터를 하나씩 정렬된 부분에 삽입하는 방식으로 분할정복이 아니다.
+      선택지 3: 버블 정렬은 인접한 두 값을 반복 비교·교환하는 방식으로 분할정복이 아니다.
+      선택지 4: 버블 정렬과 삽입 정렬 모두 분할정복 방법이 적용되지 않은 $O(n^2)$ 정렬이다.
+
+      핵심 개념:
+      분할정복 방법이 적용된 정렬 알고리즘은 합병 정렬과 퀵 정렬이다.
+      분할정복은 문제를 나누고(분할), 각각 해결한 후(정복), 해를 결합하는 하향식 접근이다.
+      합병 정렬과 퀵 정렬은 최선/평균 $O(n \log n)$의 성능을 보인다.
+      이진 탐색도 분할정복 방법을 적용한 탐색 알고리즘이다.
+
+  - id: b03-26
+    type: multiple-choice
+    prompt: 합병 정렬 알고리즘의 합병 과정의 입력으로 주어지는 두 부분배열 X, Y는 어떠한 상태이어야 하는가?
+    choices:
+      - { id: '1', text: 'X의 모든 원소는 Y의 최소 원소보다 작은 값이어야 한다.' }
+      - { id: '2', text: 'X의 모든 원소는 Y의 최대 원소보다 큰 값이어야 한다.' }
+      - { id: '3', text: 'X, Y 각각 제 순서로 정렬되어 있어야 한다.' }
+      - { id: '4', text: 'X는 제 순서, Y는 역순으로 정렬되어 있어야 한다.' }
+    answers: ['3']
+    explanation: |
+      선택지 1: X와 Y 사이의 값 크기 관계는 요구되지 않는다. 합병 과정에서 두 부분배열의 값을 비교하며 순서를 맞추기 때문이다.
+      선택지 2: 두 부분배열 간의 값 크기 관계는 합병의 조건이 아니며, 이 관계는 오히려 정렬 순서와도 반대이다.
+      선택지 3: 합병은 2개의 정렬된 부분배열을 왼쪽부터 차례로 비교하여 작은 값을 합병 배열로 옮기는 과정이므로, X와 Y가 각각 제 순서로 정렬되어 있어야 한다. 정답이다.
+      선택지 4: 한쪽이 역순이면 왼쪽부터 차례로 비교해 작은 값을 옮기는 방식이 성립하지 않는다.
+
+      핵심 개념:
+      합병 정렬의 합병(merge) 과정은 2개의 정렬된 부분배열(왼쪽, 오른쪽 부분배열)을 대상으로 한다.
+      왼쪽부터 차례로 서로의 값을 비교하면서 작은 값을 합병(정렬된) 배열로 옮기는 과정을 반복한다.
+      한쪽 부분배열의 모든 원소가 옮겨지면 다른 쪽에 남은 원소를 순서대로 합병 배열로 옮긴다.
+      합병 과정은 $O(n)$이며, 전체 합병 정렬은 $O(n \log n)$이다.
+
+  - id: b03-27
+    type: multiple-choice
+    prompt: 임의의 순서로 데이터가 저장된 배열 $A[0..n-1]$에서 특정한 값을 가진 데이터를 찾을 때 가장 효과적으로 적용될 수 있는 방법은?
+    choices:
+      - { id: '1', text: '이진 탐색' }
+      - { id: '2', text: '이진 탐색 트리' }
+      - { id: '3', text: '순차 탐색' }
+      - { id: '4', text: '흑적 트리' }
+    answers: ['3']
+    explanation: |
+      선택지 1: 이진 탐색은 정렬된 데이터에만 적용할 수 있으므로 임의의 순서로 저장된 배열에 바로 적용할 수 없다.
+      선택지 2: 이진 탐색 트리는 데이터를 트리 구조로 새로 구성해야 하는 자료구조로, 주어진 배열에서 한 번 찾기에는 효과적이지 않다.
+      선택지 3: 순차 탐색은 처음부터 하나씩 차례대로 비교하므로 모든 리스트에 적용 가능하며, 비정렬 데이터 탐색에 적합하여 정답이다.
+      선택지 4: 흑적 트리(레드-블랙 트리)는 균형을 유지하는 이진 탐색 트리의 일종으로, 역시 트리를 구성해야 하며 배열에 바로 적용하는 방법이 아니다.
+
+      핵심 개념:
+      순차 탐색은 리스트(배열, 연결 리스트) 형태의 데이터를 처음부터 하나씩 차례로 비교하면서 원하는 키값을 찾는 방법이다.
+      수행 시간은 $O(n)$이며, 모든 리스트에 적용 가능해 비정렬 데이터 탐색에 적합하다.
+      이진 탐색은 정렬된 데이터에만 적용 가능하며 $O(\log n)$이다.
+      이진 탐색 트리는 평균 $O(\log n)$, 최악 $O(n)$이다.
+
+  - id: b03-28
+    type: multiple-choice
+    prompt: 주어진 데이터에 대해서 이진 탐색을 적용하면 가장 빠르게 찾아낼 수 있는 데이터의 위치는?
+    choices:
+      - { id: '1', text: '맨 앞에 있는 데이터' }
+      - { id: '2', text: '가운데 위치한 데이터' }
+      - { id: '3', text: '맨 뒤에 있는 데이터' }
+      - { id: '4', text: '존재하지 않는 데이터' }
+    answers: ['2']
+    explanation: |
+      선택지 1: 맨 앞의 데이터는 가운데 데이터와 비교 후 전반부로 범위를 계속 절반씩 줄여 가야 하므로 여러 번의 비교가 필요하다.
+      선택지 2: 이진 탐색은 가장 먼저 가운데 데이터와 탐색키를 비교하므로, 가운데 위치한 데이터는 첫 비교에서 탐색에 성공해 가장 빠르며 정답이다.
+      선택지 3: 맨 뒤의 데이터도 후반부로 범위를 계속 줄여 가야 하므로 여러 번의 비교가 필요하다.
+      선택지 4: 존재하지 않는 데이터는 탐색 범위가 빌 때까지 비교를 반복해야 실패를 알 수 있으므로 가장 느린 편이다.
+
+      핵심 개념:
+      이진 탐색은 정렬된 배열의 데이터를 절반씩 줄여 가면서 원하는 데이터를 찾는 분할정복 방법이며 $O(\log n)$이다.
+      가운데 데이터 = 탐색키이면 탐색 성공(인덱스 반환 후 종료)이다.
+      가운데 데이터 > 탐색키이면 전반부, 가운데 데이터 < 탐색키이면 후반부를 대상으로 순환 호출한다.
+      정렬된 데이터에서만 적용 가능하므로 삽입/삭제 시 정렬 상태를 유지하기 위한 데이터 이동이 필요하다.
+
+  - id: b03-29
+    type: multiple-choice
+    prompt: $n$개의 데이터에 대한 이진 탐색과 이진 탐색 트리의 최악의 탐색 시간이 바르게 연결된 것은?
+    choices:
+      - { id: '1', text: '$O(\log n) - O(\log n)$' }
+      - { id: '2', text: '$O(\log n) - O(n)$' }
+      - { id: '3', text: '$O(n) - O(\log n)$' }
+      - { id: '4', text: '$O(n) - O(n)$' }
+    answers: ['2']
+    explanation: |
+      선택지 1: 이진 탐색 트리의 $O(\log n)$은 최선/평균 탐색 시간이며, 한쪽으로 치우친 트리에서는 최악 $O(n)$이다.
+      선택지 2: 이진 탐색은 매번 범위를 절반으로 줄여 최악에도 $O(\log n)$이고, 이진 탐색 트리는 한쪽으로 치우친 경우 최악 $O(n)$이므로 정답이다.
+      선택지 3: 이진 탐색의 최악은 $O(n)$이 아니라 $O(\log n)$이며, 이진 탐색 트리의 최악은 $O(\log n)$이 아니라 $O(n)$이다.
+      선택지 4: 이진 탐색의 최악 탐색 시간은 $O(n)$이 아니라 $O(\log n)$이다.
+
+      핵심 개념:
+      이진 탐색: $O(\log n)$.
+      이진 탐색 트리: 최선/평균 수행 시간 $O(\log n)$, 최악 수행 시간 $O(n)$.
+      이진 탐색 트리는 키가 정렬된 순서로 삽입되면 한쪽으로 치우친 경사 트리가 되어 최악이 된다.
+      순차 탐색은 $O(n)$이다.
+
+  - id: b03-30
+    type: multiple-choice
+    prompt: 다음 중 문제 해결을 위해서 적용된 알고리즘의 설계 기법이 나머지와 ==다른== 하나는?
+    choices:
+      - { id: '1', text: '퀵 정렬' }
+      - { id: '2', text: '합병 정렬' }
+      - { id: '3', text: '이진 탐색' }
+      - { id: '4', text: '배낭 문제' }
+    answers: ['4']
+    explanation: |
+      선택지 1: 퀵 정렬은 피벗을 기준으로 분할해 순환 정렬하는 분할정복 방법을 적용한다.
+      선택지 2: 합병 정렬은 반으로 나누어 정렬한 뒤 합병하는 분할정복 방법을 적용한다.
+      선택지 3: 이진 탐색은 탐색 범위를 절반씩 줄이는 분할정복 방법을 적용한다.
+      선택지 4: 물체를 쪼갤 수 있는 배낭 문제는 단위 무게당 이익이 큰 순서로 넣는 욕심쟁이 방법으로 해결하므로 나머지와 다르며 정답이다.
+
+      핵심 개념:
+      분할정복 방법: 이진 탐색, 퀵 정렬, 합병 정렬.
+      욕심쟁이 방법: 거스름돈 문제, 배낭 문제.
+      동적 프로그래밍 방법: 모든 정점 간의 최단 경로 문제(플로이드 알고리즘).
+      0/1 배낭 문제는 욕심쟁이 방법으로 해결할 수 없다.
+
+  - id: b03-31
+    type: multiple-choice
+    passageRefs: [gb03-bst-01]
+    prompt: 주어진 이진 탐색 트리에서 노드 35를 삭제하려고 한다. 삭제 후 노드 35의 위치에 오게 되는 노드는?
+    choices:
+      - { id: '1', text: '30' }
+      - { id: '2', text: '40' }
+      - { id: '3', text: '44' }
+      - { id: '4', text: '55' }
+    answers: ['2']
+    explanation: |
+      선택지 1: 30은 35의 왼쪽 자식으로, 교재 방식인 후속자(오른쪽 서브트리의 최솟값) 노드가 아니다.
+      선택지 2: 35는 자식이 2개이므로 후속자 노드, 즉 오른쪽 서브트리(55, 44, 88, 40)의 최솟값인 40을 35의 위치로 올린다. 정답이다.
+      선택지 3: 44는 오른쪽 서브트리에 있지만 그 왼쪽에 더 작은 40이 있으므로 최솟값이 아니다.
+      선택지 4: 55는 35의 오른쪽 자식일 뿐 오른쪽 서브트리의 최솟값이 아니다.
+
+      핵심 개념:
+      이진 탐색 트리는 각 노드의 왼쪽 서브트리의 모든 키값이 그 노드보다 작고, 오른쪽 서브트리의 모든 키값이 그 노드보다 큰 이진 트리이다.
+      삭제는 삭제되는 노드의 자식 개수에 따라 세 가지 경우로 처리한다.
+      자식이 없으면 그대로 삭제하고, 하나만 있으면 자식 노드를 서브트리째 삭제 위치로 올린다.
+      자식이 2개이면 후속자(successor) 노드를 삭제 위치로 올리고, 후속자 노드의 자식 개수에 따라 다시 삭제 연산을 처리한다.
+
+  - id: b03-32
+    type: multiple-choice
+    prompt: 빈 이진 탐색 트리에 키값들을 차례대로 삽입한 후 키 10을 탐색하려고 한다. 이때 탐색 시간이 가장 오래 걸리는 키의 삽입 순서는 어느 것인가?
+    choices:
+      - { id: '1', text: '10, 20, 30, 40, 50, 60, 70' }
+      - { id: '2', text: '20, 50, 60, 70, 40, 30, 10' }
+      - { id: '3', text: '50, 40, 30, 20, 10, 60, 70' }
+      - { id: '4', text: '60, 20, 30, 10, 50, 40, 70' }
+    answers: ['3']
+    explanation: |
+      선택지 1: 10이 루트가 되므로 한 번의 비교로 찾는다.
+      선택지 2: 루트 20의 왼쪽 자식이 10이므로 두 번의 비교로 찾는다.
+      선택지 3: 50 → 40 → 30 → 20 → 10으로 왼쪽으로만 이어져 10이 루트(레벨 0)로부터 네 단계 아래인 레벨 4에 놓이므로 다섯 번의 비교가 필요해 가장 오래 걸리며 정답이다.
+      선택지 4: 60 → 20 → 10 순으로 내려가 세 번의 비교로 찾는다.
+
+      핵심 개념:
+      트리에서의 탐색 시간은 키를 비교하는 횟수, 즉 루트 노드로부터 얼마나 떨어져 있는가에 의해 결정된다.
+      키값을 차례대로 삽입해 트리를 만들면 각 키의 레벨로 비교 횟수를 파악할 수 있다.
+      루트로부터의 거리가 멀수록(레벨이 클수록) 비교 횟수와 탐색 시간이 커진다.
+      이진 탐색 트리는 평균 $O(\log n)$, 한쪽으로 치우치면 최악 $O(n)$이다.
+
+  - id: b03-33
+    type: multiple-choice
+    prompt: 최악의 수행 시간이 가장 효율적인 것은?
+    choices:
+      - { id: '1', text: '순차 탐색' }
+      - { id: '2', text: '이진 탐색 트리' }
+      - { id: '3', text: '이진 탐색' }
+      - { id: '4', text: '버블 정렬' }
+    answers: ['3']
+    explanation: |
+      선택지 1: 순차 탐색은 $O(n)$이다.
+      선택지 2: 이진 탐색 트리는 평균 $O(\log n)$이지만 최악 $O(n)$이다.
+      선택지 3: 이진 탐색은 최악의 경우에도 $O(\log n)$으로 보기 중 가장 효율적이며 정답이다.
+      선택지 4: 버블 정렬은 최악 $O(n^2)$이다.
+
+      핵심 개념:
+      순차 탐색 $O(n)$, 이진 탐색 $O(\log n)$, 이진 탐색 트리 $O(\log n)/O(n)$.
+      선택/버블/삽입 정렬 $O(n^2)$, 퀵 정렬 $O(n \log n)/O(n^2)$, 합병 정렬 $O(n \log n)$.
+      최악의 수행 시간을 비교할 때는 평균이 아닌 최악의 경우 값을 기준으로 한다.
+      빅오 크기 관계 $O(\log n) < O(n) < O(n \log n) < O(n^2)$로 효율을 비교한다.
+
+  - id: b04-01
+    type: multiple-choice
+    prompt: CPU의 시간을 일정 간격의 작은 시간으로 쪼개서 각 사용자에게 시간 간격이 할당되고, 그동안 직접 컴퓨터와 대화식으로 작업을 수행하는 방식을 무엇이라 하는가?
+    choices:
+      - { id: '1', text: '실시간처리 시스템' }
+      - { id: '2', text: '시분할처리 시스템' }
+      - { id: '3', text: '일괄처리 시스템' }
+      - { id: '4', text: '다중 프로그래밍 시스템' }
+    answers: ['2']
+    explanation: |
+      선택지 1: 실시간처리 시스템(real-time processing system)은 데이터가 발생하는 즉시 정해진 시간 안에 처리하는 방식으로, CPU 시간을 쪼개 여러 사용자에게 나눠 주는 방식을 가리키는 말이 아니다.
+      선택지 2: 시분할처리 시스템(time-sharing processing system)은 CPU 시간을 작은 시간 간격으로 쪼개 각 사용자에게 할당하고, 사용자가 그동안 컴퓨터와 대화식으로 작업하도록 개발된 방식이므로 정답이다.
+      선택지 3: 일괄처리 시스템(batch processing system)은 작업을 즉각 처리하지 않고 일정량이 될 때까지 모아 두었다가 한꺼번에 처리하는 방식으로, 대화식 작업이 불가능하다.
+      선택지 4: 다중 프로그래밍 시스템(multi-programming system)은 작업 A가 입출력장치를 사용하는 동안 놀고 있는 CPU를 작업 B에 할당해 자원 활용을 높이는 방식으로, 사용자별 시간 간격 할당과 대화식 작업을 특징으로 하지 않는다.
+
+      핵심 개념:
+      일괄처리 시스템은 1950년대 초기 운영체제의 작업 전환 낭비를 줄이려고 작업을 모아 한꺼번에 처리한다.
+      다중 프로그래밍 시스템은 여러 프로그램을 번갈아 CPU에 할당해 유휴 시간을 줄인다.
+      시분할처리 시스템은 동시적인 대화식 사용자의 다중 프로그래밍을 위해 개발되었다.
+      시분할 방식에서 사용자와 컴퓨터는 네트워크로 상호작용하며 빠른 응답을 요구한다.
+
+  - id: b04-02
+    type: multiple-choice
+    prompt: 처리할 작업이 발생할 때마다 즉각적으로 처리하지 않고 처리해야 할 작업이 일정량에 도달할 때까지 여러 작업을 모아 놓고 작업을 한꺼번에 처리하는 방식은 무엇인가?
+    choices:
+      - { id: '1', text: '실시간처리 시스템' }
+      - { id: '2', text: '시분할처리 시스템' }
+      - { id: '3', text: '다중 프로그래밍 시스템' }
+      - { id: '4', text: '일괄처리 시스템' }
+    answers: ['4']
+    explanation: |
+      선택지 1: 실시간처리 시스템(real-time processing system)은 작업이 발생하는 즉시 처리하는 방식이므로 작업을 모아 두는 조건과 반대이다.
+      선택지 2: 시분할처리 시스템(time-sharing processing system)은 CPU 시간을 쪼개 여러 사용자에게 할당하고 대화식으로 빠르게 응답하는 방식으로, 작업을 모아 한꺼번에 처리하지 않는다.
+      선택지 3: 다중 프로그래밍 시스템(multi-programming system)은 한 작업이 입출력을 하는 동안 CPU를 다른 작업에 할당하는 방식으로, 작업을 일정량까지 모으는 것이 핵심이 아니다.
+      선택지 4: 일괄처리 시스템(batch processing system)은 처리할 작업이 일정량에 도달할 때까지 여러 작업을 모아 두었다가 한꺼번에 처리하는 방식이므로 정답이다.
+
+      핵심 개념:
+      1950년대 초기 운영체제는 한 번에 하나의 작업만 수행하며 모든 컴퓨터 자원을 독점적으로 사용하였다.
+      작업 전환이나 입출력이 일어날 때 자원이 공유되지 못해 유휴 시간이 생기고 비싼 자원이 낭비되었다.
+      작업 간 전환을 줄여 시스템을 최대한 활용하기 위해 일괄처리 방식이 등장하였다.
+      일괄처리는 작업을 즉시 처리하지 않고 모았다가 한꺼번에 처리한다.
+
+  - id: b04-03
+    type: multiple-choice
+    prompt: 가상기억장치 구현 기법에서 프로그램을 동일한 크기의 영역으로 나눈 것을 무엇이라 부르는가?
+    choices:
+      - { id: '1', text: '세그먼트' }
+      - { id: '2', text: '프레임' }
+      - { id: '3', text: '파티션' }
+      - { id: '4', text: '페이지' }
+    answers: ['4']
+    explanation: |
+      선택지 1: 세그먼트(segment)는 프로그램 코드나 데이터를 서로 다른 크기로 분할한 블록이므로 동일한 크기라는 조건에 맞지 않는다.
+      선택지 2: 프레임(frame)은 주기억장치를 페이지 크기와 같은 크기로 분할해 관리하는 단위로, 프로그램이 아니라 주기억장치 쪽을 나눈 것이다.
+      선택지 3: 파티션(partition)은 고정 분할이나 동적 분할 다중 프로그래밍 기법에서 주기억장치를 나눈 영역을 가리키며, 프로그램을 나눈 단위가 아니다.
+      선택지 4: 페이지(page)는 보조기억장치에서 주기억장치로 전달되는 프로그램 코드나 데이터의 단위로, 동일한 크기의 블록이므로 정답이다.
+
+      핵심 개념:
+      페이징 기법은 프로그램 코드나 데이터를 페이지라는 동일한 크기의 블록으로 쪼개 주기억장치에 적재한다.
+      주기억장치는 페이지와 같은 크기의 프레임으로 나누어 관리된다.
+      세그먼테이션 기법은 프로그램 코드나 데이터를 서로 다른 크기의 세그먼트로 분할한다.
+      페이지는 크기가 같고, 세그먼트는 크기가 다르다는 점이 두 기법의 차이이다.
+
+  - id: b04-04
+    type: multiple-choice
+    prompt: 디스크와 같은 장치를 사용해서 프로그램 관점에서 사용 가능한 메모리 영역을 넓게 보이는 기법을 무엇이라 하는가?
+    choices:
+      - { id: '1', text: '가상기억장치' }
+      - { id: '2', text: '다중 프로그래밍 시스템' }
+      - { id: '3', text: '스풀링' }
+      - { id: '4', text: '요구 페이징' }
+    answers: ['1']
+    explanation: |
+      선택지 1: 가상기억장치(virtual memory)는 주기억장치보다 큰 프로그램을 작은 단위로 쪼개 실행하기 위해 보조기억장치의 주소를 주기억장치의 주소로 변환하여 프로그램에 제공하는 가상의 기억장치이므로 정답이다.
+      선택지 2: 다중 프로그래밍 시스템(multi-programming system)은 한 작업이 입출력을 하는 동안 CPU를 다른 작업에 할당해 자원 활용을 높이는 방식으로, 메모리 영역을 넓게 보이게 하는 기법이 아니다.
+      선택지 3: 스풀링(SPOOLing, Simultaneous Peripheral Operation On-Line)은 느린 입출력 데이터를 디스크에 모아 두었다가 처리해 CPU와 입출력장치의 속도 차이를 줄이는 기법으로, 사용 가능한 메모리를 넓히는 것이 목적이 아니다.
+      선택지 4: 요구 페이징(demand paging)은 프로세스가 필요한 페이지를 요구할 때만 주기억장치로 옮기는 페이지 반입 방식으로, 가상기억장치를 구현하는 세부 기법이지 기법 전체를 가리키는 이름이 아니다.
+
+      핵심 개념:
+      가상기억장치는 보조기억장치를 이용해 프로그램이 보는 기억 공간을 실제 주기억장치보다 크게 만든다.
+      보조기억장치의 주소를 주기억장치의 주소로 변환하는 기법을 가상기억장치 관리 기법이라고 한다.
+      구현 방식으로 페이징과 세그먼테이션이 있다.
+      요구 페이지 반입은 필요한 페이지만 그때그때 주기억장치로 가져오는 방식이다.
+
+  - id: b04-05
+    type: multiple-choice
+    prompt: 프로세스 스케줄링 기법 중 현재 준비 큐에 있는 프로세스들 중에서 수행시간이 가장 짧을 것으로 예상되는 프로세스를 먼저 처리하는 방식은 무엇인가?
+    choices:
+      - { id: '1', text: '우선순위 스케줄링 기법' }
+      - { id: '2', text: 'FCFS 스케줄링 기법' }
+      - { id: '3', text: 'SJF 스케줄링 기법' }
+      - { id: '4', text: 'RR 스케줄링 기법' }
+    answers: ['3']
+    explanation: |
+      선택지 1: 우선순위 스케줄링 기법은 우선순위가 높은 프로세스부터 먼저 처리하는 방식으로, 기준이 수행시간이 아니라 우선순위이다.
+      선택지 2: FCFS(First-Come First-Served) 스케줄링 기법은 준비 큐에 도착한 순서대로 CPU를 할당하는 방식으로, 수행시간을 고려하지 않는다.
+      선택지 3: SJF(Shortest Job First) 스케줄링 기법은 준비 큐의 프로세스 중 수행시간이 가장 짧을 것으로 예상되는 프로세스를 먼저 처리하므로 정답이다.
+      선택지 4: RR(Round Robin) 스케줄링 기법은 도착 순서대로 CPU를 할당하되 시간 할당량으로 실행을 제한하는 방식으로, 수행시간이 짧은 작업을 먼저 고르지 않는다.
+
+      핵심 개념:
+      SJF는 대기하는 프로세스 수를 최소화해 빠른 응답시간을 제공할 수 있다.
+      예상 수행 시간을 실행 전에 알아야 하므로 일괄처리 환경에서는 구현하기 쉽지만 대화식 시스템에서는 사용하기 어렵다.
+      수행시간이 긴 프로세스는 CPU를 할당받지 못하고 계속 기다릴 수 있다는 단점이 있다.
+      FCFS는 도착 순서, 우선순위 기법은 우선순위, RR은 도착 순서와 시간 할당량을 기준으로 한다.
+
+  - id: b04-06
+    type: multiple-choice
+    prompt: 프로세스 스케줄링 기법 중에서 작업 준비 큐에서 수행시간이 가장 짧을 것으로 예상되는 프로세스를 먼저 처리하는 방식은 어느 것인가?
+    choices:
+      - { id: '1', text: '우선순위 스케줄링 기법' }
+      - { id: '2', text: 'FCFS 스케줄링 기법' }
+      - { id: '3', text: 'SJF 스케줄링 기법' }
+      - { id: '4', text: 'RR 스케줄링 기법' }
+    answers: ['3']
+    explanation: |
+      선택지 1: 우선순위 스케줄링 기법은 기억장치의 양, 주변장치, 처리 요구 시간, 경과 시간 등으로 정한 우선순위가 높은 프로세스부터 처리하는 방식이므로 수행시간만을 기준으로 하지 않는다.
+      선택지 2: FCFS(First-Come First-Served) 스케줄링 기법은 도착한 순서대로 처리하므로, 늦게 들어온 짧은 작업이 먼저 온 긴 작업을 기다려야 한다.
+      선택지 3: SJF(Shortest Job First) 스케줄링 기법은 준비 큐에서 수행시간이 가장 짧을 것으로 예상되는 프로세스를 먼저 처리하므로 정답이다.
+      선택지 4: RR(Round Robin) 스케줄링 기법은 대화형 시스템에서 시간 할당량만큼씩 돌아가며 CPU를 주는 방식으로, 수행시간이 짧은 작업을 우선하지 않는다.
+
+      핵심 개념:
+      SJF는 예상 수행시간이 가장 짧은 프로세스를 먼저 선택하는 비선점 스케줄링 기법이다.
+      대기하는 프로세스 수를 최소화해 평균 응답시간을 줄인다.
+      실행 전 수행 시간을 예측해야 하므로 대화식 시스템에는 적용하기 어렵다.
+      수행시간이 긴 프로세스는 계속 밀려 기다릴 수 있다.
+
+  - id: b04-07
+    type: multiple-choice
+    prompt: 프로세스가 도착한 순서대로 CPU가 할당되지만, CPU의 시간 할당량 또는 시간 간격에 의해 제한하는 방식은 무엇인가?
+    choices:
+      - { id: '1', text: '우선순위 스케줄링 기법' }
+      - { id: '2', text: 'FCFS 스케줄링 기법' }
+      - { id: '3', text: 'SJF 스케줄링 기법' }
+      - { id: '4', text: 'RR 스케줄링 기법' }
+    answers: ['4']
+    explanation: |
+      선택지 1: 우선순위 스케줄링 기법은 우선순위가 높은 프로세스부터 처리하며, 우선순위에 따라 여러 개의 준비 큐에 배치되므로 도착 순서를 기준으로 하지 않는다.
+      선택지 2: FCFS(First-Come First-Served) 스케줄링 기법은 도착 순서대로 CPU를 할당하지만, 한 프로세스가 CPU를 차지하면 수행이 완료될 때까지 계속 사용하므로 시간 할당량 제한이 없다.
+      선택지 3: SJF(Shortest Job First) 스케줄링 기법은 수행시간이 가장 짧을 것으로 예상되는 프로세스를 먼저 처리하므로 도착 순서를 따르지 않는다.
+      선택지 4: RR(Round Robin) 스케줄링 기법은 도착한 순서대로 CPU를 할당하되 시간 할당량 동안 완료되지 못한 프로세스를 준비 큐의 맨 뒤로 보내므로 정답이다.
+
+      핵심 개념:
+      RR은 대화형 시스템에 사용되는 스케줄링 기법이다.
+      시간 할당량을 매 프로세스에 주고, 그 시간 안에 끝나지 않으면 준비 큐의 맨 뒤에 배치한 뒤 다음 프로세스에 CPU를 할당한다.
+      한 프로세스가 CPU를 독점하지 않고 공평하게 이용할 수 있다는 장점이 있다.
+      우선순위가 높은 작업을 빨리 처리하기 어렵다는 단점이 있다.
+
+  - id: b04-08
+    type: multiple-choice
+    prompt: 다중 프로그래밍 시스템에서 프로세스가 아무리 기다려도 결코 발생하지 않을 사건을 기다리고 있는 상황으로 제한된 자원에 대한 공유와 병행 처리로 인해 발생하는 문제는 무엇인가?
+    choices:
+      - { id: '1', text: '임계영역' }
+      - { id: '2', text: '동기화' }
+      - { id: '3', text: '교착상태' }
+      - { id: '4', text: '상호배제' }
+    answers: ['3']
+    explanation: |
+      선택지 1: 임계영역(critical section)은 공유 데이터에 접근하는 프로그램 코드 부분을 가리키며, 문제 상황 자체가 아니다.
+      선택지 2: 동기화(synchronization)는 병행 프로세스들이 공유 자원을 올바른 순서로 사용하도록 실행 순서를 맞추는 제어 방법으로, 발생하는 문제가 아니라 문제를 해결하는 수단이다.
+      선택지 3: 교착상태(deadlock)는 2개 이상의 프로세스가 제한된 자원을 동시에 공유하면서 서로 대기 상태가 되어, 대기 중인 프로세스들 중 하나에 의해서만 발생할 수 있는 사건을 무작정 기다리는 상태이므로 정답이다.
+      선택지 4: 상호배제(mutual exclusion)는 한 프로세스가 공유 데이터를 사용하는 동안 다른 프로세스의 접근을 금지하는 제어 기법으로, 문제를 해결하는 방법이다.
+
+      핵심 개념:
+      교착상태는 제한된 자원의 공유와 병행 처리로 인해 발생한다.
+      교착상태에 빠진 프로세스는 결코 일어나지 않을 사건을 기다린다.
+      상호배제 조건, 대기 조건, 비선점 조건, 원형 대기 조건이 동시에 만족될 때 발생한다.
+      임계영역, 상호배제, 동기화는 병행 프로세스의 공유 자원 접근을 다루는 개념이다.
+
+  - id: b04-09
+    type: multiple-choice
+    prompt: 병행 프로세스의 비동기성으로 인해 발생하는 문제들을 해결하기 위한 방법으로, 하나의 프로세스가 공유 데이터의 사용을 완료할 때까지 다른 프로세스의 공유 데이터 접근을 금지하는 제어 기법은 무엇인가?
+    choices:
+      - { id: '1', text: '동기화' }
+      - { id: '2', text: '임계영역' }
+      - { id: '3', text: '교착상태' }
+      - { id: '4', text: '상호배제' }
+    answers: ['4']
+    explanation: |
+      선택지 1: 동기화(synchronization)는 병행 프로세스들의 실행 순서를 맞춰 협력하게 하는 방법으로, 한 프로세스가 사용하는 동안 다른 프로세스의 접근을 금지하는 것 자체를 가리키는 이름이 아니다.
+      선택지 2: 임계영역(critical section)은 공유 데이터에 접근하는 코드 부분으로, 접근을 금지하는 제어 기법이 아니라 보호 대상이다.
+      선택지 3: 교착상태(deadlock)는 프로세스들이 서로 결코 발생하지 않을 사건을 기다리는 문제 상황으로, 해결 방법이 아니다.
+      선택지 4: 상호배제(mutual exclusion)는 한 프로세스가 컴퓨터 자원을 사용 중이면 다른 프로세스는 해제될 때까지 반드시 기다리게 하는 기법이므로 정답이다.
+
+      핵심 개념:
+      병행 프로세스는 비동기적으로 실행되므로 공유 데이터에 동시에 접근하면 문제가 생긴다.
+      상호배제는 한 번에 하나의 프로세스만 공유 데이터를 사용하도록 보장한다.
+      공유 데이터에 접근하는 코드 구간을 임계영역이라 한다.
+      상호배제 조건은 교착상태 발생의 네 가지 조건 중 하나이기도 하다.
+
+  - id: b04-10
+    type: multiple-choice
+    prompt: 교착상태가 발생하는 네 가지 조건에 해당하지 ==않는== 것은?
+    choices:
+      - { id: '1', text: '대기 조건' }
+      - { id: '2', text: '선점 조건' }
+      - { id: '3', text: '원형 대기 조건' }
+      - { id: '4', text: '상호배제 조건' }
+    answers: ['2']
+    explanation: |
+      선택지 1: 대기 조건은 프로세스가 하나 이상의 자원을 할당받아 점유하고 있으면서 다른 프로세스가 할당받은 자원을 요청하고 해제되기를 기다린다는 것으로, 교착상태 발생 조건에 해당한다.
+      선택지 2: 선점 조건은 교착상태 발생 조건이 아니므로 정답이다. 발생 조건은 비선점 조건으로, 할당된 자원이 작업 종료 후 자발적으로만 해제되고 타의에 의해서는 해제되지 않는다는 것이다.
+      선택지 3: 원형 대기 조건은 프로세스의 원형 사슬이 존재해 각 프로세스가 사슬 내 다음 프로세스가 요구하는 자원을 하나 이상 가지고 있다는 것으로, 교착상태 발생 조건에 해당한다.
+      선택지 4: 상호배제 조건은 한 프로세스가 자원을 사용 중이면 다른 프로세스는 해제될 때까지 반드시 기다려야 한다는 것으로, 교착상태 발생 조건에 해당한다.
+
+      핵심 개념:
+      교착상태는 상호배제, 대기, 비선점, 원형 대기의 네 가지 조건이 동시에 만족할 때만 발생한다.
+      대기 조건은 자원을 점유한 채 다른 자원을 기다리는 것이다.
+      비선점 조건은 할당된 자원을 강제로 빼앗을 수 없다는 것이다.
+      원형 대기 조건은 프로세스들이 사슬 모양으로 서로의 자원을 기다리는 것이다.
+
+  - id: b04-11
+    type: multiple-choice
+    prompt: 한쪽 방향에서 가장 짧은 탐색거리의 디스크 접근 요청을 먼저 서비스하는 방식은 무엇인가 ?
+    choices:
+      - { id: '1', text: 'FCFS 스케줄링 기법' }
+      - { id: '2', text: 'SCAN 스케줄링 기법' }
+      - { id: '3', text: 'SLTF 스케줄링 기법' }
+      - { id: '4', text: 'SSTF 스케줄링 기법' }
+    answers: ['2']
+    explanation: |
+      선택지 1: FCFS(First-Come First-Served) 스케줄링 기법은 먼저 도착한 디스크 접근 요청을 먼저 서비스하는 방식으로, 탐색거리를 고려하지 않는다.
+      선택지 2: SCAN 스케줄링 기법은 한쪽 방향에서 가장 짧은 탐색거리의 요청을 먼저 서비스하고, 마지막 실린더를 만나거나 요구가 없으면 방향을 바꾸어 서비스를 계속하므로 정답이다.
+      선택지 3: SLTF(Shortest Latency Time First) 스케줄링 기법은 헤드가 도착한 실린더 내에서 회전지연이 가장 짧은 요구부터 서비스하는 방식으로, 탐색거리가 아니라 회전지연시간을 최적화한다.
+      선택지 4: SSTF(Shortest Seek Time First) 스케줄링 기법은 현재 헤드 위치에서 가장 짧은 탐색거리의 요청을 먼저 처리하지만, 방향을 한쪽으로 정하지 않고 양쪽 중 가까운 요청을 고른다.
+
+      핵심 개념:
+      FCFS는 부하가 적을 때 좋지만 부하가 커지면 응답시간이 길어진다.
+      SSTF는 평균 응답시간이 짧지만 안쪽·바깥쪽 트랙이 서비스를 받지 못할 수 있어 대화식 시스템에는 쓰지 않는다.
+      SCAN은 SSTF의 불공평성 문제를 극복하려고 제안된 방법으로, 한 방향으로 진행하며 가장 짧은 탐색거리의 요청을 처리한다.
+      SLTF는 탐색시간이 아니라 회전지연시간을 최적화하는 기법이다.
+
+  - id: b05-01
+    type: multiple-choice
+    prompt: 다음 중 시스템 버스에 포함되지 ==않는== 것은?
+    choices:
+      - { id: '1', text: '상태 버스' }
+      - { id: '2', text: '데이터 버스' }
+      - { id: '3', text: '주소 버스' }
+      - { id: '4', text: '제어 버스' }
+    answers: ['1']
+    explanation: |
+      선택지 1: 시스템 버스의 종류는 주소 버스, 데이터 버스, 제어 버스의 세 가지이며 상태 버스라는 구분은 없다. 따라서 시스템 버스에 포함되지 않는 것으로 정답이다.
+      선택지 2: 데이터 버스는 CPU(Central Processing Unit, 중앙처리장치)와 기억장치·입출력장치 사이에서 실제 데이터를 주고받는 통로로 시스템 버스에 포함된다.
+      선택지 3: 주소 버스는 CPU가 접근할 기억장치나 입출력장치의 위치(주소)를 전달하는 통로로 시스템 버스에 포함된다.
+      선택지 4: 제어 버스는 읽기·쓰기 등 장치의 동작을 지시하는 제어 신호를 전달하는 통로로 시스템 버스에 포함된다.
+
+      핵심 개념:
+      시스템 버스는 CPU와 다른 장치 간의 물리적 연결 및 데이터를 교환하는 통로이다.
+      전달하는 정보에 따라 주소 버스, 데이터 버스, 제어 버스로 구분한다.
+      주소 버스는 위치, 데이터 버스는 내용, 제어 버스는 동작 신호를 전달한다.
+      컴퓨터 하드웨어는 중앙처리장치, 기억장치, 입력장치, 출력장치와 이들을 잇는 시스템 버스로 구성된다.
+
+  - id: b05-02
+    type: multiple-choice
+    prompt: 중앙처리장치(CPU)의 구성요소가 ==아닌== 것은?
+    choices:
+      - { id: '1', text: 'ALU' }
+      - { id: '2', text: '시스템 클록' }
+      - { id: '3', text: 'CU' }
+      - { id: '4', text: '레지스터' }
+    answers: ['2']
+    explanation: |
+      선택지 1: ALU(Arithmetic and Logic Unit, 산술논리연산장치)는 데이터에 대한 산술 연산과 논리 연산을 수행해 직접적인 데이터 처리가 이루어지는 장치로 CPU의 구성요소이다.
+      선택지 2: 시스템 클록은 컴퓨터의 하드웨어적 요소들의 동작을 일정한 클록 신호에 따라 동기화하기 위한 것으로, CPU를 구성하는 제어장치·산술논리연산장치·레지스터에 속하지 않으므로 정답이다.
+      선택지 3: CU(Control Unit, 제어장치)는 기억장치, 산술논리연산장치, 입출력장치의 동작을 제어하는 장치로 CPU의 구성요소이다.
+      선택지 4: 레지스터는 연산 수행에 필요한 데이터와 연산 결과를 임시로 저장하는 기억장치로 CPU의 구성요소이다.
+
+      핵심 개념:
+      중앙처리장치는 제어장치, 산술논리연산장치, 레지스터로 구성된다.
+      제어장치는 각 장치의 동작을 제어하고, 산술논리연산장치는 실제 연산을 수행한다.
+      레지스터는 연산에 필요한 데이터와 결과를 임시로 저장한다.
+      산술논리연산장치와 레지스터를 합쳐서 '처리장치'라고 부른다.
+
+  - id: b05-03
+    type: multiple-choice
+    passageRefs: [gb05-nor-truth-table-01]
+    prompt: 다음과 같은 진리표에 해당하는 논리 게이트 기호는? (단, X와 Y는 입력, F는 출력이다.)
+    choices:
+      - id: '1'
+        text: ''
+        image:
+          path: images/subjects/introduction-to-computer-science/workbook/b05-03-choice-1.png
+          alt: '선택지 1 논리 게이트 기호: AND 몸체 출력에 부정 원이 붙은 기호'
+      - id: '2'
+        text: ''
+        image:
+          path: images/subjects/introduction-to-computer-science/workbook/b05-03-choice-2.png
+          alt: '선택지 2 논리 게이트 기호: OR 몸체 입력 쪽에 곡선이 하나 더 있는 기호'
+      - id: '3'
+        text: ''
+        image:
+          path: images/subjects/introduction-to-computer-science/workbook/b05-03-choice-3.png
+          alt: '선택지 3 논리 게이트 기호: OR 몸체 출력에 부정 원이 붙은 기호'
+      - id: '4'
+        text: ''
+        image:
+          path: images/subjects/introduction-to-computer-science/workbook/b05-03-choice-4.png
+          alt: '선택지 4 논리 게이트 기호: OR 몸체 기호'
+    answers: ['3']
+    explanation: |
+      선택지 1: AND 몸체에 부정 원이 붙은 NAND 게이트 기호이다. NAND는 두 입력이 모두 1일 때만 0을 출력하므로 (0, 1), (1, 0) 입력에서 1을 출력해 진리표와 맞지 않는다.
+      선택지 2: OR 몸체 입력 쪽에 곡선이 한 줄 더 있는 XOR(exclusive OR, 배타적 논리합) 게이트 기호이다. XOR은 (0, 0) 입력에서 0을 출력하므로 진리표와 맞지 않는다.
+      선택지 3: OR 몸체에 부정 원이 붙은 NOR 게이트 기호이다. 진리표는 두 입력이 모두 0일 때만 1이고 나머지는 0이므로 OR 연산의 출력에 NOT 연산을 적용한 NOR 연산 $F = (X + Y)'$에 해당해 정답이다.
+      선택지 4: 부정 원이 없는 OR 게이트 기호이다. OR은 입력 중 하나 이상이 1이면 1을 출력하므로 진리표와 정반대의 결과를 낸다.
+
+      핵심 개념:
+      기본 논리연산은 논리합(OR), 논리곱(AND), 논리부정(NOT)이며, 이들의 조합으로 임의의 논리 수식을 만들 수 있다.
+      NOR은 OR의 출력을 부정한 것으로, 모든 입력이 0일 때만 1을 출력한다.
+      NAND는 AND의 출력을 부정한 것으로, 모든 입력이 1일 때만 0을 출력한다.
+      게이트 기호 끝의 작은 원은 출력을 부정한다는 뜻이다.
+
+  - id: b05-04
+    type: multiple-choice
+    prompt: 다음 회로에 대해서 출력(F)이 0이 되는 입력은?
+    images:
+      - path: images/subjects/introduction-to-computer-science/workbook/b05-04.png
+        alt: 'X와 Y가 XOR 게이트에 입력되고, 그 출력과 Z가 OR 게이트에 입력되어 F를 출력하는 회로'
+    choices:
+      - id: '1'
+        text: ''
+        diagram:
+          type: data-table
+          columns: ['X', 'Y', 'Z']
+          rows:
+            - ['0', '0', '1']
+      - id: '2'
+        text: ''
+        diagram:
+          type: data-table
+          columns: ['X', 'Y', 'Z']
+          rows:
+            - ['0', '1', '1']
+      - id: '3'
+        text: ''
+        diagram:
+          type: data-table
+          columns: ['X', 'Y', 'Z']
+          rows:
+            - ['1', '0', '0']
+      - id: '4'
+        text: ''
+        diagram:
+          type: data-table
+          columns: ['X', 'Y', 'Z']
+          rows:
+            - ['1', '1', '0']
+    answers: ['4']
+    explanation: |
+      선택지 1: X와 Y가 모두 0이므로 XOR 출력은 0이지만 Z가 1이므로 OR 출력 $F = 0 + 1 = 1$이 된다.
+      선택지 2: X와 Y가 서로 다르므로 XOR 출력은 1이고, Z도 1이므로 $F = 1 + 1 = 1$이 된다.
+      선택지 3: X와 Y가 서로 다르므로 XOR 출력은 1이고, Z가 0이어도 $F = 1 + 0 = 1$이 된다.
+      선택지 4: X와 Y가 모두 1이므로 XOR 출력은 0이고, Z도 0이므로 $F = 0 + 0 = 0$이 되어 정답이다.
+
+      핵심 개념:
+      회로의 출력은 $F = (X \oplus Y) + Z$이며, $X \oplus Y = X \cdot Y' + X' \cdot Y$이다.
+      XOR은 두 입력이 서로 다를 때만 1을, OR은 입력 중 하나라도 1이면 1을 출력한다.
+      따라서 F가 0이 되려면 XOR 출력과 Z가 모두 0이어야 하므로 X = Y이고 Z = 0이어야 한다.
+      보기 중 이 조건을 만족하는 것은 (1, 1, 0)뿐이다.
+
+  - id: b05-05
+    type: multiple-choice
+    prompt: 불 대수의 기본 법칙 중에서 드모르간 법칙에 해당하는 것은?
+    choices:
+      - { id: '1', text: '$A \cdot B = B \cdot A$' }
+      - { id: '2', text: '$(A + B) + C = A + (B + C)$' }
+      - { id: '3', text: '$A \cdot (B + C) = A \cdot B + A \cdot C$' }
+      - { id: '4', text: '$(A \cdot B)'' = A'' + B''$' }
+    answers: ['4']
+    explanation: |
+      선택지 1: 두 변수의 순서를 바꾸어도 결과가 같다는 교환법칙이다.
+      선택지 2: 연산의 묶는 순서를 바꾸어도 결과가 같다는 결합법칙이다.
+      선택지 3: 논리곱을 논리합에 대해 나누어 적용하는 분배법칙이다.
+      선택지 4: 논리곱 전체의 부정이 각 변수 부정의 논리합과 같다는 드모르간 법칙으로 정답이다.
+
+      핵심 개념:
+      불 대수는 이진 변수의 논리연산을 다루는 대수이다.
+      드모르간 법칙은 $(X + Y)' = X' \cdot Y'$, $(X \cdot Y)' = X' + Y'$의 두 식으로 표현된다.
+      즉, 전체를 부정하면 각 변수를 부정하고 AND와 OR를 서로 바꾼 것과 같다.
+      불 대수의 법칙을 이용해 논리 수식을 간소화하면 보다 단순한 논리회로를 구성할 수 있다.
+
+  - id: b05-06
+    type: multiple-choice
+    prompt: 다음 논리회로 중 출력값을 결정하는 방식이 나머지와 ==다른== 하나는?
+    choices:
+      - { id: '1', text: '멀티플렉서' }
+      - { id: '2', text: '디코더' }
+      - { id: '3', text: '카운터' }
+      - { id: '4', text: '전가산기' }
+    answers: ['3']
+    explanation: |
+      선택지 1: 멀티플렉서는 여러 입력선 중 하나를 선택해 출력하는 회로로, 출력이 현재 입력에 의해서만 결정되는 조합회로이다.
+      선택지 2: 디코더는 $n$비트 이진 코드를 $2^n$개의 출력 중 하나로 변환하는 회로로, 출력이 현재 입력에 의해서만 결정되는 조합회로이다.
+      선택지 3: 카운터는 플립플롭에 회로의 상태를 저장하고, 출력이 입력과 저장된 상태값에 의해 결정되는 순서회로이다. 나머지 셋은 조합회로이므로 정답이다.
+      선택지 4: 전가산기는 두 비트와 아랫자리 올림수를 더해 합과 올림수를 내는 회로로, 출력이 현재 입력에 의해서만 결정되는 조합회로이다.
+
+      핵심 개념:
+      논리회로는 조합회로와 순서회로로 구분한다.
+      조합회로는 출력이 주어진 입력에 의해서만 결정되며 전가산기, 디코더, 인코더, 멀티플렉서, 디멀티플렉서 등이 있다.
+      순서회로는 출력이 주어진 입력과 저장된 회로의 상태값에 의해 결정된다.
+      순서회로는 상태를 저장하기 위해 1비트 기억소자인 플립플롭을 사용하며 카운터, 레지스터 등이 있다.
+
+  - id: b05-07
+    type: multiple-choice
+    prompt: 다음 중 플립플롭을 사용하는 논리회로는?
+    choices:
+      - { id: '1', text: '카운터' }
+      - { id: '2', text: '디코더' }
+      - { id: '3', text: '멀티플렉서' }
+      - { id: '4', text: '전가산기' }
+    answers: ['1']
+    explanation: |
+      선택지 1: 카운터는 클록펄스가 입력될 때마다 미리 정해진 순서에 따라 상태가 변하는 순서회로로, 현재 상태를 저장하기 위해 플립플롭을 사용하므로 정답이다.
+      선택지 2: 디코더는 입력 코드만으로 출력이 정해지는 조합회로로, 상태를 저장하는 플립플롭이 필요 없다.
+      선택지 3: 멀티플렉서는 선택 변수로 입력선 하나를 골라 출력하는 조합회로로, 플립플롭을 사용하지 않는다.
+      선택지 4: 전가산기는 입력 비트들의 덧셈 결과만 출력하는 조합회로로, 플립플롭을 사용하지 않는다.
+
+      핵심 개념:
+      플립플롭은 1비트의 정보를 저장할 수 있는 기억소자이다.
+      순서회로는 연산의 각 단계마다 회로의 특정 상태를 플립플롭에 저장하고 참조한다.
+      대표적인 순서회로는 카운터와 레지스터이다.
+      조합회로(전가산기, 디코더, 인코더, 멀티플렉서 등)는 기억소자 없이 현재 입력만으로 출력이 정해진다.
+
+  - id: b05-08
+    type: multiple-choice
+    prompt: NOR 게이트 2개로 구성된 RS 플립플롭에서 출력값이 변하지 않고 현재의 상태를 그대로 유지하기 위한 입력값의 구성으로 올바른 것은?
+    choices:
+      - id: '1'
+        text: ''
+        diagram:
+          type: data-table
+          columns: ['R', 'S']
+          rows:
+            - ['0', '0']
+      - id: '2'
+        text: ''
+        diagram:
+          type: data-table
+          columns: ['R', 'S']
+          rows:
+            - ['0', '1']
+      - id: '3'
+        text: ''
+        diagram:
+          type: data-table
+          columns: ['R', 'S']
+          rows:
+            - ['1', '0']
+      - id: '4'
+        text: ''
+        diagram:
+          type: data-table
+          columns: ['R', 'S']
+          rows:
+            - ['1', '1']
+    answers: ['1']
+    explanation: |
+      선택지 1: S = 0, R = 0이면 무변화 상태로 $Q(t+1) = Q(t)$가 되어 현재 상태를 그대로 유지하므로 정답이다.
+      선택지 2: S = 1, R = 0이면 세트 상태로 출력 Q가 1이 되므로 현재 상태가 유지되지 않는다.
+      선택지 3: S = 0, R = 1이면 리셋 상태로 출력 Q가 0이 되므로 현재 상태가 유지되지 않는다.
+      선택지 4: S = 1, R = 1은 두 출력이 모두 0이 되어 Q와 Q′의 관계가 깨지는 불가(미정 상태) 입력이다.
+
+      핵심 개념:
+      RS 플립플롭은 NOR 게이트 2개의 출력을 서로의 입력으로 되먹임한 구조로, 엄밀히는 '래치'라고 한다.
+      입력 S(set)는 Q를 1로, R(reset)은 Q를 0으로 만든다.
+      S와 R가 모두 0이면 이전 상태를 유지하며, 이것이 1비트를 기억하는 원리이다.
+      S와 R가 모두 1인 입력은 다음 상태를 정할 수 없어 사용하지 않는다.
+
+  - id: b05-09
+    type: multiple-choice
+    passageRefs: [gb05-decoder-desc-01]
+    prompt: 다음 설명에 해당하는 논리회로는?
+    choices:
+      - { id: '1', text: '멀티플렉서' }
+      - { id: '2', text: '카운터' }
+      - { id: '3', text: '레지스터' }
+      - { id: '4', text: '디코더' }
+    answers: ['4']
+    explanation: |
+      선택지 1: 멀티플렉서는 $2^n$개의 입력선 중 하나를 $n$개의 선택 변수로 골라 단일 출력으로 내보내는 회로로, 출력이 여러 개가 아니다.
+      선택지 2: 카운터는 클록펄스가 입력될 때마다 정해진 순서로 상태가 변하는 순서회로로, 입력 코드를 해독하는 회로가 아니다.
+      선택지 3: 레지스터는 플립플롭으로 여러 비트의 데이터를 저장하는 순서회로로, 입력을 여러 출력 중 하나로 변환하지 않는다.
+      선택지 4: 디코더는 $n$비트의 이진 코드를 최대 $2^n$개의 서로 다른 출력으로 변환하며, 하나의 출력만 1이 되고 나머지는 모두 0이 되므로 정답이다.
+
+      핵심 개념:
+      디코더는 $n$비트 이진 입력을 해독해 $2^n$개의 출력선 중 하나만 활성화하는 조합회로이다.
+      주소 방식으로 주어진 입력으로부터 각각의 해당 하드웨어 구성요소를 개별적으로 구동하기 위해 주로 사용된다.
+      인코더는 디코더와 반대로 활성화된 입력선 하나를 이진 코드로 변환한다.
+      멀티플렉서는 여러 입력 중 하나를 선택해 단일 출력으로 내보내는 회로로 디코더와 구별해야 한다.
+
+  - id: b05-10
+    type: multiple-choice
+    prompt: 다음 그림에서 (A)에 해당하는 논리회로는?
+    images:
+      - path: images/subjects/introduction-to-computer-science/workbook/b05-10.png
+        alt: '입력 X=1, Y=0이 (A)로 들어가고, (A)의 네 출력 중 장치3으로 가는 출력만 1이고 장치1·장치2·장치4로 가는 출력은 0인 그림'
+    choices:
+      - { id: '1', text: '디코더' }
+      - { id: '2', text: '인코더' }
+      - { id: '3', text: '멀티플렉서' }
+      - { id: '4', text: '디멀티플렉서' }
+    answers: ['1']
+    explanation: |
+      선택지 1: 2비트 입력(X=1, Y=0, 즉 이진수 10)을 해독해 4개의 출력 중 해당하는 하나(장치3)만 1로 만들고 나머지는 0으로 만드는 회로이므로 디코더이다. 정답이다.
+      선택지 2: 인코더는 $2^n$개의 입력선 중 활성화된 하나를 $n$비트 코드로 변환하는 회로로, 입력이 2개이고 출력이 4개인 그림과 방향이 반대이다.
+      선택지 3: 멀티플렉서는 여러 입력선 중 하나를 골라 단일 출력으로 내보내는 회로로, 출력이 하나뿐이어서 그림과 맞지 않는다.
+      선택지 4: 디멀티플렉서는 하나의 데이터 입력을 선택 변수에 따라 여러 출력선 중 하나로 분배하는 회로로, 별도의 데이터 입력선이 필요하다. 그림은 입력 코드 자체로 출력 하나를 선택하므로 디코더에 해당한다.
+
+      핵심 개념:
+      디코더는 $n$비트 이진 코드를 최대 $2^n$개의 출력 중 하나만 1이 되도록 변환하는 조합회로이다.
+      2비트 입력이면 4개의 출력선을 가지는 2×4 디코더가 된다.
+      입력 XY = 10은 십진수 2이므로 0번부터 센 세 번째 출력(장치3)이 활성화된다.
+      디코더는 주소에 따라 특정 장치나 기억소자를 개별적으로 구동할 때 주로 사용된다.
+
+  - id: b05-11
+    type: multiple-choice
+    prompt: 장치 4개가 하나의 데이터 전송 통로를 공유하고 있을 때 어떤 장치로부터 들어오는 데이터가 버스를 사용할 것인가를 정하기 위한 (A)에 해당하는 논리회로는?
+    images:
+      - path: images/subjects/introduction-to-computer-science/workbook/b05-11.png
+        alt: '장치A~장치D의 입력이 (A)로 들어가고, 선택 S1=0, S2=1에 따라 장치B의 입력이 선택되어 출력이 시스템 버스로 나가는 그림'
+    choices:
+      - { id: '1', text: '인코더' }
+      - { id: '2', text: '멀티플렉서' }
+      - { id: '3', text: '디코더' }
+      - { id: '4', text: '디멀티플렉서' }
+    answers: ['2']
+    explanation: |
+      선택지 1: 인코더는 활성화된 입력선 하나를 이진 코드로 변환하는 회로로, 선택 변수로 입력 데이터를 골라 버스로 전달하지 않는다.
+      선택지 2: 멀티플렉서는 여러 개의 입력선 중에서 선택 변수($S_1$, $S_2$)의 조합으로 하나를 골라 단일 출력으로 내보내는 회로로, 어떤 장치의 데이터가 버스를 사용할지 정할 때 사용되므로 정답이다.
+      선택지 3: 디코더는 $n$비트 입력을 해독해 여러 출력선 중 하나를 활성화하는 회로로, 출력이 여러 개여서 그림의 단일 출력 구조와 맞지 않는다.
+      선택지 4: 디멀티플렉서는 하나의 입력을 여러 출력선 중 하나로 분배하는 회로로, 여러 장치의 입력을 하나의 버스로 모으는 그림과 방향이 반대이다.
+
+      핵심 개념:
+      멀티플렉서는 여러 개의 입력선 중에서 하나를 선택하여 단일의 출력으로 내보내는 조합회로이다.
+      $2^n$개의 데이터 입력선 중 하나를 선택하려면 $n$개의 선택 변수가 있어야 한다.
+      그림처럼 4개 장치 중 하나를 고르려면 2개의 선택 변수가 필요하다.
+      여러 장치가 버스를 공유할 때 어느 장치의 데이터를 버스에 실을지 정하는 데 쓰인다.
+
+  - id: b05-12
+    type: multiple-choice
+    prompt: 다음과 같이 3개의 T 플립플롭으로 구성한 논리회로는 무엇인가?
+    images:
+      - path: images/subjects/introduction-to-computer-science/workbook/b05-12.png
+        alt: '입력 1이 A0 T 플립플롭의 T에 들어가고, A0 출력이 A1 T 플립플롭의 T와 AND 게이트에, A1 출력이 AND 게이트에 들어가 그 출력이 A2 T 플립플롭의 T로 가며, 클록 C가 세 플립플롭에 공통으로 연결된 회로'
+    choices:
+      - { id: '1', text: '전가산기' }
+      - { id: '2', text: '레지스터' }
+      - { id: '3', text: '인코더' }
+      - { id: '4', text: '카운터' }
+    answers: ['4']
+    explanation: |
+      선택지 1: 전가산기는 기억소자 없이 두 비트와 올림수를 더하는 조합회로로, 플립플롭과 클록으로 구성된 그림과 맞지 않는다.
+      선택지 2: 레지스터는 플립플롭에 외부 데이터를 병렬로 저장하는 순서회로로, 그림처럼 입력이 1로 고정된 채 상태가 스스로 변해 가지 않는다.
+      선택지 3: 인코더는 활성화된 입력선을 이진 코드로 바꾸는 조합회로로, 플립플롭을 사용하지 않는다.
+      선택지 4: $A_0$은 T = 1이라 클록마다 반전되고, $A_1$은 $A_0 = 1$일 때, $A_2$는 $A_0 \cdot A_1 = 1$일 때 반전된다. 클록펄스가 입력될 때마다 저장된 2진수가 1씩 증가하는 3비트 카운터이므로 정답이다.
+
+      핵심 개념:
+      카운터는 클록펄스가 입력될 때마다 미리 정해진 순서에 따라 상태가 변하는 순서회로이다.
+      T(Toggle) 플립플롭은 C = 0이면 작동하지 않고, C = 1일 때 T = 1이면 $Q(t+1) = Q(t)'$, T = 0이면 $Q(t+1) = Q(t)$가 된다.
+      아랫자리 비트가 모두 1일 때만 윗자리 비트를 반전시키면 2진수 1 증가와 같은 동작이 된다.
+      C(clock pulse)는 주기적으로 생성되는 신호로 시스템 구성요소들의 작동을 동기화한다.
+
+  - id: b05-13
+    type: multiple-choice
+    prompt: 다음 회로도에 해당하는 논리회로는?
+    images:
+      - path: images/subjects/introduction-to-computer-science/workbook/b05-13.png
+        alt: 'A와 B가 XOR 게이트에 들어가고 그 출력과 C가 다시 XOR 게이트에 들어가 X를 출력하며, A와 B의 AND 출력과 첫 XOR 출력과 C의 AND 출력이 OR 게이트에 들어가 Y를 출력하는 회로'
+    choices:
+      - { id: '1', text: '인코더' }
+      - { id: '2', text: '전가산기' }
+      - { id: '3', text: '멀티플렉서' }
+      - { id: '4', text: '디코더' }
+    answers: ['2']
+    explanation: |
+      선택지 1: 인코더는 여러 입력선 중 활성화된 하나를 이진 코드로 바꾸는 회로로, 입력들을 XOR로 더하는 구조가 아니다.
+      선택지 2: $X = A \oplus B \oplus C$는 세 비트의 합이고, $Y = A \cdot B + (A \oplus B) \cdot C$는 윗자리로 보내는 올림수이다. 두 2진수 입력(A, B)과 아랫자리 올림수(C)를 더해 합(X)과 올림수(Y)를 출력하므로 1비트 전가산기이며 정답이다.
+      선택지 3: 멀티플렉서는 선택 변수로 여러 입력 중 하나를 골라 출력하는 회로로, 선택 변수 입력이 없는 그림과 맞지 않는다.
+      선택지 4: 디코더는 $n$비트 입력을 $2^n$개의 출력 중 하나로 변환하는 회로로, 3비트 입력이면 출력이 8개여야 하지만 그림의 출력은 2개이다.
+
+      핵심 개념:
+      1비트 전가산기는 두 개의 2진수 입력과 바로 아랫자리에서 올라온 올림수를 입력으로 받아 덧셈한다.
+      결과로 합과 바로 윗자리로의 올림수를 출력하며, 일반식은 $(S, C_{out}) = X + Y + C_{in}$(X, Y는 두 입력 비트)이다.
+      이 문제의 회로에서는 입력이 A, B, C이고 출력 X가 합, Y가 올림수이다.
+      합은 세 입력의 XOR, 올림수는 두 입력의 AND와 첫 XOR 결과·올림수 입력의 AND를 OR한 값이다.
+      1비트 전가산기 여러 개를 직렬로 연결하면 $n$비트 전가산기를 구성할 수 있다.
+
+  - id: b05-14
+    type: multiple-choice
+    prompt: ROM은 개념적으로 하나의 디코더와 여러 개의 논리 게이트를 사용한 조합회로로 구현될 수 있다. 이때 사용되는 논리 게이트는 어느 것인가?
+    choices:
+      - { id: '1', text: 'AND 게이트' }
+      - { id: '2', text: 'XOR 게이트' }
+      - { id: '3', text: 'OR 게이트' }
+      - { id: '4', text: '인버터' }
+    answers: ['3']
+    explanation: |
+      선택지 1: AND 게이트는 모든 입력이 1일 때만 1을 출력하므로, 디코더 출력선 중 하나만 1이 되는 ROM 구조에서 저장 내용을 꺼내는 용도로 쓰이지 않는다.
+      선택지 2: XOR 게이트는 입력이 서로 다를 때 1을 출력하는 게이트로, ROM의 개념적 구성에 사용되지 않는다.
+      선택지 3: ROM은 주소를 해독하는 디코더와 여러 개의 OR 게이트로 구성된다. 각 OR 게이트는 저장 내용이 1인 위치의 디코더 출력선에 연결되어 선택된 주소의 비트를 출력하므로 정답이다.
+      선택지 4: 인버터(NOT 게이트)는 입력을 반전할 뿐이며 ROM의 저장 내용을 출력하는 역할을 하지 않는다.
+
+      핵심 개념:
+      ROM은 읽기 전용 기억장치로, 하나의 디코더와 여러 개의 OR 게이트를 사용한 조합회로로 구성할 수 있다.
+      예를 들어 $2^2 \times 5$ ROM은 주소 2비트, 저장된 내용 $2^2$개, 각 내용의 길이가 5비트이다.
+      주소 2비트는 2×4 디코더로 해독되어 4개의 출력선 중 하나가 1이 된다.
+      5개의 OR 게이트가 각각 출력 비트 하나를 담당하며, 저장값이 1인 위치에서만 디코더 출력선과 연결된다.
+
+  - id: b05-15
+    type: multiple-choice
+    prompt: RS 플립플롭을 사용한 RAM의 1비트 기억소자에서 읽기/쓰기 선택을 위한 라인은?
+    images:
+      - path: images/subjects/introduction-to-computer-science/workbook/b05-15.png
+        alt: 'RS 플립플롭과 AND 게이트·NOT 게이트로 구성된 1비트 기억소자 회로. 위쪽 라인 (A), 왼쪽 입력 라인 (B), 아래쪽에서 NOT 게이트를 거쳐 들어오는 라인 (C), 오른쪽 출력 라인 (D)가 표시되어 있다'
+    choices:
+      - { id: '1', text: '(A)' }
+      - { id: '2', text: '(B)' }
+      - { id: '3', text: '(C)' }
+      - { id: '4', text: '(D)' }
+    answers: ['3']
+    explanation: |
+      선택지 1: (A)는 R·S 쪽 AND 게이트와 출력 AND 게이트에 모두 연결되어 이 기억소자를 사용할지 정하는 소자 선택 라인이다.
+      선택지 2: (B)는 기억소자에 저장할 값이 들어오는 입력값 라인이다.
+      선택지 3: (C)는 출력 AND 게이트에 직접 연결되고, NOT 게이트를 거쳐 R·S 쪽 AND 게이트에도 연결되는 읽기(1)/쓰기(0) 선택 라인이므로 정답이다. 값이 1이면 출력 쪽이 열려 읽기가, 0이면 입력 쪽이 열려 쓰기가 이루어진다.
+      선택지 4: (D)는 플립플롭에 저장된 값이 나가는 출력값 라인이다.
+
+      핵심 개념:
+      RAM의 1비트 기억소자는 하나의 플립플롭과 논리 게이트들로 구성된다.
+      세 가지 라인(입력값, 소자 선택, 읽기/쓰기 선택)이 필요하다.
+      $2^m \times n$ RAM은 개념적으로 하나의 디코더, $2^m \times n$개의 1비트 기억소자, $n$개의 OR 게이트로 구성할 수 있다.
+      디코더 출력은 소자 선택으로 연결되어 원하는 주소를 고르고, 기억소자의 출력값은 OR 게이트로 모여 RAM의 출력이 된다.
+
+  - id: b05-16
+    type: multiple-choice
+    prompt: 기억장치의 계층구조에서 (B)에 대한 설명으로 적절한 것은?
+    images:
+      - path: images/subjects/introduction-to-computer-science/workbook/b05-16.png
+        alt: '위에서부터 (A), (B), (C), (D)로 나뉜 피라미드와, 위쪽으로 갈수록 속도 상승·가격 상승·용량 감소를 나타내는 화살표'
+    choices:
+      - { id: '1', text: '주로 정적 RAM으로 구성되는 기억장치이다.' }
+      - { id: '2', text: '반영구적인 프로그램 코드와 데이터가 저장되어 있다.' }
+      - { id: '3', text: '중앙처리장치 내부에 존재하며 ALU와 함께 처리장치를 구성한다.' }
+      - { id: '4', text: 'CPU가 접근하기 위해서는 주기억장치로 적재되어야 한다.' }
+    answers: ['1']
+    explanation: |
+      선택지 1: (B)는 캐시기억장치로, CPU와 주기억장치 사이에 설치된 접근 속도가 매우 빠른 소규모 기억장치이며 SRAM(Static RAM, 정적 RAM)을 사용하여 구현하므로 정답이다.
+      선택지 2: 반영구적으로 프로그램과 데이터를 저장하는 것은 (D) 보조기억장치에 대한 설명이다.
+      선택지 3: CPU 내부에 존재하며 ALU(Arithmetic and Logic Unit, 산술논리연산장치)와 함께 처리장치를 구성하는 것은 (A) 레지스터에 대한 설명이다.
+      선택지 4: 사용하려면 먼저 주기억장치에 적재되어야 하는 것은 (D) 보조기억장치에 대한 설명이다.
+
+      핵심 개념:
+      기억장치는 접근 속도와 저장 용량에 따라 레지스터, 캐시기억장치, 주기억장치, 보조기억장치로 계층을 이룬다.
+      이는 CPU가 데이터에 접근할 때 가장 적은 비용으로 가장 높은 성능을 얻기 위한 전략이며, 이론적 근거는 참조의 지역성(공간적·시간적 지역성)이다.
+      캐시기억장치는 수행 중인 명령어와 자주 사용하는 데이터 일부를 저장해 두었다가 CPU 요청 시 즉시 제공해 접근 시간을 단축한다.
+      주기억장치는 현재 수행 중인 프로그램과 데이터를 저장한다.
+
+  - id: b05-17
+    type: multiple-choice
+    prompt: 명령어 형식 중에서 연산의 대상이 되는 값의 추출과 연산 결과의 저장이 누산기(AC)에 의해서 이루어지는 방식은?
+    choices:
+      - { id: '1', text: '0-주소 명령어' }
+      - { id: '2', text: '1-주소 명령어' }
+      - { id: '3', text: '2-주소 명령어' }
+      - { id: '4', text: '3-주소 명령어' }
+    answers: ['2']
+    explanation: |
+      선택지 1: 0-주소 명령어는 오퍼랜드 없이 연산자코드만 있으며, 연산 대상과 결과를 스택에서 처리한다.
+      선택지 2: 1-주소 명령어는 연산자코드와 오퍼랜드 1개로 구성되고, 나머지 연산 대상의 추출과 결과 저장을 누산기(AC: ACcumulator)가 담당하므로 정답이다.
+      선택지 3: 2-주소 명령어는 오퍼랜드 2개를 가지며 가장 많이 사용되는 형식으로, 결과를 오퍼랜드가 가리키는 곳에 저장한다.
+      선택지 4: 3-주소 명령어는 오퍼랜드 3개를 가져 두 연산 대상과 결과 저장 위치를 모두 명령어 안에서 지정한다.
+
+      핵심 개념:
+      명령어의 기본 형식은 연산자코드(OP code)와 오퍼랜드(operand)로 이루어진다.
+      연산자코드는 수행할 연산의 종류를 지정하고, 그 비트 수가 CPU가 수행할 수 있는 연산의 개수를 결정한다.
+      오퍼랜드는 명령어가 사용할 데이터가 저장된 기억장치의 주소를 지정하며, 개수는 컴퓨터 구조에 따라 달라진다.
+      오퍼랜드 개수에 따라 3-주소, 2-주소, 1-주소(누산기 사용), 0-주소(스택 사용) 명령어로 나뉜다.
+
+  - id: b05-18
+    type: multiple-choice
+    prompt: 명령어의 오퍼랜드 내용과 CPU의 레지스터 내용을 더해서 유효 주소를 얻는 주소지정방식은?
+    choices:
+      - { id: '1', text: '직접 주소지정방식' }
+      - { id: '2', text: '간접 주소지정방식' }
+      - { id: '3', text: '상대 주소지정방식' }
+      - { id: '4', text: '레지스터 주소지정방식' }
+    answers: ['3']
+    explanation: |
+      선택지 1: 직접 주소지정방식은 오퍼랜드의 내용이 실제 데이터가 저장된 기억장치의 주소 자체이므로 레지스터 내용과 더하지 않는다.
+      선택지 2: 간접 주소지정방식은 오퍼랜드의 내용이 실제 데이터 주소를 가지고 있는 기억장치의 주소이므로, 두 번의 기억장치 접근으로 데이터를 얻는다.
+      선택지 3: 상대 주소지정방식은 CPU 내의 특정 레지스터의 내용에 명령어의 오퍼랜드 내용을 더해서 실제 데이터가 저장된 기억장치 주소를 계산하므로 정답이다.
+      선택지 4: 레지스터 주소지정방식은 오퍼랜드가 실제 데이터가 들어 있는 레지스터를 나타내므로 주소 계산 없이 한 번의 레지스터 접근으로 데이터를 얻는다.
+
+      핵심 개념:
+      주소지정방식(addressing mode)은 연산에 사용될 데이터가 기억장치의 어디에 위치하는지를 지정하는 방법이다.
+      종류로는 즉시, 직접, 간접, 레지스터, 레지스터 간접, 상대, 인덱스된 주소지정방식 등이 있다.
+      상대 주소지정방식은 레지스터 값과 오퍼랜드를 더해 유효 주소를 구하므로 한 번의 레지스터 접근과 한 번의 기억장치 접근이 요구된다.
+      유효 주소는 실제 데이터가 저장된 기억장치의 주소를 뜻한다.
+
+  - id: b05-19
+    type: multiple-choice
+    prompt: 주소지정방식 중에서 처리 속도가 가장 느린 것은?
+    choices:
+      - { id: '1', text: '레지스터 주소지정방식' }
+      - { id: '2', text: '상대 주소지정방식' }
+      - { id: '3', text: '즉시 주소지정방식' }
+      - { id: '4', text: '간접 주소지정방식' }
+    answers: ['4']
+    explanation: |
+      선택지 1: 레지스터 주소지정방식은 오퍼랜드가 데이터가 들어 있는 레지스터를 나타내므로 한 번의 레지스터 접근으로 데이터를 얻어 빠르다.
+      선택지 2: 상대 주소지정방식은 레지스터 내용과 오퍼랜드를 더해 주소를 계산하므로 한 번의 레지스터 접근과 한 번의 기억장치 접근이 필요하다. 간접 주소지정방식보다는 빠르다.
+      선택지 3: 즉시 주소지정방식은 오퍼랜드 필드의 내용이 실제 데이터이므로 레지스터나 기억장치에 접근할 필요가 없어 가장 빠르다.
+      선택지 4: 간접 주소지정방식은 오퍼랜드가 실제 데이터 주소를 담은 기억장치의 주소이므로 두 번의 기억장치 접근이 필요해 가장 느리다. 정답이다.
+
+      핵심 개념:
+      실제 데이터를 얻기 위해 레지스터와 기억장치에 접근하는 횟수가 많을수록 처리 속도가 느려진다.
+      처리 속도는 즉시, 레지스터, 직접, 상대, 간접 주소지정방식의 순서로 느려진다.
+      직접 주소지정방식은 한 번의 기억장치 접근으로 데이터를 얻는다.
+      기억장치 접근은 레지스터 접근보다 훨씬 느리므로 기억장치 접근 횟수가 속도를 크게 좌우한다.
+
+  - id: b05-20
+    type: multiple-choice
+    prompt: 다음에 실행될 명령어가 있는 기억장치의 주소를 저장하고 있는 레지스터는?
+    choices:
+      - { id: '1', text: 'MBR' }
+      - { id: '2', text: 'IR' }
+      - { id: '3', text: 'CMAR' }
+      - { id: '4', text: 'PC' }
+    answers: ['4']
+    explanation: |
+      선택지 1: MBR(Memory Buffer Register, 기억장치 버퍼 레지스터)은 기억장치에 저장될 또는 기억장치에서 읽어 온 데이터를 임시로 저장하는 레지스터이다.
+      선택지 2: IR(Instruction Register, 명령어 레지스터)은 기억장치에서 가져와서 현재 실행 중인 명령어를 저장하는 레지스터이다.
+      선택지 3: CMAR(Control Memory Address Register, 제어기억장치 주소 레지스터)은 제어기억장치에서 다음에 수행할 마이크로명령의 위치를 가리키는 주소를 저장하는 레지스터로, 주기억장치의 명령어 주소를 저장하지 않는다.
+      선택지 4: PC(Program Counter, 프로그램 카운터)는 다음에 수행될 명령어가 있는 기억장치의 주소를 저장하고 있는 레지스터이므로 정답이다.
+
+      핵심 개념:
+      레지스터는 범용 레지스터와 특수 레지스터(AC, MBR, MAR, PC, IR 등)로 나뉜다.
+      AC(ACcumulator, 누산기)는 CPU가 연산을 수행한 후 그 결과를 반드시 저장하는 레지스터이다.
+      MAR(Memory Address Register, 기억장치 주소 레지스터)은 PC의 내용(주소)이 주소 버스로 출력되기 전에 일시적으로 저장되는 레지스터이다.
+      CMDR(Control Memory Data Register, 제어기억장치 데이터 레지스터)은 제어기억장치에서 가져온 다음에 수행할 마이크로연산을 저장한다.
+
+  - id: b05-21
+    type: multiple-choice
+    prompt: 프로그램 수행 중에 기억장치로부터 인출되어 현재 실행 중인 명령어를 저장하고 있는 레지스터는?
+    choices:
+      - { id: '1', text: '기억장치 버퍼 레지스터' }
+      - { id: '2', text: '프로그램 카운터' }
+      - { id: '3', text: '인덱스 레지스터' }
+      - { id: '4', text: '명령어 레지스터' }
+    answers: ['4']
+    explanation: |
+      선택지 1: 기억장치 버퍼 레지스터(MBR: Memory Buffer Register)는 기억장치에 저장될 또는 기억장치에서 읽어 온 데이터를 임시로 저장하는 레지스터로, 현재 실행 중인 명령어를 보관하는 전용 레지스터가 아니다.
+      선택지 2: 프로그램 카운터(PC: Program Counter)는 다음에 수행될 명령어의 주소를 저장하는 레지스터로, 명령어 자체를 저장하지 않는다.
+      선택지 3: 인덱스 레지스터는 인덱스된 주소지정방식에서 주소 계산에 쓰이는 값을 담는 레지스터로, 현재 명령어를 저장하지 않는다.
+      선택지 4: 명령어 레지스터(IR: Instruction Register)는 프로그램 수행 중에 기억장치에서 가져와서 현재 실행 중인 명령어를 저장하는 레지스터이므로 정답이다.
+
+      핵심 개념:
+      명령어 인출 시 PC가 가리키는 주소의 내용이 주기억장치에서 MBR을 거쳐 IR에 저장된다.
+      IR에 저장된 명령어는 명령어 해독기로 보내져 해독된다.
+      PC는 다음 명령어의 주소, IR은 현재 명령어 자체를 저장한다는 점을 구분해야 한다.
+      MAR은 주소를, MBR은 기억장치와 주고받는 데이터를 임시로 저장한다.
+
+  - id: b05-22
+    type: multiple-choice
+    prompt: 프로그램 카운터의 내용이 시스템 버스의 주소 버스로 출력되기 전에 일시적으로 저장되는 레지스터는?
+    choices:
+      - { id: '1', text: '명령어 레지스터' }
+      - { id: '2', text: '제어기억장치 데이터 레지스터' }
+      - { id: '3', text: '기억장치 주소 레지스터' }
+      - { id: '4', text: '기억장치 버퍼 레지스터' }
+    answers: ['3']
+    explanation: |
+      선택지 1: 명령어 레지스터(IR: Instruction Register)는 현재 실행 중인 명령어를 저장하는 레지스터로, 주소를 버스로 내보내기 위한 레지스터가 아니다.
+      선택지 2: 제어기억장치 데이터 레지스터(CMDR: Control Memory Data Register)는 제어기억장치에서 가져온 다음에 수행할 마이크로연산을 저장하는 레지스터이다.
+      선택지 3: 기억장치 주소 레지스터(MAR: Memory Address Register)는 프로그램 카운터에 들어 있는 내용(주소)이 시스템 버스의 주소 버스로 출력되기 전에 일시적으로 저장되는 레지스터이므로 정답이다.
+      선택지 4: 기억장치 버퍼 레지스터(MBR: Memory Buffer Register)는 기억장치에 저장될 또는 기억장치에서 읽어 온 데이터를 임시로 저장하는 레지스터로, 주소가 아닌 데이터를 다룬다.
+
+      핵심 개념:
+      기억장치 접근 시 주소는 MAR을 통해 주소 버스로, 데이터는 MBR을 통해 데이터 버스로 오간다.
+      명령어 인출 과정은 PC → MAR → 주기억장치 → MBR → IR의 순서로 진행된다.
+      CMAR과 CMDR은 제어기억장치에 대해 MAR·MBR과 비슷한 역할을 하는 레지스터이다.
+      각 레지스터가 주소를 담는지, 데이터나 명령어를 담는지 구분하는 것이 핵심이다.
+
+  - id: b05-23
+    type: multiple-choice
+    prompt: 처리장치에서 디코더가 사용되는 곳은?
+    choices:
+      - { id: '1', text: '상태 레지스터 출력' }
+      - { id: '2', text: '산술논리연산장치의 입력 레지스터 선택' }
+      - { id: '3', text: '사용할 레지스터 선택' }
+      - { id: '4', text: '시프트 선택' }
+    answers: ['3']
+    explanation: |
+      선택지 1: 상태 레지스터는 산술논리연산장치의 연산 결과 상태를 저장하며, 그 출력은 디코더를 거치지 않고 제어장치로 연결된다.
+      선택지 2: 산술논리연산장치에 들어갈 입력 레지스터는 멀티플렉서(MUX1, MUX2)가 입력 선택 신호에 따라 고른다.
+      선택지 3: 레지스터 쓰기 선택 신호를 디코더가 해독해 R0~R3 중 연산 결과를 기록할 레지스터 하나를 활성화하므로 정답이다.
+      선택지 4: 시프트 선택은 시프터에 직접 전달되는 제어신호로, 디코더를 사용하지 않는다.
+
+      핵심 개념:
+      처리장치는 레지스터들, 멀티플렉서, 산술논리연산장치, 시프터, 상태 레지스터, 디코더로 구성된다.
+      멀티플렉서는 여러 레지스터 중 산술논리연산장치에 입력할 데이터를 선택한다.
+      디코더는 레지스터 쓰기 선택 코드를 해독해 결과를 저장할 레지스터 하나만 활성화한다.
+      $n$비트 코드로 $2^n$개 중 하나만 활성화한다는 디코더의 특성이 레지스터 선택에 쓰이는 것이다.
+
+  - id: b05-24
+    type: multiple-choice
+    prompt: 제어장치의 명령어 사이클의 순서가 올바르게 나열된 것은?
+    choices:
+      - { id: '1', text: '인출 − 실행 − 해독 − 저장' }
+      - { id: '2', text: '해독 − 인출 − 실행 − 저장' }
+      - { id: '3', text: '인출 − 해독 − 실행 − 저장' }
+      - { id: '4', text: '해독 − 실행 − 인출 − 저장' }
+    answers: ['3']
+    explanation: |
+      선택지 1: 명령어를 해독하기 전에는 무엇을 실행할지 알 수 없으므로 실행이 해독보다 앞설 수 없다.
+      선택지 2: 명령어를 기억장치에서 가져오기 전에는 해독할 대상이 없으므로 해독이 인출보다 앞설 수 없다.
+      선택지 3: 기억장치에서 명령어를 가져와(fetch) 해독(decode)하고 실행(execute)한 뒤 레지스터에 되쓰는(write-back) 순서이므로 정답이다.
+      선택지 4: 인출이 해독과 실행 뒤에 오면 해독·실행할 명령어가 없으므로 올바른 순서가 아니다.
+
+      핵심 개념:
+      제어장치는 처리장치 및 기억장치와 연결되어 있다.
+      기억장치로부터 다음에 수행할 명령어를 가져와서 상응하는 마이크로연산들로 해독한 후 수행하고 레지스터에 되쓴다.
+      이 일련의 과정을 명령어 사이클이라 하며, 인출(fetch) → 해독(decode) → 실행(execute) → 저장(write-back)을 반복한다.
+      제어장치는 현재 명령을 수행한 다음에 수행할 명령의 주소 정보도 생성한다.
+
+  - id: b05-25
+    type: multiple-choice
+    prompt: 다음 그림에서 A～D에 적합한 레지스터들을 올바르게 나열한 것은?
+    images:
+      - path: images/subjects/introduction-to-computer-science/workbook/b05-25.png
+        alt: '주기억장치와 중앙처리장치 구성도. 주기억장치를 가리키는 A, 주기억장치에서 데이터를 받는 B, B에서 명령어 해독기/주소결정회로로, 다시 C로, C가 제어기억장치(ROM)를 가리키고, 제어기억장치의 내용이 D로 들어가 제어단어가 처리장치로 전달되는 그림'
+    choices:
+      - { id: '1', text: 'IR − PC − CMDR − CMAR' }
+      - { id: '2', text: 'IR − PC − CMAR − CMDR' }
+      - { id: '3', text: 'PC − IR − CMDR − CMAR' }
+      - { id: '4', text: 'PC − IR − CMAR − CMDR' }
+    answers: ['4']
+    explanation: |
+      선택지 1: A를 IR, B를 PC로 두면 주기억장치의 주소를 가리키는 레지스터와 명령어를 받는 레지스터가 뒤바뀌고, C와 D도 제어기억장치의 주소·데이터 역할이 뒤바뀐다.
+      선택지 2: C·D는 CMAR·CMDR로 맞지만, 주기억장치의 주소를 가리키는 A는 PC, 주기억장치에서 가져온 명령어를 받는 B는 IR이어야 하므로 A와 B가 뒤바뀌었다.
+      선택지 3: A·B는 PC·IR로 맞지만, 제어기억장치의 주소를 가리키는 C는 CMAR, 제어기억장치에서 읽은 제어단어를 받는 D는 CMDR이어야 하므로 C와 D가 뒤바뀌었다.
+      선택지 4: A는 프로그램 카운터(PC), B는 명령어 레지스터(IR), C는 제어기억장치 주소 레지스터(CMAR), D는 제어기억장치 데이터 레지스터(CMDR)이므로 정답이다.
+
+      핵심 개념:
+      PC에 저장된 주소가 가리키는 곳의 내용물을 주기억장치에서 가져와서 IR에 저장한다.
+      명령어 해독기/주소결정회로가 주어진 명령어로부터 제어기억장치의 해당 마이크로명령의 주소를 생성해서 CMAR에 저장한다.
+      제어기억장치에서 CMAR에 저장된 주소가 가리키는 곳의 내용을 읽어서 CMDR에 저장한다.
+      CMDR의 제어단어 비트들이 처리장치로 보내져 연산이 수행된다.
+
+      ※ 원본 표기: 해설에서 D를 '제어기억장치 데이터 레지스터(CMBR)'로 표기했다. 선택지와 문제 20 해설의 표기는 CMDR이다.
+
+  - id: b05-26
+    type: multiple-choice
+    prompt: 입출력장치와 CPU 또는 주기억장치와의 데이터 전송 속도, 데이터 처리 단위, 오류 확률 등의 차이를 상쇄해서 올바른 전송을 위한 방법을 제공하기 위한 입출력 시스템의 구성요소는?
+    choices:
+      - { id: '1', text: '입출력장치 중재기' }
+      - { id: '2', text: '입출력장치 인터페이스' }
+      - { id: '3', text: '입출력장치 제어기' }
+      - { id: '4', text: '입출력장치 버스' }
+    answers: ['2']
+    explanation: |
+      선택지 1: 중재기(arbiter)는 여러 입출력장치가 하나의 버스를 공유할 때 동시에 버스에 접근해서 생기는 충돌을 막는 장치로, 전송 특성의 차이를 상쇄하는 구성요소가 아니다.
+      선택지 2: 입출력장치 인터페이스는 입출력장치와 컴퓨터 내부의 중앙처리장치/주기억장치와의 상이한 데이터 전송 속도, 데이터 처리 단위, 오류 확률 등의 차이를 상쇄하기 위한 것이므로 정답이다.
+      선택지 3: 입출력장치 제어기는 모터를 회전시키거나 기계적인 요소를 이동시키는 등 입출력장치를 구동시키는 작업을 수행하는 기기이다.
+      선택지 4: 입출력 버스는 입출력 전용으로 사용되는 정보 회선의 묶음으로, 입출력장치와 중앙처리장치 사이의 정보 교환에 사용된다.
+
+      핵심 개념:
+      입출력 시스템의 구성요소는 입출력장치, 입출력장치 제어기, 입출력장치 인터페이스, 입출력 버스이다.
+      입출력장치는 키보드, 모니터처럼 사용자와 컴퓨터 시스템을 연결해 준다.
+      인터페이스는 입출력장치와 CPU·주기억장치 사이의 속도·처리 단위·오류 확률 차이를 조정한다.
+      입출력 버스는 여러 장치가 공유하므로 충돌을 막기 위한 중재기가 필요하다.
+
+  - id: b05-27
+    type: multiple-choice
+    prompt: 입출력 제어 방식 중에서 중앙처리장치와 같이 연산 작업도 수행 가능한 별도의 입출력 프로세서를 사용하는 방식은?
+    choices:
+      - { id: '1', text: '프로그램에 의한 방식' }
+      - { id: '2', text: 'DMA에 의한 방식' }
+      - { id: '3', text: '인터럽트에 의한 방식' }
+      - { id: '4', text: '채널에 의한 방식' }
+    answers: ['4']
+    explanation: |
+      선택지 1: 프로그램에 의한 방식은 CPU가 주기적으로 입출력장치에 신호를 보내 입출력이 필요한지를 물어보는 CPU에 의한 방식으로, 별도의 프로세서를 사용하지 않는다.
+      선택지 2: DMA(Direct Memory Access)에 의한 방식은 전용 하드웨어인 DMA 제어기가 주기억장치와 입출력장치 사이의 데이터 전송을 담당하지만, 연산 작업까지 수행하는 입출력 프로세서는 아니다.
+      선택지 3: 인터럽트에 의한 방식은 입출력장치가 인터럽트를 걸 때만 CPU가 해당 장치와 연락하는 CPU에 의한 방식이다.
+      선택지 4: 채널에 의한 방식은 채널이라고 하는 입출력 전용의 별도 처리장치(산술/논리/분기 등의 다양한 연산 작업도 가능)를 사용하여 입출력 작업을 지능적으로 전담하도록 하는 방식이므로 정답이다.
+
+      핵심 개념:
+      입출력 제어 방식은 CPU에 의한 방식(프로그램, 인터럽트), DMA에 의한 방식, 채널에 의한 방식으로 나뉜다.
+      DMA 방식에서 CPU는 초기 설정과 허가에만 관여하고, 전송이 끝나면 DMA가 CPU에 인터럽트 신호를 보낸다.
+      채널 방식은 입출력에 대한 CPU의 부담이 거의 없다.
+      채널은 CPU에게서 입출력 명령을 받은 뒤 채널 프로그램을 스스로 실행하며, 주기억장치와 입출력장치 사이의 데이터 전송을 CPU 대신 처리한다.
+
+      ※ 원본 표기: 워크북 해설은 채널이 "DMA와는 달리 CPU를 거쳐서 주기억장치에 접근"한다고 인쇄되어 있으나, 일반적인 컴퓨터 구조에서 채널은 DMA처럼 CPU를 거치지 않고 주기억장치에 직접 접근한다. 인쇄된 정답은 그대로 둔다.
+
+  - id: b05-28
+    type: multiple-choice
+    prompt: CPU가 주기적으로 입출력장치에 신호를 보내 입출력이 필요한지를 물어보기 때문에 시간적 낭비가 심하고 처리 효율이 떨어지기는 하지만 입출력 요구가 발생했을 때 CPU가 입출력 작업만을 수행함으로써 고속의 처리가 가능한 입출력 제어 방식은?
+    choices:
+      - { id: '1', text: '인터럽트에 의한 방식' }
+      - { id: '2', text: '채널에 의한 방식' }
+      - { id: '3', text: '프로그램에 의한 방식' }
+      - { id: '4', text: 'DMA에 의한 방식' }
+    answers: ['3']
+    explanation: |
+      선택지 1: 인터럽트에 의한 방식은 입출력장치가 인터럽트를 걸 때만 CPU가 해당 장치와 연락하므로 CPU가 주기적으로 물어보지 않는다.
+      선택지 2: 채널에 의한 방식은 채널이라는 별도의 입출력 전용 처리장치가 입출력을 전담하므로 CPU가 입출력 작업만을 수행하지 않는다.
+      선택지 3: 프로그램에 의한 방식은 CPU가 주기적으로 입출력장치에 신호를 보내 입출력이 필요한지를 물어보는 방식으로, 시간 낭비가 크지만 입출력 요구 시 CPU가 입출력만 처리해 빠르므로 정답이다.
+      선택지 4: DMA(Direct Memory Access)에 의한 방식은 DMA 제어기가 CPU를 거치지 않고 주기억장치와 입출력장치 사이의 데이터를 전송하므로 CPU가 입출력 작업을 직접 수행하지 않는다.
+
+      핵심 개념:
+      CPU에 의한 입출력 제어 방식은 입출력장치의 정보가 CPU를 통해 주기억장치에 쓰이고 읽히는 방식이다.
+      프로그램에 의한 방식은 CPU가 장치 상태를 반복해서 확인(폴링)하므로 CPU 시간이 낭비된다.
+      인터럽트에 의한 방식은 장치가 준비되었을 때만 CPU에 알려 낭비를 줄인다.
+      DMA와 채널 방식은 CPU의 입출력 부담을 더 줄이기 위한 방식이다.
+
+  - id: b05-29
+    type: multiple-choice
+    prompt: 컴퓨터의 실행 주기 동안에 여러 단계를 서로 겹치게 함으로써 실행 속도를 직접적으로 향상시키지 않고도 컴퓨터의 처리율을 증가시킬 수 있는 기술은?
+    choices:
+      - { id: '1', text: '멀티코어' }
+      - { id: '2', text: '파이프라이닝' }
+      - { id: '3', text: 'GPGPU' }
+      - { id: '4', text: '오버래핑' }
+    answers: ['2']
+    explanation: |
+      선택지 1: 멀티코어는 명령을 가져와서 수행하는 코어를 여러 개 사용해 코어의 개수만큼의 명령어를 동시에 처리하는 기술로, 한 실행 주기의 단계를 겹치는 기술이 아니다.
+      선택지 2: 파이프라이닝은 명령어 처리 단계를 여러 단계로 구성하여, 한 단계를 처리 중일 때 다른 명령어가 다른 단계를 처리하도록 겹쳐 수행함으로써 처리율을 높이는 기술이므로 정답이다.
+      선택지 3: GPGPU(General-Purpose computing on Graphics Processing Unit, 그래픽스 처리 장치를 사용한 범용 연산)는 그래픽스 카드의 고도의 병렬처리 능력을 거꾸로 연산에 사용하는 기술이다.
+      선택지 4: 오버래핑(overlapping)은 '겹친다'는 뜻의 일반적인 말이다. 명령어 처리를 여러 단계로 나누고 각 단계를 겹쳐 수행해 처리율을 높이는 기술을 가리키는 이름은 파이프라이닝이다.
+
+      핵심 개념:
+      파이프라인 처리기는 명령어 수준의 병렬처리 방식이다.
+      CPU 내에 있는 하드웨어 요소의 일부를 파이프라인 형태로 구성하여 필요한 작업을 시간상으로 중첩하여 수행한다.
+      연달아 수행될 명령어들이 서로 간섭이 없으면, 현재 명령의 첫 단계가 끝나자마자 다음 명령의 첫 단계를 처리한다.
+      이 밖의 병렬처리 기술로 멀티코어 구조와 그래픽 카드를 활용한 GPGPU 등이 있다.
+
+  - id: b05-30
+    type: multiple-choice
+    prompt: 파이프라인 구조가 4단계로 구성되어 있고 10개의 명령어가 주어졌을 때 모든 명령어를 처리하기 위해서는 최소 몇 번의 클록이 필요한가? (단, 각 명령어 수행에 4단계가 필요하다고 가정한다.)
+    choices:
+      - { id: '1', text: '40' }
+      - { id: '2', text: '30' }
+      - { id: '3', text: '13' }
+      - { id: '4', text: '12' }
+    answers: ['3']
+    explanation: |
+      선택지 1: 40은 파이프라인 없이 10개의 명령어를 각각 4단계씩 순차 처리할 때($10 \times 4$)의 클록 수이다.
+      선택지 2: 30은 단계 겹침을 고려한 계산 결과가 아니며, 파이프라인에서 필요한 최소 클록 수보다 많다.
+      선택지 3: 첫 명령어가 4클록에 끝난 뒤 나머지 9개가 1클록마다 하나씩 완료되므로 $4 + (10 - 1) = 10 + 3 = 13$클록이 필요하다. 정답이다.
+      선택지 4: 12클록 시점에는 열 번째 명령어가 아직 4단계 중 3단계까지만 처리되어 완료되지 않는다.
+
+      핵심 개념:
+      10개 명령어의 처리가 완료되는 시점은 마지막 열 번째 명령어의 처리가 끝나는 시점이다.
+      열 번째 명령어는 열 번째 클록에 단계1의 처리를 시작하고 나머지 3단계를 더 거쳐야 완료된다.
+      일반적으로 $k$단계 파이프라인에서 $n$개 명령어의 최소 클록 수는 $k + (n - 1)$이다.
+      $4 + (10 - 1) = 13$이므로 파이프라인이 없는 경우의 40클록보다 크게 줄어든다.
+
+  - id: b06-01
+    type: multiple-choice
+    passageRefs: [gb06-lisp-code-01]
+    prompt: 다음의 프로그램 작성에 사용된 언어와 같은 유형의 프로그래밍 언어는 무엇인가?
+    choices:
+      - { id: '1', text: 'C' }
+      - { id: '2', text: '리스프(LISP)' }
+      - { id: '3', text: '기계어' }
+      - { id: '4', text: 'COBOL' }
+    answers: ['2']
+    explanation: |
+      선택지 1: C는 조건문·반복문·블록 구조·함수 호출로 실행 흐름을 제어하는 구조적(절차적) 프로그래밍 언어로, 괄호로 감싼 전위 표기 수식을 연속으로 평가하는 제시된 코드와 유형이 다르다.
+      선택지 2: 제시된 코드는 `(+ 3 2)`처럼 함수(연산자)를 앞에 두고 인자를 괄호로 묶는 수식(expression)의 연속으로 이루어져 있으며, 이는 리스프(LISP, LISt Processor) 계열의 함수형 프로그래밍 언어 형태이므로 정답이다.
+      선택지 3: 기계어는 0과 1의 2진수로 구성되어 하드웨어를 직접 제어하는 저급 언어로, 기호로 된 수식이 나타나는 제시된 코드와 다르다.
+      선택지 4: COBOL(COmmon Business-Oriented Language)은 사무 처리용 절차적 언어로, 문장 단위 명령을 순서대로 기술하므로 함수형 언어가 아니다.
+
+      핵심 개념:
+      함수형 프로그래밍 언어는 기본적으로 수식(expression)의 연속으로 이루어져 있고 함수들을 사용해 수식을 변환한다.
+      수식은 사칙연산뿐 아니라 일반적인 의미의 모든 함수를 뜻하며, 함수의 결과를 다른 함수의 입력값으로 사용한다.
+      `(+ 1 (if t 2 3))`처럼 한 함수의 결과가 다른 함수의 인자가 되는 중첩 수식이 전형적인 형태다.
+      리스프(LISP), 스킴(Scheme), ML 등이 함수형 언어에 속한다.
+
+  - id: b06-02
+    type: multiple-choice
+    prompt: 다음 중 스크립트 언어에 해당되는 것은?
+    choices:
+      - { id: '1', text: '펄(Perl)' }
+      - { id: '2', text: '리스프(LISP)' }
+      - { id: '3', text: '프롤로그(Prolog)' }
+      - { id: '4', text: 'HTML' }
+    answers: ['1']
+    explanation: |
+      선택지 1: 펄(Perl)은 파이썬(Python)과 함께 웹 기반 서비스에서 많이 사용되는 대표적인 스크립트 언어이므로 정답이다.
+      선택지 2: 리스프(LISP)는 수식의 연속으로 프로그램을 구성하는 함수형 프로그래밍 언어로, 스크립트 언어로 분류하지 않는다.
+      선택지 3: 프롤로그(Prolog)는 사실(fact)과 규칙(rule)을 정의하고 질의(query)로 결과를 얻는 논리형 프로그래밍 언어이다.
+      선택지 4: HTML(HyperText Markup Language)은 웹 문서의 구조를 표시하는 마크업 언어로, 실행 흐름을 기술하는 스크립트 언어가 아니다.
+
+      핵심 개념:
+      스크립트 언어는 유닉스(Unix) 같은 운영체제의 관리와 자동화를 위해 만들어져 사용되기 시작한 언어다.
+      셸 스크립트(sh, bash, csh 등)와 패턴 처리 스크립트 언어(awk, sed) 등에서 시작되었다.
+      최근에는 펄(Perl), 파이썬(Python) 등의 스크립트 언어가 웹 기반 서비스에서 많이 사용된다.
+      논리형(Prolog), 함수형(LISP), 마크업 언어(HTML)와 구분해 기억한다.
+
+  - id: b06-03
+    type: multiple-choice
+    passageRefs: [gb06-lisp-code-01]
+    prompt: 다음과 같은 프로그램이 속하는 언어 부류는 무엇인가?
+    choices:
+      - { id: '1', text: '객체지향 프로그래밍 언어' }
+      - { id: '2', text: '구조적 프로그래밍 언어' }
+      - { id: '3', text: '논리형 프로그래밍 언어' }
+      - { id: '4', text: '함수형 프로그래밍 언어' }
+    answers: ['4']
+    explanation: |
+      선택지 1: 객체지향 프로그래밍 언어는 객체(object) 개념[클래스(class) 개념]을 정의하고 객체에 대한 연산(메소드)과 성질(멤버변수)로 프로그램을 작성하는 언어(C++, 스몰토크-80, 자바 등)로, 제시된 코드에는 클래스나 객체 정의가 없다.
+      선택지 2: 구조적 프로그래밍 언어는 알골 60(Algol 60)처럼 조건문과 반복문으로 실행 흐름을 제어하고 블록(block) 구조, 함수 호출 등을 도입한 언어로, 수식만 나열된 제시된 코드와 형태가 다르다.
+      선택지 3: 논리형 프로그래밍 언어는 형식 논리(formal logic)로 사실(fact)과 규칙(rule)으로 이루어진 문제 도메인 모델을 정의하고 질의(query)로 결과를 얻는 선언형 언어로, 제시된 코드에는 사실·규칙·질의가 없다.
+      선택지 4: 제시된 코드는 `(+ 3 2)`, `(length (a b c))`처럼 함수를 적용하는 수식(expression)의 연속이며, 함수의 결과를 다른 함수의 입력값으로 쓰므로 함수형 프로그래밍 언어에 속한다.
+
+      핵심 개념:
+      기계어는 0과 1로 하드웨어를 직접 제어하고, 어셈블리어는 기계어 명령을 알파벳 기호로 바꾼 언어다.
+      함수형 언어는 수식의 연속으로 이루어지고 함수들로 수식을 변환한다(스킴, ML 등).
+      구조적 언어는 조건문·반복문·블록 구조·함수 호출을 도입했고, 논리형 언어는 사실과 규칙에 질의를 주어 논리적 추론으로 결과를 얻는다.
+      객체지향 언어는 객체 중심 사고의 틀을 제공하고, 스크립트 언어는 운영체제 관리·자동화에서 출발했다.
+
+      ※ 원본 표기: 해설의 논리형 프로그래밍 언어 설명에 "프롤로그(Prolog)와 리스프(LISP)가 대표적인 예"라고 인쇄되어 있으나, 문제 1의 정답과 같이 리스프(LISP)는 함수형 언어이다.
+
+  - id: b06-04
+    type: multiple-choice
+    prompt: 객체지향 프로그래밍 언어에서 같은 속성과 함수를 갖는 객체들의 모임을 무엇이라고 하는가?
+    choices:
+      - { id: '1', text: '클래스' }
+      - { id: '2', text: '바인딩' }
+      - { id: '3', text: '메시지' }
+      - { id: '4', text: '메소드' }
+    answers: ['1']
+    explanation: |
+      선택지 1: 클래스(class)는 같은 속성(멤버 변수)과 함수(메소드)를 갖는 객체들을 묶어 정의한 틀로, 객체의 추상화를 구현한 것이므로 정답이다.
+      선택지 2: 바인딩(binding)은 변수·함수 이름 등의 프로그램 요소를 그 값이나 기억장소, 실제 코드와 연결하는 것으로, 객체들의 모임을 뜻하지 않는다.
+      선택지 3: 메시지(message)는 한 객체가 다른 객체에게 메소드 실행을 요청하는 수단으로, 객체들의 모임이 아니다.
+      선택지 4: 메소드(method)는 객체에 대해 수행되는 연산(함수) 하나를 뜻하며, 객체들을 묶는 단위가 아니다.
+
+      핵심 개념:
+      개발자는 클래스의 이름과 메소드를 통해서만 객체에 처리를 요청할 수 있으며, 이러한 객체의 추상화를 구현한 것이 클래스다.
+      프로시저의 추상화는 객체지향 프로그램에서 클래스의 호출을 통해 구현된다.
+      캡슐화는 추상화된 객체의 이름을 통해 객체를 호출하도록 하는 윈도(window)를 제공하며, 외부에 알려 주는 부분을 공용부(public part), 보호되는 구현 부분을 전용부(private part)라 한다.
+      객체 캡슐화 구조로 객체 추상화를 구현하여 프로그램의 재사용성과 안전성을 향상시킨다.
+
+  - id: b06-05
+    type: multiple-choice
+    prompt: 형식 문법의 파스 트리에서 중간 노드에 해당하는 것은?
+    choices:
+      - { id: '1', text: '단말 기호' }
+      - { id: '2', text: '비단말 기호' }
+      - { id: '3', text: '생성 규칙' }
+      - { id: '4', text: '시작 기호' }
+    answers: ['2']
+    explanation: |
+      선택지 1: 단말 기호(terminal symbol)는 문장을 이루는 단어들로, 파스 트리의 단말(잎) 노드에 해당한다.
+      선택지 2: 비단말 기호(non-terminal symbol)는 단말 기호가 아니면서 단말 기호와 비단말 기호의 조합으로 구성되는 기호로, 파스 트리의 내부(중간) 노드에 해당하므로 정답이다.
+      선택지 3: 생성 규칙(production rule)은 하나의 비단말 기호가 다른 단말·비단말 기호로 어떻게 대체되는지 정의하는 규칙으로, 파스 트리의 노드가 아니라 노드 간 부모-자식 관계를 만드는 근거다.
+      선택지 4: 시작 기호(start symbol)는 가장 상위 계층의 비단말 기호(보통 〈문장〉)로, 파스 트리의 루트 노드에 해당한다.
+
+      핵심 개념:
+      자연어에서는 사전의 단어(관사, 명사, 동사 등)가 단말 기호, 〈명사구〉·〈동사구〉·〈문장〉 등이 비단말 기호다.
+      생성 규칙의 예: 〈문장〉 → 〈명사구〉+〈동사구〉, 〈명사구〉 → 〈관사〉+〈명사〉.
+      파스 트리에서 루트 = 시작 기호, 내부 노드 = 비단말 기호, 단말 노드 = 단말 기호다.
+      생성 규칙을 적용할 때마다 비단말 기호 노드 아래에 자식 노드가 생긴다.
+
+  - id: b06-06
+    type: multiple-choice
+    prompt: 컴파일 과정 중에서 토큰들을 입력받아 결과로서 파스 트리를 생성하는 단계는?
+    choices:
+      - { id: '1', text: '어휘 분석 단계' }
+      - { id: '2', text: '구문 분석 단계' }
+      - { id: '3', text: '의미 분석 단계' }
+      - { id: '4', text: '코드 생성 단계' }
+    answers: ['2']
+    explanation: |
+      선택지 1: 어휘 분석(lexical analysis)은 프로그램을 구성하는 문자들의 나열로부터 단어[토큰(token), 단말 기호]를 추출하는 단계로, 토큰을 입력받는 것이 아니라 토큰을 만들어 낸다.
+      선택지 2: 구문 분석(syntax analysis)은 어휘 분석의 결과로 나온 토큰들의 나열이 해당 프로그래밍 언어의 문법에 맞는지 확인하는 단계이며, 문법 적합성 확인을 위해 파스 트리를 생성하므로 정답이다.
+      선택지 3: 의미 분석(semantic analysis)은 구문적으로 올바른 프로그램의 의미(변수형 호환 등)를 검사하는 단계로, 파스 트리를 입력으로 사용하며 파스 트리를 생성하는 단계가 아니다.
+      선택지 4: 코드 생성(code generation)은 구문 분석 결과로 변수, 상수, 제어의 흐름 등이 결정되면 명령어를 어셈블리어로 풀어 쓰거나 직접 기계어 이진 코드를 생성하는 단계이다.
+
+      핵심 개념:
+      어휘 분석은 빈 칸을 기준으로 단어를 구분하고, 각 단어를 이름·숫자·수식기호 등으로 분류하여 토큰을 만든다.
+      구문 분석은 토큰 나열의 문법 적합성을 확인하며 파스 트리를 생성한다.
+      코드 생성은 구문 분석 결과를 바탕으로 어셈블리어 또는 기계어 이진 코드를 만든다.
+      컴파일 과정: 프로그램 작성 → 어휘 분석 → 구문 분석 → 코드 생성 → 실행 코드.
+
+  - id: b06-07
+    type: multiple-choice
+    prompt: 고급언어 프로그램에서 실행 코드까지의 변환 순서로 올바른 것은?
+    choices:
+      - { id: '1', text: '구문 분석, 코드 생성, 어휘 분석' }
+      - { id: '2', text: '코드 생성, 구문 분석, 어휘 분석' }
+      - { id: '3', text: '어휘 분석, 구문 분석, 코드 생성' }
+      - { id: '4', text: '어휘 분석, 코드 생성, 구문 분석' }
+    answers: ['3']
+    explanation: |
+      선택지 1: 구문 분석은 어휘 분석이 만든 토큰을 입력으로 받으므로 어휘 분석보다 먼저 올 수 없다.
+      선택지 2: 코드 생성은 구문 분석 결과로 변수, 상수, 제어의 흐름이 결정된 뒤에 수행되므로 가장 먼저 올 수 없고, 순서가 완전히 거꾸로 되어 있다.
+      선택지 3: 문자 나열에서 토큰을 추출(어휘 분석)하고, 토큰 나열의 문법 적합성을 확인하며 파스 트리를 만든(구문 분석) 뒤, 그 결과로 기계어 코드를 만드는(코드 생성) 순서이므로 정답이다.
+      선택지 4: 코드 생성은 구문 분석의 결과가 있어야 수행할 수 있으므로 구문 분석보다 앞설 수 없다.
+
+      핵심 개념:
+      컴파일 과정은 프로그램 작성 → 어휘 분석 → 구문 분석 → 코드 생성 → 실행 코드 순이다.
+      각 단계의 출력이 다음 단계의 입력이 된다: 문자열 → 토큰 → 파스 트리 → 어셈블리어/기계어 코드.
+      어휘 분석은 단어(토큰) 단위, 구문 분석은 문법 구조 단위로 프로그램을 다룬다.
+      코드 생성은 변수, 상수, 제어의 흐름이 결정된 뒤 이루어진다.
+
+  - id: b06-08
+    type: multiple-choice
+    prompt: C언어에서 int x=10+“hello”;의 명령이 주어졌을 때 어떤 오류나 경고가 뜨는가?
+    choices:
+      - { id: '1', text: '문법 오류(syntax error)' }
+      - { id: '2', text: '실행 오류(runtime error)' }
+      - { id: '3', text: '논리 오류(logic error)' }
+      - { id: '4', text: '형검사(type checking)' }
+    answers: ['4']
+    explanation: |
+      선택지 1: 문법 오류(syntax error)는 토큰의 나열이 언어의 문법에 맞지 않을 때 구문 분석에서 발견되는 오류로, 제시된 문장은 `변수형 이름 = 수식;`의 문법 형태는 갖추고 있다.
+      선택지 2: 실행 오류(runtime error)는 0으로 나누기처럼 프로그램 실행 중에 발생하는 오류이다. 이 문장의 변수형 불일치(포인터 값을 int형 변수에 대입)는 실행하기 전, 컴파일 과정에서 드러난다.
+      선택지 3: 논리 오류(logic error)는 프로그램이 정상 실행되지만 의도와 다른 결과를 내는 알고리즘상의 잘못으로, 변수형 호환성 문제와 다르다.
+      선택지 4: C에서 문자열 상수 "hello"는 문자 배열의 시작 주소(char * 포인터)로 쓰이므로 10+"hello"는 포인터에 정수를 더하는 연산이 되고, 그 결과인 포인터 값을 int형 변수 x에 대입하게 된다. 포인터형과 int형은 호환되지 않으므로 컴파일 과정의 형검사(type checking)에서 오류나 경고가 발생한다. 따라서 정답이다.
+
+      핵심 개념:
+      변수형은 상수(constant)나 변수(variable)의 종류를 지정해 호환성이 없는 변수형 간의 연산을 막는다.
+      호환성 없는 연산은 데이터 손실을 일으키거나(정수·실수 덧셈을 정수형으로 수행) 의미가 없다(정수를 문자열로 나누기).
+      변수형이 호환되지 않는 연산을 찾아내는 것을 형검사(type checking)라 한다.
+      형검사에는 컴파일 과정의 정적(static)형 검사와 실행(run-time) 중의 동적(dynamic)형 검사가 있다.
+
+  - id: b06-09
+    type: multiple-choice
+    prompt: 다음 중 프로그램에 관한 사고를 간소화하기 위한 방법이 ==아닌== 것은?
+    choices:
+      - { id: '1', text: '암호화' }
+      - { id: '2', text: '추상화' }
+      - { id: '3', text: '코드 숨기기' }
+      - { id: '4', text: '캡슐화' }
+    answers: ['1']
+    explanation: |
+      선택지 1: 암호화는 데이터를 제3자가 읽을 수 없도록 변환하는 보안 기법으로, 프로그램에 관한 사고를 간소화하는 방법이 아니므로 정답이다.
+      선택지 2: 추상화는 필수적인 속성만으로 대상을 묘사하고 부수적이거나 불필요한 속성은 숨기거나 삭제하여 동일한 부류의 객체들을 하나로 묶어 표현하므로 사고를 간소화하는 방법이다.
+      선택지 3: 코드 숨기기(정보 은닉)는 구현 부분을 전용부(private part)로 감추어 외부에서 알 필요가 없게 하므로 사고를 간소화하는 방법이다.
+      선택지 4: 캡슐화(encapsulation)는 자료형의 표현과 관련 연산을 함께 묶고, 추상화된 객체의 이름을 통해 호출하는 윈도(window)만 제공하므로 사고를 간소화하는 방법이다.
+
+      핵심 개념:
+      추상화는 공통의 유사성을 표현하고 차이점을 삭제하여 동일한 부류의 객체를 하나로 묶어 표현하는 방법이다.
+      추상 자료형은 객체들의 집합과 이들 객체에 적용되는 연산들의 집합이다.
+      캡슐화는 외부에 알려 주는 공용부(public part, 가시부)와 보호되는 구현 부분인 전용부(private part)를 나눈다.
+      추상화·캡슐화·코드 숨기기는 모두 불필요한 세부를 감춰 프로그램에 관한 사고를 간소화한다.
+
+  - id: b06-10
+    type: multiple-choice
+    prompt: 프로그래머에게 추상화된 객체의 이름을 통해 객체를 호출하여 사용하도록 하는 윈도(window)를 제공하는 것은?
+    choices:
+      - { id: '1', text: '클래스' }
+      - { id: '2', text: '캡슐화' }
+      - { id: '3', text: '메시지' }
+      - { id: '4', text: '메소드' }
+    answers: ['2']
+    explanation: |
+      선택지 1: 클래스(class)는 같은 속성과 함수를 갖는 객체들의 모임을 정의한 틀로, 객체의 추상화를 구현한 것이지 호출용 윈도를 제공하는 기법 자체는 아니다.
+      선택지 2: 캡슐화(encapsulation)는 프로그래머에게 추상화된 객체의 이름을 통해 객체를 호출하여 사용하도록 하는 윈도(window)를 제공하므로 정답이다.
+      선택지 3: 메시지(message)는 객체에게 메소드 실행을 요청하는 수단으로, 객체 호출 창구를 구성하는 기법이 아니다.
+      선택지 4: 메소드(method)는 객체에 대한 연산(함수)으로, 윈도를 통해 호출되는 대상일 뿐 윈도를 제공하는 개념이 아니다.
+
+      핵심 개념:
+      윈도를 통해 객체의 호출을 외부에 알려 주는 부분을 공용부(public part) 또는 가시부(visible part)라 한다.
+      캡슐화로 보호되는 구현 부분을 전용부(private part)라 한다.
+      자동차 운전자는 엑셀·브레이크 같은 공용부만 알면 되고, 엔진의 상세 기능 같은 전용부는 몰라도 운전할 수 있다.
+      자료 추상화는 자료형의 표현과 관련 연산을 함께 묶어 캡슐화하는 기법이다.
+
+  - id: b07-01
+    type: multiple-choice
+    prompt: 데이터베이스 정의에 대한 설명으로 올바르지 ==못한== 것은?
+    choices:
+      - { id: '1', text: '컴퓨터가 접근 가능한 저장매체에 저장된 데이터 집합이다.' }
+      - { id: '2', text: '단순 입출력 데이터를 포함하지 않는 운영 데이터의 집합이다.' }
+      - { id: '3', text: '각 응용 프로그램이 독립적으로 소유하고 사용하기 위한 데이터의 집합이다.' }
+      - { id: '4', text: '제한적으로 통제된 범위 내에서 데이터의 중복을 허용하는 통합 데이터의 집합이다.' }
+    answers: ['3']
+    explanation: |
+      선택지 1: 저장 데이터(stored data)의 설명이다. 데이터베이스는 컴퓨터가 접근할 수 있는 저장매체에 저장되므로 올바른 설명이다.
+      선택지 2: 운영 데이터(operational data)의 설명이다. 단순한 입출력 데이터나 작업 처리 과정의 일시적인 데이터를 제외하고, 조직의 목적과 유용성 측면에서 반드시 유지해야 할 데이터이므로 올바른 설명이다.
+      선택지 3: 데이터베이스의 공유 데이터(shared data)는 한 조직의 여러 응용 프로그램이 공동으로 소유하고 사용하는 데이터다. 각 응용 프로그램이 독립적으로 소유하는 것은 데이터베이스 이전의 파일 처리 방식이므로 올바르지 못한 설명이다.
+      선택지 4: 통합 데이터(integrated data)의 설명이다. 중복을 배제해 일관성을 유지하되, 시스템 성능 향상을 위해 제한적으로 통제된 범위 내의 최소한의 중복은 허용하므로 올바른 설명이다.
+
+      핵심 개념:
+      데이터베이스(DB: Database)는 한 조직의 여러 응용 시스템이 공유해서 사용하기 위한 통합, 저장, 운영 데이터의 집합이다.
+      공유: 여러 응용 프로그램이 공동으로 소유하고 사용한다.
+      통합: 중복을 배제하되 성능을 위한 최소한의 통제된 중복은 허용한다.
+      저장: 컴퓨터가 접근할 수 있는 저장매체에 저장한다.
+      운영: 조직의 목적상 반드시 유지해야 할 데이터로, 일시적인 입출력 데이터는 제외한다.
+
+  - id: b07-02
+    type: multiple-choice
+    prompt: 데이터베이스의 특징에 대한 설명으로 적절하지 ==않은== 것은?
+    choices:
+      - { id: '1', text: '주소에 의한 참조' }
+      - { id: '2', text: '동시 공유' }
+      - { id: '3', text: '실시간 접근성' }
+      - { id: '4', text: '계속적인 변화' }
+    answers: ['1']
+    explanation: |
+      선택지 1: 데이터베이스는 데이터가 저장된 위치나 주소가 아니라, 사용자가 요구하는 내용인 데이터의 값에 따라 참조하는 내용에 의한 참조(contents reference)를 특징으로 한다. 주소에 의한 참조는 적절하지 않으므로 정답이다.
+      선택지 2: 동시 공유(concurrent sharing)는 서로 다른 목적을 가진 여러 사용자가 동시에 원하는 데이터에 접근할 수 있다는 특징이다.
+      선택지 3: 실시간 접근성(real-time accessibility)은 수시로 접근하는 사용자의 요구를 즉시 처리하여 응답할 수 있다는 특징이다.
+      선택지 4: 계속적인 변화(continuous evolution)는 현실 세계의 상태를 정확히 반영하기 위해 삽입, 삭제, 갱신으로 데이터가 계속 변한다는 특징이다.
+
+      핵심 개념:
+      데이터베이스의 4가지 특징은 실시간 접근성, 계속적인 변화, 동시 공유, 내용에 의한 참조이다.
+      실시간 접근성: 사용자 요구에 즉시 응답한다.
+      계속적인 변화: 삽입·삭제·갱신으로 현재의 정확한 데이터를 유지한다.
+      동시 공유: 여러 사용자가 동시에 같은 데이터에 접근한다.
+      내용에 의한 참조: 위치나 주소가 아닌 데이터 값으로 참조한다.
+
+  - id: b07-03
+    type: multiple-choice
+    prompt: 데이터베이스에 들어 있는 데이터의 값과 그것이 표현하는 현실 세계의 실제값이 일치하는 정확성을 의미하는 용어는?
+    choices:
+      - { id: '1', text: '데이터의 일관성' }
+      - { id: '2', text: '데이터의 무결성' }
+      - { id: '3', text: '데이터의 독립성' }
+      - { id: '4', text: '데이터의 종속성' }
+    answers: ['2']
+    explanation: |
+      선택지 1: 데이터의 일관성(consistency)은 중복된 데이터 사이에 값이 서로 어긋나지 않고 같은 상태를 유지하는 성질로, 저장된 값과 현실 세계 실제값의 일치를 뜻하지 않는다.
+      선택지 2: 데이터의 무결성(integrity)은 데이터베이스에 들어 있는 데이터의 값과 그것이 표현하는 현실 세계의 실제값이 일치하는 정확성을 의미하므로 정답이다.
+      선택지 3: 데이터의 독립성(independence)은 한 단계의 구조를 바꿔도 다른 단계(응용 프로그램 등)에 영향을 주지 않는 성질로, 정확성과는 다른 개념이다.
+      선택지 4: 데이터의 종속성(dependence)은 파일 처리 방식에서 응용 프로그램과 데이터 구조가 서로 의존하는 문제점을 가리키며, 정확성을 뜻하지 않는다.
+
+      핵심 개념:
+      데이터 무결성은 DB에 저장된 값과 현실 세계의 실제값이 일치하는 정확성이다.
+      DB는 데이터가 다루어질 때마다 다양한 제어 기능으로 유효성을 검사하여 무결성을 유지한다.
+      일관성은 중복 데이터 간 값의 일치, 독립성은 단계 간 구조 변경의 영향 차단을 뜻한다.
+      종속성과 중복성은 파일 처리 방식의 문제점으로 데이터베이스 등장의 배경이 되었다.
+
+  - id: b07-04
+    type: multiple-choice
+    prompt: 개별 사용자나 응용 프로그래머가 필요로 하는 데이터베이스 구조를 정의한 것은?
+    choices:
+      - { id: '1', text: '개념 스키마' }
+      - { id: '2', text: '내부 스키마' }
+      - { id: '3', text: '외부 스키마' }
+      - { id: '4', text: '저장 스키마' }
+    answers: ['3']
+    explanation: |
+      선택지 1: 개념 스키마는 기관(조직)의 전체적인 DB 구조를 정의한 것으로, 모든 응용에 대한 통합된 데이터 구조이며 오직 하나만 존재한다. 개별 사용자용 구조가 아니다.
+      선택지 2: 내부 스키마는 물리적인 데이터 구조(내부 레코드 형식, 인덱스 유무, 저장 필드 표현 방법 등)를 정의한 것으로, 개별 사용자의 관점과는 다르다.
+      선택지 3: 외부 스키마는 개별 사용자나 응용 프로그래머가 관심을 갖는 DB 구조만을 정의한 스키마다. 전체 DB의 한 논리적 부분만 표현하므로 서브스키마라고도 하며, 정답이다.
+      선택지 4: 저장 스키마는 내부 스키마의 다른 이름으로, 저장장치 관점에서 DB가 저장되는 방법을 표현한다.
+
+      핵심 개념:
+      스키마(schema)는 DB 구조에 대한 정의와 제약 조건의 명세를 기술한 것이다.
+      3단계 데이터베이스 구조(외부·개념·내부 단계)에 맞춰 외부 스키마, 개념 스키마, 내부 스키마가 존재한다.
+      외부 스키마(서브스키마): 개별 사용자·응용별 논리적 구조로, 사용자마다 여러 개 존재한다.
+      개념 스키마: 조직 전체의 통합된 구조로, 하나만 존재한다.
+      내부 스키마(저장 스키마): 물리적 저장 구조를 정의한다.
+
+  - id: b07-05
+    type: multiple-choice
+    passageRefs: [gb07-three-level-01]
+    prompt: 3단계 데이터베이스 구조에서 기관의 전체적인 데이터베이스 구조를 정의한 것은?
+    choices:
+      - { id: '1', text: 'A' }
+      - { id: '2', text: 'B' }
+      - { id: '3', text: 'D' }
+      - { id: '4', text: 'E' }
+    answers: ['3']
+    explanation: |
+      선택지 1: A는 사용자1의 질의어와 연결된 외부 스키마로, 개별 사용자가 관심을 갖는 부분 구조만 정의한다.
+      선택지 2: B는 사용자2의 응용프로그램과 연결된 외부 스키마로, 역시 특정 응용에 한정된 논리적 구조다.
+      선택지 3: D는 여러 외부 스키마(A, B, C)가 모두 사상되는 개념 스키마로, 기관의 전체적인 DB 구조를 정의하므로 정답이다.
+      선택지 4: E는 개념 스키마와 저장 DB 사이에 있는 내부 스키마로, 물리적인 저장 구조를 정의한다.
+
+      핵심 개념:
+      3단계 구조는 외부 단계(외부 스키마 1~n), 개념 단계(개념 스키마), 내부 단계(내부 스키마)로 이루어진다.
+      여러 외부 스키마는 하나의 개념 스키마로 사상되고, 개념 스키마는 내부 스키마를 거쳐 저장 DB에 대응된다.
+      외부/개념 사상은 논리적 데이터 독립성을, 개념/내부 사상은 물리적 데이터 독립성을 제공한다.
+      그림에서 사용자 쪽에 여러 개 있으면 외부 스키마, 가운데 하나뿐이면 개념 스키마, 저장 DB 바로 위는 내부 스키마다.
+
+  - id: b07-06
+    type: multiple-choice
+    prompt: 데이터베이스에서 논리적 데이터 독립성을 제공하기 위한 사상은?
+    choices:
+      - { id: '1', text: '외부/개념 사상' }
+      - { id: '2', text: '외부/내부 사상' }
+      - { id: '3', text: '개념/내부 사상' }
+      - { id: '4', text: '내부/저장 사상' }
+    answers: ['1']
+    explanation: |
+      선택지 1: 외부/개념 사상(응용 인터페이스)은 응용 프로그램이나 사용자가 보는 관점을 변경시키지 않고 DB의 논리적 구조를 변경할 수 있게 하므로 논리적 데이터 독립성을 제공한다. 정답이다.
+      선택지 2: 3단계 구조의 사상은 인접한 단계 사이(외부/개념, 개념/내부)에만 정의되며, 외부 단계와 내부 단계를 직접 잇는 사상은 없다.
+      선택지 3: 개념/내부 사상(저장 인터페이스)은 논리적 구조에 영향을 주지 않고 저장 양식을 변경할 수 있게 하므로 물리적 데이터 독립성을 제공한다. 논리적 독립성이 아니다.
+      선택지 4: 내부 스키마는 저장 스키마라고도 부르는 같은 단계이므로 내부/저장 사상은 3단계 구조의 사상이 아니다.
+
+      핵심 개념:
+      사상(mapping)은 3단계 구조의 인접 단계를 연결하여 데이터 독립성을 제공하는 개념이다.
+      외부/개념 사상(응용 인터페이스) → 논리적 데이터 독립성: 사용자 관점을 바꾸지 않고 논리적 구조 변경 가능.
+      개념/내부 사상(저장 인터페이스) → 물리적 데이터 독립성: 논리적 구조를 바꾸지 않고 저장 양식 변경 가능.
+      데이터 독립성 덕분에 한 단계를 변경해도 다른 단계에 영향이 적다.
+
+  - id: b07-07
+    type: multiple-choice
+    prompt: DBMS의 세 가지 필수 기능에 해당하지 ==않는== 것은?
+    choices:
+      - { id: '1', text: '정의' }
+      - { id: '2', text: '저장' }
+      - { id: '3', text: '조작' }
+      - { id: '4', text: '제어' }
+    answers: ['2']
+    explanation: |
+      선택지 1: 정의(definition)는 응용 프로그램과 DB가 상호작용할 수 있는 방법을 제공하고, 여러 사용자의 요구에 부응하는 DB 구조를 정의하는 필수 기능이다.
+      선택지 2: 저장은 DBMS(Database Management System, 데이터베이스 관리 시스템)의 세 가지 필수 기능(정의, 조작, 제어)에 포함되지 않으므로 정답이다.
+      선택지 3: 조작(manipulation)은 사용자의 요구에 따라 연산 도구를 통해 DB에 체계적으로 접근하고 조작하는 필수 기능이다.
+      선택지 4: 제어(control)는 공용으로 관리되는 DB의 내용을 항상 정확하고 안전하게 유지하는 필수 기능으로, 무결성 유지, 보안 유지 및 권한 검사, 동시 처리의 정확성 유지를 담당한다.
+
+      핵심 개념:
+      DBMS는 데이터베이스의 구성, 접근 방법, 관리 유지에 대한 책임과 권한을 갖고 응용 프로그램과 데이터의 중재자 역할을 하는 소프트웨어 시스템이다.
+      필수 기능은 정의, 조작, 제어의 세 가지이다.
+      정의: DB 구조 정의 / 조작: 검색·삽입·삭제·갱신 등 접근과 조작 / 제어: 무결성·보안·동시성 제어.
+      각 기능은 데이터 정의어, 데이터 조작어, 데이터 제어어와 대응된다.
+
+  - id: b07-08
+    type: multiple-choice
+    prompt: 데이터 정의어와 데이터 제어어를 통해 데이터베이스에 접근하는 사용자를 무엇이라고 하는가?
+    choices:
+      - { id: '1', text: '일반 사용자' }
+      - { id: '2', text: '데이터베이스 개발자' }
+      - { id: '3', text: '응용 프로그래머' }
+      - { id: '4', text: '데이터베이스 관리자' }
+    answers: ['4']
+    explanation: |
+      선택지 1: 일반 사용자는 주로 질의어 등을 이용해 데이터를 검색·조작하는 사용자로, DDL과 DCL로 DB를 정의·제어하지 않는다.
+      선택지 2: 데이터베이스 개발자는 데이터베이스 사용자의 구분(일반 사용자, 응용 프로그래머, 데이터베이스 관리자)에 없는 명칭이다. DDL과 DCL로 DB를 정의하고 제어하는 역할은 데이터베이스 관리자(DBA)가 맡는다.
+      선택지 3: 응용 프로그래머는 응용 프로그램에 데이터 조작어(DML: Data Manipulation Language)를 삽입해 DB에 접근하는 사용자다.
+      선택지 4: 데이터베이스 관리자(DBA: DB Administrator)는 데이터 정의어(DDL: Data Definition Language)와 데이터 제어어(DCL: Data Control Language)를 통해 DB를 정의하고 제어할 목적으로 접근·관리하는 사람이므로 정답이다.
+
+      핵심 개념:
+      데이터 언어는 DB를 정의하고 접근하기 위해 DBMS와 통신하는 수단이다.
+      DDL: DB 구조·데이터 형식·처리 방식 정의 / DCL: 데이터 공유와 정확하고 안전한 사용을 위한 제어 정의 / DML: 검색·수정·삭제·삽입 조작.
+      데이터베이스 사용자는 일반 사용자, 응용 프로그래머, 데이터베이스 관리자로 나뉜다.
+      DBA는 DB에 대한 접근 권한 설정, 제작과 갱신, 보전과 관리, 성능 변경 요구에 대한 응답 등의 의무를 진다.
+
+  - id: b07-09
+    type: multiple-choice
+    prompt: 현실 세계에서 주요 데이터를 추출하여 개념 세계의 데이터로 변환하는 과정에 사용되는 데이터 모델은?
+    choices:
+      - { id: '1', text: '관계형 모델' }
+      - { id: '2', text: '개체-관계 모델' }
+      - { id: '3', text: '네트워크형 모델' }
+      - { id: '4', text: '계층형 모델' }
+    answers: ['2']
+    explanation: |
+      선택지 1: 관계형 모델은 개념 세계의 데이터를 데이터베이스에 저장할 구조로 표현하는 논리적 모델(구현 모델)이다.
+      선택지 2: 개체-관계 모델(E-R 모델: Entity-Relationship model)은 많은 사용자가 데이터를 인식하는 방법과 밀접한 개념을 제공하는 개념적 모델로, 현실 세계의 데이터를 개념 세계로 변환하는 데 사용되므로 정답이다.
+      선택지 3: 네트워크형 모델은 그래프 형태로 데이터를 표현하는 논리적 모델(구현 모델)이다.
+      선택지 4: 계층형 모델은 트리 형태로 데이터를 표현하는 논리적 모델(구현 모델)이다.
+
+      핵심 개념:
+      데이터 모델링은 실세계 데이터를 데이터 모델상의 DB 구조로 변환하는 과정이다.
+      데이터 모델은 개념적 모델, 논리적 모델, 물리적 모델로 분류한다.
+      개념적 모델(E-R 모델): 현실 세계 → 개념 세계 변환.
+      논리적 모델(구현 모델): 관계형, 네트워크형, 계층형, 객체지향형, 객체 관계형 모델.
+      물리적 모델: 레코드 형식, 순서, 접근 경로 등 컴퓨터 내부 저장 방식을 기술한다.
+
+  - id: b07-10
+    type: multiple-choice
+    passageRefs: [gb07-network-model-01]
+    prompt: 다음과 같은 그래프 구조를 기반으로 표현되는 데이터베이스의 구현 모델은?
+    choices:
+      - { id: '1', text: '관계형 모델' }
+      - { id: '2', text: 'E-R 모델' }
+      - { id: '3', text: '네트워크형 모델' }
+      - { id: '4', text: '계층형 모델' }
+    answers: ['3']
+    explanation: |
+      선택지 1: 관계형 모델은 DB를 2차원 테이블(릴레이션)의 집합으로 간주하고 테이블로 데이터와 관계를 표현하므로 그래프 구조가 아니다.
+      선택지 2: E-R 모델은 개념적 모델이며 구현 모델(논리적 모델)이 아니다.
+      선택지 3: 네트워크형 모델(망형 모델)은 그래프 형태로 데이터를 표현하며 오너-멤버 관계를 가진다. 그림처럼 학생과 과목이 서로 여러 관계(등록, 수강)로 얽힌 그래프 구조이므로 정답이다.
+      선택지 4: 계층형 모델은 트리 형태로 부모-자식 관계를 표현한다. 그림에는 학생과 과목 사이에 양방향 관계가 있어 트리가 아니다.
+
+      핵심 개념:
+      논리적 모델(구현 모델)의 종류와 표현 형태는 다음과 같다.
+      관계형 모델: 2차원 테이블(릴레이션)의 집합.
+      네트워크형 모델(망형 모델): 그래프 형태, 오너-멤버 관계.
+      계층형 모델: 트리 형태, 부모-자식 관계.
+      객체지향형 모델은 데이터와 절차를 일체화된 단위로 다루고, 객체 관계형 모델은 관계형에 객체 저장 능력을 추가한 형태다.
+
+  - id: b07-11
+    type: multiple-choice
+    passageRefs: [gb07-er-advise-01]
+    prompt: 다음과 같은 E-R 다이어그램에서 ‘학생’ 및 ‘교수’에 해당하는 구성요소를 무엇이라 하는가?
+    choices:
+      - { id: '1', text: '개체' }
+      - { id: '2', text: '관계' }
+      - { id: '3', text: '속성' }
+      - { id: '4', text: '투플' }
+    answers: ['1']
+    explanation: |
+      선택지 1: 개체(entity)는 데이터로 표현하려는 실세계의 유무형의 모든 것으로, E-R 다이어그램에서 사각형으로 나타낸다. 사각형으로 그려진 ‘학생’과 ‘교수’는 개체이므로 정답이다.
+      선택지 2: 관계(relationship)는 개체 집합 사이의 대응성을 표현하며 마름모로 나타낸다. 그림에서는 ‘지도’가 관계다.
+      선택지 3: 속성(attribute)은 개체의 고유한 특성이나 상태를 나타내며 타원으로 나타낸다. 학번, 이름, 학과, 교수번호 등이 속성이다.
+      선택지 4: 투플(tuple)은 관계형 모델에서 릴레이션의 행(레코드)을 가리키는 용어로, E-R 다이어그램의 구성요소가 아니다.
+
+      핵심 개념:
+      E-R 모델은 개체 타입과 이들 간의 관계 타입을 이용해 실세계를 개념적으로 표현하는 방법이다.
+      E-R 다이어그램: 개체 타입은 사각형, 관계 타입은 마름모, 속성은 타원, 이들을 연결하는 링크는 직선으로 표시한다.
+      개체는 파일의 레코드에 대응하며 속성을 가진다.
+      밑줄 친 속성(학번, 교수번호)은 키 속성이다.
+
+  - id: b07-12
+    type: multiple-choice
+    prompt: E-R 다이어그램에서 키 속성을 나타내는 기호는?
+    choices:
+      - id: '1'
+        text: ''
+        image:
+          path: images/subjects/introduction-to-computer-science/workbook/b07-12-choice-1.png
+          alt: 점선으로 그린 타원
+      - id: '2'
+        text: ''
+        image:
+          path: images/subjects/introduction-to-computer-science/workbook/b07-12-choice-2.png
+          alt: 실선으로 그린 타원
+      - id: '3'
+        text: ''
+        image:
+          path: images/subjects/introduction-to-computer-science/workbook/b07-12-choice-3.png
+          alt: 이중선으로 그린 타원
+      - id: '4'
+        text: ''
+        image:
+          path: images/subjects/introduction-to-computer-science/workbook/b07-12-choice-4.png
+          alt: 안쪽에 밑줄이 그어진 타원
+    answers: ['4']
+    explanation: |
+      선택지 1: 점선 타원은 다른 속성 값으로부터 계산해 얻는 유도 속성을 나타낸다.
+      선택지 2: 실선 타원은 일반 속성을 나타낸다.
+      선택지 3: 이중선 타원은 하나의 개체가 여러 값을 가질 수 있는 다중값 속성을 나타낸다.
+      선택지 4: 속성 이름에 밑줄을 그은 타원은 키 속성을 나타내므로 정답이다.
+
+      핵심 개념:
+      E-R 다이어그램 기호: 사각형(개체 타입), 이중 사각형(약한 개체 타입), 마름모(관계 타입), 이중 마름모(약한 관계 타입).
+      속성 기호: 타원(속성), 밑줄 타원(키 속성), 이중 타원(다중값 속성), 점선 타원(유도 속성).
+      타원에 하위 타원이 연결된 형태는 복합 속성이다.
+      이중선 연결은 전체 참여, 링크 위의 1, N은 관계의 사상 원소 비율을 나타낸다.
+
+  - id: b07-13
+    type: multiple-choice
+    passageRefs: [gb07-relational-tables-01]
+    prompt: 다음 그림과 같은 방식으로 실세계의 정보를 표현하는 논리적 모델은?
+    choices:
+      - { id: '1', text: '개체-관계 모델' }
+      - { id: '2', text: '관계형 모델' }
+      - { id: '3', text: '네트워크형 모델' }
+      - { id: '4', text: '객체지향형 모델' }
+    answers: ['2']
+    explanation: |
+      선택지 1: 개체-관계 모델(E-R 모델)은 논리적 모델이 아니라 개념적 모델이며, 사각형·마름모·타원으로 된 다이어그램으로 표현한다.
+      선택지 2: 관계형 모델은 실세계의 정보를 행과 열로 구성된 테이블(릴레이션) 형식으로 표현한다. 그림은 고객, 계좌, 계좌 거래를 각각 열(속성)로 구성된 테이블로 나타내고 키 속성에 밑줄을 그었으므로 정답이다.
+      선택지 3: 네트워크형 모델은 레코드를 그래프 형태의 오너-멤버 관계로 연결해 표현하므로 테이블 형식과 다르다.
+      선택지 4: 객체지향형 모델은 데이터와 절차를 일체화된 객체 단위로 다루는 모델로, 그림과 같은 테이블 집합 표현이 아니다.
+
+      핵심 개념:
+      관계형 모델은 DB를 2차원 테이블(릴레이션)의 집합으로 간주하고 테이블로 데이터와 데이터의 관계를 표현한다.
+      현재 가장 많이 사용되는 논리적 모델이다.
+      개체뿐 아니라 개체 사이의 관계(계좌 거래)도 테이블로 표현하며, 다른 테이블의 키(주민등록번호, 계좌번호)를 속성으로 포함해 관계를 나타낸다.
+      E-R 모델은 개념적 모델이므로 논리적 모델을 묻는 문제의 답이 될 수 없다.
+
+  - id: b07-14
+    type: multiple-choice
+    prompt: 릴레이션에서 속성이 가질 수 있는 값의 집합을 의미하는 용어는?
+    choices:
+      - { id: '1', text: '카디널리티' }
+      - { id: '2', text: '도메인' }
+      - { id: '3', text: '투플' }
+      - { id: '4', text: '차수' }
+    answers: ['2']
+    explanation: |
+      선택지 1: 카디널리티(cardinality)는 릴레이션에 포함된 투플의 개수다.
+      선택지 2: 도메인(domain, 영역)은 속성이 가질 수 있는 값의 집합이므로 정답이다.
+      선택지 3: 투플(tuple)은 릴레이션의 행, 즉 레코드다.
+      선택지 4: 차수(degree)는 릴레이션을 구성하는 속성의 개수다.
+
+      핵심 개념:
+      관계형 데이터 모델의 용어는 다음과 같다.
+      릴레이션 = 테이블, 투플 = 행(레코드), 속성 = 열(필드, 데이터 항목).
+      차수 = 속성의 개수, 카디널리티 = 투플의 개수.
+      영역(도메인) = 속성이 가질 수 있는 값의 집합.
+
+  - id: b07-15
+    type: multiple-choice
+    passageRefs: [gb07-student-table-01]
+    prompt: 다음과 같은 관계형 모델의 테이블에서 차수와 카디널리티의 합은 얼마인가?
+    choices:
+      - { id: '1', text: '4' }
+      - { id: '2', text: '6' }
+      - { id: '3', text: '8' }
+      - { id: '4', text: '10' }
+    answers: ['4']
+    explanation: |
+      선택지 1: 4는 카디널리티(투플 4개)와 같은 값이며, 차수와 카디널리티의 합이 아니다.
+      선택지 2: 6은 차수(속성 6개: 학번, 이름, 나이, 성별, 주소, 학과)와 같은 값이며, 차수와 카디널리티의 합이 아니다.
+      선택지 3: 8은 차수 6과 카디널리티 4의 합인 10과 다르다.
+      선택지 4: 차수(속성의 개수) 6과 카디널리티(투플의 개수) 4를 더하면 $6 + 4 = 10$이므로 정답이다.
+
+      핵심 개념:
+      차수(degree)는 릴레이션의 속성(열) 개수이고, 카디널리티(cardinality)는 투플(행) 개수이다.
+      제목 행은 속성 이름(릴레이션 스키마)이므로 카디널리티에 포함하지 않는다.
+      투플이 삽입·삭제되면 카디널리티는 바뀌지만, 차수는 스키마가 바뀌지 않는 한 그대로다.
+      이 테이블은 차수 6, 카디널리티 4이다.
+
+  - id: b07-16
+    type: multiple-choice
+    prompt: 관계형 모델에서 키의 성질 중 유일성만을 만족하는 키를 무엇이라고 하는가?
+    choices:
+      - { id: '1', text: '대체키' }
+      - { id: '2', text: '후보키' }
+      - { id: '3', text: '슈퍼키' }
+      - { id: '4', text: '기본키' }
+    answers: ['3']
+    explanation: |
+      선택지 1: 대체키(alternate key)는 후보키 중에서 기본키로 선택되지 못한 키로, 후보키이므로 유일성과 최소성을 모두 만족한다.
+      선택지 2: 후보키(candidate key)는 슈퍼키 중에서 최소성(모든 투플을 유일하게 식별할 수 있는 최소의 속성들로 구성)까지 만족하는 키다.
+      선택지 3: 슈퍼키(super key)는 키값으로 하나의 투플을 유일하게 식별한다는 유일성만을 만족하는 키이므로 정답이다.
+      선택지 4: 기본키(primary key)는 후보키 중에서 DB 설계자나 관리자가 기본적으로 사용할 키로 선택한 키로, 유일성과 최소성을 모두 만족한다.
+
+      핵심 개념:
+      키는 릴레이션의 투플을 유일하게 구별하기 위한 속성 또는 속성의 집합이며, 성질은 유일성과 최소성이다.
+      슈퍼키: 유일성만 만족 / 후보키: 유일성 + 최소성.
+      기본키: 후보키 중 선택된 키 / 대체키: 후보키 중 기본키로 선택되지 못한 키.
+      외래키(foreign key): 어떤 릴레이션의 속성(집합)이 다른 릴레이션의 기본키가 되는 키.
+
+  - id: b07-17
+    type: multiple-choice
+    prompt: 관계형 모델에서 릴레이션의 특징이 ==아닌== 것은?
+    choices:
+      - { id: '1', text: '투플의 유일성' }
+      - { id: '2', text: '투플의 무순서성' }
+      - { id: '3', text: '속성의 유일성' }
+      - { id: '4', text: '속성의 무순서성' }
+    answers: ['3']
+    explanation: |
+      선택지 1: 투플의 유일성은 하나의 릴레이션에 중복되는 투플이 없으며 하나의 키값으로 하나의 투플을 유일하게 식별한다는 특징이다.
+      선택지 2: 투플의 무순서성은 한 릴레이션에 포함된 투플들이 순서를 가지지 않는다는 특징이다.
+      선택지 3: 속성의 유일성은 릴레이션의 네 가지 특징(투플의 유일성, 투플의 무순서성, 속성의 무순서성, 속성값의 원자성)에 포함되지 않으므로 정답이다.
+      선택지 4: 속성의 무순서성은 릴레이션을 구성하는 속성들 사이에 순서가 없고 이름과 값의 쌍으로 구성된다는 특징이다.
+
+      핵심 개념:
+      릴레이션은 투플의 집합이므로 다음 네 가지 특징을 갖는다.
+      투플의 유일성: 중복 투플이 없다.
+      투플의 무순서성: 투플 사이에 순서가 없다.
+      속성의 무순서성: 속성 사이에 순서가 없다.
+      속성값의 원자성: 모든 속성값은 분해 불가능한 원자값이며, 널값도 원자값으로 취급한다.
+
+  - id: b07-18
+    type: multiple-choice
+    prompt: 관계형 모델에서 어떤 두 투플도 릴레이션의 모든 속성에 대해서 같은 속성값의 조합을 가질 수 없다는 제약 조건은?
+    choices:
+      - { id: '1', text: '개체 무결성 제약 조건' }
+      - { id: '2', text: '영역 제약 조건' }
+      - { id: '3', text: '참조 무결성 제약 조건' }
+      - { id: '4', text: '키 제약 조건' }
+    answers: ['4']
+    explanation: |
+      선택지 1: 개체 무결성 제약 조건은 어떠한 기본키값도 널값이 될 수 없다는 조건이다.
+      선택지 2: 영역 제약 조건은 각 속성값이 반드시 해당 영역의 원자값이어야 한다는 조건이다.
+      선택지 3: 참조 무결성 제약 조건은 한 릴레이션의 투플이 다른 릴레이션의 투플을 참조하려면 참조되는 투플이 그 릴레이션 내에 반드시 존재해야 한다는 조건이다.
+      선택지 4: 키 제약 조건은 어떤 두 투플도 릴레이션의 모든 속성에 대해서 같은 속성값의 조합을 가질 수 없다는 조건이므로 정답이다.
+
+      핵심 개념:
+      관계 데이터 모델의 제약 조건은 모든 릴레이션 인스턴스가 만족해야 하는 조건이다.
+      영역 제약 조건: 속성값은 해당 영역의 원자값.
+      키 제약 조건: 모든 속성값 조합이 같은 두 투플은 없다(투플의 유일성).
+      개체 무결성 제약 조건: 기본키는 널값 불가.
+      참조 무결성 제약 조건: 참조되는 투플이 반드시 존재해야 한다.
+
+  - id: b07-19
+    type: multiple-choice
+    prompt: 데이터베이스의 설계 과정을 올바르게 나열한 것은?
+    choices:
+      - { id: '1', text: '사용자 요구 사항 분석 – 논리적 설계 – 개념적 설계 – 물리적 설계 – 구현' }
+      - { id: '2', text: '사용자 요구 사항 분석 – 개념적 설계 – 논리적 설계 – 물리적 설계 – 구현' }
+      - { id: '3', text: '사용자 요구 사항 분석 – 개념적 설계 – 물리적 설계 – 논리적 설계 – 구현' }
+      - { id: '4', text: '사용자 요구 사항 분석 – 논리적 설계 – 물리적 설계 – 개념적 설계 – 구현' }
+    answers: ['2']
+    explanation: |
+      선택지 1: 논리적 설계는 개념적 설계로 만든 개념 스키마를 목표 DBMS에 맞는 논리적 스키마로 변환하는 단계이므로 개념적 설계보다 먼저 올 수 없다.
+      선택지 2: 요구 사항 분석 → 개념적 설계(E-R 모델 등으로 DBMS에 독립적인 개념 스키마 설계) → 논리적 설계(목표 DBMS에 맞는 논리적 스키마 변환) → 물리적 설계(물리적 구조 설계) → 구현 순서이므로 정답이다.
+      선택지 3: 물리적 설계는 논리적 스키마를 바탕으로 저장 구조를 설계하므로 논리적 설계보다 먼저 올 수 없다.
+      선택지 4: 개념적 설계는 요구 사항 분석 직후 DBMS에 독립적으로 수행되는 단계이므로 논리적·물리적 설계 뒤에 올 수 없다.
+
+      핵심 개념:
+      데이터베이스 설계는 사용자의 요구 조건으로부터 DB 구조를 도출해 내는 과정이다.
+      사용자 요구 사항 분석: 데이터 및 처리 요구 조건 분석.
+      개념적 설계: 특정 DBMS에 독립적인 개념 스키마 설계(E-R 모델).
+      논리적 설계: 목표 DBMS에 맞는 논리적 스키마 변환 → 물리적 설계: 목표 DBMS에 맞는 물리적 구조 설계.
+      구현: 목표 DBMS의 DDL로 스키마를 작성해 빈 데이터베이스 파일을 생성한다.
+
+  - id: b07-20
+    type: multiple-choice
+    prompt: SQL 명령문 중에서 데이터 정의어에 속하지 ==않는== 것은?
+    choices:
+      - { id: '1', text: 'CREATE문' }
+      - { id: '2', text: 'DELETE문' }
+      - { id: '3', text: 'ALTER문' }
+      - { id: '4', text: 'DROP문' }
+    answers: ['2']
+    explanation: |
+      선택지 1: CREATE문은 스키마, 도메인, 테이블, 뷰, 인덱스를 정의(생성)하는 데이터 정의어다.
+      선택지 2: DELETE문은 테이블의 데이터(투플)를 삭제하는 데이터 조작어(DML)이므로 데이터 정의어에 속하지 않는다. 정답이다.
+      선택지 3: ALTER문은 정의된 테이블 등의 구조를 변경(수정)하는 데이터 정의어다.
+      선택지 4: DROP문은 스키마, 테이블, 뷰, 인덱스 등을 제거하는 데이터 정의어다.
+
+      핵심 개념:
+      SQL(Structured Query Language, 구조화된 질의어)은 관계 대수를 기초로 한 언어로 정의, 조작, 제어 기능을 모두 제공한다.
+      데이터 정의어(DDL): CREATE(생성), ALTER(변경), DROP(삭제) — 구조를 다룬다.
+      데이터 조작어(DML): SELECT(검색), INSERT(삽입), DELETE(삭제), UPDATE(갱신) — 저장된 데이터를 다룬다.
+      같은 ‘삭제’라도 구조를 없애면 DROP, 데이터를 지우면 DELETE다.
+
+  - id: b07-21
+    type: multiple-choice
+    prompt: SQL 명령문 중에서 데이터의 검색을 위해서 사용되는 데이터 조작어는?
+    choices:
+      - { id: '1', text: 'SEARCH문' }
+      - { id: '2', text: 'RETRIVE문' }
+      - { id: '3', text: 'ALTER문' }
+      - { id: '4', text: 'SELECT문' }
+    answers: ['4']
+    explanation: |
+      선택지 1: SEARCH는 SQL 명령문이 아니다.
+      선택지 2: RETRIVE는 SQL 명령문이 아니다. 검색에 해당하는 SQL 명령문은 SELECT이다.
+      선택지 3: ALTER문은 테이블 등의 구조를 변경하는 데이터 정의어(DDL)이며 데이터 검색에 쓰지 않는다.
+      선택지 4: SELECT문은 기본 테이블이나 뷰에서 데이터를 검색하는 데이터 조작어(DML)이므로 정답이다.
+
+      핵심 개념:
+      데이터 조작어의 조작 대상은 기본 테이블과 뷰이다.
+      명령문: SELECT(검색), INSERT(삽입), DELETE(삭제), UPDATE(갱신).
+      SQL은 레코드 집합 단위로 연산하는 비절차적 언어이며, 대화식으로도 프로그램 삽입으로도 사용할 수 있다.
+      SQL은 릴레이션·투플·속성보다 테이블·행·열이라는 용어를 선호한다.
+
+  - id: b07-22
+    type: multiple-choice
+    passageRefs: [gb07-employee-table-01, gb07-group-by-sql-01]
+    prompt: 다음과 같은 직원 테이블에 대해서 주어진 SQL문을 수행한 후 얻어지는 결과 테이블에 포함되는 내용은?
+    choices:
+      - { id: '1', text: 'A' }
+      - { id: '2', text: 'A, B' }
+      - { id: '3', text: 'A, B, C' }
+      - { id: '4', text: 'A, B, C, D' }
+    answers: ['1']
+    explanation: |
+      선택지 1: 부서번호별 직원 수는 A 3명(100, 330, 450), B 2명(150, 340), C 1명(478), D 1명(201)이다. HAVING COUNT(*) >= 3을 만족하는 그룹은 A뿐이므로 정답이다.
+      선택지 2: B 부서는 직원이 2명이어서 COUNT(*) >= 3 조건을 만족하지 못하므로 결과에 포함되지 않는다.
+      선택지 3: B(2명)와 C(1명)는 조건을 만족하지 못하므로 결과에 포함되지 않는다.
+      선택지 4: 이는 HAVING 조건 없이 GROUP BY만 수행했을 때의 결과로, 조건을 적용하면 A만 남는다.
+
+      핵심 개념:
+      GROUP BY 부서번호는 같은 부서번호를 가진 행들을 하나의 그룹으로 묶는다.
+      HAVING은 그룹 단위의 조건으로, COUNT(*)는 각 그룹의 레코드 개수이다.
+      이 SQL문은 같은 부서에 속하는 직원이 3명 이상인 부서번호를 출력한다.
+      WHERE가 개별 행을 거른다면 HAVING은 그룹화된 결과를 거른다.
+
+  - id: b07-23
+    type: multiple-choice
+    prompt: 다음 중 주어진 테이블의 모든 내용을 삭제해서 빈 테이블로 만드는 SQL 명령문에 해당하는 것은? (단, 직원 테이블은 문제 22번을 참조한다.)
+    choices:
+      - { id: '1', text: 'DROP TABLE 직원;' }
+      - { id: '2', text: 'DROP TABLE FROM 직원;' }
+      - { id: '3', text: 'DELETE FROM 직원;' }
+      - { id: '4', text: 'DELETE FROM 직원 WHERE 번호=‘*’;' }
+    answers: ['3']
+    explanation: |
+      선택지 1: DROP TABLE은 테이블의 내용뿐 아니라 테이블 자체를 제거하므로 빈 테이블이 남지 않는다.
+      선택지 2: DROP TABLE에는 FROM 절을 쓰지 않으므로 올바른 SQL 형식이 아니며, 형식이 맞더라도 테이블 자체를 제거하는 명령이다.
+      선택지 3: WHERE 조건 없이 DELETE FROM 직원; 을 수행하면 테이블 구조는 남기고 모든 행을 삭제하므로 빈 테이블이 된다. 정답이다.
+      선택지 4: WHERE 조건을 사용하면 조건을 만족하는 행만 삭제된다. 번호가 문자 ‘*’인 행은 없으므로 아무 행도 삭제되지 않는다.
+
+      핵심 개념:
+      DROP TABLE은 테이블 자체(구조와 내용)를 제거하는 데이터 정의어 명령이다.
+      DELETE는 테이블 자체가 아니라 테이블의 내용을 삭제하는 데이터 조작어 명령이다.
+      모든 내용을 삭제해 빈 테이블로 만들려면 “DELETE FROM 테이블;”을 사용한다.
+      WHERE 조건을 붙이면 조건을 만족하는 내용만 삭제된다.
+
+  - id: b07-24
+    type: multiple-choice
+    prompt: SQL 문장의 사용 형식으로 올바르지 ==못한== 것은?
+    choices:
+      - id: '1'
+        text: ''
+        diagram:
+          type: data-table
+          cellFormat: code
+          columns: ['형식']
+          rows:
+            - ["DELETE\nFROM 테이블\nWHERE 조건;"]
+      - id: '2'
+        text: ''
+        diagram:
+          type: data-table
+          cellFormat: code
+          columns: ['형식']
+          rows:
+            - ["UPDATE 테이블\nSET 열이름 = 산술식\nWHERE 조건;"]
+      - id: '3'
+        text: ''
+        diagram:
+          type: data-table
+          cellFormat: code
+          columns: ['형식']
+          rows:
+            - ["SELECT 열이름\nFROM 테이블\nWHERE 조건;"]
+      - id: '4'
+        text: ''
+        diagram:
+          type: data-table
+          cellFormat: code
+          columns: ['형식']
+          rows:
+            - ["INSERT 테이블\nINTO 열값리스트\nWHERE 조건;"]
+    answers: ['4']
+    explanation: |
+      선택지 1: DELETE FROM 테이블 WHERE 조건; 은 조건을 만족하는 행을 삭제하는 올바른 DELETE문 형식이다.
+      선택지 2: UPDATE 테이블 SET 열이름 = 산술식 WHERE 조건; 은 조건을 만족하는 행의 열 값을 갱신하는 올바른 UPDATE문 형식이다.
+      선택지 3: SELECT 열이름 FROM 테이블 WHERE 조건; 은 조건을 만족하는 행의 열을 검색하는 올바른 SELECT문 형식이다.
+      선택지 4: 데이터 삽입문의 기본 형식은 INSERT INTO 테이블[(열_이름{, 열_이름}*)] VALUES (열_값_리스트); 이다. INSERT 뒤에 바로 테이블이 오지 않고 INTO 뒤에 테이블, VALUES 뒤에 값 리스트가 오며, 새 행을 추가하므로 WHERE 조건도 없다. 올바르지 못한 형식이므로 정답이다.
+
+      핵심 개념:
+      SQL 데이터 조작어의 기본 형식은 다음과 같다.
+      검색: SELECT 열이름 FROM 테이블 WHERE 조건;
+      갱신: UPDATE 테이블 SET 열이름 = 산술식 WHERE 조건; / 삭제: DELETE FROM 테이블 WHERE 조건;
+      삽입: INSERT INTO 테이블[(열_이름 목록)] VALUES (열_값_리스트); — WHERE절이 없다.
+
+  - id: b07-25
+    type: multiple-choice
+    prompt: 하나 이상의 기본 테이블로부터 유도되어 만들어진 가상 테이블을 무엇이라고 하는가?
+    choices:
+      - { id: '1', text: '스키마' }
+      - { id: '2', text: '도메인' }
+      - { id: '3', text: '뷰' }
+      - { id: '4', text: '인덱스' }
+    answers: ['3']
+    explanation: |
+      선택지 1: 스키마는 데이터베이스의 논리적 정의(자료구조와 제약 조건에 대한 명세)를 기술한 것으로 테이블이 아니다.
+      선택지 2: 도메인은 속성이 가질 수 있는 값의 집합이다.
+      선택지 3: 뷰(view)는 하나 이상의 기본 테이블로부터 유도되어 만들어지는 가상 테이블이므로 정답이다. 내용이 물리적으로 존재하지 않고, 뷰에 대한 조작을 요구할 때마다 기본 테이블의 데이터를 이용해 만들어진다.
+      선택지 4: 인덱스(index)는 검색 속도를 높이기 위해 정의하는 접근 구조로, 가상 테이블이 아니다.
+
+      핵심 개념:
+      뷰는 하나 이상의 기본 테이블로부터 유도된 가상 테이블이다.
+      검색에서는 사용자에게 기본 테이블과 차이가 없지만, 갱신 연산은 기본키 보유 여부에 따라 처리가 달라진다.
+      CREATE VIEW와 AS SELECT문으로 생성하며, 이때 SELECT문에서 UNION과 ORDER BY는 사용할 수 없다.
+      기본 테이블이 제거되면 그것을 기초로 만든 인덱스나 뷰도 자동으로 제거된다.
+
+  - id: b08-01
+    type: multiple-choice
+    prompt: 인터넷의 전신인 네트워크는 무엇인가?
+    choices:
+      - { id: '1', text: 'BITNET' }
+      - { id: '2', text: 'ARPANet' }
+      - { id: '3', text: 'ALOHANet' }
+      - { id: '4', text: 'Ethernet' }
+    answers: ['2']
+    explanation: |
+      선택지 1: BITNET은 1981년 미국 대학들을 연결하기 위해 개발된 네트워크로, 인터넷으로 대체되기 전까지 교육기관을 중심으로 쓰였으며 이메일이나 파일 단위로 서버에서 서버로 전송하는 방식을 채택했다. 인터넷의 전신은 아니다.
+      선택지 2: ARPANet은 미국 국방부 고등연구계획국(ARPA, 현재의 DARPA: Defense Advanced Research Projects Agency)의 주도로 구축한 패킷 교환 네트워크로, 1969년 첫 서비스를 시작했다. 1970년대에 개발된 TCP/IP(Transmission Control Protocol/Internet Protocol)가 1983년 ARPANet의 표준 프로토콜로 적용되었으며, 현재 인터넷의 전신이므로 정답이다.
+      선택지 3: ALOHANet은 하와이 섬들을 연결하기 위해 개발된 무선 네트워크로, 초기 이더넷 개발에 영향을 주었을 뿐 인터넷의 전신은 아니다.
+      선택지 4: Ethernet은 제록스 파크(Xerox PARC) 연구소가 컴퓨터 간 하드웨어 수준의 연결을 위해 개발한 인터페이스 장치 기반 네트워크 기술로, 인터넷의 전신이 아니다.
+
+      핵심 개념:
+      1960년대 ARPANet: ARPA(현재의 DARPA) 주도로 구축된 패킷 교환 네트워크, 인터넷의 전신이다.
+      1970년대 Ethernet: 제록스 파크가 개발한 하드웨어 수준 연결 기술이다.
+      1980년대 BITNET: 미국 대학 간 연결, 교육기관 중심으로 사용되었다.
+      1980년대 NSFNET: 미국 국립과학재단(NSF: National Science Foundation)이 ARPANet의 TCP/IP 프로토콜을 기반으로 구축했다.
+
+      ※ 원본 표기: 워크북은 ARPANet을 "MIT가 주축이 되어 구축"했고 "1973년에는 … TCP/IP가 개발되어 ARPANet에 적용되었다"고 하며 기관 영문명을 "Defense Advanced Research Project Agency"로 인쇄했다. 실제로 첫 노드는 UCLA·SRI·UCSB·유타 대학이었고, TCP/IP는 1973년에 설계가 시작되어 1983년 ARPANet에 적용되었으며, 영문명은 Defense Advanced Research Projects Agency(1969년 당시 ARPA)이다. 인쇄된 정답은 그대로 둔다.
+
+  - id: b08-02
+    type: multiple-choice
+    prompt: 중앙의 제어 노드에 다른 모든 노드를 점대점 방식으로 연결한 중앙집중식 구조를 띠고 있어 유지보수가 쉽고 전송 제어가 간단한 회선망의 유형은?
+    choices:
+      - { id: '1', text: '버스형' }
+      - { id: '2', text: '성형' }
+      - { id: '3', text: '매시형' }
+      - { id: '4', text: '트리형' }
+    answers: ['2']
+    explanation: |
+      선택지 1: 버스형은 컴퓨터들이 하나의 버스(대역폭이 넓은 채널)를 공유하며 메시지를 버스에 연결된 모든 컴퓨터에 보내고 수신자만 주소를 보고 선택적으로 수신하는 형태로, 중앙 제어 노드가 없다. 대표적인 예는 이더넷이다.
+      선택지 2: 성형(star)은 중앙의 컴퓨터가 모든 메시지의 중계자 역할을 하여, 모든 메시지가 먼저 중앙으로 보내진 뒤 목적지 컴퓨터로 전달되는 중앙집중식 구조이므로 정답이다. 대표적인 예는 와이파이 액세스 포인트(WiFi AP: Access Point)로 구성된 네트워크이다.
+      선택지 3: 메시형(mesh)은 노드들이 서로 여러 경로로 직접 연결된 구조로, 중앙 제어 노드 없이 분산되어 있어 조건과 맞지 않는다.
+      선택지 4: 트리형은 노드들이 계층적으로 가지를 뻗어 연결된 구조로, 하나의 중앙 노드에 모든 노드가 점대점으로 연결된 형태가 아니다.
+
+      핵심 개념:
+      연결 형태에 따라 버스형, 성형, 원형(ring) 등으로 분류한다.
+      버스형은 하나의 공용 버스를 공유하며 대표 예는 이더넷이다.
+      성형은 중앙 컴퓨터가 모든 메시지를 중계하며 대표 예는 와이파이 AP 네트워크이다.
+      원형은 메시지가 원형 네트워크를 돌며 차례로 전달되며 대표 예는 토큰링(token ring)이다.
+
+  - id: b08-03
+    type: multiple-choice
+    passageRefs: [gb08-message-switching-01]
+    prompt: 다음은 무엇에 대한 설명인가?
+    choices:
+      - { id: '1', text: '회선 교환 방식' }
+      - { id: '2', text: '패킷 교환 방식' }
+      - { id: '3', text: '메시지 교환 방식' }
+      - { id: '4', text: '데이터 교환 방식' }
+    answers: ['3']
+    explanation: |
+      선택지 1: 회선 교환 방식(circuit switching)은 송신 컴퓨터에서 수신 컴퓨터까지 여러 스위치를 통해 물리적으로 연결된 임시 전용 회선을 동적으로 구성한 후 그 회선으로 메시지를 주고받는 방식으로, 일반 전화가 대표적이다. 메시지를 단계별로 스위치에 전달하는 방식이 아니다.
+      선택지 2: 패킷 교환 방식(packet switching)은 메시지를 패킷이라는 작은 단위로 나누어 패킷별로 보내는 방식이다. 제시문은 메시지 전체를 크기에 상관없이 전달한다고 했으므로 맞지 않는다.
+      선택지 3: 메시지 교환 방식(message switching)은 메시지 전체를 한 단계씩 목적지 방향의 스위치(또는 컴퓨터, 라우터 등)를 거쳐 전송하며, 중간 스위치는 메시지 크기에 상관없이 전달하고 몰릴 경우 대기행렬(queue)에 저장했다가 순서대로 전달하므로 정답이다.
+      선택지 4: 데이터 교환 방식은 교환 방식의 분류(회선 교환, 메시지 교환, 패킷 교환)에 있는 명칭이 아니다. 제시문처럼 메시지 전체를 한 단계씩 스위치로 전달하는 방식은 메시지 교환 방식이다.
+
+      핵심 개념:
+      메시지 교환 방식에 따라 회선 교환, 메시지 교환, 패킷 교환으로 분류한다.
+      회선 교환은 임시 전용 회선을 구성한 뒤 통신한다.
+      메시지 교환은 메시지 전체를 단계별로 스위치에 전달하며 대기행렬을 사용한다.
+      패킷 교환은 메시지를 패킷으로 나누어 전달하며 역시 대기행렬을 사용한다.
+
+  - id: b08-04
+    type: multiple-choice
+    prompt: 네트워크와 네트워크 간의 연결에 사용되는 장비가 ==아닌== 것은?
+    choices:
+      - { id: '1', text: '브리지' }
+      - { id: '2', text: '스위치' }
+      - { id: '3', text: '리피터' }
+      - { id: '4', text: '호스트' }
+    answers: ['4']
+    explanation: |
+      선택지 1: 브리지(bridge)는 2개의 버스에 동시에 연결되어 목적지에 해당하는 버스 방향으로만 브로드캐스트하는 연결 장비로, 일반적으로 하드웨어 기반이다.
+      선택지 2: 스위치(switch)는 브리지와 비슷하지만 2개 이상의 버스에 연결되고 일반적으로 소프트웨어 기반으로 구현되며, 목적지 방향의 버스 쪽으로만 메시지를 브로드캐스트하는 연결 장비이다.
+      선택지 3: 리피터(repeater)는 2개의 버스에 동시에 연결되어 수신된 정보를 양쪽 버스 모두에 브로드캐스트하는 연결 장비이다.
+      선택지 4: 호스트는 네트워크에 연결되어 데이터를 주고받는 컴퓨터(노드) 자체로, 네트워크와 네트워크를 연결하는 장비가 아니므로 정답이다.
+
+      핵심 개념:
+      리피터는 수신 정보를 양쪽 버스 모두에 브로드캐스트한다.
+      브리지는 목적지 방향 버스로만 브로드캐스트하며 하드웨어 기반이다.
+      스위치는 2개 이상의 버스에 연결되며 소프트웨어 기반이다.
+      라우터는 라우팅 테이블로 데이터그램을 수신 주소 방향으로 전달(forwarding)한다.
+
+  - id: b08-05
+    type: multiple-choice
+    prompt: OSI 계층 모델의 네트워크 계층에서 동작하는 장비로서, 송신 측과 수신 측 간의 가장 빠르고 신뢰성 있는 경로를 설정 관리하며, 데이터를 전달하는 역할을 기본적으로 담당하는 것은?
+    choices:
+      - { id: '1', text: '라우터' }
+      - { id: '2', text: '스위치' }
+      - { id: '3', text: '브리지' }
+      - { id: '4', text: '게이트웨이' }
+    answers: ['1']
+    explanation: |
+      선택지 1: 라우터(router)는 네트워크 계층에서 동작하며, 라우팅 테이블을 사용해 도착한 데이터그램을 수신 주소 방향으로 전달(forwarding)하고 경로를 결정하므로 정답이다.
+      선택지 2: 스위치는 2개 이상의 버스에 연결되어 목적지 방향의 버스 쪽으로만 메시지를 브로드캐스트하는 장비로, 경로 설정·관리를 기본 역할로 하지 않는다.
+      선택지 3: 브리지는 2개의 버스에 연결되어 목적지 버스 방향으로만 브로드캐스트하는 하드웨어 기반 장비로, 네트워크 계층의 경로 설정 장비가 아니다.
+      선택지 4: 게이트웨이는 서로 다른 프로토콜을 쓰는 네트워크 사이에서 프로토콜을 변환해 주는 장비로, 경로 설정·관리가 기본 역할이 아니다.
+
+      핵심 개념:
+      라우터는 OSI(Open Systems Interconnection) 모델의 네트워크 계층 장비이다.
+      각 라우터는 라우팅 테이블을 가지고 있다.
+      도착한 데이터그램을 수신 주소 방향으로 전달(forwarding)한다.
+      라우터는 최소 2개의 네트워크에 동시에 접속되어 있다.
+
+  - id: b08-06
+    type: multiple-choice
+    prompt: OSI 계층 모델의 네트워크 계층에서 동작하는 장비로서, 도착한 데이터그램의 수신 주소 방향으로 데이터그램을 전달(forwarding)해 주는 역할을 하는 것은?
+    choices:
+      - { id: '1', text: '라우터' }
+      - { id: '2', text: '스위치' }
+      - { id: '3', text: '브리지' }
+      - { id: '4', text: '게이트웨이' }
+    answers: ['1']
+    explanation: |
+      선택지 1: 라우터(router)는 각 라우터가 가진 라우팅 테이블을 사용해 도착한 데이터그램의 수신 주소 방향으로 패킷을 전달(forwarding)하는 네트워크 계층 장비이므로 정답이다.
+      선택지 2: 스위치(switch)는 브리지와 비슷하지만 2개 이상의 버스에 연결되고 일반적으로 소프트웨어 기반으로 구현되며, 목적지 방향 버스로 메시지를 브로드캐스트하는 장비이다.
+      선택지 3: 브리지(bridge)는 리피터와 비슷하지만 목적지에 해당하는 버스 방향으로만 브로드캐스트하며, 2개의 버스에 연결되고 하드웨어 기반으로 구현된다.
+      선택지 4: 게이트웨이는 서로 다른 프로토콜의 네트워크를 연결하기 위해 프로토콜을 변환하는 장비로, 라우팅 테이블 기반 데이터그램 전달이 기본 역할이 아니다.
+
+      핵심 개념:
+      리피터는 어느 버스에서 왔는지와 상관없이 양쪽 버스 모두에 브로드캐스트한다.
+      브리지는 목적지 버스 방향으로만 브로드캐스트하며 하드웨어 기반이다.
+      스위치는 2개 이상의 버스에 연결되며 소프트웨어 기반이다.
+      라우터는 라우팅 테이블로 데이터그램을 수신 주소 방향으로 전달한다.
+
+  - id: b08-07
+    type: multiple-choice
+    passageRefs: [gb08-osi-order-01]
+    prompt: OSI 모델의 계층에서 ⓑ에 들어가는 계층은?
+    choices:
+      - { id: '1', text: '네트워크 계층' }
+      - { id: '2', text: '표현 계층' }
+      - { id: '3', text: '전송 계층' }
+      - { id: '4', text: '세션 계층' }
+    answers: ['4']
+    explanation: |
+      선택지 1: 네트워크 계층은 위에서 다섯 번째 계층으로 ⓓ에 들어간다.
+      선택지 2: 표현 계층은 응용 계층 바로 아래 계층으로 ⓐ에 들어간다.
+      선택지 3: 전송 계층은 세션 계층 아래 계층으로 ⓒ에 들어간다.
+      선택지 4: 세션 계층은 표현 계층 바로 아래, 위에서 세 번째 계층이므로 ⓑ에 들어가는 정답이다.
+
+      핵심 개념:
+      OSI(Open Systems Interconnection) 7계층은 위에서부터 응용 - 표현 - 세션 - 전송 - 네트워크 - 데이터링크 - 물리 계층 순서이다.
+      따라서 ⓐ 표현, ⓑ 세션, ⓒ 전송, ⓓ 네트워크, ⓔ 데이터링크 계층이다.
+      물리 계층은 비트, 데이터링크 계층은 프레임, 네트워크 계층은 패킷 단위로 전송한다.
+      전송 계층은 세그먼트 또는 데이터그램 단위로 종단 간 신뢰성을 보장한다.
+
+  - id: b08-08
+    type: multiple-choice
+    passageRefs: [gb08-presentation-01]
+    prompt: OSI 7계층 구조의 기능 중에서 다음과 같은 기능을 담당하는 계층은 무엇인가?
+    choices:
+      - { id: '1', text: '데이터링크 계층' }
+      - { id: '2', text: '응용 계층' }
+      - { id: '3', text: '세션 계층' }
+      - { id: '4', text: '표현 계층' }
+    answers: ['4']
+    explanation: |
+      선택지 1: 데이터링크 계층은 직접 연결된 두 장비 간에 프레임 단위로 전송하며 프레임의 시작과 끝·수신자 주소 추가, 오류 발견 및 수정, 흐름 제어를 담당한다. 표현 형식 변환과는 관계가 없다.
+      선택지 2: 응용 계층은 HTTP, FTP, SMTP 등 응용 프로토콜의 기능을 지원하는 계층이다.
+      선택지 3: 세션 계층은 통신 컴퓨터 간 연결의 접속/차단과 데이터 통신 방식(양쪽이 동시에 주고받을지 등)을 결정한다.
+      선택지 4: 표현 계층은 송수신 데이터의 표현 방식에 대한 표준화된 구문 형식을 제공하여 시스템 간 데이터 변환이 잘 작동하도록 하며, 표현 형식 변환·압축·암호화를 담당하므로 정답이다.
+
+      핵심 개념:
+      표현 계층(presentation layer)은 표준 구문 형식을 제공한다.
+      컴퓨터 구조가 달라 데이터 저장·표현 방식이 달라도 올바르게 해석되도록 변환한다.
+      데이터 압축과 암호화도 표현 계층의 기능이다.
+      세션 계층은 연결 관리, 응용 계층은 응용 프로토콜 지원을 담당한다.
+
+  - id: b08-09
+    type: multiple-choice
+    passageRefs: [gb08-application-01]
+    prompt: OSI 7계층 구조의 기능 중에서 다음과 같은 기능을 담당하는 계층은 무엇인가?
+    choices:
+      - { id: '1', text: '데이터 링크 계층' }
+      - { id: '2', text: '응용 계층' }
+      - { id: '3', text: '세션 계층' }
+      - { id: '4', text: '표현 계층' }
+    answers: ['2']
+    explanation: |
+      선택지 1: 데이터 링크 계층은 직접 연결된 장비 간 프레임 단위 전송과 오류 제어·흐름 제어를 담당하며, 대표 프로토콜은 이더넷과 와이파이이다.
+      선택지 2: 응용 계층은 웹에서 사용하는 HTTP(HyperText Transfer Protocol), 파일 전송을 위한 FTP(File Transfer Protocol), 이메일 전송을 위한 SMTP(Simple Mail Transfer Protocol) 등 응용 프로토콜의 기능을 지원하므로 정답이다.
+      선택지 3: 세션 계층은 통신 컴퓨터 간 연결의 접속/차단과 데이터 통신 방식을 결정하는 계층이다.
+      선택지 4: 표현 계층은 송수신 데이터의 표현 방식에 대한 표준 구문 형식을 제공하여 데이터 변환을 담당하는 계층이다.
+
+      핵심 개념:
+      응용 계층(application layer)은 OSI 모델의 최상위 계층이다.
+      사용자가 쓰는 응용 프로토콜(HTTP, FTP, SMTP 등)의 기능을 지원한다.
+      데이터링크 계층 프로토콜은 이더넷·와이파이, 네트워크 계층 프로토콜은 IPv4·IPv6이다.
+      전송 계층 프로토콜은 TCP이다.
+
+  - id: b08-10
+    type: multiple-choice
+    prompt: OSI 모델에서 전체 메시지를 패킷 단위로 분할하거나, 패킷들의 순서를 조정해서 전체 메시지를 재생성하는 등의 출발지와 목적지 간의 전체 메시지 전송을 담당하는 계층은?
+    choices:
+      - { id: '1', text: '전송 계층' }
+      - { id: '2', text: '데이터링크 계층' }
+      - { id: '3', text: '네트워크 계층' }
+      - { id: '4', text: '세션 계층' }
+    answers: ['1']
+    explanation: |
+      선택지 1: 전송 계층(transport layer)은 세그먼트 또는 데이터그램 단위의 메시지를 송신 컴퓨터에서 수신 컴퓨터까지 신뢰성을 보장하며 전달하고, 메시지를 패킷 단위로 잘라 보낸 뒤 사라지거나 순서가 바뀐 패킷을 오류 없이 다시 구성하므로 정답이다. 인터넷의 TCP(Transmission Control Protocol)가 이 계층에서 정의된다.
+      선택지 2: 데이터링크 계층은 직접 연결된 두 컴퓨터나 장비 간에 프레임 단위로 전송하며 오류 발견·수정과 흐름 제어를 담당한다. 출발지와 목적지 간 전체 메시지 전송을 담당하지 않는다.
+      선택지 3: 네트워크 계층은 패킷 단위 전송과 계층적 주소 지정, 라우팅, 혼잡 제어(congestion control)를 담당하며 IP(Internet Protocol)가 정의된다. 전체 메시지의 분할·재조립은 전송 계층의 역할이다.
+      선택지 4: 세션 계층은 통신 컴퓨터 간 연결의 접속/차단 시점과 데이터 통신 방식을 결정하는 계층이다.
+
+      핵심 개념:
+      물리 계층은 비트 단위 전송, 데이터링크 계층은 프레임 단위 전송과 오류·흐름 제어를 담당한다.
+      네트워크 계층은 패킷 단위 전송, 라우팅, 혼잡 제어를 담당하며 IP가 정의된다.
+      전송 계층은 종단 간 신뢰성 있는 전송, 메시지 분할과 재조립을 담당하며 TCP가 정의된다.
+      세션 계층은 연결 관리, 표현 계층은 표현 형식 변환, 응용 계층은 응용 프로토콜 지원을 담당한다.
+
+  - id: b08-11
+    type: multiple-choice
+    prompt: OSI 모델의 네트워크 계층에서 취급되는 데이터 단위이며, 일반적으로 인터넷에서의 전송 단위로 사용되는 것은?
+    choices:
+      - { id: '1', text: '패킷' }
+      - { id: '2', text: '프레임' }
+      - { id: '3', text: 'BPS' }
+      - { id: '4', text: '비트' }
+    answers: ['1']
+    explanation: |
+      선택지 1: 패킷(packet)은 네트워크 계층에서 취급되는 데이터 단위로, IP를 사용해 보내는 인터넷의 기본 전송 단위이므로 정답이다. 패킷은 헤더(header)와 데이터 부분으로 구성된다.
+      선택지 2: 프레임(frame)은 데이터링크 계층에서 직접 연결된 장비 간에 전송하는 블록 단위의 정보이다.
+      선택지 3: BPS(Bits Per Second)는 초당 전송되는 비트 수를 나타내는 전송 속도 단위로, 데이터 단위가 아니다.
+      선택지 4: 비트(bit)는 물리 계층에서 물리적 채널을 통해 전송되는 단위이다.
+
+      핵심 개념:
+      계층별 데이터 단위: 물리 계층은 비트, 데이터링크 계층은 프레임이다.
+      네트워크 계층은 패킷이며, IP로 보내는 패킷을 데이터그램이라고도 한다.
+      전송 계층은 세그먼트 또는 데이터그램이다.
+      패킷 헤더에는 버전 정보, 패킷 길이, 송수신 IP 주소 등 제어 정보가 담긴다.
+
+  - id: b08-12
+    type: multiple-choice
+    prompt: 회선 교환망과 메시지 교환망의 장점을 결합한 전송망에서는 데이터 전체가 아니라 송신 측 주소와 수신 측 주소를 포함하는 일정 형식의 데이터 블록을 기본 단위로 통신이 이루진다. 이와 같은 통신의 기본 단위를 무엇이라고 하는가?
+    choices:
+      - { id: '1', text: '패킷' }
+      - { id: '2', text: '블록' }
+      - { id: '3', text: '코드' }
+      - { id: '4', text: '데이터그램' }
+    answers: ['1']
+    explanation: |
+      선택지 1: 패킷(packet)은 패킷 교환 방식에서 메시지를 나눈 작은 단위로, 송수신 주소 등 제어 정보를 담은 헤더와 데이터 부분으로 구성되므로 정답이다.
+      선택지 2: 블록은 일정 크기의 데이터 묶음을 가리키는 일반 용어로, 패킷 교환망의 통신 기본 단위를 가리키는 명칭이 아니다.
+      선택지 3: 코드는 정보를 표현하는 부호 체계를 뜻하며 통신의 전송 단위가 아니다.
+      선택지 4: 데이터그램은 IP를 사용해 보내는 패킷을 달리 부르는 이름으로, 패킷 교환망의 일반적인 기본 단위의 명칭은 패킷이다.
+
+      핵심 개념:
+      패킷 교환 방식은 메시지를 패킷이라는 작은 단위로 나누어 패킷별로 보낸다.
+      중간 스위치들은 수신한 패킷을 목적지 방향의 스위치로 전달한다.
+      패킷은 헤더와 데이터 부분으로 구성되며, 헤더에 송수신 IP 주소 등이 들어 있다.
+      IP는 패킷을 출발지에서 목적지로 전달하는 것을 목적으로 한다.
+
+  - id: b08-13
+    type: multiple-choice
+    prompt: 다음 중 인터넷 응용 계층 프로토콜이 ==아닌== 것은?
+    choices:
+      - { id: '1', text: 'FTP' }
+      - { id: '2', text: 'HTTP' }
+      - { id: '3', text: 'UDP' }
+      - { id: '4', text: 'SMTP' }
+    answers: ['3']
+    explanation: |
+      선택지 1: FTP(File Transfer Protocol)는 파일 전송에 사용되는 응용 계층 프로토콜이다.
+      선택지 2: HTTP(HyperText Transfer Protocol)는 웹 서버와 웹 브라우저 간의 멀티미디어 통신에 사용되는 응용 계층 프로토콜이다.
+      선택지 3: UDP(User Datagram Protocol)는 TCP와 함께 전송 계층에서 동작하는 프로토콜이므로 응용 계층 프로토콜이 아닌 정답이다.
+      선택지 4: SMTP(Simple Mail Transfer Protocol)는 메일 서버 간 또는 사용자에서 메일 서버로의 이메일 전송에 사용되는 응용 계층 프로토콜이다.
+
+      핵심 개념:
+      응용 계층 프로토콜로 FTP, HTTP/HTTPS, SMTP, DHCP 등이 있다.
+      ICMP(Internet Control Message Protocol)는 전송 오류에 관한 메시지를 주고받는 프로토콜로, IP와 함께 네트워크 계층에서 동작한다.
+      메일 서버에서 사용자로 메일을 전달할 때는 POP3, IMAP4가 사용된다.
+      DHCP(Dynamic Host Configuration Protocol)는 IP 주소를 동적으로 할당받는 데 사용된다.
+
+  - id: b08-14
+    type: multiple-choice
+    prompt: 송신 노드로부터 수신 노드까지 신뢰성 있게 순서대로 나열된 메시지를 보낼 수 있게 해 주는 통신 프로토콜은 무엇인가?
+    choices:
+      - { id: '1', text: 'TCP' }
+      - { id: '2', text: 'UDP' }
+      - { id: '3', text: 'SMTP' }
+      - { id: '4', text: 'IP' }
+    answers: ['1']
+    explanation: |
+      선택지 1: TCP(Transmission Control Protocol)는 신뢰성 있는 연결 지향형(connection-oriented) 전송을 지원하며, 수신 확인(acknowledgment)과 재전송, 세그먼트의 순서 복원, 중복 세그먼트 삭제, 흐름 제어를 제공하므로 정답이다.
+      선택지 2: UDP(User Datagram Protocol)는 연결 설정이나 수신 확인 없이 데이터그램을 보내는 비연결형 전송 계층 프로토콜로, 신뢰성과 순서를 보장하지 않는다.
+      선택지 3: SMTP(Simple Mail Transfer Protocol)는 이메일 전송을 위한 응용 계층 프로토콜이다.
+      선택지 4: IP(Internet Protocol)는 패킷을 출발지에서 목적지로 전달하는 네트워크 계층 프로토콜로, 전달 순서나 신뢰성을 보장하지 않는다.
+
+      핵심 개념:
+      TCP는 송신자와 수신자(노드에서 실행되는 프로세스) 간 연결 지향형 전송을 한다.
+      메시지나 확인 메시지가 사라지면 송신자가 재전송한다.
+      메시지는 세그먼트로 잘려 IP 데이터그램으로 전달되며 TCP가 원래 순서로 복원한다.
+      중복 세그먼트 삭제와 흐름 제어 서비스도 TCP가 담당한다.

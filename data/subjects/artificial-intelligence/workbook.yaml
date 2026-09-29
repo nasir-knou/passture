@@ -1143,22 +1143,22 @@ questions:
     prompt: 다음의 패턴분포 중 단층 퍼셉트론으로 학습할 수 있는 것은?
     choices:
       - id: '1'
-        text: 패턴분포 1
+        text: ''
         image:
           path: images/subjects/artificial-intelligence/workbook/b10-04-choice-1.png
           alt: 인공지능 워크북 10장 4번 선택지 1 패턴분포
       - id: '2'
-        text: 패턴분포 2
+        text: ''
         image:
           path: images/subjects/artificial-intelligence/workbook/b10-04-choice-2.png
           alt: 인공지능 워크북 10장 4번 선택지 2 패턴분포
       - id: '3'
-        text: 패턴분포 3
+        text: ''
         image:
           path: images/subjects/artificial-intelligence/workbook/b10-04-choice-3.png
           alt: 인공지능 워크북 10장 4번 선택지 3 패턴분포
       - id: '4'
-        text: 패턴분포 4
+        text: ''
         image:
           path: images/subjects/artificial-intelligence/workbook/b10-04-choice-4.png
           alt: 인공지능 워크북 10장 4번 선택지 4 패턴분포

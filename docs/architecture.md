@@ -22,7 +22,8 @@
 - 라우팅: 자체 미니 해시 라우터 (`window.location.hash` listener + 페이지 매핑). 정적 호스팅에서 새로고침/딥링크 안전
 - 스타일: 단일 `src/styles.css`
 - 코드 스타일: Prettier만 (eslint 보류)
-- 수식: KaTeX 기반 인라인/블록 수식 렌더링. 문제 본문, 선택지, 텍스트 지문, 해설에 적용한다.
+- 수식: KaTeX 기반 인라인/블록 수식 렌더링. 문제 본문, 선택지, 텍스트 지문, 해설에 적용한다. 같은 리치 텍스트에서 `` `…` `` 인라인 코드와 `==강조==` 하이라이트도 처리한다 (`src/pages/rendering.ts`, 수식·인라인 코드 구간 분리는 빌드 검증과 공유하는 `src/lib/math-tokens.ts`).
+- 해설: `선택지 N:` 줄을 보기별로 연결하고, `핵심 개념` 블록과 `※`로 시작하는 줄(해설 끝 별도 안내 블록)을 분리해 렌더링한다.
 - 코드 지문: `passages.type: code`를 `<pre><code>`로 렌더링한다.
 - 이미지/다이어그램: 구조화 가능한 도표는 `diagram` 데이터에서 SVG/HTML로 렌더링하고, diagram으로 재현하기 어려운 이미지에 한해 crop 이미지를 `image`로 렌더링한다.
 
@@ -31,7 +32,7 @@
 - `js-yaml`: YAML 파싱
 - `tsx`: 빌드 스크립트 실행
 - 직접 작성한 TS 검증기: 스키마 검증
-- `vitest`: 데이터 빌드, 라우터, 채점, 세션, 저장소, 백업 단위 테스트
+- `vitest`: 데이터 빌드, 라우터, 채점, 세션(풀이·모의 시험), 챕터, 렌더링, 학기 기본값, 저장소, 백업 단위 테스트
 
 ## 2. 디렉토리 구조
 
@@ -49,6 +50,7 @@
     app.ts
     router.ts
     styles.css
+    vite-env.d.ts
     pages/
       home.ts
       select.ts
@@ -60,6 +62,8 @@
       mock-exam-test.ts
       mock-exam-result.ts
       backup.ts
+      rendering.ts                        # 리치 텍스트(수식·인라인 코드·강조), 지문, 이미지, diagram, 해설 렌더링
+      shared.ts                           # 상단바, 푸터, 학기 라벨·기본 학기, 출처 분류 라벨
     lib/
       data-loader.ts
       chapter.ts                          # 출처 분류, ID 그룹 파싱, 문제 → 교재 장 결정
@@ -70,11 +74,13 @@
       scorer.ts
       storage.ts
       backup.ts
+      math-tokens.ts                      # 수식 토큰·인라인 코드 구간 분리 (렌더러와 빌드 검증 공유)
     types/
       question.ts
       catalog.ts
       syllabus.ts
       user-data.ts
+      katex.d.ts
   data/                                 # YAML 원본 (사람이 작성, commit)
     catalog.yaml
     subjects/
@@ -83,7 +89,6 @@
         past-exams-2018.yaml
         past-exams-2019.yaml
         workbook.yaml
-        lecture-exercises.yaml
       linear-algebra/
         syllabus.yaml                   # 교재 장·강의 목록 (챕터별 풀이 과목만)
         past-exams-2017.yaml
@@ -91,11 +96,16 @@
       artificial-intelligence/
       java-programming/
       discrete-math/
-      linear-algebra/
       introduction-to-computer-science/
       computer-architecture/
+      programming-languages/
+      compiler-construction/
+      simulation/
+      unix-system/
+      c-programming/
   public/                               # Vite가 dist 루트로 자동 복사
     CNAME                               # passture.logonme.click
+    images/subjects/                    # 문제·선택지·지문 crop 이미지 (commit)
     data/                               # 빌드 산출물 (gitignore)
       catalog.json
       subjects/
@@ -111,8 +121,10 @@
     backup.test.ts
     mock-exam-session.test.ts
     quiz-session.test.ts
+    rendering.test.ts
     router.test.ts
     scorer.test.ts
+    semester.test.ts
     storage.test.ts
   .github/
     workflows/
@@ -120,7 +132,7 @@
       validate.yml
 ```
 
-`catalog.yaml`이 사이트 전체의 과목·출처 목록과 과목별 학기(`semester`)를 담는다. 현재 1학기 5과목(운영체제, 이산수학, 알고리즘, 인공지능, Java프로그래밍)과 2학기 5과목(선형대수, 컴퓨터과학개론, 컴퓨터구조, 프로그래밍언어론, 컴파일러구성)이 등록되어 있다. 새 과목 추가 시 앱 코드를 건드리지 않고 `catalog.yaml`과 문제 YAML만 추가하면 UI에 반영된다. 빌드 시 `public/data/`로 JSON이 출력되고 Vite가 dist 루트로 그대로 복사하므로, 브라우저는 `/data/...` 경로로 JSON만 fetch 한다. 개발 서버(`import.meta.env.DEV`)에서는 `src/lib/data-loader.ts`가 빌드 산출물 대신 원본 YAML(catalog, 문제 파일, syllabus)을 직접 읽는다. 따라서 챕터 계산처럼 런타임에 필요한 값은 빌드 산출물에 의존하지 않고 브라우저에서 계산한다.
+`catalog.yaml`이 사이트 전체의 과목·출처 목록과 과목별 학기(`semester`)를 담는다. 현재 1학기 5과목(운영체제, 이산수학, 알고리즘, 인공지능, Java프로그래밍)과 2학기 8과목(선형대수, 컴퓨터과학개론, 컴퓨터구조, 프로그래밍언어론, 컴파일러구성, 시뮬레이션, UNIX시스템, C프로그래밍)이 등록되어 있다. 새 과목 추가 시 앱 코드를 건드리지 않고 `catalog.yaml`과 문제 YAML만 추가하면 UI에 반영된다. 빌드 시 `public/data/`로 JSON이 출력되고 Vite가 dist 루트로 그대로 복사하므로, 브라우저는 `/data/...` 경로로 JSON만 fetch 한다. 개발 서버(`import.meta.env.DEV`)에서는 `src/lib/data-loader.ts`가 빌드 산출물 대신 원본 YAML(catalog, 문제 파일, syllabus)을 직접 읽는다. 따라서 챕터 계산처럼 런타임에 필요한 값은 빌드 산출물에 의존하지 않고 브라우저에서 계산한다.
 
 현재 해시 라우트는 `#/`, `#/select`, `#/mock-exam`, `#/mock-exam/test`, `#/mock-exam/result`, `#/quiz`, `#/result`, `#/history`, `#/backup`이다. 과거 `#/bookmarks` 라우트는 호환용으로 남겨 두고 `#/history`로 이동시킨다.
 
@@ -128,18 +140,19 @@
 
 `scripts/build-data.ts`가 다음을 수행한다.
 
-1. `data/**/*.yaml` 전부 파싱
+1. `data/catalog.yaml`과 catalog가 가리키는 문제 YAML·syllabus YAML 파싱 (catalog에 없는 YAML은 읽지 않음)
 2. 스키마 검증 (필수 필드, 타입, 식별자 형식)
 3. 무결성 검증
    - 같은 파일 내 `id` 중복 없음
    - `passageRefs`가 실제 `passages`에 존재
    - `answers` 항목이 `choices.id` 안에 존재
-   - `images.path` 파일이 저장소에 실제 존재
+   - 이미지 `path` 파일이 저장소 루트 또는 `public/` 아래에 실제 존재
+   - 리치 텍스트의 수식 구간(인라인 코드 밖)이 KaTeX로 파싱됨
    - `diagram` 타입별 필수 필드와 참조 무결성이 맞음
-   - 출처 종류별 문제 ID 형식 검증 (`e{yy}-{nn}`, `t{chapter}-{nn}`, `b{chapter}-{nn}`, `l{lecture}-{nn}`, `i{unit}-{nn}`)
+   - 출처 종류별 문제 ID 형식 검증 (`e{yy}-{nn}`, `t{chapter}-{nn}`, `b{chapter}-{nn}`, `l{lecture}-{nn}`, `i{unit}-{nn}`). 기출은 `yy`가 출처 `year`와 일치
    - syllabus가 있는 과목은 모든 문제의 교재 장이 결정되는지, `outdated: true` 문제가 `docs/outdated.md`와 일치하는지 ([data-schema.md §4.4](./data-schema.md))
-4. `public/data/{subject}/{source}.json`, `public/data/subjects/{subject}/syllabus.json` 산출
-5. `public/data/catalog.json` 산출
+4. `public/data/subjects/{subject}/{source}.json`, `public/data/subjects/{subject}/syllabus.json` 산출
+5. 출처별 `questionCount`를 채운 `public/data/catalog.json` 산출
 6. 실패 시 빌드 중단, GitHub Actions에서도 동일 실행
 
 `public/data/`는 gitignore. `package.json`의 `predev`/`prebuild` 훅에서 `data:build`가 자동 실행되어 로컬 dev/CI 빌드 모두 항상 최신 JSON을 사용한다. 검증 로직은 `tests/build-data.test.ts`에서 vitest로 단위 테스트한다.
@@ -152,6 +165,7 @@ pnpm data:build           # YAML → JSON 변환 + 검증 (predev에서 자동 �
 pnpm dev                  # Vite 개발 서버
 pnpm test                 # vitest
 pnpm format               # Prettier
+pnpm image:crop           # PNG crop (scripts/crop-png.mjs)
 ```
 
 ## 5. GitHub Actions
@@ -174,7 +188,7 @@ pnpm format               # Prettier
 ## 6. 베이스 경로와 도메인
 
 - 커스텀 도메인 `passture.logonme.click` 사용으로 확정. `vite.config.ts`의 `base = "/"` (서브패스 없음).
-- 라우터, 이미지 경로, fetch 경로는 모두 `import.meta.env.BASE_URL` 기준으로 해석하여, 추후 도메인/서브패스 전환 시에도 코드 수정이 필요 없도록 한다.
+- fetch 경로는 `import.meta.env.BASE_URL` 기준으로 해석하고, 라우터는 해시 기반, 이미지 경로는 `images/...` 문서 기준 상대 경로라서 추후 도메인/서브패스 전환 시에도 코드 수정이 필요 없도록 한다.
 - `public/CNAME` 파일에 `passture.logonme.click` 한 줄. Vite가 dist 루트로 복사하면 GitHub Pages가 도메인을 인식한다.
 - DNS: 도메인 등록업체에서 `passture` 호스트를 `nasir-knou.github.io.`로 가리키는 CNAME 레코드 추가. 추가로 `nasir-knou` 계정 settings → Pages → Verified domains에서 `logonme.click` TXT verify 권장 (도메인 takeover 방지).
 - Repo Settings → Pages → Custom domain `passture.logonme.click` 입력 + Enforce HTTPS 체크.

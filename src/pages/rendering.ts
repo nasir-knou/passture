@@ -11,7 +11,7 @@ import type {
   ResourceAllocationGraphNode,
   SimpleGraphNodeShape,
 } from '../types/question';
-import { findNextMathToken } from '../lib/math-tokens';
+import { extractMathTokens, findNextMathToken, splitInlineCode } from '../lib/math-tokens';
 import { escapeHtml } from './shared';
 
 export function renderRichText(value: string, className?: string): string {
@@ -29,9 +29,25 @@ export function renderAnswerExplanationBody(
   explanation: string,
 ): string {
   const parsed = parseChoiceExplanation(explanation);
+  const note = renderExplanationNote(parsed.noteLines);
 
   if (parsed.choiceReasons.size === 0) {
-    return renderBlockRichText(explanation, 'explanation-body');
+    if (!note) {
+      return renderBlockRichText(explanation, 'explanation-body');
+    }
+
+    const body = explanation
+      .split('\n')
+      .filter((line) => !isNoteLine(line))
+      .join('\n')
+      .trim();
+
+    return `
+      <div class="explanation-body">
+        ${body ? `<div>${renderMathText(body)}</div>` : ''}
+        ${note}
+      </div>
+    `;
   }
 
   return `
@@ -40,11 +56,15 @@ export function renderAnswerExplanationBody(
         .map((choice, index) => {
           const isAnswer = answers.includes(choice.id);
           const reason = parsed.choiceReasons.get(choice.id);
-          const choiceText = choice.text ? ` ${choice.text}` : '';
+          const choiceText = isMultilineChoiceText(choice.text)
+            ? renderChoiceText(choice.text)
+            : choice.text
+              ? ` ${renderChoiceText(choice.text)}`
+              : '';
 
           return `
             <p>
-              <strong>${index + 1}번 (${isAnswer ? '정답' : '오답'})</strong>${renderRichText(choiceText)}
+              <strong>${index + 1}번 (${isAnswer ? '정답' : '오답'})</strong>${choiceText}
               ${reason ? `<br />${renderRichText(reason)}` : ''}
             </p>
           `;
@@ -62,6 +82,7 @@ export function renderAnswerExplanationBody(
           ? renderBlockRichText(parsed.otherLines.join('\n'), 'explanation-extra')
           : ''
       }
+      ${note}
     </div>
   `;
 }
@@ -78,14 +99,59 @@ export function formatAnswerSummary(
     .join(', ');
 }
 
+/** 보기 번호(표시 순서 기준)를 원문자로 나열한다. 선택지를 섞어도 화면의 번호와 맞는다. */
+export function formatCircledChoiceNumbers(
+  choices: readonly Choice[],
+  selected: readonly string[],
+): string {
+  return choices
+    .map((choice, index) => (selected.includes(choice.id) ? circledNumber(index + 1) : ''))
+    .join('');
+}
+
+function circledNumber(value: number): string {
+  return value >= 1 && value <= 20 ? String.fromCodePoint(0x2460 + value - 1) : `(${value})`;
+}
+
 export function renderChoiceContent(choice: Choice): string {
   return `
     <span class="choice-content">
-      ${renderRichText(choice.text, 'choice-text')}
+      ${renderChoiceText(choice.text, 'choice-text')}
       ${choice.image ? renderImage(choice.image, 'choice-image') : ''}
       ${choice.diagram ? renderDiagram(choice.diagram, 'choice-diagram') : ''}
     </span>
   `;
+}
+
+/** 수식 밖에 줄바꿈이 있는 보기(코드 등)는 공백·들여쓰기를 살려 고정폭으로 표시한다. */
+function renderChoiceText(value: string | undefined, className?: string): string {
+  const text = (value ?? '').replace(/\n$/, '');
+  if (text.length === 0) {
+    return '';
+  }
+
+  if (!isMultilineChoiceText(text)) {
+    return renderRichText(text, className);
+  }
+
+  return renderRichText(
+    text,
+    className ? `${className} choice-text-multiline` : 'choice-text-multiline',
+  );
+}
+
+function isMultilineChoiceText(value: string | undefined): boolean {
+  const text = (value ?? '').replace(/\n$/, '');
+  let outsideMath = '';
+  let cursor = 0;
+
+  for (const token of extractMathTokens(text)) {
+    outsideMath += text.slice(cursor, token.start);
+    cursor = token.end;
+  }
+  outsideMath += text.slice(cursor);
+
+  return outsideMath.includes('\n');
 }
 
 export function renderPassages(passages: readonly Passage[]): string {
@@ -602,7 +668,7 @@ function renderDataTableDiagram(diagram: DataTableDiagram, className: string): s
   const tableClass = isCodeTable ? 'data-table-code' : '';
 
   return `
-    <div class="${className} data-table-diagram" role="img" aria-label="${escapeHtml(diagram.columns.join(', '))}">
+    <div class="${className} data-table-diagram" role="img" aria-label="${escapeHtml(diagram.columns.join(', ').replaceAll('\\$', '$'))}">
       <table class="${tableClass}">
         <thead>
           <tr>
@@ -781,12 +847,26 @@ function edgeEndpoint(
 interface ParsedExplanation {
   choiceReasons: Map<string, string>;
   coreLines: string[];
+  noteLines: string[];
   otherLines: string[];
+}
+
+function isNoteLine(line: string): boolean {
+  return line.trim().startsWith('※');
+}
+
+function renderExplanationNote(lines: readonly string[]): string {
+  if (lines.length === 0) {
+    return '';
+  }
+
+  return `<div class="explanation-note">${lines.map((line) => `<p>${renderMathText(line)}</p>`).join('')}</div>`;
 }
 
 function parseChoiceExplanation(explanation: string): ParsedExplanation {
   const choiceReasons = new Map<string, string>();
   const coreLines: string[] = [];
+  const noteLines: string[] = [];
   const otherLines: string[] = [];
   let section: 'other' | 'core' = 'other';
 
@@ -794,6 +874,11 @@ function parseChoiceExplanation(explanation: string): ParsedExplanation {
     const line = rawLine.trim();
 
     if (line.length === 0) {
+      continue;
+    }
+
+    if (isNoteLine(line)) {
+      noteLines.push(line);
       continue;
     }
 
@@ -818,11 +903,22 @@ function parseChoiceExplanation(explanation: string): ParsedExplanation {
   return {
     choiceReasons,
     coreLines,
+    noteLines,
     otherLines,
   };
 }
 
 function renderMathText(value: string): string {
+  return splitInlineCode(value)
+    .map((segment) =>
+      segment.code
+        ? `<code class="inline-code">${escapeHtml(segment.text).replaceAll('\n', '<br />')}</code>`
+        : renderMathSegment(segment.text),
+    )
+    .join('');
+}
+
+function renderMathSegment(value: string): string {
   let html = '';
   let cursor = 0;
 

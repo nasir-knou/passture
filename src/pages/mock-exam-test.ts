@@ -17,12 +17,14 @@ import type { QuizSessionQuestion } from '../lib/quiz-session';
 import { escapeHtml } from './shared';
 import {
   renderPassages,
+  formatCircledChoiceNumbers,
   renderChoiceContent,
   renderRichText,
   renderQuestionImages,
 } from './rendering';
 
 let timerInterval: ReturnType<typeof setInterval> | null = null;
+let examEvents: AbortController | null = null;
 let removeExamExitGuard: (() => void) | null = null;
 let suppressNextHashGuard = false;
 
@@ -294,7 +296,7 @@ function renderAnswerGrid(
       const isBookmarked = session.bookmarks.includes(q.key);
       const answerDisplay =
         selected.length > 0
-          ? `<span class="exam-grid-answer-circle">${selected.map((id) => circledNumber(id)).join('')}</span>`
+          ? `<span class="exam-grid-answer-circle">${formatCircledChoiceNumbers(q.choices, selected)}</span>`
           : '';
 
       return `
@@ -326,17 +328,6 @@ function renderGridBookmark(): string {
   `;
 }
 
-function circledNumber(id: string): string {
-  const map: Record<string, string> = {
-    '1': '①',
-    '2': '②',
-    '3': '③',
-    '4': '④',
-    '5': '⑤',
-  };
-  return map[id] ?? id;
-}
-
 // ─── 퇴실 확인 모달 ──────────────────────────────────────────────────────
 
 function renderExitModal(): string {
@@ -364,56 +355,77 @@ function renderExitModal(): string {
 
 function bindExamEvents(page: HTMLElement, initialSession: MockExamSession): void {
   let session = initialSession;
+  // renderExam이 page에 위임 리스너를 다시 붙이므로 이전 렌더의 리스너를 떼어 낸다.
+  examEvents?.abort();
+  examEvents = new AbortController();
+  const { signal } = examEvents;
 
   // 답안 선택
-  page.addEventListener('change', (e) => {
-    const input = e.target as HTMLInputElement;
-    if (!('answerInput' in input.dataset)) return;
+  page.addEventListener(
+    'change',
+    (e) => {
+      const input = e.target as HTMLInputElement;
+      if (!('answerInput' in input.dataset)) return;
 
-    const key = input.dataset.questionKey ?? '';
-    const isMulti = input.type === 'checkbox';
+      const key = input.dataset.questionKey ?? '';
+      const isMulti = input.type === 'checkbox';
 
-    let selected: string[];
-    if (isMulti) {
-      const checked = Array.from(
-        page.querySelectorAll<HTMLInputElement>(
-          `input[data-answer-input][data-question-key="${CSS.escape(key)}"]:checked`,
-        ),
-      ).map((el) => el.value);
-      selected = checked;
-    } else {
-      selected = input.checked ? [input.value] : [];
-    }
+      let selected: string[];
+      if (isMulti) {
+        const checked = Array.from(
+          page.querySelectorAll<HTMLInputElement>(
+            `input[data-answer-input][data-question-key="${CSS.escape(key)}"]:checked`,
+          ),
+        ).map((el) => el.value);
+        selected = checked;
+      } else {
+        selected = input.checked ? [input.value] : [];
+      }
 
-    session = setAnswer(session, key, selected);
-    refreshGridRow(page, session, key);
-    refreshTabCounts(page, session);
-    refreshChoiceHighlight(page, key, selected);
-    refreshPageIndicator(page, session);
-  });
+      session = setAnswer(session, key, selected);
+      refreshGridRow(page, session, key);
+      refreshTabCounts(page, session);
+      refreshChoiceHighlight(page, key, selected);
+      refreshPageIndicator(page, session);
+    },
+    { signal },
+  );
 
   // 책갈피 버튼
-  page.addEventListener('click', (e) => {
-    const btn = (e.target as HTMLElement).closest<HTMLButtonElement>('[data-bookmark-btn]');
-    if (!btn) return;
-    const key = btn.dataset.questionKey ?? '';
-    session = toggleBookmark(session, key);
-    refreshBookmarkBtn(page, key, session.bookmarks.includes(key));
-    refreshGridRow(page, session, key);
-  });
+  page.addEventListener(
+    'click',
+    (e) => {
+      const btn = (e.target as HTMLElement).closest<HTMLButtonElement>('[data-bookmark-btn]');
+      if (!btn) return;
+      const key = btn.dataset.questionKey ?? '';
+      session = toggleBookmark(session, key);
+      refreshBookmarkBtn(page, key, session.bookmarks.includes(key));
+      refreshGridRow(page, session, key);
+    },
+    { signal },
+  );
 
   // 탭 전환
-  page.addEventListener('click', (e) => {
-    const tab = (e.target as HTMLElement).closest<HTMLButtonElement>('[data-tab-index]');
-    if (!tab) return;
-    const index = Number(tab.dataset.tabIndex);
-    session = setActiveSubject(session, index);
-    pagedIndex = 0;
-    rerenderQuestionArea(page, session);
-    rerenderTabs(page, session);
-    rerenderSidebar(page, session);
-    refreshPageIndicator(page, session);
-  });
+  page.addEventListener(
+    'click',
+    (e) => {
+      const tab = (e.target as HTMLElement).closest<HTMLButtonElement>('[data-tab-index]');
+      if (!tab) return;
+      const index = Number(tab.dataset.tabIndex);
+      session = setActiveSubject(session, index);
+      pagedIndex = 0;
+      if (layoutMode === 'paged') {
+        renderExam(page, session);
+        startTimer(page, session);
+        return;
+      }
+      rerenderQuestionArea(page, session);
+      rerenderTabs(page, session);
+      rerenderSidebar(page, session);
+      refreshPageIndicator(page, session);
+    },
+    { signal },
+  );
 
   // 그리드 행 클릭 → 문제로 이동
   const goToQuestion = (index: number) => {
@@ -427,19 +439,27 @@ function bindExamEvents(page: HTMLElement, initialSession: MockExamSession): voi
     }
   };
 
-  page.addEventListener('click', (e) => {
-    const row = (e.target as HTMLElement).closest<HTMLElement>('[data-grid-row]');
-    if (!row) return;
-    goToQuestion(Number(row.dataset.questionIndex));
-  });
+  page.addEventListener(
+    'click',
+    (e) => {
+      const row = (e.target as HTMLElement).closest<HTMLElement>('[data-grid-row]');
+      if (!row) return;
+      goToQuestion(Number(row.dataset.questionIndex));
+    },
+    { signal },
+  );
 
-  page.addEventListener('keydown', (e) => {
-    if (e.key !== 'Enter' && e.key !== ' ') return;
-    const row = (e.target as HTMLElement).closest<HTMLElement>('[data-grid-row]');
-    if (!row) return;
-    e.preventDefault();
-    goToQuestion(Number(row.dataset.questionIndex));
-  });
+  page.addEventListener(
+    'keydown',
+    (e) => {
+      if (e.key !== 'Enter' && e.key !== ' ') return;
+      const row = (e.target as HTMLElement).closest<HTMLElement>('[data-grid-row]');
+      if (!row) return;
+      e.preventDefault();
+      goToQuestion(Number(row.dataset.questionIndex));
+    },
+    { signal },
+  );
 
   // 글자 크기 조절
   let fontStep = 0; // -1=small, 0=default, 1=large
@@ -511,13 +531,14 @@ function refreshGridRow(page: HTMLElement, session: MockExamSession, questionKey
   if (!row) return;
 
   const selected = subjectSession.answers[questionKey] ?? [];
+  const choices = subjectSession.questions.find((q) => q.key === questionKey)?.choices ?? [];
   const isBookmarked = session.bookmarks.includes(questionKey);
   const answerSpan = row.querySelector<HTMLElement>('.exam-grid-answer');
 
   if (answerSpan) {
     answerSpan.innerHTML =
       selected.length > 0
-        ? `<span class="exam-grid-answer-circle">${selected.map(circledNumber).join('')}</span>`
+        ? `<span class="exam-grid-answer-circle">${formatCircledChoiceNumbers(choices, selected)}</span>`
         : '';
   }
 
@@ -574,7 +595,7 @@ function refreshPageIndicator(page: HTMLElement, session: MockExamSession): void
   if (!subjectSession) return;
   const indicator = page.querySelector<HTMLElement>('.exam-page-indicator span');
   if (indicator) {
-    indicator.textContent = `${getAnsweredCount(subjectSession)} / ${subjectSession.questions.length}`;
+    indicator.textContent = `${pagedIndex + 1} / ${subjectSession.questions.length}`;
   }
 }
 
@@ -638,7 +659,8 @@ function startTimer(page: HTMLElement, session: MockExamSession): void {
       removeExamExitGuard?.();
       removeExamExitGuard = null;
       stopTimer();
-      const finished = finishSession(session);
+      // 타이머는 시작 시점의 세션을 쥐고 있으므로 저장된 최신 답안으로 종료한다.
+      const finished = finishSession(loadMockExamSession() ?? session);
       saveMockExamSession(finished);
       window.location.hash = '#/mock-exam/result';
     }

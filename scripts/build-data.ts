@@ -8,10 +8,24 @@ import type { Catalog, CatalogSource, SourceKind } from '../src/types/catalog';
 import type { Choice, Passage, Question, QuestionFile } from '../src/types/question';
 import type { Syllabus } from '../src/types/syllabus';
 import { resolveQuestionChapter, sourceCategory } from '../src/lib/chapter';
-import { extractMathTokens } from '../src/lib/math-tokens';
+import { extractMathTokens, splitInlineCode } from '../src/lib/math-tokens';
 
 const repoRoot = process.cwd();
 const outdatedDocPath = path.join('docs', 'outdated.md');
+const QUESTION_KEYS = [
+  'id',
+  'type',
+  'passageRefs',
+  'prompt',
+  'images',
+  'choices',
+  'answers',
+  'answerKey',
+  'explanation',
+  'tags',
+  'chapter',
+  'outdated',
+];
 
 type BuildResult = {
   catalog: Catalog;
@@ -212,6 +226,12 @@ function validateQuestion(
   const question = expectRecord(value, fieldPath);
   const id = expectString(question.id, `${fieldPath}.id`);
   validateQuestionId(id, kind, source, `${fieldPath}.id`);
+
+  // passageRefs를 passages로 잘못 쓰면 지문이 조용히 사라지므로 모르는 키는 실패시킨다.
+  const unknownKeys = Object.keys(question).filter((key) => !QUESTION_KEYS.includes(key));
+  if (unknownKeys.length > 0) {
+    throw new Error(`${fieldPath} has unknown keys (${unknownKeys.join(', ')})`);
+  }
 
   const type = expectString(question.type, `${fieldPath}.type`);
   if (!['multiple-choice', 'multi-answer', 'ox'].includes(type)) {
@@ -819,9 +839,13 @@ function validateClockPageReplacementDiagram(
   }
 }
 
-/** 리치 텍스트의 모든 수식 구간이 KaTeX로 파싱되는지 확인한다. 글자 그대로의 `$`는 `\$`로 쓴다. */
+/** 리치 텍스트의 모든 수식 구간(인라인 코드 밖)이 KaTeX로 파싱되는지 확인한다. 글자 그대로의 `$`는 `\$`로 쓴다. */
 function validateMath(value: string, fieldPath: string): void {
-  for (const token of extractMathTokens(value)) {
+  const tokens = splitInlineCode(value)
+    .filter((segment) => !segment.code)
+    .flatMap((segment) => extractMathTokens(segment.text));
+
+  for (const token of tokens) {
     try {
       katex.renderToString(token.raw, {
         displayMode: token.displayMode,

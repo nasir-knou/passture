@@ -321,7 +321,7 @@ questions:
     prompt: 다음 변수의 정의를 배런의 표기법으로 바르게 나타낸 것은?
     choices:
       - id: '1'
-        text: '①'
+        text: ''
         diagram:
           type: simple-graph
           width: 330
@@ -335,7 +335,7 @@ questions:
             - { from: name, to: attr }
             - { from: attr, to: value }
       - id: '2'
-        text: '②'
+        text: ''
         diagram:
           type: simple-graph
           width: 330
@@ -349,7 +349,7 @@ questions:
             - { from: name, to: attr }
             - { from: attr, to: value }
       - id: '3'
-        text: '③'
+        text: ''
         diagram:
           type: simple-graph
           width: 330
@@ -363,7 +363,7 @@ questions:
             - { from: name, to: attr }
             - { from: attr, to: value }
       - id: '4'
-        text: '④'
+        text: ''
         diagram:
           type: simple-graph
           width: 330
@@ -594,7 +594,7 @@ questions:
       대입문은 오른쪽 수식의 값을 왼쪽 변수에 저장하는 문장이다.
       C 계열 언어는 =, +=, -=, ++, -- 등 다양한 대입 연산자를 제공한다.
       ==는 같음을 비교하는 관계 연산자로 결과는 참/거짓 값이다.
-      = 와 == 를 혼동하면 논리 오류가 생기기 쉽다.
+      대입 연산자 =와 비교 연산자를 혼동하면 논리 오류가 생기기 쉽다.
     tags: [assignment-statement]
 
   - id: e19-20

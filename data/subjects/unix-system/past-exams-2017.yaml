@@ -1,0 +1,622 @@
+subjectId: unix-system
+sourceId: past-exams-2017
+title: UNIX시스템 2017 기말
+kind: exam
+year: 2017
+
+passages:
+  - id: g17-cmd-which-01
+    type: code
+    language: bash
+    body: |
+      $ ls $(which passwd)
+
+  - id: g17-cmd-find-01
+    type: code
+    language: bash
+    body: |
+      $ find /home -user kdhong -ls
+
+  - id: g17-cmd-firefox-01
+    type: code
+    language: bash
+    body: |
+      $ firefox&
+
+  - id: g17-cmd-yum-01
+    type: code
+    language: bash
+    body: |
+      $ yum list installed
+
+  - id: g17-whoson-intro-01
+    type: text
+    body: |
+      ※ 다음 실행 결과를 보고 물음에 답하여라. \$는 셸 프롬프트이다. (52~53)
+
+  - id: g17-whoson-code-01
+    type: code
+    language: bash
+    body: |
+      $ cat whoson.sh
+      #!/bin/bash
+
+      whoson () {
+       date
+       user=$USER
+       echo "$user currently logged on"
+      }
+
+      echo "Step 1"
+      whoson
+      echo "Step 3“
+      $ █
+
+  - id: g17-code-bashrc-01
+    type: code
+    language: bash
+    highlights: ['[ -f /etc/bashrc ]']
+    body: |
+      # .bashrc
+      if [ -f /etc/bashrc ]; then
+              . /etc/bashrc
+      fi
+
+  - id: g17-httpd-conf-01
+    type: code
+    language: text
+    body: |
+      DocumentRoot       /var/www/html
+
+questions:
+  - id: e17-01
+    type: multiple-choice
+    prompt: 다음 중 GNU 프로젝트와의 관련성이 가장 ==적은== 것은?
+    choices:
+      - { id: '1', text: '리처드 스톨먼' }
+      - { id: '2', text: 'GPL' }
+      - { id: '3', text: 'Apache 서버' }
+      - { id: '4', text: '자유 소프트웨어 운동' }
+    answers: ['3']
+    explanation: |
+      선택지 1: 리처드 스톨먼은 1983년 GNU(GNU's Not Unix) 프로젝트를 시작하고 자유 소프트웨어 재단을 설립한 인물이므로 GNU 프로젝트와 직접 관련된다.
+      선택지 2: GPL(General Public License)은 GNU 프로젝트가 만든 자유 소프트웨어 라이선스로 GNU 소프트웨어 배포의 기반이다.
+      선택지 3: 정답. Apache 서버는 Apache 소프트웨어 재단이 개발하는 웹 서버이며 GPL이 아닌 Apache 라이선스로 배포되므로 GNU 프로젝트와의 관련성이 가장 적다.
+      선택지 4: 자유 소프트웨어 운동은 스톨먼이 GNU 프로젝트와 함께 주도한 운동으로 GNU의 이념적 배경이다.
+
+      핵심 개념:
+      GNU 프로젝트는 유닉스와 호환되는 자유 소프트웨어 운영체제를 만들기 위해 리처드 스톨먼이 시작했다.
+      자유 소프트웨어 재단(FSF, Free Software Foundation)이 프로젝트를 지원한다.
+      GPL은 소스 코드 공개와 수정·재배포의 자유를 보장하는 GNU의 라이선스이다.
+      리눅스 배포판은 리눅스 커널과 GNU 도구를 결합한 형태이다.
+
+  - id: e17-02
+    type: multiple-choice
+    prompt: 리눅스 표준 디렉터리의 용도에 관한 설명으로 ==잘못된== 것은?
+    choices:
+      - { id: '1', text: '/proc – 커널이 사용하는 가상의 파일 시스템' }
+      - { id: '2', text: '/home – 사용자의 홈 디렉터리가 생성되는 곳' }
+      - { id: '3', text: '/dev – 시스템 운영 중에 생기는 가변 자료가 저장되는 곳' }
+      - { id: '4', text: '/etc – 시스템의 중요 환경 설정 파일이 위치하는 곳' }
+    answers: ['3']
+    explanation: |
+      선택지 1: /proc는 커널과 프로세스 정보를 파일 형태로 보여 주는 메모리상의 가상 파일 시스템이므로 옳다.
+      선택지 2: /home 아래에 일반 사용자별 홈 디렉터리(/home/kdhong 등)가 만들어지므로 옳다.
+      선택지 3: 정답. /dev는 디스크·터미널 같은 장치 파일이 있는 디렉터리이다. 로그·스풀처럼 운영 중에 변하는 자료가 저장되는 곳은 /var이므로 잘못된 설명이다.
+      선택지 4: /etc에는 passwd, fstab 등 시스템 설정 파일이 위치하므로 옳다.
+
+      핵심 개념:
+      /bin·/sbin: 기본 명령과 관리 명령
+      /etc: 설정 파일, /home: 사용자 홈 디렉터리
+      /dev: 장치 파일, /proc: 커널 가상 파일 시스템
+      /var: 로그, 메일, 스풀 등 가변 자료
+
+  - id: e17-03
+    type: multiple-choice
+    prompt: 셸의 명령 행에서 사용하는 특수 문자에 관한 설명이다. ==잘못된== 것은?
+    choices:
+      - { id: '1', text: '| : 특수 문자 앞에 붙어 특수 문자의 기능을 제거함' }
+      - { id: '2', text: '>> : 표준 출력을 파일의 끝에 덧붙일 때 사용함' }
+      - { id: '3', text: '# : 이후의 문자들이 주석으로 처리됨' }
+      - { id: '4', text: '! : 명령 히스토리 기능을 이용할 때 사용함' }
+    answers: ['1']
+    explanation: |
+      선택지 1: 정답. |는 앞 명령의 표준 출력을 뒤 명령의 표준 입력으로 연결하는 파이프이다. 특수 문자 앞에 붙어 그 기능을 제거하는(이스케이프) 문자는 \이므로 잘못된 설명이다.
+      선택지 2: >>는 출력 재지정 중 덧붙이기(append)로, 기존 파일 내용 뒤에 표준 출력을 추가하므로 옳다.
+      선택지 3: 셸에서 # 이후 그 줄의 나머지는 주석으로 처리되므로 옳다.
+      선택지 4: !는 !!(직전 명령), !n(n번 명령)처럼 히스토리의 명령을 다시 실행할 때 쓰므로 옳다.
+
+      핵심 개념:
+      |: 파이프, \: 바로 뒤 한 문자의 특수 기능 제거
+      >: 출력 재지정(덮어쓰기), >>: 출력 재지정(덧붙이기), <: 입력 재지정
+      #: 주석, !: 히스토리 확장
+      ;: 명령 순차 실행, &: 백그라운드 실행
+
+  - id: e17-04
+    type: multiple-choice
+    passageRefs: [g17-cmd-which-01]
+    prompt: 다음 명령의 실행 결과로 생각되는 것은? 맨 앞의 \$는 셸 프롬프트이며 passwd는 비밀번호를 바꿀 때 사용하는 명령이다.
+    choices:
+      - { id: '1', text: '/etc/passwd' }
+      - { id: '2', text: '/usr/bin/passwd' }
+      - { id: '3', text: 'which passwd' }
+      - { id: '4', text: '\$(which passwd)' }
+    answers: ['2']
+    explanation: |
+      선택지 1: /etc/passwd는 사용자 계정 정보 파일이다. which는 PATH에서 실행 파일을 찾으므로 이 파일을 출력하지 않는다.
+      선택지 2: 정답. \$(which passwd)는 명령 치환으로 먼저 which passwd가 실행되어 passwd 명령의 경로 /usr/bin/passwd로 바뀐다. 따라서 ls /usr/bin/passwd가 실행되어 /usr/bin/passwd가 출력된다.
+      선택지 3: \$( ) 안의 문자열은 그대로 인자가 되지 않고 명령으로 실행된 결과로 치환되므로 'which passwd'라는 글자가 출력되지 않는다.
+      선택지 4: 작은따옴표로 막지 않은 \$( )는 셸이 치환을 수행하므로 '\$(which passwd)'라는 글자가 그대로 남지 않는다.
+
+      핵심 개념:
+      명령 치환 \$(명령) 또는 `명령`은 명령의 표준 출력으로 그 자리를 바꾼다.
+      which는 PATH 환경 변수의 디렉터리에서 명령의 실행 파일 경로를 찾아 출력한다.
+      치환이 끝난 뒤 바깥 명령(ls)이 실행된다.
+      작은따옴표 안에서는 명령 치환이 일어나지 않는다.
+
+  - id: e17-05
+    type: multiple-choice
+    prompt: 텍스트 파일의 내용을 화면에 출력할 때 사용하는 명령이 ==아닌== 것은?
+    choices:
+      - { id: '1', text: 'cat' }
+      - { id: '2', text: 'grep' }
+      - { id: '3', text: 'more' }
+      - { id: '4', text: 'less' }
+    answers: ['2']
+    explanation: |
+      선택지 1: cat은 파일 내용을 연속해서 화면에 출력하는 명령이다.
+      선택지 2: 정답. grep은 파일에서 지정한 패턴(정규 표현식)과 일치하는 행만 찾아 출력하는 검색 명령으로, 파일 내용을 보여 주는 명령이 아니다.
+      선택지 3: more는 파일 내용을 한 화면씩 끊어서 출력하는 명령이다.
+      선택지 4: less는 more처럼 화면 단위로 출력하며 앞뒤 이동이 가능한 명령이다.
+
+      핵심 개념:
+      파일 내용 출력: cat, more, less, head(앞부분), tail(뒷부분)
+      패턴 검색: grep
+      more는 앞으로만, less는 앞뒤로 이동하며 볼 수 있다.
+      tail -f는 파일 끝에 추가되는 내용을 계속 보여 준다.
+
+  - id: e17-06
+    type: multiple-choice
+    prompt: 그래픽 사용자 환경과 네트워크 서비스 및 다중 사용자 환경을 지원하는 런레벨로서 최근 리눅스 배포판에서 기본으로 설정된 런레벨은 무엇인가?
+    choices:
+      - { id: '1', text: '3' }
+      - { id: '2', text: '4' }
+      - { id: '3', text: '5' }
+      - { id: '4', text: '6' }
+    answers: ['3']
+    explanation: |
+      선택지 1: 런레벨 3은 네트워크를 지원하는 다중 사용자 모드이지만 텍스트 콘솔 환경이라 그래픽 사용자 환경이 없다.
+      선택지 2: 런레벨 4는 사용하지 않는(사용자 정의용) 런레벨이다.
+      선택지 3: 정답. 런레벨 5는 런레벨 3의 기능에 X 윈도 기반 그래픽 사용자 환경을 더한 모드로, 데스크톱용 배포판의 기본 런레벨이다.
+      선택지 4: 런레벨 6은 시스템을 재부팅하는 런레벨이다.
+
+      핵심 개념:
+      0: 시스템 종료, 1: 단일 사용자 모드
+      2: 네트워크 없는 다중 사용자 모드, 3: 텍스트 다중 사용자 모드
+      4: 미사용, 5: 그래픽 다중 사용자 모드, 6: 재부팅
+      systemd에서는 graphical.target이 런레벨 5에 해당한다.
+
+  - id: e17-07
+    type: multiple-choice
+    prompt: 웹 서버 데몬인 httpd를 재시작 시키는 명령은?
+    choices:
+      - { id: '1', text: 'service httpd start' }
+      - { id: '2', text: 'service httpd restart' }
+      - { id: '3', text: 'chkconfig httpd on' }
+      - { id: '4', text: 'chkconfig httpd restart' }
+    answers: ['2']
+    explanation: |
+      선택지 1: service httpd start는 멈춰 있는 httpd를 시작하는 명령으로 재시작이 아니다.
+      선택지 2: 정답. service 명령에 restart를 주면 서비스를 중지한 뒤 다시 시작한다.
+      선택지 3: chkconfig httpd on은 부팅할 때 httpd가 자동 실행되도록 설정할 뿐 지금 실행 중인 데몬을 재시작하지 않는다.
+      선택지 4: chkconfig는 런레벨별 자동 시작 여부(on/off/--list)를 설정하는 명령으로 restart 동작이 없다.
+
+      핵심 개념:
+      service 서비스명 start | stop | restart | status: 서비스의 현재 실행 상태를 제어한다.
+      chkconfig 서비스명 on | off: 부팅 시 자동 시작 여부를 설정한다.
+      systemd 환경에서는 systemctl restart httpd, systemctl enable httpd가 각각 대응한다.
+      데몬은 백그라운드에서 서비스를 제공하는 프로세스이다.
+
+  - id: e17-08
+    type: multiple-choice
+    prompt: sudo 명령은 허가된 사용자로 하여금 관리자 명령을 수행할 수 있게 한다. 이 명령과 깊은 관련이 있는 파일은?
+    choices:
+      - { id: '1', text: '/bin/chown' }
+      - { id: '2', text: '/etc/mtab' }
+      - { id: '3', text: '/etc/passwd' }
+      - { id: '4', text: '/etc/sudoers' }
+    answers: ['4']
+    explanation: |
+      선택지 1: /bin/chown은 파일의 소유자를 바꾸는 명령 파일로 sudo 권한 설정과 관계없다.
+      선택지 2: /etc/mtab은 현재 마운트된 파일 시스템 목록을 담은 파일이다.
+      선택지 3: /etc/passwd는 사용자 계정 정보(이름, UID, 홈 디렉터리, 셸 등)를 담은 파일로 sudo 허가 여부를 정하지 않는다.
+      선택지 4: 정답. /etc/sudoers에는 어떤 사용자가 어떤 호스트에서 어떤 명령을 관리자 권한으로 실행할 수 있는지가 기록되며 visudo로 편집한다.
+
+      핵심 개념:
+      sudo는 /etc/sudoers에 허가된 사용자가 root 권한으로 명령을 실행하게 한다.
+      sudo는 root 비밀번호가 아니라 사용자 자신의 비밀번호를 묻는다.
+      /etc/sudoers는 문법 오류를 막기 위해 visudo로 편집한다.
+      su는 다른 사용자(기본 root)로 전환하는 명령으로 sudo와 구별된다.
+
+  - id: e17-09
+    type: multi-answer
+    prompt: 사용자의 비밀번호 만료에 관한 정보를 변경하기 위한 관리자 명령은 무엇인가?
+    choices:
+      - { id: '1', text: 'chage' }
+      - { id: '2', text: 'useradd' }
+      - { id: '3', text: 'passwd' }
+      - { id: '4', text: 'userdel' }
+    answers: ['1', '2', '3']
+    answerKey: G
+    explanation: |
+      선택지 1: 정답. chage(change age)는 -M(최대 사용 일수), -m(최소 사용 일수), -W(경고 일수), -E(계정 만료일) 등으로 비밀번호 만료 정보를 바꾸는 대표 명령이다.
+      선택지 2: 정답. useradd도 -e(계정 만료일), -f(비밀번호 만료 후 비활성 일수) 옵션으로 만료 관련 정보를 정할 수 있어 정답으로 인정되었다.
+      선택지 3: 정답. passwd도 관리자가 -x(최대 사용 일수), -n(최소 사용 일수), -w(경고 일수), -i(비활성 일수) 옵션을 주면 /etc/shadow의 만료 정보를 바꿀 수 있어 정답으로 인정되었다.
+      선택지 4: userdel은 사용자 계정을 삭제하는 명령으로 만료 정보를 변경하는 기능이 없다.
+
+      핵심 개념:
+      비밀번호 만료 정보는 /etc/shadow에 저장된다.
+      chage -l 사용자명으로 현재 만료 정보를 확인할 수 있다.
+      chage, passwd, useradd(usermod) 모두 만료 관련 옵션을 제공해 복수 정답 처리되었다.
+      이미 있는 계정의 만료 정보를 사후에 변경하는 명령은 usermod(-e, -f)이다.
+      userdel -r은 홈 디렉터리까지 함께 삭제한다.
+
+  - id: e17-10
+    type: multiple-choice
+    prompt: vi를 사용한 편집 작업 중에 Esc 키를 두 번 치면 어떤 모드로 이동하는가?
+    choices:
+      - { id: '1', text: '입력 모드' }
+      - { id: '2', text: '명령 모드' }
+      - { id: '3', text: '라인 모드' }
+      - { id: '4', text: '검색 모드' }
+    answers: ['2']
+    explanation: |
+      선택지 1: 입력 모드는 명령 모드에서 i, a, o 등을 눌러 들어가는 모드로, Esc는 입력 모드에서 빠져나오는 키이다.
+      선택지 2: 정답. Esc는 어느 모드에서든 명령 모드로 돌아가게 하며, 이미 명령 모드이면 그대로 남는다. 따라서 현재 모드와 관계없이 두 번 치면 명령 모드가 된다.
+      선택지 3: 라인 모드(콜론 모드)는 명령 모드에서 :을 입력해 들어가며, 여기서 Esc를 치면 오히려 명령 모드로 돌아온다.
+      선택지 4: 검색은 명령 모드에서 / 또는 ?를 입력해 시작하며 Esc로 취소하면 명령 모드로 돌아온다.
+
+      핵심 개념:
+      vi는 명령 모드, 입력 모드, 라인(ex) 모드로 동작한다.
+      vi를 시작하면 명령 모드이다.
+      명령 모드 → 입력 모드: i, a, o 등, 입력 모드 → 명령 모드: Esc
+      명령 모드 → 라인 모드: :, 라인 모드에서 :w 저장, :q 종료
+
+  - id: e17-11
+    type: multiple-choice
+    passageRefs: [g17-cmd-find-01]
+    prompt: 다음 명령이 의미하는 것은?
+    choices:
+      - { id: '1', text: '디렉터리 /home에서 이름이 kdhong인 파일을 찾아 출력한다.' }
+      - { id: '2', text: '사용자 kdhong이 실행시킨 프로세스를 찾아 상태 정보를 /home에 저장한다.' }
+      - { id: '3', text: '사용자 kdhong의 홈 디렉터리에 저장된 파일의 목록을 출력한다.' }
+      - { id: '4', text: '디렉터리 /home에서 사용자 kdhong이 소유하고 있는 파일을 찾아 출력한다.' }
+    answers: ['4']
+    explanation: |
+      선택지 1: 이름으로 찾으려면 -name kdhong을 써야 한다. -user는 파일 이름이 아니라 소유자를 조건으로 삼는다.
+      선택지 2: find는 파일을 검색하는 명령으로 프로세스를 찾지 않는다. 프로세스 조회는 ps -u kdhong 같은 명령이다.
+      선택지 3: 검색 시작 위치는 /home 전체이며 하위 디렉터리까지 재귀적으로 검색하므로 kdhong 홈 디렉터리 목록만 출력하는 명령이 아니다. 또 조건은 소유자이다.
+      선택지 4: 정답. find /home은 /home 아래를 검색하고, -user kdhong은 소유자가 kdhong인 파일을 고르며, -ls는 찾은 파일을 ls -dils 형식으로 출력한다.
+
+      핵심 개념:
+      find 시작디렉터리 조건 동작 형식으로 사용한다.
+      조건: -name(이름), -user(소유자), -type(종류), -size(크기), -perm(권한), -mtime(수정 시간)
+      동작: -print(기본), -ls(상세 출력), -exec 명령 {} \;
+      find는 하위 디렉터리까지 재귀적으로 검색한다.
+
+  - id: e17-12
+    type: multiple-choice
+    prompt: 파일 시스템이나 디스크 관리를 위해 사용되는 명령의 일반적 설명으로 올바른 것은?
+    choices:
+      - { id: '1', text: 'du – 저장 장치에 파티션을 생성' }
+      - { id: '2', text: 'parted – 마운트되어 있지 않은 파일 시스템을 검사' }
+      - { id: '3', text: 'mkfs – 파티션이나 논리 볼륨에 파일 시스템을 생성' }
+      - { id: '4', text: 'fdisk – 파일 시스템의 무결성을 검사하고 수정' }
+    answers: ['3']
+    explanation: |
+      선택지 1: du(disk usage)는 파일과 디렉터리가 차지하는 디스크 사용량을 보여 주는 명령이다. 파티션 생성은 fdisk나 parted가 한다.
+      선택지 2: parted는 파티션을 생성·삭제·크기 조정하는 파티션 편집기이다. 마운트되지 않은 파일 시스템 검사는 fsck가 한다.
+      선택지 3: 정답. mkfs(make file system)는 파티션이나 논리 볼륨에 ext4 같은 파일 시스템을 만든다.
+      선택지 4: fdisk는 디스크의 파티션 테이블을 편집하는 명령이다. 무결성 검사·수정은 fsck(file system check)의 기능이다.
+
+      핵심 개념:
+      파티션 관리: fdisk, parted
+      파일 시스템 생성: mkfs(mkfs -t ext4 장치)
+      파일 시스템 검사·복구: fsck(마운트 해제 상태에서 수행)
+      사용량 확인: df(파일 시스템별 여유 공간), du(파일·디렉터리별 사용량)
+
+  - id: e17-13
+    type: multiple-choice
+    passageRefs: [g17-cmd-firefox-01]
+    prompt: 다음 명령이 의미하는 것은?
+    choices:
+      - { id: '1', text: 'firefox를 포어그라운드 프로세스로 실행시킨다.' }
+      - { id: '2', text: 'firefox를 백그라운드 프로세스로 실행시킨다.' }
+      - { id: '3', text: '터미널을 종료시켜도 firefox를 계속 수행하게 한다.' }
+      - { id: '4', text: '백그라운드로 실행 중인 firefox를 포어그라운드로 전환시킨다.' }
+    answers: ['2']
+    explanation: |
+      선택지 1: &를 붙이지 않고 firefox만 입력해야 포어그라운드로 실행되어 끝날 때까지 셸 프롬프트가 돌아오지 않는다.
+      선택지 2: 정답. 명령 끝의 &는 명령을 백그라운드로 실행하고 즉시 셸 프롬프트를 돌려준다.
+      선택지 3: 터미널을 종료한 뒤에도 계속 실행되게 하려면 nohup firefox & 처럼 nohup을 써야 한다. &만으로는 터미널 종료 시 보내지는 신호(SIGHUP)를 피하지 못한다.
+      선택지 4: 백그라운드 작업을 포어그라운드로 전환하는 명령은 fg이다.
+
+      핵심 개념:
+      명령 &: 백그라운드 실행
+      jobs: 작업 목록, fg %n: 포어그라운드 전환, bg %n: 정지된 작업을 백그라운드에서 재개
+      Ctrl+Z: 포어그라운드 작업 일시 정지
+      nohup: 터미널 종료(SIGHUP) 후에도 실행 유지
+
+  - id: e17-14
+    type: multiple-choice
+    prompt: cron 서비스에 관한 설명으로 올바른 것은?
+    choices:
+      - { id: '1', text: '파일 시스템의 복구를 대비해 저널링을 수행한다.' }
+      - { id: '2', text: '패키지 관리를 위해 저장소 정보를 자동으로 갱신한다.' }
+      - { id: '3', text: '지정된 시간에 자동으로 작업을 수행하게 한다.' }
+      - { id: '4', text: '전자서명으로 네트워크 연결을 인증한다.' }
+    answers: ['3']
+    explanation: |
+      선택지 1: 저널링은 ext3·ext4 같은 저널링 파일 시스템 자체의 기능으로 cron과 무관하다.
+      선택지 2: 저장소 정보 갱신은 yum 같은 패키지 관리 도구의 기능이다. cron으로 그런 명령을 예약할 수는 있지만 cron 서비스 자체의 설명은 아니다.
+      선택지 3: 정답. cron은 crontab에 적힌 분·시·일·월·요일 일정에 따라 명령을 주기적으로 자동 실행하는 데몬(crond) 서비스이다.
+      선택지 4: 전자서명을 이용한 네트워크 연결 인증은 SSH의 공개키 인증 같은 기능으로 cron과 관계없다.
+
+      핵심 개념:
+      cron은 반복 작업을 정해진 시각에 자동 실행하는 스케줄러이다.
+      crontab -e로 편집, crontab -l로 확인한다.
+      crontab 형식: 분 시 일 월 요일 명령
+      한 번만 예약 실행할 때는 at 명령을 쓴다.
+
+  - id: e17-15
+    type: multiple-choice
+    prompt: RPM과 비교했을 때 YUM을 이용한 패키지 관리의 장점은 무엇인가?
+    choices:
+      - { id: '1', text: '이미 설치된 패키지의 업그레이드가 가능하다.' }
+      - { id: '2', text: '패키지의 변형 여부를 검증할 수 있다.' }
+      - { id: '3', text: '패키지의 설정 파일을 확인할 수 있다.' }
+      - { id: '4', text: '패키지 의존성 문제를 해결할 수 있다.' }
+    answers: ['4']
+    explanation: |
+      선택지 1: RPM(Red Hat Package Manager)도 rpm -U, rpm -F로 설치된 패키지를 업그레이드할 수 있으므로 YUM만의 장점이 아니다.
+      선택지 2: rpm -V로 설치된 파일의 변형 여부를 검증할 수 있으므로 RPM에도 있는 기능이다.
+      선택지 3: rpm -qc로 패키지의 설정 파일 목록을 확인할 수 있으므로 RPM에도 있는 기능이다.
+      선택지 4: 정답. RPM은 의존하는 패키지가 없으면 설치에 실패하고 사용자가 직접 찾아 설치해야 한다. YUM(Yellowdog Updater, Modified)은 저장소에서 필요한 의존 패키지를 자동으로 찾아 함께 설치해 의존성 문제를 해결한다.
+
+      핵심 개념:
+      RPM은 개별 .rpm 파일의 설치·삭제·질의·검증을 담당한다.
+      YUM은 RPM 위에서 동작하며 온라인 저장소를 이용한다.
+      YUM의 핵심 장점은 의존성 자동 해결이다.
+      주요 명령: yum install, yum update, yum remove, yum list, yum info
+
+  - id: e17-16
+    type: multiple-choice
+    passageRefs: [g17-cmd-yum-01]
+    prompt: 다음 명령이 의미하는 것은?
+    choices:
+      - { id: '1', text: '패키지를 설치함' }
+      - { id: '2', text: '설치되어 있는 패키지 목록을 출력함' }
+      - { id: '3', text: '패키지의 설명과 요약 정보를 출력함' }
+      - { id: '4', text: '패키지가 의존하는 요소와 그것을 제공하는 패키지를 나열함' }
+    answers: ['2']
+    explanation: |
+      선택지 1: 패키지 설치는 yum install 패키지명이다.
+      선택지 2: 정답. yum list는 패키지 목록을 보여 주며, installed를 붙이면 시스템에 설치되어 있는 패키지만 출력한다.
+      선택지 3: 패키지의 설명과 요약 정보 출력은 yum info 패키지명이다.
+      선택지 4: 의존 요소와 그것을 제공하는 패키지 나열은 yum deplist 패키지명이다.
+
+      핵심 개념:
+      yum list [all | installed | available | updates]: 패키지 목록
+      yum info: 패키지 상세 정보
+      yum deplist: 의존성 목록
+      yum install / update / remove: 설치 / 갱신 / 삭제
+
+  - id: e17-17
+    type: multiple-choice
+    passageRefs: [g17-whoson-intro-01, g17-whoson-code-01]
+    prompt: 셸 스크립트 whoson.sh(접근권한은 755로 가정)를 실행시키기 위한 명령으로 ==잘못된== 것은?
+    choices:
+      - { id: '1', text: 'bash -x whoson.sh' }
+      - { id: '2', text: './whoson.sh' }
+      - { id: '3', text: 'source whoson.sh' }
+      - { id: '4', text: 'builtin whoson.sh' }
+    answers: ['4']
+    explanation: |
+      선택지 1: bash -x는 새 bash가 스크립트를 읽어 실행하면서 실행되는 각 명령을 화면에 추적 출력하는 방식으로, 올바른 실행 방법이다.
+      선택지 2: 접근권한 755는 소유자·그룹·기타 사용자 모두에게 실행 권한이 있으므로 ./whoson.sh로 직접 실행할 수 있다.
+      선택지 3: source(또는 .)는 스크립트를 새 셸이 아닌 현재 셸에서 읽어 실행하는 명령으로 올바르다.
+      선택지 4: 정답. builtin은 뒤에 오는 이름을 셸 내장 명령으로 실행하게 하는 명령이다. whoson.sh는 셸 내장 명령이 아닌 파일이므로 오류가 난다.
+
+      핵심 개념:
+      셸 스크립트 실행 방법: bash 스크립트, ./스크립트(실행 권한 필요), source 스크립트 또는 . 스크립트
+      bash나 ./ 실행은 자식 셸에서, source는 현재 셸에서 실행된다.
+      bash -x는 디버깅용 추적 옵션이다.
+      builtin은 같은 이름의 함수가 있어도 셸 내장 명령을 실행하게 할 때 쓴다.
+
+      ※ 공통 지문의 (52~53)은 원본 문항 번호로, 이 세트의 17~18번에 해당한다.
+
+  - id: e17-18
+    type: multiple-choice
+    passageRefs: [g17-whoson-intro-01, g17-whoson-code-01]
+    prompt: 다음 중 셸 스크립트 whoson.sh의 실행 결과로 생각되는 것은?
+    choices:
+      - { id: '1', text: 'Step1' }
+      - id: '2'
+        text: |
+          Step1
+          Step3
+      - id: '3'
+        text: |
+          2017. 12. 10. (일) 10:45:04 KST
+          kdhong currently logged on
+      - id: '4'
+        text: |
+          Step 1
+          2017. 12. 10. (일) 10:45:04 KST
+          kdhong currently logged on
+          Step3
+    answers: ['4']
+    explanation: |
+      선택지 1: 스크립트는 첫 echo 뒤에도 whoson 함수 호출과 두 번째 echo를 실행하므로 한 줄로 끝나지 않는다.
+      선택지 2: whoson () { ... }는 함수 정의이고 아래의 whoson 줄에서 호출되므로 날짜와 로그인 문구가 두 echo 사이에 출력되어야 한다.
+      선택지 3: 함수 호출 앞뒤의 echo "Step 1"과 echo "Step 3“ 출력이 빠져 있다.
+      선택지 4: 정답. 실행 순서는 echo "Step 1" → whoson 함수 호출(date로 현재 날짜·시각 출력, user에 환경 변수 USER 값 kdhong 저장, "kdhong currently logged on" 출력) → 마지막 echo이다.
+
+      핵심 개념:
+      셸 함수는 이름 () { 명령들 } 형태로 정의하며 정의만으로는 실행되지 않는다.
+      함수는 이름을 명령처럼 써서 호출한다.
+      큰따옴표 안의 \$user는 변수 값으로 치환된다.
+      \$USER는 현재 로그인한 사용자 이름을 담은 환경 변수이다.
+
+      ※ 원본 표기: 마지막 줄 echo "Step 3“의 닫는 따옴표가 둥근 따옴표(“)로 인쇄되어 글자 그대로 실행하면 큰따옴표가 닫히지 않고, Step 1로 시작하는 네 줄짜리 선택지의 마지막 줄은 코드의 "Step 3"와 달리 Step3로 붙어 있다.
+
+      ※ 공통 지문의 (52~53)은 원본 문항 번호로, 이 세트의 17~18번에 해당한다.
+
+  - id: e17-19
+    type: multiple-choice
+    passageRefs: [g17-code-bashrc-01]
+    prompt: 다음은 셸 스크립트의 일부이다. 밑줄 그은 부분의 의미를 바르게 설명한 것은?
+    choices:
+      - { id: '1', text: '/etc/bashrc가 존재하고 정규 파일이면 참' }
+      - { id: '2', text: '/etc/bashrc가 존재하고 디렉터리이면 참' }
+      - { id: '3', text: '/etc/bashrc가 실행 가능한 파일이면 참' }
+      - { id: '4', text: '/etc/bashrc가 존재하지 않으면 참' }
+    answers: ['1']
+    explanation: |
+      선택지 1: 정답. [ -f 파일 ]은 파일이 존재하고 일반(정규) 파일일 때 참이다. 참이면 . /etc/bashrc로 그 파일을 현재 셸에서 읽어 실행한다.
+      선택지 2: 존재하고 디렉터리인지 검사하는 연산자는 -d이다.
+      선택지 3: 실행 가능한지 검사하는 연산자는 -x이다.
+      선택지 4: 존재하지 않을 때 참이 되게 하려면 [ ! -e /etc/bashrc ]처럼 부정 연산자 !를 써야 한다.
+
+      핵심 개념:
+      [ 조건 ]은 test 명령과 같으며 대괄호 안쪽 양옆에 공백이 필요하다.
+      파일 검사 연산자: -e(존재), -f(정규 파일), -d(디렉터리), -r/-w/-x(읽기/쓰기/실행 권한), -s(크기가 0보다 큼)
+      !는 조건의 부정이다.
+      . 파일은 source와 같이 현재 셸에서 파일을 실행한다.
+
+  - id: e17-20
+    type: multiple-choice
+    prompt: 네트워크 관련 명령에 관한 일반적 설명으로 ==잘못된== 것은?
+    choices:
+      - { id: '1', text: 'ping – ICMP를 이용하여 원격 호스트와의 연결 여부를 점검' }
+      - { id: '2', text: 'netstat – DNS 서버를 이용하여 호스트의 IP 주소를 확인' }
+      - { id: '3', text: 'traceroute – 현재 호스트에서 특정 호스트까지 통신이 이루어지는 경로를 확인' }
+      - { id: '4', text: 'ifconfig – 네트워크 인터페이스의 MAC 주소나 IP 주소 등을 확인' }
+    answers: ['2']
+    explanation: |
+      선택지 1: ping은 ICMP(Internet Control Message Protocol) 에코 요청을 보내고 응답을 받아 원격 호스트와의 연결 여부를 점검하므로 옳다.
+      선택지 2: 정답. netstat은 네트워크 연결 상태, 열린 포트, 라우팅 테이블, 인터페이스 통계를 보여 주는 명령이다. DNS(Domain Name System) 서버에 질의해 IP 주소를 확인하는 명령은 nslookup, host, dig이다.
+      선택지 3: traceroute는 목적지까지 거치는 라우터를 차례로 보여 주어 통신 경로를 확인하므로 옳다.
+      선택지 4: ifconfig는 네트워크 인터페이스의 IP 주소, 넷마스크, MAC(Media Access Control) 주소 등을 확인·설정하므로 옳다.
+
+      핵심 개념:
+      ping: 연결 확인, traceroute: 경로 확인
+      netstat: 연결·포트·라우팅 정보
+      nslookup, host, dig: DNS 질의
+      ifconfig(또는 ip addr): 인터페이스 정보
+
+  - id: e17-21
+    type: multiple-choice
+    prompt: 다음 중 네트워크 관련 설정 파일로 볼 수 ==없는== 것은?
+    choices:
+      - { id: '1', text: '/etc/sysconfig/network' }
+      - { id: '2', text: '/etc/resolv.conf' }
+      - { id: '3', text: '/etc/fstab' }
+      - { id: '4', text: '/etc/sysconfig/network-scripts/ifcfg-eth0' }
+    answers: ['3']
+    explanation: |
+      선택지 1: /etc/sysconfig/network는 네트워크 사용 여부, 호스트 이름, 기본 게이트웨이 등을 설정하는 파일이다.
+      선택지 2: /etc/resolv.conf는 사용할 DNS 네임 서버 주소를 지정하는 파일이다.
+      선택지 3: 정답. /etc/fstab은 부팅 시 마운트할 파일 시스템과 마운트 위치·옵션을 적는 파일로 네트워크 설정 파일이 아니다.
+      선택지 4: ifcfg-eth0은 eth0 인터페이스의 IP 주소, 넷마스크, 부팅 시 활성화 여부 등을 설정하는 파일이다.
+
+      핵심 개념:
+      /etc/sysconfig/network: 전역 네트워크 설정
+      /etc/sysconfig/network-scripts/ifcfg-인터페이스: 인터페이스별 설정
+      /etc/resolv.conf: DNS 서버, /etc/hosts: 호스트 이름과 IP 주소 대응
+      /etc/fstab: 파일 시스템 마운트 정보
+
+  - id: e17-22
+    type: multiple-choice
+    prompt: 다음 중 암호화된 방식으로 데이터를 송수신하는 프로그램은?
+    choices:
+      - { id: '1', text: 'sftp' }
+      - { id: '2', text: 'rcp' }
+      - { id: '3', text: 'rlogin' }
+      - { id: '4', text: 'telnet' }
+    answers: ['1']
+    explanation: |
+      선택지 1: 정답. sftp(SSH File Transfer Protocol)는 SSH(Secure Shell) 연결 위에서 파일을 전송하므로 데이터와 인증 정보가 암호화된다.
+      선택지 2: rcp(remote copy)는 원격 파일 복사 명령으로 데이터를 평문으로 전송한다. 암호화된 대안은 scp이다.
+      선택지 3: rlogin은 원격 로그인 명령으로 통신 내용이 암호화되지 않는다.
+      선택지 4: telnet은 원격 접속 프로그램으로 비밀번호를 포함한 모든 내용이 평문으로 전송된다.
+
+      핵심 개념:
+      r 계열 명령(rlogin, rsh, rcp)과 telnet, ftp는 평문 통신이라 도청에 취약하다.
+      SSH는 통신 전체를 암호화한다.
+      ssh는 telnet·rlogin을, scp는 rcp를, sftp는 ftp를 대체한다.
+      SSH 서버 데몬은 sshd이며 기본 포트는 22번이다.
+
+  - id: e17-23
+    type: multiple-choice
+    prompt: SSH 서버를 운영하여 서비스를 제공하고자 할 때, 점검해야 할 사항과 거리가 ==먼== 것은?
+    choices:
+      - { id: '1', text: '방화벽 설정에서 해당 포트를 열어둔다.' }
+      - { id: '2', text: 'sshd 프로그램이 실행 중인지 확인한다.' }
+      - { id: '3', text: '웹 서버가 실행 중인지 확인한다.' }
+      - { id: '4', text: '/etc/hosts.allow와 /etc/hosts.deny를 확인한다.' }
+    answers: ['3']
+    explanation: |
+      선택지 1: 방화벽이 SSH 포트(기본 22번)를 막으면 외부에서 접속할 수 없으므로 점검해야 한다.
+      선택지 2: SSH 서비스는 sshd 데몬이 제공하므로 실행 중인지 확인해야 한다.
+      선택지 3: 정답. 웹 서버(httpd)는 HTTP 서비스를 제공하는 별개의 서버로 SSH 서비스 제공과 관계없다.
+      선택지 4: /etc/hosts.allow와 /etc/hosts.deny는 TCP 래퍼(TCP Wrapper)의 접근 제어 파일로 sshd 접속 허용·차단에 영향을 주므로 점검해야 한다.
+
+      핵심 개념:
+      서버 서비스 점검 순서: 패키지 설치 → 데몬 실행 → 방화벽 포트 허용 → 접근 제어 설정
+      SSH 서버 설정 파일은 /etc/ssh/sshd_config이다.
+      TCP 래퍼는 hosts.allow를 먼저 검사한 뒤 hosts.deny를 검사한다.
+      서비스마다 데몬과 포트가 따로 있다(SSH: sshd, 22 / 웹: httpd, 80).
+
+  - id: e17-24
+    type: multiple-choice
+    passageRefs: [g17-httpd-conf-01]
+    prompt: Apache 웹 서버의 설정 파일인 httpd.conf에서 다음 항목이 의미하는 것은 무엇인가?
+    choices:
+      - { id: '1', text: '설정 파일에서 파일이 참조될 때 기준 디렉터리를 설정' }
+      - { id: '2', text: '웹 서버가 웹 페이지를 찾을 때의 루트 디렉터리를 설정' }
+      - { id: '3', text: '웹 서버 관리자의 이메일 주소를 설정' }
+      - { id: '4', text: '웹 서버가 사용할 TCP 포트 번호를 설정' }
+    answers: ['2']
+    explanation: |
+      선택지 1: 설정 파일 안의 상대 경로가 참조하는 기준 디렉터리는 ServerRoot 지시어가 정한다.
+      선택지 2: 정답. DocumentRoot는 웹 문서가 저장된 최상위 디렉터리로, http://서버/index.html 요청은 /var/www/html/index.html을 찾는다.
+      선택지 3: 웹 서버 관리자의 이메일 주소는 ServerAdmin 지시어로 설정한다.
+      선택지 4: 웹 서버가 요청을 받을 TCP(Transmission Control Protocol) 포트 번호는 Listen 지시어(기본 80)로 설정한다.
+
+      핵심 개념:
+      httpd.conf 주요 지시어
+      ServerRoot: 서버 설정 파일의 기준 디렉터리
+      DocumentRoot: 웹 문서의 루트 디렉터리
+      Listen: 포트 번호, ServerAdmin: 관리자 이메일, ServerName: 서버 이름
+
+  - id: e17-25
+    type: multiple-choice
+    prompt: 간단히 웹 사이트를 구축하고자 할 때 설치해야 하는 프로그램으로 보기 ==어려운== 것은?
+    choices:
+      - { id: '1', text: 'Apache 웹 서버' }
+      - { id: '2', text: 'PHP 스크립트 처리기' }
+      - { id: '3', text: 'MySQL 데이터베이스 관리 시스템' }
+      - { id: '4', text: 'PuTTY 클라이언트 프로그램' }
+    answers: ['4']
+    explanation: |
+      선택지 1: Apache 웹 서버는 클라이언트의 HTTP 요청을 받아 웹 페이지를 전달하는 핵심 프로그램이다.
+      선택지 2: PHP 스크립트 처리기는 동적 웹 페이지를 생성하는 서버 측 스크립트 처리기이다.
+      선택지 3: MySQL은 게시판·회원 정보 등 웹 사이트 데이터를 저장하는 데이터베이스 관리 시스템(DBMS, Database Management System)이다.
+      선택지 4: 정답. PuTTY는 원격 서버에 SSH·텔넷으로 접속하는 윈도용 터미널 클라이언트로, 웹 사이트를 구동하기 위해 서버에 설치해야 하는 프로그램이 아니다.
+
+      핵심 개념:
+      리눅스 웹 사이트 구축의 기본 조합은 LAMP(Linux, Apache, MySQL, PHP)이다.
+      Apache는 요청 처리, PHP는 동적 페이지 생성, MySQL은 데이터 저장을 맡는다.
+      PuTTY 같은 원격 접속 클라이언트는 관리자 PC에서 서버를 관리할 때 쓴다.
+      웹 서버 데몬은 httpd이며 문서 루트는 DocumentRoot로 지정한다.

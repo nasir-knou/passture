@@ -899,7 +899,7 @@ questions:
     prompt: 다음 중 교착상태에 해당되는 자원할당 그래프는?
     choices:
       - id: '1'
-        text: 그래프 1
+        text: ''
         diagram:
           type: resource-allocation-graph
           width: 260
@@ -920,7 +920,7 @@ questions:
             - { from: r2, to: p1 }
             - { from: r2, to: p2 }
       - id: '2'
-        text: 그래프 2
+        text: ''
         diagram:
           type: resource-allocation-graph
           width: 260
@@ -935,7 +935,7 @@ questions:
             - { from: r1, to: p2 }
             - { from: r1, to: p3 }
       - id: '3'
-        text: 그래프 3
+        text: ''
         diagram:
           type: resource-allocation-graph
           width: 260
@@ -952,7 +952,7 @@ questions:
             - { from: p2, to: r3 }
             - { from: r3, to: p3 }
       - id: '4'
-        text: 그래프 4
+        text: ''
         diagram:
           type: resource-allocation-graph
           width: 260

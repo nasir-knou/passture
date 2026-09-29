@@ -699,7 +699,7 @@ questions:
     passageRefs: [g17-two-three-four-tree-23]
     choices:
       - id: '1'
-        text: '①'
+        text: ''
         diagram:
           type: simple-graph
           width: 360
@@ -736,7 +736,7 @@ questions:
             - { from: '88', to: n88l }
             - { from: '88', to: n88r }
       - id: '2'
-        text: '②'
+        text: ''
         diagram:
           type: simple-graph
           width: 360
@@ -773,7 +773,7 @@ questions:
             - { from: '88', to: n88l }
             - { from: '88', to: n88r }
       - id: '3'
-        text: '③'
+        text: ''
         diagram:
           type: simple-graph
           width: 360
@@ -810,7 +810,7 @@ questions:
             - { from: '88', to: n88l }
             - { from: '88', to: n88r }
       - id: '4'
-        text: '④'
+        text: ''
         diagram:
           type: simple-graph
           width: 360

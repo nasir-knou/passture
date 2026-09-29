@@ -1,0 +1,2627 @@
+subjectId: compiler-construction
+sourceId: lecture-exercises
+title: 컴파일러구성 강의 연습문제
+kind: lecture
+
+passages:
+  - id: gl02-grammar-sbc-intro-01
+    type: text
+    body: ※ (2 ~ 4) 문법 G가 다음과 같이 정의되어 있다.
+
+  - id: gl02-grammar-sbc-01
+    type: code
+    language: text
+    body: |
+      G = ({S, B, C}, {a, b}, P, S)
+      P : S → aS | aB
+          B → bC
+          C → aC | a
+
+  - id: gl02-grammar-v0v1-01
+    type: code
+    language: text
+    body: |
+      P: V0 → aV1
+         V1 → bV0
+         V1 → a
+
+         단, 출발 기호 = V0
+
+  - id: gl02-bnf-integer-01
+    type: code
+    language: text
+    body: |
+      〈절대정수〉 ::= 〈숫자〉 | 〈절대정수〉 〈숫자〉
+      〈숫자〉 ::= 0 | 1 | 2 | 3 | 4 | 5
+
+  - id: gl03-identifier-fa-01
+    type: code
+    language: text
+    body: |
+      M = (Q, Σ, δ, q0, q1)
+          단, Q = {q0, q1}
+              Σ = {a, b, c, …. , z, 0, 1, …, 9}
+
+  - id: gl03-identifier-fa-table-01
+    type: diagram
+    diagram:
+      type: data-table
+      columns: ['δ', 'a', 'b', 'c', '⋯', 'z', '0', '1', '⋯', '9']
+      rows:
+        - ['q₀', 'q₁', 'q₁', 'q₁', '⋯', 'q₁', '∅', '∅', '⋯', '∅']
+        - ['q₁', 'q₁', 'q₁', 'q₁', '⋯', 'q₁', 'q₁', 'q₁', '⋯', 'q₁']
+
+  - id: gl03-nfa-bab-intro-01
+    type: text
+    body: 다음은 NFA를 DFA로 변환하는 과정이다.
+
+  - id: gl03-nfa-bab-01
+    type: diagram
+    diagram:
+      type: simple-graph
+      width: 654
+      height: 300
+      directed: true
+      nodes:
+        - { id: start, label: start, x: 58, y: 160, hideNode: true, labelDx: -4 }
+        - { id: n0, label: '0', x: 94, y: 160, radius: 16 }
+        - { id: n1, label: '1', x: 159, y: 160, radius: 16 }
+        - { id: n2, label: '2', x: 219, y: 105, radius: 16 }
+        - { id: n3, label: '3', x: 299, y: 105, radius: 16 }
+        - { id: n4, label: '4', x: 219, y: 215, radius: 16 }
+        - { id: n5, label: '5', x: 299, y: 215, radius: 16 }
+        - { id: n6, label: '6', x: 359, y: 160, radius: 16 }
+        - { id: n7, label: '7', x: 429, y: 160, radius: 16 }
+        - { id: n8, label: '8', x: 494, y: 160, radius: 16 }
+        - { id: n9, label: '9', x: 559, y: 160, radius: 16 }
+        - { id: n10, label: 10 종료상태, x: 624, y: 160, radius: 20, hideLabel: true }
+        - { id: n10-in, label: '10', x: 624, y: 160, radius: 15 }
+        - { id: top-right, label: 경유점, x: 359, y: 45, hideNode: true, hideLabel: true }
+        - { id: top-left, label: 경유점, x: 159, y: 45, hideNode: true, hideLabel: true }
+        - { id: bottom-left, label: 경유점, x: 94, y: 280, hideNode: true, hideLabel: true }
+        - { id: bottom-right, label: 경유점, x: 429, y: 280, hideNode: true, hideLabel: true }
+      edges:
+        - { from: start, to: n0 }
+        - { from: n0, to: n1, label: ε }
+        - { from: n1, to: n2, label: ε }
+        - { from: n1, to: n4, label: ε }
+        - { from: n2, to: n3, label: a }
+        - { from: n4, to: n5, label: b }
+        - { from: n3, to: n6, label: ε }
+        - { from: n5, to: n6, label: ε }
+        - { from: n6, to: top-right, directed: false }
+        - { from: top-left, to: top-right, directed: false, label: ε }
+        - { from: top-left, to: n1 }
+        - { from: n0, to: bottom-left, directed: false }
+        - { from: bottom-left, to: bottom-right, directed: false, label: ε }
+        - { from: bottom-right, to: n7 }
+        - { from: n6, to: n7, label: ε }
+        - { from: n7, to: n8, label: b }
+        - { from: n8, to: n9, label: a }
+        - { from: n9, to: n10, label: b }
+
+  - id: gl03-nfa-q01-01
+    type: text
+    body: NFA M=( { q₀, q₁}, {0, 1}, δ, q₀, {q₁} )
+
+  - id: gl03-nfa-q01-table-01
+    type: diagram
+    diagram:
+      type: data-table
+      columns: ['δ', '0', '1']
+      rows:
+        - ['q₀', '{q₀, q₁}', '{q₀}']
+        - ['q₁', 'Φ', '{q₀, q₁}']
+
+  - id: gl03-dfa-q01-intro-01
+    type: text
+    body: 변환된 DFA의 상태전이 함수는 다음과 같다.
+
+  - id: gl03-dfa-q01-table-01
+    type: diagram
+    diagram:
+      type: data-table
+      columns: ["δ'", '0', '1']
+      rows:
+        - ['[q₀]', '[q₀, q₁]', '[q₀]']
+        - ['[q₁]', 'Φ', '[ ‘가’ ]']
+        - ['[q₀, q₁]', '[ ‘나’ ]', '[q₀, q₁]']
+
+  - id: gl04-dfa-s012-01
+    type: diagram
+    diagram:
+      type: simple-graph
+      width: 520
+      height: 330
+      directed: true
+      nodes:
+        - { id: start, label: start, x: 60, y: 100, hideNode: true, labelDx: -4 }
+        - { id: s0, label: S₀, x: 200, y: 100 }
+        - { id: s1, label: S₁, x: 430, y: 190 }
+        - { id: s2, label: S₂ 종료상태, x: 200, y: 290, radius: 25, hideLabel: true }
+        - { id: s2-in, label: S₂, x: 200, y: 290, radius: 19 }
+      edges:
+        - { from: start, to: s0 }
+        - { from: s0, to: s0, label: b }
+        - { from: s0, to: s1, label: a, curve: 20 }
+        - { from: s1, to: s0, label: 'b|c', curve: 20 }
+        - { from: s0, to: s2, label: c, curve: 20 }
+        - { from: s2, to: s0, label: 'a|b', curve: 20 }
+        - { from: s2, to: s1, label: c, curve: 20 }
+        - { from: s1, to: s2, label: a, curve: 20 }
+
+  - id: gl04-dfa-pascal-01
+    type: code
+    language: text
+    highlights: ['finalstate']
+    body: |
+      program DFA(input, output);
+      :
+      function delta(s : state ; c : sigma) : state ;
+      function deltabar(s : state) : state ;
+      function accept : boolean ;
+        begin
+          accept := deltabar(s0) in finalstate
+        end ;
+      procedure initialize ;
+      :
+      begin {Start main program DFA.}
+        initialize ;
+        if accept then
+                writeln('accepted') ;
+              else
+                writeln('rejected') ;
+       end.
+
+  - id: gl04-dfa-min-01
+    type: diagram
+    diagram:
+      type: data-table
+      columns: ['δ (상태 \ 입력기호)', 'a', 'b']
+      rows:
+        - ['A', 'B', 'C']
+        - ['B', 'B', 'D']
+        - ['C', 'B', 'C']
+        - ['D', 'B', 'E']
+        - ['E', 'B', 'C']
+
+  - id: gl04-dfa-min-class-01
+    type: diagram
+    diagram:
+      type: data-table
+      columns: ['입력 \ 동치류', 'A (1)', 'B (1)', 'C (1)', 'D (1)', 'E (2)']
+      rows:
+        - ['a', '1', '1', '1', '1', '1']
+        - ['b', '1', '1', ' ', ' ', '1']
+
+  - id: gl04-fa-abd-intro-01
+    type: text
+    body: (5-6) 다음의 유한 오토마타를 보고 물음에 답하라.
+
+  - id: gl04-fa-abd-01
+    type: diagram
+    diagram:
+      type: simple-graph
+      width: 460
+      height: 170
+      directed: true
+      nodes:
+        - { id: start, label: start, x: 70, y: 110, hideNode: true, labelDx: -4 }
+        - { id: a, label: A, x: 130, y: 110 }
+        - { id: b, label: B, x: 260, y: 110 }
+        - { id: d, label: D 종료상태, x: 390, y: 110, radius: 25, hideLabel: true }
+        - { id: d-in, label: D, x: 390, y: 110, radius: 19 }
+      edges:
+        - { from: start, to: a }
+        - { from: a, to: a, label: 'a|b' }
+        - { from: a, to: b, label: a }
+        - { from: b, to: d, label: b }
+
+  - id: gl06-grammar-aas-intro-01
+    type: text
+    body: ※(1-2) 다음 문법을 보고 물음에 답하라
+
+  - id: gl06-grammar-aas-01
+    type: code
+    language: text
+    body: |
+      1) S → aAS
+      2) S → a
+      3) A → SbA
+      4) A → SS
+      5) A → b
+
+  - id: gl06-deriv-aaaa-01
+    type: code
+    language: text
+    body: |
+      S → aAS
+        → (    )
+        :
+        → aaaa
+
+  - id: gl06-ambiguous-01
+    type: code
+    language: text
+    body: |
+      E → E + E | E * E | id
+      id → 숫자
+
+  - id: gl06-eps-free-01
+    type: code
+    language: text
+    body: |
+      P : S → bSaS | ε
+      =>  P'는
+          S' → S | ε
+          S → (          )
+
+  - id: gl06-left-factoring-01
+    type: code
+    language: text
+    body: |
+      S → cAd
+      A → a | ab
+
+  - id: gl07-sr-intro-01
+    type: text
+    body: ※(2-4) 다음은 주어진 문법을 보고 id*id+id를 shift-reduce 구문분석하는 과정이다.
+
+  - id: gl07-sr-grammar-01
+    type: code
+    language: text
+    body: |
+      1) E → E * E
+      2) E → E + E
+      3) E → id
+
+  - id: gl07-sr-trace-01
+    type: diagram
+    diagram:
+      type: data-table
+      columns: ['단계', '스택', '입력', '구문분석 행동']
+      rows:
+        - ['0', '\$', 'id*id+id \$', 'shift ( 가 )']
+        - ['1', '\$id', '*id+id \$', 'reduce ( 나 )']
+        - ['2', '\$E', '*id+id \$', 'shift *']
+        - ['3', '\$E*', 'id+id \$', 'shift id']
+        - ['4', '\$E*id', '+id \$', 'reduce E → id']
+        - ['5', '\$E*E', '+id \$', 'shift +']
+        - ['6', '\$E*E+', 'id \$', 'shift id']
+        - ['7', '\$E*E+id', '\$', 'reduce E → id']
+        - ['8', '\$E*E+E', '\$', 'reduce( 다 )']
+        - ['9', '\$E*E', '\$', 'reduce E*E']
+        - ['10', '\$E', '\$', 'accept']
+
+  - id: gl07-grammar-etf-01
+    type: code
+    language: text
+    body: |
+      1) E → E + T
+      2) E → T
+      3) T → T * F
+      4) T → F
+      5) F → (E)
+      6) F → id
+
+  - id: gl08-precedence-01
+    type: code
+    language: text
+    body: |
+      E → E1 → T1 → T → T*F
+                  → T * id  (‘가’)
+                  → F * id   F ·> *
+                  → id * id   id ·> *
+
+  - id: gl08-slr-intro-01
+    type: text
+    body: |
+      ※(3-6) 다음은 SLR 파싱표를 이용하여 이용하여 문장 id+id*id을 구문분석하는 과정이다. 물음에 답하라.
+
+      〈파 싱 표〉
+
+  - id: gl08-slr-table-01
+    type: diagram
+    diagram:
+      type: data-table
+      columns: ['상태', 'id', '+', '*', '(', ')', '\$', 'GOTO E', 'GOTO T', 'GOTO F']
+      rows:
+        - ['0', 'S5', ' ', ' ', 'S4', ' ', ' ', '1', '2', '3']
+        - ['1', ' ', 'S6', ' ', ' ', ' ', 'acc', ' ', ' ', ' ']
+        - ['2', ' ', 'r2', 'S7', ' ', 'r2', 'r2', ' ', ' ', ' ']
+        - ['3', ' ', 'r4', 'r4', ' ', 'r4', 'r4', ' ', ' ', ' ']
+        - ['4', 'S5', ' ', ' ', 'S4', ' ', ' ', '8', '2', '3']
+        - ['5', ' ', 'r6', 'r6', ' ', 'r6', 'r6', ' ', ' ', ' ']
+        - ['6', 'S5', ' ', ' ', 'S4', ' ', ' ', ' ', '9', '3']
+        - ['7', 'S5', ' ', ' ', 'S4', ' ', ' ', ' ', ' ', '10']
+        - ['8', ' ', 'S6', ' ', ' ', 'S11', ' ', ' ', ' ', ' ']
+        - ['9', ' ', 'r1', 'S7', ' ', 'r1', 'r1', ' ', ' ', ' ']
+        - ['10', ' ', 'r3', 'r3', ' ', 'r3', 'r3', ' ', ' ', ' ']
+        - ['11', ' ', 'r5', 'r5', ' ', 'r5', 'r5', ' ', ' ', ' ']
+
+  - id: gl08-slr-trace-01
+    type: diagram
+    diagram:
+      type: data-table
+      columns: ['단계', '스택', '입력기호', '구문분석 내용']
+      rows:
+        - ['0', '0', 'id+id*id\$', 'shift 5']
+        - ['⋮', '⋮', '⋮', '⋮']
+        - ['15', '0E1+6T9*7id5', '\$', 'reduce 6']
+        - ['16', '0E1+6T9*7F', '\$', 'goto 10']
+        - ['17', '0E1+6T9*7F10', '\$', '( 가 )']
+        - ['18', '0E1+6T', '\$', '( 나 )']
+        - ['19', '0E1+6T9', '\$', '( 다 )']
+        - ['20', '0E', '\$', '( 라 )']
+        - ['21', '0E1', '\$', 'accept']
+
+  - id: gl09-lr0-goto-e-01
+    type: code
+    language: text
+    body: |
+      1. canonical collection
+          I₀ : closure ([S' → ·E]) ={[S' → ·E], [E → ·E+T], [E → ·T],
+               [T → ·T*F], [T → ·F], [F → ·(E)], [F → ·id]}
+          I₁ = GOTO (I₀, E)
+          I₂ = GOTO (I₀, T)
+          I₃ = GOTO (I₀, F)
+            :
+          I₇ = GOTO (I₂, * )
+
+       [보기]
+            (가) [T → F·]
+            (나) [E → T·], [T → T·*F]
+            (다) [S' → E·], [E → E·+T]
+              (라) [T → T*·F], [F → (E)], [F → id]
+
+  - id: gl09-lr0-goto-t-01
+    type: code
+    language: text
+    body: |2
+          I₀ : closure ([S' → ·E])
+          ={[S' → ·E], [E → ·E+T], [E → ·T],
+            [T → ·T*F], [T → ·F], [F → ·(E)], [F → ·id]}
+
+      [보기]      (가) [F → id·]
+             (나) [T → F·]
+             (다) [E → T·], [T → T·*F]
+             (라) [S' → E·], [E → E·+T]
+
+  - id: gl09-lr0-i0-01
+    type: code
+    language: text
+    body: |
+      I₀ : closure ([S' → ·E]) ={[S' → ·E], [E → ·E+T], [E → ·T],
+            [T → ·T*F], [T → ·F], [F → ·(E)], [F → ·id]}
+
+  - id: gl09-slr-caption-01
+    type: text
+    body: |
+      〈파 싱 표〉
+
+  - id: gl09-slr-trace-01
+    type: diagram
+    diagram:
+      type: data-table
+      columns: ['단계', '스택', '입력기호', '구문분석 내용']
+      rows:
+        - ['0', '0', 'id+id\$', 'shift 5']
+        - ['1', '0id5', '+id\$', 'reduce 6']
+        - ['2', '0F', '+id\$', '( 가 )']
+        - ['3', '0F3', '+id\$', 'reduce 4']
+        - ['4', '0T', '+id\$', 'goto2']
+        - [':', '0T2', '+id\$', ' ']
+
+  - id: gl09-goto-graph-01
+    type: diagram
+    diagram:
+      type: data-table
+      columns: ['GOTO 그래프 상태', 'E', 'T', 'F', '+', '*', '(', ')', 'id']
+      rows:
+        - ['I₀', 'I₁', 'I₂', 'I₃', ' ', ' ', 'I₄', ' ', 'I₅']
+        - ['I₁', ' ', ' ', ' ', 'I₆', ' ', ' ', ' ', ' ']
+        - ['I₂', ' ', ' ', ' ', ' ', 'I₇', ' ', ' ', ' ']
+        - ['I₄', 'I₈', 'I₂', 'I₃', ' ', ' ', 'I₄', ' ', 'I₅']
+        - ['I₆', ' ', 'I₉', 'I₃', ' ', ' ', 'I₄', ' ', 'I₅']
+        - ['I₇', ' ', ' ', 'I₁₀', ' ', ' ', 'I₄', ' ', 'I₅']
+        - ['I₈', ' ', ' ', ' ', 'I₆', ' ', ' ', 'I₁₁', ' ']
+        - ['I₉', ' ', ' ', ' ', ' ', 'I₇', ' ', ' ', ' ']
+
+  - id: gl09-slr-table-caption-01
+    type: text
+    body: 〈SLR 파 싱 표〉
+
+  - id: gl09-slr-table-part-01
+    type: diagram
+    diagram:
+      type: data-table
+      columns: ['상태', 'id', '+', '*', '(', ')', '\$', 'GOTO E', 'GOTO T', 'GOTO F']
+      rows:
+        - ['0', '‘가’', ' ', ' ', 'S4', ' ', ' ', '1', ' ', ' ']
+        - ['1', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+
+  - id: gl10-clr-graph-caption-01
+    type: text
+    body: CLR 그래프
+
+  - id: gl10-clr-graph-01
+    type: diagram
+    diagram:
+      type: data-table
+      cellFormat: code
+      columns: ['CLR 그래프 상태', 'LR(1) 항목', '전이']
+      rows:
+        - [
+            'I0',
+            "[S′ → ·S, $]\n[S → ·CC, $]\n[C → ·cC, c/d]\n[C → ·d, c/d]",
+            "S → I1\nC → I2\nc → I3\nd → I4",
+          ]
+        - ['I1', '[S′ → S·, $]', '-']
+        - ['I2', "[S → C·C, $]\n[C → ·cC, $]\n[C → ·d, $]", "C → I5\nc → I6\nd → I7"]
+        - ['I3', "[C → c·C, c/d]\n[C → ·cC, c/d]\n[C → ·d, c/d]", "c → I3\nd → I4\nC → I8"]
+        - ['I4', '[C → d·, c/d]', '-']
+        - ['I5', '[S → CC·, $]', '-']
+        - ['I6', "[C → c·C, $]\n[C → ·cC, $]\n[C → ·d, $]", "c → I6\nd → I7\nC → I9"]
+        - ['I7', '[C → d·, $]', '-']
+        - ['I8', '[C → cC·, c/d]', '-']
+        - ['I9', '[C → cC·, $]', '-']
+
+  - id: gl10-clr-table-caption-01
+    type: text
+    body: CLR 파싱표
+
+  - id: gl10-clr-table-blank-0d-01
+    type: diagram
+    diagram:
+      type: data-table
+      columns: ['상태', 'c', 'd', '\$', 'GOTO S', 'GOTO C']
+      rows:
+        - ['0', 'S3', '(가)', ' ', '1', '2']
+        - ['1', ' ', ' ', 'acc', ' ', ' ']
+        - ['2', 'S6', 'S7', ' ', ' ', '5']
+        - ['3', 'S3', 'S4', ' ', ' ', '8']
+        - ['4', 'r3', 'r3', ' ', ' ', ' ']
+        - ['5', ' ', ' ', 'r1', ' ', ' ']
+        - ['6', 'S6', 'S7', ' ', ' ', '9']
+        - ['7', ' ', ' ', 'r3', ' ', ' ']
+        - ['8', 'r2', 'r2', ' ', ' ', ' ']
+        - ['9', ' ', ' ', 'r2', ' ', ' ']
+
+  - id: gl10-lr1-i0-01
+    type: code
+    language: text
+    body: |
+      (1) 증가문법
+            0) S' → S
+            1) S → CC
+            2) C → cC
+            3) C → d
+      (2) Canonical Collection.
+          I₀ = closure ([S' → ·S, $])
+          I₁ = GOTO (I₀, S)
+          I₂ = GOTO (I₀, C)
+
+      [보기] (가) [S' → ·S, $], [S → ·CC, $], [C → ·cC, c/d],
+               [C → ·d, c/d]
+           (나) [S → C·C, $], [C → ·cC, $], [C → ·d, $]
+           (다) [S' → S·, $]
+           (라) [C → d·, c/d]
+
+  - id: gl10-clr-table-full-01
+    type: diagram
+    diagram:
+      type: data-table
+      columns: ['상태', 'c', 'd', '\$', 'GOTO S', 'GOTO C']
+      rows:
+        - ['0', 'S3', 'S4', ' ', '1', '2']
+        - ['1', ' ', ' ', 'acc', ' ', ' ']
+        - ['2', 'S6', 'S7', ' ', ' ', '5']
+        - ['3', 'S3', 'S4', ' ', ' ', '8']
+        - ['4', 'r3', 'r3', ' ', ' ', ' ']
+        - ['5', ' ', ' ', 'r1', ' ', ' ']
+        - ['6', 'S6', 'S7', ' ', ' ', '9']
+        - ['7', ' ', ' ', 'r3', ' ', ' ']
+        - ['8', 'r2', 'r2', ' ', ' ', ' ']
+        - ['9', ' ', ' ', 'r2', ' ', ' ']
+
+  - id: gl10-cdcd-note-01
+    type: text
+    body: |
+      문장 cdcd에 대한 구문분석의 일부이다.
+
+  - id: gl10-clr-trace-01
+    type: diagram
+    diagram:
+      type: data-table
+      columns: ['단계', '스택', '입력기호', '구문분석 내용']
+      rows:
+        - ['0', '0', 'cdcd\$', 'shift 3']
+        - ['1', '0c3', 'dcd\$', 'shift 4']
+        - ['2', '0c3d4', 'cd\$', 'reduce 3']
+        - ['3', '0c3C', 'cd\$', 'goto 8']
+        - ['4', '0c3C8', 'cd\$', 'reduce 2']
+        - ['5', '0C', 'cd\$', '( ‘가’ )']
+        - ['6', '0C2', 'cd\$', 'shift 6']
+        - ['7', '0C2c6', 'd\$', 'shift 7']
+        - ['8', '0C2c6d7', '\$', 'reduce 3']
+
+  - id: gl10-clr-table-blank-7-01
+    type: diagram
+    diagram:
+      type: data-table
+      columns: ['상태', 'c', 'd', '\$', 'GOTO S', 'GOTO C']
+      rows:
+        - ['0', 'S3', 'S4', ' ', '1', '2']
+        - ['1', ' ', ' ', 'acc', ' ', ' ']
+        - ['2', 'S6', 'S7', ' ', ' ', '5']
+        - ['3', 'S3', 'S4', ' ', ' ', '8']
+        - ['4', 'r3', 'r3', ' ', ' ', ' ']
+        - ['5', ' ', ' ', 'r1', ' ', ' ']
+        - ['6', 'S6', 'S7', ' ', ' ', '9']
+        - ['7', ' ', ' ', '(가)', ' ', ' ']
+        - ['8', 'r2', 'r2', ' ', ' ', ' ']
+        - ['9', ' ', ' ', 'r2', ' ', ' ']
+
+  - id: gl10-clr-table-blank-1-01
+    type: diagram
+    diagram:
+      type: data-table
+      columns: ['상태', 'c', 'd', '\$', 'GOTO S', 'GOTO C']
+      rows:
+        - ['0', 'S3', 'S4', ' ', '1', '2']
+        - ['1', ' ', ' ', '(가)', ' ', ' ']
+        - ['2', 'S6', 'S7', ' ', ' ', '5']
+        - ['3', 'S3', 'S4', ' ', ' ', '8']
+        - ['4', 'r3', 'r3', ' ', ' ', ' ']
+        - ['5', ' ', ' ', 'r1', ' ', ' ']
+        - ['6', 'S6', 'S7', ' ', ' ', '9']
+        - ['7', ' ', ' ', 'r3', ' ', ' ']
+        - ['8', 'r2', 'r2', ' ', ' ', ' ']
+        - ['9', ' ', ' ', 'r2', ' ', ' ']
+
+  - id: gl11-lalr-intro-01
+    type: text
+    body: |
+      (3-4) 다음은  CLR 그래프로부터 LALR의 파싱표를 구하는 과정이다.
+
+  - id: gl11-lr0-graph-01
+    type: diagram
+    diagram:
+      type: data-table
+      cellFormat: code
+      columns: ['GOTO 그래프 상태', 'LR(0) 항목', '전이']
+      rows:
+        - [
+            'I0',
+            "[S′ → ·S]\n[S → ·L=R]\n[S → ·R]\n[R → ·L]\n[L → ·*R]\n[L → ·id]",
+            "S → I1\nL → I2\nR → I3\n* → I4\nid → I5",
+          ]
+        - ['I1', '[S′ → S·]', '-']
+        - ['I2', "[S → L·=R]\n[R → L·]", '= → I6']
+        - ['I3', '[S → R·]', '-']
+        - ['I4', "[L → *·R]\n[R → ·L]\n[L → ·*R]\n[L → ·id]", "R → I7\nL → I8\n* → I4\nid → I5"]
+        - ['I5', '[L → id·]', '-']
+        - ['I6', "[S → L=·R]\n[R → ·L]\n[L → ·*R]\n[L → ·id]", "R → I9\nL → I8\n* → I4\nid → I5"]
+        - ['I7', '[L → *R·]', '-']
+        - ['I8', '[R → L·]', '-']
+        - ['I9', '[S → L=R·]', '-']
+
+  - id: gl12-predictive-01
+    type: code
+    language: text
+    body: |
+      문법
+         1) E → TE'
+         2) E' → +TE'
+         3) E' → ε
+         4) T → FT'
+         5) T' → * FT'
+         6) T' → ε
+         7) F → (E)
+          8) F → id
+
+         FIRST(E) = FIRST(T) = FIRST(F) = { ( , id }
+         FOLLOW(E) = FOLLOW(E') = {), $}
+         FOLLOW(T) = FOLLOW(T') = {+, ), $}
+         FOLLOW(F) = {+, * , ), $}
+
+                          [파싱표]
+
+  - id: gl12-predictive-table-01
+    type: diagram
+    diagram:
+      type: data-table
+      columns: ['$V_N$ / $V_T$', 'id', '+', '*', '(', ')', '\$']
+      rows:
+        - ['E', "E → TE'", ' ', ' ', "E → TE'", ' ', ' ']
+        - ["E'", ' ', "E'→ +TE'", ' ', ' ', '( 가 )', "E' →ε"]
+        - ['T', "T → FT'", ' ', ' ', "T → FT'", ' ', ' ']
+        - ["T'", ' ', "T'→ε", "T'→ * FT'", ' ', "T'→ε", "T'→ε"]
+        - ['F', 'F → id', ' ', ' ', 'F → (E)', ' ', ' ']
+
+  - id: gl13-yacc-input-blank-01
+    type: text
+    body: |
+      YACC의 입력은 문법규칙과 각 규칙에 대한 수행코드들이며 선언부분, (      ), 사용자 프로그램 부분 등의 세 부분으로 구성된다.
+
+  - id: gl13-yacc-diagram-01
+    type: diagram
+    diagram:
+      type: simple-graph
+      width: 640
+      height: 240
+      directed: true
+      nodes:
+        - { id: rules, label: 문법규칙과 수행코드, x: 380, y: 42, labelDy: -18, hideNode: true, fontSize: 16 }
+        - { id: gen, label: A, x: 380, y: 94, shape: box, width: 120, height: 36, radius: 18 }
+        - { id: src, label: 원시 프로그램, x: 120, y: 185, labelDx: -8, hideNode: true, fontSize: 16 }
+        - { id: lex, label: B, x: 215, y: 185, shape: box, width: 90, height: 40, radius: 45 }
+        - { id: par, label: 구문분석기, x: 380, y: 185, shape: box, width: 110, height: 40, radius: 55, fontSize: 16 }
+        - { id: par-top, label: 구문분석기, x: 380, y: 164, hideNode: true, hideLabel: true }
+        - { id: out, label: 출력, x: 482, y: 185, hideNode: true, hideLabel: true }
+        - { id: out-line1, label: 수행코드에 의해, x: 492, y: 164, labelDx: 0, hideNode: true, fontSize: 16 }
+        - { id: out-line2, label: 생성된 구문분석기, x: 492, y: 185, labelDx: 0, hideNode: true, fontSize: 16 }
+        - { id: out-line3, label: 의 출력, x: 492, y: 206, labelDx: 0, hideNode: true, fontSize: 16 }
+      edges:
+        - { from: rules, to: gen }
+        - { from: gen, to: par-top }
+        - { from: src, to: lex }
+        - { from: lex, to: par, label: 토큰 }
+        - { from: par, to: out }
+
+  - id: gl13-yacc-format-01
+    type: code
+    language: text
+    body: |2
+       선언 부분(Declaration Part)
+      %%
+       변환규칙 부분(Translation Rules Part)
+      %%
+       사용자 프로그램 부분(User Program Part)
+
+  - id: gl14-quadruple-01
+    type: diagram
+    diagram:
+      type: data-table
+      columns: ['번호', 'op', '피연산자 1', '피연산자 2', '결과']
+      rows:
+        - ['(0)', 'uminus', 'B', ' ', 'T₁']
+        - ['(1)', '+', 'C', 'D', 'T₂']
+        - ['(2)', '*', 'T₁', 'T₂', 'T₃']
+        - ['(3)', ':=', 'T₃', ' ', 'A']
+
+questions:
+  - id: l01-01
+    type: multiple-choice
+    prompt: 다음 중 저급언어를 저급언어로 번역하는 기능을 갖고 있는 번역기는?
+    choices:
+      - { id: '1', text: '어셈블러' }
+      - { id: '2', text: '컴파일러' }
+      - { id: '3', text: '프리프로세서' }
+      - { id: '4', text: '인터프리터' }
+    answers: ['1']
+    explanation: |
+      선택지 1: 어셈블러는 저급언어인 어셈블리어로 쓴 프로그램을 역시 저급언어인 기계어로 번역하므로 정답이다.
+      선택지 2: 컴파일러는 고급언어로 쓴 원시 프로그램을 어셈블리어나 기계어 같은 저급언어로 번역한다. 입력이 고급언어라는 점에서 조건과 맞지 않는다.
+      선택지 3: 프리프로세서는 확장된 고급언어를 표준 고급언어로 바꾸는 고급언어 → 고급언어 번역기다.
+      선택지 4: 인터프리터는 고급언어 프로그램을 목적 프로그램으로 바꾸지 않고 문장 단위로 해석해 바로 실행 결과를 낸다.
+
+      핵심 개념:
+      번역기는 입력 언어와 출력 언어의 수준으로 구분할 수 있다.
+      컴파일러: 고급언어 → 어셈블리어/기계어, 프리프로세서: 고급언어 → 고급언어.
+      인터프리터: 고급언어 → 실행 결과, 어셈블러: 어셈블리어 → 기계어.
+      저급언어끼리 번역하는 것은 어셈블러다.
+    tags: [translator, assembler]
+
+  - id: l01-02
+    type: multiple-choice
+    prompt: 다음 중 컴파일러 기법에 대한 설명 중 옳지 않은 것은?
+    choices:
+      - { id: '1', text: '사용자에게 많은 융통성을 준다.' }
+      - { id: '2', text: '실행시간이 효율적이다.' }
+      - { id: '3', text: '번역기법이라고도 한다.' }
+      - { id: '4', text: '입출력 포맷 등 큰 기억장소를 요구한다.' }
+    answers: ['1']
+    explanation: |
+      선택지 1: 사용자에게 많은 융통성을 주는 것은 프로그램을 문장 단위로 해석·실행하는 인터프리터 기법의 특징이다. 컴파일러 기법에 대한 설명이 아니므로 옳지 않은 것으로 정답이다.
+      선택지 2: 컴파일러 기법은 번역을 한 번 끝낸 목적 프로그램을 반복 실행하므로 실행시간이 효율적이다. 옳은 설명이다.
+      선택지 3: 컴파일러 기법은 원시 프로그램 전체를 목적 프로그램으로 번역한 뒤 실행하므로 번역기법이라고도 한다. 옳은 설명이다.
+      선택지 4: 컴파일러 기법은 번역된 목적 프로그램과 입출력 포맷 등을 모두 기억장소에 두어야 하므로 큰 기억장소를 요구한다. 옳은 설명이다.
+
+      핵심 개념:
+      컴파일러 기법(번역기법)은 프로그램 전체를 먼저 번역한 뒤 목적 프로그램을 실행한다.
+      번역이 한 번이면 되므로 실행시간이 효율적이지만, 목적 프로그램 등을 저장할 큰 기억장소가 필요하다.
+      인터프리터 기법(해석기법)은 문장 단위로 해석·실행하므로 기억장소가 적게 들고 사용자에게 융통성을 준다.
+      대신 반복되는 문장도 매번 해석해야 하므로 실행 속도는 느리다.
+    tags: [compiler, interpreter]
+
+  - id: l01-03
+    type: multiple-choice
+    prompt: 다음 중 프로그래밍 언어에 유용한 기능들을 추가하여 언어를 확장하는 경우 주로 사용되는 것은?
+    choices:
+      - { id: '1', text: '어셈블러' }
+      - { id: '2', text: '컴파일러' }
+      - { id: '3', text: '프리프로세서' }
+      - { id: '4', text: '인터프리터' }
+    answers: ['3']
+    explanation: |
+      선택지 1: 어셈블러는 어셈블리어를 기계어로 바꾸는 번역기로, 고급언어의 기능을 확장하는 용도가 아니다.
+      선택지 2: 컴파일러는 고급언어를 저급언어로 번역하는 번역기이며, 확장된 언어를 기존 언어로 바꾸는 전처리 역할과는 다르다.
+      선택지 3: 프리프로세서는 매크로 등 유용한 기능이 추가된 확장 언어로 쓴 프로그램을 기존 고급언어 프로그램으로 바꾸어 주므로, 언어를 확장할 때 주로 사용된다. 정답이다.
+      선택지 4: 인터프리터는 고급언어 프로그램을 문장 단위로 해석해 실행하는 방식으로, 언어 확장과 관계가 없다.
+
+      핵심 개념:
+      프리프로세서(전처리기)는 고급언어를 고급언어로 바꾸는 번역기다.
+      매크로 확장, 파일 포함 등 언어에 없는 편리한 기능을 추가한 확장 언어를 처리할 때 쓴다.
+      프리프로세서의 출력은 다시 컴파일러의 입력이 된다.
+      C 언어의 `#define`, `#include` 처리가 대표적인 예다.
+    tags: [translator, preprocessor]
+
+  - id: l01-04
+    type: multiple-choice
+    prompt: 혼합형 연산을 하는 경우 정수를 실수로 바꾸어 주어야 한다. 다음 중 어느 단계와 관계 있는가?
+    choices:
+      - { id: '1', text: '어휘분석' }
+      - { id: '2', text: '구문분석' }
+      - { id: '3', text: '의미분석' }
+      - { id: '4', text: '최적화' }
+    answers: ['3']
+    explanation: |
+      선택지 1: 어휘분석은 원시 프로그램의 문자열을 읽어 토큰으로 나누는 단계로, 피연산자의 형을 맞추지 않는다.
+      선택지 2: 구문분석은 토큰열이 문법에 맞는지 검사하고 구문 구조를 만드는 단계로, 형 변환은 이 단계의 일이 아니다.
+      선택지 3: 의미분석 단계는 형 검사를 하면서 혼합형 연산의 피연산자를 같은 형으로 변환해 준다. 정수를 실수로 바꾸는 작업이 여기에 해당하므로 정답이다.
+      선택지 4: 최적화는 생성된 중간코드를 더 효율적으로 바꾸는 단계로, 연산의 의미를 맞추기 위한 형 변환과는 목적이 다르다.
+
+      핵심 개념:
+      의미분석은 구문적으로 맞는 프로그램이 의미상으로도 맞는지 검사하는 단계다.
+      대표적인 작업이 형 검사(type checking)이며, 연산자에 맞지 않는 피연산자 형을 찾아낸다.
+      정수와 실수가 섞인 혼합형 연산에서는 정수를 실수로 바꾸는 등 동일한 형으로 변환해 준다.
+      이렇게 얻은 정보는 이후 중간코드 생성에 쓰인다.
+    tags: [semantic-analysis, type-checking]
+
+  - id: l01-05
+    type: multiple-choice
+    prompt: 다음은 컴파일러의 물리적 구조에 대한 설명이다. 틀린 것은?
+    choices:
+      - { id: '1', text: '컴파일러의 논리적 구조를 구현한 것을 패스(pass)라고 하며, 패스는 논리적 구조와 순서가 같게 구현해야 한다.' }
+      - { id: '2', text: '1-패스 컴파일러는 초창기에 컴파일러를 만들 때 사용했던 방법이다.' }
+      - { id: '3', text: '2-패스 컴파일러는 중간코드를 기점으로 하여 전반부 (front-end)와 후반부(back-end)로 구성하는 방법이다.' }
+      - { id: '4', text: '1-패스 컴파일러는 backpatching이 요구된다.' }
+    answers: ['1']
+    explanation: |
+      선택지 1: 컴파일러의 논리적 구조를 실제로 구현한 단위가 패스(pass)인 것은 맞지만, 패스가 논리적 구조와 순서까지 같아야 하는 것은 아니다. 여러 논리 단계를 한 패스로 묶거나 나누어 구현할 수 있으므로 틀린 설명이고 정답이다.
+      선택지 2: 1-패스 컴파일러는 원시 프로그램을 한 번만 읽어 중간코드 없이 직접 목적코드로 번역하는 방법으로, 초창기에 컴파일러를 만들 때 사용했다. 옳은 설명이다.
+      선택지 3: 2-패스 컴파일러는 중간코드를 경계로 기계 독립적인 전반부(front-end)와 기계 종속적인 후반부(back-end)로 나누어 구성한다. 옳은 설명이다.
+      선택지 4: 1-패스 컴파일러는 앞으로 점프하는 명령의 목적지 번지를 번역 시점에 알 수 없으므로, 번지를 비워 두었다가 나중에 채우는 backpatching이 필요하다. 옳은 설명이다.
+
+      핵심 개념:
+      컴파일러의 논리적 구조는 어휘분석, 구문분석, 의미분석, 중간코드 생성, 코드최적화, 코드생성 단계다.
+      물리적 구조는 이 단계들을 실제로 몇 번의 패스로 구현하는가를 말한다.
+      1-패스 컴파일러는 빠르지만 backpatching이 필요하고 최적화가 어렵다.
+      2-패스 컴파일러는 중간코드를 기준으로 전반부와 후반부를 나누어 이식성과 최적화에 유리하다.
+    tags: [pass, one-pass-compiler, two-pass-compiler, backpatching]
+
+  - id: l01-06
+    type: multiple-choice
+    prompt: 컴파일러의 논리적 구조가 올바르게 나열된 것은?
+    choices:
+      - { id: '1', text: '어휘분석-구문분석-의미분석-중간코드 생성-코드최적화-코드생성' }
+      - { id: '2', text: '어휘분석-의미분석-구문분석-중간코드 생성-코드최적화-코드생성' }
+      - { id: '3', text: '어휘분석-구문분석-의미분석-코드최적화-중간코드 생성-코드생성' }
+      - { id: '4', text: '어휘분석-구문분석-중간코드 생성-의미분석-코드최적화-코드생성' }
+    answers: ['1']
+    explanation: |
+      선택지 1: 원시 프로그램을 토큰으로 나누고(어휘분석), 구문 구조를 만들고(구문분석), 의미를 검사한 뒤(의미분석), 중간코드를 만들어(중간코드 생성) 개선하고(코드최적화) 목적코드를 만드는(코드생성) 순서이므로 정답이다.
+      선택지 2: 의미분석은 구문분석이 만든 구문 구조를 대상으로 하므로 구문분석보다 앞에 올 수 없다.
+      선택지 3: 코드최적화는 생성된 중간코드를 개선하는 단계이므로 중간코드 생성보다 앞에 올 수 없다.
+      선택지 4: 의미분석에서 검사·변환한 정보를 바탕으로 중간코드를 만들기 때문에 중간코드 생성이 의미분석보다 앞에 올 수 없다.
+
+      핵심 개념:
+      컴파일러의 논리적 구조는 어휘분석 → 구문분석 → 의미분석 → 중간코드 생성 → 코드최적화 → 코드생성 순이다.
+      앞 단계의 출력(토큰, 구문 트리, 중간코드)이 다음 단계의 입력이 된다.
+      어휘분석부터 중간코드 생성까지를 전반부, 코드최적화와 코드생성을 후반부로 나누기도 한다.
+      기호표와 오류 처리기는 모든 단계에서 함께 사용된다.
+    tags: [compiler-structure]
+
+  - id: l02-01
+    type: multiple-choice
+    prompt: T = {a, b, c} 가 주어졌을 때 다음 설명 중 틀린 것은?
+    choices:
+      - { id: '1', text: '$a^n$ = abc' }
+      - { id: '2', text: '|abc| = 3' }
+      - { id: '3', text: '$T^*$ = {ε, a, b, c, aa, ab, ac, ⋯}' }
+      - { id: '4', text: '$T^+$ = {a, b, c, aa, ab, ac, ⋯}' }
+    answers: ['1']
+    explanation: |
+      선택지 1: $a^n$은 기호 a가 n개 나열된 문자열(aa⋯a)을 뜻한다. 서로 다른 기호로 이루어진 abc와 같을 수 없으므로 틀린 설명이고 정답이다.
+      선택지 2: |w|는 문자열 w의 길이, 즉 w를 이루는 기호의 개수다. abc는 기호 3개로 이루어져 있으므로 |abc| = 3은 맞다.
+      선택지 3: $T^*$는 공문자열 ε을 포함해 T의 기호로 만들 수 있는 모든 문자열의 집합이므로 맞는 설명이다.
+      선택지 4: $T^+$는 $T^*$에서 공문자열 ε을 뺀 집합, 즉 길이가 1 이상인 모든 문자열의 집합이므로 맞는 설명이다.
+
+      핵심 개념:
+      알파벳 T는 기호의 유한 집합이고, 문자열은 T의 기호를 나열한 것이다.
+      $a^n$은 a를 n번 이어 붙인 문자열이며, $a^0$ = ε이다.
+      |w|는 문자열의 길이를 나타내고, |ε| = 0이다.
+      $T^*$는 ε을 포함한 모든 문자열의 집합, $T^+ = T^* - \{\varepsilon\}$이다.
+    tags: [alphabet, string, kleene-closure, positive-closure]
+
+  - id: l02-02
+    type: multiple-choice
+    passageRefs: [gl02-grammar-sbc-intro-01, gl02-grammar-sbc-01]
+    prompt: 촘스키 분류법에 따르면 어디에 속하는가?
+    choices:
+      - { id: '1', text: 'type 0' }
+      - { id: '2', text: 'type 1' }
+      - { id: '3', text: 'type 2' }
+      - { id: '4', text: 'type 3' }
+    answers: ['4']
+    explanation: |
+      선택지 1: type 0은 생성규칙에 제약이 없는 무제약 문법이다. 문법 G도 형식상 type 0에 포함되지만, 훨씬 강한 제약을 만족하므로 가장 좁은 유형으로 분류하면 type 0이 아니다.
+      선택지 2: type 1은 문맥의존 문법(|α| ≤ |β|)이다. G의 규칙도 이 조건을 만족하지만 더 제한된 유형에 속한다.
+      선택지 3: type 2는 왼쪽이 논터미널 하나인 context-free 문법이다. G의 왼쪽은 모두 논터미널 하나이지만, 오른쪽까지 제한된 형태이므로 더 좁은 type 3으로 분류한다.
+      선택지 4: S → aS, S → aB, B → bC, C → aC는 A → tB 형태이고 C → a는 A → t 형태이므로 모든 규칙이 우선형(right-linear)이다. 따라서 type 3 정규문법이고 정답이다.
+
+      핵심 개념:
+      촘스키 분류는 생성규칙의 제약에 따라 type 0(무제약), type 1(문맥의존), type 2(context-free), type 3(정규)으로 나눈다.
+      type 3 정규문법은 모든 규칙이 A → tB, A → t(우선형) 또는 A → Bt, A → t(좌선형) 중 한 가지 형태로 통일되어야 한다.
+      제약이 강할수록 번호가 크며, 문법은 만족하는 가장 제한된 유형으로 분류한다.
+      정규문법이 생성하는 언어는 정규언어이고 유한 오토마타로 인식할 수 있다.
+    tags: [chomsky-hierarchy, regular-grammar]
+
+  - id: l02-03
+    type: multiple-choice
+    passageRefs: [gl02-grammar-sbc-intro-01, gl02-grammar-sbc-01]
+    prompt: 문법 G가 생성할 수 없는 것은?
+    choices:
+      - { id: '1', text: 'aba' }
+      - { id: '2', text: 'ababa' }
+      - { id: '3', text: 'aabaaa' }
+      - { id: '4', text: 'abaaa' }
+    answers: ['2']
+    explanation: |
+      선택지 1: S ⇒ aB ⇒ abC ⇒ aba로 생성된다.
+      선택지 2: 문법 G에서 b를 만드는 규칙은 B → bC 하나뿐이고, B는 S → aB로 한 번만 나타난다. C에서는 aC | a로 a만 만들 수 있으므로 문자열에 b가 두 번 나올 수 없다. b가 두 개인 ababa는 생성할 수 없으므로 정답이다.
+      선택지 3: S ⇒ aS ⇒ aaB ⇒ aabC ⇒ aabaC ⇒ aabaaC ⇒ aabaaa로 생성된다.
+      선택지 4: S ⇒ aB ⇒ abC ⇒ abaC ⇒ abaaC ⇒ abaaa로 생성된다.
+
+      핵심 개념:
+      S → aS | aB는 a를 1개 이상 만든 뒤 B로 넘어간다.
+      B → bC는 b를 정확히 한 번 만들고 C로 넘어간다.
+      C → aC | a는 a를 1개 이상 만들고 끝난다.
+      따라서 G가 생성하는 언어는 a가 1개 이상, b가 1개, a가 1개 이상 이어진 문자열 $a^+ba^+$이다.
+    tags: [regular-grammar, derivation]
+
+  - id: l02-04
+    type: multiple-choice
+    passageRefs: [gl02-grammar-sbc-intro-01, gl02-grammar-sbc-01]
+    prompt: 문법 G가 생성하는 언어를 정규표현으로 표현한 것은?
+    choices:
+      - { id: '1', text: 'a*ba*' }
+      - { id: '2', text: 'a*aba*a' }
+      - { id: '3', text: 'a*ab*a*a' }
+      - { id: '4', text: 'a*+aba*a' }
+    answers: ['2']
+    explanation: |
+      선택지 1: a*ba*는 b 하나만으로 된 문자열 b도 포함한다. G는 b 앞뒤에 a를 최소 한 개씩 만들므로 b를 생성할 수 없어 같은 언어가 아니다.
+      선택지 2: 정규표현 방정식으로 풀면 C = aC + a에서 C = a*a, B = bC에서 B = ba*a, S = aS + aB = aS + aba*a에서 S = a*aba*a이다. 정답이다.
+      선택지 3: a*ab*a*a는 b를 0개 또는 여러 개 허용하므로 aa, abba처럼 G가 만들 수 없는 문자열까지 포함한다.
+      선택지 4: a*+aba*a는 a*와 aba*a의 합집합이므로 ε, a, aa처럼 b가 없는 문자열을 포함하고, aaba처럼 b 앞에 a가 두 개 이상인 문자열은 포함하지 않는다.
+
+      핵심 개념:
+      정규문법은 각 논터미널을 미지수로 하는 정규표현 방정식으로 바꾸어 풀 수 있다.
+      X = αX + β 형태의 방정식의 해는 X = α*β이다.
+      뒤쪽 논터미널부터 차례로 풀어 대입하면 시작 기호 S의 정규표현을 얻는다.
+      a*a는 a가 1개 이상 반복된 문자열이므로 결과는 $a^+ba^+$와 같다.
+    tags: [regular-grammar, regular-expression, regular-equation]
+
+  - id: l02-05
+    type: multiple-choice
+    passageRefs: [gl02-grammar-v0v1-01]
+    prompt: 다음 문법에서 생성될 수 없는 것은?
+    choices:
+      - { id: '1', text: 'aa' }
+      - { id: '2', text: 'aba' }
+      - { id: '3', text: 'abaa' }
+      - { id: '4', text: 'ababaa' }
+    answers: ['2']
+    explanation: |
+      선택지 1: V0 ⇒ aV1 ⇒ aa로 생성된다.
+      선택지 2: 모든 유도는 V0 ⇒ aV1로 시작하고, V1은 bV0로 가서 다시 a를 붙이거나 a로 끝난다. 따라서 생성되는 문자열은 반드시 aa로 끝난다. aba는 ba로 끝나므로 생성될 수 없어 정답이다.
+      선택지 3: V0 ⇒ aV1 ⇒ abV0 ⇒ abaV1 ⇒ abaa로 생성된다.
+      선택지 4: V0 ⇒ aV1 ⇒ abV0 ⇒ abaV1 ⇒ ababV0 ⇒ ababaV1 ⇒ ababaa로 생성된다.
+
+      핵심 개념:
+      정규표현 방정식으로 바꾸면 V0 = aV1, V1 = bV0 + a이다.
+      대입하면 V0 = a(bV0 + a) = abV0 + aa이다.
+      X = αX + β의 해가 X = α*β이므로 V0 = (ab)*aa이다.
+      문자열이 언어에 속하는지는 이 정규표현에 맞는지로 판단하면 된다.
+    tags: [regular-grammar, regular-equation]
+
+  - id: l02-06
+    type: multiple-choice
+    passageRefs: [gl02-bnf-integer-01]
+    prompt: 다음의 production rule에 대한 설명 중 올바른 것은?
+    choices:
+      - { id: '1', text: '절대정수로 11, 45, 112, 2315 등이 허용된다.' }
+      - { id: '2', text: '절대정수로 0을 포함하는 모든 수를 의미한다.' }
+      - { id: '3', text: '절대정수로 1을 포함하는 모든 수를 의미한다.' }
+      - { id: '4', text: '절대정수로 1, 5, 9, 10, 13 등이 허용된다.' }
+    answers: ['1']
+    explanation: |
+      선택지 1: 〈절대정수〉는 〈숫자〉 하나이거나 〈절대정수〉 뒤에 〈숫자〉를 붙인 것이므로, 0~5의 숫자를 1개 이상 이어 붙인 수다. 11, 45, 112, 2315는 모두 0~5로만 이루어져 있으므로 정답이다.
+      선택지 2: 〈숫자〉는 0부터 5까지만 정의되어 있으므로 6, 7, 8, 9가 들어간 수는 만들 수 없다. 모든 수를 의미하지 않는다.
+      선택지 3: 〈숫자〉는 0부터 5까지만 정의되어 있어 6~9가 들어간 수는 만들 수 없으므로, 1을 포함하는 모든 수를 의미한다는 설명은 틀리다.
+      선택지 4: 1, 5, 10, 13은 만들 수 있지만 9는 〈숫자〉에 없으므로 허용되지 않는다.
+
+      핵심 개념:
+      BNF에서 ::=는 정의, |는 선택, 〈 〉는 논터미널을 나타낸다.
+      〈절대정수〉 ::= 〈숫자〉 | 〈절대정수〉 〈숫자〉는 왼쪽 재귀로 〈숫자〉를 1번 이상 반복하는 규칙이다.
+      따라서 허용되는 수는 〈숫자〉로 정의된 기호(0~5)만으로 이루어진 길이 1 이상의 숫자열이다.
+      어떤 수가 허용되는지는 각 자리의 숫자가 〈숫자〉에 정의되어 있는지로 판단한다.
+    tags: [bnf]
+
+  - id: l03-01
+    type: multiple-choice
+    passageRefs: [gl03-identifier-fa-01, gl03-identifier-fa-table-01]
+    prompt: 다음의 오토마타가 인식 할 수 없는 문자열은?
+    choices:
+      - { id: '1', text: '123' }
+      - { id: '2', text: 'abc' }
+      - { id: '3', text: 'ab123' }
+      - { id: '4', text: 'korea' }
+    answers: ['1']
+    explanation: |
+      선택지 1: 시작상태 q₀에서 숫자 1을 읽으면 전이가 ∅이므로 더 이상 진행할 수 없다. 첫 글자가 숫자인 123은 인식할 수 없으므로 정답이다.
+      선택지 2: q₀에서 a를 읽어 q₁로 가고, q₁에서 b, c를 읽어도 q₁에 머문다. 끝난 상태 q₁이 종료상태이므로 인식된다.
+      선택지 3: q₀에서 a를 읽어 q₁로 간 뒤, q₁에서는 영문자와 숫자 모두 q₁로 가므로 b, 1, 2, 3을 읽어도 q₁에 머문다. 인식된다.
+      선택지 4: 첫 글자 k가 영문자이므로 q₁로 가고 나머지 영문자도 q₁에 머물러 인식된다.
+
+      핵심 개념:
+      M = (Q, Σ, δ, q0, q1)에서 q0는 시작상태, 마지막 q1은 종료상태이다.
+      q₀에서는 영문자만 q₁로 가고 숫자는 ∅(전이 없음)이다.
+      q₁에서는 영문자와 숫자 모두 q₁로 간다.
+      따라서 이 오토마타는 영문자로 시작하고 영문자·숫자가 이어지는 식별자를 인식한다.
+    tags: [finite-automata, identifier]
+
+  - id: l03-02
+    type: multiple-choice
+    passageRefs: [gl03-nfa-bab-intro-01, gl03-nfa-bab-01]
+    prompt: ε-closure(0)을 구하라.
+    choices:
+      - { id: '1', text: '0,1' }
+      - { id: '2', text: '0,1,2,4' }
+      - { id: '3', text: '0,1,2,4,7' }
+      - { id: '4', text: '0,1,2,4,7,8' }
+    answers: ['3']
+    explanation: |
+      선택지 1: 1에서 ε으로 2와 4에 갈 수 있고, 0에서 ε으로 7에도 직접 갈 수 있으므로 빠진 상태가 있다.
+      선택지 2: 0에서 아래쪽 ε 간선으로 7에 직접 갈 수 있으므로 7이 빠졌다.
+      선택지 3: 0에서 ε으로 1과 7에, 1에서 ε으로 2와 4에 갈 수 있다. 2, 4, 7에서 나가는 간선은 모두 입력기호(a, b)이므로 더 늘어나지 않는다. 자기 자신을 포함해 ε-closure(0) = {0, 1, 2, 4, 7}이므로 정답이다.
+      선택지 4: 7에서 8로 가려면 입력기호 b를 읽어야 하므로 8은 ε-전이만으로 도달할 수 없다.
+
+      핵심 개념:
+      ε-closure(s)는 s에서 ε-전이만으로 도달할 수 있는 모든 상태의 집합이며 s 자신을 포함한다.
+      ε-전이를 여러 번 연속으로 따라가는 경로도 모두 포함한다.
+      입력기호가 붙은 간선은 ε-closure 계산에서 따라가지 않는다.
+      NFA를 DFA로 바꿀 때 ε-closure(시작상태)가 DFA의 시작상태가 된다.
+    tags: [nfa, epsilon-closure]
+
+  - id: l03-03
+    type: multiple-choice
+    passageRefs: [gl03-nfa-bab-intro-01, gl03-nfa-bab-01]
+    prompt: ε-closure(0)을 상태 A라 하자. 그러면  입력기호 a에 의한 다음 상태는?
+    choices:
+      - { id: '1', text: 'ε-closure(1)' }
+      - { id: '2', text: 'ε-closure(2)' }
+      - { id: '3', text: 'ε-closure(3)' }
+      - { id: '4', text: 'ε-closure(4)' }
+    answers: ['3']
+    explanation: |
+      선택지 1: 1로 들어오는 간선은 0과 6에서 오는 ε 간선뿐이므로 a를 읽어 도달하는 상태가 아니다.
+      선택지 2: 2는 a를 읽기 전의 상태로, 1에서 ε으로 도달한다. a를 읽은 뒤의 상태가 아니다.
+      선택지 3: A = {0, 1, 2, 4, 7}에서 입력기호 a로 전이되는 것은 2번에서 3번으로 가는 것뿐이다. 따라서 move(A, a) = {3}이고 다음 상태는 ε-closure(3)이므로 정답이다.
+      선택지 4: 4는 1에서 ε으로 도달하는 상태이며, 4에서는 a가 아니라 b로 5에 간다.
+
+      핵심 개념:
+      DFA 상태 T에서 입력 a에 의한 다음 상태는 ε-closure(move(T, a))이다.
+      move(T, a)는 T의 각 상태에서 a로 한 번 전이한 상태들의 집합이다.
+      A = {0, 1, 2, 4, 7}에서 a 간선이 나가는 상태는 2뿐이므로 move(A, a) = {3}이다.
+      부분집합 구성(subset construction)은 이 과정을 새 상태가 나오지 않을 때까지 반복한다.
+    tags: [nfa, epsilon-closure, subset-construction]
+
+  - id: l03-04
+    type: multiple-choice
+    passageRefs: [gl03-nfa-bab-intro-01, gl03-nfa-bab-01]
+    prompt: ε-closure(0)을 상태 A 라 하자. 상태 A 에서  입력기호 b 에 의한 다음 상태는?
+    choices:
+      - { id: '1', text: 'ε-closure(5,7)' }
+      - { id: '2', text: 'ε-closure(5,8)' }
+      - { id: '3', text: 'ε-closure(5,9)' }
+      - { id: '4', text: 'ε-closure(5,10)' }
+    answers: ['2']
+    explanation: |
+      선택지 1: 7은 A에 이미 속한 상태이며 b를 읽어 도달하는 상태가 아니다. 7에서 b를 읽으면 8로 간다.
+      선택지 2: A = {0, 1, 2, 4, 7}에서 입력기호 b로 전이되는 것은 4번에서 5번, 7번에서 8번이다. 따라서 move(A, b) = {5, 8}이고 다음 상태는 ε-closure(5,8)이므로 정답이다.
+      선택지 3: 9는 8에서 a를 읽어 도달하는 상태이고, 8은 A에 속하지 않으므로 고려하지 않는다.
+      선택지 4: 10은 9에서 b를 읽어 도달하는 상태인데, 9는 A에 속하지 않는다.
+
+      핵심 개념:
+      move(A, b)는 A에 속한 상태 중 b 간선이 나가는 상태의 목적지만 모은다.
+      A = {0, 1, 2, 4, 7}에서 b 간선이 나가는 상태는 4와 7이다.
+      따라서 move(A, b) = {5, 8}이고, 다음 DFA 상태는 ε-closure({5, 8})이다.
+      A에 속하지 않는 상태의 전이는 고려하지 않는다.
+    tags: [nfa, epsilon-closure, subset-construction]
+
+  - id: l03-05
+    type: multiple-choice
+    passageRefs: [gl03-nfa-q01-01, gl03-nfa-q01-table-01, gl03-dfa-q01-intro-01, gl03-dfa-q01-table-01]
+    prompt: 다음은 NFA를 DFA로 변환하는 과정이다. 빈칸 ‘가’에 알맞은 것은?
+    choices:
+      - { id: '1', text: 'ϕ' }
+      - { id: '2', text: '[q₀]' }
+      - { id: '3', text: '[q₁]' }
+      - { id: '4', text: '[q₀, q₁]' }
+    answers: ['4']
+    explanation: |
+      선택지 1: δ(q₁, 1)은 공집합이 아니라 {q₀, q₁}이므로 ϕ가 아니다. 공집합이 되는 것은 δ(q₁, 0)이다.
+      선택지 2: [q₀]는 q₀에서 1을 읽었을 때의 결과 δ(q₀, 1) = {q₀}에 해당한다.
+      선택지 3: q₁에서 1을 읽으면 q₁만이 아니라 q₀에도 갈 수 있으므로 [q₁]은 부족하다.
+      선택지 4: ‘가’는 δ'([q₁], 1)이다. NFA의 δ함수표에서 q₁에서 1을 보면 {q₀, q₁}이므로 δ'함수표에서도 [q₀, q₁]이 된다. 정답이다.
+
+      핵심 개념:
+      NFA를 DFA로 바꿀 때 DFA의 상태는 NFA 상태들의 집합 $[q_i, \ldots, q_j]$로 나타낸다.
+      $\delta'([q_i, \ldots, q_j], a)$는 집합에 속한 각 상태의 δ(q, a)를 모두 합집합한 것이다.
+      상태가 하나인 [q₁]은 δ(q₁, a)를 그대로 옮기면 된다.
+      종료상태 q₁을 포함하는 DFA 상태([q₁], [q₀, q₁])가 DFA의 종료상태가 된다.
+    tags: [nfa, dfa, subset-construction]
+
+  - id: l03-06
+    type: multiple-choice
+    passageRefs: [gl03-nfa-q01-01, gl03-nfa-q01-table-01, gl03-dfa-q01-intro-01, gl03-dfa-q01-table-01]
+    prompt: 다음은 NFA를 DFA로 변환하는 과정이다. 빈칸 ‘나’에 알맞은 것은?
+    choices:
+      - { id: '1', text: 'ϕ' }
+      - { id: '2', text: '[q₀]' }
+      - { id: '3', text: '[q₁]' }
+      - { id: '4', text: '[q₀, q₁]' }
+    answers: ['4']
+    explanation: |
+      선택지 1: δ(q₁, 0)은 Φ이지만 δ(q₀, 0) = {q₀, q₁}과 합집합을 하므로 결과가 공집합이 되지 않는다.
+      선택지 2: q₀에서 0을 읽으면 q₀뿐 아니라 q₁에도 갈 수 있으므로 [q₀]는 부족하다.
+      선택지 3: q₀에서 0을 읽어 q₀에도 갈 수 있으므로 [q₁]만으로는 부족하다.
+      선택지 4: ‘나’는 δ'([q₀, q₁], 0) = δ(q₀, 0) ∪ δ(q₁, 0) = {q₀, q₁} ∪ Φ = {q₀, q₁}이다. 따라서 δ'함수표에서도 [q₀, q₁]이 되므로 정답이다.
+
+      핵심 개념:
+      여러 NFA 상태로 이루어진 DFA 상태의 전이는 각 상태의 전이 결과를 합집합해 구한다.
+      δ'([q₀, q₁], a) = δ(q₀, a) ∪ δ(q₁, a)이다.
+      공집합(Φ)과의 합집합은 다른 쪽 집합 그대로이다.
+      이렇게 새로 나온 상태 집합이 없어질 때까지 표를 채우면 DFA가 완성된다.
+    tags: [nfa, dfa, subset-construction]
+
+  - id: l04-01
+    type: multiple-choice
+    passageRefs: [gl04-dfa-s012-01, gl04-dfa-pascal-01]
+    prompt: |
+      다음은 오토마타를 구현한 파스칼 프로그램의 일부이다.
+      프로그램의 진행으로 보아서 전이함수표가 작성되는 곳은?
+    choices:
+      - { id: '1', text: 'delta' }
+      - { id: '2', text: 'deltabar' }
+      - { id: '3', text: 'accept' }
+      - { id: '4', text: 'initialize' }
+    answers: ['4']
+    explanation: |
+      선택지 1: delta는 상태 s와 입력기호 c를 받아 다음 상태를 돌려주는 전이함수로, 이미 만들어진 전이함수표를 참조하는 쪽이다.
+      선택지 2: deltabar는 상태에서 입력 문자열 전체를 읽어 도달하는 상태를 계산하는 확장 전이함수로, delta를 반복 적용한다.
+      선택지 3: accept는 deltabar(s0)의 결과가 종료상태 집합 finalstate에 속하는지 판단한다.
+      선택지 4: 주 프로그램은 가장 먼저 initialize를 호출한다. 이후 accept → deltabar → delta 순으로 전이함수표를 사용하므로, 그보다 앞서 실행되는 initialize에서 전이함수표를 만들어야 한다. 정답이다.
+
+      핵심 개념:
+      DFA 프로그램은 초기화 → 입력 처리 → 인식 여부 출력 순서로 진행된다.
+      initialize: 전이함수표 등 자료를 초기화한다.
+      delta(s, c): 한 기호에 대한 전이, deltabar(s): 입력 문자열 전체에 대한 전이이다.
+      accept: 최종 상태가 finalstate에 속하면 accepted, 아니면 rejected를 출력하게 한다.
+    tags: [dfa, lexical-analyzer-implementation]
+
+  - id: l04-02
+    type: multiple-choice
+    passageRefs: [gl04-dfa-s012-01, gl04-dfa-pascal-01]
+    prompt: 문제1번의 오토마타를 볼 때 밑줄친 finalstate 의 값은?
+    choices:
+      - { id: '1', text: 'S0' }
+      - { id: '2', text: 'S1' }
+      - { id: '3', text: 'S2' }
+      - { id: '4', text: 'S0, S2' }
+    answers: ['3']
+    explanation: |
+      선택지 1: S0는 start 화살표가 가리키는 시작상태이며 종료상태가 아니다.
+      선택지 2: S1은 이중 원으로 표시되지 않았으므로 종료상태가 아니다.
+      선택지 3: 상태전이도에서 이중 원으로 표시된 S2가 종료상태이므로 finalstate의 값은 S2이다. 정답이다.
+      선택지 4: S0는 종료상태가 아니므로 finalstate에 포함되지 않는다.
+
+      핵심 개념:
+      상태전이도에서 시작상태는 start 화살표로, 종료상태는 이중 원으로 표시한다.
+      finalstate는 종료상태의 집합 F이다.
+      accept := deltabar(s0) in finalstate는 시작상태에서 입력을 모두 읽은 상태가 F에 속하는지 검사한다.
+      시작상태가 종료상태를 겸할 수도 있지만 이 오토마타에서는 그렇지 않다.
+    tags: [dfa, finite-automata]
+
+  - id: l04-03
+    type: multiple-choice
+    passageRefs: [gl04-dfa-min-01]
+    prompt: |
+      다음은 DFA의 상태수를  최소화하는 과정이다.
+      다음의 함수전이표에서 동치류가 같지 않은 것은?
+    choices:
+      - { id: '1', text: 'B' }
+      - { id: '2', text: 'C' }
+      - { id: '3', text: 'D' }
+      - { id: '4', text: 'E' }
+    answers: ['3']
+    explanation: |
+      선택지 1: B는 a에 대해 B, b에 대해 D로 간다. 첫 분할 단계에서 B와 D는 모두 미종료상태 동치류에 속하므로 B는 A, C와 같은 패턴을 보인다. ※ 참고
+      선택지 2: C는 a에 대해 B, b에 대해 C로 가며, 두 전이 모두 미종료상태 동치류 안에 머무르므로 A와 같은 패턴이다.
+      선택지 3: D는 b에 대해 종료상태 E로 간다. 미종료상태 동치류 {A, B, C, D} 안에서 D만 다른 동치류로 전이하므로 {A, B, C}와 갈라진다. 정답이다.
+      선택지 4: E는 종료상태로서 처음부터 미종료상태와 나뉜 동치류 {E}에 속한다. 미종료상태 동치류 안에서 분할을 따지는 대상이 아니다. ※ 참고
+
+      핵심 개념:
+      DFA 최소화는 먼저 종료상태 {E}와 미종료상태 {A, B, C, D} 두 동치류로 나눈다.
+      같은 동치류의 상태가 어떤 입력에 대해 서로 다른 동치류로 가면 분할한다.
+      D는 b로 E(종료상태 동치류)에 가므로 {A, B, C}와 {D}로 나뉜다.
+      이후 B가 b로 D에 가므로 다시 {A, C}와 {B}로 나뉘어 최종 동치류는 {A, C}, {B}, {D}, {E}이다.
+
+      ※ 발문에 종료상태가 명시되어 있지 않으며, LMS 해설("D는 종료상태 E를 포함하고 있어서 다르다")에 따라 E를 종료상태로 본다.
+      ※ E는 종료상태라 처음부터 별도 동치류 {E}이므로 글자 그대로는 E도 "동치류가 같지 않은 것"에 해당하지만, 인쇄 정답은 미종료상태 동치류 안에서 첫 분할 때 갈라지는 D이므로 이를 유지한다.
+      ※ 분할을 끝까지 하면 B도 {A, C}와 다른 동치류가 되지만, 인쇄 정답은 첫 분할에서 갈라지는 D이므로 이를 유지한다.
+    tags: [dfa-minimization, equivalence-class]
+
+  - id: l04-04
+    type: multiple-choice
+    passageRefs: [gl04-dfa-min-01, gl04-dfa-min-class-01]
+    prompt: 다음은 DFA의 상태수를 최소화하는 과정이다. 동치류를 표현한 두 번째 표에서 빈칸에 알맞은 것은?
+    choices:
+      - { id: '1', text: '1 1' }
+      - { id: '2', text: '1 2' }
+      - { id: '3', text: '2 1' }
+      - { id: '4', text: '2 2' }
+    answers: ['2']
+    explanation: |
+      선택지 1: D는 b에 대해 E로 가고 E는 동치류 2에 속하므로 D 칸이 1일 수 없다.
+      선택지 2: 빈칸은 입력 b에 대한 C와 D의 칸이다. C는 b에 의해 C로 가므로 동치류 1이고, D는 b에 의해 종료상태 E로 가므로 동치류 2이다. 따라서 1 2가 정답이다.
+      선택지 3: C는 b에 의해 자기 자신 C(동치류 1)로 가므로 C 칸이 2일 수 없고, D 칸도 1이 아니다.
+      선택지 4: C는 b에 의해 동치류 1인 C로 가므로 C 칸이 2일 수 없다.
+
+      핵심 개념:
+      동치류 표의 각 칸에는 그 상태가 입력을 읽고 도착한 상태가 속한 동치류 번호를 적는다.
+      처음 동치류는 미종료상태 1 = {A, B, C, D}, 종료상태 2 = {E}이다.
+      같은 동치류 안에서 번호 패턴이 다른 상태는 분할한다.
+      b 행에서 D만 2가 나오므로 동치류 1은 {A, B, C}와 {D}로 나뉜다.
+    tags: [dfa-minimization, equivalence-class]
+
+  - id: l04-05
+    type: multiple-choice
+    passageRefs: [gl04-fa-abd-intro-01, gl04-fa-abd-01]
+    prompt: 유한 오토마타를 보고 정규문법으로 바꾼 내용들이다. 틀린 것은?
+    choices:
+      - { id: '1', text: 'A → aA | bA' }
+      - { id: '2', text: 'A → aB' }
+      - { id: '3', text: 'B → bD' }
+      - { id: '4', text: 'D → εD' }
+    answers: ['4']
+    explanation: |
+      선택지 1: A에서 a 또는 b를 읽으면 다시 A로 가는 자기 자신 간선이 있으므로 A → aA | bA는 맞다.
+      선택지 2: A에서 a를 읽으면 B로 가므로 A → aB는 맞다.
+      선택지 3: B에서 b를 읽으면 D로 가므로 B → bD는 맞다.
+      선택지 4: D는 종료상태이고 D에서 나가는 간선이 없으므로 D → ε 규칙을 추가해야 한다. D → εD는 D에서 끝없이 D를 만들어 유도를 끝낼 수 없으므로 틀린 규칙이고 정답이다.
+
+      핵심 개념:
+      유한 오토마타 → 정규문법: 전이 δ(A, t) = B를 생성규칙 A → tB로 바꾼다.
+      종료상태 F에는 F → ε 규칙을 추가한다.
+      상태는 논터미널, 입력기호는 터미널, 시작상태는 시작기호가 된다.
+      이 오토마타의 정규문법은 A → aA | bA | aB, B → bD, D → ε이다.
+    tags: [finite-automata, regular-grammar]
+
+  - id: l04-06
+    type: multiple-choice
+    passageRefs: [gl04-fa-abd-intro-01, gl04-fa-abd-01]
+    prompt: 정규표현으로 표현한 것은?
+    choices:
+      - { id: '1', text: '(a+b)*ab' }
+      - { id: '2', text: '(a+a)*ab' }
+      - { id: '3', text: '(a*+b*)ab' }
+      - { id: '4', text: 'a(a+b)*b' }
+    answers: ['1']
+    explanation: |
+      선택지 1: A에서 a|b 자기 자신 간선으로 a, b를 임의로 반복한 뒤 a로 B, b로 종료상태 D에 간다. 따라서 (a+b)*ab이고 정답이다.
+      선택지 2: (a+a)*는 a*와 같으므로 a*ab가 되어 앞부분에 b가 들어간 bab 같은 문자열을 나타내지 못한다.
+      선택지 3: (a*+b*)는 a만 반복하거나 b만 반복한 것 중 하나이므로 abab처럼 a와 b가 섞인 앞부분을 나타내지 못한다.
+      선택지 4: a(a+b)*b는 a로 시작해 b로 끝나는 모든 문자열로, abb처럼 ab로 끝나지 않는 문자열도 포함하고 bab처럼 b로 시작하는 문자열은 포함하지 않는다.
+
+      핵심 개념:
+      정규문법 A → aA | bA | aB, B → bD, D → ε을 정규표현 방정식으로 풀 수 있다.
+      D = ε, B = bD = b, A = aA + bA + aB = (a + b)A + ab이다.
+      X = αX + β의 해는 X = α*β이므로 A = (a+b)*ab이다.
+      이 오토마타는 a, b로 이루어지고 ab로 끝나는 문자열을 인식한다.
+    tags: [finite-automata, regular-expression, regular-equation]
+
+  - id: l05-01
+    type: multiple-choice
+    prompt: 토큰을 종류별로 구분했을 때이다. 관계없는 것은?
+    choices:
+      - { id: '1', text: '식별자' }
+      - { id: '2', text: '예약어' }
+      - { id: '3', text: '피연산자' }
+      - { id: '4', text: '구분자' }
+    answers: ['3']
+    explanation: |
+      선택지 1: 식별자는 SUM, A처럼 프로그래머가 정의하는 이름으로 토큰의 한 종류다.
+      선택지 2: 예약어는 DO, IF, WHILE처럼 언어에 미리 정의된 지정어로 토큰의 한 종류다.
+      선택지 3: 피연산자는 연산의 대상이 되는 값을 가리키는 말로, 어휘분석에서 토큰을 구분하는 종류가 아니다. 피연산자로 쓰이는 값은 식별자나 상수 토큰으로 분류된다. 정답이다.
+      선택지 4: 구분자는 (, ;처럼 단어와 단어를 구분하는 기호로 토큰의 한 종류다.
+
+      핵심 개념:
+      토큰은 문법적으로 의미를 갖는 최소 단위이다.
+      토큰의 종류는 식별자, 상수, 연산자, 예약어, 구분자의 5가지이다.
+      어휘분석기는 원시 프로그램의 문자열을 읽어 이 5종류의 토큰으로 나눈다.
+      연산자와 피연산자처럼 비슷한 용어를 구분해 둔다.
+    tags: [token]
+
+  - id: l05-02
+    type: multiple-choice
+    prompt: 다음은 토큰에 대한 설명이다. 옳지 않은 것은?
+    choices:
+      - { id: '1', text: '식별자 : SUM, A, B와 같은 일반적으로 프로그래머가 정의하는 변수들' }
+      - { id: '2', text: "상수 : 1, 2, 3, 'abc'와 같이 정수형 상수, 실수형 상수, 문자형 상수들" }
+      - { id: '3', text: '구분자 : (, [, ;, :, , 등과 같이 단어와 단어를 구분하기 위해 사용되는 기호들' }
+      - { id: '4', text: '연산자 : DO, IF, WHILE 등과 같이 언어 구현시 이미 정의되는 지정어' }
+    answers: ['4']
+    explanation: |
+      선택지 1: 식별자는 SUM, A, B처럼 프로그래머가 이름을 붙여 정의하는 변수 등이므로 옳은 설명이다.
+      선택지 2: 상수는 1, 2, 3 같은 정수형·실수형 상수와 'abc' 같은 문자형 상수이므로 옳은 설명이다.
+      선택지 3: 구분자는 괄호, 세미콜론, 콜론, 쉼표처럼 단어와 단어를 구분하는 기호이므로 옳은 설명이다.
+      선택지 4: DO, IF, WHILE처럼 언어 구현 시 이미 정의되어 있는 지정어는 예약어이다. 연산자는 +, -, *, :=처럼 연산을 나타내는 기호이므로 옳지 않은 설명이고 정답이다.
+
+      핵심 개념:
+      식별자: 프로그래머가 정의하는 이름(변수, 함수 이름 등).
+      상수: 정수형, 실수형, 문자형 등 값 자체.
+      연산자: +, -, *, / 등 연산 기호, 예약어: DO, IF, WHILE 등 미리 정의된 지정어.
+      구분자: (, [, ;, :, , 등 단어를 구분하는 기호.
+    tags: [token]
+
+  - id: l05-03
+    type: multiple-choice
+    prompt: 다음은 어휘분석기를 설계하는 과정이다. 틀린 것은?
+    choices:
+      - { id: '1', text: '정규문법이 주어지고 정규표현으로 표시한다. 그리고 주어진 문법에 대한 기호표를 작성한다.' }
+      - { id: '2', text: '5 종류의 토큰들 중에서 어느 것이 사용되는가를 조사하여 토큰표를 작성한다. 토큰표에는 토큰이름, 토큰번호, 토큰값을 표시한다.' }
+      - { id: '3', text: '문법을 보고 NFA 를 구성하고 이를 다시 DFA 변환한 후 최소화 한다.' }
+      - { id: '4', text: '예약어표 검색은 상태전이도로 구현하거나, 표를 만들어 저장한 다음 검색하도록 한다.' }
+    answers: ['1']
+    explanation: |
+      선택지 1: 정규문법이 주어지고 정규표현으로 표시한 다음에는 주어진 문법에 대한 토큰표를 작성해야 한다. 기호표는 설계 단계가 아니라 실제 분석 과정에서 식별자 등의 정보를 저장할 때 쓰는 자료구조이므로 틀린 설명이고 정답이다.
+      선택지 2: 5종류의 토큰 중 사용되는 것을 조사해 토큰이름, 토큰번호, 토큰값을 적은 토큰표를 작성하므로 옳은 설명이다.
+      선택지 3: 문법으로부터 NFA를 구성하고, 이를 DFA로 변환한 뒤 상태수를 최소화하므로 옳은 설명이다.
+      선택지 4: 예약어는 상태전이도에 포함해 인식하거나, 식별자로 인식한 뒤 예약어표를 만들어 두고 검색하는 방법으로 처리하므로 옳은 설명이다.
+
+      핵심 개념:
+      어휘분석기 설계 순서: 정규문법/정규표현 → 토큰표 작성 → NFA 구성 → DFA 변환·최소화 → 프로그램 작성.
+      토큰표에는 토큰이름, 토큰번호, 토큰값을 표시한다.
+      토큰표는 설계 단계, 기호표는 실제 분석 과정에서 식별자 정보를 저장할 때 사용한다.
+      예약어는 상태전이도로 구현하거나 예약어표를 검색하는 방법으로 구분한다.
+    tags: [lexical-analyzer-design, token-table]
+
+  - id: l05-04
+    type: multiple-choice
+    prompt: 다음은 어휘분석에 대한 설명이다. 옳지 않은 것은?
+    choices:
+      - { id: '1', text: '토큰은 식별자, 상수, 연산자, 예약어, 구분자로 구성된다.' }
+      - { id: '2', text: '토큰은 토큰번호(token number)와 토큰값(token value)의 순서쌍으로 표현되며 토큰들은 문법에 상관없이 항상 사용되므로 토큰 값을 미리 정해 놓아야 한다.' }
+      - { id: '3', text: '어휘분석기 생성기는  컴파일러 생성기(compiler generator)  또는 컴파일러-컴파일러(compiler compiler)의 일부분으로서 어휘분석기를 자동으로 생성하는 도구이다.' }
+      - { id: '4', text: 'LEX는 1975년 Bell 연구소의 Lesk와 Schmidt에 의해서 개발되었다. Lex는 사용자가 정의한 정규표현과 수행코드를 입력으로 받아, 일반 범용언어인 C로 쓰여진 프로그램을 출력한다.' }
+    answers: ['2']
+    explanation: |
+      선택지 1: 토큰은 식별자, 상수, 연산자, 예약어, 구분자의 5종류로 구성되므로 옳은 설명이다.
+      선택지 2: 토큰이 토큰번호와 토큰값의 순서쌍으로 표현되는 것은 맞지만, 식별자와 상수의 토큰값은 원시 프로그램을 분석해야 정해지므로 미리 가지고 있을 수 없다. 또 어떤 토큰이 쓰이는지는 문법에 따라 달라진다. 옳지 않은 설명이고 정답이다.
+      선택지 3: 어휘분석기 생성기는 컴파일러 생성기(컴파일러-컴파일러)의 일부로서 어휘분석기를 자동으로 만들어 주는 도구이므로 옳은 설명이다.
+      선택지 4: LEX는 1975년 Bell 연구소의 Lesk와 Schmidt가 개발했으며, 정규표현과 수행코드를 입력받아 C 프로그램(lex.yy.c)을 출력하므로 옳은 설명이다.
+
+      핵심 개념:
+      토큰은 (토큰번호, 토큰값)의 순서쌍으로 표현한다.
+      예약어·연산자·구분자는 토큰번호만으로 구분되지만, 식별자와 상수는 토큰값(기호표 위치나 값)이 분석 중에 정해진다.
+      어휘분석기 생성기는 정규표현으로 기술한 토큰 정의로부터 어휘분석기를 자동으로 만든다.
+      LEX는 대표적인 어휘분석기 생성기로 C 코드를 출력한다.
+    tags: [token, lexical-analysis, lex]
+
+  - id: l05-05
+    type: multiple-choice
+    prompt: 다음 중 어휘분석기 생성기가 아닌 것은?
+    choices:
+      - { id: '1', text: 'Lex' }
+      - { id: '2', text: 'Scan gen' }
+      - { id: '3', text: 'YACC' }
+      - { id: '4', text: 'Flex' }
+    answers: ['3']
+    explanation: |
+      선택지 1: Lex는 정규표현으로 정의한 토큰으로부터 어휘분석기를 만드는 대표적인 어휘분석기 생성기다.
+      선택지 2: Scan gen은 스캐너(어휘분석기)를 생성하는 도구로 어휘분석기 생성기에 속한다.
+      선택지 3: YACC는 문법 규칙으로부터 LALR 구문분석기를 만드는 구문분석기 생성기이므로 어휘분석기 생성기가 아니다. 정답이다.
+      선택지 4: Flex는 Lex를 개선한 빠른 어휘분석기 생성기다.
+
+      핵심 개념:
+      어휘분석기 생성기: Lex, Scan gen, Flex.
+      구문분석기 생성기: YACC, LALRGEN, Bison.
+      어휘분석기 생성기는 정규표현, 구문분석기 생성기는 context-free 문법을 입력으로 받는다.
+      Lex와 YACC는 함께 사용해 어휘분석기와 구문분석기를 각각 만든다.
+    tags: [lex, yacc]
+
+  - id: l06-01
+    type: multiple-choice
+    passageRefs: [gl06-grammar-aas-intro-01, gl06-grammar-aas-01, gl06-deriv-aaaa-01]
+    prompt: 다음은 aaaa를 좌단유도하는 과정이다. 빈 칸에 알맞은 것은?
+    choices:
+      - { id: '1', text: 'aAa' }
+      - { id: '2', text: 'aaSS' }
+      - { id: '3', text: 'aSSa' }
+      - { id: '4', text: 'aSSS' }
+    answers: ['4']
+    explanation: |
+      선택지 1: aAa는 aAS에서 오른쪽 S를 먼저 a로 바꾼 문장형으로, 우단유도 과정에 나타난다.
+      선택지 2: aaSS는 aSSS에서 가장 왼쪽 S를 a로 바꾼 문장형으로, 좌단유도의 세 번째 단계이지 빈 칸(두 번째 단계)이 아니다.
+      선택지 3: aSSa는 우단유도에서 aAa의 A에 A → SS를 적용한 문장형이다.
+      선택지 4: aAS에서 가장 왼쪽 논터미널 A에 A → SS를 적용하면 aSSS가 된다. 이어서 S ⇒ a를 왼쪽부터 세 번 적용하면 aSSS ⇒ aaSS ⇒ aaaS ⇒ aaaa이므로 정답이다.
+
+      핵심 개념:
+      좌단유도는 매 단계에서 가장 왼쪽 논터미널을 대치하는 유도이다.
+      aaaa의 좌단유도는 S ⇒ aAS ⇒ aSSS ⇒ aaSS ⇒ aaaS ⇒ aaaa이다.
+      A → SbA나 A → b를 쓰면 b가 생기므로 aaaa를 만들려면 A → SS를 적용해야 한다.
+      좌단유도에 적용된 생성규칙 순서를 좌파스(left parse)라고 한다.
+    tags: [leftmost-derivation]
+
+  - id: l06-02
+    type: multiple-choice
+    passageRefs: [gl06-grammar-aas-intro-01, gl06-grammar-aas-01, gl06-deriv-aaaa-01]
+    prompt: 다음은 aaaa 를 우단유도하는 과정이다. 빈 칸에 알맞은 것은?
+    choices:
+      - { id: '1', text: 'aAa' }
+      - { id: '2', text: 'aaSS' }
+      - { id: '3', text: 'aSSa' }
+      - { id: '4', text: 'aSSS' }
+    answers: ['1']
+    explanation: |
+      선택지 1: aAS에서 가장 오른쪽 논터미널 S에 S → a를 적용하면 aAa가 된다. 이어서 aAa ⇒ aSSa ⇒ aSaa ⇒ aaaa로 유도되므로 정답이다.
+      선택지 2: aaSS는 좌단유도에서 aSSS의 가장 왼쪽 S를 먼저 바꾼 문장형이다.
+      선택지 3: aSSa는 aAa의 A에 A → SS를 적용한 우단유도의 세 번째 단계이지 빈 칸(두 번째 단계)이 아니다.
+      선택지 4: aSSS는 aAS에서 가장 왼쪽 A를 먼저 대치한 좌단유도의 문장형이다.
+
+      핵심 개념:
+      우단유도는 매 단계에서 가장 오른쪽 논터미널을 대치하는 유도이다.
+      aaaa의 우단유도는 S ⇒ aAS ⇒ aAa ⇒ aSSa ⇒ aSaa ⇒ aaaa이다.
+      같은 문장이라도 좌단유도와 우단유도의 중간 문장형은 서로 다르다.
+      우단유도를 거꾸로 따라가는 것이 bottom-up 구문분석의 과정이다.
+    tags: [rightmost-derivation]
+
+  - id: l06-03
+    type: multiple-choice
+    passageRefs: [gl06-ambiguous-01]
+    prompt: |
+      다음의 문법을 보고 답하라.
+
+      위 문법의 특성은?
+    choices:
+      - { id: '1', text: '모호하다.' }
+      - { id: '2', text: '정규 문법이다.' }
+      - { id: '3', text: '유일한 유도트리를 생성한다.' }
+      - { id: '4', text: '단일 생성 규칙을 갖는다.' }
+    answers: ['1']
+    explanation: |
+      선택지 1: id + id * id를 우단유도하면 E ⇒ E + E ⇒ E + E * E ⇒ E + E * id ⇒ E + id * id ⇒ id + id * id와 E ⇒ E * E ⇒ E * id ⇒ E + E * id ⇒ E + id * id ⇒ id + id * id의 두 가지가 가능하다. 서로 다른 유도트리가 생기므로 모호한 문법이고 정답이다.
+      선택지 2: 정규문법은 A → tB, A → t 꼴만 허용하는데, E → E + E는 오른쪽에 논터미널이 두 개 있으므로 정규문법이 아니다.
+      선택지 3: 같은 문장에 대해 두 개의 유도트리가 생기므로 유일한 유도트리를 생성하지 않는다.
+      선택지 4: 단일 생성규칙은 A → B처럼 오른쪽이 논터미널 하나뿐인 규칙이다. id를 토큰(터미널)으로 보면 이 문법에는 그런 규칙이 없다. ※ 참고
+
+      핵심 개념:
+      모호성은 한 문장에 대해 유도트리가 두 개 이상 존재하는 성질이다.
+      E → E + E | E * E | id는 연산자 우선순위와 결합법칙이 정해져 있지 않아 모호하다.
+      같은 우단유도라도 처음에 E + E를 쓰느냐 E * E를 쓰느냐에 따라 트리가 달라진다.
+      연산자 우선순위와 결합법칙을 문법에 반영하면 모호성을 제거할 수 있다.
+
+      ※ 지문에 id → 숫자 규칙이 있어 id를 논터미널로 보면 E → id는 A → B 꼴의 단일 생성규칙이 된다. 인쇄 정답은 모호성을 묻는 "모호하다." 선택지이며 이를 유지한다.
+    tags: [ambiguity, unit-production]
+
+  - id: l06-04
+    type: multiple-choice
+    passageRefs: [gl06-eps-free-01]
+    prompt: 다음 문법을 ε-free 문법으로 바꾸려 한다.  빈칸에 알맞지 않은 것은?
+    choices:
+      - { id: '1', text: 'ba' }
+      - { id: '2', text: 'SaS' }
+      - { id: '3', text: 'baS' }
+      - { id: '4', text: 'bSaS' }
+    answers: ['2']
+    explanation: |
+      선택지 1: bSaS의 두 S에 모두 ε을 대입하면 ba가 생성되므로 빈칸에 알맞다.
+      선택지 2: bSaS의 S에 ε을 대입해도 맨 앞의 터미널 b는 없어지지 않는다. 따라서 SaS는 생성되지 않으므로 알맞지 않은 것이고 정답이다.
+      선택지 3: bSaS의 첫 번째 S에 ε을 대입하면 baS가 생성되므로 빈칸에 알맞다.
+      선택지 4: ε을 대입하지 않은 원래 규칙 bSaS도 그대로 포함되므로 빈칸에 알맞다.
+
+      핵심 개념:
+      ε-free 문법은 시작기호 외에는 ε-생성규칙이 없는 문법이다.
+      S → ε가 있으면 오른쪽의 S 각각을 남기거나 지운 모든 경우의 규칙을 추가한다.
+      bSaS에서 두 S를 남기거나 지우면 bSaS, baS, bSa, ba의 4가지가 나온다.
+      시작기호가 ε을 생성해야 하므로 새 시작기호 S′를 두고 S′ → S | ε를 추가한다.
+    tags: [epsilon-production]
+
+  - id: l06-05
+    type: multiple-choice
+    passageRefs: [gl06-left-factoring-01]
+    prompt: 다음 문법과 관계없는 것은?
+    choices:
+      - { id: '1', text: '같은 기호들을 prefix로 갖는 2개 이상의 생성규칙이 존재한다.' }
+      - { id: '2', text: 'left-factoring을 해 주면 문제가 해결된다.' }
+      - { id: '3', text: '단일 생성규칙을 갖고 있다.' }
+      - { id: '4', text: 'backtracking 이 발생한다.' }
+    answers: ['3']
+    explanation: |
+      선택지 1: A → a와 A → ab는 같은 기호 a를 prefix(공통 접두사)로 가지므로 이 문법과 관계있다.
+      선택지 2: A → aA', A' → ε | b처럼 공통 접두사를 묶는 left-factoring을 하면 backtracking 문제가 해결되므로 관계있다.
+      선택지 3: 단일 생성규칙은 A → B처럼 오른쪽이 논터미널 하나뿐인 규칙인데, S → cAd와 A → a | ab에는 그런 규칙이 없다. 이 문법과 관계없으므로 정답이다.
+      선택지 4: cabd를 top-down으로 분석할 때 A → a를 먼저 적용하면 실패해 되돌아가 A → ab를 적용해야 하므로 backtracking이 발생한다. 관계있다.
+
+      핵심 개념:
+      top-down 구문분석에서 같은 prefix를 가진 규칙이 여럿이면 어느 규칙을 쓸지 몰라 backtracking이 생긴다.
+      left-factoring은 공통 접두사를 묶어 A → αβ₁ | αβ₂를 A → αA', A' → β₁ | β₂로 바꾼다.
+      이 문법의 left-factoring 결과는 S → cAd, A → aA', A' → ε | b이다.
+      단일 생성규칙 제거, ε-생성규칙 제거, left-factoring은 서로 다른 문법 변환이다.
+    tags: [left-factoring, backtracking]
+
+  - id: l06-06
+    type: multiple-choice
+    prompt: |
+      푸시다운 오토마타는 7개의 요소로 구성된다.
+      M = (Q, Σ, T, δ, $q_0$, $z_0$, F)
+      다음 설명 중 틀린 것은?
+    choices:
+      - { id: '1', text: 'Q : 상태들의 유한집합' }
+      - { id: '2', text: 'Σ : 입력기호들의 유한집합' }
+      - { id: '3', text: 'T : 스택기호들의 유한집합' }
+      - { id: '4', text: '$z_0$ : 시작상태' }
+    answers: ['4']
+    explanation: |
+      선택지 1: Q는 푸시다운 오토마타의 상태들의 유한집합이므로 옳은 설명이다.
+      선택지 2: Σ는 입력기호들의 유한집합이므로 옳은 설명이다.
+      선택지 3: T는 스택에 넣을 수 있는 스택기호들의 유한집합이므로 옳은 설명이다.
+      선택지 4: $z_0 \in T$는 시작상태가 아니라 스택의 시작기호이다. 시작상태는 $q_0 \in Q$이므로 틀린 설명이고 정답이다.
+
+      핵심 개념:
+      푸시다운 오토마타 $M = (Q, \Sigma, T, \delta, q_0, z_0, F)$의 요소는 7개이다.
+      $q_0$는 상태 집합 Q의 원소인 시작상태, $z_0$는 스택기호 집합 T의 원소인 스택 시작기호이다.
+      δ는 현재 상태, 입력기호, 스택 top 기호에 따라 다음 상태와 스택 내용을 정하는 전이함수이고, F는 종료상태의 집합이다.
+      푸시다운 오토마타는 context-free 언어를 인식한다.
+    tags: [pushdown-automata, context-free-language]
+
+  - id: l07-01
+    type: multiple-choice
+    prompt: 다음 설명 중 잘못 설명된 것은?
+    choices:
+      - { id: '1', text: 'Top-down 구문분석 방법은 backtracking 문제를 갖고 있다.' }
+      - { id: '2', text: 'Bottom-up 방법은 터미널 노드부터 시작하여 루트 노드로 반면에, Top-down 방법은 루트 노드로부터 터미널 노드를 향하여 파스트리를 만들어 나간다.' }
+      - { id: '3', text: 'Shift-reduce 구문분석은 Top-down 구문분석이다.' }
+      - { id: '4', text: 'backtracking을 방지하기 위하여  LL(k) 문법을 사용하게 되었다.' }
+    answers: ['3']
+    explanation: |
+      선택지 1: Top-down 구문분석은 적용할 생성규칙을 잘못 고르면 되돌아가 다른 규칙을 시도해야 하므로 backtracking 문제가 있다. 옳은 설명이다.
+      선택지 2: Bottom-up 방법은 터미널(단말) 노드에서 시작해 루트 쪽으로, Top-down 방법은 루트 노드에서 터미널 노드 쪽으로 파스트리를 만든다. 옳은 설명이다.
+      선택지 3: Shift-reduce 구문분석은 입력을 스택에 옮기고(shift) 핸들을 논터미널로 줄여(reduce) 시작기호까지 거슬러 올라가는 Bottom-up 구문분석이다. Top-down이라는 설명은 잘못되었으므로 정답이다.
+      선택지 4: LL(k) 문법은 입력을 k개 미리 보고 적용할 생성규칙을 하나로 결정할 수 있어 backtracking 없이 Top-down 구문분석을 할 수 있다. 옳은 설명이다.
+
+      핵심 개념:
+      Top-down 구문분석은 시작기호에서 출발해 좌단유도로 입력 문장을 만들어 가며, 파스트리를 루트에서 아래로 만든다.
+      Bottom-up 구문분석은 입력 문장에서 출발해 우단유도의 역순으로 시작기호까지 줄여 가며, 파스트리를 잎에서 위로 만든다.
+      Shift-reduce, 순위(precedence), LR(SLR, CLR, LALR) 구문분석은 Bottom-up 방식이다.
+      재귀 하강, 예측(LL) 구문분석은 Top-down 방식이다.
+    tags: [top-down-parsing, bottom-up-parsing, shift-reduce-parsing, backtracking]
+
+  - id: l07-02
+    type: multiple-choice
+    passageRefs: [gl07-sr-intro-01, gl07-sr-grammar-01, gl07-sr-trace-01]
+    prompt: 빈칸 ‘가’에 알맞은 것은?
+    choices:
+      - { id: '1', text: 'id' }
+      - { id: '2', text: 'E → id' }
+      - { id: '3', text: 'E → E * E' }
+      - { id: '4', text: 'E → E+E' }
+    answers: ['1']
+    explanation: |
+      선택지 1: 0단계에서 스택에는 \$만 있으므로 줄일 핸들이 없다. 입력의 첫 기호 id를 스택으로 옮겨야 1단계 스택이 \$id가 되므로 ‘가’는 id이고 정답이다.
+      선택지 2: E → id는 reduce 행동에 쓰는 생성규칙이다. 0단계 스택은 \$뿐이라 줄일 핸들 id가 없고, shift 뒤에는 생성규칙이 아니라 옮길 기호가 와야 한다.
+      선택지 3: E → E * E로 줄이려면 스택 top에 E*E가 있어야 하는데 0단계 스택은 \$뿐이다.
+      선택지 4: E → E+E로 줄이려면 스택 top에 E+E가 있어야 하는데 0단계 스택은 \$뿐이며, shift 뒤에는 생성규칙이 올 수 없다.
+
+      핵심 개념:
+      shift-reduce 구문분석은 스택과 입력 버퍼를 사용하며 처음 스택은 \$, 입력 끝에는 \$가 있다.
+      shift는 입력의 다음 기호를 스택에 넣는 행동이므로 shift 뒤에는 옮기는 기호(터미널)가 온다.
+      reduce는 스택 top의 핸들을 생성규칙의 왼쪽 논터미널로 바꾸는 행동이므로 reduce 뒤에는 생성규칙이 온다.
+      스택이 \$E(시작기호)이고 입력이 \$만 남으면 accept한다.
+    tags: [shift-reduce-parsing]
+
+  - id: l07-03
+    type: multiple-choice
+    passageRefs: [gl07-sr-intro-01, gl07-sr-grammar-01, gl07-sr-trace-01]
+    prompt: 빈칸 ‘나’에 알맞은 것은?
+    choices:
+      - { id: '1', text: 'id' }
+      - { id: '2', text: 'E → id' }
+      - { id: '3', text: 'E → E * E' }
+      - { id: '4', text: 'E → E+E' }
+    answers: ['2']
+    explanation: |
+      선택지 1: id는 shift할 때 옮기는 기호이며, reduce 뒤에는 적용할 생성규칙이 와야 한다.
+      선택지 2: 1단계 스택 \$id의 top에 있는 id가 핸들이므로 E → id로 줄이면 2단계 스택이 \$E가 된다. ‘나’는 E → id이고 정답이다.
+      선택지 3: E → E * E로 줄이려면 스택 top에 E*E가 있어야 하는데 1단계 스택에는 id만 있다.
+      선택지 4: E → E+E로 줄이려면 스택 top에 E+E가 있어야 하는데 1단계 스택에는 id만 있다.
+
+      핵심 개념:
+      핸들은 우단유도의 한 단계를 거꾸로 되돌릴 때 생성규칙의 오른쪽과 일치하는 부분 문자열이다.
+      스택 top에 핸들이 나타나면 reduce 행동으로 그 생성규칙의 왼쪽 논터미널로 바꾼다.
+      id*id+id를 분석할 때 id는 스택에 올라올 때마다 E → id로 줄어든다.
+      shift와 reduce를 반복해 스택이 \$E, 입력이 \$가 되면 분석이 끝난다.
+    tags: [shift-reduce-parsing, handle, reduce]
+
+  - id: l07-04
+    type: multiple-choice
+    passageRefs: [gl07-sr-intro-01, gl07-sr-grammar-01, gl07-sr-trace-01]
+    prompt: 빈칸 ‘다’에 알맞은 것은?
+    choices:
+      - { id: '1', text: 'id' }
+      - { id: '2', text: 'E → id' }
+      - { id: '3', text: 'E → E * E' }
+      - { id: '4', text: 'E → E+E' }
+    answers: ['4']
+    explanation: |
+      선택지 1: id는 shift할 때 옮기는 기호이며, reduce 뒤에는 적용할 생성규칙이 와야 한다.
+      선택지 2: 8단계 스택 \$E*E+E의 top에는 id가 없으므로 E → id로 줄일 수 없다. E → id는 7단계에서 이미 적용되었다.
+      선택지 3: 스택 top 쪽의 E+E를 먼저 줄여야 9단계 스택이 \$E*E가 된다. E → E * E는 9단계의 reduce E*E에서 적용된다.
+      선택지 4: 8단계 스택 \$E*E+E의 top에 있는 E+E가 핸들이므로 E → E+E로 줄이면 9단계 스택이 \$E*E가 된다. ‘다’는 E → E+E이고 정답이다.
+
+      핵심 개념:
+      reduce는 항상 스택 top에 있는 핸들에 대해 수행한다.
+      \$E*E+E에서 top의 E+E를 줄여 \$E*E, 다시 E*E를 줄여 \$E가 된다.
+      이 문법은 모호하므로 5단계 스택 \$E*E에서 E*E를 먼저 줄이는 대신 +를 shift하는 선택도 가능하다.
+      여기서는 +를 shift했으므로 id*(id+id)처럼 +를 먼저 묶는 파스트리가 만들어진다.
+    tags: [shift-reduce-parsing, handle, ambiguity]
+
+  - id: l07-05
+    type: multiple-choice
+    passageRefs: [gl07-grammar-etf-01]
+    prompt: 다음 문법을 보고 First(E)를 구하면?
+    choices:
+      - { id: '1', text: '+, )' }
+      - { id: '2', text: '+, *, )' }
+      - { id: '3', text: '(, id' }
+      - { id: '4', text: '+, ), (, id' }
+    answers: ['3']
+    explanation: |
+      선택지 1: +와 )는 E 뒤에 올 수 있는 기호로 FOLLOW(E)에 속하며, E로부터 유도되는 문자열의 첫 기호가 아니다.
+      선택지 2: *는 T 뒤에 오는 기호로 FOLLOW(T)에 속하고, +와 )도 FIRST(E)가 아니다.
+      선택지 3: E ⇒ T ⇒ F이고 F → (E) | id이므로 E에서 유도되는 문자열은 ( 또는 id로 시작한다. E → E + T, T → T * F는 왼쪽 재귀라 새 첫 기호를 더하지 않는다. FIRST(E) = {(, id}이므로 정답이다.
+      선택지 4: (, id는 FIRST(E)에 속하지만 +와 )는 E 뒤에 오는 기호이므로 포함되지 않는다.
+
+      핵심 개념:
+      FIRST(X)는 X로부터 유도되는 문자열의 첫 번째 터미널 집합이다.
+      A → Bα이면 FIRST(B)에서 ε을 뺀 것이 FIRST(A)에 포함되고, B가 ε을 유도할 때만 FIRST(α)도 더한다.
+      이 문법에서 FIRST(F) = {(, id}이고, T → F, E → T이므로 FIRST(E) = FIRST(T) = FIRST(F) = {(, id}이다.
+      FIRST는 기호가 무엇으로 시작하는가, FOLLOW는 기호 뒤에 무엇이 오는가를 나타낸다.
+    tags: [first-set]
+
+  - id: l07-06
+    type: multiple-choice
+    passageRefs: [gl07-grammar-etf-01]
+    prompt: 다음 문법을 보고 Follow(E)를 구하면?
+    choices:
+      - { id: '1', text: '+, )' }
+      - { id: '2', text: '\$, +, )' }
+      - { id: '3', text: '\$, *, )' }
+      - { id: '4', text: '*, +, ), \$' }
+    answers: ['2']
+    explanation: |
+      선택지 1: E는 시작기호이므로 FOLLOW(E)에는 입력 끝 표시 \$가 반드시 들어가야 한다.
+      선택지 2: E는 시작기호이므로 \$가 들어가고, E → E + T에서 E 뒤에 +가, F → (E)에서 E 뒤에 )가 온다. FOLLOW(E) = {\$, +, )}이므로 정답이다.
+      선택지 3: *는 T → T * F에서 T 뒤에 오는 기호로 FOLLOW(T)에는 속하지만, 어떤 규칙에서도 E 바로 뒤에 오지 않으므로 FOLLOW(E)에 속하지 않는다.
+      선택지 4: *는 FOLLOW(E)에 속하지 않는다. 이 집합은 FOLLOW(T) = {\$, +, ), *}에 해당한다.
+
+      핵심 개념:
+      FOLLOW(A)는 문장형에서 A 바로 뒤에 올 수 있는 터미널의 집합이다.
+      시작기호의 FOLLOW에는 \$를 넣는다.
+      B → αAβ이면 FIRST(β)에서 ε을 뺀 것을, B → αA이거나 β가 ε을 유도하면 FOLLOW(B)를 FOLLOW(A)에 넣는다.
+      이 문법에서 FOLLOW(E) = {\$, +, )}, FOLLOW(T) = FOLLOW(F) = {\$, +, ), *}이다.
+    tags: [follow-set]
+
+  # ── 8강 순위관계에 의한 구문분석 ──
+  - id: l08-01
+    type: multiple-choice
+    prompt: 다음 중 단순 순위문법과 관계없는 것은?
+    choices:
+      - { id: '1', text: 'ε-생성규칙을 갖지 않는다.' }
+      - { id: '2', text: '오른쪽 부분이 같은 생성규칙은 존재하지 않는다.' }
+      - { id: '3', text: '두 개의 기호 사이에 많아야 한 개의 순위 관계를 갖는다.' }
+      - { id: '4', text: '두 문자열 사이에 많아야 한 개의 순위관계를 갖는다.' }
+    answers: ['4']
+    explanation: |
+      선택지 1: ε-생성규칙이 있으면 빈 핸들을 환원해야 하는 경우가 생겨 순위관계만으로 핸들을 정할 수 없으므로, 단순 순위문법은 ε-생성규칙을 갖지 않는다. 단순 순위문법의 조건이다.
+      선택지 2: 오른쪽 부분이 같은 생성규칙이 둘 이상이면 핸들을 찾아도 어느 비단말로 환원할지 정할 수 없으므로, 이런 규칙이 없어야 한다. 단순 순위문법의 조건이다.
+      선택지 3: 문법 기호 두 개 사이에는 ≐, <·, ·> 중 많아야 하나의 관계만 성립해야 순위관계표가 충돌 없이 만들어진다. 단순 순위문법의 조건이다.
+      선택지 4: 기호 하나가 아니라 문자열(여러 기호) 사이의 순위관계를 따지는 것은 확장 순위문법(extended precedence grammar)의 정의이므로 단순 순위문법과 관계없다.
+
+      핵심 개념:
+      단순 순위문법은 순위관계를 이용해 핸들을 찾는 bottom-up 구문분석에 쓰는 문법이다.
+      조건은 ε-생성규칙이 없고, 오른쪽 부분이 같은 생성규칙이 없으며, 두 기호 사이의 순위관계가 많아야 하나라는 것이다.
+      두 기호 사이에 관계가 둘 이상 생기면 기호 대신 문자열 사이의 관계로 확장한 확장 순위문법을 쓴다.
+      순위관계는 ≐(같은 핸들 안에서 이웃), <·(핸들의 시작), ·>(핸들의 끝) 세 가지이며, <·와 ·>는 기출문제에서 쓰는 ⋖, ⋗와 같은 기호이다.
+    tags: [simple-precedence-grammar]
+
+  - id: l08-02
+    type: multiple-choice
+    passageRefs: [gl08-precedence-01]
+    prompt: 다음은 단순순위문법을 이용해서 기호들 사이의 순위관계를 정하는 과정이다. 빈칸 ‘가’에 알맞은 것을 고르시오.
+    choices:
+      - { id: '1', text: 'T <· *' }
+      - { id: '2', text: '* <· id' }
+      - { id: '3', text: 'T ·> *' }
+      - { id: '4', text: 'id ·> *' }
+    answers: ['2']
+    explanation: |
+      선택지 1: 생성규칙 T → T*F의 오른쪽에서 T와 *는 바로 이웃하므로 T ≐ * 관계이며 <·가 아니다.
+      선택지 2: T*F에서 * ≐ F이고, 빈칸 단계(T*F → T*id)에서 F를 F → id로 대치하면 id가 * 뒤에서 새로 시작하는 핸들이 되므로 * <· id가 생긴다.
+      선택지 3: * 앞의 T는 T*F나 F로 대치되어 F로 끝나므로 F ·> *는 성립하지만 T ·> *는 성립하지 않는다. 또 이 단계에서 대치된 것은 * 뒤의 F이다.
+      선택지 4: id ·> *는 마지막 단계(F * id → id * id)에서 * 앞의 F를 id로 대치할 때 생기는 관계로, 빈칸 ‘가’의 단계와 관계없다.
+
+      핵심 개념:
+      같은 생성규칙 오른쪽에서 이웃한 두 기호 X, Y는 X ≐ Y이다(예: T ≐ *, * ≐ F).
+      X ≐ A이고 A가 Y로 시작하는 문자열을 유도하면 X <· Y이다(예: * ≐ F, F ⇒ id이므로 * <· id).
+      A ≐ Y이고 A가 X로 끝나는 문자열을 유도하면 X ·> Y이다(예: F ·> *, id ·> *).
+      유도 과정의 각 대치 단계에서 새로 생기는 관계를 모아 순위관계표를 만든다.
+      <·와 ·>는 기출문제에서 쓰는 ⋖, ⋗와 같은 기호이다.
+    tags: [simple-precedence-grammar, precedence-relation]
+
+  - id: l08-03
+    type: multiple-choice
+    passageRefs: [gl08-slr-intro-01, gl08-slr-table-01, gl08-slr-trace-01]
+    prompt: 빈칸 (가)의 내용은?
+    choices:
+      - { id: '1', text: 'reduce 3' }
+      - { id: '2', text: 'reduce 5' }
+      - { id: '3', text: 'goto 3' }
+      - { id: '4', text: 'shift 3' }
+    answers: ['1']
+    explanation: |
+      선택지 1: 17단계 스택 꼭대기 상태는 10이고 입력기호는 \$이다. ACTION[10, \$] = r3이므로 3번 규칙 T → T*F로 환원하는 reduce 3이다.
+      선택지 2: reduce 5는 F → (E)로 환원하는 동작으로, 상태 11에서 나타난다.
+      선택지 3: goto는 환원 직후 스택 꼭대기에 비단말이 올라왔을 때의 동작이다. 17단계 스택 꼭대기는 상태 10이므로 ACTION 표를 보아야 한다.
+      선택지 4: 상태 10의 \$ 칸에는 shift가 없고, 입력이 \$뿐이므로 더 옮길 기호도 없다.
+
+      핵심 개념:
+      파싱표의 환원 번호는 1) E → E+T, 2) E → T, 3) T → T*F, 4) T → F, 5) F → (E), 6) F → id 에 대응한다.
+      스택 꼭대기 상태 s와 현재 입력기호 a로 ACTION[s, a]를 찾아 shift, reduce, accept를 정한다.
+      reduce k는 k번 규칙 오른쪽 길이만큼 (기호, 상태) 쌍을 스택에서 꺼내고 왼쪽 비단말을 넣는다.
+      T → T*F는 오른쪽이 3기호이므로 T9*7F10을 꺼내고 T를 넣어 18단계 스택 0E1+6T가 된다.
+    tags: [slr-parsing, lr-parsing-trace]
+
+  - id: l08-04
+    type: multiple-choice
+    passageRefs: [gl08-slr-intro-01, gl08-slr-table-01, gl08-slr-trace-01]
+    prompt: 빈칸 (나)의 내용은?
+    choices:
+      - { id: '1', text: 'shift 6' }
+      - { id: '2', text: 'reduce 6' }
+      - { id: '3', text: 'goto 9' }
+      - { id: '4', text: 'shift 9' }
+    answers: ['3']
+    explanation: |
+      선택지 1: shift 6은 상태 1에서 +를 읽을 때의 동작이다. 18단계는 환원 직후라 스택 꼭대기에 비단말 T가 있다.
+      선택지 2: reduce 6(F → id)은 상태 5에서 하는 동작으로, 18단계와 관계없다.
+      선택지 3: 18단계 스택 0E1+6T에서 T 아래 상태는 6이고 GOTO[6, T] = 9이므로 goto 9이다. 19단계 스택이 0E1+6T9가 되는 것과도 맞는다.
+      선택지 4: 비단말 T에 대한 전이는 shift가 아니라 GOTO 함수로 처리한다.
+
+      핵심 개념:
+      reduce 뒤에는 새로 드러난 스택 꼭대기 상태와 방금 넣은 비단말로 GOTO 함수를 찾는다.
+      터미널 기호에 대한 전이는 ACTION 표의 shift, 비단말에 대한 전이는 GOTO 표의 goto이다.
+      T → T*F 환원 후 드러난 상태 6과 T로 GOTO[6, T] = 9를 얻는다.
+      이 trace는 *를 +보다 먼저 환원해 id + (id * id)로 해석한다.
+    tags: [slr-parsing, lr-parsing-trace, goto-function]
+
+  - id: l08-05
+    type: multiple-choice
+    passageRefs: [gl08-slr-intro-01, gl08-slr-table-01, gl08-slr-trace-01]
+    prompt: 빈칸 (다)의 내용은?
+    choices:
+      - { id: '1', text: 'goto 1' }
+      - { id: '2', text: 'reduce 1' }
+      - { id: '3', text: 'goto 10' }
+      - { id: '4', text: 'shift 9' }
+    answers: ['2']
+    explanation: |
+      선택지 1: goto는 환원 직후 스택 꼭대기에 비단말이 올라왔을 때의 동작이다. 19단계 스택 꼭대기는 상태 9이므로 ACTION 표를 보아야 한다.
+      선택지 2: 19단계 스택 꼭대기 상태는 9, 입력은 \$이다. ACTION[9, \$] = r1이므로 1번 규칙 E → E+T로 환원하는 reduce 1이다.
+      선택지 3: goto 10은 상태 7에서 F를 만났을 때(GOTO[7, F] = 10)의 동작으로 16단계에 해당한다.
+      선택지 4: 상태 9의 \$ 칸에는 shift가 없고, 입력이 \$뿐이므로 더 옮길 기호도 없다.
+
+      핵심 개념:
+      상태 9는 [E → E+T·], [T → T·*F] 항목을 가진다.
+      다음 입력이 *이면 S7로 shift하고, FOLLOW(E) = {+, ), \$}에 속하는 기호이면 E → E+T로 환원한다.
+      E+T 환원은 E1+6T9 세 쌍을 꺼내고 E를 넣어 20단계 스택 0E가 된다.
+      SLR은 완료 항목의 환원을 그 비단말의 FOLLOW 칸에 넣는다.
+    tags: [slr-parsing, lr-parsing-trace]
+
+  - id: l08-06
+    type: multiple-choice
+    passageRefs: [gl08-slr-intro-01, gl08-slr-table-01, gl08-slr-trace-01]
+    prompt: 빈칸 (라)의 내용은?
+    choices:
+      - { id: '1', text: 'goto 0' }
+      - { id: '2', text: 'reduce 1' }
+      - { id: '3', text: 'goto 1' }
+      - { id: '4', text: 'shift 1' }
+    answers: ['3']
+    explanation: |
+      선택지 1: 상태 0은 시작 상태로 스택 맨 아래에 이미 있으며, GOTO[0, E]의 값은 0이 아니다.
+      선택지 2: reduce는 스택 꼭대기 상태와 입력으로 ACTION 표를 찾아 정하는 동작인데, 20단계 스택 꼭대기는 상태가 아니라 비단말 E이다.
+      선택지 3: 20단계 스택 0E에서 E 아래 상태는 0이고 GOTO[0, E] = 1이므로 goto 1이다. 그 결과 21단계 스택이 0E1이 된다.
+      선택지 4: 비단말 E로의 전이는 shift가 아니라 GOTO 함수로 처리한다.
+
+      핵심 개념:
+      환원 뒤에는 드러난 상태와 넣은 비단말로 GOTO 표를 찾아 새 상태를 쌓는다.
+      GOTO[0, E] = 1이므로 스택은 0E1이 된다.
+      상태 1은 [S′ → E·], [E → E·+T]를 가지며 입력 \$에서 acc이다.
+      스택에 0E1만 남고 입력이 \$이면 구문분석이 성공(accept)한다.
+    tags: [slr-parsing, lr-parsing-trace, goto-function]
+
+  # ── 9강 SLR 구문분석 ──
+  - id: l09-01
+    type: multiple-choice
+    passageRefs: [gl09-lr0-goto-e-01]
+    prompt: 다음은 LR(0) 항목 집합의 canonical collection을 구하는 과정이다. GOTO(I₀, E) 를 보기에서 고르시오.
+    choices:
+      - { id: '1', text: '(가)' }
+      - { id: '2', text: '(나)' }
+      - { id: '3', text: '(다)' }
+      - { id: '4', text: '(라)' }
+    answers: ['3']
+    explanation: |
+      선택지 1: (가) [T → F·]는 I₀에서 점 뒤가 F인 [T → ·F]의 점을 옮긴 GOTO(I₀, F) = I₃이다.
+      선택지 2: (나) [E → T·], [T → T·*F]는 점 뒤가 T인 항목을 옮긴 GOTO(I₀, T) = I₂이다.
+      선택지 3: I₀에서 점 뒤가 E인 항목은 [S′ → ·E], [E → ·E+T]이다. 점을 E 뒤로 옮기면 [S′ → E·], [E → E·+T]가 되고, 점 뒤가 비단말인 항목이 없어 closure를 해도 더 늘지 않으므로 (다)가 GOTO(I₀, E) = I₁이다.
+      선택지 4: (라)는 I₂의 [T → T·*F]에서 *를 넘긴 GOTO(I₂, *) = I₇에 해당한다. 원래 I₇은 {[T → T*·F], [F → ·(E)], [F → ·id]}이다.
+
+      핵심 개념:
+      GOTO(I, X)는 I에서 점 바로 뒤가 X인 항목들의 점을 X 뒤로 옮긴 뒤 closure를 구한 집합이다.
+      closure는 점 뒤가 비단말 A인 항목이 있으면 A의 모든 규칙을 점이 맨 앞인 항목으로 추가한다.
+      I₀ = closure([S′ → ·E])에서 E, T, F로 GOTO를 구하면 I₁, I₂, I₃가 된다.
+      이렇게 얻은 항목 집합 전체가 canonical collection이다.
+
+      ※ 원본 표기: 보기 (라)의 [F → (E)], [F → id]는 점이 빠진 표기이며, GOTO(I₂, *)의 실제 항목은 [F → ·(E)], [F → ·id]이다.
+    tags: [lr0-items, canonical-collection, goto-function]
+
+  - id: l09-02
+    type: multiple-choice
+    passageRefs: [gl09-lr0-goto-t-01]
+    prompt: 다음은 SLR 구문분석을 위해 LR(0) 항목 집합의 canonical collection을 구하는 과정이다. GOTO (I₀, T) 항목을 보기에서 고르시오.
+    choices:
+      - { id: '1', text: '(가)' }
+      - { id: '2', text: '(나)' }
+      - { id: '3', text: '(다)' }
+      - { id: '4', text: '(라)' }
+    answers: ['3']
+    explanation: |
+      선택지 1: (가) [F → id·]는 [F → ·id]에서 id를 넘긴 GOTO(I₀, id) = I₅이다.
+      선택지 2: (나) [T → F·]는 [T → ·F]에서 F를 넘긴 GOTO(I₀, F) = I₃이다.
+      선택지 3: I₀에서 점 뒤가 T인 항목은 [E → ·T], [T → ·T*F]이다. 점을 옮기면 [E → T·], [T → T·*F]이고, 점 뒤가 터미널 *뿐이라 closure로 추가되는 항목이 없으므로 (다)가 GOTO(I₀, T)이다.
+      선택지 4: (라) [S′ → E·], [E → E·+T]는 GOTO(I₀, E) = I₁이다.
+
+      핵심 개념:
+      GOTO(I₀, X)는 I₀에서 점 뒤가 X인 항목만 골라 점을 한 칸 옮기고 closure를 구한다.
+      점 뒤가 터미널이거나 점이 끝에 있는 항목은 closure로 새 항목을 만들지 않는다.
+      GOTO(I₀, T) = {[E → T·], [T → T·*F]}는 완료 항목과 shift 항목이 함께 있는 상태이다.
+      SLR은 이 상태에서 FOLLOW(E)에 대해 E → T로 환원하고 *에 대해 shift한다.
+    tags: [lr0-items, canonical-collection, goto-function]
+
+  - id: l09-03
+    type: multiple-choice
+    passageRefs: [gl09-lr0-i0-01]
+    prompt: 다음은 SLR 구문분석을 위해 LR(0) 항목 집합의 canonical collection을 구하는 과정이다. 다음 중 GOTO (I₀, F) 항목은?
+    choices:
+      - { id: '1', text: '[F → id]' }
+      - { id: '2', text: '[E → T·], [T → T·*F]' }
+      - { id: '3', text: "[S' → E·], [E → E·+T]" }
+      - { id: '4', text: '[T → F·]' }
+    answers: ['4']
+    explanation: |
+      선택지 1: 점이 없는 [F → id]는 LR(0) 항목이 아니라 생성규칙이다. id를 넘긴 GOTO(I₀, id)도 [F → id·]이며 F에 대한 전이가 아니다.
+      선택지 2: [E → T·], [T → T·*F]는 점 뒤가 T인 항목을 옮긴 GOTO(I₀, T)이다.
+      선택지 3: [S′ → E·], [E → E·+T]는 점 뒤가 E인 항목을 옮긴 GOTO(I₀, E)이다.
+      선택지 4: I₀에서 점 뒤가 F인 항목은 [T → ·F] 하나뿐이다. 점을 옮긴 [T → F·]는 완료 항목이라 closure로 늘지 않으므로 GOTO(I₀, F) = {[T → F·]}이다.
+
+      핵심 개념:
+      GOTO(I₀, F)를 구하려면 I₀에서 F 바로 앞에 점이 있는 항목을 찾는다.
+      [T → ·F]의 점을 옮기면 [T → F·]이고 closure({[T → F·]}) = {[T → F·]}이다.
+      점이 오른쪽 끝에 있는 항목을 완료 항목이라 하며 환원(reduce) 동작을 만든다.
+      SLR에서 이 상태는 FOLLOW(T)의 기호에 대해 T → F로 환원한다.
+    tags: [lr0-items, goto-function]
+
+  - id: l09-04
+    type: multiple-choice
+    passageRefs: [gl09-slr-caption-01, gl08-slr-table-01, gl09-slr-trace-01]
+    prompt: 파싱표를 이용하여 문장 id+id 을 구문분석하는 과정이다. 빈칸 (가)의 내용은?
+    choices:
+      - { id: '1', text: 'shift 5' }
+      - { id: '2', text: 'reduce 4' }
+      - { id: '3', text: 'goto 3' }
+      - { id: '4', text: 'reduce 6' }
+    answers: ['3']
+    explanation: |
+      선택지 1: shift 5는 0단계처럼 상태 0에서 입력 id를 읽을 때의 동작이다.
+      선택지 2: reduce 4(T → F)는 3단계에서 스택 꼭대기 상태가 3일 때 하는 동작이다.
+      선택지 3: 1단계에서 F → id로 환원한 뒤 스택은 0F이다. F 아래 상태 0과 F로 GOTO[0, F] = 3을 찾으므로 goto 3이고, 3단계 스택이 0F3이 된다.
+      선택지 4: reduce 6(F → id)은 1단계에서 이미 수행되었다.
+
+      핵심 개념:
+      reduce 직후 스택 꼭대기에는 상태가 아니라 비단말이 올라와 있다.
+      이때 그 아래 상태와 비단말로 GOTO 표를 찾아 새 상태를 쌓는다.
+      id+id의 앞부분은 id → F → T 순으로 환원되고 각 환원 뒤에 goto 3, goto 2가 이어진다.
+      터미널에는 ACTION, 비단말에는 GOTO를 사용한다.
+    tags: [slr-parsing, lr-parsing-trace, goto-function]
+
+  - id: l09-05
+    type: multiple-choice
+    passageRefs: [gl09-goto-graph-01, gl09-slr-table-caption-01, gl09-slr-table-part-01]
+    prompt: 다음은 GOTO 그래프를 이용하여 SLR 파싱표를 구하는 과정이다. ‘가’에 알맞은 내용은?
+    choices:
+      - { id: '1', text: '1' }
+      - { id: '2', text: 'S4' }
+      - { id: '3', text: 'S5' }
+      - { id: '4', text: 'accept' }
+    answers: ['3']
+    explanation: |
+      선택지 1: 1은 비단말 간선 I₀ →E I₁에서 나온 GOTO[0, E] 값으로, 표에 이미 채워져 있다.
+      선택지 2: S4는 I₀에서 ( 를 읽고 I₄로 가는 동작으로, 상태 0의 ( 칸에 이미 들어 있다.
+      선택지 3: GOTO 그래프에서 I₀는 id로 I₅에 전이하므로 ACTION[0, id] = S5이다.
+      선택지 4: accept는 [S′ → E·]를 가진 상태 1에서 입력 \$일 때의 동작이다.
+
+      핵심 개념:
+      GOTO 그래프의 터미널 간선 Iᵢ →a Iⱼ는 ACTION[i, a] = Sj가 된다.
+      비단말 간선 Iᵢ →A Iⱼ는 GOTO[i, A] = j가 된다.
+      I₅ = {[F → id·]}는 완료 항목이므로 FOLLOW(F)의 칸에 F → id 환원(r6)을 넣는다.
+      증가 규칙의 완료 항목 [S′ → E·]가 있는 상태의 \$ 칸이 acc이다.
+    tags: [slr-parsing-table, goto-function]
+
+  # ── 10강 CLR 구문분석 ──
+  - id: l10-01
+    type: multiple-choice
+    passageRefs: [gl10-clr-graph-caption-01, gl10-clr-graph-01, gl10-clr-table-caption-01, gl10-clr-table-blank-0d-01]
+    prompt: 다음은 CLR 그래프를 이용하여 파싱표를 구성하고 구문분석을 하는 과정이다. 빈칸 ‘가’에 알맞은 것은?
+    choices:
+      - { id: '1', text: 'S4' }
+      - { id: '2', text: 'S7' }
+      - { id: '3', text: '2' }
+      - { id: '4', text: 'r3' }
+    answers: ['1']
+    explanation: |
+      선택지 1: CLR 그래프에서 I₀는 터미널 d로 I₄에 전이하므로 ACTION[0, d] = S4이다.
+      선택지 2: S7은 I₂(또는 I₆)에서 d를 읽고 lookahead가 \$인 I₇로 가는 동작이다.
+      선택지 3: 2는 I₀에서 비단말 C로 전이하는 GOTO[0, C] 값으로, GOTO 칸에 들어간다.
+      선택지 4: r3은 I₄ = {[C → d·, c/d]}처럼 C → d 완료 항목이 있는 상태에서 하는 환원이며, 상태 0의 동작이 아니다.
+
+      핵심 개념:
+      CLR 파싱표도 그래프의 간선으로 shift와 GOTO를 채운다.
+      터미널 간선 Iᵢ →a Iⱼ는 ACTION[i, a] = Sj, 비단말 간선은 GOTO[i, A] = j이다.
+      완료 항목 [A → α·, a]는 lookahead a 칸에만 reduce를 넣는다.
+      I₀의 d 간선은 두 번째가 아닌 첫 번째 C를 분석하는 I₄(lookahead c/d)로 간다.
+    tags: [clr-parsing-table, lr1-items]
+
+  - id: l10-02
+    type: multiple-choice
+    passageRefs: [gl10-lr1-i0-01]
+    prompt: 다음은 LR(1) 항목 집합의 canonical collection 들이다. 보기에서 I₀ 는?
+    choices:
+      - { id: '1', text: '(가)' }
+      - { id: '2', text: '(나)' }
+      - { id: '3', text: '(다)' }
+      - { id: '4', text: '(라)' }
+    answers: ['1']
+    explanation: |
+      선택지 1: closure([S′ → ·S, \$])는 S의 규칙 [S → ·CC, \$]를 추가하고, 첫 번째 C 뒤에 C가 오므로 FIRST(C\$) = {c, d}를 lookahead로 하여 [C → ·cC, c/d], [C → ·d, c/d]를 추가한다. 따라서 (가)가 I₀이다.
+      선택지 2: (나)는 [S → ·CC, \$]의 점을 C 뒤로 옮긴 GOTO(I₀, C) = I₂이다.
+      선택지 3: (다)는 [S′ → ·S, \$]의 점을 S 뒤로 옮긴 GOTO(I₀, S) = I₁이다.
+      선택지 4: (라)는 [C → ·d, c/d]에서 d를 넘긴 GOTO(I₀, d) = I₄이다.
+
+      핵심 개념:
+      LR(1) 항목 [A → α·Bβ, a]의 closure는 B의 규칙 B → γ에 대해 [B → ·γ, b]를 추가하며, b는 FIRST(βa)의 원소이다.
+      [S → ·CC, \$]에서 B = C, β = C, a = \$이므로 lookahead는 FIRST(C\$) = {c, d}이다.
+      I₀는 증가문법의 시작 항목 [S′ → ·S, \$]에서 출발한다.
+      lookahead까지 포함하므로 같은 핵심 항목이라도 lookahead가 다르면 다른 상태가 된다.
+    tags: [lr1-items, closure, canonical-collection]
+
+  - id: l10-03
+    type: multiple-choice
+    passageRefs: [gl10-clr-table-caption-01, gl10-clr-table-full-01, gl10-cdcd-note-01, gl10-clr-trace-01]
+    prompt: 다음은 CLR 파싱표를 이용하여 구문분석하는 과정이다. 빈칸 ‘가’에 알맞은 것은?
+    choices:
+      - { id: '1', text: 'shift 6' }
+      - { id: '2', text: 'shift 7' }
+      - { id: '3', text: 'reduce 3' }
+      - { id: '4', text: 'goto 2' }
+    answers: ['4']
+    explanation: |
+      선택지 1: shift 6은 6단계에서 상태 2와 입력 c로 ACTION[2, c] = S6을 찾아 수행하는 동작이다.
+      선택지 2: shift 7은 7단계에서 상태 6과 입력 d로 수행하는 동작이다.
+      선택지 3: reduce 3(C → d)은 2단계와 8단계처럼 스택 꼭대기에 d와 상태 4 또는 7이 있을 때의 동작이다.
+      선택지 4: 4단계에서 C → cC로 환원하면 c3C8을 꺼내고 C를 넣어 스택이 0C가 된다. C 아래 상태 0과 C로 GOTO[0, C] = 2를 찾으므로 goto 2이고, 6단계 스택이 0C2가 된다.
+
+      핵심 개념:
+      CLR 구문분석기의 동작 방식은 SLR과 같고 파싱표만 다르다.
+      reduce 뒤에는 드러난 상태와 넣은 비단말로 GOTO 표를 찾는다.
+      cdcd는 앞의 cd가 첫 번째 C, 뒤의 cd가 두 번째 C로 환원된다.
+      두 번째 C를 분석할 때는 lookahead가 \$인 상태 6, 7, 9를 사용한다.
+    tags: [clr-parsing-table, lr-parsing-trace, goto-function]
+
+  - id: l10-04
+    type: multiple-choice
+    passageRefs: [gl10-clr-graph-caption-01, gl10-clr-graph-01, gl10-clr-table-caption-01, gl10-clr-table-blank-7-01]
+    prompt: 다음은 CLR 그래프를 이용하여 파싱표를 구성하는 과정이다. 빈칸 ‘가’에 알맞은 것은?
+    choices:
+      - { id: '1', text: 'r1' }
+      - { id: '2', text: 'r2' }
+      - { id: '3', text: 'r3' }
+      - { id: '4', text: 'r4' }
+    answers: ['3']
+    explanation: |
+      선택지 1: r1은 S → CC로 환원하는 동작으로, [S → CC·, \$]를 가진 I₅의 \$ 칸에 들어간다.
+      선택지 2: r2는 C → cC로 환원하는 동작으로, I₈(c/d 칸)과 I₉(\$ 칸)에 들어간다.
+      선택지 3: I₇ = {[C → d·, \$]}는 lookahead가 \$인 완료 항목이다. 따라서 ACTION[7, \$]에 3번 규칙 C → d의 환원 r3을 넣는다.
+      선택지 4: 증가문법의 규칙은 0~3번뿐이므로 r4에 해당하는 규칙이 없다.
+
+      핵심 개념:
+      CLR에서 완료 항목 [A → α·, a]는 lookahead a 칸에만 reduce를 넣는다.
+      I₄ = {[C → d·, c/d]}는 c, d 칸에, I₇ = {[C → d·, \$]}는 \$ 칸에 r3을 넣는다.
+      같은 규칙의 환원이라도 lookahead에 따라 들어가는 칸이 다르다.
+      SLR은 FOLLOW 전체를 쓰지만 CLR은 항목별 lookahead만 쓰므로 충돌이 줄어든다.
+    tags: [clr-parsing-table, lr1-items]
+
+  - id: l10-05
+    type: multiple-choice
+    passageRefs: [gl10-clr-graph-caption-01, gl10-clr-graph-01, gl10-clr-table-caption-01, gl10-clr-table-blank-1-01]
+    prompt: 다음은 CLR 그래프를 이용하여 파싱표를 구성하는 과정이다. 빈칸 ‘가’에 알맞은 것은?
+    choices:
+      - { id: '1', text: 'S6' }
+      - { id: '2', text: 'S7' }
+      - { id: '3', text: 'r3' }
+      - { id: '4', text: 'acc' }
+    answers: ['4']
+    explanation: |
+      선택지 1: S6은 I₂나 I₆에서 c를 읽고 I₆으로 가는 동작이다. I₁에는 나가는 간선이 없다.
+      선택지 2: S7은 I₂나 I₆에서 d를 읽고 I₇로 가는 동작이다.
+      선택지 3: r3은 C → d 완료 항목을 가진 I₄, I₇의 동작이다.
+      선택지 4: I₁ = {[S′ → S·, \$]}는 증가 규칙의 완료 항목이므로 입력 \$에서 accept한다. 따라서 ACTION[1, \$] = acc이다.
+
+      핵심 개념:
+      증가문법 S′ → S는 구문분석의 끝을 알리기 위해 추가한 규칙이다.
+      [S′ → S·, \$]가 있는 상태에서 입력이 \$이면 reduce 대신 acc를 넣는다.
+      I₁은 GOTO(I₀, S)이며 다른 상태로 나가는 간선이 없다.
+      스택에 시작기호만 남고 입력이 끝나면 문장이 문법에 맞는 것으로 판정한다.
+    tags: [clr-parsing-table]
+
+  # ── 11강 LALR 구문분석 ──
+  - id: l11-01
+    type: multiple-choice
+    prompt: 다음은 LALR 구문분석에 관한 설명이다. 틀린 것은?
+    choices:
+      - { id: '1', text: 'lookahead 정보를 이용하기 때문에 SLR 방법보다 훨씬 강력하다.' }
+      - { id: '2', text: 'LALR 파싱표를 구성하기 위해서는 반드시 CLR 파싱표를 구해야만 한다.' }
+      - { id: '3', text: 'lookahead 기호를 구하는데 상당한 시간과 노력이 소요된다.' }
+      - { id: '4', text: 'CLR 파싱표보다 LALR 파싱표가 훨씬 작다.' }
+    answers: ['2']
+    explanation: |
+      선택지 1: LALR은 FOLLOW 전체 대신 상태별 lookahead를 쓰므로 SLR에서 충돌이 나는 문법도 분석할 수 있어 SLR보다 강력하다. 옳은 설명이다.
+      선택지 2: LALR 파싱표는 CLR의 LR(1) 항목에서 core가 같은 상태를 합쳐 구할 수도 있고, LR(0) 항목 집합에 lookahead를 계산해 붙여 구할 수도 있다. 반드시 CLR 파싱표를 거쳐야 하는 것은 아니므로 틀린 설명이다.
+      선택지 3: 어느 방법이든 상태마다 lookahead 기호를 계산해야 하므로 SLR보다 시간과 노력이 더 든다. 옳은 설명이다.
+      선택지 4: LALR은 core가 같은 CLR 상태를 합치므로 상태 수가 SLR과 같아 CLR 파싱표보다 훨씬 작다. 옳은 설명이다.
+
+      핵심 개념:
+      LALR(Lookahead LR)은 SLR과 CLR의 절충 방법이다.
+      CLR 그래프에서 core(점까지의 LR(0) 부분)가 같은 상태를 합쳐 lookahead를 합집합으로 만든다.
+      LR(0) 항목 집합에서 직접 lookahead를 구해 만드는 방법도 있다.
+      강력함은 SLR < LALR < CLR 순이고, 파싱표 크기는 LALR이 SLR과 같다.
+    tags: [lalr-parsing]
+
+  - id: l11-02
+    type: multiple-choice
+    passageRefs: [gl10-clr-graph-01]
+    prompt: 다음은 CLR 그래프를 이용하여 파싱표를 구성하는 과정이다. CLR 그래프로부터 LALR의 파싱표를 구할 수 있다. 다음은 core가 같은 상태를 찾는 과정인데 틀리는 것은?
+    choices:
+      - { id: '1', text: 'I₁ ∪ I₅ ₌⇒ I₁₅' }
+      - { id: '2', text: 'I₃ ∪ I₆ ₌⇒ I₃₆' }
+      - { id: '3', text: 'I₄ ∪ I₇ ₌⇒ I₄₇' }
+      - { id: '4', text: 'I₈ ∪ I₉ ₌⇒ I₈₉' }
+    answers: ['1']
+    explanation: |
+      선택지 1: I₁ = {[S′ → S·, \$]}와 I₅ = {[S → CC·, \$]}는 core(LR(0) 부분)가 서로 달라 합칠 수 없으므로 틀린 과정이다.
+      선택지 2: I₃와 I₆은 모두 [C → c·C], [C → ·cC], [C → ·d]를 core로 가지고 lookahead만 c/d와 \$로 다르므로 합쳐 I₃₆ = {[C → c·C, c/d/\$], [C → ·cC, c/d/\$], [C → ·d, c/d/\$]}가 된다.
+      선택지 3: I₄ = {[C → d·, c/d]}와 I₇ = {[C → d·, \$]}는 core가 같아 I₄₇ = {[C → d·, c/d/\$]}가 된다.
+      선택지 4: I₈ = {[C → cC·, c/d]}와 I₉ = {[C → cC·, \$]}는 core가 같아 I₈₉ = {[C → cC·, c/d/\$]}가 된다.
+
+      핵심 개념:
+      core는 LR(1) 항목에서 lookahead를 뺀 LR(0) 항목 부분이다.
+      CLR 그래프에서 core가 같은 상태를 하나로 합치고 lookahead는 합집합으로 만든다.
+      이 문법의 CLR 상태 10개는 I₃₆, I₄₇, I₈₉를 합쳐 LALR 상태 7개가 된다.
+      core가 다른 상태는 서로 다른 구문분석 위치를 뜻하므로 합치지 않는다.
+    tags: [lalr-parsing, lr1-items]
+
+  - id: l11-03
+    type: multiple-choice
+    passageRefs: [gl11-lalr-intro-01, gl10-clr-graph-01]
+    prompt: I₄₇ 을 구하면?
+    choices:
+      - { id: '1', text: '[[C → d ·]' }
+      - { id: '2', text: '[[C → d ·, \$]' }
+      - { id: '3', text: '[[C → d ·, c/d]' }
+      - { id: '4', text: '[[C → d ·, c/d/\$]' }
+    answers: ['4']
+    explanation: |
+      선택지 1: [C → d ·]는 lookahead가 없는 LR(0) 항목, 즉 core만 적은 것이다. LALR 상태는 lookahead까지 가진다.
+      선택지 2: [C → d ·, \$]는 합치기 전의 I₇이다.
+      선택지 3: [C → d ·, c/d]는 합치기 전의 I₄이다.
+      선택지 4: I₄ = {[C → d·, c/d]}와 I₇ = {[C → d·, \$]}는 core가 같으므로 lookahead를 합집합으로 모아 I₄₇ = {[C → d·, c/d/\$]}가 된다.
+
+      핵심 개념:
+      LALR 상태는 core가 같은 CLR 상태를 합치고 lookahead를 합집합으로 만든 것이다.
+      I₄₇은 c, d, \$ 세 칸 모두에서 C → d(r3)로 환원한다.
+      상태를 합치면 파싱표 크기는 줄지만 reduce-reduce 충돌이 새로 생길 수도 있다.
+      이 문법은 합친 뒤에도 충돌이 없으므로 LALR(1) 문법이다.
+    tags: [lalr-parsing, lr1-items]
+
+  - id: l11-04
+    type: multiple-choice
+    passageRefs: [gl11-lalr-intro-01, gl10-clr-graph-01]
+    prompt: I₈₉ 을 구하면?
+    choices:
+      - { id: '1', text: '[C → cC ·]' }
+      - { id: '2', text: '[C →  cC ·,\$]' }
+      - { id: '3', text: '[C →  cC ·, c/d]' }
+      - { id: '4', text: '[C →  cC ·, c/d/\$]' }
+    answers: ['4']
+    explanation: |
+      선택지 1: [C → cC ·]는 lookahead 없이 core만 적은 것이다.
+      선택지 2: [C → cC·, \$]는 합치기 전의 I₉이다.
+      선택지 3: [C → cC·, c/d]는 합치기 전의 I₈이다.
+      선택지 4: I₈ = {[C → cC·, c/d]}와 I₉ = {[C → cC·, \$]}는 core가 [C → cC·]로 같으므로 합쳐 I₈₉ = {[C → cC·, c/d/\$]}가 된다.
+
+      핵심 개념:
+      core가 같은 상태를 합칠 때 항목은 그대로 두고 lookahead만 합집합으로 만든다.
+      I₈₉는 c, d, \$ 칸 모두에서 C → cC(r2)로 환원한다.
+      GOTO도 합친 상태 번호로 바꾼다(예: GOTO[36, C] = 89).
+      이렇게 만든 LALR 파싱표는 SLR 파싱표와 상태 수가 같다.
+    tags: [lalr-parsing, lr1-items]
+
+  - id: l11-05
+    type: multiple-choice
+    passageRefs: [gl11-lr0-graph-01]
+    prompt: 다음은 LALR 파싱표를 구하기 위하여 LR(0) 항목집합의 Canonical Collection으로 구성된  GOTO 그래프이다. I₈ 에서 lookahead를 구하면?
+    choices:
+      - { id: '1', text: '=' }
+      - { id: '2', text: '\$' }
+      - { id: '3', text: '=, \$' }
+      - { id: '4', text: '=, *, \$' }
+    answers: ['3']
+    explanation: |
+      선택지 1: =는 I₄를 거쳐 I₈에 오는 경로에서만 들어오는 lookahead이다. I₄ 경로({=, \$})와 I₆ 경로({\$})에서 함께 들어오는 \$가 빠졌다.
+      선택지 2: \$는 I₄ 경로와 I₆ 경로 모두에서 들어오지만, I₄ 경로에서만 들어오는 =가 빠졌다.
+      선택지 3: I₈ = {[R → L·]}은 I₄와 I₆에서 L로 전이해 온다. I₄의 [R → ·L]은 [L → *·R]의 lookahead {=, \$}를 물려받고, I₆의 [R → ·L]은 [S → L=·R]의 lookahead {\$}를 물려받으므로 합집합 {=, \$}가 I₈의 lookahead이다.
+      선택지 4: *는 L이나 R 뒤에 올 수 없는 기호이다. *는 L → *R처럼 L의 맨 앞에만 나타나므로 lookahead가 될 수 없다.
+
+      핵심 개념:
+      LR(0) 상태에 lookahead를 붙이려면 완료 항목 [A → α·]이 어느 상태에서 A 앞의 항목([A → ·α])으로 시작했는지 거슬러 올라간다.
+      I₀에서 [L → ·*R], [L → ·id]의 lookahead는 [S → ·L=R]의 =와 [R → ·L]의 \$를 합친 {=, \$}이고, 이것이 I₄의 [L → *·R], [R → ·L]로 전파된다.
+      I₆의 항목은 [S → L=·R, \$]에서 나오므로 [R → ·L]의 lookahead는 \$이다.
+      SLR은 FOLLOW(R) = {=, \$}를 쓰므로 I₂에서 =에 대해 shift-reduce 충돌이 생기지만, LALR은 I₂의 [R → L·] lookahead가 \$뿐이라 충돌이 없다.
+    tags: [lalr-parsing, lr0-items]
+
+  # ── 12강 Top-down 구문분석 ──
+  - id: l12-01
+    type: multiple-choice
+    prompt: 다음 구문분석에 대한 설명 중 틀린 것은?
+    choices:
+      - { id: '1', text: 'LR 파싱표를 구성하는 방법은 SLR, CLR, LALR 방법이 있다.' }
+      - { id: '2', text: 'SLR은 구현하기 쉽지만 완전하지 못하고, CLR은 완전하지만 파싱표가 크고 lookahead를 구해야 하므로 구현하는데 비효율적이다.' }
+      - { id: '3', text: 'Top-down 구문분석 중 backtracking과 left-recursion 문제가 해결된 것을 LL 구문분석이라고 한다.' }
+      - { id: '4', text: 'Bottom-up 구문분석의 종류에는 Recursive-descent 구문분석과 Predictive 구문분석이 있다.' }
+    answers: ['4']
+    explanation: |
+      선택지 1: LR 파싱표는 SLR(Simple LR), CLR(Canonical LR), LALR(Lookahead LR) 방법으로 구성한다. 옳은 설명이다.
+      선택지 2: SLR은 LR(0) 항목과 FOLLOW만 쓰므로 쉽지만 충돌이 나는 문법이 많고, CLR은 가장 강력하지만 lookahead 계산이 복잡하고 파싱표가 커진다. 옳은 설명이다.
+      선택지 3: backtracking과 left-recursion 문제를 없애 결정적으로 분석하는 top-down 방법을 LL 구문분석이라 한다. 옳은 설명이다.
+      선택지 4: Recursive-descent 구문분석과 Predictive 구문분석은 루트에서 시작해 좌단유도를 하는 Top-down 구문분석의 종류이므로 틀린 설명이다.
+
+      핵심 개념:
+      Bottom-up 구문분석: shift-reduce, 순위 구문분석, LR 계열(SLR, CLR, LALR)이 있으며 우파스를 만든다.
+      Top-down 구문분석: Recursive-descent, Predictive(LL) 구문분석이 있으며 좌파스를 만든다.
+      Top-down은 backtracking과 left-recursion 문제를 해결해야 결정적으로 분석할 수 있다.
+      LR 방법의 강력함은 SLR < LALR < CLR 순이다.
+    tags: [top-down-parsing, lr-parsing]
+
+  - id: l12-02
+    type: multiple-choice
+    prompt: 다음 중 Top-down 구문분석과 관계 있는 것은?
+    choices:
+      - { id: '1', text: 'LL 구문분석' }
+      - { id: '2', text: 'SLR 구문분석' }
+      - { id: '3', text: 'CLR 구문분석' }
+      - { id: '4', text: 'LALR 구문분석' }
+    answers: ['1']
+    explanation: |
+      선택지 1: LL 구문분석은 입력을 왼쪽에서 오른쪽으로 읽으며(Left-to-right) 좌단유도(Leftmost derivation)를 하는 결정적 Top-down 구문분석이다.
+      선택지 2: SLR 구문분석은 LR(0) 항목과 FOLLOW를 이용하는 Bottom-up 구문분석이다.
+      선택지 3: CLR 구문분석은 LR(1) 항목을 이용하는 Bottom-up 구문분석이다.
+      선택지 4: LALR 구문분석은 CLR 상태 중 core가 같은 것을 합친 Bottom-up 구문분석이다.
+
+      핵심 개념:
+      일반적인 Top-down 방법은 backtracking 때문에 실제 컴파일러의 구문분석 알고리즘으로 쓰기에 부적당하다.
+      그래서 backtracking 없이 결정적으로 분석하는 방법이 필요하며, 이를 LL 구문분석이라 한다.
+      LL 구문분석으로 분석할 수 있는 조건을 만족하는 문법을 LL 문법이라 한다.
+      SLR, CLR, LALR은 모두 LR 계열 Bottom-up 방법이다.
+    tags: [top-down-parsing]
+
+  - id: l12-03
+    type: multiple-choice
+    prompt: Top-down 구문분석과 관계 없는 것은?
+    choices:
+      - { id: '1', text: 'back tracking' }
+      - { id: '2', text: 'left recursion' }
+      - { id: '3', text: '우파스' }
+      - { id: '4', text: 'left factoring' }
+    answers: ['3']
+    explanation: |
+      선택지 1: Top-down 구문분석은 잘못된 생성규칙을 적용하면 되돌아가 다른 규칙을 적용하는 backtracking이 생길 수 있어 효율이 떨어진다.
+      선택지 2: A → Aα 같은 left recursion이 있으면 Top-down 구문분석이 같은 비단말을 계속 전개해 무한 루프에 빠진다.
+      선택지 3: 우파스(right parse)는 우단유도에 적용된 생성규칙 순서의 역순으로, Bottom-up 구문분석의 결과이므로 Top-down 구문분석과 관계없다.
+      선택지 4: left factoring은 공통 앞부분을 묶어 backtracking을 없애는 Top-down 구문분석용 문법 변환이다.
+
+      핵심 개념:
+      Top-down 구문분석은 시작기호에서 좌단유도로 입력 문자열을 만들어 가며 좌파스를 생성한다.
+      Bottom-up 구문분석은 입력에서 reduce로 시작기호를 찾아 가며 우파스를 생성한다.
+      Top-down의 문제점인 backtracking은 left factoring으로, left recursion은 right recursion으로 바꾸어 해결한다.
+      두 문제를 해결한 결정적 Top-down 방법이 LL 구문분석이다.
+    tags: [top-down-parsing, backtracking, left-recursion, left-factoring]
+
+  - id: l12-04
+    type: multiple-choice
+    prompt: 다음 중 Top-down 구문분석에 대한 설명 중 틀린 것은?
+    choices:
+      - { id: '1', text: 'backtracking의 경우 효율을 떨어뜨리므로 left-factoring을 해야 한다.' }
+      - { id: '2', text: 'left-recursion의 경우 무한 루프에 빠지므로 right-recursion으로 바꾸어주어야 한다.' }
+      - { id: '3', text: '이러한 문제점을 해결한 결정적인 구문분석을 LL 구문분석이라고 한다.' }
+      - { id: '4', text: '문법에 제약이 없어 일반적으로 Bottom up 방식보다 편리하므로 자주 사용된다.' }
+    answers: ['4']
+    explanation: |
+      선택지 1: 같은 앞부분을 가진 규칙이 여럿이면 잘못 고를 때마다 backtracking이 생기므로 left-factoring으로 공통 부분을 묶는다. 옳은 설명이다.
+      선택지 2: left-recursion이 있으면 같은 비단말을 끝없이 전개하므로 right-recursion으로 바꾼다. 옳은 설명이다.
+      선택지 3: backtracking과 left-recursion을 없애 결정적으로 분석하는 방법이 LL 구문분석이다. 옳은 설명이다.
+      선택지 4: Top-down 방식은 left-recursion이 없고 left-factoring이 되어 있어야 하는 등 문법에 제약이 많다. 일반적으로는 문법적 제약이 적은 Bottom-up 방식을 더 많이 쓰므로 틀린 설명이다.
+
+      핵심 개념:
+      Top-down 구문분석은 backtracking과 left-recursion이라는 두 가지 문제를 가진다.
+      left-factoring과 left-recursion 제거로 문법을 바꾸면 결정적인 LL 구문분석이 가능해진다.
+      이런 문법 변형이 필요하다는 점이 Top-down 방식의 제약이다.
+      실제 컴파일러는 제약이 적은 Bottom-up(LR 계열) 방식을 많이 사용한다.
+    tags: [top-down-parsing, backtracking, left-recursion]
+
+  - id: l12-05
+    type: multiple-choice
+    passageRefs: [gl12-predictive-01, gl12-predictive-table-01]
+    prompt: 다음은 Top-Down 구문분석에서 predictive 파싱표를 구성하는 과정이다. 빈칸 ‘가’에 들어갈 내용은?
+    choices:
+      - { id: '1', text: "E' → ε" }
+      - { id: '2', text: "E → TE'" }
+      - { id: '3', text: 'F → (E)' }
+      - { id: '4', text: "E' → +TE'" }
+    answers: ['1']
+    explanation: |
+      선택지 1: E' → ε는 오른쪽이 ε이므로 FOLLOW(E') = {), \$}의 각 기호 칸에 넣는다. 따라서 M[E', )]와 M[E', \$]가 E' → ε이다.
+      선택지 2: E → TE'는 FIRST(TE') = FIRST(T) = {(, id}의 칸, 즉 M[E, (]와 M[E, id]에 들어가며 E' 행에는 들어가지 않는다.
+      선택지 3: F → (E)는 FIRST((E)) = {(}이므로 M[F, (]에 들어간다.
+      선택지 4: E' → +TE'는 FIRST(+TE') = {+}이므로 M[E', +]에 들어간다.
+
+      핵심 개념:
+      predictive 파싱표 M[A, a]는 생성규칙 A → α마다 FIRST(α)의 각 터미널 a에 대해 A → α를 넣는다.
+      α가 ε을 유도할 수 있으면 FOLLOW(A)의 각 기호(\$ 포함)에도 A → α를 넣는다.
+      E'는 E의 오른쪽 끝에 오므로 FOLLOW(E') = FOLLOW(E) = {), \$}이다.
+      한 칸에 규칙이 둘 이상 들어가지 않으면 그 문법은 LL(1) 문법이다.
+    tags: [predictive-parsing, ll1-parsing-table, follow-set]
+
+  # ── 13강 YACC와 BISON ──
+  - id: l13-01
+    type: multiple-choice
+    prompt: Bell 연구소에서 Stephen C. Johnson을 중심으로 개발된 LALR(1) 구문분석기 생성기로  선언부분(declation), 변환규칙 부분(translation rules), 사용자 프로그램 부분(user program) 등의 세 부분으로 구성된 것은?
+    choices:
+      - { id: '1', text: 'Lex' }
+      - { id: '2', text: 'Scan gen' }
+      - { id: '3', text: 'YACC' }
+      - { id: '4', text: 'Bison' }
+    answers: ['3']
+    explanation: |
+      선택지 1: Lex는 Bell 연구소의 Lesk와 Schmidt가 개발한 어휘분석기 생성기로, 구문분석기 생성기가 아니다.
+      선택지 2: Scan gen은 스캐너(어휘분석기) 생성기이다.
+      선택지 3: YACC(Yet Another Compiler-Compiler)는 Bell 연구소의 Stephen C. Johnson이 개발한 LALR(1) 구문분석기 생성기이며, 입력은 선언부분, 변환규칙 부분, 사용자 프로그램 부분으로 구성된다.
+      선택지 4: Bison은 YACC와 호환되는 GNU의 무료 LALR(1) 구문분석기 생성기로, Bell 연구소에서 Johnson이 개발한 도구가 아니다.
+
+      핵심 개념:
+      YACC는 문법규칙과 각 규칙의 수행코드를 입력받아 LALR(1) 구문분석기를 C 프로그램으로 생성한다.
+      입력은 선언부분 %% 변환규칙 부분 %% 사용자 프로그램 부분의 세 부분이다.
+      YACC가 만든 구문분석기는 Lex가 만든 어휘분석기에서 토큰을 받아 사용한다.
+      Bison은 YACC와 호환되는 GNU의 무료 구문분석기 생성기이다.
+    tags: [yacc, parser-generator]
+
+  - id: l13-02
+    type: multiple-choice
+    passageRefs: [gl13-yacc-input-blank-01]
+    prompt: 다음 빈 괄호에 알맞은 것은?
+    choices:
+      - { id: '1', text: '토큰 선언 부분' }
+      - { id: '2', text: '변환규칙 부분' }
+      - { id: '3', text: '정규표현 부분' }
+      - { id: '4', text: '파싱표 부분' }
+    answers: ['2']
+    explanation: |
+      선택지 1: 토큰 선언은 %token 등으로 선언부분 안에서 하는 일이며 별도의 부분이 아니다.
+      선택지 2: YACC 입력은 선언부분(declarations), 변환규칙 부분(translation rules), 사용자 프로그램 부분(user program)으로 구성되므로 빈칸은 변환규칙 부분이다.
+      선택지 3: 정규표현은 Lex의 변환규칙에서 토큰의 형태를 기술할 때 쓰며, YACC 입력의 부분 이름이 아니다.
+      선택지 4: 파싱표는 YACC가 문법규칙으로부터 만들어 내는 결과이며 입력의 한 부분이 아니다.
+
+      핵심 개념:
+      YACC의 입력은 문법규칙과 각 규칙에 대한 수행코드들이다.
+      선언부분에는 토큰, 우선순위, C 선언 등을 적는다.
+      변환규칙 부분에는 "생성규칙 { 수행코드 }" 형태로 문법규칙과 의미 동작을 적는다.
+      사용자 프로그램 부분에는 main, yyerror 같은 보조 C 함수를 적는다.
+    tags: [yacc]
+
+  - id: l13-03
+    type: multiple-choice
+    passageRefs: [gl13-yacc-diagram-01]
+    prompt: 다음 빈칸의 A,B에 들어갈 내용이 알맞은 것은?
+    choices:
+      - { id: '1', text: 'A: 어휘분석기, B: YACC' }
+      - { id: '2', text: 'A: YACC, B: 어휘분석기' }
+      - { id: '3', text: 'A: YACC, B: Bison' }
+      - { id: '4', text: 'A: 어휘분석기, B: LEX' }
+    answers: ['2']
+    explanation: |
+      선택지 1: 문법규칙과 수행코드를 받아 구문분석기를 만드는 A는 구문분석기 생성기이고, 원시 프로그램을 받아 토큰을 넘기는 B가 어휘분석기이다. 두 자리가 뒤바뀌었다.
+      선택지 2: A는 문법규칙과 수행코드로 구문분석기를 생성하는 YACC이고, B는 원시 프로그램을 읽어 구문분석기에 토큰을 넘겨주는 어휘분석기이다.
+      선택지 3: Bison은 YACC와 같은 구문분석기 생성기이므로 토큰을 만드는 B 자리에 올 수 없다.
+      선택지 4: A 자리는 구문분석기 생성기여야 하므로 어휘분석기가 올 수 없다. LEX는 어휘분석기를 생성하는 도구이다.
+
+      핵심 개념:
+      YACC는 문법규칙과 수행코드를 입력받아 구문분석기를 생성한다.
+      생성된 구문분석기는 어휘분석기가 원시 프로그램에서 만든 토큰을 받아 구문분석을 한다.
+      구문분석 중 각 규칙의 수행코드가 실행되어 구문분석기의 출력을 만든다.
+      어휘분석기는 보통 LEX로 생성해 YACC가 만든 구문분석기와 함께 쓴다.
+    tags: [yacc, parser-generator]
+
+  - id: l13-04
+    type: multiple-choice
+    prompt: LALR(1) 구문 분석 생성기로써 무료 소프트웨어인 것은?
+    choices:
+      - { id: '1', text: 'LEX' }
+      - { id: '2', text: 'Scan gen' }
+      - { id: '3', text: 'YACC' }
+      - { id: '4', text: 'Bison' }
+    answers: ['4']
+    explanation: |
+      선택지 1: LEX는 어휘분석기 생성기로, 구문분석기 생성기가 아니다.
+      선택지 2: Scan gen은 스캐너(어휘분석기) 생성기이다.
+      선택지 3: YACC는 LALR(1) 구문분석기 생성기이지만 Bell 연구소(AT&T)에서 개발되어 AT&T UNIX에 포함되어 배포된 상용 도구였다. 이를 무료 소프트웨어로 다시 만든 YACC 호환 도구가 GNU Bison이다.
+      선택지 4: GNU Bison은 무료 소프트웨어이며 YACC에서 사용한 문법 파일(.y)을 그대로 사용할 수 있는 LALR(1) 구문분석기 생성기이다.
+
+      핵심 개념:
+      구문분석기 생성기: YACC, Bison, LALRGen 등.
+      어휘분석기 생성기: LEX(Flex), Scan gen 등.
+      Bison은 GNU 프로젝트의 무료 소프트웨어로 YACC와 호환된다.
+      Lex 명세 파일(.l)로 만든 어휘분석기와 Bison 문법 파일(.y)로 만든 구문분석기를 함께 컴파일해 사용한다.
+    tags: [parser-generator]
+
+  - id: l13-05
+    type: multiple-choice
+    passageRefs: [gl13-yacc-format-01]
+    prompt: 다음과 같은 형식을 입력으로 하는 구문 분석 생성기는?
+    choices:
+      - { id: '1', text: 'LEX' }
+      - { id: '2', text: 'Scan gen' }
+      - { id: '3', text: 'YACC' }
+      - { id: '4', text: 'LALR GEN' }
+    answers: ['3']
+    explanation: |
+      선택지 1: LEX 입력도 %%로 나뉜 세 부분이지만 정의 부분, 변환규칙 부분, 사용자 부프로그램 부분이며, LEX는 구문분석기가 아니라 어휘분석기 생성기이다.
+      선택지 2: Scan gen은 어휘분석기(스캐너) 생성기이다.
+      선택지 3: 선언 부분 %% 변환규칙 부분 %% 사용자 프로그램 부분 형식을 입력으로 받는 구문분석기 생성기는 YACC이다.
+      선택지 4: LALR GEN도 구문분석기 생성기의 하나이지만, 이 선언·변환규칙·사용자 프로그램 부분의 %% 입력 형식은 YACC의 형식이다.
+
+      핵심 개념:
+      YACC 입력 파일은 선언 부분, 변환규칙 부분, 사용자 프로그램 부분을 %%로 구분한다.
+      선언 부분에는 토큰과 우선순위, 변환규칙 부분에는 생성규칙과 수행코드를 적는다.
+      사용자 프로그램 부분에는 보조 C 함수를 적는다.
+      LEX도 %%로 세 부분을 나누지만 어휘분석기 생성기라는 점이 다르다.
+    tags: [yacc]
+
+  # ── 14강 의미분석과 중간언어 ──
+  - id: l14-01
+    type: multiple-choice
+    prompt: 다음은 의미분석 과정에서 하는 일들에 대한 설명이다. 틀린 것은?
+    choices:
+      - { id: '1', text: '상수의 이름이 기호표에 들어가고, 각 상수는 정의된 값을 기호표에 보관하여, 이후 적당한 기회에 기억장소를 배정받고 초기값을 갖는다.' }
+      - { id: '2', text: '주어진 생성규칙들의 의미에 의하여 유형의 해당 자료구조가 구성되며, 유형설명자를 만들어서 이후 유형들이 기억장소 배정을 받을 때 필요한 정보를 제공하게 한다.' }
+      - { id: '3', text: '선언되는 변수들이 선언된 유형에 의하여 설명자가 주어지고 변수명칭과 유형 설명자가 모두 같이 기호표에 들어가며 기억장소를 배정 받는다.' }
+      - { id: '4', text: '문법의 각 생성규칙들과 그와 결합된 의미수행코드들을 구성하고  호출되면 중간코드를 만든다.' }
+    answers: ['4']
+    explanation: |
+      선택지 1: 상수정의의 의미분석으로, 상수 이름과 값을 기호표에 보관한 뒤 기억장소를 배정받고 초기값을 갖는다. 옳은 설명이다.
+      선택지 2: 유형정의의 의미분석으로, 생성규칙의 의미에 따라 유형의 자료구조와 유형설명자를 만들어 이후 기억장소 배정에 필요한 정보를 제공한다. 옳은 설명이다.
+      선택지 3: 변수선언의 의미분석으로, 변수명칭과 유형 설명자를 기호표에 넣고 기억장소를 배정한다. 옳은 설명이다.
+      선택지 4: 생성규칙마다 의미수행코드를 결합해 두고 그 규칙이 적용될 때 호출해 중간코드를 만드는 것은 중간코드 생성 방법인 구문지시적 변환(syntax-directed translation)에 대한 설명이다. 선언문의 의미분석에서 하는 일이 아니다.
+
+      핵심 개념:
+      선언문의 의미분석은 상수정의, 유형정의, 변수선언을 처리해 기호표에 필요한 정보를 넣고 기억장소를 배정한다.
+      실행문의 의미분석은 기호표를 이용해 중간코드를 생산한다.
+      구문지시적 변환은 각 생성규칙에 의미수행코드를 붙여 구문분석과 동시에 중간코드를 만드는 방법이다.
+      기호표는 의미분석과 코드 생성 전 과정에서 식별자 정보를 제공한다.
+    tags: [semantic-analysis, symbol-table]
+
+  - id: l14-02
+    type: multiple-choice
+    prompt: |
+      다음은 의미분석에 대한 설명이다.  빈칸 ‘가’, ‘나’, ‘다’ 에 각각 알맞은 것을 순서대로 나열한 것은?
+
+      ( 가 ) 이외의 ( 나 )의 의미분석은 ( 다 ) 를 이용하여 중간코드를 생산하는 일을 하게 된다. 여러 가지 형태의 문들을 원래 뜻과 같은 중간코드로 생산하는 것이 의미분석의 목표가 된다.
+    choices:
+      - { id: '1', text: '선언문-실행문-기호표' }
+      - { id: '2', text: '선언문-실행문-해쉬함수' }
+      - { id: '3', text: '선언문-실행문-트리구조' }
+      - { id: '4', text: '선언문-실행문-선형리스트' }
+    answers: ['1']
+    explanation: |
+      선택지 1: 선언문 이외의 실행문의 의미분석은 선언문 처리에서 만든 기호표를 이용해 중간코드를 생산한다. 빈칸이 모두 맞는다.
+      선택지 2: 해쉬함수는 기호표를 해시표로 구성할 때 이름의 위치를 계산하는 수단일 뿐, 실행문의 의미분석이 이용하는 정보 저장소가 아니다.
+      선택지 3: 트리구조(이진트리)는 기호표를 구성하는 방법의 하나로, 실행문 의미분석이 이용하는 대상은 기호표 자체이다.
+      선택지 4: 선형리스트도 기호표 구성 방법의 하나일 뿐이므로 ‘다’에 들어갈 말로 알맞지 않다.
+
+      핵심 개념:
+      의미분석은 선언문의 의미분석과 실행문의 의미분석으로 나뉜다.
+      선언문의 의미분석은 식별자의 속성을 기호표에 넣고 기억장소를 배정한다.
+      실행문의 의미분석은 기호표를 참조해 여러 형태의 문을 원래 뜻과 같은 중간코드로 바꾼다.
+      기호표는 선형리스트, 이진트리, 해시표 등으로 구성할 수 있다.
+    tags: [semantic-analysis, symbol-table]
+
+  - id: l14-03
+    type: multiple-choice
+    prompt: 기호표에 n 개의 식별자 개수가 있을 때 삽입과 조회 연산의 평균시간에 대한 설명이다.  틀린 것은?
+    choices:
+      - { id: '1', text: '선형 리스트 구조 : t개의 이름에 대한 삽입과 m개의 조회에 대한 모든 시간은 c(t+m)이다. 단,  c 는 연산에 필요한 평균시간' }
+      - { id: '2', text: '이진트리 구조 : t개의 이름을 삽입하는 데 필요한 시간은 t log n이고, m개의 조회를 하는 데 필요한 시간은 m log n이다.' }
+      - { id: '3', text: '이진트리 구조 : t개의 이름 삽입과 m개의 조회에 필요한 시간은 (t+m)log n 이다. 만일 n이 50보다 크다면 선형리스트보다 효율적이다.' }
+      - { id: '4', text: '해쉬기호표 : t개의 식별자 이름의 추가와 m개의 조회가 있다면, 전체적으로 필요한 시간은 (t+m)log k 이다. 단, 해쉬표가 k개의 단어로 구성되어 있다.' }
+    answers: ['4']
+    explanation: |
+      선택지 1: 선형 리스트는 이름 하나를 삽입·조회할 때 평균 $c=\frac{n}{2}$의 시간이 들므로 전체 시간은 $c(t+m)$이다. 옳은 설명이다.
+      선택지 2: 이진트리에서 이름 하나의 삽입·조회는 $\log n$에 비례하므로 삽입 $t$개는 $t\log n$, 조회 $m$개는 $m\log n$이다. 옳은 설명이다.
+      선택지 3: 두 시간을 합하면 $(t+m)\log n$이고, $n$이 커질수록 $\log n$이 $\frac{n}{2}$보다 훨씬 작아 선형 리스트보다 효율적이다. 옳은 설명이다.
+      선택지 4: 해시표의 크기가 $k$이면 한 번의 조회시간은 $\frac{n}{k}$에 비례하므로 전체 시간은 $\frac{n}{k}(t+m)$에 비례한다. $(t+m)\log k$는 틀린 설명이다.
+
+      핵심 개념:
+      $t$개의 식별자 추가와 $m$개의 조회에 필요한 시간은 기호표 구성 방법에 따라 다르다.
+      선형 리스트: $c(t+m)$, $c=\frac{n}{2}$.
+      이진 탐색 트리: $(t+m)\log n$.
+      해시표(크기 $k$): $\frac{n}{k}(t+m)$으로 가장 효율적이다.
+    tags: [symbol-table]
+
+  - id: l14-04
+    type: multiple-choice
+    chapter: 7
+    prompt: 번역과정에서 중간언어를 사용함으로써 얻어지는 장점이 아닌 것은?
+    choices:
+      - { id: '1', text: '원시 프로그램의 이식성(portability)을 증가시킬 수 있다.' }
+      - { id: '2', text: '고급 원시언어와 저급 목적코드간의 의미적 차이를 이어주는 교량 역할을 중간코드가 담당함으로써 번역과정이 좀더 쉽게 표현되고 효율적으로 처리될 수 있다.' }
+      - { id: '3', text: '중간코드를 이용하여 최적화를 수행함으로써 기계와 독립적인 최적화가 가능해졌으며 또한 기계코드로 바뀐 상태에서 행하는 것보다 훨씬 효율적인 최적화를 수행할 수 있다.' }
+      - { id: '4', text: '중간언어를 사용함으로써 목적코드로 직접 번역하는 것보다 효율적인 코드를 생산한다.' }
+    answers: ['4']
+    explanation: |
+      선택지 1: 중간코드까지는 기계와 무관하게 만들고 뒷단만 바꾸면 되므로 이식성이 높아진다. 장점이다.
+      선택지 2: 고급 원시언어와 저급 목적코드 사이의 의미적 차이를 중간코드가 이어주어 번역과정이 단순해진다. 장점이다.
+      선택지 3: 중간코드 단계에서 기계와 독립적인 최적화를 할 수 있고, 기계코드에서 하는 것보다 효율적으로 최적화할 수 있다. 장점이다.
+      선택지 4: 중간코드 생성 과정을 한 번 더 거치므로 목적코드로 직접 번역하는 것보다 컴파일 시간이 더 걸리고, 일반적으로 생성되는 코드도 직접 번역한 것보다 비효율적이다. 따라서 장점이 아니다.
+
+      핵심 개념:
+      중간언어는 원시 프로그램과 목적 프로그램 사이에서 번역을 돕는 언어이다.
+      장점: 이식성 증가, 번역과정의 단순화, 기계 독립적인 최적화.
+      단점: 번역 단계가 늘어 컴파일 시간이 길어지고, 직접 번역보다 비효율적인 코드가 나올 수 있다.
+      대표적인 중간언어로 후위표현, 3-주소 코드(triple, 간접 triple, quadruple), U코드 등이 있다.
+    tags: [intermediate-language]
+
+  - id: l14-05
+    type: multiple-choice
+    chapter: 7
+    prompt: 다음 중 인터프리터에서 많이 사용되며 코드 이동을 할 수가 없어서 최적화에는 부적합한 중간언어는?
+    choices:
+      - { id: '1', text: '후위표현' }
+      - { id: '2', text: 'triple 표현' }
+      - { id: '3', text: '간접 triple 표현' }
+      - { id: '4', text: 'quadruple 표현' }
+    answers: ['1']
+    explanation: |
+      선택지 1: 후위표현은 산술연산자를 괄호 없이 표현하고 연산자 스택으로 쉽게 계산할 수 있으며, 원시 프로그램에서 쉽고 빠르게 변환되어 인터프리터의 중간언어로 적합하다. 그러나 코드 이동을 할 수 없어 최적화에는 부적합하다.
+      선택지 2: triple은 연산자와 피연산자 2개로 구성된 3-주소 코드로, 컴파일러의 중간코드로 쓰인다. 결과를 명령어 위치로 참조하므로 코드 이동이 어렵다는 문제는 있지만 인터프리터용 중간언어로 대표되는 형태는 아니다.
+      선택지 3: 간접 triple은 triple의 실행 순서를 별도 목록으로 관리해 코드 이동을 쉽게 만든 표현으로 최적화에 유리하다.
+      선택지 4: quadruple은 결과 필드를 따로 두어 명령어 순서를 바꾸기 쉬우므로 최적화에 유리하다.
+
+      핵심 개념:
+      후위표현(postfix)은 연산자를 피연산자 뒤에 두어 괄호가 필요 없다.
+      스택으로 바로 계산할 수 있어 인터프리터를 사용하는 언어의 중간언어로 적합하다.
+      코드의 위치를 옮겨 가며 개선하는 최적화에는 3-주소 코드가 더 적합하다.
+      quadruple과 간접 triple은 코드 이동이 쉬워 최적화에 유리하다.
+    tags: [intermediate-language, three-address-code]
+
+  - id: l14-06
+    type: multiple-choice
+    chapter: 7
+    passageRefs: [gl14-quadruple-01]
+    prompt: 다음은 A := -B *(C+D)를 3 주소 코드로 표현한 것이다. 이 방법의 이름은?
+    choices:
+      - { id: '1', text: 'triple' }
+      - { id: '2', text: '간접 triple' }
+      - { id: '3', text: 'U코드' }
+      - { id: '4', text: 'quadruple' }
+    answers: ['4']
+    explanation: |
+      선택지 1: triple은 op, 피연산자 1, 피연산자 2의 세 필드만 가지며, 결과는 명령어 번호((0), (1) 등)로 참조한다. 결과 필드가 있는 이 표와 다르다.
+      선택지 2: 간접 triple은 triple 목록과 실행 순서를 나타내는 별도 목록으로 구성되며, 역시 결과 필드가 없다.
+      선택지 3: U코드는 가상 기계를 위한 중간언어로, 이런 3-주소 코드 표 형식이 아니다.
+      선택지 4: op, 피연산자 1, 피연산자 2, 결과의 네 부분으로 구성되고 임시변수 T₁, T₂, T₃에 결과를 저장하므로 quadruple이다.
+
+      핵심 개념:
+      quadruple은 (op, 피연산자 1, 피연산자 2, 결과)의 4개 필드를 가진 3-주소 코드 표현이다.
+      A := -B*(C+D)는 T₁ := uminus B, T₂ := C + D, T₃ := T₁ * T₂, A := T₃ 순으로 표현된다.
+      결과를 임시변수 이름으로 가리키므로 명령어 순서를 바꾸어도 참조가 깨지지 않아 최적화에 유리하다.
+      triple은 임시변수 대신 명령어 위치로 결과를 참조해 기억공간을 줄인다.
+    tags: [three-address-code, quadruple]
+
+  # ── 15강 코드의 최적화와 코드의 생성 ──
+  - id: l15-01
+    type: multiple-choice
+    prompt: 다음은 최적화의 분류에 관한 설명이다. 틀린 것은?
+    choices:
+      - { id: '1', text: '지역최적화(local)와 전역최적화(global)' }
+      - { id: '2', text: '단일문에서의 최적화와 루프(loop)에서의 최적화' }
+      - { id: '3', text: '실행속도 측면과 기억장소 절약측면에서 최적화' }
+      - { id: '4', text: '중복명령어의 최적화와 제어흐름 최적화' }
+    answers: ['4']
+    explanation: |
+      선택지 1: 최적화 범위에 따라 기본 블록 안에서 하는 지역최적화와 여러 블록에 걸친 전역최적화로 나눈다. 옳은 분류이다.
+      선택지 2: 최적화 대상에 따라 단일문에서의 최적화와 반복되는 루프에서의 최적화로 나눈다. 옳은 분류이다.
+      선택지 3: 최적화 목적에 따라 실행속도를 높이는 최적화와 기억장소를 절약하는 최적화로 나눈다. 옳은 분류이다.
+      선택지 4: 중복명령어 제거나 제어흐름 개선은 개별 최적화 기법(예: 핍홀 최적화에서 다루는 기법)일 뿐, 최적화를 분류하는 기준이 아니므로 틀린 것이다.
+
+      핵심 개념:
+      최적화란 실행속도를 높이고 기억장소를 절약하도록 코드를 개선하는 것이다.
+      최적화는 지역/전역, 단일문/루프, 실행속도/기억장소 측면으로 구분해 볼 수 있다.
+      개별 기법으로는 상수전파, 복사전파, 공통 부분식 제거, 루프 최적화 등이 있다.
+      분류 기준과 개별 기법을 구분해 기억해야 한다.
+    tags: [code-optimization]
+
+  - id: l15-02
+    type: multiple-choice
+    prompt: 최적화를 위하여 치환문을 삭제하고 삭제된 치환문의 l-value 대신에 r-value를 사용하는 것은?
+    choices:
+      - { id: '1', text: '상수전파' }
+      - { id: '2', text: '복사전파' }
+      - { id: '3', text: '루프전개' }
+      - { id: '4', text: '루프융합' }
+    answers: ['2']
+    explanation: |
+      선택지 1: 상수전파는 변수에 대입된 상수 값을 그 변수의 사용 위치에 직접 넣는 최적화로, 변수를 다른 변수로 바꾸는 것이 아니다.
+      선택지 2: 복사전파는 A := B … C := A + D를 C := B + D처럼 바꾸어, 치환문 A := B를 삭제하고 l-value인 A 대신 r-value인 B를 사용하는 최적화이다.
+      선택지 3: 루프전개는 루프 몸체를 여러 번 복제해 반복 횟수와 루프 제어 부담을 줄이는 최적화이다.
+      선택지 4: 루프융합은 같은 범위를 도는 인접한 루프들을 하나의 루프로 합치는 최적화이다.
+
+      핵심 개념:
+      l-value는 기억장소의 주소, r-value는 기억장소에 있는 값을 뜻한다.
+      A := B에서 A는 l-value이고, 뒤의 C := A + D에서 A는 값을 나타내는 r-value이다.
+      복사전파는 A := B 이후 A의 사용을 B로 바꾸고 치환문 A := B를 삭제한다.
+      치환문이 없어지므로 변수 A의 기억장소와 명령어를 절약할 수 있다.
+    tags: [code-optimization]
+
+  - id: l15-03
+    type: multiple-choice
+    prompt: 다음  코드최적화 방법 중  소요 기억용량의 최적화 방법과 가장 거리가 먼 것은?
+    choices:
+      - { id: '1', text: '루프전개' }
+      - { id: '2', text: '복사전파' }
+      - { id: '3', text: '레지스터 할당' }
+      - { id: '4', text: '부프로그램화' }
+    answers: ['1']
+    explanation: |
+      선택지 1: 루프전개는 루프 몸체를 여러 번 복제해 실행속도를 높이는 최적화로, 코드가 길어져 기억장소가 오히려 늘어날 수 있다. 소요 기억용량의 최적화와 가장 거리가 멀다.
+      선택지 2: 복사전파는 A := B 같은 치환문을 삭제해 변수와 명령어를 줄이므로 기억용량을 절약한다.
+      선택지 3: 레지스터 할당은 자주 쓰는 값을 레지스터에 두어 기억장소 사용과 적재·저장 명령을 줄인다.
+      선택지 4: 부프로그램화는 여러 곳에 반복되는 코드를 하나의 부프로그램으로 만들어 호출하게 하므로 코드 크기를 줄인다.
+
+      핵심 개념:
+      최적화는 실행시간을 짧게 하는 최적화와 소요 기억용량의 최적화로 나눌 수 있다.
+      소요 기억용량의 최적화는 명령어와 변수가 차지하는 기억장소를 줄이는 것이 목적이다.
+      루프전개처럼 속도를 위해 코드를 복제하는 기법은 기억장소를 더 쓴다.
+      속도와 기억장소는 서로 상충하는 경우가 많다.
+    tags: [code-optimization]
+
+  - id: l15-04
+    type: multiple-choice
+    chapter: 9
+    prompt: 다음 중 목적코드를 생성하는 데 고려사항으로서 적합하지 않은 것은?
+    choices:
+      - { id: '1', text: '어떤 명령어를 생산할 것인가?' }
+      - { id: '2', text: '계산과정을 어떤 순서로 할 것인가?' }
+      - { id: '3', text: '중간코드를 어떻게 분석할 것인가?' }
+      - { id: '4', text: '피연산자를 레지스터에 어떻게 배정할 것인가?' }
+    answers: ['3']
+    explanation: |
+      선택지 1: 대상 기계의 명령어 중 어떤 명령어를 생산할지 정하는 명령어 선택은 목적코드 생성의 고려사항이다.
+      선택지 2: 계산 순서에 따라 필요한 레지스터와 명령어 수가 달라지므로 계산과정의 순서를 정하는 것은 고려사항이다.
+      선택지 3: 중간코드를 분석하는 일은 목적코드 생성에서 고려할 세 가지 사항에 들지 않는다. 중간코드는 앞 단계에서 이미 만들어져 목적코드 생성의 입력으로 주어진다.
+      선택지 4: 피연산자를 어느 레지스터에 둘지 정하는 레지스터 배정은 목적코드 생성의 고려사항이다.
+
+      핵심 개념:
+      목적코드 생성은 중간코드를 입력받아 대상 기계의 목적코드를 만드는 단계이다.
+      고려사항은 어떤 명령어를 생산할 것인가, 계산과정을 어떤 순서로 할 것인가, 피연산자를 레지스터에 어떻게 배정할 것인가의 세 가지이다.
+      레지스터는 기억장소보다 빠르지만 수가 적으므로 배정 방법이 코드 효율을 좌우한다.
+      목적코드는 기계어나 어셈블리어 형태로 생성된다.
+    tags: [code-generation]
+
+  - id: l15-05
+    type: multiple-choice
+    chapter: 9
+    prompt: 다음 중 목적코드 설계상 중요한 것으로 볼 수 없는 것은?
+    choices:
+      - { id: '1', text: '프로시저의 입구/출구의 목적 프로그램' }
+      - { id: '2', text: '프로시저 호출의 목적 프로그램' }
+      - { id: '3', text: '변수의 기억영역 할당 목적 프로그램' }
+      - { id: '4', text: '코드 이동의 목적 프로그램' }
+    answers: ['4']
+    explanation: |
+      선택지 1: 프로시저의 입구와 출구에서 환경을 저장·복원하는 목적 프로그램은 목적코드 설계상 중요한 요소이다.
+      선택지 2: 매개변수 전달과 복귀 주소 처리를 포함하는 프로시저 호출의 목적 프로그램은 중요한 요소이다.
+      선택지 3: 변수의 기억영역 할당과 로드(load)/저장(store)의 목적 프로그램은 중요한 요소이다.
+      선택지 4: 코드 이동은 코드를 루프 밖으로 옮기는 등의 코드 최적화 기법이며, 목적코드 설계상 중요한 목적 프로그램으로 꼽는 항목이 아니다.
+
+      핵심 개념:
+      목적코드 설계에서는 산술식과 논리식의 목적코드가 기본이 된다.
+      그 밖에 프로시저의 입구/출구, 프로시저 호출, 변수의 기억영역 할당과 로드/저장의 목적 프로그램이 중요하다.
+      코드 이동은 목적코드 생성이 아니라 최적화 단계에서 다루는 기법이다.
+      각 목적 프로그램은 대상 기계의 명령어로 구성된다.
+    tags: [code-generation, object-program]
+
+  - id: l15-06
+    type: multiple-choice
+    chapter: 9
+    prompt: 산술식에 대한 목적코드를 생성하기 위해서 우선적으로 알아야 하는 것은?
+    choices:
+      - { id: '1', text: '누산기(accumulator)의 갯수' }
+      - { id: '2', text: '프로그램 카운터(program counter)' }
+      - { id: '3', text: '스택 포인터(stack pointer)' }
+      - { id: '4', text: '기호표의 크기' }
+    answers: ['1']
+    explanation: |
+      선택지 1: 산술식의 계산 결과를 담는 누산기가 몇 개인지에 따라 중간 결과를 작업용 번지에 저장할지, 어떤 순서로 계산할지가 달라지므로 먼저 알아야 한다.
+      선택지 2: 프로그램 카운터는 다음에 실행할 명령어의 주소를 가리키는 레지스터로, 산술식 코드 생성 방식을 정하는 요소가 아니다.
+      선택지 3: 스택 포인터는 스택의 꼭대기를 가리키는 레지스터로, 프로시저 호출 등에서 쓰이며 산술식 코드 생성에서 우선 고려할 요소가 아니다.
+      선택지 4: 기호표의 크기는 식별자 관리와 관련된 것으로 산술식의 목적코드 형태를 결정하지 않는다.
+
+      핵심 개념:
+      산술식의 목적코드를 생성하려면 먼저 누산기(accumulator)의 개수를 알아야 한다.
+      누산기가 하나뿐이면 먼저 계산한 부분식의 결과를 작업용 번지에 STORE해 두어야 한다.
+      LOAD는 기억장소 값을 누산기로 가져오고, STORE는 누산기 값을 기억장소에 저장한다.
+      ADD, MULT 등은 누산기 값과 지정한 번지의 값을 연산한다.
+    tags: [code-generation]

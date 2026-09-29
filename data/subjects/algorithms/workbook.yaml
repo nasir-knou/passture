@@ -1829,7 +1829,7 @@ questions:
     prompt: 오름차순으로 정렬할 때 사용할 수 있는 힙은?
     choices:
       - id: '1'
-        text: 트리 1
+        text: ''
         diagram:
           type: simple-graph
           width: 170
@@ -1848,7 +1848,7 @@ questions:
             - { from: n6, to: n3 }
             - { from: n6, to: n4 }
       - id: '2'
-        text: 트리 2
+        text: ''
         diagram:
           type: simple-graph
           width: 170
@@ -1865,7 +1865,7 @@ questions:
             - { from: n7, to: n10 }
             - { from: n7, to: n15 }
       - id: '3'
-        text: 트리 3
+        text: ''
         diagram:
           type: simple-graph
           width: 170
@@ -1882,7 +1882,7 @@ questions:
             - { from: n3, to: n10 }
             - { from: n3, to: n2 }
       - id: '4'
-        text: 트리 4
+        text: ''
         diagram:
           type: simple-graph
           width: 170

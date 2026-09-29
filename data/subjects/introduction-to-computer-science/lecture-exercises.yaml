@@ -869,22 +869,22 @@ questions:
     prompt: 두 이진 입력 A와 B가 서로 다른 값을 가질 경우에만 출력 X가 1의 값을 갖는 논리 게이트는?
     choices:
       - id: '1'
-        text: '①'
+        text: ''
         image:
           path: images/subjects/introduction-to-computer-science/lecture-exercises/l09-02-choice-1.png
           alt: '선택지 1 논리 게이트 기호'
       - id: '2'
-        text: '②'
+        text: ''
         image:
           path: images/subjects/introduction-to-computer-science/lecture-exercises/l09-02-choice-2.png
           alt: '선택지 2 논리 게이트 기호'
       - id: '3'
-        text: '③'
+        text: ''
         image:
           path: images/subjects/introduction-to-computer-science/lecture-exercises/l09-02-choice-3.png
           alt: '선택지 3 논리 게이트 기호'
       - id: '4'
-        text: '④'
+        text: ''
         image:
           path: images/subjects/introduction-to-computer-science/lecture-exercises/l09-02-choice-4.png
           alt: '선택지 4 논리 게이트 기호'
@@ -1424,7 +1424,7 @@ questions:
     prompt: SQL 명령어의 사용 형식 중에서 올바르지 못한 것은?
     choices:
       - id: '1'
-        text: '①'
+        text: ''
         diagram:
           type: data-table
           cellFormat: code
@@ -1432,7 +1432,7 @@ questions:
           rows:
             - ["delete\nfrom 테이블\nwhere 조건;"]
       - id: '2'
-        text: '②'
+        text: ''
         diagram:
           type: data-table
           cellFormat: code
@@ -1440,7 +1440,7 @@ questions:
           rows:
             - ["update 테이블\nset 열이름 = 산술식\nwhere 조건;"]
       - id: '3'
-        text: '③'
+        text: ''
         diagram:
           type: data-table
           cellFormat: code
@@ -1448,7 +1448,7 @@ questions:
           rows:
             - ["select 열이름\nfrom 테이블\nwhere 조건;"]
       - id: '4'
-        text: '④'
+        text: ''
         diagram:
           type: data-table
           cellFormat: code

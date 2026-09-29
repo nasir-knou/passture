@@ -1,0 +1,775 @@
+subjectId: c-programming
+sourceId: past-exams-2018
+title: C프로그래밍 2018 기말
+kind: exam
+year: 2018
+
+passages:
+  - id: g18-macro-code-01
+    type: code
+    language: c
+    body: |
+      #include<stdio.h>
+      #define SUM(x,y) x+y
+      void main(){
+          int a;
+          a=10*SUM(3, 4);
+          printf("a=%d", a);
+      }
+
+  - id: g18-if-else-code-01
+    type: code
+    language: c
+    body: |
+      if(a>10)
+          x=a*100;
+      else
+          x=a*200;
+
+  - id: g18-relational-code-01
+    type: code
+    language: c
+    body: |
+      #include <stdio.h>
+      void main() {
+        int a=4, b, c;
+        b=a>2;
+        printf("b=%d", b);
+        c=a<2;
+        printf("c=%d", c);
+      }
+
+  - id: g18-nested-for-code-01
+    type: code
+    language: c
+    body: |
+      #include<stdio.h>
+      void main(){
+        int i=0, j=0;
+        for(i=0; i<5; i++)
+           for(j=5; j>2; j--)
+               putchar('x');
+       }
+
+  - id: g18-nested-if-code-01
+    type: code
+    language: c
+    body: |
+      #include<stdio.h>
+      main()
+      {
+          int a=10;
+          if(a>=0)
+              if(a==0)
+                 printf("첫 번째 if");
+              else
+                 printf("두 번째 if");
+          else
+              printf("세 번째 if");
+      }
+
+  - id: g18-string-io-intro-01
+    type: text
+    body: |
+      ※ (8~9) 다음과 같은 프로그램이 있을 때 물음에 답하시오.
+
+  - id: g18-string-io-code-01
+    type: code
+    language: c
+    body: |
+      #include<stdio.h>
+      void main(){
+        char s[50];
+        [                  ]   -------------- ㉠
+        [                  ]   -------------- ㉡
+      }
+
+  - id: g18-static-block-code-01
+    type: code
+    language: c
+    body: |
+      #include <stdio.h>
+      void main() {
+              int a=10;
+              static int b=20;
+              {
+                        int a=5;
+                        b=a+10;
+              }
+              printf("a=%d     b=%d\n", a, b);
+      }
+
+  - id: g18-global-intro-01
+    type: text
+    body: |
+      ※ (13~14) 다음과 같은 프로그램이 있을 때 물음에 답하시오.
+
+  - id: g18-global-code-01
+    type: code
+    language: c
+    body: |
+      #include <stdio.h>
+      void fcn1();
+      int x;
+      void main() {
+              printf("x= %d\n ", x);---------------- ㉠
+              fcn1();
+              printf("x= %d\n ", x);---------------- ㉡
+      }
+      void fcn1() {
+              x++;
+      }
+
+  - id: g18-array-init-code-01
+    type: code
+    language: c
+    body: |
+      #include<stdio.h>
+      void main(){
+         int a[4]={10, 20,   };
+         printf("%d %d %d %d\n", a[0], a[1], a[2], a[3]);
+      }
+
+  - id: g18-2d-array-code-01
+    type: code
+    language: c
+    body: |
+      #include<stdio.h>
+      void main(){
+      int array[3][4]={1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
+           printf("%d", array[1][2]);
+      }
+
+  - id: g18-pointer-array-code-01
+    type: code
+    language: c
+    body: |
+      #include<stdio.h>
+      void main(){
+        int a=10, b=20, c=30;
+        int *array[3]={&a, &b, &c};
+        printf("%d", *array[1]);
+      }
+
+  - id: g18-pointer-arith-intro-01
+    type: text
+    body: |
+      ※ (18~19) 다음과 같은 프로그램이 있을 때 물음에 답하시오.
+
+  - id: g18-pointer-arith-code-01
+    type: code
+    language: c
+    body: |
+      #include <stdio.h>
+      void main() {
+              int *p, *q;
+              int a[ ]={10,20,30,40,50,60,70,80,90,100};
+              p=&a[2];
+              q=p+4;
+                 printf("%d %d\n", *p, *q); ----㉠
+                 printf("*(p+3)=%d\n", *(p+3)); ----㉡
+                 printf("p-q= %d\n", p-q);-----㉢
+      }
+
+  - id: g18-float-var-intro-01
+    type: text
+    body: |
+      ※ (20~21) 다음과 같이 변수 선언과 초기화가 되어있을 때 물음에 답하시오.
+
+  - id: g18-float-var-code-01
+    type: code
+    language: c
+    body: |
+      float var1, var2;
+      var1=3.14;
+
+  - id: g18-file-intro-01
+    type: text
+    body: |
+      ※ (23~24) 다음과 같은 프로그램이 있을 때 물음에 답하시오.
+
+  - id: g18-file-code-01
+    type: code
+    language: c
+    body: |
+      #include <stdio.h>
+      #include <stdlib.h>
+      void main() {
+          FILE [ ㉠ ] ;
+          int c;
+          if((fp=fopen("oldname.dat", "rb")) == NULL){
+               exit(1);
+          }
+          while((c=fgetc(fp)) != EOF)
+               fprintf(stdout, "%c", c);
+          [ ㉡ ] ;
+      }
+
+questions:
+  - id: e18-01
+    type: multiple-choice
+    prompt: C 프로그램 작성 시 반드시 작성해야 하는 함수는?
+    choices:
+      - { id: '1', text: 'scanf()' }
+      - { id: '2', text: 'printf()' }
+      - { id: '3', text: 'malloc()' }
+      - { id: '4', text: 'main()' }
+    answers: ['4']
+    explanation: |
+      선택지 1: scanf()는 표준 입력 함수로, 입력이 필요할 때만 쓰며 모든 프로그램에 반드시 있어야 하는 함수가 아니다.
+      선택지 2: printf()는 표준 출력 함수로, 화면 출력이 필요할 때 쓰는 라이브러리 함수일 뿐 필수 함수가 아니다.
+      선택지 3: malloc()은 실행 중 기억공간을 할당하는 동적할당 함수로, 동적할당이 필요할 때만 쓴다.
+      선택지 4: main()은 프로그램 실행이 시작되는 함수로, 모든 C 프로그램에 반드시 하나 있어야 한다. 정답이다.
+
+      핵심 개념:
+      C 프로그램은 하나 이상의 함수로 구성된다.
+      실행은 항상 main() 함수에서 시작하므로 main()은 반드시 하나 있어야 한다.
+      scanf(), printf(), malloc() 같은 라이브러리 함수는 필요할 때 헤더 파일을 포함해 호출한다.
+      main() 외의 함수는 main()이나 다른 함수에서 호출될 때 실행된다.
+
+  - id: e18-02
+    type: multiple-choice
+    prompt: 다음 중 출력양식 변환기호의 설명으로 ==잘못된== 것은?
+    choices:
+      - { id: '1', text: '%d는 출력 값을 지수형식으로 나타낸다.' }
+      - { id: '2', text: '%f는 출력 값을 부동 소수점 형식으로 나타낸다.' }
+      - { id: '3', text: '%o는 출력 값을 8진수로 나타낸다.' }
+      - { id: '4', text: '%x는 출력 값을 16진수로 나타낸다.' }
+    answers: ['1']
+    explanation: |
+      선택지 1: %d는 정수를 10진수(decimal)로 출력하는 변환기호이며, 지수형식 출력은 %e가 담당하므로 잘못된 설명이다. 정답이다.
+      선택지 2: %f는 실수를 소수점 형식(부동 소수점 표기, 예: 3.140000)으로 출력하므로 옳은 설명이다.
+      선택지 3: %o는 정수를 8진수(octal)로 출력하므로 옳은 설명이다.
+      선택지 4: %x는 정수를 16진수(hexadecimal)로 출력하므로 옳은 설명이다.
+
+      핵심 개념:
+      %d: 10진 정수, %o: 8진 정수, %x: 16진 정수를 출력한다.
+      %f: 소수점 형식 실수, %e: 지수형식 실수를 출력한다.
+      %c: 문자 하나, %s: 문자열을 출력한다.
+      변환기호는 출력할 자료형과 일치해야 올바른 값이 표시된다.
+
+  - id: e18-03
+    type: multiple-choice
+    passageRefs: [g18-macro-code-01]
+    prompt: 다음과 같은 프로그램의 실행결과로서 올바른 것은?
+    choices:
+      - { id: '1', text: '10' }
+      - { id: '2', text: '34' }
+      - { id: '3', text: '45' }
+      - { id: '4', text: '70' }
+    answers: ['2']
+    explanation: |
+      선택지 1: 10은 치환 결과 10*3+4=34와 맞지 않는 값이다.
+      선택지 2: #define SUM(x,y) x+y는 괄호 없이 문자 그대로 치환되므로 a=10*SUM(3, 4);는 a=10*3+4;가 된다. 곱셈이 덧셈보다 먼저 계산되어 30+4=34이고 a=34가 출력된다. 정답이다.
+      선택지 3: 45는 치환 결과 10*3+4와 맞지 않는 값이다.
+      선택지 4: 70은 10*(3+4)로 계산한 값으로, 매크로 정의에 괄호가 있을 때(#define SUM(x,y) ((x)+(y)))의 결과다. 주어진 매크로는 괄호가 없어 이렇게 계산되지 않는다.
+
+      핵심 개념:
+      #define 매크로는 전처리 단계에서 문자열 그대로 치환된다.
+      치환 후 연산자 우선순위가 그대로 적용되므로 곱셈(*)이 덧셈(+)보다 먼저 계산된다.
+      의도한 계산 순서를 보장하려면 매크로 본문과 인수를 괄호로 감싼다.
+      10*SUM(3, 4) → 10*3+4 → 34이다.
+
+  - id: e18-04
+    type: multiple-choice
+    passageRefs: [g18-if-else-code-01]
+    prompt: 다음 프로그램을 조건 연산자를 사용하여 바꾼다면 가장 올바른 것은?
+    choices:
+      - { id: '1', text: 'x=(a>10; a*100 : a*200);' }
+      - { id: '2', text: 'x=(a>10; a*200 : a*100);' }
+      - { id: '3', text: 'x=(a>10? a*100 : a*200);' }
+      - { id: '4', text: 'x=(a>10? a*200 : a*100);' }
+    answers: ['3']
+    explanation: |
+      선택지 1: 조건 연산자는 조건 뒤에 ?를 써야 하는데 세미콜론(;)을 써서 문법에 맞지 않는다.
+      선택지 2: ? 대신 세미콜론을 썼고, 참·거짓일 때의 값도 원래 프로그램과 반대로 되어 있다.
+      선택지 3: 조건식 a>10이 참이면 a*100, 거짓이면 a*200을 x에 대입하므로 if~else 문과 같은 동작을 한다. 정답이다.
+      선택지 4: 형식은 맞지만 참일 때 a*200, 거짓일 때 a*100을 대입해 원래 프로그램과 반대로 동작한다.
+
+      핵심 개념:
+      조건 연산자는 조건식 ? 식1 : 식2 형태의 삼항 연산자다.
+      조건식이 참이면 식1, 거짓이면 식2의 값이 결과가 된다.
+      if(조건) x=식1; else x=식2;는 x=(조건 ? 식1 : 식2);로 바꿀 수 있다.
+      ?와 :의 순서와 위치를 바꾸면 의미가 달라진다.
+
+  - id: e18-05
+    type: multiple-choice
+    passageRefs: [g18-relational-code-01]
+    prompt: 다음 프로그램의 실행결과로 올바른 것은?
+    choices:
+      - { id: '1', text: 'b=1     c=0' }
+      - { id: '2', text: 'b=4     c=1' }
+      - { id: '3', text: 'b=0     c=1' }
+      - { id: '4', text: 'b=1     c=4' }
+    answers: ['1']
+    explanation: |
+      선택지 1: 관계 연산자 >가 대입 연산자 =보다 우선하므로 b=(a>2)이다. 4>2는 참이라 b=1, 4<2는 거짓이라 c=0이 출력된다. 정답이다.
+      선택지 2: b에 a의 값 4가 대입되는 것이 아니라 비교 결과(1 또는 0)가 대입되므로 b=4가 될 수 없고, 4<2는 거짓이라 c=1도 아니다.
+      선택지 3: 참·거짓 결과를 반대로 적용한 값으로, 4>2는 참(1), 4<2는 거짓(0)이다.
+      선택지 4: c=a<2는 c=(a<2)로 비교 결과 0이 대입되며 a의 값 4가 대입되지 않는다.
+
+      핵심 개념:
+      관계 연산자(>, <, >=, <=, ==, !=)의 결과는 참이면 1, 거짓이면 0이다.
+      관계 연산자는 대입 연산자보다 우선순위가 높다.
+      b=a>2;는 b=(a>2);로 해석된다.
+      출력은 줄바꿈 없이 b=1c=0 순서로 이어진다.
+
+  - id: e18-06
+    type: multiple-choice
+    passageRefs: [g18-nested-for-code-01]
+    prompt: 다음 프로그램이 실행됐을 때 x는 몇 번 출력되는가?
+    choices:
+      - { id: '1', text: '15' }
+      - { id: '2', text: '18' }
+      - { id: '3', text: '24' }
+      - { id: '4', text: '36' }
+    answers: ['1']
+    explanation: |
+      선택지 1: 바깥 for문은 i=0~4로 5번, 안쪽 for문은 j=5, 4, 3으로 3번(j>2인 동안) 반복하므로 putchar('x')는 5×3=15번 실행된다. 정답이다.
+      선택지 2: 18은 실제 실행 횟수 5×3=15와 맞지 않는다.
+      선택지 3: 24는 실제 실행 횟수 5×3=15와 맞지 않는다.
+      선택지 4: 36은 실제 실행 횟수 5×3=15와 맞지 않는다.
+
+      핵심 개념:
+      중첩 for문의 실행 횟수는 바깥 반복 횟수 × 안쪽 반복 횟수이다.
+      for(i=0; i<5; i++)는 i=0, 1, 2, 3, 4로 5번 반복한다.
+      for(j=5; j>2; j--)는 j=5, 4, 3으로 3번 반복한다.
+      따라서 x는 15번 출력된다.
+
+  - id: e18-07
+    type: multiple-choice
+    passageRefs: [g18-nested-if-code-01]
+    prompt: 다음 프로그램의 출력결과로 올바른 것은?
+    choices:
+      - { id: '1', text: '첫 번째 if' }
+      - { id: '2', text: '두 번째 if' }
+      - { id: '3', text: '세 번째 if' }
+      - { id: '4', text: '두 번째 if 세 번째 if' }
+    answers: ['2']
+    explanation: |
+      선택지 1: 첫 번째 if는 안쪽 조건 a==0이 참일 때 출력되는데 a=10이라 거짓이므로 출력되지 않는다.
+      선택지 2: 바깥 조건 a>=0은 참이므로 안쪽 if문으로 들어가고, a==0은 거짓이라 안쪽 else의 printf("두 번째 if");가 실행된다. 정답이다.
+      선택지 3: 세 번째 if는 바깥 조건 a>=0이 거짓일 때 실행되는 else에 있으므로 a=10에서는 실행되지 않는다.
+      선택지 4: if~else 구조에서는 참·거짓 중 한쪽만 실행되므로 두 문장이 함께 출력되지 않는다.
+
+      핵심 개념:
+      중첩 if문에서 else는 가장 가까운 짝 없는 if와 짝을 이룬다.
+      이 프로그램은 if(a>=0) { if(a==0) … else … } else … 구조다.
+      a=10이면 바깥 조건 참, 안쪽 조건 거짓이므로 "두 번째 if"만 출력된다.
+      if~else는 조건에 따라 둘 중 한 문장만 실행한다.
+
+  - id: e18-08
+    type: multiple-choice
+    passageRefs: [g18-string-io-intro-01, g18-string-io-code-01]
+    prompt: 위에서 문자열 자료를 입력받기 위해 ㉠의 위치에 사용될 수 있는 표준 입력함수로서 올바르게 나타낸 것은?
+    choices:
+      - { id: '1', text: 'gets(s);' }
+      - { id: '2', text: 'puts(s);' }
+      - { id: '3', text: 'scanf("%c", s);' }
+      - { id: '4', text: 's=putchar();' }
+    answers: ['1']
+    explanation: |
+      선택지 1: gets(s);는 Enter 키를 누를 때까지 입력한 한 줄의 문자열을 문자 배열 s에 저장하는 표준 입력함수이다. 정답이다.
+      선택지 2: puts(s);는 배열 s의 문자열을 화면에 출력하는 표준 출력함수이므로 입력에 쓸 수 없다.
+      선택지 3: %c는 문자 하나만 입력받는 변환기호이므로 문자열 전체를 입력받지 못한다. 문자열 입력에는 %s를 쓴다.
+      선택지 4: putchar()는 문자 하나를 출력하는 함수이며 인수 없이 호출할 수 없고, 반환값을 배열명 s에 대입할 수도 없다.
+
+      핵심 개념:
+      문자열 입력: gets(문자배열), scanf("%s", 문자배열)
+      문자열 출력: puts(문자배열), printf("%s", 문자배열)
+      문자 하나 입출력: getchar(), putchar(문자)
+      배열명은 시작 주소를 나타내는 상수이므로 대입 연산의 왼쪽에 올 수 없다.
+
+  - id: e18-09
+    type: multiple-choice
+    passageRefs: [g18-string-io-intro-01, g18-string-io-code-01]
+    prompt: 위에서 입력된 문자열 자료를 출력하기 위해 ㉡의 위치에 사용될 수 있는 표준 출력함수로서 올바르게 나타낸 것은?
+    choices:
+      - { id: '1', text: 's=puts();' }
+      - { id: '2', text: 'printf("%c", s);' }
+      - { id: '3', text: 'puts(s);' }
+      - { id: '4', text: 'gets(s);' }
+    answers: ['3']
+    explanation: |
+      선택지 1: puts()는 출력할 문자열을 인수로 받아야 하며, 배열명 s는 상수 주소라 대입 연산의 왼쪽에 올 수 없다.
+      선택지 2: %c는 문자 하나를 출력하는 변환기호인데 s는 배열의 시작 주소이므로 문자열을 올바르게 출력하지 못한다. 문자열 출력에는 %s를 쓴다.
+      선택지 3: puts(s);는 배열 s에 저장된 문자열을 화면에 출력하고 줄을 바꾸는 표준 출력함수이다. 정답이다.
+      선택지 4: gets(s);는 문자열을 입력받는 함수이므로 출력 위치에 쓸 수 없다.
+
+      핵심 개념:
+      puts(문자배열)는 문자열을 출력한 뒤 자동으로 줄을 바꾼다.
+      printf("%s", 문자배열)로도 문자열을 출력할 수 있다.
+      gets()는 입력, puts()는 출력 함수로 짝을 이룬다.
+      %c는 문자 하나, %s는 문자열에 대응한다.
+
+  - id: e18-10
+    type: multiple-choice
+    passageRefs: [g18-static-block-code-01]
+    prompt: 다음과 같은 프로그램의 실행결과로서 올바른 것은?
+    choices:
+      - { id: '1', text: 'a=5     b=15' }
+      - { id: '2', text: 'a=5     b=20' }
+      - { id: '3', text: 'a=10   b=15' }
+      - { id: '4', text: 'a=10   b=20' }
+    answers: ['3']
+    explanation: |
+      선택지 1: 안쪽 블록의 int a=5;는 블록 안에서만 유효한 별개의 변수이므로 블록이 끝난 뒤 printf의 a는 바깥 a=10이다.
+      선택지 2: a의 값도 5가 아니고, 블록 안에서 b=a+10;으로 b가 15로 바뀌었으므로 20도 아니다.
+      선택지 3: 블록 안의 b=a+10;은 블록 안의 a(5)를 사용해 b=15로 바꾸고, 블록을 벗어나면 바깥 a=10이 보이므로 a=10 b=15가 출력된다. 정답이다.
+      선택지 4: b는 블록 안에서 새로 선언되지 않았으므로 바깥의 static 변수 b 자체가 15로 바뀌어 20이 유지되지 않는다.
+
+      핵심 개념:
+      블록 { } 안에서 선언한 변수는 그 블록 안에서만 유효하다.
+      안쪽 블록에서 같은 이름의 변수를 선언하면 바깥 변수를 가린다.
+      블록 안에서 선언하지 않은 변수(b)를 쓰면 바깥 변수를 그대로 사용·변경한다.
+      static 변수는 정적 기억 클래스로 값이 프로그램 종료 시까지 유지된다.
+
+  - id: e18-11
+    type: multiple-choice
+    prompt: 다음 중 함수에 대한 설명으로 ==잘못된== 것은?
+    choices:
+      - { id: '1', text: '하나의 프로그램에서 반드시 main()함수를 쓸 필요는 없다.' }
+      - { id: '2', text: '함수를 호출할 때 괄호를 생략해서는 안 된다.' }
+      - { id: '3', text: '되돌려 줄 자료가 없을 때는 void를 쓴다.' }
+      - { id: '4', text: 'C 언어에서 함수는 서로 독립적이다.' }
+    answers: ['1']
+    explanation: |
+      선택지 1: C 프로그램은 main() 함수에서 실행을 시작하므로 모든 프로그램에 main() 함수가 반드시 하나 있어야 한다. 잘못된 설명이다. 정답이다.
+      선택지 2: 함수는 이름 뒤에 괄호를 붙여 호출하며, 인수가 없어도 fcn1();처럼 괄호를 써야 하므로 옳은 설명이다.
+      선택지 3: 반환할 값이 없는 함수는 반환형을 void로 선언하므로 옳은 설명이다.
+      선택지 4: C 언어의 함수는 각각 독립된 단위로 정의되며, 한 함수 안에 다른 함수를 정의할 수 없으므로 옳은 설명이다.
+
+      핵심 개념:
+      모든 C 프로그램에는 main() 함수가 반드시 하나 있다.
+      함수 호출은 함수명(인수) 형태이며 인수가 없어도 괄호를 쓴다.
+      반환값이 없는 함수는 void형으로 선언한다.
+      함수는 서로 독립적으로 정의되고 인수와 반환값으로 자료를 주고받는다.
+
+  - id: e18-12
+    type: multiple-choice
+    prompt: 다음의 배열에 대한 설명 중 올바르지 ==않은== 것은?
+    choices:
+      - { id: '1', text: '모든 배열은 자료형과 기억 클래스를 갖는다.' }
+      - { id: '2', text: '배열의 각 원소를 변수처럼 사용한다.' }
+      - { id: '3', text: '배열명을 증가시키거나 감소시킬 수 있다.' }
+      - { id: '4', text: '배열명은 배열 공간의 시작주소를 가리킨다.' }
+    answers: ['3']
+    explanation: |
+      선택지 1: 배열도 변수처럼 int, char 같은 자료형과 auto, static 같은 기억 클래스를 가지므로 옳은 설명이다.
+      선택지 2: a[0], a[1]처럼 첨자를 붙인 각 원소는 일반 변수처럼 값을 대입하고 참조할 수 있으므로 옳은 설명이다.
+      선택지 3: 배열명은 배열의 시작주소를 나타내는 포인터 상수이므로 a++, a--처럼 값을 바꿀 수 없다. 올바르지 않은 설명이다. 정답이다.
+      선택지 4: 배열명은 배열 공간의 첫 원소 주소(&a[0])를 나타내므로 옳은 설명이다.
+
+      핵심 개념:
+      배열은 같은 자료형의 원소를 연속된 기억공간에 저장한다.
+      배열명은 시작주소를 나타내는 포인터 상수로 변경할 수 없다.
+      포인터 변수는 증감할 수 있지만 배열명은 증감할 수 없다.
+      배열 원소는 첨자로 접근하며 일반 변수처럼 사용한다.
+
+  - id: e18-13
+    type: multiple-choice
+    passageRefs: [g18-global-intro-01, g18-global-code-01]
+    prompt: 위에서 ㉠에 대한 결과로서 올바른 것은?
+    choices:
+      - { id: '1', text: 'x=0' }
+      - { id: '2', text: 'x=1' }
+      - { id: '3', text: '알 수 없다' }
+      - { id: '4', text: '에러발생' }
+    answers: ['1']
+    explanation: |
+      선택지 1: x는 함수 밖에서 선언한 전역 변수이고, 전역 변수는 초기값을 주지 않으면 0으로 자동 초기화된다. fcn1() 호출 전이므로 ㉠에서 x= 0이 출력된다. 정답이다.
+      선택지 2: x가 1이 되는 것은 fcn1()에서 x++;가 실행된 뒤이므로 ㉠ 시점의 값이 아니다.
+      선택지 3: 초기화하지 않은 지역(auto) 변수는 쓰레기 값을 갖지만, 전역 변수는 0으로 초기화되므로 값을 알 수 있다.
+      선택지 4: x는 main() 이전에 선언되어 main()과 fcn1()에서 모두 사용할 수 있으므로 에러가 발생하지 않는다.
+
+      핵심 개념:
+      함수 밖에서 선언한 변수는 전역 변수로, 모든 함수에서 공유한다.
+      전역 변수와 static 변수는 초기값이 없으면 0으로 초기화된다.
+      지역(auto) 변수는 초기값이 없으면 쓰레기 값을 갖는다.
+      한 함수에서 전역 변수를 바꾸면 다른 함수에도 그 값이 반영된다.
+
+  - id: e18-14
+    type: multiple-choice
+    passageRefs: [g18-global-intro-01, g18-global-code-01]
+    prompt: 위에서 ㉡에 대한 결과로서 올바른 것은?
+    choices:
+      - { id: '1', text: 'x=0' }
+      - { id: '2', text: 'x=1' }
+      - { id: '3', text: 'x=2' }
+      - { id: '4', text: '에러발생' }
+    answers: ['2']
+    explanation: |
+      선택지 1: 0은 fcn1() 호출 전의 값으로, fcn1()이 전역 변수 x를 증가시킨 뒤인 ㉡의 값이 아니다.
+      선택지 2: fcn1()의 x++;는 전역 변수 x를 0에서 1로 증가시키고, main()도 같은 전역 변수를 사용하므로 ㉡에서 x= 1이 출력된다. 정답이다.
+      선택지 3: fcn1()은 한 번만 호출되어 x++;도 한 번만 실행되므로 2가 될 수 없다.
+      선택지 4: 전역 변수 x와 함수 원형 선언 void fcn1();이 main() 앞에 있으므로 컴파일 에러가 발생하지 않는다.
+
+      핵심 개념:
+      전역 변수는 선언 위치 이후의 모든 함수에서 같은 기억공간을 공유한다.
+      fcn1()에서 x++;를 실행하면 main()에서 보는 x도 1이 된다.
+      함수 원형을 앞에 선언하면 정의가 뒤에 있어도 호출할 수 있다.
+      출력은 x= 0, x= 1 순서로 나온다.
+
+  - id: e18-15
+    type: multiple-choice
+    passageRefs: [g18-array-init-code-01]
+    prompt: 다음과 같은 프로그램의 결과로 올바른 것은?
+    choices:
+      - { id: '1', text: '10 20' }
+      - { id: '2', text: '10 20 10 20' }
+      - { id: '3', text: '10 20 20 20' }
+      - { id: '4', text: '10 20 0 0' }
+    answers: ['4']
+    explanation: |
+      선택지 1: printf는 %d 네 개로 a[0]~a[3] 네 값을 모두 출력하므로 값이 두 개만 나오지 않는다.
+      선택지 2: 초기값이 부족할 때 앞의 값을 반복해 채우지 않는다.
+      선택지 3: 마지막 초기값을 나머지 원소에 복사하지도 않는다.
+      선택지 4: 배열 선언 시 초기값을 일부만 주면 나머지 원소는 0으로 초기화되므로 a[2], a[3]은 0이고 10 20 0 0이 출력된다. 정답이다.
+
+      핵심 개념:
+      배열 초기화 목록의 값은 앞 원소부터 차례로 저장된다.
+      초기값 개수가 배열 크기보다 적으면 남은 원소는 0으로 채워진다.
+      int a[4]={10, 20, };는 a[0]=10, a[1]=20, a[2]=0, a[3]=0이다.
+      초기화 목록 끝의 쉼표는 허용된다.
+
+  - id: e18-16
+    type: multiple-choice
+    passageRefs: [g18-2d-array-code-01]
+    prompt: 다음과 같은 프로그램의 결과로 올바른 것은?
+    choices:
+      - { id: '1', text: '5' }
+      - { id: '2', text: '6' }
+      - { id: '3', text: '7' }
+      - { id: '4', text: '10' }
+    answers: ['3']
+    explanation: |
+      선택지 1: 5는 array[1][0]의 값이다.
+      선택지 2: 6은 array[1][1]의 값이다.
+      선택지 3: 2차원 배열은 행 우선으로 저장되어 0행 1~4, 1행 5~8, 2행 9~12가 들어가고, array[1][2]는 1행 2열인 7이다. 정답이다.
+      선택지 4: 10은 array[2][1]의 값이다.
+
+      핵심 개념:
+      2차원 배열 array[3][4]는 3행 4열이며 첨자는 0부터 시작한다.
+      초기화 목록은 행 우선(0행부터 한 행씩)으로 채워진다.
+      array[i][j]는 시작부터 i×4+j번째 원소다.
+      array[1][2]는 1×4+2=6번째(0부터 셈) 원소인 7이다.
+
+  - id: e18-17
+    type: multiple-choice
+    passageRefs: [g18-pointer-array-code-01]
+    prompt: 다음 프로그램의 실행결과로서 올바른 것은?
+    choices:
+      - { id: '1', text: '10' }
+      - { id: '2', text: '20' }
+      - { id: '3', text: '30' }
+      - { id: '4', text: '에러 발생' }
+    answers: ['2']
+    explanation: |
+      선택지 1: 10은 *array[0], 즉 a의 값이다.
+      선택지 2: int *array[3]은 int형 포인터 3개를 원소로 갖는 포인터 배열이고 array[1]에는 &b가 저장되어 있으므로 *array[1]은 b의 값 20이다. 정답이다.
+      선택지 3: 30은 *array[2], 즉 c의 값이다.
+      선택지 4: 포인터 배열에 변수 주소를 초기값으로 주는 것은 올바른 문법이므로 에러가 발생하지 않는다.
+
+      핵심 개념:
+      포인터 배열은 주소를 원소로 저장하는 배열이다.
+      int *array[3]={&a, &b, &c};에서 array[i]는 i번째 변수의 주소다.
+      [ ]가 *보다 우선하므로 *array[1]은 *(array[1])로 해석된다.
+      간접 연산자 *는 주소가 가리키는 곳의 값을 꺼낸다.
+
+  - id: e18-18
+    type: multiple-choice
+    passageRefs: [g18-pointer-arith-intro-01, g18-pointer-arith-code-01]
+    prompt: 위에서 ㉠의 결과로서 올바른 것은?
+    choices:
+      - { id: '1', text: '10   50' }
+      - { id: '2', text: '30   60' }
+      - { id: '3', text: '30   33' }
+      - { id: '4', text: '30   70' }
+    answers: ['4']
+    explanation: |
+      선택지 1: p=&a[2];이므로 *p는 a[0]의 10이 아니라 a[2]의 30이다.
+      선택지 2: q=p+4는 a[2]에서 원소 4개 뒤인 a[6]을 가리키므로 *q는 a[5]의 60이 아니다.
+      선택지 3: q=p+4는 a[2]에서 원소 4개 뒤인 a[6]을 가리키므로 *q는 70이며, 33은 배열 a의 어떤 원소 값도 아니다.
+      선택지 4: *p는 a[2]=30, q=p+4는 &a[6]이므로 *q는 70이 되어 30 70이 출력된다. 정답이다.
+
+      핵심 개념:
+      포인터에 정수 n을 더하면 자료형 크기×n만큼 주소가 이동해 n번째 뒤 원소를 가리킨다.
+      p=&a[2]이면 p+4는 &a[6]이다.
+      *p는 p가 가리키는 원소의 값이다.
+      배열 a는 a[0]=10부터 a[9]=100까지 10씩 증가한다.
+
+  - id: e18-19
+    type: multiple-choice
+    passageRefs: [g18-pointer-arith-intro-01, g18-pointer-arith-code-01]
+    prompt: 위에서 ㉡의 결과로서 올바른 것은?
+    choices:
+      - { id: '1', text: '*(p+3)=30' }
+      - { id: '2', text: '*(p+3)=33' }
+      - { id: '3', text: '*(p+3)=60' }
+      - { id: '4', text: '*(p+3)=70' }
+    answers: ['3']
+    explanation: |
+      선택지 1: 30은 *p, 즉 a[2]의 값으로 p+3만큼 이동한 결과가 아니다.
+      선택지 2: 33은 *p+3처럼 값에 3을 더한 결과이며, *(p+3)은 주소를 먼저 이동한 뒤 값을 꺼낸다.
+      선택지 3: p는 a[2]를 가리키므로 p+3은 a[5]를 가리키고 *(p+3)은 60이다. 정답이다.
+      선택지 4: 70은 a[6]의 값으로 *q에 해당하며, p+3이 아닌 p+4 위치다.
+
+      핵심 개념:
+      *(p+3)은 p에서 원소 3개 뒤의 값이다.
+      *p+3은 p가 가리키는 값에 3을 더한 것으로 *(p+3)과 다르다.
+      p=&a[2]이면 *(p+3)은 a[5]와 같다.
+      ㉢의 p-q는 두 포인터 사이의 원소 개수 차이로 -4가 출력된다.
+
+  - id: e18-20
+    type: multiple-choice
+    passageRefs: [g18-float-var-intro-01, g18-float-var-code-01]
+    prompt: 위에서 실수형 포인터 변수 fptr을 선언한다면 올바른 표현은?
+    choices:
+      - { id: '1', text: 'float fptr ;' }
+      - { id: '2', text: 'float *fptr ;' }
+      - { id: '3', text: 'fptr *float ;' }
+      - { id: '4', text: 'fptr float;' }
+    answers: ['2']
+    explanation: |
+      선택지 1: float fptr;는 *가 없어 포인터가 아닌 일반 실수형 변수를 선언한다.
+      선택지 2: 포인터 변수는 자료형 *변수명; 형식으로 선언하므로 float *fptr;가 float형 자료의 주소를 저장하는 포인터 변수 선언이다. 정답이다.
+      선택지 3: 자료형 float가 변수명 앞에 와야 하는데 순서가 뒤바뀌어 문법에 맞지 않는다.
+      선택지 4: 자료형과 변수명의 순서가 바뀌었고 *도 없어 포인터 선언이 아니다.
+
+      핵심 개념:
+      포인터 변수 선언 형식은 자료형 *포인터변수명;이다.
+      자료형은 포인터가 가리키는 대상의 형이다.
+      float *fptr;는 float형 변수의 주소를 저장한다.
+      선언문에서 *는 포인터임을 나타내는 표시다.
+
+  - id: e18-21
+    type: multiple-choice
+    passageRefs: [g18-float-var-intro-01, g18-float-var-code-01]
+    prompt: 위에서 포인터 변수 fptr에 주소를 할당하는 방법으로 올바른 것은?
+    choices:
+      - { id: '1', text: 'fptr=var1 ;' }
+      - { id: '2', text: 'fptr=&var1;' }
+      - { id: '3', text: 'fptr=&3.14 ;' }
+      - { id: '4', text: 'fptr=3.14;' }
+    answers: ['2']
+    explanation: |
+      선택지 1: var1은 실수 값 3.14를 담은 변수이므로 그 값을 포인터에 대입하면 주소가 아니다.
+      선택지 2: 주소 연산자 &로 변수 var1의 주소를 구해 포인터 변수 fptr에 대입하므로 올바르다. 정답이다.
+      선택지 3: 3.14는 기억공간을 갖는 변수가 아닌 상수이므로 & 연산자를 적용할 수 없다.
+      선택지 4: 실수 상수 3.14는 주소가 아니므로 포인터 변수에 대입할 수 없다.
+
+      핵심 개념:
+      주소 연산자 &는 변수의 기억공간 주소를 구한다.
+      포인터 변수에는 같은 자료형 변수의 주소를 대입한다(fptr=&var1;).
+      상수나 수식에는 &를 적용할 수 없다.
+      대입 후 *fptr로 var1의 값 3.14를 참조할 수 있다.
+
+  - id: e18-22
+    type: multiple-choice
+    prompt: '다음 중 “int형 멤버와 double형 멤버를 갖는 구조체 명이 data인 구조체를 정의하고, 구조체 변수명이 var 인 구조체를 선언”한 것으로 올바른 것은?'
+    choices:
+      - id: '1'
+        text: |
+          struct var{
+             int x;
+             double y;
+          };
+          struct var data;
+      - id: '2'
+        text: |
+          struct data{
+             int x;
+             double y;
+          };
+          struct data var;
+      - id: '3'
+        text: |
+          struct var{
+             int x;
+             double y;
+          }struct var data;
+      - id: '4'
+        text: |
+          struct data{
+             int x;
+             double y;
+          };
+          struct var;
+    answers: ['2']
+    explanation: |
+      선택지 1: 구조체명을 var, 구조체 변수명을 data로 써서 요구한 이름과 서로 뒤바뀌어 있다.
+      선택지 2: struct data{ … };로 int형 멤버 x와 double형 멤버 y를 갖는 구조체 data를 정의하고, struct data var;로 구조체 변수 var를 선언하므로 올바르다. 정답이다.
+      선택지 3: 구조체명과 변수명이 뒤바뀌었고, 정의를 닫는 } 뒤에 struct var data;를 이어 써서 문법에도 맞지 않는다.
+      선택지 4: 구조체 data의 정의는 맞지만 struct var;는 var라는 이름의 구조체형을 선언할 뿐 구조체 data형 변수 var를 선언하지 않는다.
+
+      핵심 개념:
+      구조체 정의는 struct 구조체명{ 멤버 선언 };의 형태다.
+      구조체 변수 선언은 struct 구조체명 변수명; 형태다.
+      구조체명(태그)은 자료형 이름이고, 변수명은 실제 기억공간의 이름이다.
+      정의와 선언을 함께 할 때는 struct data{ … } var;처럼 쓴다.
+
+  - id: e18-23
+    type: multiple-choice
+    passageRefs: [g18-file-intro-01, g18-file-code-01]
+    prompt: 위에서 빈칸 ㉠에 들어갈 내용으로 올바른 것은?
+    choices:
+      - { id: '1', text: '*fscanf()' }
+      - { id: '2', text: 'oldname.dat' }
+      - { id: '3', text: 'stdin' }
+      - { id: '4', text: '*fp' }
+    answers: ['4']
+    explanation: |
+      선택지 1: FILE *fscanf();로 쓰면 파일 포인터 fp가 선언되지 않아 이후 코드의 fp를 쓸 수 없고, stdio.h에 있는 표준 함수 fscanf()의 선언과도 충돌해 컴파일 에러가 난다.
+      선택지 2: oldname.dat는 fopen()에 문자열로 전달하는 파일 이름이며 변수명이 아니다.
+      선택지 3: stdin은 표준 입력을 나타내는 미리 정의된 파일 포인터로, 새로 선언하는 변수명이 아니며 이후 코드에서 쓰는 fp와도 맞지 않는다.
+      선택지 4: 이후 코드에서 fp=fopen(…), fgetc(fp)로 fp를 파일 포인터로 사용하므로 FILE *fp;로 선언해야 한다. 정답이다.
+
+      핵심 개념:
+      파일 입출력에는 FILE 구조체를 가리키는 파일 포인터가 필요하다.
+      파일 포인터는 FILE *변수명; 형식으로 선언한다.
+      fopen()은 파일을 열고 파일 포인터를 반환하며, 실패하면 NULL을 반환한다.
+      "rb"는 이진 파일 읽기 모드다.
+
+  - id: e18-24
+    type: multiple-choice
+    passageRefs: [g18-file-intro-01, g18-file-code-01]
+    prompt: 위에서 빈칸 ㉡에 들어갈 내용으로 올바른 것은?
+    choices:
+      - { id: '1', text: 'fclose(fp)' }
+      - { id: '2', text: 'fopen(fp)' }
+      - { id: '3', text: 'END' }
+      - { id: '4', text: 'stderr' }
+    answers: ['1']
+    explanation: |
+      선택지 1: 파일 처리를 마친 뒤에는 fclose(fp);로 열었던 파일을 닫아 버퍼를 비우고 자원을 반환한다. 정답이다.
+      선택지 2: fopen()은 파일을 여는 함수이며 파일 이름과 모드를 인수로 받으므로 fopen(fp)는 형식에 맞지 않고 닫는 동작도 아니다.
+      선택지 3: END는 C 언어의 예약어나 표준 함수가 아니다. 파일 끝은 EOF로 판단한다.
+      선택지 4: stderr는 표준 오류 출력 파일 포인터로, 단독 문장으로 써서 파일을 닫을 수 없다.
+
+      핵심 개념:
+      파일 처리 순서는 파일 포인터 선언 → fopen()으로 열기 → 읽기/쓰기 → fclose()로 닫기다.
+      fgetc()는 파일에서 문자 하나를 읽고, 파일 끝에서 EOF를 반환한다.
+      fprintf(stdout, …)는 표준 출력(화면)에 출력한다.
+      stdin, stdout, stderr는 미리 열려 있는 표준 파일 포인터다.
+
+  - id: e18-25
+    type: multi-answer
+    prompt: 다음 중 동적할당에 대한 설명으로 ==잘못된== 것은?
+    choices:
+      - { id: '1', text: '동적할당을 동해 기억공간의 낭비를 막을 수 있다.' }
+      - { id: '2', text: '동적할당은 실행중 필요한 만큼 기억공간을 사용할 수 있다.' }
+      - { id: '3', text: '배열의 경우 동적할당을 사용하여 배열의 크기를 결정할 수 있다.' }
+      - { id: '4', text: '동적할당은 정수형 자료에 대해서만 가능하다.' }
+    answers: ['1', '4']
+    answerKey: C
+    explanation: |
+      선택지 1: 동적할당은 실행 중 필요한 만큼만 기억공간을 할당하므로 기억공간의 낭비를 막을 수 있다. 이는 동적할당의 장점을 적은 문장으로 내용은 옳지만, 공식 정답표는 이 선택지와 "정수형 자료에 대해서만 가능하다" 선택지를 모두 정답으로 처리했다.
+      선택지 2: 동적할당은 프로그램 실행 중 malloc() 등으로 필요한 크기만큼 기억공간을 확보하므로 옳은 설명이다.
+      선택지 3: 배열 크기를 실행 중에 정해 malloc(n*sizeof(int))처럼 할당하면 크기가 가변적인 배열을 만들 수 있으므로 옳은 설명이다.
+      선택지 4: malloc()은 바이트 수를 받아 void형 포인터를 반환하므로 char, double, 구조체 등 모든 자료형에 사용할 수 있다. 정수형에만 가능하다는 것은 잘못된 설명이다. 정답이다.
+
+      핵심 개념:
+      동적할당은 실행 중에 heap 영역에서 필요한 만큼 기억공간을 확보하는 방법이다.
+      malloc(바이트 수)은 할당한 공간의 시작주소를 void형 포인터로 반환하며, 원하는 자료형 포인터로 형 변환해 쓴다.
+      자료형과 관계없이 sizeof로 크기를 계산해 할당할 수 있다.
+      사용이 끝난 공간은 free()로 반환해야 메모리 누수를 막을 수 있다.

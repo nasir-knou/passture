@@ -1161,22 +1161,22 @@ questions:
     prompt: '"IF (수위가 높다) THEN (밸브를 연다)"라는 퍼지 규칙이 있다. 제어 대상으로부터 관측된 사실이 "수위가 상당히 높다"이며, 이에 대한 소속함수가 위 그림과 같을 때 이 규칙을 적용한 결과 얻는 결론의 소속함수는?'
     choices:
       - id: '1'
-        text: ①
+        text: ''
         image:
           path: images/subjects/artificial-intelligence/lecture-exercises/l07-03-choice-1.png
           alt: 7강 3번 퍼지 결론 선택지 1
       - id: '2'
-        text: ②
+        text: ''
         image:
           path: images/subjects/artificial-intelligence/lecture-exercises/l07-03-choice-2.png
           alt: 7강 3번 퍼지 결론 선택지 2
       - id: '3'
-        text: ③
+        text: ''
         image:
           path: images/subjects/artificial-intelligence/lecture-exercises/l07-03-choice-3.png
           alt: 7강 3번 퍼지 결론 선택지 3
       - id: '4'
-        text: ④
+        text: ''
         image:
           path: images/subjects/artificial-intelligence/lecture-exercises/l07-03-choice-4.png
           alt: 7강 3번 퍼지 결론 선택지 4
@@ -1640,22 +1640,22 @@ questions:
     prompt: 다음 그래프에서 해밀턴 사이클로서 쉽게 표현된 것은?
     choices:
       - id: '1'
-        text: ①
+        text: ''
         image:
           path: images/subjects/artificial-intelligence/lecture-exercises/l10-09-choice-1.png
           alt: 10강 9번 해밀턴 사이클 선택지 1
       - id: '2'
-        text: ②
+        text: ''
         image:
           path: images/subjects/artificial-intelligence/lecture-exercises/l10-09-choice-2.png
           alt: 10강 9번 해밀턴 사이클 선택지 2
       - id: '3'
-        text: ③
+        text: ''
         image:
           path: images/subjects/artificial-intelligence/lecture-exercises/l10-09-choice-3.png
           alt: 10강 9번 해밀턴 사이클 선택지 3
       - id: '4'
-        text: ④
+        text: ''
         image:
           path: images/subjects/artificial-intelligence/lecture-exercises/l10-09-choice-4.png
           alt: 10강 9번 해밀턴 사이클 선택지 4
@@ -2102,7 +2102,7 @@ questions:
   - id: l14-06
     type: multiple-choice
     prompt: 지문에서 해당 마르코프 연쇄를 전이확률행렬로 표시한 것으로 옳은 것은?
-    passages: [gl14-markov-chain-06]
+    passageRefs: [gl14-markov-chain-06]
     choices:
       - { id: '1', text: '$P=\begin{bmatrix}0.3&0.4\\0.6&0.7\end{bmatrix}$' }
       - { id: '2', text: '$P=\begin{bmatrix}0.3&0.7\\0.6&0.4\end{bmatrix}$' }
@@ -2115,7 +2115,7 @@ questions:
   - id: l14-07
     type: multiple-choice
     prompt: 지문에서, 상태 0은 맑음을, 상태 1은 비가 옴을 나타낸다고 할 때, 오늘의 날씨 상태가 맑음일 때 내일의 날씨가 비가 옴이 될 확률은?
-    passages: [gl14-markov-chain-06]
+    passageRefs: [gl14-markov-chain-06]
     choices:
       - { id: '1', text: '30%' }
       - { id: '2', text: '40%' }
@@ -2236,7 +2236,7 @@ questions:
   - id: l15-07
     type: multiple-choice
     prompt: 다음 괄호 안에 들어갈 용어들을 순서대로 나열한 것은?
-    passages: [gl15-permutation-combination-07]
+    passageRefs: [gl15-permutation-combination-07]
     choices:
       - { id: '1', text: '조합, $n!$, 순열' }
       - { id: '2', text: '순열, ${n!\over r!}$, 조합' }
@@ -2249,7 +2249,7 @@ questions:
   - id: l15-08
     type: multiple-choice
     prompt: 다음 괄호 안에 들어갈 용어로서 옳은 것은?
-    passages: [gl15-gcd-08]
+    passageRefs: [gl15-gcd-08]
     choices:
       - { id: '1', text: 최대공약수 }
       - { id: '2', text: 최소공배수 }

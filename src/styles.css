@@ -1696,6 +1696,25 @@ h1 {
   line-height: 1.6;
 }
 
+.choice-text-multiline {
+  display: block;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace;
+  font-size: 0.92em;
+  line-height: 1.55;
+  white-space: pre-wrap;
+}
+
+.inline-code {
+  padding: 0.1em 0.35em;
+  border: 1px solid color-mix(in srgb, currentColor 14%, transparent);
+  border-radius: 4px;
+  background: color-mix(in srgb, currentColor 7%, transparent);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace;
+  font-size: 0.9em;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
 .choice-image {
   display: block;
   width: min(100%, 520px);
@@ -2133,6 +2152,20 @@ h1 {
   gap: 12px;
   overflow-x: auto;
   white-space: normal;
+}
+
+.explanation-note {
+  display: grid;
+  gap: 4px;
+  padding: 8px 12px;
+  border-left: 3px solid color-mix(in srgb, currentColor 30%, transparent);
+  border-radius: 0 6px 6px 0;
+  background: color-mix(in srgb, currentColor 5%, transparent);
+  font-size: 0.94em;
+}
+
+.explanation .explanation-note p + p {
+  margin-top: 0;
 }
 
 .explanation.correct {
