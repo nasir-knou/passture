@@ -721,22 +721,22 @@ questions:
     prompt: $x$와 $o$를 식별할 수 있도록 학습하려고 한다. 다음 중 단층 퍼셉트론으로 학습할 수 있는 것은?
     choices:
       - id: '1'
-        text: '①'
+        text: ''
         image:
           path: images/subjects/artificial-intelligence/past-exams/2018/e18-29-choice-1.png
           alt: 2018년 인공지능 기출 29번 선택지 1 그림
       - id: '2'
-        text: '②'
+        text: ''
         image:
           path: images/subjects/artificial-intelligence/past-exams/2018/e18-29-choice-2.png
           alt: 2018년 인공지능 기출 29번 선택지 2 그림
       - id: '3'
-        text: '③'
+        text: ''
         image:
           path: images/subjects/artificial-intelligence/past-exams/2018/e18-29-choice-3.png
           alt: 2018년 인공지능 기출 29번 선택지 3 그림
       - id: '4'
-        text: '④'
+        text: ''
         image:
           path: images/subjects/artificial-intelligence/past-exams/2018/e18-29-choice-4.png
           alt: 2018년 인공지능 기출 29번 선택지 4 그림

@@ -274,7 +274,7 @@ questions:
     prompt: 위 지문에서 명제 p, q에 대한 배타적 논리합 $p \oplus q$의 진리표는?
     choices:
       - id: '1'
-        text: ①번
+        text: ''
         diagram:
           type: data-table
           columns: ['$p$', '$q$', '$p \oplus q$']
@@ -284,7 +284,7 @@ questions:
             - ['T', 'F', 'T']
             - ['T', 'T', 'T']
       - id: '2'
-        text: ②번
+        text: ''
         diagram:
           type: data-table
           columns: ['$p$', '$q$', '$p \oplus q$']
@@ -294,7 +294,7 @@ questions:
             - ['T', 'F', 'T']
             - ['T', 'T', 'T']
       - id: '3'
-        text: ③번
+        text: ''
         diagram:
           type: data-table
           columns: ['$p$', '$q$', '$p \oplus q$']
@@ -304,7 +304,7 @@ questions:
             - ['T', 'F', 'T']
             - ['T', 'T', 'F']
       - id: '4'
-        text: ④번
+        text: ''
         diagram:
           type: data-table
           columns: ['$p$', '$q$', '$p \oplus q$']
@@ -329,7 +329,7 @@ questions:
     prompt: 위 지문에서 명제 p, q에 대한 합성명제 $r=(p \vee q)\oplus(p \wedge q)$의 진리표는?
     choices:
       - id: '1'
-        text: ①번
+        text: ''
         diagram:
           type: data-table
           columns: ['$p$', '$q$', '$r$']
@@ -339,7 +339,7 @@ questions:
             - ['T', 'F', 'T']
             - ['T', 'T', 'T']
       - id: '2'
-        text: ②번
+        text: ''
         diagram:
           type: data-table
           columns: ['$p$', '$q$', '$r$']
@@ -349,7 +349,7 @@ questions:
             - ['T', 'F', 'T']
             - ['T', 'T', 'T']
       - id: '3'
-        text: ③번
+        text: ''
         diagram:
           type: data-table
           columns: ['$p$', '$q$', '$r$']
@@ -359,7 +359,7 @@ questions:
             - ['T', 'F', 'T']
             - ['T', 'T', 'F']
       - id: '4'
-        text: ④번
+        text: ''
         diagram:
           type: data-table
           columns: ['$p$', '$q$', '$r$']
@@ -384,7 +384,7 @@ questions:
     prompt: 위 지문에서 조건명제 $p \to q$와 쌍조건명제 $p \leftrightarrow q$의 진리표로 옳은 것은?
     choices:
       - id: '1'
-        text: ①번
+        text: ''
         diagram:
           type: data-table
           columns: ['$p$', '$q$', '$p \to q$', '$p \leftrightarrow q$']
@@ -394,7 +394,7 @@ questions:
             - ['F', 'T', 'T', 'F']
             - ['F', 'F', 'T', 'F']
       - id: '2'
-        text: ②번
+        text: ''
         diagram:
           type: data-table
           columns: ['$p$', '$q$', '$p \to q$', '$p \leftrightarrow q$']
@@ -404,7 +404,7 @@ questions:
             - ['F', 'T', 'F', 'T']
             - ['F', 'F', 'T', 'F']
       - id: '3'
-        text: ③번
+        text: ''
         diagram:
           type: data-table
           columns: ['$p$', '$q$', '$p \to q$', '$p \leftrightarrow q$']
@@ -414,7 +414,7 @@ questions:
             - ['F', 'T', 'F', 'T']
             - ['F', 'F', 'T', 'T']
       - id: '4'
-        text: ④번
+        text: ''
         diagram:
           type: data-table
           columns: ['$p$', '$q$', '$p \to q$', '$p \leftrightarrow q$']
@@ -769,7 +769,7 @@ questions:
     passageRefs: [g06-03-relation-identity]
     choices:
       - id: '1'
-        text: ①번
+        text: ''
         diagram:
           type: data-table
           columns: ['1', '2', '3', '4', '5']
@@ -780,7 +780,7 @@ questions:
             - ['0', '0', '0', '1', '0']
             - ['0', '0', '0', '0', '1']
       - id: '2'
-        text: ②번
+        text: ''
         diagram:
           type: data-table
           columns: ['1', '2', '3', '4', '5']
@@ -791,7 +791,7 @@ questions:
             - ['0', '0', '0', '0', '0']
             - ['0', '0', '0', '0', '0']
       - id: '3'
-        text: ③번
+        text: ''
         diagram:
           type: data-table
           columns: ['1', '2', '3', '4', '5']
@@ -802,7 +802,7 @@ questions:
             - ['0', '1', '0', '0', '0']
             - ['1', '0', '0', '0', '0']
       - id: '4'
-        text: ④번
+        text: ''
         diagram:
           type: data-table
           columns: ['1', '2', '3', '4', '5']

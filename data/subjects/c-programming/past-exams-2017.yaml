@@ -1,0 +1,751 @@
+subjectId: c-programming
+sourceId: past-exams-2017
+title: C프로그래밍 2017 기말
+kind: exam
+year: 2017
+
+passages:
+  - id: g17-code-01
+    type: code
+    language: c
+    body: |
+      #include<stdio.h>
+      void main(){
+        int a, b, c, result;
+        a=10, b=20, c=30;
+        result=-a*b/5+c%7;
+        printf("result=%d\n", result);
+      }
+
+  - id: g17-code-02
+    type: code
+    language: c
+    body: |
+      #include<stdio.h>
+      main()
+      {
+          char var='A';
+          putchar(var+2);
+          putchar('K'+1);
+      }
+
+  - id: g17-code-03
+    type: code
+    language: c
+    body: |
+      #include<stdio.h>
+      void main(){
+        int i, j;
+        i=j=4;
+        if(i==3)
+          if(i==4)
+             printf("\n%d", i=i+j);
+          else
+             printf("\n%d", i=i-j);
+        printf("\n%d", i);
+      }
+
+  - id: g17-code-04
+    type: code
+    language: c
+    body: |
+      #include <stdio.h>
+      void main() {
+          int a=10, b;
+          b=(a>15)? (a+1): (a-1);
+          printf("b=%d", b);
+      }
+
+  - id: g17-display-line-intro-01
+    type: text
+    body: ※ (7~11) 다음과 같은 프로그램이 있을 때 물음에 답하시오.
+
+  - id: g17-display-line-code-01
+    type: code
+    language: c
+    body: |
+      #include<stdio.h> · · · · · · · · · · · · · · · · · · ㉠
+      void display_line(void); · · · · · · · · · · · · · · · ㉡
+      void main(){ · · · · · · · · · · · · · · · · · · · · · ㉢
+         display_line(); · · · · · · · · · · · · · · · · · · ㉣
+         printf("\n This is an Example program!\n"); · · · ㉤
+         display_line();
+      }
+      /* print asterisk line*/ · · · · · · · · · · · · · · · ㉥
+      void display_line(void){ · · · · · · · · · · · · · · · ㉦
+         int couner;  · · · · · · · · · · · · · · · · · · · ㉧
+         for(counter=0; counter<20; counter++) · · · · · · · ㉨
+         printf("*"); · · · · · · · · · · · · · · · · · · · ㉩
+      }
+
+  - id: g17-code-05
+    type: code
+    language: c
+    body: |
+      #include<stdio.h>
+      void main(){
+        int i=1, j=2;
+        {
+          int i=3;
+          {
+             int i=4;
+          }
+          printf("i=%d", i);
+        }
+       printf("i=%d", i);
+      }
+
+  - id: g17-code-06
+    type: code
+    language: c
+    body: |
+      #include<stdio.h>
+      void main(){
+        int n=11;
+        switch(n%5){
+           case 0: printf("나머지는 0");
+           case 1: printf("나머지는 1");
+           case 2: printf("나머지는 2");
+           break;
+           default: printf("나머지는 3이나 4\n");
+        }
+      }
+
+  - id: g17-fcn-desc-01
+    type: text
+    body: 세 개의 매개변수가 각각 문자형, 정수형, 실수형 변수 a1, a2, a3를 갖고, 배정도 실수형의 자료를 되돌려 주는 함수 fcn
+
+  - id: g17-code-07
+    type: code
+    language: c
+    body: |
+      #include<stdio.h>
+      void main(){
+          int a[4]={10, 20,   };
+          printf("%d %d %d %d\n", a[0], a[1], a[2], a[3]);
+      }
+
+  - id: g17-code-08
+    type: code
+    language: c
+    body: |
+      #include<stdio.h>
+      void main(){
+        int i;
+        int a[5]={1, 2, 3, 4, 5};
+        int *p=a;
+        for(i=0; i<5; i++)
+           p[i]=p[i]+2;
+        for(i=0; i<5; i++)
+           printf("%d", p[i]);
+      }
+
+  - id: g17-code-09
+    type: code
+    language: c
+    body: |
+      #include<stdio.h>
+      void main(){
+      int a=10, b=20, c=30;
+      int *array[3]={&a, &b, &c};
+       printf("%d", *array[1]);
+      }
+
+  - id: g17-code-10
+    type: code
+    language: c
+    body: |
+      #include<stdio.h>
+      void main(){
+        char *names[4]={"Korea", "National", "Open", "University"};
+        printf("%s", names[2]);
+      }
+
+  - id: g17-struct-intro-01
+    type: text
+    body: ※ (21~22) 다음과 같은 프로그램이 있을 때 물음에 답하시오.
+
+  - id: g17-struct-code-01
+    type: code
+    language: c
+    body: |
+      #include<stdio.h>
+      struct person{
+        char x[20];
+        char y[20];
+      };
+      void main(){
+        struct person MAN[3]={{"AAA", "BBB"},{"CCC", "DDD"},
+                                            {"EEE", "FFF"}};
+        printf("%s", MAN[1].x); --------------------------㉠
+        printf("%s", MAN[2].y); --------------------------㉡
+      }
+
+  - id: g17-file-intro-01
+    type: text
+    body: ※ (23~24) 다음과 같은 프로그램이 있을 때 물음에 답하시오.
+
+  - id: g17-file-code-01
+    type: code
+    language: c
+    body: |
+      #include <stdio.h>
+      #include <stdlib.h>
+      void main() {
+          FILE *fp;
+          int c;
+          if((fp=[ ㉠ ]("oldname.dat", "rb")) == NULL){
+               exit(1);
+          }
+          while((c=fgetc(fp)) != EOF)
+               fprintf([ ㉡ ] , "%c", c);
+          fclose(fp);
+      }
+
+questions:
+  - id: e17-01
+    type: multiple-choice
+    prompt: 다음 중 사용자 정의 명칭으로 올바른 것은?
+    choices:
+      - { id: '1', text: 'For' }
+      - { id: '2', text: '2knou' }
+      - { id: '3', text: 'int' }
+      - { id: '4', text: 'OUN TV' }
+    answers: ['1']
+    explanation: |
+      선택지 1: C는 대소문자를 구분하므로 For는 예약어 for와 다른 명칭이고, 영문자로 시작하며 영문자만으로 이루어져 사용자 정의 명칭으로 쓸 수 있다.
+      선택지 2: 명칭은 영문자나 밑줄(_)로 시작해야 하며 숫자로 시작할 수 없으므로 2knou는 잘못된 명칭이다.
+      선택지 3: int는 정수형을 나타내는 예약어(keyword)이므로 사용자 정의 명칭으로 쓸 수 없다.
+      선택지 4: 명칭 안에는 공백을 넣을 수 없으므로 OUN TV는 하나의 명칭이 될 수 없다.
+
+      핵심 개념:
+      사용자 정의 명칭(identifier)은 영문자, 숫자, 밑줄(_)로 구성한다.
+      첫 글자는 영문자나 밑줄이어야 하고 숫자로 시작할 수 없다.
+      공백이나 특수문자는 쓸 수 없고, 예약어는 명칭으로 쓸 수 없다.
+      C는 대소문자를 구분하므로 For, FOR는 예약어 for와 다른 명칭이다.
+
+  - id: e17-02
+    type: multiple-choice
+    prompt: |
+      다음 중 변수선언 형식으로 올바른 것은?
+      (여기서 a는 변수명이다)
+    choices:
+      - { id: '1', text: 'a int;' }
+      - { id: '2', text: 'double a;' }
+      - { id: '3', text: 'short a int;' }
+      - { id: '4', text: 'int char a;' }
+    answers: ['2']
+    explanation: |
+      선택지 1: 변수 선언은 자료형이 먼저 오고 변수명이 뒤에 와야 하므로 a int;는 순서가 뒤바뀐 잘못된 형식이다.
+      선택지 2: 자료형 double 뒤에 변수명 a를 쓰고 세미콜론으로 끝냈으므로 올바른 변수 선언이다.
+      선택지 3: short int a;처럼 자료형(short, short int)을 모두 변수명 앞에 써야 하며, 변수명 뒤에 int가 오는 short a int;는 문법 오류이다.
+      선택지 4: int와 char는 서로 다른 기본 자료형이라 함께 지정할 수 없으므로 int char a;는 오류이다.
+
+      핵심 개념:
+      변수 선언 형식은 `자료형 변수명;`이다.
+      자료형 수식어(short, long, unsigned 등)는 자료형과 함께 변수명 앞에 둔다.
+      서로 다른 기본 자료형(int, char, double)을 한 변수에 동시에 지정할 수 없다.
+      여러 변수는 `int a, b;`처럼 쉼표로 이어 선언한다.
+
+  - id: e17-03
+    type: multiple-choice
+    passageRefs: [g17-code-01]
+    prompt: 다음과 같은 프로그램의 실행결과로 올바른 것은?
+    choices:
+      - { id: '1', text: 'result=-36' }
+      - { id: '2', text: 'result=-37' }
+      - { id: '3', text: 'result=-38' }
+      - { id: '4', text: 'result=-39' }
+    answers: ['3']
+    explanation: |
+      선택지 1: -36이 되려면 c%7이 4여야 하지만 30%7은 2이므로 틀리다.
+      선택지 2: -a*b/5는 -40이고 c%7은 30%7=2이므로 결과는 -38이며 -37이 아니다.
+      선택지 3: 단항 -가 가장 먼저 적용되어 -a=-10, 이어서 *, /, %가 왼쪽부터 계산되어 -10*20=-200, -200/5=-40, c%7=30%7=2이고, 마지막으로 -40+2=-38이므로 result=-38이 출력된다.
+      선택지 4: -40+2=-38이므로 -39는 계산 결과와 맞지 않는다.
+
+      핵심 개념:
+      단항 연산자(-)는 이항 산술 연산자보다 우선순위가 높다.
+      *, /, %는 같은 우선순위로 왼쪽에서 오른쪽으로 결합하며 +, -보다 먼저 계산된다.
+      정수끼리의 /는 몫만 남기고, %는 나머지를 구한다.
+      따라서 (-a)*b/5 + (c%7) = -40 + 2 = -38이다.
+
+  - id: e17-04
+    type: multiple-choice
+    passageRefs: [g17-code-02]
+    prompt: 다음 프로그램의 결과로 올바른 것은?
+    choices:
+      - { id: '1', text: 'A+2  K+2' }
+      - { id: '2', text: 'B  L' }
+      - { id: '3', text: 'A+2  K' }
+      - { id: '4', text: 'C  L' }
+    answers: ['4']
+    explanation: |
+      선택지 1: putchar()는 식을 문자열로 출력하지 않고 계산된 문자 코드 하나를 출력하므로 A+2 같은 글자가 나오지 않는다.
+      선택지 2: var+2는 'A'의 코드 65에 2를 더한 67이므로 B(66)가 아니라 C가 출력된다.
+      선택지 3: 식이 그대로 출력되지 않으며, 'K'+1은 K가 아니라 다음 문자 L이다.
+      선택지 4: var+2는 65+2=67로 문자 C, 'K'+1은 75+1=76으로 문자 L이 되어 C와 L이 출력된다(실제 출력은 CL로 붙어 나온다).
+
+      핵심 개념:
+      C의 문자형(char)은 내부적으로 ASCII(American Standard Code for Information Interchange) 코드 정수값을 가진다.
+      문자에 정수를 더하면 코드값이 증가해 코드표상 다음 문자가 된다.
+      putchar()는 인수로 받은 코드값에 해당하는 문자 하나를 출력한다.
+      'A'+2는 'C', 'K'+1은 'L'이다.
+
+  - id: e17-05
+    type: multiple-choice
+    passageRefs: [g17-code-03]
+    prompt: 다음 프로그램의 출력결과로 올바른 것은?
+    choices:
+      - { id: '1', text: '0' }
+      - { id: '2', text: '3' }
+      - { id: '3', text: '4' }
+      - { id: '4', text: '7' }
+    answers: ['3']
+    explanation: |
+      선택지 1: 0은 else 쪽 printf("\n%d", i=i-j)가 실행되어야 나오는 값인데, else는 가장 가까운 안쪽 if에 붙어 있고 바깥 if(i==3)이 거짓이라 실행되지 않는다.
+      선택지 2: 3은 i나 j에 대입된 적이 없는 값이다.
+      선택지 3: i=j=4로 i와 j가 모두 4가 되고, if(i==3)이 거짓이므로 그 안의 if~else 전체가 건너뛰어진다. 마지막 printf("\n%d", i)만 실행되어 4가 출력된다.
+      선택지 4: 7은 코드 어디에서도 나오지 않는 값이고, i=i+j로 8을 출력하는 문장도 바깥 if가 거짓이라 실행되지 않는다.
+
+      핵심 개념:
+      대입 연산자는 오른쪽에서 왼쪽으로 결합하므로 i=j=4는 j=4 후 i=4이다.
+      중첩 if에서 else는 들여쓰기와 관계없이 가장 가까운 짝 없는 if에 연결된다(dangling else).
+      이 코드의 else는 안쪽 if에 속하므로 바깥 if(i==3)이 거짓이면 안쪽 if와 else 모두 실행되지 않는다.
+      결과적으로 마지막 printf만 실행되어 4가 출력된다.
+
+  - id: e17-06
+    type: multiple-choice
+    passageRefs: [g17-code-04]
+    prompt: 다음 프로그램의 출력결과로 올바른 것은?
+    choices:
+      - { id: '1', text: 'b=9' }
+      - { id: '2', text: 'b=10' }
+      - { id: '3', text: 'b=14' }
+      - { id: '4', text: 'b=15' }
+    answers: ['1']
+    explanation: |
+      선택지 1: a>15는 10>15로 거짓이므로 조건 연산자는 두 번째 식 (a-1)=9를 선택해 b=9가 출력된다.
+      선택지 2: 10은 a의 원래 값이며, 조건 연산자는 a를 그대로 대입하지 않고 a+1 또는 a-1 중 하나를 대입한다.
+      선택지 3: 14는 두 식 어디에서도 나오지 않는 값이다.
+      선택지 4: 15는 조건식에 쓰인 비교값일 뿐 대입되는 값이 아니다.
+
+      핵심 개념:
+      조건 연산자 `조건 ? 식1 : 식2`는 조건이 참이면 식1, 거짓이면 식2의 값을 가진다.
+      a=10이므로 a>15는 거짓이다.
+      따라서 b=a-1=9가 된다.
+      조건 연산자는 C의 유일한 삼항 연산자이며 간단한 if~else를 대신한다.
+
+  - id: e17-07
+    type: multiple-choice
+    passageRefs: [g17-display-line-intro-01, g17-display-line-code-01]
+    prompt: 위에서 변수 선언은 어디에서 이루어지고 있는가?
+    choices:
+      - { id: '1', text: '㉡' }
+      - { id: '2', text: '㉣' }
+      - { id: '3', text: '㉧' }
+      - { id: '4', text: '㉨' }
+    answers: ['3']
+    explanation: |
+      선택지 1: ㉡은 함수 display_line의 원형(prototype) 선언으로, 변수가 아니라 함수를 선언한다.
+      선택지 2: ㉣은 display_line() 함수를 호출하는 문장이다.
+      선택지 3: ㉧의 int couner;는 자료형 int와 변수명을 적은 변수 선언문이다.
+      선택지 4: ㉨은 for 반복문으로, 이미 선언된 변수를 사용할 뿐 새 변수를 선언하지 않는다.
+
+      핵심 개념:
+      변수 선언은 `자료형 변수명;` 형태로 기억공간을 확보하는 문장이다.
+      함수 원형 선언은 반환형, 함수명, 매개변수 목록 뒤에 세미콜론이 붙는다.
+      함수 호출은 함수명과 괄호로 함수를 실행시키는 문장이다.
+      반복문은 선언된 변수를 조건과 증감에 사용한다.
+
+  - id: e17-08
+    type: multiple-choice
+    passageRefs: [g17-display-line-intro-01, g17-display-line-code-01]
+    prompt: 위에서 설명문은 어디인가?
+    choices:
+      - { id: '1', text: '㉢' }
+      - { id: '2', text: '㉤' }
+      - { id: '3', text: '㉥' }
+      - { id: '4', text: '㉦' }
+    answers: ['3']
+    explanation: |
+      선택지 1: ㉢은 main 함수의 시작(함수 헤더)이다.
+      선택지 2: ㉤은 문자열을 출력하는 printf 호출문이다.
+      선택지 3: ㉥의 /* print asterisk line*/은 /*와 */ 사이에 적힌 설명문(주석)으로, 컴파일 시 무시된다.
+      선택지 4: ㉦은 display_line 함수 정의의 헤더이다.
+
+      핵심 개념:
+      설명문(주석)은 /*와 */ 사이에 쓰며 여러 줄에 걸칠 수 있다.
+      설명문은 컴파일러가 무시하므로 실행에 영향을 주지 않는다.
+      프로그램의 이해를 돕기 위한 설명을 적는 데 사용한다.
+      C99부터는 //로 한 줄 설명문도 쓸 수 있다.
+
+  - id: e17-09
+    type: multiple-choice
+    passageRefs: [g17-display-line-intro-01, g17-display-line-code-01]
+    prompt: 위에서 선행처리기는 어느 부분인가?
+    choices:
+      - { id: '1', text: '㉠' }
+      - { id: '2', text: '㉢' }
+      - { id: '3', text: '㉣' }
+      - { id: '4', text: '㉥' }
+    answers: ['1']
+    explanation: |
+      선택지 1: ㉠의 #include<stdio.h>는 #으로 시작하는 선행처리기 지시자로, 컴파일 전에 stdio.h 헤더파일 내용을 끼워 넣는다.
+      선택지 2: ㉢은 main 함수의 시작 부분이다.
+      선택지 3: ㉣은 사용자 정의 함수 display_line의 호출문이다.
+      선택지 4: ㉥은 설명문(주석)이다.
+
+      핵심 개념:
+      선행처리기(preprocessor)는 컴파일 이전에 소스 코드를 처리한다.
+      선행처리기 지시자는 #으로 시작하며 세미콜론을 붙이지 않는다.
+      #include는 헤더파일을 포함하고, #define은 매크로를 정의한다.
+      stdio.h에는 printf 같은 표준 입출력 함수의 원형이 들어 있다.
+
+  - id: e17-10
+    type: multiple-choice
+    passageRefs: [g17-display-line-intro-01, g17-display-line-code-01]
+    prompt: 위에서 사용자정의함수의 원형선언이 이루어지는 부분은?
+    choices:
+      - { id: '1', text: '㉡' }
+      - { id: '2', text: '㉣' }
+      - { id: '3', text: '㉤' }
+      - { id: '4', text: '㉥' }
+    answers: ['1']
+    explanation: |
+      선택지 1: ㉡의 void display_line(void);는 반환형, 함수명, 매개변수 목록 뒤에 세미콜론을 붙인 함수 원형 선언이다.
+      선택지 2: ㉣은 반환형 없이 함수명과 괄호만 쓴 함수 호출문이다.
+      선택지 3: ㉤은 표준함수 printf를 호출하는 문장이다.
+      선택지 4: ㉥은 설명문(주석)이다.
+
+      핵심 개념:
+      함수 원형(prototype)은 함수의 반환형, 이름, 매개변수 형을 미리 알려주는 선언이다.
+      함수 정의가 호출보다 뒤에 있을 때 원형을 앞쪽에 선언해야 컴파일러가 호출을 검사할 수 있다.
+      원형 선언은 함수 헤더와 같은 모양에 세미콜론을 붙인다.
+      함수 정의 헤더(㉦)에는 세미콜론 없이 중괄호 본체가 이어진다.
+
+  - id: e17-11
+    type: multiple-choice
+    passageRefs: [g17-display-line-intro-01, g17-display-line-code-01]
+    prompt: 위에서 사용자정의함수의 호출이 일어나는 부분은?
+    choices:
+      - { id: '1', text: '㉠' }
+      - { id: '2', text: '㉡' }
+      - { id: '3', text: '㉣' }
+      - { id: '4', text: '㉥' }
+    answers: ['3']
+    explanation: |
+      선택지 1: ㉠은 헤더파일을 포함하는 선행처리기 지시자이다.
+      선택지 2: ㉡은 display_line의 원형 선언으로, 함수를 실행하지 않고 형태만 알린다.
+      선택지 3: ㉣의 display_line();은 main 안에서 사용자 정의 함수 display_line을 실행시키는 호출문이다.
+      선택지 4: ㉥은 설명문(주석)이다.
+
+      핵심 개념:
+      함수 호출은 `함수명(인수);` 형태로 함수를 실행시킨다.
+      호출이 일어나면 제어가 함수 본체로 넘어갔다가 끝나면 호출한 곳으로 돌아온다.
+      이 프로그램의 main은 display_line()을 두 번 호출하며, 번호가 붙은 곳은 ㉣이다.
+      원형 선언(㉡)과 함수 정의(㉦)는 호출과 구별된다.
+
+  - id: e17-12
+    type: multiple-choice
+    passageRefs: [g17-code-05]
+    prompt: 다음과 같은 프로그램의 실행결과로서 올바른 것은?
+    choices:
+      - { id: '1', text: 'i=4  i=3' }
+      - { id: '2', text: 'i=3  i=1' }
+      - { id: '3', text: 'i=4  i=1' }
+      - { id: '4', text: 'i=4  i=4' }
+    answers: ['2']
+    explanation: |
+      선택지 1: int i=4;는 가장 안쪽 블록의 지역변수라 그 블록이 끝나면 사라지므로 첫 printf에서 4가 출력되지 않는다.
+      선택지 2: 첫 printf는 i=3이 선언된 블록 안에 있어 i=3을 출력하고, 두 번째 printf는 main 블록에 있어 i=1을 출력한다.
+      선택지 3: 첫 printf 위치에서는 안쪽 블록의 i=4가 이미 소멸했으므로 i=4가 아니다.
+      선택지 4: 두 번째 printf 위치에서 보이는 i는 main 블록의 i=1이다.
+
+      핵심 개념:
+      블록({ }) 안에서 선언한 변수는 그 블록 안에서만 유효한 지역변수이다.
+      안쪽 블록에서 같은 이름을 선언하면 바깥 변수를 가린다.
+      블록이 끝나면 그 블록의 변수는 소멸하고 바깥 변수가 다시 보인다.
+      따라서 출력은 i=3, i=1 순서이다(실제로는 i=3i=1로 붙어 출력된다).
+
+  - id: e17-13
+    type: multiple-choice
+    passageRefs: [g17-code-06]
+    prompt: 다음과 같은 프로그램의 실행결과로서 올바른 것은?
+    choices:
+      - { id: '1', text: '나머지는 1' }
+      - { id: '2', text: '나머지는 1 나머지는 2' }
+      - { id: '3', text: '나머지는 2' }
+      - { id: '4', text: '나머지는 2 나머지는 3이나 4' }
+    answers: ['2']
+    explanation: |
+      선택지 1: case 1 뒤에 break가 없으므로 "나머지는 1"만 출력하고 멈추지 않는다.
+      선택지 2: 11%5=1이라 case 1로 분기하여 "나머지는 1"을 출력하고, break가 없어 case 2의 "나머지는 2"까지 이어서 실행한 뒤 break에서 switch를 빠져나온다.
+      선택지 3: 실행은 case 1부터 시작하므로 "나머지는 1"이 먼저 출력된다.
+      선택지 4: case 2 다음의 break로 switch를 벗어나므로 default는 실행되지 않고, case 1의 출력도 빠져 있다.
+
+      핵심 개념:
+      switch는 식의 값과 일치하는 case로 이동해 그 지점부터 실행한다.
+      break를 만나기 전까지 아래 case의 문장들이 계속 실행된다(fall-through).
+      break는 switch문을 즉시 빠져나오게 한다.
+      default는 일치하는 case가 없을 때 실행된다.
+
+  - id: e17-14
+    type: multiple-choice
+    prompt: 다음 중 표준함수에 대한 설명으로 올바르지 ==않은== 것은?
+    choices:
+      - { id: '1', text: '표준함수의 원형은 헤더파일에 선언되어 있다.' }
+      - { id: '2', text: '표준함수의 실체는 라이브러리 파일에 수록되어 있다.' }
+      - { id: '3', text: '표준함수를 사용하기 위해서는 원형과 실체가 알려져 있어야 한다.' }
+      - { id: '4', text: '표준함수를 사용하기 위해서는 표준함수의 헤더파일을 #define 시켜야 한다.' }
+    answers: ['4']
+    explanation: |
+      선택지 1: printf의 원형이 stdio.h에 있는 것처럼 표준함수의 원형은 헤더파일에 선언되어 있으므로 옳다.
+      선택지 2: 표준함수의 실제 코드(실체)는 컴파일된 형태로 라이브러리 파일에 들어 있고 링크 단계에서 연결되므로 옳다.
+      선택지 3: 컴파일러는 원형으로 호출을 검사하고, 링커는 실체를 연결해야 하므로 둘 다 알려져 있어야 한다는 설명은 옳다.
+      선택지 4: 헤더파일은 #include로 포함시켜야 한다. #define은 매크로(기호 상수)를 정의하는 지시자이므로 틀린 설명이다.
+
+      핵심 개념:
+      표준함수는 C 컴파일러가 제공하는 라이브러리 함수이다.
+      원형은 헤더파일(.h)에, 실체(구현)는 라이브러리 파일에 있다.
+      헤더파일은 #include 지시자로 프로그램에 포함시킨다.
+      #define은 매크로 정의용 선행처리기 지시자이다.
+
+  - id: e17-15
+    type: multiple-choice
+    passageRefs: [g17-fcn-desc-01]
+    prompt: 다음의 설명에 대한 함수 헤더의 정의로 올바른 것은?
+    choices:
+      - { id: '1', text: 'int fcn(int a1, int a2, int a3)' }
+      - { id: '2', text: 'int fcn(char a1, int a2, float a3)' }
+      - { id: '3', text: 'double fcn(int a1, int a2, int a3)' }
+      - { id: '4', text: 'double fcn(char a1, int a2, float a3)' }
+    answers: ['4']
+    explanation: |
+      선택지 1: 반환형이 배정도 실수형(double)이 아니라 int이고, 매개변수도 모두 int라 문자형·실수형 조건과 맞지 않는다.
+      선택지 2: 매개변수 형(char, int, float)은 맞지만 반환형이 int라 배정도 실수형을 되돌려 준다는 조건과 다르다.
+      선택지 3: 반환형 double은 맞지만 매개변수가 모두 int라 문자형(a1)·실수형(a3) 조건과 다르다.
+      선택지 4: 반환형이 double(배정도 실수형)이고 매개변수가 char a1(문자형), int a2(정수형), float a3(실수형)이므로 설명과 일치한다.
+
+      핵심 개념:
+      함수 헤더는 `반환형 함수명(매개변수 목록)` 형태이다.
+      문자형은 char, 정수형은 int, 실수형은 float, 배정도 실수형은 double이다.
+      매개변수는 각각 자료형과 이름을 짝지어 쉼표로 구분한다.
+      반환형은 return으로 되돌려 주는 값의 자료형이다.
+
+  - id: e17-16
+    type: multiple-choice
+    prompt: 다음의 배열에 대한 설명 중 올바르지 ==않은== 것은?
+    choices:
+      - { id: '1', text: '배열의 각 원소를 변수처럼 사용한다.' }
+      - { id: '2', text: '배열명을 증가시키거나 감소시킬 수 있다.' }
+      - { id: '3', text: '배열의 값을 초기화할 때는 중괄호({ })를 사용한다.' }
+      - { id: '4', text: '배열은 일차원 배열뿐만 아니라 다차원 배열도 만들 수 있다.' }
+    answers: ['2']
+    explanation: |
+      선택지 1: a[0], a[1]처럼 첨자를 붙인 배열 원소는 일반 변수처럼 대입·연산에 쓸 수 있으므로 옳다.
+      선택지 2: 배열명은 배열의 시작 주소를 나타내는 포인터 상수이므로 a++나 a--처럼 값을 바꿀 수 없다. 따라서 틀린 설명이다.
+      선택지 3: int a[3]={1, 2, 3};처럼 배열 초기화 값은 중괄호 안에 나열하므로 옳다.
+      선택지 4: int b[2][3];처럼 2차원 이상 다차원 배열도 선언할 수 있으므로 옳다.
+
+      핵심 개념:
+      배열은 같은 자료형의 원소를 연속된 기억공간에 저장한다.
+      배열명은 첫 원소의 주소를 가진 포인터 상수로, 값을 변경할 수 없다.
+      배열 원소를 가리키는 포인터 변수는 증감시킬 수 있다.
+      초기화는 중괄호를 쓰며, 다차원 배열도 만들 수 있다.
+
+  - id: e17-17
+    type: multiple-choice
+    passageRefs: [g17-code-07]
+    prompt: 다음 프로그램의 결과로서 올바른 것은?
+    choices:
+      - { id: '1', text: '10 20' }
+      - { id: '2', text: '10 20 10 20' }
+      - { id: '3', text: '10 20 20 20' }
+      - { id: '4', text: '10 20 0 0' }
+    answers: ['4']
+    explanation: |
+      선택지 1: printf의 형식 문자열에 %d가 네 개이므로 값 네 개가 출력된다.
+      선택지 2: 초기값이 부족할 때 앞의 값이 반복되어 채워지지 않는다.
+      선택지 3: 마지막 초기값이 나머지 원소로 복사되지 않는다.
+      선택지 4: 초기값 10, 20은 a[0], a[1]에 들어가고, 초기값이 없는 a[2], a[3]은 0으로 채워져 10 20 0 0이 출력된다.
+
+      핵심 개념:
+      배열 초기화에서 초기값 개수가 원소 수보다 적으면 앞에서부터 차례로 채운다.
+      초기값이 지정되지 않은 나머지 원소는 0으로 초기화된다.
+      int a[4]={10, 20, };의 마지막 쉼표는 허용되는 문법이다.
+      따라서 a는 {10, 20, 0, 0}이 된다.
+
+  - id: e17-18
+    type: multiple-choice
+    passageRefs: [g17-code-08]
+    prompt: 다음과 같은 프로그램의 실행결과로서 올바른 것은?
+    choices:
+      - { id: '1', text: '1 2 3 4 5' }
+      - { id: '2', text: '1 3 5' }
+      - { id: '3', text: '3 4 5 6 7' }
+      - { id: '4', text: '에러 발생' }
+    answers: ['3']
+    explanation: |
+      선택지 1: 첫 번째 for문에서 p[i]=p[i]+2로 모든 원소에 2를 더했으므로 원래 값이 그대로 출력되지 않는다.
+      선택지 2: 두 번째 for문은 i를 1씩 증가시켜 다섯 원소를 모두 출력하므로 일부만 출력되지 않는다.
+      선택지 3: p는 a의 시작 주소를 가리키므로 p[i]는 a[i]와 같다. 각 원소에 2를 더해 a가 {3, 4, 5, 6, 7}이 되고 이를 차례로 출력한다(실제 출력은 34567로 붙어 나온다).
+      선택지 4: 포인터 변수에 배열명을 대입하고 첨자로 접근하는 것은 올바른 문법이라 에러가 없다.
+
+      핵심 개념:
+      배열명은 첫 원소의 주소이므로 int *p=a;로 포인터에 대입할 수 있다.
+      포인터에 첨자를 붙인 p[i]는 *(p+i)와 같고 a[i]를 가리킨다.
+      포인터를 통해 값을 바꾸면 원래 배열의 값이 바뀐다.
+      따라서 각 원소가 2씩 증가한 3 4 5 6 7이 출력된다.
+
+  - id: e17-19
+    type: multiple-choice
+    passageRefs: [g17-code-09]
+    prompt: 다음 프로그램의 실행결과로서 올바른 것은?
+    choices:
+      - { id: '1', text: '10' }
+      - { id: '2', text: '20' }
+      - { id: '3', text: '30' }
+      - { id: '4', text: '에러 발생' }
+    answers: ['2']
+    explanation: |
+      선택지 1: 10은 array[0]이 가리키는 a의 값이다.
+      선택지 2: array는 포인터 배열로 array[1]에 &b가 저장되어 있으므로 *array[1]은 b의 값 20이다.
+      선택지 3: 30은 array[2]가 가리키는 c의 값이다.
+      선택지 4: 변수 주소로 포인터 배열을 초기화하고 간접 참조하는 것은 올바른 문법이다.
+
+      핵심 개념:
+      포인터 배열은 주소를 원소로 저장하는 배열이다(int *array[3]).
+      [ ]는 *보다 우선순위가 높아 *array[1]은 *(array[1])로 해석된다.
+      array[1]은 &b이므로 간접 참조하면 b의 값이 된다.
+      배열 첨자는 0부터 시작한다.
+
+  - id: e17-20
+    type: multiple-choice
+    passageRefs: [g17-code-10]
+    prompt: 다음 프로그램의 실행결과로서 올바른 것은?
+    choices:
+      - { id: '1', text: 'Ko' }
+      - { id: '2', text: 'KoreaNational' }
+      - { id: '3', text: 'KN' }
+      - { id: '4', text: 'Open' }
+    answers: ['4']
+    explanation: |
+      선택지 1: names[2]는 문자 몇 개가 아니라 세 번째 문자열 전체의 시작 주소이다.
+      선택지 2: 한 원소만 출력하므로 두 문자열이 이어져 나오지 않는다.
+      선택지 3: 각 문자열의 첫 글자를 모으는 연산이 없다.
+      선택지 4: names는 문자열 4개의 시작 주소를 가진 포인터 배열이며, 첨자 2는 세 번째 원소 "Open"을 가리키므로 %s로 Open이 출력된다.
+
+      핵심 개념:
+      char *names[4]는 문자열 상수의 주소를 저장하는 포인터 배열이다.
+      배열 첨자는 0부터 시작하므로 names[2]는 세 번째 문자열이다.
+      %s는 주어진 주소에서 널 문자('\0') 전까지의 문자열을 출력한다.
+      따라서 Open이 출력된다.
+
+  - id: e17-21
+    type: multiple-choice
+    passageRefs: [g17-struct-intro-01, g17-struct-code-01]
+    prompt: 위에서 ㉠의 결과로 올바른 것은?
+    choices:
+      - { id: '1', text: 'AAA' }
+      - { id: '2', text: 'BBB' }
+      - { id: '3', text: 'CCC' }
+      - { id: '4', text: 'DDD' }
+    answers: ['3']
+    explanation: |
+      선택지 1: AAA는 MAN[0].x이다.
+      선택지 2: BBB는 MAN[0].y이다.
+      선택지 3: MAN[1]은 두 번째 구조체 {"CCC", "DDD"}이고, 그 멤버 x는 "CCC"이므로 CCC가 출력된다.
+      선택지 4: DDD는 MAN[1]의 멤버 y이다.
+
+      핵심 개념:
+      구조체 배열은 같은 구조체형 변수를 여러 개 모은 배열이다.
+      초기화 시 안쪽 중괄호 하나가 구조체 원소 하나에 대응한다.
+      멤버는 `배열명[첨자].멤버명`으로 접근하며 첨자는 0부터 시작한다.
+      MAN[1].x는 두 번째 원소의 첫 멤버 CCC이다.
+
+  - id: e17-22
+    type: multiple-choice
+    passageRefs: [g17-struct-intro-01, g17-struct-code-01]
+    prompt: 위에서 ㉡의 결과로 올바른 것은?
+    choices:
+      - { id: '1', text: 'AAA' }
+      - { id: '2', text: 'DDD' }
+      - { id: '3', text: 'EEE' }
+      - { id: '4', text: 'FFF' }
+    answers: ['4']
+    explanation: |
+      선택지 1: AAA는 MAN[0].x이다.
+      선택지 2: DDD는 MAN[1].y이다.
+      선택지 3: EEE는 MAN[2]의 멤버 x이다.
+      선택지 4: MAN[2]는 세 번째 구조체 {"EEE", "FFF"}이고, 그 멤버 y는 "FFF"이므로 FFF가 출력된다.
+
+      핵심 개념:
+      구조체 멤버는 선언 순서대로 초기값을 받는다(x, y 순).
+      MAN[2]는 첨자 2, 즉 세 번째 원소이다.
+      점(.) 연산자로 구조체 변수의 멤버에 접근한다.
+      MAN[2].y는 FFF이다.
+
+  - id: e17-23
+    type: multiple-choice
+    passageRefs: [g17-file-intro-01, g17-file-code-01]
+    prompt: 위에서 빈칸 ㉠에 들어갈 내용으로 올바른 것은?
+    choices:
+      - { id: '1', text: 'fcanf;' }
+      - { id: '2', text: 'fopen' }
+      - { id: '3', text: 'fprintf;' }
+      - { id: '4', text: 'malloc;' }
+    answers: ['2']
+    explanation: |
+      선택지 1: 파일에서 형식에 맞춰 자료를 읽는 함수는 fscanf로, 파일을 여는 함수가 아니며 FILE 포인터를 반환하지 않는다.
+      선택지 2: fopen("oldname.dat", "rb")는 파일을 이진 읽기 모드로 열고 FILE 포인터를 반환하며, 실패하면 NULL을 반환하므로 NULL 검사와 맞는다.
+      선택지 3: fprintf는 파일에 형식화된 출력을 하는 함수로, 파일을 열지 않는다.
+      선택지 4: malloc은 힙(heap)에 기억공간을 동적 할당하는 함수로, 파일명과 모드를 인수로 받지 않는다.
+
+      핵심 개념:
+      파일 처리는 fopen으로 열고, 입출력 함수로 처리한 뒤, fclose로 닫는다.
+      fopen(파일명, 모드)은 성공 시 FILE 포인터, 실패 시 NULL을 반환한다.
+      "rb"는 이진(binary) 파일 읽기 모드이다.
+      fgetc는 파일에서 문자 하나를 읽고 파일 끝에서 EOF를 반환한다.
+
+  - id: e17-24
+    type: multiple-choice
+    passageRefs: [g17-file-intro-01, g17-file-code-01]
+    prompt: 위에서 빈칸 ㉡에 들어갈 내용으로 올바른 것은?
+    choices:
+      - { id: '1', text: 'stdout' }
+      - { id: '2', text: 'stdin' }
+      - { id: '3', text: 'stderr' }
+      - { id: '4', text: 'stdio' }
+    answers: ['1']
+    explanation: |
+      선택지 1: stdout은 표준 출력(화면)을 가리키는 파일 포인터이므로, 파일에서 읽은 문자를 fprintf(stdout, "%c", c)로 화면에 출력하게 된다.
+      선택지 2: stdin은 표준 입력(키보드) 스트림으로, 출력 대상이 될 수 없다.
+      선택지 3: stderr는 표준 에러 출력 스트림으로, 오류 메시지 출력용이며 일반 내용 출력에는 stdout을 쓴다.
+      선택지 4: stdio는 표준 입출력 헤더파일 이름(stdio.h)의 일부일 뿐 파일 포인터가 아니다.
+
+      핵심 개념:
+      C 프로그램 실행 시 표준 스트림 stdin, stdout, stderr가 자동으로 열린다.
+      fprintf의 첫 인수는 출력할 대상 FILE 포인터이다.
+      fprintf(stdout, ...)는 printf(...)와 같은 효과를 낸다.
+      이 프로그램은 파일 내용을 한 문자씩 읽어 화면에 출력한다.
+
+  - id: e17-25
+    type: multiple-choice
+    prompt: 다음 중 기억공간 힙(heap)에 대한 설명으로 ==잘못된== 것은?
+    choices:
+      - { id: '1', text: '메모리 동적할당을 위해 프로그래머가 사용하는 영역이다.' }
+      - { id: '2', text: '힙의 공간 할당은 memset()등의 함수로 할당받을 수 있다.' }
+      - { id: '3', text: '할당받은 힙 공간은 사용이 끝나면 자동으로 해제되지 않는다.' }
+      - { id: '4', text: '프로그램 실행 중에 필요한 만큼의 공간을 할당받을 때 사용되는 메모리 영역이다.' }
+    answers: ['2']
+    explanation: |
+      선택지 1: 힙은 malloc 등으로 프로그래머가 직접 동적 할당하는 영역이므로 옳다.
+      선택지 2: 힙 공간은 malloc(), calloc(), realloc() 같은 함수로 할당받는다. memset()은 이미 확보된 메모리를 지정한 값으로 채우는 함수로 할당 기능이 없으므로 틀린 설명이다.
+      선택지 3: 힙에 할당한 공간은 free()로 직접 해제해야 하며 자동으로 해제되지 않으므로 옳다.
+      선택지 4: 힙은 실행 중(run time)에 필요한 크기만큼 공간을 얻는 데 쓰이므로 옳다.
+
+      핵심 개념:
+      힙(heap)은 실행 중에 동적으로 할당·해제하는 메모리 영역이다.
+      할당은 malloc, calloc, realloc으로 하고, 해제는 free로 한다.
+      해제하지 않으면 메모리 누수(memory leak)가 생긴다.
+      memset은 메모리 내용을 특정 값으로 채우는 함수이다.

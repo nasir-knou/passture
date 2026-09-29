@@ -1,0 +1,789 @@
+subjectId: c-programming
+sourceId: past-exams-2019
+title: C프로그래밍 2019 기말
+kind: exam
+year: 2019
+
+passages:
+  - id: g19-char-intro-01
+    type: text
+    body: |
+      ※ (3~4) 다음과 같은 프로그램이 있을 때 물음에 답하시오.
+      (여기서 ‘A’의 ASCII값은 65이다.)
+
+  - id: g19-char-code-01
+    type: code
+    language: c
+    body: |
+      #include <stdio.h>
+      void main() {
+              char var='A';
+              printf("var1=%d var2=%c", var, var); ------㉠
+              putchar(var+2) ;  -----------------------㉡
+      }
+
+  - id: g19-format-code-01
+    type: code
+    language: c
+    body: |
+      #include <stdio.h>
+      void main() {
+           int a = 8086
+           print(" [ ㉠ ] \n", a);
+           print(" [ ㉡ ] \n", a);
+           print(" [ ㉢ ] \n", a);
+      }
+
+  - id: g19-scope-code-01
+    type: code
+    language: c
+    body: |
+      #include <stdio.h>
+      void main() {
+              int a=10;
+              static int b=20;
+              {
+                      int a=5;
+                      b=a+10;
+              }
+              printf("a=%d     b=%d\n", a, b);
+      }
+
+  - id: g19-ternary-code-01
+    type: code
+    language: c
+    body: |
+      #include <stdio.h>
+      void main() {
+          int a=10, b=3 ;
+          a*=(b-1);
+          b=(a>15)? (a+1):(a-1);
+          printf("a=%d b=%d", a, b);
+      }
+
+  - id: g19-nested-if-code-01
+    type: code
+    language: c
+    body: |
+      #include<stdio.h>
+      void main(){
+         int i, j;
+         i=j=4;
+         if(i==3)
+            if(i==4)
+                printf("\n%d", i=i+j);
+            else
+                printf("\n%d", i=i-j);
+         printf("\n%d", i);
+      }
+
+  - id: g19-block-scope-code-01
+    type: code
+    language: c
+    body: |
+      #include<stdio.h>
+      void main(){
+        int i=1, j=2;
+        {
+          int i=3;
+          {
+             int i=4;
+          }
+          printf("i=%d", i);
+        }
+       printf("i=%d", i);
+      }
+
+  - id: g19-nested-for-code-01
+    type: code
+    language: c
+    body: |
+      #include<stdio.h>
+      void main(){
+        int a, b, sum=0;
+         for (a=0; a<10; a++)
+          for(b=5; b>1; b--)
+            sum+=1
+            printf("%d", sum);
+      }
+
+  - id: g19-array2d-code-01
+    type: code
+    language: c
+    body: |
+      #include<stdio.h>
+      void main(){
+      int array[3][4]={1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
+          printf("%d", array[2][3]);
+      }
+
+  - id: g19-function-intro-01
+    type: text
+    body: |
+      ※ (12~14) 다음과 같은 프로그램이 있을 때 물음에 답하시오.
+
+  - id: g19-function-code-01
+    type: code
+    language: c
+    body: |
+      #include <stdio.h>      -------------------------㉠
+      void display_line(void);    ----------------------㉡
+      void main() {
+          display_line();   ---------------------------㉢
+          printf("\n This is an Example program!\n");
+               display_line();
+      }
+      /* print asterisk line */    ---------------------㉣
+      void display_line(void) {  -----------------------㉤
+          int counter;  ------------------------------㉥
+          for(counter=0; counter<20; counter++)
+               printf("*");
+      }
+
+  - id: g19-string-array-code-01
+    type: code
+    language: c
+    body: |
+      char name[ ]="HONG GIL DONG";
+
+  - id: g19-string-pointer-array-code-01
+    type: code
+    language: c
+    body: |
+      #include<stdio.h>
+      void main(){
+        char *names[4]={"Korea", "National", "Open", "University"};
+        printf("%s", names[2]);
+       }
+
+  - id: g19-pointer-sum-intro-01
+    type: text
+    body: |
+      ※ (18~19) 다음과 같은 프로그램이 있을 때 물음에 답하시오.
+
+  - id: g19-pointer-sum-code-01
+    type: code
+    language: c
+    body: |
+      #include <stdio.h>
+      void main() {
+            static int a[ ]={10, 20, 30, 40, 50};
+            int *pt, b, c;
+            pt=a;
+            b=*pt + *(pt+2);
+            pt=pt+2;
+            c=*pt + *(pt+2);
+              printf("b=%d\n", b); ----㉠
+              printf("c=%d\n", c); ----㉡
+      }
+
+  - id: g19-char-pointer-code-01
+    type: code
+    language: c
+    body: |
+      char *cp, s[ ]="computer";
+            cp=s;
+
+  - id: g19-struct-person-code-01
+    type: code
+    language: c
+    body: |
+      struct person{
+           char name[8];
+           int age;
+           char gender;
+       };
+       struct person x;
+
+  - id: g19-struct-pointer-code-01
+    type: code
+    language: c
+    body: |
+      #include <stdio.h>
+      struct student {
+            char name[10];
+            int kor;
+            int math;
+      };
+      void main() {
+            struct student hs[4]={{"KIM HG",90,95},
+                                  {"LEE SY",85,90},
+                                  {"PARK GS",70,85},
+                                  {"CHOI HJ",95,75}};
+            struct student *p;
+            p=hs;
+            p+=2;
+            printf("%s %d %d\n",
+                      p->name, p->kor, p->math);
+      }
+
+  - id: g19-file-intro-01
+    type: text
+    body: |
+      ※ (23~24) 다음과 같은 프로그램이 있을 때 물음에 답하시오.
+
+  - id: g19-file-code-01
+    type: code
+    language: c
+    body: |
+      #include <stdio.h>
+      #include <stdlib.h>
+      void main() {
+          FILE [ ㉠ ] ;
+          int c;
+          if((fp=[ ㉡ ]("oldname.dat", "rb")) == NULL){
+               exit(1);
+          }
+          while((c=fgetc(fp)) != EOF)
+               fprintf(stdout, "%c", c);
+          fclose(fp);
+      }
+
+questions:
+  - id: e19-01
+    type: multiple-choice
+    prompt: 다음 중 원시 프로그램이 번역되어 실행될 때의 파일 확장자로서 올바른 것은?
+    choices:
+      - { id: '1', text: 'example.exe' }
+      - { id: '2', text: 'example.obj' }
+      - { id: '3', text: 'example.doc' }
+      - { id: '4', text: 'example.c' }
+    answers: ['1']
+    explanation: |
+      선택지 1: 원시 프로그램(.c)을 컴파일하고 링크까지 마치면 운영체제가 바로 실행할 수 있는 실행 파일 .exe가 만들어진다. 정답이다.
+      선택지 2: .obj는 컴파일러가 만든 목적 파일(object file)로, 라이브러리와 링크하기 전의 중간 결과라서 그대로 실행되지 않는다.
+      선택지 3: .doc는 문서 편집기의 문서 파일 확장자로 C 프로그램 번역 과정과 관계없다.
+      선택지 4: .c는 프로그래머가 작성한 원시 프로그램(source program) 파일 자체이며 번역 전 단계이다.
+
+      핵심 개념:
+      C 프로그램은 편집 → 컴파일 → 링크 → 실행 순으로 처리된다.
+      원시 파일(.c)을 컴파일하면 목적 파일(.obj)이 생긴다.
+      목적 파일을 라이브러리와 링크하면 실행 파일(.exe)이 생긴다.
+      실행 단계에서 사용하는 것은 실행 파일이다.
+
+  - id: e19-02
+    type: multiple-choice
+    prompt: 다음 중 상수에 대한 설명으로 올바르지 ==않는== 것은?
+    choices:
+      - { id: '1', text: '8진 상수를 표현할 때는 숫자 앞에 0(영)을 붙인다.' }
+      - { id: '2', text: '16진 상수를 표현할 때는 숫자 앞에 0x를 붙인다.' }
+      - { id: '3', text: '문자형 상수는 내부적으로 정수 값이 사용된다.' }
+      - { id: '4', text: '실수형 상수는 지수형식으로 표시할 수 없다.' }
+    answers: ['4']
+    explanation: |
+      선택지 1: 017처럼 숫자 앞에 0을 붙이면 8진 상수로 해석되므로 올바른 설명이다.
+      선택지 2: 0x1F처럼 0x(또는 0X)를 붙이면 16진 상수가 되므로 올바른 설명이다.
+      선택지 3: 'A' 같은 문자형 상수는 내부적으로 ASCII(American Standard Code for Information Interchange) 코드 값 65 같은 정수로 저장·연산되므로 올바른 설명이다.
+      선택지 4: 실수형 상수는 3.14 같은 소수점 형식뿐 아니라 1.5e3, 2.0E-4 같은 지수 형식으로도 표시할 수 있으므로 틀린 설명이다. 정답이다.
+
+      핵심 개념:
+      정수 상수는 10진(접두어 없음), 8진(0), 16진(0x)으로 표현한다.
+      문자 상수는 작은따옴표로 쓰며 값은 문자 코드 정수이다.
+      실수 상수는 소수점 형식과 지수 형식(e/E) 모두 가능하다.
+      문자열 상수는 큰따옴표로 쓰며 끝에 널 문자가 붙는다.
+
+  - id: e19-03
+    type: multiple-choice
+    passageRefs: [g19-char-intro-01, g19-char-code-01]
+    prompt: 위에서 ㉠의 결과로 올바른 것은?
+    choices:
+      - { id: '1', text: 'var1 = 65   var2 = A' }
+      - { id: '2', text: 'var1 = a    var2 = 65' }
+      - { id: '3', text: 'var1 = a    var2 = A' }
+      - { id: '4', text: 'var1 = 65   var2 = 65' }
+    answers: ['1']
+    explanation: |
+      선택지 1: var에는 'A'의 코드값 65가 저장된다. %d는 이를 정수 65로, %c는 문자 A로 출력하므로 var1=65 var2=A가 된다. 정답이다.
+      선택지 2: %d는 정수 변환이므로 문자 a가 나올 수 없고, %c는 문자 변환이므로 65라는 숫자가 나오지 않는다.
+      선택지 3: var1은 %d로 출력되어 65가 나오며, 변수에 저장된 문자는 소문자 a가 아니라 대문자 A이다.
+      선택지 4: var2는 %c로 출력되므로 숫자 65가 아니라 문자 A로 출력된다.
+
+      핵심 개념:
+      char 변수는 문자 코드를 정수로 저장한다.
+      같은 값도 %d로 출력하면 코드값, %c로 출력하면 문자가 된다.
+      'A'의 ASCII 코드는 65이다.
+      printf의 변환 문자가 출력 모양을 결정한다.
+
+  - id: e19-04
+    type: multiple-choice
+    passageRefs: [g19-char-intro-01, g19-char-code-01]
+    prompt: 위에서 ㉡의 결과로 올바른 것은?
+    choices:
+      - { id: '1', text: '65' }
+      - { id: '2', text: '67' }
+      - { id: '3', text: 'A' }
+      - { id: '4', text: 'C' }
+    answers: ['4']
+    explanation: |
+      선택지 1: 65는 'A'의 코드값이며, var+2는 67이고 putchar는 숫자가 아닌 문자를 출력하므로 65가 나오지 않는다.
+      선택지 2: var+2의 값은 67이지만 putchar는 인수를 문자 코드로 보고 문자 한 개를 출력하므로 숫자 67이 출력되지 않는다.
+      선택지 3: A는 var 자체의 문자이며 2를 더한 값이 아니다.
+      선택지 4: var+2=65+2=67이고, putchar(67)은 코드 67에 해당하는 문자 C를 출력한다. 정답이다.
+
+      핵심 개념:
+      putchar(c)는 정수 c를 문자 코드로 보고 문자 하나를 표준 출력에 쓴다.
+      문자에 정수를 더하면 코드값 연산이 된다.
+      'A'+2는 67이며 문자로는 'C'이다.
+      문자 출력 함수는 숫자 문자열이 아니라 해당 문자를 출력한다.
+
+  - id: e19-05
+    type: multiple-choice
+    passageRefs: [g19-format-code-01]
+    prompt: 다음 프로그램의 ㉠, ㉡, ㉢에서 각각 10진수, 8진수, 16진수를 출력하려고 한다. 출력양식변환기호가 순서대로 올바르게 나열된 것은?
+    choices:
+      - { id: '1', text: '%d, %f, %e' }
+      - { id: '2', text: '%d, %o, %x' }
+      - { id: '3', text: '%c, %e, %d' }
+      - { id: '4', text: '%e, %f, %g' }
+    answers: ['2']
+    explanation: |
+      선택지 1: %d는 10진 정수이지만 %f는 소수점 형식 실수, %e는 지수 형식 실수 변환이므로 8진·16진 출력이 아니다.
+      선택지 2: %d는 10진 정수, %o는 8진 정수(octal), %x는 16진 정수(hexadecimal) 출력이므로 순서가 모두 맞다. 정답이다.
+      선택지 3: %c는 문자 한 개, %e는 지수 형식 실수 출력이며, %d는 10진이므로 요구한 순서와 다르다.
+      선택지 4: %e, %f, %g는 모두 실수 출력 변환(지수형, 소수점형, 둘 중 짧은 형식)이라 정수의 진법 출력과 관계없다.
+
+      핵심 개념:
+      정수 출력: %d(10진), %o(8진), %x/%X(16진).
+      실수 출력: %f(소수점형), %e(지수형), %g(짧은 쪽 자동 선택).
+      문자 %c, 문자열 %s를 출력한다.
+      진법만 바꿔 출력해도 저장된 값은 같다.
+
+  - id: e19-06
+    type: multiple-choice
+    passageRefs: [g19-scope-code-01]
+    prompt: 다음과 같은 프로그램의 실행결과로서 올바른 것은?
+    choices:
+      - { id: '1', text: 'a = 5    b = 15' }
+      - { id: '2', text: 'a = 5    b = 20' }
+      - { id: '3', text: 'a = 10   b = 15' }
+      - { id: '4', text: 'a = 10   b = 20' }
+    answers: ['3']
+    explanation: |
+      선택지 1: a=5는 안쪽 블록에서만 유효한 지역 변수이다. 블록이 끝나면 사라지므로 printf의 a는 바깥 a=10이다.
+      선택지 2: a도 5가 아니고, b도 안쪽 블록의 b=a+10;에서 5+10=15로 바뀌었으므로 20이 아니다.
+      선택지 3: 안쪽 블록의 b=a+10;에서 a는 안쪽 a=5이므로 b=15가 되고, b는 새로 선언되지 않아 바깥 b가 바뀐다. 블록 밖 printf의 a는 바깥 a=10이므로 a=10, b=15이다. 정답이다.
+      선택지 4: a=10은 맞지만 b는 블록 안에서 15로 대입되었으므로 초기값 20이 그대로 남지 않는다.
+
+      핵심 개념:
+      블록 안에서 같은 이름으로 선언한 변수는 바깥 변수를 가린다.
+      블록 안에서 선언되지 않은 이름은 바깥 변수를 가리킨다.
+      안쪽 지역 변수는 블록이 끝나면 소멸한다.
+      static 변수도 대입하면 값이 바뀐다.
+
+  - id: e19-07
+    type: multiple-choice
+    passageRefs: [g19-ternary-code-01]
+    prompt: 다음과 같은 프로그램의 실행결과로서 올바른 것은?
+    choices:
+      - { id: '1', text: 'a = 20   b = 21' }
+      - { id: '2', text: 'a = 2   b = 9' }
+      - { id: '3', text: 'a = 20   b = 9' }
+      - { id: '4', text: 'a = 29  b = 11' }
+    answers: ['1']
+    explanation: |
+      선택지 1: a*=(b-1);은 a=a*(b-1)=10*2=20이다. (a>15)는 20>15로 참이므로 b=a+1=21이 되어 a=20 b=21이다. 정답이다.
+      선택지 2: a*=(b-1);은 a=a*(b-1)=10*2=20이므로 a는 2가 아니다. b도 조건이 참이라 21이 되므로 9가 아니다.
+      선택지 3: a=20은 맞지만 20>15가 참이므로 b=a+1=21이다. b=9가 되려면 조건이 거짓이어야 하는데 그렇지 않다.
+      선택지 4: a=29는 a*=(b-1)을 올바르게 계산한 값이 아니며, b=11도 조건 연산 결과와 맞지 않는다.
+
+      핵심 개념:
+      a *= x는 a = a * x와 같다.
+      조건 연산자 (조건)? 식1 : 식2 는 조건이 참이면 식1, 거짓이면 식2의 값을 갖는다.
+      문장은 위에서 아래로 차례대로 실행되므로 앞에서 바뀐 a가 조건에 쓰인다.
+      괄호 안 b-1이 먼저 계산된다.
+
+  - id: e19-08
+    type: multiple-choice
+    passageRefs: [g19-nested-if-code-01]
+    prompt: 다음 프로그램의 출력결과로 올바른 것은?
+    choices:
+      - { id: '1', text: '0' }
+      - { id: '2', text: '3' }
+      - { id: '3', text: '4' }
+      - { id: '4', text: '7' }
+    answers: ['3']
+    explanation: |
+      선택지 1: 0은 else의 i=i-j가 실행된 경우이다. else는 가장 가까운 안쪽 if에 짝지어지고, 바깥 if(i==3)이 거짓이라 안쪽 if·else 전체가 건너뛰어지므로 실행되지 않는다.
+      선택지 2: 3은 비교식 i==3의 상수일 뿐 i에 대입된 적이 없다.
+      선택지 3: i=j=4이므로 i==3이 거짓이고 안쪽 if-else 전체가 실행되지 않는다. 마지막 printf("\n%d", i);만 실행되어 4가 출력된다. 정답이다.
+      선택지 4: 7은 i와 j(4) 어느 연산으로도 만들어지지 않는 값이며, i=i+j(8)도 바깥 조건이 거짓이라 실행되지 않는다.
+
+      핵심 개념:
+      else는 짝이 없는 가장 가까운 if와 짝지어진다(dangling else).
+      바깥 if가 거짓이면 그 안의 if-else 문 전체를 건너뛴다.
+      i=j=4는 오른쪽부터 대입되어 둘 다 4가 된다.
+      ==는 비교, =는 대입이다.
+
+  - id: e19-09
+    type: multiple-choice
+    passageRefs: [g19-block-scope-code-01]
+    prompt: 다음과 같은 프로그램의 실행결과로서 올바른 것은?
+    choices:
+      - { id: '1', text: 'i = 3    i = 1' }
+      - { id: '2', text: 'i = 4    i = 1' }
+      - { id: '3', text: 'i = 4    i = 3' }
+      - { id: '4', text: 'i = 4    i = 4' }
+    answers: ['1']
+    explanation: |
+      선택지 1: 첫 printf는 i=3이 선언된 블록 안에 있고, i=4는 그 안쪽 블록이 끝나며 사라졌으므로 i=3이 출력된다. 두 번째 printf는 main 수준 블록에 있어 i=1이 출력된다. 정답이다.
+      선택지 2: i=4는 가장 안쪽 블록에서만 유효하므로 첫 printf 위치에서는 보이지 않는다.
+      선택지 3: 첫 출력도 4가 아니고, 두 번째 printf 위치에서는 i=3 블록이 이미 끝났으므로 3이 아니다.
+      선택지 4: 두 printf 모두 i=4가 선언된 블록 밖에 있으므로 4가 출력되지 않는다.
+
+      핵심 개념:
+      변수의 유효 범위는 선언된 블록 { } 안으로 한정된다.
+      안쪽 블록의 같은 이름 변수가 바깥 변수를 가린다.
+      블록을 벗어나면 바깥 변수가 다시 보인다.
+      printf 위치가 어느 블록에 속하는지로 참조 변수를 판정한다.
+
+  - id: e19-10
+    type: multiple-choice
+    passageRefs: [g19-nested-for-code-01]
+    prompt: 다음 프로그램의 출력결과로 올바른 것은?
+    choices:
+      - { id: '1', text: '36' }
+      - { id: '2', text: '40' }
+      - { id: '3', text: '45' }
+      - { id: '4', text: '50' }
+    answers: ['2']
+    explanation: |
+      선택지 1: 바깥 for는 a=0~9로 10회, 안쪽 for는 4회 반복하므로 sum은 10×4=40이며 36이 아니다.
+      선택지 2: 바깥 for는 a=0~9로 10회, 안쪽 for는 b=5,4,3,2로 b>1인 동안 4회 반복한다. sum+=1이 10×4=40회 실행되고, 중괄호가 없으므로 printf는 루프가 끝난 뒤 한 번 실행되어 40이 출력된다. 정답이다.
+      선택지 3: 45는 0부터 9까지의 합과 같은 값으로, sum에 1씩 더한 횟수(10×4)와 관계없다.
+      선택지 4: 50은 안쪽 루프를 b=5~1의 5회로 센 경우로, 조건이 b>1이라 b=1에서는 실행되지 않는다.
+
+      핵심 개념:
+      중첩 루프의 실행 횟수는 바깥 횟수 × 안쪽 횟수이다.
+      for(b=5; b>1; b--)는 b=5,4,3,2의 4회 반복한다.
+      중괄호 없는 for는 바로 다음 한 문장만 반복한다.
+      들여쓰기는 실행 구조에 영향을 주지 않는다.
+
+      ※ 원본 표기: sum+=1 뒤에 세미콜론이 빠져 있다(sum+=1; 이어야 컴파일되며 이때 40이 출력된다).
+
+  - id: e19-11
+    type: multiple-choice
+    passageRefs: [g19-array2d-code-01]
+    prompt: 다음과 같은 프로그램의 결과로 올바른 것은?
+    choices:
+      - { id: '1', text: '7' }
+      - { id: '2', text: '8' }
+      - { id: '3', text: '10' }
+      - { id: '4', text: '12' }
+    answers: ['4']
+    explanation: |
+      선택지 1: 7은 array[1][2]의 값(1×4+2=6번째 인덱스)이다.
+      선택지 2: 8은 array[1][3]의 값이다.
+      선택지 3: 10은 array[2][1]의 값이다.
+      선택지 4: 초기값은 행 우선으로 채워져 array[2]는 {9, 10, 11, 12}이다. array[2][3]은 2×4+3=11번째 인덱스, 즉 12이다. 정답이다.
+
+      핵심 개념:
+      2차원 배열은 행 우선(row-major) 순서로 저장·초기화된다.
+      array[i][j]의 위치는 i×열 수+j 번째이다.
+      인덱스는 0부터 시작한다.
+      안쪽 중괄호 없이 초기화해도 순서대로 채워진다.
+
+  - id: e19-12
+    type: multiple-choice
+    passageRefs: [g19-function-intro-01, g19-function-code-01]
+    prompt: 위에서 설명문은 어느 부분인가?
+    choices:
+      - { id: '1', text: '㉡' }
+      - { id: '2', text: '㉢' }
+      - { id: '3', text: '㉣' }
+      - { id: '4', text: '㉤' }
+    answers: ['3']
+    explanation: |
+      선택지 1: ㉡ void display_line(void);는 함수의 원형 선언이다.
+      선택지 2: ㉢ display_line();은 함수를 호출하는 문장이다.
+      선택지 3: ㉣ /* print asterisk line */은 /*와 */ 사이에 쓴 설명문(주석)으로 컴파일러가 무시한다. 정답이다.
+      선택지 4: ㉤ void display_line(void) {는 함수 정의의 머리 부분이다.
+
+      핵심 개념:
+      설명문(주석)은 /* ... */ 사이에 쓰며 실행되지 않는다.
+      프로그램 이해를 돕기 위한 설명을 적는 용도이다.
+      #include는 전처리기 지시자이다.
+      원형 선언, 호출, 정의는 각각 형태가 다르다.
+
+  - id: e19-13
+    type: multiple-choice
+    passageRefs: [g19-function-intro-01, g19-function-code-01]
+    prompt: 위에서 사용자 정의 함수의 원형선언이 이루어지는 부분은 어디인가?
+    choices:
+      - { id: '1', text: '㉠' }
+      - { id: '2', text: '㉡' }
+      - { id: '3', text: '㉤' }
+      - { id: '4', text: '㉥' }
+    answers: ['2']
+    explanation: |
+      선택지 1: ㉠ #include <stdio.h>는 표준 입출력 헤더 파일을 포함시키는 전처리기 지시자이다.
+      선택지 2: ㉡ void display_line(void);는 main보다 앞에서 반환형·이름·매개변수를 알리고 세미콜론으로 끝나는 함수 원형 선언이다. 정답이다.
+      선택지 3: ㉤ void display_line(void) {는 중괄호로 본체가 이어지는 함수 정의이다.
+      선택지 4: ㉥ int counter;는 함수 안의 지역 변수 선언이다.
+
+      핵심 개념:
+      함수 원형(prototype)은 반환형 함수명(매개변수형); 형태로 쓴다.
+      호출보다 정의가 뒤에 있으면 원형을 먼저 선언한다.
+      원형은 세미콜론으로 끝나고 본체가 없다.
+      함수 정의는 머리 뒤에 { } 본체가 있다.
+
+  - id: e19-14
+    type: multiple-choice
+    passageRefs: [g19-function-intro-01, g19-function-code-01]
+    prompt: 위에서 사용자 정의 함수의 호출이 일어나는 부분은?
+    choices:
+      - { id: '1', text: '㉠' }
+      - { id: '2', text: '㉡' }
+      - { id: '3', text: '㉢' }
+      - { id: '4', text: '㉣' }
+    answers: ['3']
+    explanation: |
+      선택지 1: ㉠은 헤더 파일을 포함하는 전처리기 지시자로 함수 호출이 아니다.
+      선택지 2: ㉡은 반환형이 붙은 함수 원형 선언이며 실행 시 함수를 부르지 않는다.
+      선택지 3: ㉢ display_line();은 main 안에서 반환형 없이 함수명과 인수 목록으로 쓴 문장이므로 사용자 정의 함수 호출이다. 정답이다.
+      선택지 4: ㉣은 주석(설명문)으로 실행되지 않는다.
+
+      핵심 개념:
+      함수 호출은 함수명(인수); 형태로 쓴다.
+      호출되면 제어가 함수 본체로 넘어갔다가 끝나면 돌아온다.
+      선언·정의에는 반환형이 붙고 호출에는 붙지 않는다.
+      같은 함수를 여러 번 호출할 수 있다.
+
+  - id: e19-15
+    type: multiple-choice
+    passageRefs: [g19-string-array-code-01]
+    prompt: 다음과 같은 배열을 선언할 때 배열의 크기는 어떻게 되는가?
+    choices:
+      - { id: '1', text: '11' }
+      - { id: '2', text: '12' }
+      - { id: '3', text: '13' }
+      - { id: '4', text: '14' }
+    answers: ['4']
+    explanation: |
+      선택지 1: 11은 공백을 뺀 영문자 수(HONG 4 + GIL 3 + DONG 4)로, 공백과 널 문자를 빠뜨렸다.
+      선택지 2: 12는 문자 13개와 널 문자 1개를 합한 14와 다르다.
+      선택지 3: 13은 공백 포함 문자열 길이이며, 문자열 끝의 널 문자 '\0'을 빠뜨렸다.
+      선택지 4: "HONG GIL DONG"은 영문자 11개와 공백 2개로 13문자이고, 끝에 널 문자 '\0'이 자동으로 붙어 배열 크기는 14이다. 정답이다.
+
+      핵심 개념:
+      크기를 생략한 char 배열은 초기 문자열 길이 + 1로 크기가 정해진다.
+      문자열 상수 끝에는 널 문자 '\0'이 자동 추가된다.
+      공백도 문자 하나로 센다.
+      strlen은 널 문자를 세지 않지만 sizeof는 센다.
+
+  - id: e19-16
+    type: multiple-choice
+    prompt: 다음의 포인터에 대한 설명으로 올바르지 ==않은== 것은?
+    choices:
+      - { id: '1', text: '메모리를 정적으로 할당받을 수 있다.' }
+      - { id: '2', text: '포인터는 변수의 주소값을 데이터로 받는다.' }
+      - { id: '3', text: '자료의 개수가 가변적인 경우 배열보다 효율적이다.' }
+      - { id: '4', text: '포인터는 배열의 요소를 다룰 수 있다.' }
+    answers: ['1']
+    explanation: |
+      선택지 1: 포인터의 장점은 malloc 등으로 실행 중에 필요한 만큼 메모리를 동적으로 할당받아 다룰 수 있다는 것이다. 크기가 컴파일 때 고정되는 정적 할당은 배열의 특징이므로 포인터 설명으로 틀리다. 정답이다.
+      선택지 2: 포인터 변수는 다른 변수의 주소를 값으로 저장하므로 올바른 설명이다.
+      선택지 3: 자료 개수가 바뀌는 경우 포인터와 동적 할당으로 필요한 만큼만 확보할 수 있어 크기가 고정된 배열보다 효율적이므로 올바른 설명이다.
+      선택지 4: 배열 이름은 시작 주소이므로 *(p+i)처럼 포인터로 배열 요소에 접근할 수 있어 올바른 설명이다.
+
+      핵심 개념:
+      포인터는 주소를 저장하는 변수이다.
+      배열은 정적 할당, 포인터는 동적 할당과 함께 쓰여 기억공간을 유연하게 사용한다.
+      a[i]와 *(a+i)는 같은 요소를 가리킨다.
+      자료 개수가 가변적이면 포인터와 동적 할당이 유리하다.
+
+  - id: e19-17
+    type: multiple-choice
+    passageRefs: [g19-string-pointer-array-code-01]
+    prompt: 다음 프로그램의 실행결과로서 올바른 것은?
+    choices:
+      - { id: '1', text: 'Ko' }
+      - { id: '2', text: 'KoreaNational' }
+      - { id: '3', text: 'Open' }
+      - { id: '4', text: 'KN' }
+    answers: ['3']
+    explanation: |
+      선택지 1: Ko는 첫 문자열의 앞 두 글자로, names[2]는 문자 단위가 아니라 세 번째 문자열을 가리킨다.
+      선택지 2: KoreaNational은 names[0]과 names[1]을 이어 붙인 모양이며 %s는 포인터 하나가 가리키는 문자열만 출력한다.
+      선택지 3: names는 문자열 4개의 시작 주소를 담은 포인터 배열이고 names[2]는 0부터 세어 세 번째인 "Open"을 가리킨다. %s로 "Open"이 출력된다. 정답이다.
+      선택지 4: KN은 각 문자열의 첫 글자를 모은 것으로 names[2]의 값과 관계없다.
+
+      핵심 개념:
+      char *names[4]는 문자열 주소 4개를 저장하는 포인터 배열이다.
+      names[i]는 i번째 문자열의 시작 주소이다.
+      %s는 주소부터 널 문자 전까지 출력한다.
+      배열 인덱스는 0부터 시작한다.
+
+  - id: e19-18
+    type: multiple-choice
+    passageRefs: [g19-pointer-sum-intro-01, g19-pointer-sum-code-01]
+    prompt: 위에서 ㉠의 결과로서 올바른 것은?
+    choices:
+      - { id: '1', text: 'b = 10' }
+      - { id: '2', text: 'b = 30' }
+      - { id: '3', text: 'b = 40' }
+      - { id: '4', text: 'b = 50' }
+    answers: ['3']
+    explanation: |
+      선택지 1: 10은 *pt(a[0])만 본 값으로 *(pt+2)를 더하지 않았다.
+      선택지 2: 30은 *(pt+2)=a[2]만의 값이다.
+      선택지 3: pt=a;로 pt가 a[0]을 가리키므로 *pt=10, *(pt+2)=a[2]=30이고 b=10+30=40이다. 정답이다.
+      선택지 4: 50은 a[4] 값이며 ㉠ 시점의 b 계산에는 쓰이지 않는다.
+
+      핵심 개념:
+      배열 이름은 첫 요소의 주소이므로 pt=a;는 pt가 a[0]을 가리키게 한다.
+      *(pt+i)는 pt가 가리키는 위치에서 i번째 뒤 요소의 값이다.
+      포인터에 정수를 더하면 요소 크기 단위로 이동한다.
+      *pt는 가리키는 요소의 값이다.
+
+  - id: e19-19
+    type: multiple-choice
+    passageRefs: [g19-pointer-sum-intro-01, g19-pointer-sum-code-01]
+    prompt: 위에서 ㉡의 결과로서 올바른 것은?
+    choices:
+      - { id: '1', text: 'c = 30' }
+      - { id: '2', text: 'c = 40' }
+      - { id: '3', text: 'c = 50' }
+      - { id: '4', text: 'c = 80' }
+    answers: ['4']
+    explanation: |
+      선택지 1: 30은 이동 후 *pt(a[2])만의 값이다.
+      선택지 2: 40은 ㉠에서 출력되는 b의 값(a[0]+a[2])이다.
+      선택지 3: 50은 *(pt+2)=a[4]만의 값이다.
+      선택지 4: pt=pt+2;로 pt가 a[2]를 가리키므로 *pt=30, *(pt+2)=a[4]=50이고 c=30+50=80이다. 정답이다.
+
+      핵심 개념:
+      pt=pt+2;는 포인터를 두 요소 뒤로 이동시킨다.
+      이동 후의 *(pt+2)는 원래 기준으로 a[4]이다.
+      포인터 연산은 현재 가리키는 위치를 기준으로 한다.
+      배열 요소 접근 a[i]와 *(a+i)는 같다.
+
+  - id: e19-20
+    type: multiple-choice
+    passageRefs: [g19-char-pointer-code-01]
+    prompt: 다음과 같은 배열이 선언되어 있을 때 *(cp+2)의 값?
+    choices:
+      - { id: '1', text: 'c' }
+      - { id: '2', text: 'o' }
+      - { id: '3', text: 'm' }
+      - { id: '4', text: 'p' }
+    answers: ['3']
+    explanation: |
+      선택지 1: c는 *(cp+0), 즉 s[0]의 값이다.
+      선택지 2: o는 *(cp+1), 즉 s[1]의 값이다.
+      선택지 3: cp=s;로 cp가 "computer"의 첫 문자를 가리키므로 *(cp+2)는 s[2]인 'm'이다. 정답이다.
+      선택지 4: p는 *(cp+3), 즉 s[3]의 값이다.
+
+      핵심 개념:
+      문자 배열 이름은 첫 문자의 주소이다.
+      char 포인터에 i를 더하면 i문자 뒤를 가리킨다.
+      *(cp+i)는 cp[i]와 같다.
+      인덱스는 0부터 센다.
+
+  - id: e19-21
+    type: multiple-choice
+    passageRefs: [g19-struct-person-code-01]
+    prompt: 다음과 같은 구조체가 선언되어 있을 때 초기화 방법으로 알맞은 것은?
+    choices:
+      - { id: '1', text: 'person.x="홍길동";' }
+      - { id: '2', text: "x.gender='M';" }
+      - { id: '3', text: 'person x.name="홍길동";' }
+      - { id: '4', text: "struct x='M';" }
+    answers: ['2']
+    explanation: |
+      선택지 1: person은 구조체 태그(자료형 이름)이고 x는 변수이므로 person.x처럼 태그 뒤에 멤버 연산자를 쓸 수 없다. 또 구조체 person에는 x라는 멤버가 없다.
+      선택지 2: 구조체 변수 x의 멤버 gender는 char형이므로 x.gender='M';처럼 멤버 연산자 .로 접근해 문자 상수를 대입할 수 있다. 정답이다.
+      선택지 3: person x.name은 문법에 맞지 않고, 배열 멤버 name에는 대입문으로 문자열을 넣을 수 없다(strcpy 사용).
+      선택지 4: struct는 구조체를 선언하는 키워드로 변수처럼 값을 대입할 수 없으며, x 전체에 문자 하나를 대입할 수도 없다.
+
+      핵심 개념:
+      구조체 멤버는 변수명.멤버명으로 접근한다.
+      struct 태그는 자료형 이름이지 변수가 아니다.
+      char 배열 멤버에는 = 대신 strcpy로 문자열을 복사한다.
+      멤버의 자료형에 맞는 값을 대입해야 한다.
+
+  - id: e19-22
+    type: multiple-choice
+    passageRefs: [g19-struct-pointer-code-01]
+    prompt: 다음과 같은 프로그램의 결과로 올바른 것은?
+    choices:
+      - { id: '1', text: 'KIM HG 90 95' }
+      - { id: '2', text: 'LEE SY 85 90' }
+      - { id: '3', text: 'PARK GS 70 85' }
+      - { id: '4', text: 'CHOI HJ 95 75' }
+    answers: ['3']
+    explanation: |
+      선택지 1: KIM HG는 hs[0]으로, p=hs; 직후에 출력했을 때의 결과이다.
+      선택지 2: LEE SY는 hs[1]로, p를 한 칸만 이동했을 때의 결과이다.
+      선택지 3: p=hs;로 p가 hs[0]을 가리키고 p+=2;로 구조체 두 개만큼 이동해 hs[2]를 가리킨다. p->name, p->kor, p->math는 PARK GS 70 85이다. 정답이다.
+      선택지 4: CHOI HJ는 hs[3]으로, p를 세 칸 이동해야 나오는 결과이다.
+
+      핵심 개념:
+      구조체 포인터에 정수를 더하면 구조체 크기 단위로 이동한다.
+      p->멤버는 (*p).멤버와 같다.
+      구조체 배열 이름은 첫 요소의 주소이다.
+      배열 인덱스는 0부터 시작한다.
+
+  - id: e19-23
+    type: multiple-choice
+    passageRefs: [g19-file-intro-01, g19-file-code-01]
+    prompt: 위에서 빈칸 ㉠에 들어갈 내용으로 올바른 것은?
+    choices:
+      - { id: '1', text: '*fp' }
+      - { id: '2', text: 'fopen' }
+      - { id: '3', text: 'stdin' }
+      - { id: '4', text: 'EOF' }
+    answers: ['1']
+    explanation: |
+      선택지 1: 뒤에서 fp를 fopen의 반환값 저장, fgetc(fp), fclose(fp)에 쓰므로 fp는 FILE 포인터여야 한다. FILE *fp;로 선언해야 한다. 정답이다.
+      선택지 2: fopen은 파일을 여는 함수 이름으로 변수 선언 자리에 올 수 없다.
+      선택지 3: stdin은 표준 입력 스트림을 나타내는 이미 정의된 FILE 포인터로, 새 변수 fp를 선언하지 못한다.
+      선택지 4: EOF는 파일 끝을 나타내는 상수(보통 -1)로 선언할 변수 이름이 아니다.
+
+      핵심 개념:
+      파일을 다루려면 FILE *fp;로 파일 포인터를 선언한다.
+      fopen은 열린 파일의 FILE 포인터를 반환하고 실패하면 NULL을 반환한다.
+      fgetc는 한 문자씩 읽고 파일 끝에서 EOF를 반환한다.
+      작업이 끝나면 fclose로 파일을 닫는다.
+
+  - id: e19-24
+    type: multiple-choice
+    passageRefs: [g19-file-intro-01, g19-file-code-01]
+    prompt: 위에서 빈칸 ㉡에 들어갈 내용으로 올바른 것은?
+    choices:
+      - { id: '1', text: 'fclose' }
+      - { id: '2', text: 'fopen' }
+      - { id: '3', text: 'fscanf' }
+      - { id: '4', text: 'stdio' }
+    answers: ['2']
+    explanation: |
+      선택지 1: fclose는 열린 파일을 닫는 함수로 파일명과 모드를 인수로 받지 않는다.
+      선택지 2: fopen("oldname.dat", "rb")는 파일을 이진 읽기 모드로 열고 FILE 포인터를 반환하며, 실패하면 NULL을 반환하므로 == NULL 검사와 맞는다. 정답이다.
+      선택지 3: fscanf는 이미 열린 파일에서 형식에 맞춰 데이터를 읽는 함수로 파일을 열지 못한다.
+      선택지 4: stdio는 헤더 파일 이름(stdio.h)의 일부일 뿐 함수가 아니다.
+
+      핵심 개념:
+      fopen(파일명, 모드)는 파일을 열고 FILE 포인터를 반환한다.
+      모드 "r"은 읽기, "w"는 쓰기, "b"는 이진 모드이다.
+      열기에 실패하면 NULL을 반환하므로 반드시 검사한다.
+      fclose(fp)로 파일을 닫는다.
+
+  - id: e19-25
+    type: multiple-choice
+    prompt: 다음 기억공간 할당함수들에 대한 설명으로 ==잘못된== 것은?
+    choices:
+      - { id: '1', text: 'malloc()함수는 가장 대표적인 기억공간 할당 표준함수이다.' }
+      - { id: '2', text: 'memset()함수는 기억 공간을 동적으로 할당 또는 해제하기 위해 사용한다.' }
+      - { id: '3', text: 'calloc()함수는 할당받은 기억 공간을 0으로 초기화한다.' }
+      - { id: '4', text: 'realloc()함수는 새로운 영역에 기억공간을 재할당을 하게 되면 기존의 기억공간에 있던 자료를 복사해 온다.' }
+    answers: ['2']
+    explanation: |
+      선택지 1: malloc()은 지정한 바이트 수만큼 기억공간을 동적으로 할당하고 시작 주소를 반환하는 대표적 표준 함수이므로 올바른 설명이다.
+      선택지 2: memset()은 이미 확보된 기억공간의 지정 바이트를 특정 값으로 채우는 함수이다. 동적 할당은 malloc/calloc/realloc, 해제는 free가 담당하므로 틀린 설명이다. 정답이다.
+      선택지 3: calloc()은 요소 개수×크기만큼 할당하면서 모든 바이트를 0으로 초기화하므로 올바른 설명이다.
+      선택지 4: realloc()은 크기를 바꿀 때 새 영역으로 옮기게 되면 기존 내용을 새 영역으로 복사하므로 올바른 설명이다.
+
+      핵심 개념:
+      malloc: 지정 크기 할당(초기화 없음).
+      calloc: 개수×크기 할당 후 0으로 초기화.
+      realloc: 크기 변경, 이동 시 기존 자료 복사.
+      free: 할당 해제. memset: 메모리 영역을 특정 값으로 채움.

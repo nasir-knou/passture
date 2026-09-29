@@ -352,7 +352,7 @@ questions:
     prompt: 다음 변수의 정의를 Barron(배런)의 표기법으로 바르게 나타낸 것은?
     choices:
       - id: '1'
-        text: '①'
+        text: ''
         diagram:
           type: simple-graph
           width: 330
@@ -366,7 +366,7 @@ questions:
             - { from: name, to: attr }
             - { from: attr, to: value }
       - id: '2'
-        text: '②'
+        text: ''
         diagram:
           type: simple-graph
           width: 330
@@ -380,7 +380,7 @@ questions:
             - { from: name, to: attr }
             - { from: attr, to: value }
       - id: '3'
-        text: '③'
+        text: ''
         diagram:
           type: simple-graph
           width: 330
@@ -394,7 +394,7 @@ questions:
             - { from: name, to: attr }
             - { from: attr, to: value }
       - id: '4'
-        text: '④'
+        text: ''
         diagram:
           type: simple-graph
           width: 330

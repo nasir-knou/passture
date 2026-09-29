@@ -176,6 +176,12 @@ passages:
       ※ (64~67) 다음은 난수의 발생식이다. 물음에 답하라.
 
       $X_i =2X_{i-1} + 3\ (\text{mod } 10)$
+
+  - id: g19-mixed-congruential-seed-01
+    type: text
+    body: |
+      $X_0$ = 3 을 대입하여
+
   - id: g19-chi-square-01
     type: text
     body: |
@@ -871,7 +877,7 @@ questions:
   - id: e19-31
     type: multiple-choice
     chapter: 7
-    passageRefs: [g19-mixed-congruential-01]
+    passageRefs: [g19-mixed-congruential-01, g19-mixed-congruential-seed-01]
     prompt: 계속해서 $X_2$ 을 구하면?
     choices:
       - { id: '1', text: '1' }

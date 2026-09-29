@@ -1123,7 +1123,7 @@ questions:
     prompt: 다음은 그래프 G를 인접 리스트로 구현한 것이다. 그래프 G를 나타내는 것은?
     choices:
       - id: '1'
-        text: 그래프 1
+        text: ''
         diagram:
           type: simple-graph
           width: 180
@@ -1139,7 +1139,7 @@ questions:
             - { from: '2', to: '4' }
             - { from: '3', to: '4' }
       - id: '2'
-        text: 그래프 2
+        text: ''
         diagram:
           type: simple-graph
           width: 180
@@ -1156,7 +1156,7 @@ questions:
             - { from: '2', to: '4' }
             - { from: '3', to: '4' }
       - id: '3'
-        text: 그래프 3
+        text: ''
         diagram:
           type: simple-graph
           width: 180
@@ -1173,7 +1173,7 @@ questions:
             - { from: '2', to: '4' }
             - { from: '3', to: '4' }
       - id: '4'
-        text: 그래프 4
+        text: ''
         diagram:
           type: simple-graph
           width: 180
@@ -1299,7 +1299,7 @@ questions:
     prompt: 다음 그래프 중에서 신장 트리에 해당하는 것은?
     choices:
       - id: '1'
-        text: 그래프 1
+        text: ''
         diagram:
           type: simple-graph
           width: 180
@@ -1317,7 +1317,7 @@ questions:
             - { from: '2', to: '4' }
             - { from: '3', to: '5' }
       - id: '2'
-        text: 그래프 2
+        text: ''
         diagram:
           type: simple-graph
           width: 180
@@ -1334,7 +1334,7 @@ questions:
             - { from: '2', to: '5' }
             - { from: '3', to: '4' }
       - id: '3'
-        text: 그래프 3
+        text: ''
         diagram:
           type: simple-graph
           width: 180
@@ -1352,7 +1352,7 @@ questions:
             - { from: '3', to: '4' }
             - { from: '4', to: '5' }
       - id: '4'
-        text: 그래프 4
+        text: ''
         diagram:
           type: simple-graph
           width: 180
