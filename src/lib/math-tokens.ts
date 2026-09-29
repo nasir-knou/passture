@@ -76,3 +76,32 @@ export function extractMathTokens(value: string): MathToken[] {
 
   return tokens;
 }
+
+export type InlineCodeSegment = {
+  code: boolean;
+  text: string;
+};
+
+/** 백틱으로 감싼 인라인 코드 구간을 분리한다. 짝이 없는 백틱은 글자 그대로 남는다. */
+export function splitInlineCode(value: string): InlineCodeSegment[] {
+  const segments: InlineCodeSegment[] = [];
+  let cursor = 0;
+
+  while (cursor < value.length) {
+    const start = value.indexOf('`', cursor);
+    const end = start === -1 ? -1 : value.indexOf('`', start + 1);
+
+    if (end === -1) {
+      segments.push({ code: false, text: value.slice(cursor) });
+      break;
+    }
+
+    if (start > cursor) {
+      segments.push({ code: false, text: value.slice(cursor, start) });
+    }
+    segments.push({ code: true, text: value.slice(start + 1, end) });
+    cursor = end + 1;
+  }
+
+  return segments;
+}

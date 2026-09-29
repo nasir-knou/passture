@@ -8,7 +8,12 @@ import {
   type WrongAnswerRecord,
 } from '../lib/storage';
 import { escapeHtml, renderFooter, renderTopNav, semesterLabel, sourceKindLabel } from './shared';
-import { renderChoiceContent, renderPassages, renderRichText } from './rendering';
+import {
+  renderChoiceContent,
+  renderPassages,
+  renderQuestionImages,
+  renderRichText,
+} from './rendering';
 
 type HistoryFilter = 'all' | 'bookmarked' | 'wrong';
 type SemesterFilter = 'all' | Semester;
@@ -339,6 +344,7 @@ function renderHistoryEntry(entry: HistoryEntry): string {
       </summary>
       <div class="history-item-body">
         ${renderPassages(entry.passages)}
+        ${renderQuestionImages(entry.question.images ?? [])}
         <fieldset class="choice-list">
           <legend class="sr-only">선택지</legend>
           ${entry.choices

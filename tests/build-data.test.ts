@@ -83,6 +83,24 @@ describe('data validation', () => {
     ).toThrow(/unknown keys/);
   });
 
+  it('rejects unknown question keys such as passages instead of passageRefs', () => {
+    expect(() =>
+      validateQuestionFile(
+        {
+          subjectId: 'operating-systems',
+          sourceId: 'past-exams-2019',
+          title: '운영체제 2019 기출',
+          kind: 'exam',
+          year: 2019,
+          passages: [{ id: 'g19-01', type: 'text', body: '지문' }],
+          questions: [{ ...validQuestion('e19-01'), passages: ['g19-01'] }],
+        },
+        'operating-systems',
+        examSource,
+      ),
+    ).toThrow(/unknown keys \(passages\)/);
+  });
+
   it('rejects math that KaTeX cannot parse', () => {
     expect(() =>
       validateQuestionFile(
@@ -100,6 +118,58 @@ describe('data validation', () => {
         examSource,
       ),
     ).toThrow(/invalid math/);
+  });
+
+  it('does not parse dollars inside inline code as math', () => {
+    expect(() =>
+      validateQuestionFile(
+        {
+          subjectId: 'operating-systems',
+          sourceId: 'past-exams-2019',
+          title: '운영체제 2019 기출',
+          kind: 'exam',
+          year: 2019,
+          questions: [
+            { ...validQuestion('e19-01'), prompt: '`echo $HOME $\\begin` 명령의 결과는?' },
+          ],
+        },
+        'operating-systems',
+        examSource,
+      ),
+    ).not.toThrow();
+  });
+
+  it('accepts empty choice text when the choice has a diagram', () => {
+    expect(() =>
+      validateQuestionFile(
+        {
+          subjectId: 'operating-systems',
+          sourceId: 'past-exams-2019',
+          title: '운영체제 2019 기출',
+          kind: 'exam',
+          year: 2019,
+          questions: [
+            {
+              ...validQuestion('e19-01'),
+              choices: [
+                {
+                  id: '1',
+                  text: '',
+                  diagram: {
+                    type: 'data-table',
+                    columns: ['A'],
+                    rows: [['1']],
+                  },
+                },
+                { id: '2', text: '문서 편집' },
+              ],
+            },
+          ],
+        },
+        'operating-systems',
+        examSource,
+      ),
+    ).not.toThrow();
   });
 
   it('rejects answers that are not choice IDs', () => {
