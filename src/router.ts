@@ -1,3 +1,5 @@
+import { escapeHtml } from './pages/shared';
+
 export type RouteRenderer = () => HTMLElement | Promise<HTMLElement>;
 
 export type Routes = Record<string, RouteRenderer>;
@@ -10,8 +12,12 @@ export interface Router {
 export function createRouter(root: HTMLElement, routes: Routes): Router {
   let active = true;
   let currentRoute: string | undefined;
+  // 렌더마다 번호를 매겨, 늦게 끝난 이전 렌더가 더 최근 화면을 덮어쓰지 않게 한다.
+  let renderSequence = 0;
 
   const render = async () => {
+    const sequence = ++renderSequence;
+    const isCurrent = () => active && sequence === renderSequence;
     root.replaceChildren(renderLoading());
 
     try {
@@ -19,7 +25,7 @@ export function createRouter(root: HTMLElement, routes: Routes): Router {
       const renderer = routes[route] ?? routes['/'];
       const page = await renderer();
 
-      if (active) {
+      if (isCurrent()) {
         root.replaceChildren(page);
         if (shouldResetPageScroll(route, currentRoute)) {
           resetPageScroll();
@@ -27,7 +33,9 @@ export function createRouter(root: HTMLElement, routes: Routes): Router {
         currentRoute = route;
       }
     } catch (error) {
-      root.replaceChildren(renderError(error));
+      if (isCurrent()) {
+        root.replaceChildren(renderError(error));
+      }
     }
   };
 
@@ -83,13 +91,4 @@ function renderError(error: unknown): HTMLElement {
 
 function resetPageScroll(): void {
   window.scrollTo({ left: 0, top: 0, behavior: 'auto' });
-}
-
-function escapeHtml(value: string): string {
-  return value
-    .replaceAll('&', '&amp;')
-    .replaceAll('<', '&lt;')
-    .replaceAll('>', '&gt;')
-    .replaceAll('"', '&quot;')
-    .replaceAll("'", '&#039;');
 }

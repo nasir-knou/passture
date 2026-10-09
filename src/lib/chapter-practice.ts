@@ -7,8 +7,10 @@ import {
   type SourceCategory,
 } from './chapter';
 import { loadQuestionFile, loadSyllabus } from './data-loader';
+import { safeSetItem } from './safe-storage';
 import {
   chapterSelectionKey,
+  sessionKey,
   type LoadedQuestionSource,
   type QuizSessionQuestion,
   type SessionGrouping,
@@ -40,8 +42,8 @@ export interface ChapterIndex {
 }
 
 export function saveChapterSelection(selection: ChapterSelection): void {
-  sessionStorage.setItem(chapterSelectionKey, JSON.stringify(selection));
-  sessionStorage.removeItem('pt.currentSession');
+  safeSetItem(sessionStorage, chapterSelectionKey, JSON.stringify(selection), '선택한 장');
+  sessionStorage.removeItem(sessionKey);
 }
 
 export function clearChapterSelection(): void {

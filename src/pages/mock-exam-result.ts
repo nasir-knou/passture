@@ -16,11 +16,11 @@ import {
   renderRichText,
 } from './rendering';
 
-export function renderMockExamResultPage(): HTMLElement {
+export async function renderMockExamResultPage(): Promise<HTMLElement> {
   const page = document.createElement('main');
   page.className = 'app-shell';
 
-  const session = loadMockExamSession();
+  const session = await loadMockExamSession();
 
   if (!session) {
     page.innerHTML = `

@@ -25,10 +25,10 @@ import {
 import { chapterLabel } from '../lib/chapter';
 import { clearChapterSelection, loadChapterSelection } from '../lib/chapter-practice';
 
-export function renderResultPage(catalog: Catalog): HTMLElement {
+export async function renderResultPage(catalog: Catalog): Promise<HTMLElement> {
   const page = document.createElement('main');
   page.className = 'app-shell';
-  const session = loadSession();
+  const session = await loadSession();
 
   if (!session) {
     page.innerHTML = `

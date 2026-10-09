@@ -1,9 +1,11 @@
 import type { Catalog, Semester } from '../types/catalog';
 import type { Choice, Passage, Question } from '../types/question';
 import { loadQuestionFile } from '../lib/data-loader';
+import { indexQuestionFile, questionKey } from '../lib/session-question';
 import {
   loadBookmarks,
   loadWrongAnswers,
+  pruneUserData,
   removeBookmark,
   type WrongAnswerRecord,
 } from '../lib/storage';
@@ -148,14 +150,17 @@ async function readHistoryEntries(catalog: Catalog): Promise<HistoryEntry[]> {
     return [];
   }
 
+  const knownKeys = new Set<string>();
+  // 문제 파일을 하나라도 불러오지 못하면 여기서 오류가 나므로 아래 정리 단계까지 가지 않는다.
   const entries = await Promise.all(
     catalog.subjects.flatMap((subject) =>
       subject.sources.map(async (source) => {
         const file = await loadQuestionFile(source.path);
-        const passagesById = new Map(file.passages?.map((passage) => [passage.id, passage]));
+        const passagesById = indexQuestionFile(file).passages;
 
         return file.questions.flatMap<HistoryEntry>((question) => {
-          const key = `${subject.id}:${source.id}:${question.id}`;
+          const key = questionKey(subject.id, source.id, question.id);
+          knownKeys.add(key);
           if (!trackedKeys.has(key)) {
             return [];
           }
@@ -179,6 +184,9 @@ async function readHistoryEntries(catalog: Catalog): Promise<HistoryEntry[]> {
       }),
     ),
   );
+
+  // 모든 문제 파일을 불러온 경우에만, 카탈로그에서 사라진 문제의 북마크·오답 기록을 지운다.
+  pruneUserData(knownKeys);
 
   return entries.flat().sort((left, right) => left.key.localeCompare(right.key));
 }

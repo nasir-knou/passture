@@ -6,7 +6,6 @@ import {
   getRemainingSeconds,
   loadMockExamConfig,
   loadMockExamSession,
-  saveMockExamSession,
   setActiveSubject,
   setAnswer,
   toggleBookmark,
@@ -23,17 +22,30 @@ import {
   renderQuestionImages,
 } from './rendering';
 
-let timerInterval: ReturnType<typeof setInterval> | null = null;
-let examEvents: AbortController | null = null;
-let removeExamExitGuard: (() => void) | null = null;
-let suppressNextHashGuard = false;
+// 레이아웃 모드: 'scroll' = 세로 스크롤 전체, 'paged' = 한 문제씩
+type LayoutMode = 'scroll' | 'paged';
+
+/** 시험 화면 한 번 마운트할 때의 상태. 새로 마운트하거나 화면을 떠나면 정리한다. */
+interface ExamMount {
+  page: HTMLElement;
+  session: MockExamSession;
+  layoutMode: LayoutMode;
+  pagedIndex: number;
+  fontStep: number; // -1=small, 0=default, 1=large
+  timer: ReturnType<typeof setInterval> | null;
+  events: AbortController | null;
+  removeExitGuard: (() => void) | null;
+  suppressNextHashGuard: boolean;
+}
+
+let activeExam: ExamMount | null = null;
 
 export async function renderMockExamTestPage(): Promise<HTMLElement> {
   const page = document.createElement('div');
   page.className = 'exam-shell';
 
   // 세션 복원 또는 신규 생성
-  let session = loadMockExamSession();
+  let session = await loadMockExamSession();
 
   if (!session || session.status === 'finished') {
     const config = loadMockExamConfig();
@@ -54,27 +66,48 @@ export async function renderMockExamTestPage(): Promise<HTMLElement> {
 }
 
 function mountExam(page: HTMLElement, session: MockExamSession): void {
-  installExamExitGuard(() => loadMockExamSession() ?? session);
-  renderExam(page, session);
-  startTimer(page, session);
+  // 이전 시험 화면의 타이머·리스너가 남지 않도록 먼저 정리한다.
+  if (activeExam) disposeExam(activeExam);
+
+  const exam: ExamMount = {
+    page,
+    session,
+    layoutMode: 'scroll',
+    pagedIndex: 0,
+    fontStep: 0,
+    timer: null,
+    events: null,
+    removeExitGuard: null,
+    suppressNextHashGuard: false,
+  };
+  activeExam = exam;
+  installExamExitGuard(exam);
+  renderExam(exam);
+  startTimer(exam);
 }
 
-// 레이아웃 모드: 'scroll' = 세로 스크롤 전체, 'paged' = 한 문제씩
-type LayoutMode = 'scroll' | 'paged';
-let layoutMode: LayoutMode = 'scroll';
-let pagedIndex = 0;
+function disposeExam(exam: ExamMount): void {
+  stopTimer(exam);
+  exam.events?.abort();
+  exam.events = null;
+  exam.removeExitGuard?.();
+  exam.removeExitGuard = null;
+  if (activeExam === exam) activeExam = null;
+}
 
-function renderExam(page: HTMLElement, session: MockExamSession): void {
+function renderExam(exam: ExamMount): void {
+  const { page, session } = exam;
   const subjectSession = session.subjects[session.activeSubjectIndex];
   if (!subjectSession) return;
 
   // paged 모드에서 탭 전환 시 인덱스 초기화
-  if (pagedIndex >= subjectSession.questions.length) pagedIndex = 0;
+  if (exam.pagedIndex >= subjectSession.questions.length) exam.pagedIndex = 0;
 
+  const { layoutMode, pagedIndex } = exam;
   const total = subjectSession.questions.length;
 
   page.innerHTML = `
-    ${renderTopBar(session)}
+    ${renderTopBar(session, layoutMode)}
     <div class="exam-body">
       <div class="exam-main">
         ${renderSubjectTabs(session)}
@@ -122,7 +155,7 @@ function renderExam(page: HTMLElement, session: MockExamSession): void {
     ${renderExitModal()}
   `;
 
-  bindExamEvents(page, session);
+  bindExamEvents(exam);
 }
 
 function renderPagedQuestion(
@@ -137,7 +170,7 @@ function renderPagedQuestion(
 
 // ─── 상단 바 ─────────────────────────────────────────────────────────────
 
-function renderTopBar(session: MockExamSession): string {
+function renderTopBar(session: MockExamSession, layoutMode: LayoutMode): string {
   const remaining = getRemainingSeconds(session);
   const isWarning = remaining <= 300; // 5분 이하
 
@@ -353,12 +386,12 @@ function renderExitModal(): string {
 
 // ─── 이벤트 바인딩 ────────────────────────────────────────────────────────
 
-function bindExamEvents(page: HTMLElement, initialSession: MockExamSession): void {
-  let session = initialSession;
+function bindExamEvents(exam: ExamMount): void {
+  const { page } = exam;
   // renderExam이 page에 위임 리스너를 다시 붙이므로 이전 렌더의 리스너를 떼어 낸다.
-  examEvents?.abort();
-  examEvents = new AbortController();
-  const { signal } = examEvents;
+  exam.events?.abort();
+  exam.events = new AbortController();
+  const { signal } = exam.events;
 
   // 답안 선택
   page.addEventListener(
@@ -382,11 +415,11 @@ function bindExamEvents(page: HTMLElement, initialSession: MockExamSession): voi
         selected = input.checked ? [input.value] : [];
       }
 
-      session = setAnswer(session, key, selected);
-      refreshGridRow(page, session, key);
-      refreshTabCounts(page, session);
+      exam.session = setAnswer(exam.session, key, selected);
+      refreshGridRow(page, exam.session, key);
+      refreshTabCounts(page, exam.session);
       refreshChoiceHighlight(page, key, selected);
-      refreshPageIndicator(page, session);
+      refreshPageIndicator(exam);
     },
     { signal },
   );
@@ -398,9 +431,9 @@ function bindExamEvents(page: HTMLElement, initialSession: MockExamSession): voi
       const btn = (e.target as HTMLElement).closest<HTMLButtonElement>('[data-bookmark-btn]');
       if (!btn) return;
       const key = btn.dataset.questionKey ?? '';
-      session = toggleBookmark(session, key);
-      refreshBookmarkBtn(page, key, session.bookmarks.includes(key));
-      refreshGridRow(page, session, key);
+      exam.session = toggleBookmark(exam.session, key);
+      refreshBookmarkBtn(page, key, exam.session.bookmarks.includes(key));
+      refreshGridRow(page, exam.session, key);
     },
     { signal },
   );
@@ -412,27 +445,25 @@ function bindExamEvents(page: HTMLElement, initialSession: MockExamSession): voi
       const tab = (e.target as HTMLElement).closest<HTMLButtonElement>('[data-tab-index]');
       if (!tab) return;
       const index = Number(tab.dataset.tabIndex);
-      session = setActiveSubject(session, index);
-      pagedIndex = 0;
-      if (layoutMode === 'paged') {
-        renderExam(page, session);
-        startTimer(page, session);
+      exam.session = setActiveSubject(exam.session, index);
+      exam.pagedIndex = 0;
+      if (exam.layoutMode === 'paged') {
+        renderExam(exam);
         return;
       }
-      rerenderQuestionArea(page, session);
-      rerenderTabs(page, session);
-      rerenderSidebar(page, session);
-      refreshPageIndicator(page, session);
+      rerenderQuestionArea(page, exam.session);
+      rerenderTabs(page, exam.session);
+      rerenderSidebar(page, exam.session);
+      refreshPageIndicator(exam);
     },
     { signal },
   );
 
   // 그리드 행 클릭 → 문제로 이동
   const goToQuestion = (index: number) => {
-    if (layoutMode === 'paged') {
-      pagedIndex = index;
-      renderExam(page, session);
-      startTimer(page, session);
+    if (exam.layoutMode === 'paged') {
+      exam.pagedIndex = index;
+      renderExam(exam);
     } else {
       const target = page.querySelector<HTMLElement>(`#exam-q-${index}`);
       target?.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -462,38 +493,34 @@ function bindExamEvents(page: HTMLElement, initialSession: MockExamSession): voi
   );
 
   // 글자 크기 조절
-  let fontStep = 0; // -1=small, 0=default, 1=large
   page.querySelector<HTMLButtonElement>('[data-font-increase]')?.addEventListener('click', () => {
-    if (fontStep < 1) fontStep += 1;
-    applyFontSize(page, fontStep);
+    if (exam.fontStep < 1) exam.fontStep += 1;
+    applyFontSize(page, exam.fontStep);
   });
   page.querySelector<HTMLButtonElement>('[data-font-decrease]')?.addEventListener('click', () => {
-    if (fontStep > -1) fontStep -= 1;
-    applyFontSize(page, fontStep);
+    if (exam.fontStep > -1) exam.fontStep -= 1;
+    applyFontSize(page, exam.fontStep);
   });
 
   // 레이아웃 모드 토글 (세로스크롤 ↔ 한문제씩)
   page.querySelector<HTMLButtonElement>('[data-layout-toggle]')?.addEventListener('click', () => {
-    layoutMode = layoutMode === 'scroll' ? 'paged' : 'scroll';
-    pagedIndex = 0;
-    renderExam(page, session);
-    startTimer(page, session);
+    exam.layoutMode = exam.layoutMode === 'scroll' ? 'paged' : 'scroll';
+    exam.pagedIndex = 0;
+    renderExam(exam);
   });
 
   // 한문제씩 모드: 이전/다음
   page.querySelector<HTMLButtonElement>('[data-paged-prev]')?.addEventListener('click', () => {
-    if (pagedIndex > 0) {
-      pagedIndex -= 1;
-      renderExam(page, session);
-      startTimer(page, session);
+    if (exam.pagedIndex > 0) {
+      exam.pagedIndex -= 1;
+      renderExam(exam);
     }
   });
   page.querySelector<HTMLButtonElement>('[data-paged-next]')?.addEventListener('click', () => {
-    const subjectSession = session.subjects[session.activeSubjectIndex];
-    if (subjectSession && pagedIndex < subjectSession.questions.length - 1) {
-      pagedIndex += 1;
-      renderExam(page, session);
-      startTimer(page, session);
+    const subjectSession = exam.session.subjects[exam.session.activeSubjectIndex];
+    if (subjectSession && exam.pagedIndex < subjectSession.questions.length - 1) {
+      exam.pagedIndex += 1;
+      renderExam(exam);
     }
   });
 
@@ -511,10 +538,8 @@ function bindExamEvents(page: HTMLElement, initialSession: MockExamSession): voi
 
   // 모달 확인 → 시험 종료
   page.querySelector<HTMLButtonElement>('[data-modal-confirm]')?.addEventListener('click', () => {
-    removeExamExitGuard?.();
-    removeExamExitGuard = null;
-    stopTimer();
-    session = finishSession(session);
+    exam.session = finishSession(exam.session);
+    disposeExam(exam);
     window.location.hash = '#/mock-exam/result';
   });
 }
@@ -590,12 +615,12 @@ function refreshTabCounts(page: HTMLElement, session: MockExamSession): void {
   });
 }
 
-function refreshPageIndicator(page: HTMLElement, session: MockExamSession): void {
-  const subjectSession = session.subjects[session.activeSubjectIndex];
+function refreshPageIndicator(exam: ExamMount): void {
+  const subjectSession = exam.session.subjects[exam.session.activeSubjectIndex];
   if (!subjectSession) return;
-  const indicator = page.querySelector<HTMLElement>('.exam-page-indicator span');
+  const indicator = exam.page.querySelector<HTMLElement>('.exam-page-indicator span');
   if (indicator) {
-    indicator.textContent = `${pagedIndex + 1} / ${subjectSession.questions.length}`;
+    indicator.textContent = `${exam.pagedIndex + 1} / ${subjectSession.questions.length}`;
   }
 }
 
@@ -644,42 +669,44 @@ function applyFontSize(page: HTMLElement, step: number): void {
 
 // ─── 타이머 ───────────────────────────────────────────────────────────────
 
-function startTimer(page: HTMLElement, session: MockExamSession): void {
-  stopTimer();
+function startTimer(exam: ExamMount): void {
+  stopTimer(exam);
 
-  timerInterval = setInterval(() => {
-    const remaining = getRemainingSeconds(session);
-    const timerEl = page.querySelector<HTMLElement>('[data-timer]');
+  exam.timer = setInterval(() => {
+    // 라우터가 다른 화면으로 바꿨거나 늦게 끝난 렌더가 버려져 시험 화면이 문서에 없으면 정리한다.
+    if (!exam.page.isConnected) {
+      disposeExam(exam);
+      return;
+    }
+
+    // exam.session은 답안을 고를 때마다 갱신되므로 최신 답안으로 종료된다.
+    const remaining = getRemainingSeconds(exam.session);
+    const timerEl = exam.page.querySelector<HTMLElement>('[data-timer]');
     if (timerEl) {
       timerEl.textContent = formatCountdown(remaining);
       timerEl.classList.toggle('is-warning', remaining <= 300);
     }
 
     if (remaining <= 0) {
-      removeExamExitGuard?.();
-      removeExamExitGuard = null;
-      stopTimer();
-      // 타이머는 시작 시점의 세션을 쥐고 있으므로 저장된 최신 답안으로 종료한다.
-      const finished = finishSession(loadMockExamSession() ?? session);
-      saveMockExamSession(finished);
+      exam.session = finishSession(exam.session);
+      disposeExam(exam);
       window.location.hash = '#/mock-exam/result';
     }
   }, 1000);
 }
 
-export function stopTimer(): void {
-  if (timerInterval !== null) {
-    clearInterval(timerInterval);
-    timerInterval = null;
+function stopTimer(exam: ExamMount): void {
+  if (exam.timer !== null) {
+    clearInterval(exam.timer);
+    exam.timer = null;
   }
 }
 
-function installExamExitGuard(getSession: () => MockExamSession): void {
-  removeExamExitGuard?.();
+function installExamExitGuard(exam: ExamMount): void {
+  exam.removeExitGuard?.();
 
   const handleBeforeUnload = (event: BeforeUnloadEvent) => {
-    const session = getSession();
-    if (session.status !== 'in-progress') {
+    if (exam.session.status !== 'in-progress') {
       return;
     }
 
@@ -688,13 +715,17 @@ function installExamExitGuard(getSession: () => MockExamSession): void {
   };
 
   const handleHashChange = () => {
-    if (suppressNextHashGuard) {
-      suppressNextHashGuard = false;
+    if (exam.suppressNextHashGuard) {
+      exam.suppressNextHashGuard = false;
       return;
     }
 
-    const session = getSession();
-    if (session.status !== 'in-progress' || window.location.hash === '#/mock-exam/test') {
+    if (window.location.hash === '#/mock-exam/test') {
+      return;
+    }
+
+    if (exam.session.status !== 'in-progress') {
+      disposeExam(exam);
       return;
     }
 
@@ -703,21 +734,19 @@ function installExamExitGuard(getSession: () => MockExamSession): void {
     );
 
     if (!shouldLeave) {
-      suppressNextHashGuard = true;
+      exam.suppressNextHashGuard = true;
       window.location.hash = '#/mock-exam/test';
       return;
     }
 
-    removeExamExitGuard?.();
-    removeExamExitGuard = null;
-    stopTimer();
-    finishSession(session);
+    exam.session = finishSession(exam.session);
+    disposeExam(exam);
   };
 
   window.addEventListener('beforeunload', handleBeforeUnload);
   window.addEventListener('hashchange', handleHashChange);
 
-  removeExamExitGuard = () => {
+  exam.removeExitGuard = () => {
     window.removeEventListener('beforeunload', handleBeforeUnload);
     window.removeEventListener('hashchange', handleHashChange);
   };

@@ -3,10 +3,24 @@ import type { QuestionFile } from '../types/question';
 import type { PracticeOptions, QuizSessionQuestion } from './quiz-session';
 import { parseQuestionGroup } from './chapter';
 import { loadQuestionFile } from './data-loader';
+import { safeSetItem } from './safe-storage';
+import { isCorrectAnswer } from './scorer';
+import {
+  createSessionQuestion,
+  hydrateQuestionRef,
+  indexQuestionFile,
+  isStoredQuestionRef,
+  isStringArray,
+  isStringArrayRecord,
+  orderedChoices,
+  toQuestionRef,
+  type StoredQuestionRef,
+} from './session-question';
 import { shuffled } from './shuffle';
 
 const mockExamConfigKey = 'pt.mockExamConfig';
-const mockExamSessionKey = 'pt.mockExamSession';
+export const mockExamSessionKey = 'pt.mockExamSession';
+const mockExamSessionFormatVersion = 2;
 
 // ─── Config (설정 화면에서 저장) ────────────────────────────────────────
 
@@ -44,7 +58,7 @@ type StoredMockExamConfig = Partial<Omit<MockExamConfig, 'subjects'>> & {
 };
 
 export function saveMockExamConfig(config: MockExamConfig): void {
-  sessionStorage.setItem(mockExamConfigKey, JSON.stringify(config));
+  safeSetItem(sessionStorage, mockExamConfigKey, JSON.stringify(config), '모의 시험 설정');
   sessionStorage.removeItem(mockExamSessionKey);
 }
 
@@ -64,10 +78,20 @@ export function clearMockExamConfig(): void {
 }
 
 function normalizeMockExamConfig(config: StoredMockExamConfig): MockExamConfig | undefined {
+  if (typeof config !== 'object' || config === null || !Array.isArray(config.subjects)) {
+    return undefined;
+  }
+
   const subjects = config.subjects
-    ?.map((subject) => {
-      const source = subject.source ?? subject.sources?.[0];
-      if (!subject.subjectId || !subject.subjectTitle || !source) {
+    .map((subject) => {
+      const source = subject?.source ?? subject?.sources?.[0];
+      if (
+        !subject?.subjectId ||
+        !subject.subjectTitle ||
+        !source ||
+        typeof source.path !== 'string' ||
+        typeof source.sourceId !== 'string'
+      ) {
         return undefined;
       }
 
@@ -87,7 +111,7 @@ function normalizeMockExamConfig(config: StoredMockExamConfig): MockExamConfig |
     })
     .filter((subject): subject is MockExamSubjectConfig => subject !== undefined);
 
-  if (!subjects?.length) {
+  if (!subjects.length) {
     return undefined;
   }
 
@@ -126,18 +150,168 @@ export interface MockExamSession {
   status: 'in-progress' | 'finished';
 }
 
-export function saveMockExamSession(session: MockExamSession): void {
-  sessionStorage.setItem(mockExamSessionKey, JSON.stringify(session));
+/**
+ * sessionStorage에 저장하는 모의시험 세션 형식. 문제 본문 대신 문제 ID와 선지 순서만 남기고,
+ * 과목별 문제 파일은 config.subjects[i].source.path로 다시 불러와 채운다.
+ */
+interface StoredMockExamSession extends Omit<MockExamSession, 'subjects'> {
+  version: typeof mockExamSessionFormatVersion;
+  subjects: StoredMockExamSubjectSession[];
 }
 
-export function loadMockExamSession(): MockExamSession | undefined {
+interface StoredMockExamSubjectSession extends Omit<MockExamSubjectSession, 'questions'> {
+  questions: StoredQuestionRef[];
+}
+
+/** 세션을 저장한다. 저장소가 가득 찼거나 쓸 수 없으면 사용자에게 알리고 false를 돌려준다. */
+export function saveMockExamSession(session: MockExamSession): boolean {
+  const stored: StoredMockExamSession = {
+    ...session,
+    version: mockExamSessionFormatVersion,
+    subjects: session.subjects.map((subject) => ({
+      ...subject,
+      questions: subject.questions.map(toQuestionRef),
+    })),
+  };
+
+  return safeSetItem(
+    sessionStorage,
+    mockExamSessionKey,
+    JSON.stringify(stored),
+    '모의 시험 진행 상황',
+  );
+}
+
+/**
+ * 저장된 세션을 불러와 문제 파일로 다시 채운다. 저장 형식이 맞지 않거나(이전 버전 포함)
+ * 문제가 모두 사라졌으면 저장된 세션을 지우고 undefined를 돌려준다.
+ * 문제 파일을 불러오지 못하면 세션은 그대로 두고 오류를 던진다.
+ */
+export async function loadMockExamSession(): Promise<MockExamSession | undefined> {
+  const stored = loadStoredMockExamSession();
+  if (!stored) return undefined;
+
+  const files = await Promise.all(
+    stored.config.subjects.map((subject) => loadQuestionFile(subject.source.path)),
+  );
+  const session = hydrateMockExamSession(stored, files);
+
+  if (!session) {
+    clearMockExamSession();
+  }
+
+  return session;
+}
+
+/** 문제 파일 없이 저장된 세션의 진행 상태만 읽는다. */
+export function loadMockExamSessionStatus(): MockExamSession['status'] | undefined {
+  return loadStoredMockExamSession()?.status;
+}
+
+function loadStoredMockExamSession(): StoredMockExamSession | undefined {
   const raw = sessionStorage.getItem(mockExamSessionKey);
   if (!raw) return undefined;
+
   try {
-    return JSON.parse(raw) as MockExamSession;
+    const stored = normalizeStoredMockExamSession(JSON.parse(raw) as unknown);
+    if (stored) return stored;
   } catch {
+    // 아래에서 지운다.
+  }
+
+  clearMockExamSession();
+  return undefined;
+}
+
+function normalizeStoredMockExamSession(value: unknown): StoredMockExamSession | undefined {
+  if (typeof value !== 'object' || value === null || Array.isArray(value)) {
     return undefined;
   }
+
+  const session = value as Partial<Record<keyof StoredMockExamSession, unknown>>;
+  // 문제 본문을 통째로 저장하던 이전 형식(version 없음)은 버리고 새로 시작한다.
+  if (
+    session.version !== mockExamSessionFormatVersion ||
+    typeof session.id !== 'string' ||
+    typeof session.startedAt !== 'string' ||
+    Number.isNaN(new Date(session.startedAt).getTime()) ||
+    (session.status !== 'in-progress' && session.status !== 'finished') ||
+    !isStringArray(session.bookmarks ?? []) ||
+    !Array.isArray(session.subjects)
+  ) {
+    return undefined;
+  }
+
+  const config = normalizeMockExamConfig(session.config as StoredMockExamConfig);
+  if (!config || config.subjects.length !== session.subjects.length) {
+    return undefined;
+  }
+
+  const subjects = session.subjects.map(normalizeStoredSubject);
+  if (subjects.some((subject) => subject === undefined)) {
+    return undefined;
+  }
+
+  const activeSubjectIndex =
+    typeof session.activeSubjectIndex === 'number' && Number.isInteger(session.activeSubjectIndex)
+      ? Math.min(Math.max(session.activeSubjectIndex, 0), subjects.length - 1)
+      : 0;
+
+  return {
+    version: mockExamSessionFormatVersion,
+    id: session.id,
+    config,
+    subjects: subjects as StoredMockExamSubjectSession[],
+    activeSubjectIndex,
+    startedAt: session.startedAt,
+    bookmarks: (session.bookmarks ?? []) as string[],
+    status: session.status,
+  };
+}
+
+function normalizeStoredSubject(value: unknown): StoredMockExamSubjectSession | undefined {
+  if (typeof value !== 'object' || value === null || Array.isArray(value)) {
+    return undefined;
+  }
+
+  const subject = value as Partial<Record<keyof StoredMockExamSubjectSession, unknown>>;
+  if (
+    typeof subject.subjectId !== 'string' ||
+    typeof subject.subjectTitle !== 'string' ||
+    !Array.isArray(subject.questions) ||
+    !subject.questions.every(isStoredQuestionRef) ||
+    !isStringArrayRecord(subject.answers ?? {})
+  ) {
+    return undefined;
+  }
+
+  return {
+    subjectId: subject.subjectId,
+    subjectTitle: subject.subjectTitle,
+    questions: subject.questions,
+    answers: (subject.answers ?? {}) as Record<string, string[]>,
+  };
+}
+
+function hydrateMockExamSession(
+  stored: StoredMockExamSession,
+  files: readonly QuestionFile[],
+): MockExamSession | undefined {
+  const subjects = stored.subjects.map((subject, subjectIndex) => {
+    const source = stored.config.subjects[subjectIndex]!.source;
+    const index = indexQuestionFile(files[subjectIndex]!);
+    return {
+      ...subject,
+      questions: subject.questions.flatMap((ref) => hydrateQuestionRef(source, index, ref) ?? []),
+    };
+  });
+
+  if (subjects.every((subject) => subject.questions.length === 0)) {
+    return undefined;
+  }
+
+  const { version: _version, ...session } = stored;
+  return { ...session, subjects };
 }
 
 export function clearMockExamSession(): void {
@@ -192,18 +366,15 @@ function buildQuestions(
   file: QuestionFile,
   options: PracticeOptions,
 ): QuizSessionQuestion[] {
-  const source = subjectConfig.source;
-  const passagesById = new Map(file.passages?.map((p) => [p.id, p]));
-  const allQuestions = file.questions.map((question) => ({
-    key: `${source.subjectId}:${source.sourceId}:${question.id}`,
-    subjectId: source.subjectId,
-    subjectTitle: source.subjectTitle,
-    sourceId: source.sourceId,
-    sourceTitle: source.sourceTitle,
-    question,
-    passages: question.passageRefs?.flatMap((id) => passagesById.get(id) ?? []) ?? [],
-    choices: options.choiceOrder === 'random' ? shuffled(question.choices) : question.choices,
-  }));
+  const { passages } = indexQuestionFile(file);
+  const allQuestions = file.questions.map((question) =>
+    createSessionQuestion(
+      subjectConfig.source,
+      question,
+      passages,
+      orderedChoices(question, options.choiceOrder === 'random'),
+    ),
+  );
 
   const questions =
     subjectConfig.questionMode === 'all'
@@ -218,6 +389,7 @@ function buildQuestions(
 /**
  * 기출은 25문항이면 그대로 사용하고, 그보다 많으면 무작위 25문항을 뽑는다.
  * 교재/워크북/강의/특강은 문제 ID의 첫 숫자 그룹 범위에 맞춰 균등 분산한다.
+ * 뽑은 문제는 원래 문제 파일 순서대로 돌려준다 (무작위 순서는 호출하는 쪽에서 섞는다).
  */
 export function extractMockExamQuestions(
   questions: QuizSessionQuestion[],
@@ -229,11 +401,13 @@ export function extractMockExamQuestions(
     return questions;
   }
 
-  if (sourceKind === 'exam') {
-    return shuffled(questions).slice(0, TARGET);
-  }
+  const picks =
+    sourceKind === 'exam'
+      ? shuffled(questions).slice(0, TARGET)
+      : extractGroupedRandom25(questions, TARGET);
+  const originalIndex = new Map(questions.map((question, index) => [question, index]));
 
-  return extractGroupedRandom25(questions, TARGET);
+  return picks.sort((left, right) => originalIndex.get(left)! - originalIndex.get(right)!);
 }
 
 function extractGroupedRandom25(
@@ -253,17 +427,18 @@ function extractGroupedRandom25(
   }
 
   const picks: QuizSessionQuestion[] = [];
-  const leftovers: QuizSessionQuestion[] = [];
   const base = Math.floor(target / maxGroup);
-  let remainder = target - base * maxGroup;
+  const groupNumbers = Array.from({ length: maxGroup }, (_, index) => index + 1);
+  // 나머지 문항은 앞쪽 그룹이 아니라 무작위로 고른 그룹에 하나씩 더 배정한다.
+  const extraGroups = new Set(shuffled(groupNumbers).slice(0, target - base * maxGroup));
+  // 1~maxGroup 범위 밖(그룹 번호 0 등)의 문제는 처음부터 부족분 후보로 둔다.
+  const leftovers: QuizSessionQuestion[] = [...groups.entries()]
+    .filter(([groupNumber]) => groupNumber < 1 || groupNumber > maxGroup)
+    .flatMap(([, group]) => group);
 
-  for (let groupNumber = 1; groupNumber <= maxGroup; groupNumber += 1) {
+  for (const groupNumber of groupNumbers) {
     const group = shuffled(groups.get(groupNumber) ?? []);
-    const allocation = base + (remainder > 0 ? 1 : 0);
-    if (remainder > 0) {
-      remainder -= 1;
-    }
-
+    const allocation = base + (extraGroups.has(groupNumber) ? 1 : 0);
     const selected = group.slice(0, allocation);
     picks.push(...selected);
     leftovers.push(...group.slice(selected.length));
@@ -383,10 +558,7 @@ export function gradeSession(session: MockExamSession): MockExamGradeResult[] {
     let correct = 0;
     const results = subject.questions.map((q) => {
       const selected = subject.answers[q.key] ?? [];
-      const isCorrect =
-        selected.length > 0 &&
-        selected.length === q.question.answers.length &&
-        selected.every((s) => q.question.answers.includes(s));
+      const isCorrect = selected.length > 0 && isCorrectAnswer(selected, q.question.answers);
       if (isCorrect) correct += 1;
       return { key: q.key, selected, isCorrect };
     });

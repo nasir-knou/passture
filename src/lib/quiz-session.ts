@@ -1,13 +1,29 @@
 import type { CatalogSource } from '../types/catalog';
 import type { Choice, Passage, Question, QuestionFile } from '../types/question';
+import { loadQuestionFile } from './data-loader';
+import { safeSetItem } from './safe-storage';
 import { isCorrectAnswer } from './scorer';
+import {
+  createSessionQuestion,
+  hydrateQuestionRef,
+  indexQuestionFile,
+  isStoredQuestionRef,
+  isStringArray,
+  isStringArrayRecord,
+  orderedChoices,
+  questionKey,
+  toQuestionRef,
+  type QuestionFileIndex,
+  type StoredQuestionRef,
+} from './session-question';
 import { shuffled } from './shuffle';
 import { recordWrongAnswer } from './storage';
 
 const selectedSourcesKey = 'pt.selectedSources';
 const practiceScopeKey = 'pt.practiceScope';
 const practiceOptionsKey = 'pt.practiceOptions';
-const sessionKey = 'pt.currentSession';
+export const sessionKey = 'pt.currentSession';
+const sessionFormatVersion = 2;
 export const chapterSelectionKey = 'pt.chapterSelection';
 
 export type PracticeScope = 'all' | 'bookmarked' | 'wrong';
@@ -47,9 +63,32 @@ export interface QuizSession {
   createdAt: string;
   sourceSignature: string;
   currentIndex: number;
+  /** 세션 문제가 나온 출처. 저장된 세션을 다시 채울 때 문제 파일 경로로 쓴다. */
+  sources: SelectedSource[];
   questions: QuizSessionQuestion[];
   draftAnswers: Record<string, string[]>;
   responses: Record<string, QuizResponse>;
+}
+
+/**
+ * sessionStorage에 저장하는 세션 형식. 문제·지문 본문은 저장하지 않고
+ * 출처 인덱스와 문제 ID, 선지 순서, 장 번호만 남긴 뒤 불러올 때 문제 파일로 다시 채운다.
+ */
+interface StoredQuizSession {
+  version: typeof sessionFormatVersion;
+  id: string;
+  createdAt: string;
+  sourceSignature: string;
+  currentIndex: number;
+  sources: SelectedSource[];
+  questions: StoredQuizQuestionRef[];
+  draftAnswers: Record<string, string[]>;
+  responses: Record<string, QuizResponse>;
+}
+
+interface StoredQuizQuestionRef extends StoredQuestionRef {
+  source: number;
+  chapter?: number;
 }
 
 export interface QuizSessionQuestion {
@@ -78,18 +117,18 @@ export interface QuizScore {
 }
 
 export function saveSelectedSources(sources: SelectedSource[]): void {
-  sessionStorage.setItem(selectedSourcesKey, JSON.stringify(sources));
+  safeSetItem(sessionStorage, selectedSourcesKey, JSON.stringify(sources), '선택한 출처');
   sessionStorage.removeItem(chapterSelectionKey);
   sessionStorage.removeItem(sessionKey);
 }
 
 export function savePracticeScope(scope: PracticeScope): void {
-  sessionStorage.setItem(practiceScopeKey, scope);
+  safeSetItem(sessionStorage, practiceScopeKey, scope, '풀이 범위');
   sessionStorage.removeItem(sessionKey);
 }
 
 export function savePracticeOptions(options: PracticeOptions): void {
-  sessionStorage.setItem(practiceOptionsKey, JSON.stringify(options));
+  safeSetItem(sessionStorage, practiceOptionsKey, JSON.stringify(options), '풀이 옵션');
   sessionStorage.removeItem(sessionKey);
 }
 
@@ -154,13 +193,39 @@ export function defaultSelectedSources(
   ];
 }
 
-export function loadSession(): QuizSession | undefined {
-  const raw = sessionStorage.getItem(sessionKey);
-  return raw ? normalizeSession(JSON.parse(raw) as Partial<QuizSession>) : undefined;
+/**
+ * 저장된 세션을 불러와 문제 파일로 다시 채운다. 저장 형식이 맞지 않거나(이전 버전 포함)
+ * 문제가 모두 사라졌으면 저장된 세션을 지우고 undefined를 돌려준다.
+ * 문제 파일을 불러오지 못하면 세션은 그대로 두고 오류를 던진다.
+ */
+export async function loadSession(): Promise<QuizSession | undefined> {
+  const stored = loadStoredSession();
+  if (!stored) {
+    return undefined;
+  }
+
+  const paths = [...new Set(stored.sources.map((source) => source.path))];
+  const files = await Promise.all(paths.map((path) => loadQuestionFile(path)));
+  const session = hydrateSession(
+    stored,
+    new Map(paths.map((path, index) => [path, files[index]!])),
+  );
+
+  if (!session) {
+    clearSession();
+  }
+
+  return session;
 }
 
-export function saveSession(session: QuizSession): void {
-  sessionStorage.setItem(sessionKey, JSON.stringify(session));
+/** 세션을 저장한다. 저장소가 가득 찼거나 쓸 수 없으면 사용자에게 알리고 false를 돌려준다. */
+export function saveSession(session: QuizSession): boolean {
+  return safeSetItem(
+    sessionStorage,
+    sessionKey,
+    JSON.stringify(toStoredSession(session)),
+    '풀이 진행 상황',
+  );
 }
 
 export function clearSession(): void {
@@ -182,25 +247,21 @@ export function createQuizSession(
   grouping?: SessionGrouping,
 ): QuizSession {
   const questions = sources.flatMap((source) => {
-    const passagesById = new Map(source.file.passages?.map((passage) => [passage.id, passage]));
+    const { passages } = indexQuestionFile(source.file);
 
     return source.file.questions.flatMap<QuizSessionQuestion>((question) => {
-      const key = `${source.subjectId}:${source.sourceId}:${question.id}`;
+      const key = questionKey(source.subjectId, source.sourceId, question.id);
       if (!includeQuestion(key)) {
         return [];
       }
 
-      return {
-        key,
-        subjectId: source.subjectId,
-        subjectTitle: source.subjectTitle,
-        sourceId: source.sourceId,
-        sourceTitle: source.sourceTitle,
+      const sessionQuestion = createSessionQuestion(
+        source,
         question,
-        passages: question.passageRefs?.flatMap((id) => passagesById.get(id) ?? []) ?? [],
-        choices: options.choiceOrder === 'random' ? shuffled(question.choices) : question.choices,
-        ...(grouping ? { chapter: grouping.chapterOf(key) } : {}),
-      };
+        passages,
+        orderedChoices(question, options.choiceOrder === 'random'),
+      );
+      return grouping ? { ...sessionQuestion, chapter: grouping.chapterOf(key) } : sessionQuestion;
     });
   });
 
@@ -209,6 +270,7 @@ export function createQuizSession(
     createdAt: new Date().toISOString(),
     sourceSignature: sourceSignature(sources),
     currentIndex: 0,
+    sources: sources.map(toSelectedSource),
     questions:
       options.questionOrder === 'random'
         ? shuffled(questions)
@@ -227,12 +289,19 @@ export function getOrCreateSession(
   options: PracticeOptions = defaultPracticeOptions(),
   grouping?: SessionGrouping,
 ): QuizSession {
-  const existing = loadSession();
+  const stored = loadStoredSession();
   const groupingSignature = grouping ? `|${grouping.signature}` : '';
   const signature = `${sourceSignature(sources)}|scope:${scope}|question:${options.questionOrder}|choice:${options.choiceOrder}${groupingSignature}`;
 
-  if (existing && existing.sourceSignature === signature && existing.questions.length > 0) {
-    return existing;
+  if (stored && stored.sourceSignature === signature && stored.questions.length > 0) {
+    // 시그니처에 문제 파일 내용 해시가 들어 있으므로 넘겨받은 파일로 그대로 다시 채울 수 있다.
+    const existing = hydrateSession(
+      stored,
+      new Map(sources.map((source) => [source.path, source.file])),
+    );
+    if (existing) {
+      return existing;
+    }
   }
 
   const session = {
@@ -370,15 +439,190 @@ function defaultPracticeOptions(): PracticeOptions {
   };
 }
 
-function normalizeSession(value: Partial<QuizSession>): QuizSession {
+/** 저장된 세션 원본을 읽고 형식을 검사한다. 깨졌거나 이전 형식이면 지우고 undefined. */
+function loadStoredSession(): StoredQuizSession | undefined {
+  const raw = sessionStorage.getItem(sessionKey);
+  if (!raw) {
+    return undefined;
+  }
+
+  try {
+    const stored = normalizeStoredSession(JSON.parse(raw) as unknown);
+    if (stored) {
+      return stored;
+    }
+  } catch {
+    // 아래에서 지운다.
+  }
+
+  clearSession();
+  return undefined;
+}
+
+function normalizeStoredSession(value: unknown): StoredQuizSession | undefined {
+  if (typeof value !== 'object' || value === null || Array.isArray(value)) {
+    return undefined;
+  }
+
+  const session = value as Partial<Record<keyof StoredQuizSession, unknown>>;
+  // 문제 본문을 통째로 저장하던 이전 형식(version 없음)은 버리고 새로 시작한다.
+  if (
+    session.version !== sessionFormatVersion ||
+    typeof session.id !== 'string' ||
+    typeof session.sourceSignature !== 'string' ||
+    !Array.isArray(session.sources) ||
+    !session.sources.every(isSessionSource) ||
+    !Array.isArray(session.questions) ||
+    !isStringArrayRecord(session.draftAnswers ?? {}) ||
+    !isResponseRecord(session.responses ?? {})
+  ) {
+    return undefined;
+  }
+
+  const sources = session.sources;
+  const questions = session.questions;
+  if (!questions.every((ref) => isStoredQuizQuestionRef(ref, sources.length))) {
+    return undefined;
+  }
+
   return {
-    id: value.id ?? '',
-    createdAt: value.createdAt ?? '',
-    sourceSignature: value.sourceSignature ?? '',
-    currentIndex: value.currentIndex ?? 0,
-    questions: value.questions ?? [],
-    draftAnswers: value.draftAnswers ?? {},
-    responses: value.responses ?? {},
+    version: sessionFormatVersion,
+    id: session.id,
+    createdAt: typeof session.createdAt === 'string' ? session.createdAt : '',
+    sourceSignature: session.sourceSignature,
+    currentIndex:
+      typeof session.currentIndex === 'number' && Number.isInteger(session.currentIndex)
+        ? session.currentIndex
+        : 0,
+    sources,
+    questions,
+    draftAnswers: (session.draftAnswers ?? {}) as Record<string, string[]>,
+    responses: (session.responses ?? {}) as Record<string, QuizResponse>,
+  };
+}
+
+function toStoredSession(session: QuizSession): StoredQuizSession {
+  const sourceIndex = new Map(
+    session.sources.map((source, index) => [`${source.subjectId}:${source.sourceId}`, index]),
+  );
+
+  return {
+    version: sessionFormatVersion,
+    id: session.id,
+    createdAt: session.createdAt,
+    sourceSignature: session.sourceSignature,
+    currentIndex: session.currentIndex,
+    sources: session.sources,
+    questions: session.questions.flatMap<StoredQuizQuestionRef>((question) => {
+      const source = sourceIndex.get(`${question.subjectId}:${question.sourceId}`);
+      if (source === undefined) {
+        return [];
+      }
+
+      return {
+        source,
+        ...toQuestionRef(question),
+        ...(question.chapter === undefined ? {} : { chapter: question.chapter }),
+      };
+    }),
+    draftAnswers: session.draftAnswers,
+    responses: session.responses,
+  };
+}
+
+/** 저장된 참조를 문제 파일로 채운다. 남은 문제가 하나도 없으면 undefined. */
+function hydrateSession(
+  stored: StoredQuizSession,
+  filesByPath: ReadonlyMap<string, QuestionFile>,
+): QuizSession | undefined {
+  const indexes = new Map<string, QuestionFileIndex>();
+  const indexFor = (path: string) => {
+    const file = filesByPath.get(path);
+    if (!file) {
+      return undefined;
+    }
+
+    let index = indexes.get(path);
+    if (!index) {
+      index = indexQuestionFile(file);
+      indexes.set(path, index);
+    }
+    return index;
+  };
+
+  const questions = stored.questions.flatMap<QuizSessionQuestion>((ref) => {
+    const source = stored.sources[ref.source];
+    const index = source ? indexFor(source.path) : undefined;
+    const question = source && index ? hydrateQuestionRef(source, index, ref) : undefined;
+    if (!question) {
+      return [];
+    }
+
+    return ref.chapter === undefined ? question : { ...question, chapter: ref.chapter };
+  });
+
+  if (questions.length === 0) {
+    return undefined;
+  }
+
+  return {
+    id: stored.id,
+    createdAt: stored.createdAt,
+    sourceSignature: stored.sourceSignature,
+    currentIndex: Math.min(Math.max(stored.currentIndex, 0), questions.length - 1),
+    sources: stored.sources,
+    questions,
+    draftAnswers: stored.draftAnswers,
+    responses: stored.responses,
+  };
+}
+
+function isStoredQuizQuestionRef(value: unknown, sourceCount: number): boolean {
+  if (!isStoredQuestionRef(value)) {
+    return false;
+  }
+
+  const ref = value as Partial<Record<keyof StoredQuizQuestionRef, unknown>>;
+  return (
+    typeof ref.source === 'number' &&
+    Number.isInteger(ref.source) &&
+    ref.source >= 0 &&
+    ref.source < sourceCount &&
+    (ref.chapter === undefined || typeof ref.chapter === 'number')
+  );
+}
+
+function isResponseRecord(value: unknown): value is Record<string, QuizResponse> {
+  return (
+    typeof value === 'object' &&
+    value !== null &&
+    !Array.isArray(value) &&
+    Object.values(value).every((response) => {
+      if (typeof response !== 'object' || response === null) {
+        return false;
+      }
+
+      const candidate = response as Partial<Record<keyof QuizResponse, unknown>>;
+      return (
+        isStringArray(candidate.selected) &&
+        typeof candidate.correct === 'boolean' &&
+        typeof candidate.checkedAt === 'string'
+      );
+    })
+  );
+}
+
+function isSessionSource(value: unknown): value is SelectedSource {
+  return isStoredSelectedSource(value) && typeof value.subjectTitle === 'string';
+}
+
+function toSelectedSource(source: LoadedQuestionSource): SelectedSource {
+  return {
+    subjectId: source.subjectId,
+    subjectTitle: source.subjectTitle,
+    sourceId: source.sourceId,
+    sourceTitle: source.sourceTitle,
+    path: source.path,
   };
 }
 

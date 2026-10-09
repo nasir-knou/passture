@@ -84,7 +84,7 @@ describe('quiz session', () => {
     });
   });
 
-  it('clears selected sources, options, scope, and current session', () => {
+  it('clears selected sources, options, scope, and current session', async () => {
     const selectedSources = [
       {
         subjectId: 'operating-systems',
@@ -104,7 +104,7 @@ describe('quiz session', () => {
     expect(loadSelectedSources()).toEqual([]);
     expect(loadPracticeScope()).toBe('all');
     expect(loadPracticeOptions()).toEqual({ questionOrder: 'default', choiceOrder: 'default' });
-    expect(loadSession()).toBeUndefined();
+    await expect(loadSession()).resolves.toBeUndefined();
   });
 });
 
