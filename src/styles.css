@@ -1725,6 +1725,10 @@ h1 {
   background: #ffffff;
 }
 
+/* ═══════════════════════════════════════════════════════════════
+   도식 (src/pages/diagrams/*) — 그래프·자원할당·메모리·표·시계·창
+═══════════════════════════════════════════════════════════════ */
+
 .choice-diagram {
   display: block;
   width: min(100%, 360px);
@@ -2050,6 +2054,8 @@ h1 {
   font-size: 16px;
   font-weight: 700;
 }
+
+/* ─── 도식 끝 ─────────────────────────────────────────────── */
 
 .katex-display {
   overflow-x: auto;
@@ -3574,4 +3580,23 @@ h1 {
 .exam-error a {
   color: #2563eb;
   text-decoration: underline;
+}
+
+/* ─── 동작 줄이기 설정 ────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0s !important;
+    animation-duration: 0.01ms !important;
+    animation-delay: 0s !important;
+    animation-iteration-count: 1 !important;
+  }
 }

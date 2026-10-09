@@ -190,7 +190,7 @@ describe('circled choice numbers', () => {
 });
 
 describe('data-table diagram', () => {
-  it('unescapes dollar signs in the aria-label', () => {
+  it('renders a real table with a hidden caption instead of role="img"', () => {
     const html = renderPassages([
       {
         id: 'g-table',
@@ -198,6 +198,19 @@ describe('data-table diagram', () => {
         diagram: { type: 'data-table', columns: ['상태', '\\$'], rows: [['0', 'acc']] },
       },
     ]);
-    expect(html).toContain('aria-label="상태, $"');
+    expect(html).not.toContain('role="img"');
+    expect(html).toContain('<caption class="sr-only">표: 상태, $</caption>');
+    expect(html).toContain('<th scope="col">');
+  });
+});
+
+describe('==emphasis==', () => {
+  it('pairs delimiters within a line', () => {
+    expect(renderRichText('a ==b== c')).toBe('a <mark class="text-highlight">b</mark> c');
+  });
+
+  it('never pairs delimiters across a line break', () => {
+    expect(renderRichText('a == b\nc == d')).toBe('a == b<br />c == d');
+    expect(renderRichText('==x==\n==y')).toBe('<mark class="text-highlight">x</mark><br />==y');
   });
 });
