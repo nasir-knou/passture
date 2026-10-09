@@ -17,9 +17,34 @@ passages:
     type: diagram
     diagram:
       type: data-table
-      columns: ['$M_1$', '$\times$', '$M_2$', '$\times$', '$M_3$', '$\times$', '$M_4$', '$\times$', '$M_5$', '$\times$', '$M_6$']
+      columns:
+        [
+          '$M_1$',
+          '$\times$',
+          '$M_2$',
+          '$\times$',
+          '$M_3$',
+          '$\times$',
+          '$M_4$',
+          '$\times$',
+          '$M_5$',
+          '$\times$',
+          '$M_6$',
+        ]
       rows:
-        - ['$5 \times 2$', '$\,$', '$2 \times 3$', '$\,$', '$3 \times 4$', '$\,$', '$4 \times 6$', '$\,$', '$6 \times 7$', '$\,$', '$7 \times 8$']
+        - [
+            '$5 \times 2$',
+            '$\,$',
+            '$2 \times 3$',
+            '$\,$',
+            '$3 \times 4$',
+            '$\,$',
+            '$4 \times 6$',
+            '$\,$',
+            '$6 \times 7$',
+            '$\,$',
+            '$7 \times 8$',
+          ]
 
   - id: g18-floyd-graph-12
     type: diagram

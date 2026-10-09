@@ -316,7 +316,8 @@ questions:
   - id: e18-05
     type: multiple-choice
     chapter: 1
-    passageRefs: [g18-monte-carlo-pi-01, g18-monte-carlo-pi-02, g18-monte-carlo-pi-03, g18-monte-carlo-pi-04]
+    passageRefs:
+      [g18-monte-carlo-pi-01, g18-monte-carlo-pi-02, g18-monte-carlo-pi-03, g18-monte-carlo-pi-04]
     prompt: 다음 중 발생시킨 2차원 난수의 개수로 값이 50,000 인 변수는?
     choices:
       - { id: '1', text: U }
@@ -339,7 +340,8 @@ questions:
   - id: e18-06
     type: multiple-choice
     chapter: 1
-    passageRefs: [g18-monte-carlo-pi-01, g18-monte-carlo-pi-02, g18-monte-carlo-pi-03, g18-monte-carlo-pi-04]
+    passageRefs:
+      [g18-monte-carlo-pi-01, g18-monte-carlo-pi-02, g18-monte-carlo-pi-03, g18-monte-carlo-pi-04]
     prompt: 다음 중 알고리즘에서 A의 면적을 나타내는 것은?
     choices:
       - { id: '1', text: ㉮ }
@@ -365,9 +367,18 @@ questions:
     prompt: 다음 중 시뮬레이션의 장점은?
     choices:
       - { id: '1', text: 시뮬레이션 모델은 개발 상 많은 비용과 시간을 요한다. }
-      - { id: '2', text: 시뮬레이션에 의해 산출되는 많은 양의 수치들은 연구 결과에 대하여 과잉의 신뢰를 주는 경향이 있다. }
-      - { id: '3', text: 확률적 시뮬레이션 모델은 정확한 값을 요구하는 시스템 최적화 등에 부적합하다. }
-      - { id: '4', text: 실시스템의 실질적인 구축 없이도 시뮬레이션을 이용하여 예측 평가할 수 있다. }
+      - {
+          id: '2',
+          text: 시뮬레이션에 의해 산출되는 많은 양의 수치들은 연구 결과에 대하여 과잉의 신뢰를 주는 경향이 있다.,
+        }
+      - {
+          id: '3',
+          text: 확률적 시뮬레이션 모델은 정확한 값을 요구하는 시스템 최적화 등에 부적합하다.,
+        }
+      - {
+          id: '4',
+          text: 실시스템의 실질적인 구축 없이도 시뮬레이션을 이용하여 예측 평가할 수 있다.,
+        }
     answers: ['4']
     explanation: |
       선택지 1: 모델 개발에 많은 비용과 시간이 든다는 것은 시뮬레이션의 단점이다.
@@ -388,7 +399,10 @@ questions:
     choices:
       - { id: '1', text: '문제의 정의 : 시스템을 수학적이고 논리적인 관계로 추상화한다.' }
       - { id: '2', text: '모델변환 : 컴퓨터에서 처리에 적절하게 모델을 준비함' }
-      - { id: '3', text: '타당성 : 시뮬레이션 모델이 실시스템을 정확히 표현했는지 일치하는지를 분석하는 단계' }
+      - {
+          id: '3',
+          text: '타당성 : 시뮬레이션 모델이 실시스템을 정확히 표현했는지 일치하는지를 분석하는 단계',
+        }
       - { id: '4', text: '검증 : 모델이 의도한 대로 컴퓨터 프로그램이 수행될 수 있도록 준비함' }
     answers: ['1']
     explanation: |
@@ -811,9 +825,18 @@ questions:
     prompt: 다음은 범용언어와 시뮬레이션 언어에 대한 설명들이다. ==틀린== 것은?
     choices:
       - { id: '1', text: 시뮬레이션 언어는 모델을 설계하기 위한 일반화된 구조를 제시한다. }
-      - { id: '2', text: 시뮬레이션 언어는 프로그래밍 시간이 길고 출력 보고서의 형태도 자유롭게 작성할 수 있다. }
-      - { id: '3', text: 시뮬레이션 언어는 모델 설계 및 변경이 용이하고 이와 같은 변경이 기계어 프로그램으로 즉시 적용될 수 있게 한다. }
-      - { id: '4', text: '범용언어는 C, JAVA, BASIC 등으로 사용자가 사용하기 쉽고 융통성이 많다. 또한 거의 모든 컴퓨터에서 쉽게 이용이 가능하다.' }
+      - {
+          id: '2',
+          text: 시뮬레이션 언어는 프로그래밍 시간이 길고 출력 보고서의 형태도 자유롭게 작성할 수 있다.,
+        }
+      - {
+          id: '3',
+          text: 시뮬레이션 언어는 모델 설계 및 변경이 용이하고 이와 같은 변경이 기계어 프로그램으로 즉시 적용될 수 있게 한다.,
+        }
+      - {
+          id: '4',
+          text: '범용언어는 C, JAVA, BASIC 등으로 사용자가 사용하기 쉽고 융통성이 많다. 또한 거의 모든 컴퓨터에서 쉽게 이용이 가능하다.',
+        }
     answers: ['2']
     explanation: |
       선택지 1: 시뮬레이션 언어는 모델링 월드뷰에 따른 일반화된 구조를 제공하여 모델 설계를 돕는다.

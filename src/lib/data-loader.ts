@@ -63,20 +63,22 @@ export function loadSyllabus(path: string): Promise<Syllabus> {
 function fetchJson<T>(relativePath: string): Promise<T> {
   const url = new URL(relativePath, getBaseUrl()).toString();
 
-  return fetch(url, { cache: import.meta.env.DEV ? 'no-store' : 'default' }).then(async (response) => {
-    if (!response.ok) {
-      throw new Error(`${relativePath} 요청 실패 (${response.status})`);
-    }
+  return fetch(url, { cache: import.meta.env.DEV ? 'no-store' : 'default' }).then(
+    async (response) => {
+      if (!response.ok) {
+        throw new Error(`${relativePath} 요청 실패 (${response.status})`);
+      }
 
-    const text = await response.text();
-    const contentType = response.headers.get('content-type') ?? '';
+      const text = await response.text();
+      const contentType = response.headers.get('content-type') ?? '';
 
-    if (!contentType.includes('application/json') && text.trimStart().startsWith('<')) {
-      throw new HtmlFallbackError(relativePath);
-    }
+      if (!contentType.includes('application/json') && text.trimStart().startsWith('<')) {
+        throw new HtmlFallbackError(relativePath);
+      }
 
-    return JSON.parse(text) as T;
-  });
+      return JSON.parse(text) as T;
+    },
+  );
 }
 
 async function fetchYaml<T>(relativePath: string): Promise<T> {

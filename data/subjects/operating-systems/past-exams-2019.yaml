@@ -110,7 +110,14 @@ passages:
         - { id: p4, label: C, x: 475, y: 95, hideNode: true }
         - { id: p5, label: D, x: 555, y: 95, hideNode: true }
         - { id: current-top, label: current-top, x: 430, y: 10, hideNode: true, hideLabel: true }
-        - { id: current-bottom, label: current-bottom, x: 430, y: 130, hideNode: true, hideLabel: true }
+        - {
+            id: current-bottom,
+            label: current-bottom,
+            x: 430,
+            y: 130,
+            hideNode: true,
+            hideLabel: true,
+          }
       edges:
         - { from: axis-start, to: axis-end, directed: true }
         - { from: current-top, to: current-bottom, style: dashed }

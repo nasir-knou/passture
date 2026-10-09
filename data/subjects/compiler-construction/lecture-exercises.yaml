@@ -652,16 +652,66 @@ passages:
       height: 240
       directed: true
       nodes:
-        - { id: rules, label: 문법규칙과 수행코드, x: 380, y: 42, labelDy: -18, hideNode: true, fontSize: 16 }
+        - {
+            id: rules,
+            label: 문법규칙과 수행코드,
+            x: 380,
+            y: 42,
+            labelDy: -18,
+            hideNode: true,
+            fontSize: 16,
+          }
         - { id: gen, label: A, x: 380, y: 94, shape: box, width: 120, height: 36, radius: 18 }
-        - { id: src, label: 원시 프로그램, x: 120, y: 185, labelDx: -8, hideNode: true, fontSize: 16 }
+        - {
+            id: src,
+            label: 원시 프로그램,
+            x: 120,
+            y: 185,
+            labelDx: -8,
+            hideNode: true,
+            fontSize: 16,
+          }
         - { id: lex, label: B, x: 215, y: 185, shape: box, width: 90, height: 40, radius: 45 }
-        - { id: par, label: 구문분석기, x: 380, y: 185, shape: box, width: 110, height: 40, radius: 55, fontSize: 16 }
+        - {
+            id: par,
+            label: 구문분석기,
+            x: 380,
+            y: 185,
+            shape: box,
+            width: 110,
+            height: 40,
+            radius: 55,
+            fontSize: 16,
+          }
         - { id: par-top, label: 구문분석기, x: 380, y: 164, hideNode: true, hideLabel: true }
         - { id: out, label: 출력, x: 482, y: 185, hideNode: true, hideLabel: true }
-        - { id: out-line1, label: 수행코드에 의해, x: 492, y: 164, labelDx: 0, hideNode: true, fontSize: 16 }
-        - { id: out-line2, label: 생성된 구문분석기, x: 492, y: 185, labelDx: 0, hideNode: true, fontSize: 16 }
-        - { id: out-line3, label: 의 출력, x: 492, y: 206, labelDx: 0, hideNode: true, fontSize: 16 }
+        - {
+            id: out-line1,
+            label: 수행코드에 의해,
+            x: 492,
+            y: 164,
+            labelDx: 0,
+            hideNode: true,
+            fontSize: 16,
+          }
+        - {
+            id: out-line2,
+            label: 생성된 구문분석기,
+            x: 492,
+            y: 185,
+            labelDx: 0,
+            hideNode: true,
+            fontSize: 16,
+          }
+        - {
+            id: out-line3,
+            label: 의 출력,
+            x: 492,
+            y: 206,
+            labelDx: 0,
+            hideNode: true,
+            fontSize: 16,
+          }
       edges:
         - { from: rules, to: gen }
         - { from: gen, to: par-top }
@@ -783,9 +833,15 @@ questions:
     type: multiple-choice
     prompt: 다음은 컴파일러의 물리적 구조에 대한 설명이다. 틀린 것은?
     choices:
-      - { id: '1', text: '컴파일러의 논리적 구조를 구현한 것을 패스(pass)라고 하며, 패스는 논리적 구조와 순서가 같게 구현해야 한다.' }
+      - {
+          id: '1',
+          text: '컴파일러의 논리적 구조를 구현한 것을 패스(pass)라고 하며, 패스는 논리적 구조와 순서가 같게 구현해야 한다.',
+        }
       - { id: '2', text: '1-패스 컴파일러는 초창기에 컴파일러를 만들 때 사용했던 방법이다.' }
-      - { id: '3', text: '2-패스 컴파일러는 중간코드를 기점으로 하여 전반부 (front-end)와 후반부(back-end)로 구성하는 방법이다.' }
+      - {
+          id: '3',
+          text: '2-패스 컴파일러는 중간코드를 기점으로 하여 전반부 (front-end)와 후반부(back-end)로 구성하는 방법이다.',
+        }
       - { id: '4', text: '1-패스 컴파일러는 backpatching이 요구된다.' }
     answers: ['1']
     explanation: |
@@ -1054,7 +1110,8 @@ questions:
 
   - id: l03-05
     type: multiple-choice
-    passageRefs: [gl03-nfa-q01-01, gl03-nfa-q01-table-01, gl03-dfa-q01-intro-01, gl03-dfa-q01-table-01]
+    passageRefs:
+      [gl03-nfa-q01-01, gl03-nfa-q01-table-01, gl03-dfa-q01-intro-01, gl03-dfa-q01-table-01]
     prompt: 다음은 NFA를 DFA로 변환하는 과정이다. 빈칸 ‘가’에 알맞은 것은?
     choices:
       - { id: '1', text: 'ϕ' }
@@ -1077,7 +1134,8 @@ questions:
 
   - id: l03-06
     type: multiple-choice
-    passageRefs: [gl03-nfa-q01-01, gl03-nfa-q01-table-01, gl03-dfa-q01-intro-01, gl03-dfa-q01-table-01]
+    passageRefs:
+      [gl03-nfa-q01-01, gl03-nfa-q01-table-01, gl03-dfa-q01-intro-01, gl03-dfa-q01-table-01]
     prompt: 다음은 NFA를 DFA로 변환하는 과정이다. 빈칸 ‘나’에 알맞은 것은?
     choices:
       - { id: '1', text: 'ϕ' }
@@ -1272,7 +1330,10 @@ questions:
     choices:
       - { id: '1', text: '식별자 : SUM, A, B와 같은 일반적으로 프로그래머가 정의하는 변수들' }
       - { id: '2', text: "상수 : 1, 2, 3, 'abc'와 같이 정수형 상수, 실수형 상수, 문자형 상수들" }
-      - { id: '3', text: '구분자 : (, [, ;, :, , 등과 같이 단어와 단어를 구분하기 위해 사용되는 기호들' }
+      - {
+          id: '3',
+          text: '구분자 : (, [, ;, :, , 등과 같이 단어와 단어를 구분하기 위해 사용되는 기호들',
+        }
       - { id: '4', text: '연산자 : DO, IF, WHILE 등과 같이 언어 구현시 이미 정의되는 지정어' }
     answers: ['4']
     explanation: |
@@ -1292,10 +1353,19 @@ questions:
     type: multiple-choice
     prompt: 다음은 어휘분석기를 설계하는 과정이다. 틀린 것은?
     choices:
-      - { id: '1', text: '정규문법이 주어지고 정규표현으로 표시한다. 그리고 주어진 문법에 대한 기호표를 작성한다.' }
-      - { id: '2', text: '5 종류의 토큰들 중에서 어느 것이 사용되는가를 조사하여 토큰표를 작성한다. 토큰표에는 토큰이름, 토큰번호, 토큰값을 표시한다.' }
+      - {
+          id: '1',
+          text: '정규문법이 주어지고 정규표현으로 표시한다. 그리고 주어진 문법에 대한 기호표를 작성한다.',
+        }
+      - {
+          id: '2',
+          text: '5 종류의 토큰들 중에서 어느 것이 사용되는가를 조사하여 토큰표를 작성한다. 토큰표에는 토큰이름, 토큰번호, 토큰값을 표시한다.',
+        }
       - { id: '3', text: '문법을 보고 NFA 를 구성하고 이를 다시 DFA 변환한 후 최소화 한다.' }
-      - { id: '4', text: '예약어표 검색은 상태전이도로 구현하거나, 표를 만들어 저장한 다음 검색하도록 한다.' }
+      - {
+          id: '4',
+          text: '예약어표 검색은 상태전이도로 구현하거나, 표를 만들어 저장한 다음 검색하도록 한다.',
+        }
     answers: ['1']
     explanation: |
       선택지 1: 정규문법이 주어지고 정규표현으로 표시한 다음에는 주어진 문법에 대한 토큰표를 작성해야 한다. 기호표는 설계 단계가 아니라 실제 분석 과정에서 식별자 등의 정보를 저장할 때 쓰는 자료구조이므로 틀린 설명이고 정답이다.
@@ -1315,9 +1385,18 @@ questions:
     prompt: 다음은 어휘분석에 대한 설명이다. 옳지 않은 것은?
     choices:
       - { id: '1', text: '토큰은 식별자, 상수, 연산자, 예약어, 구분자로 구성된다.' }
-      - { id: '2', text: '토큰은 토큰번호(token number)와 토큰값(token value)의 순서쌍으로 표현되며 토큰들은 문법에 상관없이 항상 사용되므로 토큰 값을 미리 정해 놓아야 한다.' }
-      - { id: '3', text: '어휘분석기 생성기는  컴파일러 생성기(compiler generator)  또는 컴파일러-컴파일러(compiler compiler)의 일부분으로서 어휘분석기를 자동으로 생성하는 도구이다.' }
-      - { id: '4', text: 'LEX는 1975년 Bell 연구소의 Lesk와 Schmidt에 의해서 개발되었다. Lex는 사용자가 정의한 정규표현과 수행코드를 입력으로 받아, 일반 범용언어인 C로 쓰여진 프로그램을 출력한다.' }
+      - {
+          id: '2',
+          text: '토큰은 토큰번호(token number)와 토큰값(token value)의 순서쌍으로 표현되며 토큰들은 문법에 상관없이 항상 사용되므로 토큰 값을 미리 정해 놓아야 한다.',
+        }
+      - {
+          id: '3',
+          text: '어휘분석기 생성기는  컴파일러 생성기(compiler generator)  또는 컴파일러-컴파일러(compiler compiler)의 일부분으로서 어휘분석기를 자동으로 생성하는 도구이다.',
+        }
+      - {
+          id: '4',
+          text: 'LEX는 1975년 Bell 연구소의 Lesk와 Schmidt에 의해서 개발되었다. Lex는 사용자가 정의한 정규표현과 수행코드를 입력으로 받아, 일반 범용언어인 C로 쓰여진 프로그램을 출력한다.',
+        }
     answers: ['2']
     explanation: |
       선택지 1: 토큰은 식별자, 상수, 연산자, 예약어, 구분자의 5종류로 구성되므로 옳은 설명이다.
@@ -1504,7 +1583,10 @@ questions:
     prompt: 다음 설명 중 잘못 설명된 것은?
     choices:
       - { id: '1', text: 'Top-down 구문분석 방법은 backtracking 문제를 갖고 있다.' }
-      - { id: '2', text: 'Bottom-up 방법은 터미널 노드부터 시작하여 루트 노드로 반면에, Top-down 방법은 루트 노드로부터 터미널 노드를 향하여 파스트리를 만들어 나간다.' }
+      - {
+          id: '2',
+          text: 'Bottom-up 방법은 터미널 노드부터 시작하여 루트 노드로 반면에, Top-down 방법은 루트 노드로부터 터미널 노드를 향하여 파스트리를 만들어 나간다.',
+        }
       - { id: '3', text: 'Shift-reduce 구문분석은 Top-down 구문분석이다.' }
       - { id: '4', text: 'backtracking을 방지하기 위하여  LL(k) 문법을 사용하게 되었다.' }
     answers: ['3']
@@ -1896,7 +1978,13 @@ questions:
   # ── 10강 CLR 구문분석 ──
   - id: l10-01
     type: multiple-choice
-    passageRefs: [gl10-clr-graph-caption-01, gl10-clr-graph-01, gl10-clr-table-caption-01, gl10-clr-table-blank-0d-01]
+    passageRefs:
+      [
+        gl10-clr-graph-caption-01,
+        gl10-clr-graph-01,
+        gl10-clr-table-caption-01,
+        gl10-clr-table-blank-0d-01,
+      ]
     prompt: 다음은 CLR 그래프를 이용하여 파싱표를 구성하고 구문분석을 하는 과정이다. 빈칸 ‘가’에 알맞은 것은?
     choices:
       - { id: '1', text: 'S4' }
@@ -1942,7 +2030,8 @@ questions:
 
   - id: l10-03
     type: multiple-choice
-    passageRefs: [gl10-clr-table-caption-01, gl10-clr-table-full-01, gl10-cdcd-note-01, gl10-clr-trace-01]
+    passageRefs:
+      [gl10-clr-table-caption-01, gl10-clr-table-full-01, gl10-cdcd-note-01, gl10-clr-trace-01]
     prompt: 다음은 CLR 파싱표를 이용하여 구문분석하는 과정이다. 빈칸 ‘가’에 알맞은 것은?
     choices:
       - { id: '1', text: 'shift 6' }
@@ -1965,7 +2054,13 @@ questions:
 
   - id: l10-04
     type: multiple-choice
-    passageRefs: [gl10-clr-graph-caption-01, gl10-clr-graph-01, gl10-clr-table-caption-01, gl10-clr-table-blank-7-01]
+    passageRefs:
+      [
+        gl10-clr-graph-caption-01,
+        gl10-clr-graph-01,
+        gl10-clr-table-caption-01,
+        gl10-clr-table-blank-7-01,
+      ]
     prompt: 다음은 CLR 그래프를 이용하여 파싱표를 구성하는 과정이다. 빈칸 ‘가’에 알맞은 것은?
     choices:
       - { id: '1', text: 'r1' }
@@ -1988,7 +2083,13 @@ questions:
 
   - id: l10-05
     type: multiple-choice
-    passageRefs: [gl10-clr-graph-caption-01, gl10-clr-graph-01, gl10-clr-table-caption-01, gl10-clr-table-blank-1-01]
+    passageRefs:
+      [
+        gl10-clr-graph-caption-01,
+        gl10-clr-graph-01,
+        gl10-clr-table-caption-01,
+        gl10-clr-table-blank-1-01,
+      ]
     prompt: 다음은 CLR 그래프를 이용하여 파싱표를 구성하는 과정이다. 빈칸 ‘가’에 알맞은 것은?
     choices:
       - { id: '1', text: 'S6' }
@@ -2130,9 +2231,18 @@ questions:
     prompt: 다음 구문분석에 대한 설명 중 틀린 것은?
     choices:
       - { id: '1', text: 'LR 파싱표를 구성하는 방법은 SLR, CLR, LALR 방법이 있다.' }
-      - { id: '2', text: 'SLR은 구현하기 쉽지만 완전하지 못하고, CLR은 완전하지만 파싱표가 크고 lookahead를 구해야 하므로 구현하는데 비효율적이다.' }
-      - { id: '3', text: 'Top-down 구문분석 중 backtracking과 left-recursion 문제가 해결된 것을 LL 구문분석이라고 한다.' }
-      - { id: '4', text: 'Bottom-up 구문분석의 종류에는 Recursive-descent 구문분석과 Predictive 구문분석이 있다.' }
+      - {
+          id: '2',
+          text: 'SLR은 구현하기 쉽지만 완전하지 못하고, CLR은 완전하지만 파싱표가 크고 lookahead를 구해야 하므로 구현하는데 비효율적이다.',
+        }
+      - {
+          id: '3',
+          text: 'Top-down 구문분석 중 backtracking과 left-recursion 문제가 해결된 것을 LL 구문분석이라고 한다.',
+        }
+      - {
+          id: '4',
+          text: 'Bottom-up 구문분석의 종류에는 Recursive-descent 구문분석과 Predictive 구문분석이 있다.',
+        }
     answers: ['4']
     explanation: |
       선택지 1: LR 파싱표는 SLR(Simple LR), CLR(Canonical LR), LALR(Lookahead LR) 방법으로 구성한다. 옳은 설명이다.
@@ -2196,9 +2306,15 @@ questions:
     prompt: 다음 중 Top-down 구문분석에 대한 설명 중 틀린 것은?
     choices:
       - { id: '1', text: 'backtracking의 경우 효율을 떨어뜨리므로 left-factoring을 해야 한다.' }
-      - { id: '2', text: 'left-recursion의 경우 무한 루프에 빠지므로 right-recursion으로 바꾸어주어야 한다.' }
+      - {
+          id: '2',
+          text: 'left-recursion의 경우 무한 루프에 빠지므로 right-recursion으로 바꾸어주어야 한다.',
+        }
       - { id: '3', text: '이러한 문제점을 해결한 결정적인 구문분석을 LL 구문분석이라고 한다.' }
-      - { id: '4', text: '문법에 제약이 없어 일반적으로 Bottom up 방식보다 편리하므로 자주 사용된다.' }
+      - {
+          id: '4',
+          text: '문법에 제약이 없어 일반적으로 Bottom up 방식보다 편리하므로 자주 사용된다.',
+        }
     answers: ['4']
     explanation: |
       선택지 1: 같은 앞부분을 가진 규칙이 여럿이면 잘못 고를 때마다 backtracking이 생기므로 left-factoring으로 공통 부분을 묶는다. 옳은 설명이다.
@@ -2355,10 +2471,22 @@ questions:
     type: multiple-choice
     prompt: 다음은 의미분석 과정에서 하는 일들에 대한 설명이다. 틀린 것은?
     choices:
-      - { id: '1', text: '상수의 이름이 기호표에 들어가고, 각 상수는 정의된 값을 기호표에 보관하여, 이후 적당한 기회에 기억장소를 배정받고 초기값을 갖는다.' }
-      - { id: '2', text: '주어진 생성규칙들의 의미에 의하여 유형의 해당 자료구조가 구성되며, 유형설명자를 만들어서 이후 유형들이 기억장소 배정을 받을 때 필요한 정보를 제공하게 한다.' }
-      - { id: '3', text: '선언되는 변수들이 선언된 유형에 의하여 설명자가 주어지고 변수명칭과 유형 설명자가 모두 같이 기호표에 들어가며 기억장소를 배정 받는다.' }
-      - { id: '4', text: '문법의 각 생성규칙들과 그와 결합된 의미수행코드들을 구성하고  호출되면 중간코드를 만든다.' }
+      - {
+          id: '1',
+          text: '상수의 이름이 기호표에 들어가고, 각 상수는 정의된 값을 기호표에 보관하여, 이후 적당한 기회에 기억장소를 배정받고 초기값을 갖는다.',
+        }
+      - {
+          id: '2',
+          text: '주어진 생성규칙들의 의미에 의하여 유형의 해당 자료구조가 구성되며, 유형설명자를 만들어서 이후 유형들이 기억장소 배정을 받을 때 필요한 정보를 제공하게 한다.',
+        }
+      - {
+          id: '3',
+          text: '선언되는 변수들이 선언된 유형에 의하여 설명자가 주어지고 변수명칭과 유형 설명자가 모두 같이 기호표에 들어가며 기억장소를 배정 받는다.',
+        }
+      - {
+          id: '4',
+          text: '문법의 각 생성규칙들과 그와 결합된 의미수행코드들을 구성하고  호출되면 중간코드를 만든다.',
+        }
     answers: ['4']
     explanation: |
       선택지 1: 상수정의의 의미분석으로, 상수 이름과 값을 기호표에 보관한 뒤 기억장소를 배정받고 초기값을 갖는다. 옳은 설명이다.
@@ -2402,10 +2530,22 @@ questions:
     type: multiple-choice
     prompt: 기호표에 n 개의 식별자 개수가 있을 때 삽입과 조회 연산의 평균시간에 대한 설명이다.  틀린 것은?
     choices:
-      - { id: '1', text: '선형 리스트 구조 : t개의 이름에 대한 삽입과 m개의 조회에 대한 모든 시간은 c(t+m)이다. 단,  c 는 연산에 필요한 평균시간' }
-      - { id: '2', text: '이진트리 구조 : t개의 이름을 삽입하는 데 필요한 시간은 t log n이고, m개의 조회를 하는 데 필요한 시간은 m log n이다.' }
-      - { id: '3', text: '이진트리 구조 : t개의 이름 삽입과 m개의 조회에 필요한 시간은 (t+m)log n 이다. 만일 n이 50보다 크다면 선형리스트보다 효율적이다.' }
-      - { id: '4', text: '해쉬기호표 : t개의 식별자 이름의 추가와 m개의 조회가 있다면, 전체적으로 필요한 시간은 (t+m)log k 이다. 단, 해쉬표가 k개의 단어로 구성되어 있다.' }
+      - {
+          id: '1',
+          text: '선형 리스트 구조 : t개의 이름에 대한 삽입과 m개의 조회에 대한 모든 시간은 c(t+m)이다. 단,  c 는 연산에 필요한 평균시간',
+        }
+      - {
+          id: '2',
+          text: '이진트리 구조 : t개의 이름을 삽입하는 데 필요한 시간은 t log n이고, m개의 조회를 하는 데 필요한 시간은 m log n이다.',
+        }
+      - {
+          id: '3',
+          text: '이진트리 구조 : t개의 이름 삽입과 m개의 조회에 필요한 시간은 (t+m)log n 이다. 만일 n이 50보다 크다면 선형리스트보다 효율적이다.',
+        }
+      - {
+          id: '4',
+          text: '해쉬기호표 : t개의 식별자 이름의 추가와 m개의 조회가 있다면, 전체적으로 필요한 시간은 (t+m)log k 이다. 단, 해쉬표가 k개의 단어로 구성되어 있다.',
+        }
     answers: ['4']
     explanation: |
       선택지 1: 선형 리스트는 이름 하나를 삽입·조회할 때 평균 $c=\frac{n}{2}$의 시간이 들므로 전체 시간은 $c(t+m)$이다. 옳은 설명이다.
@@ -2426,9 +2566,18 @@ questions:
     prompt: 번역과정에서 중간언어를 사용함으로써 얻어지는 장점이 아닌 것은?
     choices:
       - { id: '1', text: '원시 프로그램의 이식성(portability)을 증가시킬 수 있다.' }
-      - { id: '2', text: '고급 원시언어와 저급 목적코드간의 의미적 차이를 이어주는 교량 역할을 중간코드가 담당함으로써 번역과정이 좀더 쉽게 표현되고 효율적으로 처리될 수 있다.' }
-      - { id: '3', text: '중간코드를 이용하여 최적화를 수행함으로써 기계와 독립적인 최적화가 가능해졌으며 또한 기계코드로 바뀐 상태에서 행하는 것보다 훨씬 효율적인 최적화를 수행할 수 있다.' }
-      - { id: '4', text: '중간언어를 사용함으로써 목적코드로 직접 번역하는 것보다 효율적인 코드를 생산한다.' }
+      - {
+          id: '2',
+          text: '고급 원시언어와 저급 목적코드간의 의미적 차이를 이어주는 교량 역할을 중간코드가 담당함으로써 번역과정이 좀더 쉽게 표현되고 효율적으로 처리될 수 있다.',
+        }
+      - {
+          id: '3',
+          text: '중간코드를 이용하여 최적화를 수행함으로써 기계와 독립적인 최적화가 가능해졌으며 또한 기계코드로 바뀐 상태에서 행하는 것보다 훨씬 효율적인 최적화를 수행할 수 있다.',
+        }
+      - {
+          id: '4',
+          text: '중간언어를 사용함으로써 목적코드로 직접 번역하는 것보다 효율적인 코드를 생산한다.',
+        }
     answers: ['4']
     explanation: |
       선택지 1: 중간코드까지는 기계와 무관하게 만들고 뒷단만 바꾸면 되므로 이식성이 높아진다. 장점이다.

@@ -76,17 +76,97 @@ chapters:
       - { no: '9.3', title: 논리식의 목적코드 생성 }
 lectures:
   - { no: 1, title: '컴파일러 개요', chapters: [1], note: '추정: 강의 제목 기준 장/절 매핑' }
-  - { no: 2, title: '형식언어와 형식문법', chapters: [2], sections: ['2.1', '2.2', '2.3'], note: '추정: 강의 제목 기준 장/절 매핑' }
-  - { no: 3, title: '유한오토마타', chapters: [2], sections: ['2.4'], note: '추정: 강의 제목 기준 장/절 매핑' }
-  - { no: 4, title: 'DFA 와 동치관계', chapters: [2], sections: ['2.4'], note: '추정: 강의 제목 기준 장/절 매핑' }
-  - { no: 5, title: '어휘분석기와 LEX(실습과정 소개)', chapters: [3], note: '추정: 강의 제목 기준 장/절 매핑' }
-  - { no: 6, title: 'Context-free 언어와 문법의 효율화', chapters: [4], note: '추정: 강의 제목 기준 장/절 매핑' }
-  - { no: 7, title: '구문분석 개요', chapters: [5], sections: ['5.1'], note: '추정: 강의 제목 기준 장/절 매핑' }
-  - { no: 8, title: '순위관계에 의한 구문분석', chapters: [5], sections: ['5.2'], note: '추정: 강의 제목 기준 장/절 매핑' }
-  - { no: 9, title: 'SLR 구문분석', chapters: [5], sections: ['5.2'], note: '추정: 강의 제목 기준 장/절 매핑' }
-  - { no: 10, title: 'CLR 구문분석', chapters: [5], sections: ['5.2'], note: '추정: 강의 제목 기준 장/절 매핑' }
-  - { no: 11, title: 'LALR 구문분석', chapters: [5], sections: ['5.2'], note: '추정: 강의 제목 기준 장/절 매핑' }
-  - { no: 12, title: 'Top-down 구문분석', chapters: [5], sections: ['5.3'], note: '추정: 강의 제목 기준 장/절 매핑' }
-  - { no: 13, title: 'YACC와 BISON(실습과정 소개)', chapters: [5], sections: ['5.4', '5.5'], note: '추정: 강의 제목 기준 장/절 매핑' }
-  - { no: 14, title: '의미분석과 중간언어', chapters: [6, 7], note: '추정: 강의 제목 기준 장/절 매핑' }
-  - { no: 15, title: '코드의 최적화와 코드의 생성', chapters: [8, 9], note: '추정: 강의 제목 기준 장/절 매핑' }
+  - {
+      no: 2,
+      title: '형식언어와 형식문법',
+      chapters: [2],
+      sections: ['2.1', '2.2', '2.3'],
+      note: '추정: 강의 제목 기준 장/절 매핑',
+    }
+  - {
+      no: 3,
+      title: '유한오토마타',
+      chapters: [2],
+      sections: ['2.4'],
+      note: '추정: 강의 제목 기준 장/절 매핑',
+    }
+  - {
+      no: 4,
+      title: 'DFA 와 동치관계',
+      chapters: [2],
+      sections: ['2.4'],
+      note: '추정: 강의 제목 기준 장/절 매핑',
+    }
+  - {
+      no: 5,
+      title: '어휘분석기와 LEX(실습과정 소개)',
+      chapters: [3],
+      note: '추정: 강의 제목 기준 장/절 매핑',
+    }
+  - {
+      no: 6,
+      title: 'Context-free 언어와 문법의 효율화',
+      chapters: [4],
+      note: '추정: 강의 제목 기준 장/절 매핑',
+    }
+  - {
+      no: 7,
+      title: '구문분석 개요',
+      chapters: [5],
+      sections: ['5.1'],
+      note: '추정: 강의 제목 기준 장/절 매핑',
+    }
+  - {
+      no: 8,
+      title: '순위관계에 의한 구문분석',
+      chapters: [5],
+      sections: ['5.2'],
+      note: '추정: 강의 제목 기준 장/절 매핑',
+    }
+  - {
+      no: 9,
+      title: 'SLR 구문분석',
+      chapters: [5],
+      sections: ['5.2'],
+      note: '추정: 강의 제목 기준 장/절 매핑',
+    }
+  - {
+      no: 10,
+      title: 'CLR 구문분석',
+      chapters: [5],
+      sections: ['5.2'],
+      note: '추정: 강의 제목 기준 장/절 매핑',
+    }
+  - {
+      no: 11,
+      title: 'LALR 구문분석',
+      chapters: [5],
+      sections: ['5.2'],
+      note: '추정: 강의 제목 기준 장/절 매핑',
+    }
+  - {
+      no: 12,
+      title: 'Top-down 구문분석',
+      chapters: [5],
+      sections: ['5.3'],
+      note: '추정: 강의 제목 기준 장/절 매핑',
+    }
+  - {
+      no: 13,
+      title: 'YACC와 BISON(실습과정 소개)',
+      chapters: [5],
+      sections: ['5.4', '5.5'],
+      note: '추정: 강의 제목 기준 장/절 매핑',
+    }
+  - {
+      no: 14,
+      title: '의미분석과 중간언어',
+      chapters: [6, 7],
+      note: '추정: 강의 제목 기준 장/절 매핑',
+    }
+  - {
+      no: 15,
+      title: '코드의 최적화와 코드의 생성',
+      chapters: [8, 9],
+      note: '추정: 강의 제목 기준 장/절 매핑',
+    }

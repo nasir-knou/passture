@@ -62,8 +62,18 @@ chapters:
 lectures:
   - { no: 1, title: 'C 언어의 개요', chapters: [1] }
   - { no: 2, title: '자료형과 선행처리기', chapters: [2] }
-  - { no: 3, title: '입.출력 함수와 연산자(1)', chapters: [3], note: '추정: 3장 전반(3.1 표준입출력함수 중심)' }
-  - { no: 4, title: '입.출력 함수와 연산자(2)', chapters: [3], note: '추정: 3장 후반(3.2 연산자 중심)' }
+  - {
+      no: 3,
+      title: '입.출력 함수와 연산자(1)',
+      chapters: [3],
+      note: '추정: 3장 전반(3.1 표준입출력함수 중심)',
+    }
+  - {
+      no: 4,
+      title: '입.출력 함수와 연산자(2)',
+      chapters: [3],
+      note: '추정: 3장 후반(3.2 연산자 중심)',
+    }
   - { no: 5, title: '선택 제어문과 반복 제어문', chapters: [4] }
   - { no: 6, title: '함수와 기억 클래스(1)', chapters: [5], note: '추정: 5장 절 분할' }
   - { no: 7, title: '함수와 기억 클래스(2)', chapters: [5], note: '추정: 5장 절 분할' }

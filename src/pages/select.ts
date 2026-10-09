@@ -1,4 +1,10 @@
-import type { Catalog, CatalogSource, CatalogSubject, Semester, SourceKind } from '../types/catalog';
+import type {
+  Catalog,
+  CatalogSource,
+  CatalogSubject,
+  Semester,
+  SourceKind,
+} from '../types/catalog';
 import {
   savePracticeOptions,
   savePracticeScope,
@@ -184,27 +190,29 @@ export function renderSelectPage(catalog: Catalog): HTMLElement {
         return;
       }
 
-      window.location.hash = createSelectHash(select.value, readSemesterFilter(page), requestedMode);
+      window.location.hash = createSelectHash(
+        select.value,
+        readSemesterFilter(page),
+        requestedMode,
+      );
     });
 
-  page.querySelectorAll<HTMLInputElement>('input[name="select-semester-filter"]').forEach((input) => {
-    input.addEventListener('change', () => {
-      const semester = readSemesterFilter(page);
-      const nextSubject = findFirstSubjectForFilter(catalog, semester);
-      if (nextSubject) {
-        window.location.hash = createSelectHash(nextSubject.id, semester, requestedMode);
-      }
+  page
+    .querySelectorAll<HTMLInputElement>('input[name="select-semester-filter"]')
+    .forEach((input) => {
+      input.addEventListener('change', () => {
+        const semester = readSemesterFilter(page);
+        const nextSubject = findFirstSubjectForFilter(catalog, semester);
+        if (nextSubject) {
+          window.location.hash = createSelectHash(nextSubject.id, semester, requestedMode);
+        }
+      });
     });
-  });
 
   return page;
 }
 
-function renderSemesterFilterButton(
-  value: SemesterFilter,
-  label: string,
-  checked = false,
-): string {
+function renderSemesterFilterButton(value: SemesterFilter, label: string, checked = false): string {
   return `
     <label>
       <input type="radio" name="select-semester-filter" value="${value}" ${checked ? 'checked' : ''} />
@@ -242,7 +250,8 @@ function findFirstSubjectForFilter(
   semester: SemesterFilter,
 ): CatalogSubject | undefined {
   return catalog.subjects.find(
-    (subject) => subject.sources.length > 0 && (semester === 'all' || subject.semester === semester),
+    (subject) =>
+      subject.sources.length > 0 && (semester === 'all' || subject.semester === semester),
   );
 }
 
@@ -538,7 +547,9 @@ function updateChapterSelectionSummary(page: HTMLElement, subjectId: string): vo
   if (listEl) {
     listEl.innerHTML = summary.chapterLabels.length
       ? summary.chapterLabels
-          .map((label) => `<span class="selected-chip"><strong>${escapeHtml(label)}</strong></span>`)
+          .map(
+            (label) => `<span class="selected-chip"><strong>${escapeHtml(label)}</strong></span>`,
+          )
           .join('')
       : '<span class="empty-state-inline">선택된 장이 없습니다.</span>';
   }

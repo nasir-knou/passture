@@ -22,7 +22,16 @@ passages:
         - { id: back, label: back, hideNode: true, hideLabel: true, x: 225, y: 40 }
         - { id: join, label: join, hideNode: true, hideLabel: true, x: 320, y: 40 }
         - { id: end, label: end, hideNode: true, hideLabel: true, x: 390, y: 40 }
-        - { id: digit2, label: digit, shape: box, width: 64, height: 30, radius: 32, x: 272, y: 100 }
+        - {
+            id: digit2,
+            label: digit,
+            shape: box,
+            width: 64,
+            height: 30,
+            radius: 32,
+            x: 272,
+            y: 100,
+          }
       edges:
         - { from: start, to: digit1, directed: true }
         - { from: digit1, to: back }
@@ -37,23 +46,113 @@ passages:
       width: 540
       height: 200
       nodes:
-        - { id: t1root, label: '<exp>', shape: box, width: 52, height: 24, radius: 14, x: 130, y: 20 }
-        - { id: t1left, label: '<exp>', shape: box, width: 52, height: 24, radius: 14, x: 50, y: 72 }
+        - {
+            id: t1root,
+            label: '<exp>',
+            shape: box,
+            width: 52,
+            height: 24,
+            radius: 14,
+            x: 130,
+            y: 20,
+          }
+        - {
+            id: t1left,
+            label: '<exp>',
+            shape: box,
+            width: 52,
+            height: 24,
+            radius: 14,
+            x: 50,
+            y: 72,
+          }
         - { id: t1minus, label: '-', x: 130, y: 72, radius: 11 }
-        - { id: t1right, label: '<exp>', shape: box, width: 52, height: 24, radius: 14, x: 210, y: 72 }
-        - { id: t1rl, label: '<exp>', shape: box, width: 52, height: 24, radius: 14, x: 160, y: 124 }
+        - {
+            id: t1right,
+            label: '<exp>',
+            shape: box,
+            width: 52,
+            height: 24,
+            radius: 14,
+            x: 210,
+            y: 72,
+          }
+        - {
+            id: t1rl,
+            label: '<exp>',
+            shape: box,
+            width: 52,
+            height: 24,
+            radius: 14,
+            x: 160,
+            y: 124,
+          }
         - { id: t1times, label: '*', x: 210, y: 124, radius: 11 }
-        - { id: t1rr, label: '<exp>', shape: box, width: 52, height: 24, radius: 14, x: 260, y: 124 }
+        - {
+            id: t1rr,
+            label: '<exp>',
+            shape: box,
+            width: 52,
+            height: 24,
+            radius: 14,
+            x: 260,
+            y: 124,
+          }
         - { id: t1three, label: '3', x: 50, y: 176, radius: 12 }
         - { id: t1two, label: '2', x: 160, y: 176, radius: 12 }
         - { id: t1five, label: '5', x: 260, y: 176, radius: 12 }
-        - { id: t2root, label: '<exp>', shape: box, width: 52, height: 24, radius: 14, x: 420, y: 20 }
-        - { id: t2left, label: '<exp>', shape: box, width: 52, height: 24, radius: 14, x: 350, y: 72 }
+        - {
+            id: t2root,
+            label: '<exp>',
+            shape: box,
+            width: 52,
+            height: 24,
+            radius: 14,
+            x: 420,
+            y: 20,
+          }
+        - {
+            id: t2left,
+            label: '<exp>',
+            shape: box,
+            width: 52,
+            height: 24,
+            radius: 14,
+            x: 350,
+            y: 72,
+          }
         - { id: t2times, label: '*', x: 420, y: 72, radius: 11 }
-        - { id: t2right, label: '<exp>', shape: box, width: 52, height: 24, radius: 14, x: 490, y: 72 }
-        - { id: t2ll, label: '<exp>', shape: box, width: 52, height: 24, radius: 14, x: 310, y: 124 }
+        - {
+            id: t2right,
+            label: '<exp>',
+            shape: box,
+            width: 52,
+            height: 24,
+            radius: 14,
+            x: 490,
+            y: 72,
+          }
+        - {
+            id: t2ll,
+            label: '<exp>',
+            shape: box,
+            width: 52,
+            height: 24,
+            radius: 14,
+            x: 310,
+            y: 124,
+          }
         - { id: t2minus, label: '-', x: 350, y: 124, radius: 11 }
-        - { id: t2lr, label: '<exp>', shape: box, width: 52, height: 24, radius: 14, x: 390, y: 124 }
+        - {
+            id: t2lr,
+            label: '<exp>',
+            shape: box,
+            width: 52,
+            height: 24,
+            radius: 14,
+            x: 390,
+            y: 124,
+          }
         - { id: t2three, label: '3', x: 310, y: 176, radius: 12 }
         - { id: t2two, label: '2', x: 390, y: 176, radius: 12 }
         - { id: t2five, label: '5', x: 490, y: 176, radius: 12 }
@@ -359,8 +458,26 @@ questions:
           height: 80
           nodes:
             - { id: name, label: '100', x: 50, y: 52, radius: 28 }
-            - { id: attr, label: FA08, shape: box, width: 80, height: 30, radius: 40, x: 165, y: 52 }
-            - { id: value, label: 정수, shape: box, width: 70, height: 30, radius: 35, x: 280, y: 52 }
+            - {
+                id: attr,
+                label: FA08,
+                shape: box,
+                width: 80,
+                height: 30,
+                radius: 40,
+                x: 165,
+                y: 52,
+              }
+            - {
+                id: value,
+                label: 정수,
+                shape: box,
+                width: 70,
+                height: 30,
+                radius: 35,
+                x: 280,
+                y: 52,
+              }
             - { id: above, label: k, hideNode: true, x: 280, y: 16 }
           edges:
             - { from: name, to: attr }
@@ -373,8 +490,26 @@ questions:
           height: 80
           nodes:
             - { id: name, label: k, x: 50, y: 52, radius: 28 }
-            - { id: attr, label: 정수, shape: box, width: 80, height: 30, radius: 40, x: 165, y: 52 }
-            - { id: value, label: FA08, shape: box, width: 70, height: 30, radius: 35, x: 280, y: 52 }
+            - {
+                id: attr,
+                label: 정수,
+                shape: box,
+                width: 80,
+                height: 30,
+                radius: 40,
+                x: 165,
+                y: 52,
+              }
+            - {
+                id: value,
+                label: FA08,
+                shape: box,
+                width: 70,
+                height: 30,
+                radius: 35,
+                x: 280,
+                y: 52,
+              }
             - { id: above, label: '100', hideNode: true, x: 280, y: 16 }
           edges:
             - { from: name, to: attr }
@@ -387,8 +522,26 @@ questions:
           height: 80
           nodes:
             - { id: name, label: k, x: 50, y: 52, radius: 28 }
-            - { id: attr, label: 정수, shape: box, width: 80, height: 30, radius: 40, x: 165, y: 52 }
-            - { id: value, label: '100', shape: box, width: 70, height: 30, radius: 35, x: 280, y: 52 }
+            - {
+                id: attr,
+                label: 정수,
+                shape: box,
+                width: 80,
+                height: 30,
+                radius: 40,
+                x: 165,
+                y: 52,
+              }
+            - {
+                id: value,
+                label: '100',
+                shape: box,
+                width: 70,
+                height: 30,
+                radius: 35,
+                x: 280,
+                y: 52,
+              }
             - { id: above, label: FA08, hideNode: true, x: 280, y: 16 }
           edges:
             - { from: name, to: attr }
@@ -401,8 +554,26 @@ questions:
           height: 80
           nodes:
             - { id: name, label: k, x: 50, y: 52, radius: 28 }
-            - { id: attr, label: '100', shape: box, width: 80, height: 30, radius: 40, x: 165, y: 52 }
-            - { id: value, label: FA08, shape: box, width: 70, height: 30, radius: 35, x: 280, y: 52 }
+            - {
+                id: attr,
+                label: '100',
+                shape: box,
+                width: 80,
+                height: 30,
+                radius: 40,
+                x: 165,
+                y: 52,
+              }
+            - {
+                id: value,
+                label: FA08,
+                shape: box,
+                width: 70,
+                height: 30,
+                radius: 35,
+                x: 280,
+                y: 52,
+              }
             - { id: above, label: 정수, hideNode: true, x: 280, y: 16 }
           edges:
             - { from: name, to: attr }
@@ -610,7 +781,10 @@ questions:
     chapter: 14
     prompt: 활성화 레코드에 대한 설명으로 바른 것은?
     choices:
-      - { id: '1', text: 동적 링크는 호출한 단위 활성화로 되돌아갈 주소값을 저장하는 포인터로 코드부를 가리킴 }
+      - {
+          id: '1',
+          text: 동적 링크는 호출한 단위 활성화로 되돌아갈 주소값을 저장하는 포인터로 코드부를 가리킴,
+        }
       - { id: '2', text: 반환 주소는 호출한 활성화 레코드를 가리키는 주소 }
       - { id: '3', text: '매개변수, 정적링크 등을 포함' }
       - { id: '4', text: 활성화 레코드의 크기는 변하지 않음 }

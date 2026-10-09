@@ -44,61 +44,523 @@ passages:
       width: 440
       height: 144
       nodes:
-        - { id: r1c1, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 20, y: 16 }
-        - { id: r1c2, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 60, y: 16 }
+        - {
+            id: r1c1,
+            label: cell,
+            hideLabel: true,
+            shape: box,
+            width: 40,
+            height: 28,
+            x: 20,
+            y: 16,
+          }
+        - {
+            id: r1c2,
+            label: cell,
+            hideLabel: true,
+            shape: box,
+            width: 40,
+            height: 28,
+            x: 60,
+            y: 16,
+          }
         - { id: r1c3, label: 'p₁', tone: filled, shape: box, width: 40, height: 28, x: 100, y: 16 }
-        - { id: r1c4, label: cell, hideLabel: true, tone: filled, shape: box, width: 40, height: 28, x: 140, y: 16 }
-        - { id: r1c5, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 180, y: 16 }
-        - { id: r1c6, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 220, y: 16 }
-        - { id: r1c7, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 260, y: 16 }
-        - { id: r1c8, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 300, y: 16 }
-        - { id: r1c9, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 340, y: 16 }
+        - {
+            id: r1c4,
+            label: cell,
+            hideLabel: true,
+            tone: filled,
+            shape: box,
+            width: 40,
+            height: 28,
+            x: 140,
+            y: 16,
+          }
+        - {
+            id: r1c5,
+            label: cell,
+            hideLabel: true,
+            shape: box,
+            width: 40,
+            height: 28,
+            x: 180,
+            y: 16,
+          }
+        - {
+            id: r1c6,
+            label: cell,
+            hideLabel: true,
+            shape: box,
+            width: 40,
+            height: 28,
+            x: 220,
+            y: 16,
+          }
+        - {
+            id: r1c7,
+            label: cell,
+            hideLabel: true,
+            shape: box,
+            width: 40,
+            height: 28,
+            x: 260,
+            y: 16,
+          }
+        - {
+            id: r1c8,
+            label: cell,
+            hideLabel: true,
+            shape: box,
+            width: 40,
+            height: 28,
+            x: 300,
+            y: 16,
+          }
+        - {
+            id: r1c9,
+            label: cell,
+            hideLabel: true,
+            shape: box,
+            width: 40,
+            height: 28,
+            x: 340,
+            y: 16,
+          }
         - { id: r1c10, label: 'p₄', tone: filled, shape: box, width: 40, height: 28, x: 380, y: 16 }
-        - { id: r1c11, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 420, y: 16 }
-        - { id: r2c1, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 20, y: 44 }
-        - { id: r2c2, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 60, y: 44 }
-        - { id: r2c3, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 100, y: 44 }
-        - { id: r2c4, label: cell, hideLabel: true, tone: filled, shape: box, width: 40, height: 28, x: 140, y: 44 }
-        - { id: r2c5, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 180, y: 44 }
-        - { id: r2c6, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 220, y: 44 }
-        - { id: r2c7, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 260, y: 44 }
-        - { id: r2c8, label: cell, hideLabel: true, tone: filled, shape: box, width: 40, height: 28, x: 300, y: 44 }
-        - { id: r2c9, label: cell, hideLabel: true, tone: filled, shape: box, width: 40, height: 28, x: 340, y: 44 }
-        - { id: r2c10, label: cell, hideLabel: true, tone: filled, shape: box, width: 40, height: 28, x: 380, y: 44 }
-        - { id: r2c11, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 420, y: 44 }
-        - { id: r3c1, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 20, y: 72 }
-        - { id: r3c2, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 60, y: 72 }
-        - { id: r3c3, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 100, y: 72 }
-        - { id: r3c4, label: cell, hideLabel: true, tone: filled, shape: box, width: 40, height: 28, x: 140, y: 72 }
-        - { id: r3c5, label: cell, hideLabel: true, tone: filled, shape: box, width: 40, height: 28, x: 180, y: 72 }
+        - {
+            id: r1c11,
+            label: cell,
+            hideLabel: true,
+            shape: box,
+            width: 40,
+            height: 28,
+            x: 420,
+            y: 16,
+          }
+        - {
+            id: r2c1,
+            label: cell,
+            hideLabel: true,
+            shape: box,
+            width: 40,
+            height: 28,
+            x: 20,
+            y: 44,
+          }
+        - {
+            id: r2c2,
+            label: cell,
+            hideLabel: true,
+            shape: box,
+            width: 40,
+            height: 28,
+            x: 60,
+            y: 44,
+          }
+        - {
+            id: r2c3,
+            label: cell,
+            hideLabel: true,
+            shape: box,
+            width: 40,
+            height: 28,
+            x: 100,
+            y: 44,
+          }
+        - {
+            id: r2c4,
+            label: cell,
+            hideLabel: true,
+            tone: filled,
+            shape: box,
+            width: 40,
+            height: 28,
+            x: 140,
+            y: 44,
+          }
+        - {
+            id: r2c5,
+            label: cell,
+            hideLabel: true,
+            shape: box,
+            width: 40,
+            height: 28,
+            x: 180,
+            y: 44,
+          }
+        - {
+            id: r2c6,
+            label: cell,
+            hideLabel: true,
+            shape: box,
+            width: 40,
+            height: 28,
+            x: 220,
+            y: 44,
+          }
+        - {
+            id: r2c7,
+            label: cell,
+            hideLabel: true,
+            shape: box,
+            width: 40,
+            height: 28,
+            x: 260,
+            y: 44,
+          }
+        - {
+            id: r2c8,
+            label: cell,
+            hideLabel: true,
+            tone: filled,
+            shape: box,
+            width: 40,
+            height: 28,
+            x: 300,
+            y: 44,
+          }
+        - {
+            id: r2c9,
+            label: cell,
+            hideLabel: true,
+            tone: filled,
+            shape: box,
+            width: 40,
+            height: 28,
+            x: 340,
+            y: 44,
+          }
+        - {
+            id: r2c10,
+            label: cell,
+            hideLabel: true,
+            tone: filled,
+            shape: box,
+            width: 40,
+            height: 28,
+            x: 380,
+            y: 44,
+          }
+        - {
+            id: r2c11,
+            label: cell,
+            hideLabel: true,
+            shape: box,
+            width: 40,
+            height: 28,
+            x: 420,
+            y: 44,
+          }
+        - {
+            id: r3c1,
+            label: cell,
+            hideLabel: true,
+            shape: box,
+            width: 40,
+            height: 28,
+            x: 20,
+            y: 72,
+          }
+        - {
+            id: r3c2,
+            label: cell,
+            hideLabel: true,
+            shape: box,
+            width: 40,
+            height: 28,
+            x: 60,
+            y: 72,
+          }
+        - {
+            id: r3c3,
+            label: cell,
+            hideLabel: true,
+            shape: box,
+            width: 40,
+            height: 28,
+            x: 100,
+            y: 72,
+          }
+        - {
+            id: r3c4,
+            label: cell,
+            hideLabel: true,
+            tone: filled,
+            shape: box,
+            width: 40,
+            height: 28,
+            x: 140,
+            y: 72,
+          }
+        - {
+            id: r3c5,
+            label: cell,
+            hideLabel: true,
+            tone: filled,
+            shape: box,
+            width: 40,
+            height: 28,
+            x: 180,
+            y: 72,
+          }
         - { id: r3c6, label: 'p', tone: filled, shape: box, width: 40, height: 28, x: 220, y: 72 }
-        - { id: r3c7, label: cell, hideLabel: true, tone: filled, shape: box, width: 40, height: 28, x: 260, y: 72 }
-        - { id: r3c8, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 300, y: 72 }
-        - { id: r3c9, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 340, y: 72 }
-        - { id: r3c10, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 380, y: 72 }
-        - { id: r3c11, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 420, y: 72 }
-        - { id: r4c1, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 20, y: 100 }
-        - { id: r4c2, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 60, y: 100 }
-        - { id: r4c3, label: cell, hideLabel: true, tone: filled, shape: box, width: 40, height: 28, x: 100, y: 100 }
-        - { id: r4c4, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 140, y: 100 }
-        - { id: r4c5, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 180, y: 100 }
-        - { id: r4c6, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 220, y: 100 }
-        - { id: r4c7, label: cell, hideLabel: true, tone: filled, shape: box, width: 40, height: 28, x: 260, y: 100 }
-        - { id: r4c8, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 300, y: 100 }
-        - { id: r4c9, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 340, y: 100 }
-        - { id: r4c10, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 380, y: 100 }
-        - { id: r4c11, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 420, y: 100 }
-        - { id: r5c1, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 20, y: 128 }
-        - { id: r5c2, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 60, y: 128 }
+        - {
+            id: r3c7,
+            label: cell,
+            hideLabel: true,
+            tone: filled,
+            shape: box,
+            width: 40,
+            height: 28,
+            x: 260,
+            y: 72,
+          }
+        - {
+            id: r3c8,
+            label: cell,
+            hideLabel: true,
+            shape: box,
+            width: 40,
+            height: 28,
+            x: 300,
+            y: 72,
+          }
+        - {
+            id: r3c9,
+            label: cell,
+            hideLabel: true,
+            shape: box,
+            width: 40,
+            height: 28,
+            x: 340,
+            y: 72,
+          }
+        - {
+            id: r3c10,
+            label: cell,
+            hideLabel: true,
+            shape: box,
+            width: 40,
+            height: 28,
+            x: 380,
+            y: 72,
+          }
+        - {
+            id: r3c11,
+            label: cell,
+            hideLabel: true,
+            shape: box,
+            width: 40,
+            height: 28,
+            x: 420,
+            y: 72,
+          }
+        - {
+            id: r4c1,
+            label: cell,
+            hideLabel: true,
+            shape: box,
+            width: 40,
+            height: 28,
+            x: 20,
+            y: 100,
+          }
+        - {
+            id: r4c2,
+            label: cell,
+            hideLabel: true,
+            shape: box,
+            width: 40,
+            height: 28,
+            x: 60,
+            y: 100,
+          }
+        - {
+            id: r4c3,
+            label: cell,
+            hideLabel: true,
+            tone: filled,
+            shape: box,
+            width: 40,
+            height: 28,
+            x: 100,
+            y: 100,
+          }
+        - {
+            id: r4c4,
+            label: cell,
+            hideLabel: true,
+            shape: box,
+            width: 40,
+            height: 28,
+            x: 140,
+            y: 100,
+          }
+        - {
+            id: r4c5,
+            label: cell,
+            hideLabel: true,
+            shape: box,
+            width: 40,
+            height: 28,
+            x: 180,
+            y: 100,
+          }
+        - {
+            id: r4c6,
+            label: cell,
+            hideLabel: true,
+            shape: box,
+            width: 40,
+            height: 28,
+            x: 220,
+            y: 100,
+          }
+        - {
+            id: r4c7,
+            label: cell,
+            hideLabel: true,
+            tone: filled,
+            shape: box,
+            width: 40,
+            height: 28,
+            x: 260,
+            y: 100,
+          }
+        - {
+            id: r4c8,
+            label: cell,
+            hideLabel: true,
+            shape: box,
+            width: 40,
+            height: 28,
+            x: 300,
+            y: 100,
+          }
+        - {
+            id: r4c9,
+            label: cell,
+            hideLabel: true,
+            shape: box,
+            width: 40,
+            height: 28,
+            x: 340,
+            y: 100,
+          }
+        - {
+            id: r4c10,
+            label: cell,
+            hideLabel: true,
+            shape: box,
+            width: 40,
+            height: 28,
+            x: 380,
+            y: 100,
+          }
+        - {
+            id: r4c11,
+            label: cell,
+            hideLabel: true,
+            shape: box,
+            width: 40,
+            height: 28,
+            x: 420,
+            y: 100,
+          }
+        - {
+            id: r5c1,
+            label: cell,
+            hideLabel: true,
+            shape: box,
+            width: 40,
+            height: 28,
+            x: 20,
+            y: 128,
+          }
+        - {
+            id: r5c2,
+            label: cell,
+            hideLabel: true,
+            shape: box,
+            width: 40,
+            height: 28,
+            x: 60,
+            y: 128,
+          }
         - { id: r5c3, label: 'p₂', tone: filled, shape: box, width: 40, height: 28, x: 100, y: 128 }
-        - { id: r5c4, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 140, y: 128 }
-        - { id: r5c5, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 180, y: 128 }
-        - { id: r5c6, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 220, y: 128 }
-        - { id: r5c7, label: cell, hideLabel: true, tone: filled, shape: box, width: 40, height: 28, x: 260, y: 128 }
-        - { id: r5c8, label: cell, hideLabel: true, tone: filled, shape: box, width: 40, height: 28, x: 300, y: 128 }
+        - {
+            id: r5c4,
+            label: cell,
+            hideLabel: true,
+            shape: box,
+            width: 40,
+            height: 28,
+            x: 140,
+            y: 128,
+          }
+        - {
+            id: r5c5,
+            label: cell,
+            hideLabel: true,
+            shape: box,
+            width: 40,
+            height: 28,
+            x: 180,
+            y: 128,
+          }
+        - {
+            id: r5c6,
+            label: cell,
+            hideLabel: true,
+            shape: box,
+            width: 40,
+            height: 28,
+            x: 220,
+            y: 128,
+          }
+        - {
+            id: r5c7,
+            label: cell,
+            hideLabel: true,
+            tone: filled,
+            shape: box,
+            width: 40,
+            height: 28,
+            x: 260,
+            y: 128,
+          }
+        - {
+            id: r5c8,
+            label: cell,
+            hideLabel: true,
+            tone: filled,
+            shape: box,
+            width: 40,
+            height: 28,
+            x: 300,
+            y: 128,
+          }
         - { id: r5c9, label: 'p₃', tone: filled, shape: box, width: 40, height: 28, x: 340, y: 128 }
-        - { id: r5c10, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 380, y: 128 }
-        - { id: r5c11, label: cell, hideLabel: true, shape: box, width: 40, height: 28, x: 420, y: 128 }
+        - {
+            id: r5c10,
+            label: cell,
+            hideLabel: true,
+            shape: box,
+            width: 40,
+            height: 28,
+            x: 380,
+            y: 128,
+          }
+        - {
+            id: r5c11,
+            label: cell,
+            hideLabel: true,
+            shape: box,
+            width: 40,
+            height: 28,
+            x: 420,
+            y: 128,
+          }
       edges: []
 
   - id: g17-feature-purpose-24

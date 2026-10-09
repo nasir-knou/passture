@@ -346,8 +346,26 @@ questions:
           height: 80
           nodes:
             - { id: name, label: d, x: 50, y: 52, radius: 28 }
-            - { id: attr, label: 실수, shape: box, width: 80, height: 30, radius: 40, x: 165, y: 52 }
-            - { id: value, label: '3.14', shape: box, width: 70, height: 30, radius: 35, x: 280, y: 52 }
+            - {
+                id: attr,
+                label: 실수,
+                shape: box,
+                width: 80,
+                height: 30,
+                radius: 40,
+                x: 165,
+                y: 52,
+              }
+            - {
+                id: value,
+                label: '3.14',
+                shape: box,
+                width: 70,
+                height: 30,
+                radius: 35,
+                x: 280,
+                y: 52,
+              }
             - { id: above, label: FF00, hideNode: true, x: 280, y: 16 }
           edges:
             - { from: name, to: attr }
@@ -360,8 +378,26 @@ questions:
           height: 80
           nodes:
             - { id: name, label: d, x: 50, y: 52, radius: 28 }
-            - { id: attr, label: '3.14', shape: box, width: 80, height: 30, radius: 40, x: 165, y: 52 }
-            - { id: value, label: FF00, shape: box, width: 70, height: 30, radius: 35, x: 280, y: 52 }
+            - {
+                id: attr,
+                label: '3.14',
+                shape: box,
+                width: 80,
+                height: 30,
+                radius: 40,
+                x: 165,
+                y: 52,
+              }
+            - {
+                id: value,
+                label: FF00,
+                shape: box,
+                width: 70,
+                height: 30,
+                radius: 35,
+                x: 280,
+                y: 52,
+              }
             - { id: above, label: 실수, hideNode: true, x: 280, y: 16 }
           edges:
             - { from: name, to: attr }
@@ -374,8 +410,26 @@ questions:
           height: 80
           nodes:
             - { id: name, label: d, x: 50, y: 52, radius: 28 }
-            - { id: attr, label: '3.14', shape: box, width: 80, height: 30, radius: 40, x: 165, y: 52 }
-            - { id: value, label: 실수, shape: box, width: 70, height: 30, radius: 35, x: 280, y: 52 }
+            - {
+                id: attr,
+                label: '3.14',
+                shape: box,
+                width: 80,
+                height: 30,
+                radius: 40,
+                x: 165,
+                y: 52,
+              }
+            - {
+                id: value,
+                label: 실수,
+                shape: box,
+                width: 70,
+                height: 30,
+                radius: 35,
+                x: 280,
+                y: 52,
+              }
             - { id: above, label: FF00, hideNode: true, x: 280, y: 16 }
           edges:
             - { from: name, to: attr }
@@ -388,7 +442,16 @@ questions:
           height: 80
           nodes:
             - { id: name, label: 실수, x: 50, y: 52, radius: 28 }
-            - { id: attr, label: '3.14', shape: box, width: 80, height: 30, radius: 40, x: 165, y: 52 }
+            - {
+                id: attr,
+                label: '3.14',
+                shape: box,
+                width: 80,
+                height: 30,
+                radius: 40,
+                x: 165,
+                y: 52,
+              }
             - { id: value, label: d, shape: box, width: 70, height: 30, radius: 35, x: 280, y: 52 }
             - { id: above, label: FF00, hideNode: true, x: 280, y: 16 }
           edges:

@@ -141,11 +141,12 @@ function renderResultNavigator(
       <div class="question-map-grid">
         ${grade.results
           .map((result, index) => {
-            const state = result.selected.length === 0
-              ? 'unanswered'
-              : result.isCorrect
-                ? 'correct'
-                : 'incorrect';
+            const state =
+              result.selected.length === 0
+                ? 'unanswered'
+                : result.isCorrect
+                  ? 'correct'
+                  : 'incorrect';
             const current = index === selectedIndex;
 
             return `
@@ -240,9 +241,12 @@ function choiceClass(id: string, answers: readonly string[], selected: Set<strin
 
 function resultStateLabel(state: 'correct' | 'incorrect' | 'unanswered'): string {
   switch (state) {
-    case 'correct': return '정답';
-    case 'incorrect': return '오답';
-    case 'unanswered': return '미응답';
+    case 'correct':
+      return '정답';
+    case 'incorrect':
+      return '오답';
+    case 'unanswered':
+      return '미응답';
   }
 }
 

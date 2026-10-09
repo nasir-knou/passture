@@ -226,7 +226,10 @@ questions:
       - { id: '1', text: else를 사용하지 못하게 함 }
       - { id: '2', text: if문 개수만큼 else를 사용하게 함 }
       - { id: '3', text: else문 앞에 나온 if문들 중 가장 가까운 if문과 짝이 되게 함 }
-      - { id: '4', text: else문 앞에 나온 if문들 중 다른 else문과 짝이 되지 않은 가장 가까운 if문과 짝이 되게 함 }
+      - {
+          id: '4',
+          text: else문 앞에 나온 if문들 중 다른 else문과 짝이 되지 않은 가장 가까운 if문과 짝이 되게 함,
+        }
     answers: ['4']
     explanation: |
       선택지 1: else를 금지하면 조건문의 표현력이 크게 떨어지므로 실제 언어가 쓰는 방법이 아니다.
@@ -342,8 +345,26 @@ questions:
           height: 80
           nodes:
             - { id: name, label: A, x: 50, y: 52, radius: 28 }
-            - { id: attr, label: char, shape: box, width: 80, height: 30, radius: 40, x: 165, y: 52 }
-            - { id: value, label: FFD0, shape: box, width: 70, height: 30, radius: 35, x: 280, y: 52 }
+            - {
+                id: attr,
+                label: char,
+                shape: box,
+                width: 80,
+                height: 30,
+                radius: 40,
+                x: 165,
+                y: 52,
+              }
+            - {
+                id: value,
+                label: FFD0,
+                shape: box,
+                width: 70,
+                height: 30,
+                radius: 35,
+                x: 280,
+                y: 52,
+              }
             - { id: above, label: x, hideNode: true, x: 280, y: 16 }
           edges:
             - { from: name, to: attr }
@@ -370,7 +391,16 @@ questions:
           height: 80
           nodes:
             - { id: name, label: x, x: 50, y: 52, radius: 28 }
-            - { id: attr, label: char, shape: box, width: 80, height: 30, radius: 40, x: 165, y: 52 }
+            - {
+                id: attr,
+                label: char,
+                shape: box,
+                width: 80,
+                height: 30,
+                radius: 40,
+                x: 165,
+                y: 52,
+              }
             - { id: value, label: A, shape: box, width: 70, height: 30, radius: 35, x: 280, y: 52 }
             - { id: above, label: FFD0, hideNode: true, x: 280, y: 16 }
           edges:

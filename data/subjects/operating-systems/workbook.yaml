@@ -11,15 +11,15 @@ passages:
       columns: [P(s), V(s)]
       rows:
         - - |
-              if (s > 0)
-                (가)____;
-              else
-                현재 프로세스를 대기시킴;
+            if (s > 0)
+              (가)____;
+            else
+              현재 프로세스를 대기시킴;
           - |
-              if (대기 중인 프로세스 없음)
-                (나)____;
-              else
-                대기 중인 프로세스 1개를 진행;
+            if (대기 중인 프로세스 없음)
+              (나)____;
+            else
+              대기 중인 프로세스 1개를 진행;
 
   - id: g04-critical-section-context-01
     type: text
@@ -33,11 +33,11 @@ passages:
       columns: [세마포어 임계영역 제어 코드]
       rows:
         - - |
-              ...
-              (가)____(mutex);
-              $S_1$
-              (나)____(mutex);
-              ...
+            ...
+            (가)____(mutex);
+            $S_1$
+            (나)____(mutex);
+            ...
 
   - id: g04-order-sync-code-01
     type: diagram
@@ -46,17 +46,17 @@ passages:
       columns: [프로세스 A의 코드, 프로세스 B의 코드]
       rows:
         - - |
-              ...
-              (가)
-              $S_1$
-              (나)
-              ...
+            ...
+            (가)
+            $S_1$
+            (나)
+            ...
           - |
-              ...
-              (다)
-              $S_2$
-              (라)
-              ...
+            ...
+            (다)
+            $S_2$
+            (라)
+            ...
 
   - id: g05-producer-consumer-code-01
     type: diagram
@@ -66,23 +66,23 @@ passages:
       columns: [생산자의 코드, 소비자의 코드]
       rows:
         - - |
-              while(true) {
-                데이터를 생산
-                P(empty);
-                P(mutex);
-                버퍼에 데이터를 넣음
-                V(mutex);
-                V(full);
-              }
+            while(true) {
+              데이터를 생산
+              P(empty);
+              P(mutex);
+              버퍼에 데이터를 넣음
+              V(mutex);
+              V(full);
+            }
           - |
-              while(true) {
-                P(full);
-                P(mutex);
-                버퍼에서 데이터를 꺼냄
-                V(mutex);
-                V(empty);
-                데이터를 소비
-              }
+            while(true) {
+              P(full);
+              P(mutex);
+              버퍼에서 데이터를 꺼냄
+              V(mutex);
+              V(empty);
+              데이터를 소비
+            }
 
   - id: g05-readers-writers-code-01
     type: diagram
@@ -92,23 +92,23 @@ passages:
       columns: [기록기의 코드, 판독기의 코드]
       rows:
         - - |
-              P(wrt);
-              공유자원에 쓰기
-              V(wrt);
+            P(wrt);
+            공유자원에 쓰기
+            V(wrt);
           - |
-              P(mutex);
-              rcount = rcount + 1;
-              if (rcount == 1) then
-                P(wrt);
-              V(mutex);
+            P(mutex);
+            rcount = rcount + 1;
+            if (rcount == 1) then
+              P(wrt);
+            V(mutex);
 
-              공유자원에서 읽기
+            공유자원에서 읽기
 
-              P(mutex);
-              rcount = rcount - 1;
-              if (rcount == 0) then
-                V(wrt);
-              V(mutex);
+            P(mutex);
+            rcount = rcount - 1;
+            if (rcount == 0) then
+              V(wrt);
+            V(mutex);
 
   - id: g06-rag-04
     type: image
@@ -238,7 +238,14 @@ passages:
         - { id: p4, label: C, x: 475, y: 95, hideNode: true }
         - { id: p5, label: A, x: 555, y: 95, hideNode: true }
         - { id: current-top, label: current-top, x: 430, y: 10, hideNode: true, hideLabel: true }
-        - { id: current-bottom, label: current-bottom, x: 430, y: 130, hideNode: true, hideLabel: true }
+        - {
+            id: current-bottom,
+            label: current-bottom,
+            x: 430,
+            y: 130,
+            hideNode: true,
+            hideLabel: true,
+          }
       edges:
         - { from: axis-start, to: axis-end, directed: true }
         - { from: current-top, to: current-bottom, style: dashed }

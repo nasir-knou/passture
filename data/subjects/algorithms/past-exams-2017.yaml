@@ -712,14 +712,86 @@ questions:
             - { id: '22', label: '22', x: 140, y: 150, tone: filled }
             - { id: '44', label: '44', x: 220, y: 150, tone: filled }
             - { id: '88', label: '88', x: 300, y: 150, tone: filled }
-            - { id: n7l, label: 'NULL', x: 40, y: 230, shape: box, width: 38, height: 22, fontSize: 9 }
-            - { id: n7r, label: 'NULL', x: 80, y: 230, shape: box, width: 38, height: 22, fontSize: 9 }
-            - { id: n22l, label: 'NULL', x: 120, y: 230, shape: box, width: 38, height: 22, fontSize: 9 }
-            - { id: n22r, label: 'NULL', x: 160, y: 230, shape: box, width: 38, height: 22, fontSize: 9 }
-            - { id: n44l, label: 'NULL', x: 200, y: 230, shape: box, width: 38, height: 22, fontSize: 9 }
-            - { id: n44r, label: 'NULL', x: 240, y: 230, shape: box, width: 38, height: 22, fontSize: 9 }
-            - { id: n88l, label: 'NULL', x: 280, y: 230, shape: box, width: 38, height: 22, fontSize: 9 }
-            - { id: n88r, label: 'NULL', x: 320, y: 230, shape: box, width: 38, height: 22, fontSize: 9 }
+            - {
+                id: n7l,
+                label: 'NULL',
+                x: 40,
+                y: 230,
+                shape: box,
+                width: 38,
+                height: 22,
+                fontSize: 9,
+              }
+            - {
+                id: n7r,
+                label: 'NULL',
+                x: 80,
+                y: 230,
+                shape: box,
+                width: 38,
+                height: 22,
+                fontSize: 9,
+              }
+            - {
+                id: n22l,
+                label: 'NULL',
+                x: 120,
+                y: 230,
+                shape: box,
+                width: 38,
+                height: 22,
+                fontSize: 9,
+              }
+            - {
+                id: n22r,
+                label: 'NULL',
+                x: 160,
+                y: 230,
+                shape: box,
+                width: 38,
+                height: 22,
+                fontSize: 9,
+              }
+            - {
+                id: n44l,
+                label: 'NULL',
+                x: 200,
+                y: 230,
+                shape: box,
+                width: 38,
+                height: 22,
+                fontSize: 9,
+              }
+            - {
+                id: n44r,
+                label: 'NULL',
+                x: 240,
+                y: 230,
+                shape: box,
+                width: 38,
+                height: 22,
+                fontSize: 9,
+              }
+            - {
+                id: n88l,
+                label: 'NULL',
+                x: 280,
+                y: 230,
+                shape: box,
+                width: 38,
+                height: 22,
+                fontSize: 9,
+              }
+            - {
+                id: n88r,
+                label: 'NULL',
+                x: 320,
+                y: 230,
+                shape: box,
+                width: 38,
+                height: 22,
+                fontSize: 9,
+              }
           edges:
             - { from: '30', to: '15' }
             - { from: '30', to: '55' }
@@ -749,14 +821,86 @@ questions:
             - { id: '22', label: '22', x: 140, y: 150 }
             - { id: '44', label: '44', x: 220, y: 150 }
             - { id: '88', label: '88', x: 300, y: 150 }
-            - { id: n7l, label: 'NULL', x: 40, y: 230, shape: box, width: 38, height: 22, fontSize: 9 }
-            - { id: n7r, label: 'NULL', x: 80, y: 230, shape: box, width: 38, height: 22, fontSize: 9 }
-            - { id: n22l, label: 'NULL', x: 120, y: 230, shape: box, width: 38, height: 22, fontSize: 9 }
-            - { id: n22r, label: 'NULL', x: 160, y: 230, shape: box, width: 38, height: 22, fontSize: 9 }
-            - { id: n44l, label: 'NULL', x: 200, y: 230, shape: box, width: 38, height: 22, fontSize: 9 }
-            - { id: n44r, label: 'NULL', x: 240, y: 230, shape: box, width: 38, height: 22, fontSize: 9 }
-            - { id: n88l, label: 'NULL', x: 280, y: 230, shape: box, width: 38, height: 22, fontSize: 9 }
-            - { id: n88r, label: 'NULL', x: 320, y: 230, shape: box, width: 38, height: 22, fontSize: 9 }
+            - {
+                id: n7l,
+                label: 'NULL',
+                x: 40,
+                y: 230,
+                shape: box,
+                width: 38,
+                height: 22,
+                fontSize: 9,
+              }
+            - {
+                id: n7r,
+                label: 'NULL',
+                x: 80,
+                y: 230,
+                shape: box,
+                width: 38,
+                height: 22,
+                fontSize: 9,
+              }
+            - {
+                id: n22l,
+                label: 'NULL',
+                x: 120,
+                y: 230,
+                shape: box,
+                width: 38,
+                height: 22,
+                fontSize: 9,
+              }
+            - {
+                id: n22r,
+                label: 'NULL',
+                x: 160,
+                y: 230,
+                shape: box,
+                width: 38,
+                height: 22,
+                fontSize: 9,
+              }
+            - {
+                id: n44l,
+                label: 'NULL',
+                x: 200,
+                y: 230,
+                shape: box,
+                width: 38,
+                height: 22,
+                fontSize: 9,
+              }
+            - {
+                id: n44r,
+                label: 'NULL',
+                x: 240,
+                y: 230,
+                shape: box,
+                width: 38,
+                height: 22,
+                fontSize: 9,
+              }
+            - {
+                id: n88l,
+                label: 'NULL',
+                x: 280,
+                y: 230,
+                shape: box,
+                width: 38,
+                height: 22,
+                fontSize: 9,
+              }
+            - {
+                id: n88r,
+                label: 'NULL',
+                x: 320,
+                y: 230,
+                shape: box,
+                width: 38,
+                height: 22,
+                fontSize: 9,
+              }
           edges:
             - { from: '30', to: '15' }
             - { from: '30', to: '55' }
@@ -786,14 +930,86 @@ questions:
             - { id: '22', label: '22', x: 140, y: 150, tone: filled }
             - { id: '44', label: '44', x: 220, y: 150 }
             - { id: '88', label: '88', x: 300, y: 150 }
-            - { id: n7l, label: 'NULL', x: 40, y: 230, shape: box, width: 38, height: 22, fontSize: 9 }
-            - { id: n7r, label: 'NULL', x: 80, y: 230, shape: box, width: 38, height: 22, fontSize: 9 }
-            - { id: n22l, label: 'NULL', x: 120, y: 230, shape: box, width: 38, height: 22, fontSize: 9 }
-            - { id: n22r, label: 'NULL', x: 160, y: 230, shape: box, width: 38, height: 22, fontSize: 9 }
-            - { id: n44l, label: 'NULL', x: 200, y: 230, shape: box, width: 38, height: 22, fontSize: 9 }
-            - { id: n44r, label: 'NULL', x: 240, y: 230, shape: box, width: 38, height: 22, fontSize: 9 }
-            - { id: n88l, label: 'NULL', x: 280, y: 230, shape: box, width: 38, height: 22, fontSize: 9 }
-            - { id: n88r, label: 'NULL', x: 320, y: 230, shape: box, width: 38, height: 22, fontSize: 9 }
+            - {
+                id: n7l,
+                label: 'NULL',
+                x: 40,
+                y: 230,
+                shape: box,
+                width: 38,
+                height: 22,
+                fontSize: 9,
+              }
+            - {
+                id: n7r,
+                label: 'NULL',
+                x: 80,
+                y: 230,
+                shape: box,
+                width: 38,
+                height: 22,
+                fontSize: 9,
+              }
+            - {
+                id: n22l,
+                label: 'NULL',
+                x: 120,
+                y: 230,
+                shape: box,
+                width: 38,
+                height: 22,
+                fontSize: 9,
+              }
+            - {
+                id: n22r,
+                label: 'NULL',
+                x: 160,
+                y: 230,
+                shape: box,
+                width: 38,
+                height: 22,
+                fontSize: 9,
+              }
+            - {
+                id: n44l,
+                label: 'NULL',
+                x: 200,
+                y: 230,
+                shape: box,
+                width: 38,
+                height: 22,
+                fontSize: 9,
+              }
+            - {
+                id: n44r,
+                label: 'NULL',
+                x: 240,
+                y: 230,
+                shape: box,
+                width: 38,
+                height: 22,
+                fontSize: 9,
+              }
+            - {
+                id: n88l,
+                label: 'NULL',
+                x: 280,
+                y: 230,
+                shape: box,
+                width: 38,
+                height: 22,
+                fontSize: 9,
+              }
+            - {
+                id: n88r,
+                label: 'NULL',
+                x: 320,
+                y: 230,
+                shape: box,
+                width: 38,
+                height: 22,
+                fontSize: 9,
+              }
           edges:
             - { from: '30', to: '15' }
             - { from: '30', to: '55' }
@@ -823,14 +1039,86 @@ questions:
             - { id: '22', label: '22', x: 140, y: 150 }
             - { id: '44', label: '44', x: 220, y: 150 }
             - { id: '88', label: '88', x: 300, y: 150 }
-            - { id: n7l, label: 'NULL', x: 40, y: 230, shape: box, width: 38, height: 22, fontSize: 9 }
-            - { id: n7r, label: 'NULL', x: 80, y: 230, shape: box, width: 38, height: 22, fontSize: 9 }
-            - { id: n22l, label: 'NULL', x: 120, y: 230, shape: box, width: 38, height: 22, fontSize: 9 }
-            - { id: n22r, label: 'NULL', x: 160, y: 230, shape: box, width: 38, height: 22, fontSize: 9 }
-            - { id: n44l, label: 'NULL', x: 200, y: 230, shape: box, width: 38, height: 22, fontSize: 9 }
-            - { id: n44r, label: 'NULL', x: 240, y: 230, shape: box, width: 38, height: 22, fontSize: 9 }
-            - { id: n88l, label: 'NULL', x: 280, y: 230, shape: box, width: 38, height: 22, fontSize: 9 }
-            - { id: n88r, label: 'NULL', x: 320, y: 230, shape: box, width: 38, height: 22, fontSize: 9 }
+            - {
+                id: n7l,
+                label: 'NULL',
+                x: 40,
+                y: 230,
+                shape: box,
+                width: 38,
+                height: 22,
+                fontSize: 9,
+              }
+            - {
+                id: n7r,
+                label: 'NULL',
+                x: 80,
+                y: 230,
+                shape: box,
+                width: 38,
+                height: 22,
+                fontSize: 9,
+              }
+            - {
+                id: n22l,
+                label: 'NULL',
+                x: 120,
+                y: 230,
+                shape: box,
+                width: 38,
+                height: 22,
+                fontSize: 9,
+              }
+            - {
+                id: n22r,
+                label: 'NULL',
+                x: 160,
+                y: 230,
+                shape: box,
+                width: 38,
+                height: 22,
+                fontSize: 9,
+              }
+            - {
+                id: n44l,
+                label: 'NULL',
+                x: 200,
+                y: 230,
+                shape: box,
+                width: 38,
+                height: 22,
+                fontSize: 9,
+              }
+            - {
+                id: n44r,
+                label: 'NULL',
+                x: 240,
+                y: 230,
+                shape: box,
+                width: 38,
+                height: 22,
+                fontSize: 9,
+              }
+            - {
+                id: n88l,
+                label: 'NULL',
+                x: 280,
+                y: 230,
+                shape: box,
+                width: 38,
+                height: 22,
+                fontSize: 9,
+              }
+            - {
+                id: n88r,
+                label: 'NULL',
+                x: 320,
+                y: 230,
+                shape: box,
+                width: 38,
+                height: 22,
+                fontSize: 9,
+              }
           edges:
             - { from: '30', to: '15' }
             - { from: '30', to: '55' }

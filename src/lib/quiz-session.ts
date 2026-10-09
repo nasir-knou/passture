@@ -123,7 +123,9 @@ export function loadSelectedSources(): SelectedSource[] {
 
   try {
     const parsed = JSON.parse(raw) as unknown;
-    return Array.isArray(parsed) ? parsed.filter(isStoredSelectedSource).map(normalizeSelectedSource) : [];
+    return Array.isArray(parsed)
+      ? parsed.filter(isStoredSelectedSource).map(normalizeSelectedSource)
+      : [];
   } catch {
     sessionStorage.removeItem(selectedSourcesKey);
     sessionStorage.removeItem(sessionKey);

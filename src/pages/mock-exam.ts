@@ -1,4 +1,10 @@
-import type { Catalog, CatalogSource, CatalogSubject, Semester, SourceKind } from '../types/catalog';
+import type {
+  Catalog,
+  CatalogSource,
+  CatalogSubject,
+  Semester,
+  SourceKind,
+} from '../types/catalog';
 import {
   calcMockExamTimes,
   saveMockExamConfig,
@@ -115,11 +121,7 @@ function renderSubjectCard(subject: CatalogSubject): string {
   `;
 }
 
-function renderSemesterFilterButton(
-  value: SemesterFilter,
-  label: string,
-  checked = false,
-): string {
+function renderSemesterFilterButton(value: SemesterFilter, label: string, checked = false): string {
   return `
     <label>
       <input type="radio" name="mock-semester-filter" value="${value}" ${checked ? 'checked' : ''} />
@@ -204,16 +206,14 @@ function renderOrderSetting(
 }
 
 function bindSetupEvents(page: HTMLElement, catalog: Catalog): void {
-  page
-    .querySelectorAll<HTMLInputElement>('input[name="mock-semester-filter"]')
-    .forEach((input) => {
-      input.addEventListener('change', () => {
-        filterSubjectCards(page, readSemesterFilter(page), { clearHiddenSelections: true });
-        updateTimeSummary(page);
-        updateMockConfigSummary(page);
-        enforceMaxSubjects(page);
-      });
+  page.querySelectorAll<HTMLInputElement>('input[name="mock-semester-filter"]').forEach((input) => {
+    input.addEventListener('change', () => {
+      filterSubjectCards(page, readSemesterFilter(page), { clearHiddenSelections: true });
+      updateTimeSummary(page);
+      updateMockConfigSummary(page);
+      enforceMaxSubjects(page);
     });
+  });
 
   // 과목 체크박스 토글 → 본체 표시/숨김
   page.querySelectorAll<HTMLInputElement>('[data-subject-checkbox]').forEach((checkbox) => {

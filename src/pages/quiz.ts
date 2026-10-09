@@ -242,10 +242,12 @@ function bindQuizEvents(page: HTMLElement, session: QuizSession): void {
     });
   });
 
-  page.querySelector<HTMLButtonElement>('[data-toggle-question-map]')?.addEventListener('click', () => {
-    sessionStorage.setItem(questionMapExpandedKey, isQuestionMapExpanded() ? 'false' : 'true');
-    refreshRoute();
-  });
+  page
+    .querySelector<HTMLButtonElement>('[data-toggle-question-map]')
+    ?.addEventListener('click', () => {
+      sessionStorage.setItem(questionMapExpandedKey, isQuestionMapExpanded() ? 'false' : 'true');
+      refreshRoute();
+    });
 
   page.querySelectorAll<HTMLButtonElement>('[data-prev]').forEach((button) => {
     button.addEventListener('click', () => {
