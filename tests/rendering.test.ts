@@ -7,6 +7,7 @@ import {
   renderPassages,
   renderRichText,
 } from '../src/pages/rendering';
+import { parseChoiceExplanation } from '../src/lib/explanation';
 
 describe('rich text rendering', () => {
   it('renders an escaped dollar as a literal dollar sign', () => {
@@ -135,6 +136,43 @@ describe('explanation notes', () => {
     expect(renderAnswerExplanationBody(choices, ['1'], '자원을 관리한다.')).toBe(
       '<div class="explanation-body">자원을 관리한다.</div>',
     );
+  });
+});
+
+describe('choice explanation parsing', () => {
+  it('keeps a reason that starts with a colon under the plain choice id', () => {
+    const parsed = parseChoiceExplanation(
+      '선택지 1: :는 ex 명령 모드로 들어간다.\n선택지 2: 틀리다.',
+    );
+
+    expect([...parsed.choiceReasons.keys()]).toEqual(['1', '2']);
+    expect(parsed.choiceReasons.get('1')).toBe(':는 ex 명령 모드로 들어간다.');
+  });
+
+  it('parses normal and (정답)/(오답) choice lines', () => {
+    const parsed = parseChoiceExplanation(
+      '선택지 1 (정답): 맞다.\n선택지 2(오답) : 틀리다.\n선택지 3: a: b 형태.\n핵심 개념:\n개념.',
+    );
+
+    expect(Object.fromEntries(parsed.choiceReasons)).toEqual({
+      '1': '맞다.',
+      '2': '틀리다.',
+      '3': 'a: b 형태.',
+    });
+    expect(parsed.coreLines).toEqual(['개념.']);
+  });
+
+  it('renders the reason for a choice whose reason starts with a colon', () => {
+    const html = renderAnswerExplanationBody(
+      [
+        { id: '1', text: 'A' },
+        { id: '2', text: 'B' },
+      ],
+      ['1'],
+      '선택지 1: :는 ex 명령이다.\n선택지 2: 틀리다.',
+    );
+
+    expect(html).toContain(':는 ex 명령이다.');
   });
 });
 

@@ -2,6 +2,8 @@ name: Validate
 
 on:
   pull_request:
+  push:
+    branches: [main]
   workflow_dispatch:
 
 jobs:
@@ -22,6 +24,12 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+
+      - name: Check formatting
+        run: pnpm format:check
+
+      - name: Type check
+        run: pnpm exec tsc --noEmit
 
       - name: Build data
         run: pnpm data:build

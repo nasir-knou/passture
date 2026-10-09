@@ -11,6 +11,7 @@ import type {
   ResourceAllocationGraphNode,
   SimpleGraphNodeShape,
 } from '../types/question';
+import { isNoteLine, parseChoiceExplanation } from '../lib/explanation';
 import { extractMathTokens, findNextMathToken, splitInlineCode } from '../lib/math-tokens';
 import { escapeHtml } from './shared';
 
@@ -169,8 +170,8 @@ export function renderPassages(passages: readonly Passage[]): string {
               : passage.diagram
                 ? renderDiagram(passage.diagram, 'passage-diagram')
                 : passage.type === 'text'
-                ? renderBlockRichText(passage.body ?? '', 'passage-text')
-                : `<pre><code>${renderCodeText(passage.body ?? '', passage.highlights ?? [])}</code></pre>`
+                  ? renderBlockRichText(passage.body ?? '', 'passage-text')
+                  : `<pre><code>${renderCodeText(passage.body ?? '', passage.highlights ?? [])}</code></pre>`
           }
         </section>
       `,
@@ -228,7 +229,9 @@ function renderDiagram(diagram: ChoiceDiagram, className: string): string {
             }
 
             const points = edgeEndpoint(from, to);
-            const label = edge.label ? renderRagEdgeLabel(edge.label, points, edge.labelDx ?? 0, edge.labelDy ?? 0) : '';
+            const label = edge.label
+              ? renderRagEdgeLabel(edge.label, points, edge.labelDx ?? 0, edge.labelDy ?? 0)
+              : '';
             return `<line class="rag-edge ${edge.style === 'dashed' ? 'rag-edge-dashed' : ''}" x1="${points.x1}" y1="${points.y1}" x2="${points.x2}" y2="${points.y2}" marker-end="url(#${markerId})" />${label}`;
           })
           .join('')}
@@ -302,7 +305,10 @@ function renderCodeText(value: string, highlights: readonly string[]): string {
   return html;
 }
 
-function renderUiWindowDiagram(diagram: ChoiceDiagram & { type: 'ui-window' }, className: string): string {
+function renderUiWindowDiagram(
+  diagram: ChoiceDiagram & { type: 'ui-window' },
+  className: string,
+): string {
   const chromeHeight = 34;
   const contentY = chromeHeight;
   const componentHtml = diagram.components
@@ -369,7 +375,10 @@ function renderUiWindowDiagram(diagram: ChoiceDiagram & { type: 'ui-window' }, c
   `;
 }
 
-function renderSimpleGraphDiagram(diagram: ChoiceDiagram & { type: 'simple-graph' }, className: string): string {
+function renderSimpleGraphDiagram(
+  diagram: ChoiceDiagram & { type: 'simple-graph' },
+  className: string,
+): string {
   const nodes = new Map(diagram.nodes.map((node) => [node.id, node]));
   const markerId = `simple-graph-arrow-${hashDiagram(diagram)}`;
 
@@ -397,14 +406,17 @@ function renderSimpleGraphDiagram(diagram: ChoiceDiagram & { type: 'simple-graph
           const directed = edge.directed ?? diagram.directed ?? false;
           const points = simpleGraphEdgeEndpoint(from, to);
           const marker = directed ? ` marker-end="url(#${markerId})"` : '';
-          const edgeClass = `simple-graph-edge ${edge.style === 'dashed' ? 'simple-graph-edge-dashed' : ''}`.trim();
+          const edgeClass =
+            `simple-graph-edge ${edge.style === 'dashed' ? 'simple-graph-edge-dashed' : ''}`.trim();
           const isLoop = edge.from === edge.to;
           const edgeShape = isLoop
             ? `<path class="${edgeClass}" d="${simpleGraphLoopPath(from, edge.curve ?? 1)}"${marker}></path>`
             : edge.curve && edge.curve !== 0
               ? `<path class="${edgeClass}" d="${simpleGraphCurvePath(points, edge.curve)}"${marker}></path>`
               : `<line class="${edgeClass}" x1="${points.x1}" y1="${points.y1}" x2="${points.x2}" y2="${points.y2}"${marker}></line>`;
-          const label = edge.label ? renderSimpleGraphEdgeLabel(edge.label, from, to, edge.curve ?? 0) : '';
+          const label = edge.label
+            ? renderSimpleGraphEdgeLabel(edge.label, from, to, edge.curve ?? 0)
+            : '';
 
           return `${edgeShape}${label}`;
         })
@@ -534,7 +546,11 @@ function simpleGraphEdgeEndpoint(
 }
 
 // Distance from the node centre to its outline along the unit direction (ux, uy).
-function simpleGraphBoundaryDistance(node: SimpleGraphEndpointNode, ux: number, uy: number): number {
+function simpleGraphBoundaryDistance(
+  node: SimpleGraphEndpointNode,
+  ux: number,
+  uy: number,
+): number {
   if (node.hideNode) {
     return 0;
   }
@@ -565,10 +581,7 @@ function simpleGraphCurvePath(
   return `M ${points.x1} ${points.y1} Q ${controlX} ${controlY} ${points.x2} ${points.y2}`;
 }
 
-function simpleGraphLoopPath(
-  node: { x: number; y: number },
-  curve: number,
-): string {
+function simpleGraphLoopPath(node: { x: number; y: number }, curve: number): string {
   const side = curve < 0 ? -1 : 1;
   const startX = node.x - side * 12;
   const endX = node.x + side * 12;
@@ -844,68 +857,12 @@ function edgeEndpoint(
   };
 }
 
-interface ParsedExplanation {
-  choiceReasons: Map<string, string>;
-  coreLines: string[];
-  noteLines: string[];
-  otherLines: string[];
-}
-
-function isNoteLine(line: string): boolean {
-  return line.trim().startsWith('※');
-}
-
 function renderExplanationNote(lines: readonly string[]): string {
   if (lines.length === 0) {
     return '';
   }
 
   return `<div class="explanation-note">${lines.map((line) => `<p>${renderMathText(line)}</p>`).join('')}</div>`;
-}
-
-function parseChoiceExplanation(explanation: string): ParsedExplanation {
-  const choiceReasons = new Map<string, string>();
-  const coreLines: string[] = [];
-  const noteLines: string[] = [];
-  const otherLines: string[] = [];
-  let section: 'other' | 'core' = 'other';
-
-  for (const rawLine of explanation.split('\n')) {
-    const line = rawLine.trim();
-
-    if (line.length === 0) {
-      continue;
-    }
-
-    if (isNoteLine(line)) {
-      noteLines.push(line);
-      continue;
-    }
-
-    const choiceMatch = line.match(/^선택지\s+([^\s(]+)\s*(?:\((?:정답|오답)\))?\s*:\s*(.+)$/);
-    if (choiceMatch) {
-      choiceReasons.set(choiceMatch[1], choiceMatch[2]);
-      continue;
-    }
-
-    if (line === '핵심 개념:' || line === '핵심 개념') {
-      section = 'core';
-      continue;
-    }
-
-    if (section === 'core') {
-      coreLines.push(line);
-    } else {
-      otherLines.push(line);
-    }
-  }
-
-  return {
-    choiceReasons,
-    coreLines,
-    noteLines,
-    otherLines,
-  };
 }
 
 function renderMathText(value: string): string {

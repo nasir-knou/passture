@@ -8,6 +8,7 @@ import type { Catalog, CatalogSource, SourceKind } from '../src/types/catalog';
 import type { Choice, Passage, Question, QuestionFile } from '../src/types/question';
 import type { Syllabus } from '../src/types/syllabus';
 import { resolveQuestionChapter, sourceCategory } from '../src/lib/chapter';
+import { parseChoiceExplanation } from '../src/lib/explanation';
 import { extractMathTokens, splitInlineCode } from '../src/lib/math-tokens';
 
 const repoRoot = process.cwd();
@@ -258,10 +259,40 @@ function validateQuestion(
     throw new Error(`${fieldPath}.answers must not be empty`);
   }
 
+  const answerIds = new Set<string>();
   for (const [answerIndex, answer] of answers.entries()) {
     const answerId = expectString(answer, `${fieldPath}.answers[${answerIndex}]`);
     if (!choiceIds.has(answerId)) {
       throw new Error(`${fieldPath}.answers[${answerIndex}] does not match any choices.id`);
+    }
+    if (answerIds.has(answerId)) {
+      throw new Error(`${fieldPath}.answers[${answerIndex}] duplicates answer ${answerId}`);
+    }
+    answerIds.add(answerId);
+  }
+
+  // 채점은 선택 개수와 정답 개수가 같아야 맞으므로 유형별 정답 개수를 강제한다.
+  if (type === 'multiple-choice' && answers.length !== 1) {
+    throw new Error(`${fieldPath}.answers must have exactly 1 answer for multiple-choice`);
+  }
+  if (type === 'multi-answer' && answers.length < 2) {
+    throw new Error(`${fieldPath}.answers must have at least 2 answers for multi-answer`);
+  }
+  if (type === 'ox') {
+    if (choices.length !== 2) {
+      throw new Error(`${fieldPath}.choices must have exactly 2 choices for ox`);
+    }
+    if (answers.length !== 1) {
+      throw new Error(`${fieldPath}.answers must have exactly 1 answer for ox`);
+    }
+  }
+
+  // 화면과 같은 파서로 읽어, 없는 선택지를 가리키는 해설 줄이 조용히 버려지지 않게 한다.
+  for (const choiceId of parseChoiceExplanation(explanation).choiceReasons.keys()) {
+    if (!choiceIds.has(choiceId)) {
+      throw new Error(
+        `${fieldPath}.explanation references missing choice "${choiceId}" in a 선택지 line`,
+      );
     }
   }
 

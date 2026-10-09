@@ -306,6 +306,96 @@ describe('data validation', () => {
   });
 });
 
+describe('answer and explanation validation', () => {
+  const threeChoices = [
+    { id: '1', text: '자원 관리' },
+    { id: '2', text: '문서 편집' },
+    { id: '3', text: '스케줄링' },
+  ];
+
+  function validateSingle(question: Record<string, unknown>) {
+    return () =>
+      validateQuestionFile(
+        {
+          subjectId: 'operating-systems',
+          sourceId: 'past-exams-2019',
+          title: '운영체제 2019 기출',
+          kind: 'exam',
+          year: 2019,
+          questions: [{ ...validQuestion('e19-01'), ...question }],
+        },
+        'operating-systems',
+        examSource,
+      );
+  }
+
+  it('rejects multiple-choice questions with more than one answer', () => {
+    expect(validateSingle({ answers: ['1', '2'] })).toThrow(/exactly 1 answer for multiple-choice/);
+  });
+
+  it('rejects multi-answer questions with fewer than two answers', () => {
+    expect(validateSingle({ type: 'multi-answer', choices: threeChoices, answers: ['1'] })).toThrow(
+      /at least 2 answers for multi-answer/,
+    );
+  });
+
+  it('accepts multi-answer questions with two or more answers', () => {
+    expect(
+      validateSingle({ type: 'multi-answer', choices: threeChoices, answers: ['1', '3'] }),
+    ).not.toThrow();
+  });
+
+  it('rejects duplicate answers', () => {
+    expect(
+      validateSingle({ type: 'multi-answer', choices: threeChoices, answers: ['1', '1'] }),
+    ).toThrow(/duplicates answer 1/);
+  });
+
+  it('rejects ox questions without exactly two choices', () => {
+    expect(validateSingle({ type: 'ox', choices: threeChoices, answers: ['1'] })).toThrow(
+      /exactly 2 choices for ox/,
+    );
+  });
+
+  it('rejects ox questions with more than one answer', () => {
+    expect(
+      validateSingle({
+        type: 'ox',
+        choices: [
+          { id: 'O', text: 'O' },
+          { id: 'X', text: 'X' },
+        ],
+        answers: ['O', 'X'],
+      }),
+    ).toThrow(/exactly 1 answer for ox/);
+  });
+
+  it('accepts ox questions with two choices and one answer', () => {
+    expect(
+      validateSingle({
+        type: 'ox',
+        choices: [
+          { id: 'O', text: 'O' },
+          { id: 'X', text: 'X' },
+        ],
+        answers: ['X'],
+      }),
+    ).not.toThrow();
+  });
+
+  it('rejects explanation lines that reference a missing choice', () => {
+    expect(validateSingle({ explanation: '선택지 1: 맞다.\n선택지 5: 없는 보기.' })).toThrow(
+      /missing choice "5"/,
+    );
+  });
+
+  it('accepts explanation lines whose reason starts with a colon', () => {
+    expect(
+      validateSingle({ explanation: '선택지 1 (정답): :는 ex 명령이다.\n선택지 2: 틀리다.' }),
+    ).not.toThrow();
+  });
+});
+
 function validQuestion(id: string) {
   return {
     id,
