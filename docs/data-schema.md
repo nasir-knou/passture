@@ -27,8 +27,9 @@ subjects:
 
 - `semester`는 과목마다 필수이고 `1` 또는 `2`만 허용한다. 출처·문제 파일에는 중복 저장하지 않는다.
 - 과목 `id`와 `source.id`는 사용자 데이터 키에 들어가므로 공개 후 바꾸지 않는다(§4).
-- `source.path`와 `syllabus`는 `.json`으로 끝나야 하며, 빌드는 같은 경로의 `.yaml`을 읽는다.
-- 문제 수는 적지 않는다. 빌드가 `catalog.json`에 출처별 `questionCount`를 채워 `2019 기말 (25문제)`처럼 표시한다.
+- `source.path`와 `syllabus`는 `.json`으로 끝나야 하며, 빌드는 같은 경로의 `.yaml`을 읽는다. `source.path`는 `subjects/{subjectId}/` 아래여야 하고 전체 출처에서 유일하다.
+- 기출(`exam`) 출처는 `year`가 필수다. 문제 파일의 `year`는 catalog 출처의 `year`와 같아야 하고(catalog에 없으면 파일에도 쓰지 않는다), catalog·과목·출처에는 위 예시의 키만 쓸 수 있다.
+- 문제 수(`questionCount`)는 YAML에 적을 수 없다. 빌드가 `catalog.json`에 출처별로 채워 `2019 기말 (25문제)`처럼 표시한다.
 - `syllabus`가 있는 과목만 챕터별 풀이를 제공한다(§4.4).
 
 `kind`와 화면 분류(큰 분류는 `기출 / 교재 / 강의` 3개, 출처명은 `kind`가 아니라 `title`을 그대로 표시):
@@ -79,7 +80,7 @@ questions:
 ```
 
 - 문항에는 `id`, `type`, `passageRefs`, `prompt`, `images`, `choices`, `answers`, `answerKey`, `explanation`, `tags`, `chapter`, `outdated`만, 선택지에는 `id`, `text`, `image`, `diagram`만 둘 수 있다. `passageRefs`를 `passages`로 쓰거나, flow mapping에서 쉼표가 든 `text`를 따옴표 없이 써서 값이 잘리면 모르는 키로 빌드가 실패한다.
-- 모르는 키 검사는 문항과 선택지에만 한다. `passages` 항목과 diagram 객체의 오타 필드는 오류 없이 조용히 무시된다.
+- 파일 최상위 키는 `subjectId`, `sourceId`, `title`, `kind`, `year`, `passages`, `questions`만 쓸 수 있다. `passages` 항목, 이미지 객체, diagram과 그 노드·간선도 허용 키만 쓸 수 있어(§5, §8) 오타 필드는 빌드 오류가 된다.
 - `tags`는 선택 필드로, 현재 앱(검색 포함)에서는 쓰지 않는다. 교재 장은 태그가 아니라 `chapter`와 syllabus로 정한다.
 
 ## 4. 식별자 규칙
@@ -98,7 +99,7 @@ questions:
 - 기출 `{nn}`은 원본 문항 번호와 상관없이 세트마다 01부터 매긴다(예: UNIX시스템 원본 36~60번 → `e17-01`~`e17-25`).
 - 예외: C프로그래밍 워크북은 장 구분 없는 연속 번호 n을 `b{⌈n/10⌉:02}-{((n−1) mod 10)+1:02}`(25 → `b03-05`, 107 → `b11-07`)로 10문제씩 묶어 모의시험 분산(§4.1)에 쓴다. 첫 숫자가 장이 아니므로 모든 문제에 `chapter`를 적는다(§4.4). 이 워크북은 원본에 표시된 기출 출제 연도를 `tags`에 `y{yyyy}` 형식으로 적는다(예: `tags: [y2014, y2018]`).
 - 공통 지문 ID는 `g`로 시작하고 파일 안에서 유일해야 한다(빌드 검사는 이 두 가지뿐). 실제로는 `g19-code-01`, `gb03-fig-02`, `gl02-…`, `gcp006-…`처럼 `g` 뒤를 출처별로 다르게 쓴다.
-- 북마크·오답 기록(과 이를 모아 보여주는 학습 기록)의 키는 `{subjectId}:{sourceId}:{questionId}`다(예: `algorithms:workbook:b03-07`). 공개 후 출처 id를 바꾸거나 문제 ID 번호를 다시 매기면 기존 기록이 어떤 문제와도 연결되지 않으므로 세 값 모두 고정으로 취급한다.
+- 북마크·오답 기록(과 이를 모아 보여주는 학습 기록)의 키는 `{subjectId}:{sourceId}:{questionId}`다(예: `algorithms:workbook:b03-07`). 공개 후 출처 id를 바꾸거나 문제 ID 번호를 다시 매기면 기존 기록이 어떤 문제와도 연결되지 않고, 학습 기록 화면이 모든 문제 파일을 불러온 때 카탈로그에 없는 키를 북마크·오답 기록에서 지우므로 세 값 모두 고정으로 취급한다.
 
 ## 4.1 모의시험 분산 기준
 
@@ -110,12 +111,12 @@ questions:
 
 ## 4.2 리치 텍스트 (수식·강조·인라인 코드)
 
-문제 본문, 선택지, 텍스트 지문, 해설, `data-table` 셀에 적용한다.
+문제 본문, 선택지, 텍스트 지문, 해설, `data-table` 머리글·셀, `simple-graph` 라벨, `ui-window` 제목·라벨에 적용한다.
 
-- 수식: KaTeX 인라인 `$…$`, 블록 `$$…$$`. 빌드는 인라인 코드 밖 모든 수식 구간을 파싱해 보고 실패하면 멈춘다(해설은 줄 단위). 런타임 실패 시 원문을 그대로 보인다.
+- 수식: KaTeX 인라인 `$…$`, 블록 `$$…$$`. 빌드는 인라인 코드 밖 모든 수식 구간을 파싱해 보고 실패하면 멈춘다(해설은 줄 단위). 코드 지문 `highlights`와 `answerKey`는 리치 텍스트가 아니므로 검사하지 않는다. 런타임 실패 시 원문을 그대로 보인다.
 - 글자 그대로의 `$`(입력 끝 표시 등)는 `\$`로 쓴다. 한 문자열에 `$`가 둘 이상이면 그 사이가 수식이 되므로 반드시 이스케이프하고, 전각 `＄`로 대신하지 않는다. 백슬래시가 유지되도록 작은따옴표나 `|` 블록을 쓴다(큰따옴표 안에서는 `\\$`). 코드 지문과 `cellFormat: code` 표에서는 `$`를 그대로 쓴다.
 - 복잡한 수식은 작은따옴표나 `|` 블록으로 쓴다(큰따옴표 안에서는 `\` 이스케이프 필요).
-- 강조: 원본에서 굵게 표시된 핵심 문구는 `==강조==`. 한 문자열에서 `==`가 두 번 나오면 그 사이가 강조가 되고 이스케이프 방법이 없으므로 `if(i==4)` 같은 코드는 인라인 코드로 감싼다.
+- 강조: 원본에서 굵게 표시된 핵심 문구는 `==강조==`. `==`는 한 줄 안의 일반 텍스트 구간(인라인 코드·수식 밖)에서만 짝을 맞춘다. 그 구간에 `==`가 홀수 개면 빌드가 `unpaired == highlight delimiter`로 실패하고, 짝수 개면 그 사이가 강조가 된다. 이스케이프 방법이 없으므로 `a == b`, `if(i==4)` 같은 비교 코드는 백틱으로 감싼다.
 - 인라인 코드: `` `…` `` 안쪽은 HTML escape만 하고 수식·강조·`\$` 처리와 빌드 수식 검증을 하지 않는다. 짝 없는 백틱 하나는 글자 그대로 보인다. 백틱 글자 자체를 보여야 하면(셸 명령 치환 등) 코드 지문이나 `cellFormat: code` 표로 옮긴다.
 - 여러 줄 선택지: 수식 밖에 줄바꿈이 있는 `text`(`|` 블록 코드 선택지)는 고정폭으로 공백·들여쓰기를 보존하고, `|`가 붙이는 끝 줄바꿈 하나는 버린다. `$$…$$`만 있는 여러 줄 선택지는 수식으로 렌더링한다.
 
@@ -188,20 +189,22 @@ lectures:
 
 공통 지문은 `passages` 배열로 분리하고 문제에서 `passageRefs` 배열로 참조한다(중복 저장 방지, 한 문제에 코드 + 표처럼 여러 지문 연결 가능). `passageRefs`가 없으면 단독 문제다.
 
-- `passages.type`: `text`(수식 가능), `code`(`language`, `body`, 선택 `highlights`), `image`(`image.path`, `image.alt`), `diagram`(`diagram`).
-- `passages.id`는 참조용이며 화면에 노출하지 않는다. 빌드는 참조 여부와 상관없이 모든 지문을 검사하지만(ID 접두, `type`, 수식, 이미지, diagram), 어떤 문제도 참조하지 않는 지문인지는 확인하지 않는다.
+- `passages.type`별 허용 키(그 밖의 키는 `has keys not allowed for {type} passages`로 실패): `text`(수식 가능)는 `id`·`type`·`body`, `code`는 `id`·`type`·`language`·`body`·선택 `highlights`, `image`는 `id`·`type`·`image`(`path`, `alt`), `diagram`은 `id`·`type`·`diagram`. `image`·`diagram` 지문은 해당 필드가 필수다.
+- `highlights`의 각 문자열은 `body`에 그대로 들어 있어야 한다(아니면 화면에 아무것도 강조되지 않는다).
+- `passages.id`는 참조용이며 화면에 노출하지 않는다. 빌드는 참조 여부와 상관없이 모든 지문을 검사하고, 어떤 문제도 참조하지 않는 지문은 `WARNING:`만 출력한다.
 - 도표·그래프·표처럼 시각 정보가 의미를 갖는 지문은 텍스트로 해석해 `body`에 옮기지 않는다. 구조적으로 그릴 수 있으면 `diagram`, 재현이 어렵거나 세부 시각 형태 자체가 문제 조건일 때만 crop `image`를 쓴다.
 
 ### diagram 타입
 
-모든 SVG 타입은 `width`, `height`(viewBox 크기)를 가진다. "선택"은 필요할 때만 둔다.
+모든 SVG 타입은 양수 `width`, `height`(viewBox 크기)를 가진다(`data-table` 제외). "선택"은 필요할 때만 둔다. 표에 없는 키는 diagram 객체와 그 노드·간선·블록·항목 어디서든 빌드 오류다.
 
 - SVG `<text>`에 들어가는 라벨(`simple-graph`·`resource-allocation-graph`의 노드·간선 라벨)에는 KaTeX 수식 문자열(`$v_1$`, `\(...\)`)을 넣지 않고 `v1`처럼 일반 텍스트를 쓴다. 수식이 꼭 필요하면 text 지문·발문·선택지·해설에 쓴다.
+- 스타일 필드 형식: 색(`fillColor`, `strokeColor`, `textColor`)은 `#rgb`, `#rrggbb` 또는 CSS 색 이름, `fontSize`·`width`·`height`·`strokeWidth`는 양수, `radius`는 0 이상(0은 점 없이 라벨만), `labelDx`·`labelDy`·`x`·`y`는 숫자, `shape`·`tone`·`style`은 아래 표의 값만.
 - 노드 `label`은 비울 수 없다. 숨기려면 `hideLabel: true`.
 
 | 타입                        | 필드                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | --------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `resource-allocation-graph` | `nodes[]`: `id`, `kind`(`process` 원 / `resource` 사각형), `label`(`p_1`처럼 `_1`~`_3`은 하첨자), `x`, `y`, 선택 `units`(단위자원 수). 빌드는 선택 `shape`(`circle`·`box`만), `hideLabel`, `hideNode`, `fontSize`, `radius`, `width`, `height`, `labelDx`/`labelDy`도 허용하지만 현재 렌더러는 이 값들을 쓰지 않는다. `edges[]`: `from`, `to`(노드 id), 선택 `style`(`solid` 기본·`dashed`), `label`, `labelDx`, `labelDy`                                                                                                          |
+| `resource-allocation-graph` | `nodes[]`: `id`, `kind`(`process` 원 / `resource` 사각형), `label`(`p_1`처럼 `_1`~`_3`은 하첨자), `x`, `y`, 선택 양수 `units`(단위자원 수). 노드 허용 키는 이것뿐이며(`shape`·`radius`·색 등 `simple-graph` 스타일 키는 렌더러가 읽지 않아 오류). `edges[]`: `from`, `to`(노드 id), 선택 `style`(`solid` 기본·`dashed`), `label`, `labelDx`, `labelDy`                                                                                                                                                                              |
 | `simple-graph`              | 선택 `directed`(전체 기본 방향). `nodes[]`: `id`, `label`, `x`, `y`, 선택 `hideLabel`, `hideNode`(라벨만 표시), `shape`(`circle` 기본·`box`·`diamond`·`ellipse`; `diamond`·`ellipse`는 `width`·`height`로 크기를 정하고 간선이 윤곽선에서 끝남), `radius`/`width`/`height`, `underline`(E-R 키 속성), `labelDx`/`labelDy`, `fontSize`, `fillColor`, `strokeColor`, `strokeWidth`, `textColor`, `tone`(`filled`만). `edges[]`: `from`, `to`, 선택 `label`, `directed`, `curve`(자기 루프 `curve: 1`), `style`(`solid` 기본·`dashed`) |
 | `ui-window`                 | `title`, `components[]`(비어 있으면 안 됨): `kind`(`checkbox`·`radio`·`label`), `label`, `x`, `y`, 선택 `checked`, `focused`                                                                                                                                                                                                                                                                                                                                                                                                        |
 | `memory-free-list`          | `blocks[]`(위→아래): `id`(유일), `kind`(`os`·`allocated`·`free`), `label`, 선택 `size`(빈 공간 상대 높이, MB)                                                                                                                                                                                                                                                                                                                                                                                                                       |
@@ -210,7 +213,7 @@ lectures:
 
 `data-table` 셀:
 
-- HTML 표라 리치 텍스트(수식·인라인 코드·`==강조==`)를 쓸 수 있고 빌드가 셀마다 수식을 검사한다.
+- HTML 표라 리치 텍스트(수식·인라인 코드·`==강조==`)를 쓸 수 있고 빌드가 머리글과 셀마다 수식·`==` 짝을 검사한다.
 - 셀은 빈 문자열일 수 없다. 빈 칸은 `' '`(공백 한 칸).
 - `cellFormat: code`면 셀이 공백·줄바꿈을 보존하는 `<pre><code>`(끝 공백 제거)로 렌더링되고 리치 텍스트 처리와 수식 검증을 하지 않는다. 백틱이나 `$`를 글자 그대로 보일 때 쓴다. 머리글은 항상 리치 텍스트다.
 
@@ -224,7 +227,7 @@ lectures:
 | `multi-answer`    | 체크박스                | 사용자 선택 집합이 `answers` 집합과 정확히 일치하면 정답 |
 | `ox`              | 라디오 버튼 (O/X 두 개) | `multiple-choice`와 동일                                 |
 
-`multi-answer`이거나 `answers.length > 1`이면 체크박스 UI를 쓴다. `answerKey`는 출제 원본의 알파벳 표기를 보존하는 선택 필드로 채점에 쓰지 않으며, `answers`에는 실제 선택지 ID를 적는다.
+`multi-answer`이거나 `answers.length > 1`이면 체크박스 UI를 쓴다. `answerKey`는 출제 원본의 알파벳 표기를 보존하는 선택 필드(있으면 비어 있지 않은 문자열이어야 하며 수식 검사는 하지 않음)로 채점에 쓰지 않으며, `answers`에는 실제 선택지 ID를 적는다.
 
 | `answerKey` | `answers`              |
 | ----------- | ---------------------- |
@@ -282,7 +285,7 @@ explanation: |
 - 파일은 `public/images/subjects/{subjectId}/` 아래 두고 데이터에는 `public/` 기준 상대 경로(`images/subjects/...`)를 적는다. 폴더는 기출이면 `past-exams/{year}/`, 그 외는 `sourceId`(`workbook/`, `textbook/`, `lecture-exercises/`).
 - 문제 하나에만 붙는 이미지는 `questions[].images`, 여러 문제가 공유하면 `passages[].image`.
 - 파일명에 문제 ID를 넣는다(`e19-01.png`, `b03-07-fig1.png`).
-- 빌드는 `path` 파일 존재(`public/` 또는 저장소 루트 기준)와 비어 있지 않은 `alt`를 검사한다.
+- 이미지 객체는 `path`, `alt`만 쓸 수 있다. 빌드는 `alt`가 비어 있지 않은지, `path`가 `public/` 아래 실제 파일을 가리키는 상대 경로인지 검사한다(`/`로 시작, URL, `..` 포함은 오류).
 - 시험지 전체 이미지는 공개 자산으로 쓰지 않고, 이미지 지문을 OCR/해석 텍스트로 대체하지 않는다.
 - 구조화 가능한 도표(자원할당 그래프, 빈 공간 리스트, 표, 클럭 큐 등)는 diagram으로 쓰고, 불가능하거나 세부 시각 정보 자체가 채점 단서일 때만 `pnpm image:crop`(`scripts/crop-png.mjs`)으로 잘라 쓴다.
 - 이미지 최적화(WebP)는 용량 문제가 생기면 빌드에 추가한다.

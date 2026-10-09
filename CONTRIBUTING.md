@@ -224,7 +224,7 @@ questions:
 
 ## 6. 다이어그램 예시
 
-아래 각 항목은 `passages[].diagram` 또는 `choices[].diagram`의 값이다. 필드 목록은 [data-schema.md §5](docs/data-schema.md). SVG 라벨에는 수식 문자열을 넣지 않는다.
+아래 각 항목은 `passages[].diagram` 또는 `choices[].diagram`의 값이다. 필드 목록은 [data-schema.md §5](docs/data-schema.md). SVG 라벨에는 수식 문자열을 넣지 않는다. 표에 없는 키는 빌드 오류다.
 
 ```yaml
 # simple-graph: 일반 그래프·트리·오토마타·E-R
@@ -308,7 +308,7 @@ pnpm dev          # 개발 서버 (catalog·문제·syllabus를 원본 YAML에�
 pnpm build        # 프로덕션 빌드
 ```
 
-오류가 나면 메시지의 파일과 필드를 고친 뒤 다시 빌드한다. `pnpm dev` 실행 중 고친 데이터는 검증되지 않으므로 `pnpm data:build`를 다시 돌린다. 새 출처를 입력한 뒤에는 [docs/review-checklist.md](docs/review-checklist.md) 기준으로 검증한다.
+`pnpm exec tsc --noEmit`은 `src`, `scripts`, `tests`의 타입을 검사한다(CI와 같음). 오류가 나면 메시지의 파일과 필드를 고친 뒤 다시 빌드한다. `pnpm dev` 실행 중 고친 데이터는 검증되지 않으므로 `pnpm data:build`를 다시 돌린다. 새 출처를 입력한 뒤에는 [docs/review-checklist.md](docs/review-checklist.md) 기준으로 검증한다.
 
 - [ ] catalog에 과목·출처를 등록했고 파일 헤더가 catalog와 일치한다
 - [ ] 문제 ID가 출처 형식을 따르고 파일 안에서 유일하다
@@ -321,27 +321,35 @@ pnpm build        # 프로덕션 빌드
 
 ## 9. 자주 막히는 지점
 
-빌드 오류 메시지와 원인. 메시지 앞의 `questionFile.questions[3]` 같은 경로가 문제 위치다.
+빌드 오류 메시지와 원인. 문제 파일 오류는 `data/….yaml:` 경로가 앞에 붙고, 그 뒤의 `questionFile.questions[3]` 같은 필드 경로가 문제 위치다.
 
-| 메시지                                                                | 원인과 조치                                                                                                                    |
-| --------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| `has unknown keys (…)`                                                | 문제·선택지에 허용되지 않는 키. 오타(`passages` → `passageRefs`)이거나 flow mapping의 쉼표가 든 값을 따옴표로 감싸지 않은 경우 |
-| `must be a non-empty string`                                          | 빈 문자열. 표(`data-table`)의 빈 칸은 `' '`(공백 한 칸), 그래프 노드 `label`은 비울 수 없다(숨기려면 `hideLabel: true`)        |
-| `.text must be non-empty when image or diagram is missing`            | 선택지 `text: ''`는 `image`나 `diagram`이 있을 때만 허용                                                                       |
-| `.answers[…] does not match any choices.id`                           | 정답 id가 선택지 id와 다름. `'1'`처럼 문자열인지 확인                                                                          |
-| `answers must have exactly 1 answer …` / `duplicates answer`          | 유형별 정답 수: `multiple-choice` 1개, `multi-answer` 2개 이상, `ox` 선택지 2개·정답 1개. 중복 금지                            |
-| `.explanation references missing choice "…" in a 선택지 line`         | 해설의 `선택지 N:` 줄이 없는 선택지 id를 가리킴                                                                                |
-| `has no chapter`                                                      | syllabus 과목인데 장이 정해지지 않음. 기출은 `chapter`/`outdated`, 강의는 강 번호가 `syllabus.lectures`에 있어야 함            |
-| `uses chapter/outdated but the subject has no syllabus`               | catalog에 `syllabus:`가 없는 과목에는 `chapter`를 적을 수 없다                                                                 |
-| `docs/outdated.md is missing … / lists questions not marked outdated` | `outdated: true` 문제와 `docs/outdated.md`의 키 목록이 다름. 양쪽을 맞춘다                                                     |
-| `has invalid math`                                                    | `$…$` 안의 KaTeX 오류. 글자 그대로의 달러는 `\$`, 코드 지문·`cellFormat: code` 표에서는 `$`를 그대로 쓴다                      |
-| `.path file does not exist`                                           | 이미지 경로는 `public/` 기준(`images/subjects/…`). 파일을 함께 커밋했는지 확인                                                 |
-| `must end with .json`                                                 | catalog의 `path`·`syllabus`는 `.json`으로 적는다(빌드가 같은 경로의 `.yaml`을 읽는다)                                          |
+| 메시지                                                                                       | 원인과 조치                                                                                                                                     |
+| -------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| `has unknown keys (…)`                                                                       | 문제·선택지에 허용되지 않는 키. 오타(`passages` → `passageRefs`)이거나 flow mapping의 쉼표가 든 값을 따옴표로 감싸지 않은 경우                  |
+| `must be a non-empty string`                                                                 | 빈 문자열. 표(`data-table`)의 빈 칸은 `' '`(공백 한 칸), 그래프 노드 `label`은 비울 수 없다(숨기려면 `hideLabel: true`)                         |
+| `.text must be non-empty when image or diagram is missing`                                   | 선택지 `text: ''`는 `image`나 `diagram`이 있을 때만 허용                                                                                        |
+| `.answers[…] does not match any choices.id`                                                  | 정답 id가 선택지 id와 다름. `'1'`처럼 문자열인지 확인                                                                                           |
+| `answers must have exactly 1 answer …` / `duplicates answer`                                 | 유형별 정답 수: `multiple-choice` 1개, `multi-answer` 2개 이상, `ox` 선택지 2개·정답 1개. 중복 금지                                             |
+| `.explanation references missing choice "…" in a 선택지 line`                                | 해설의 `선택지 N:` 줄이 없는 선택지 id를 가리킴                                                                                                 |
+| `has no chapter`                                                                             | syllabus 과목인데 장이 정해지지 않음. 기출은 `chapter`/`outdated`, 강의는 강 번호가 `syllabus.lectures`에 있어야 함                             |
+| `uses chapter/outdated but the subject has no syllabus`                                      | catalog에 `syllabus:`가 없는 과목에는 `chapter`를 적을 수 없다                                                                                  |
+| `docs/outdated.md is missing … / lists questions not marked outdated`                        | `outdated: true` 문제와 `docs/outdated.md`의 키 목록이 다름. 양쪽을 맞춘다                                                                      |
+| `has invalid math`                                                                           | `$…$` 안의 KaTeX 오류. 글자 그대로의 달러는 `\$`, 코드 지문·`cellFormat: code` 표에서는 `$`를 그대로 쓴다                                       |
+| `.path file does not exist under public/`                                                    | 이미지 경로는 `public/` 기준(`images/subjects/…`). 파일을 함께 커밋했는지 확인                                                                  |
+| `.path must be relative to public/` / `must be a relative file path` / `must not contain ..` | 이미지 `path`는 `/`로 시작하거나 URL이거나 `..`을 포함할 수 없다. `images/subjects/…`로 적는다                                                  |
+| `has keys not allowed for text passages (…)`                                                 | 지문 유형과 맞지 않는 필드(`code`에만 `language`·`highlights`, `image`에만 `image` 등). `type`을 고치거나 필드를 옮긴다                         |
+| `.highlights[…] does not occur in the passage body`                                          | 코드 지문 `highlights` 문자열이 `body`에 글자 그대로 없음                                                                                       |
+| `must be a positive number` / `must be a non-negative number`                                | diagram의 크기·`fontSize`·`strokeWidth`·`units`는 0보다 큰 수, `simple-graph` 노드 `radius`는 0 이상. 따옴표로 감싼 문자열이 아닌 숫자로 적는다 |
+| `must be a hex color (#rgb or #rrggbb) or a CSS color name`                                  | `fillColor`·`strokeColor`·`textColor`는 `#f90`, `#ff9900`, `steelblue` 형식만                                                                   |
+| `must be one of …; got …`                                                                    | `shape`·`tone`·`style`·`kind` 등 정해진 값 밖의 값                                                                                              |
+| `line N has an unpaired == highlight delimiter`                                              | 한 줄의 일반 텍스트 구간에 `==`가 홀수 개. 코드형 비교(`a == b`)는 백틱으로 감싼다                                                              |
+| `must be under subjects/…` / `must be unique` / `year is required for exam sources`          | catalog `source.path`는 `subjects/{과목 id}/` 아래이고 유일해야 하며, 기출 출처에는 `year`가 필요하다. 파일의 `year`는 catalog와 같다           |
+| `must end with .json`                                                                        | catalog의 `path`·`syllabus`는 `.json`으로 적는다(빌드가 같은 경로의 `.yaml`을 읽는다)                                                           |
 
 빌드는 통과하지만 화면이 이상할 때:
 
 - **백틱이 사라진다**: 백틱 쌍은 항상 인라인 코드로 렌더링된다. 백틱 문자 자체를 보여야 하면 코드 지문이나 `cellFormat: code` 표에 넣는다.
-- **`==`가 강조로 바뀐다**: 한 문자열에 `==`가 두 번 이상 나오면 강조로 묶인다. 코드형 텍스트는 인라인 코드로 감싼다.
+- **`==`가 강조로 바뀐다**: 한 줄의 일반 텍스트 구간에서 `==` 두 개 사이가 강조가 된다(홀수 개면 빌드가 실패). 코드형 텍스트는 인라인 코드로 감싼다.
 - **`sections.no`가 숫자로 읽힌다**: syllabus의 절 번호는 `'1.1'`처럼 따옴표를 붙인다.
 - **문제가 혼자 풀리지 않는다**: 발문이 가리키는 그림·표·코드·조건이 모두 `passageRefs`로 연결되어야 한다. 선택지를 섞어도 성립하는지 본다.
 - **폰에서 표가 잘린다**: 열이 많은 표는 행·열을 바꾸거나(영역을 행으로) 선택지마다 작은 표로 나눈다.

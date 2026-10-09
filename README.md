@@ -26,7 +26,7 @@ corepack prepare pnpm@10.11.0 --activate
 pnpm install       # 처음 실행하거나 의존성이 바뀐 뒤
 pnpm dev           # 로컬 개발 서버 (기본 http://localhost:5173/)
 pnpm data:build    # YAML 문제 원본을 public/data JSON으로 변환 및 검증
-pnpm test          # 단위 테스트
+pnpm test          # 단위 테스트 (DOM 테스트는 happy-dom)
 pnpm build         # 프로덕션 빌드
 pnpm preview       # 빌드 결과 로컬 확인
 pnpm format        # Prettier로 포맷
