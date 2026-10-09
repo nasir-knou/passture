@@ -142,7 +142,7 @@ passages:
           for j=1 to k do
             (가);
           end-for;
-        until m == mOld
+        `until m == mOld`
         return m;
       end-function
   - id: gb11-cnn-output-formula-07

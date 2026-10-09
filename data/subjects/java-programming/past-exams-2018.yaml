@@ -408,14 +408,14 @@ questions:
     passageRefs: [g18-string-identity-01]
     prompt: 보기의 내용이 밑줄 부분에 들어간다고 할 때, 결과가 다른 하나는 무엇인가?
     choices:
-      - { id: '1', text: 'str1==str2' }
-      - { id: '2', text: 'str2==str3' }
+      - { id: '1', text: '`str1==str2`' }
+      - { id: '2', text: '`str2==str3`' }
       - { id: '3', text: 'str1.equals(str2)' }
       - { id: '4', text: 'str2.equals(str3)' }
     answers: ['2']
     explanation: |
       선택지 1: str2는 str1을 대입받아 같은 객체를 참조하므로 true다.
-      선택지 2: str3은 같은 문자열 내용이지만 new로 만든 별도 객체라 == 결과가 false다.
+      선택지 2: str3은 같은 문자열 내용이지만 new로 만든 별도 객체라 `==` 결과가 false다.
       선택지 3: 같은 객체의 내용 비교라 true다.
       선택지 4: 내용이 Java로 같아 equals는 true다.
 

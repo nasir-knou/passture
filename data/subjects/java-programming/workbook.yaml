@@ -438,8 +438,8 @@ questions:
     choices:
       - { id: '1', text: 'str1.equals(str2)' }
       - { id: '2', text: 'str2.equals(str3)' }
-      - { id: '3', text: 'str1==str2' }
-      - { id: '4', text: 'str2==str3' }
+      - { id: '3', text: '`str1==str2`' }
+      - { id: '4', text: '`str2==str3`' }
     answers: ['4']
     explanation: |
       선택지 1: `equals`는 문자열 내용을 비교하므로 `true`이다.
