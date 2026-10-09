@@ -231,6 +231,10 @@ subjects:
         path: subjects/unix-system/past-exams-2017.json
         kind: exam
         year: 2017
+      - id: workbook
+        title: 워크북 문제
+        path: subjects/unix-system/workbook.json
+        kind: workbook
   - id: computer-architecture
     title: 컴퓨터구조
     semester: 2
@@ -332,3 +336,7 @@ subjects:
         title: 연습문제
         path: subjects/simulation/lecture-exercises.json
         kind: lecture
+      - id: workbook
+        title: 워크북 문제
+        path: subjects/simulation/workbook.json
+        kind: workbook
