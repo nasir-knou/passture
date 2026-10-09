@@ -16,6 +16,7 @@
 - 이미지는 잘리지 않았고 읽을 수 있다. 가능하면 이미지 대신 diagram·data-table로 다시 그린다.
 - 수식(`$`)·강조(`==`)·인라인 코드(`` ` ``)가 의도대로 렌더링된다. 한 문자열에 코드형 `==`가 두 번 이상 나오면 강조로 오인되므로 인라인 코드로 감싼다.
 - 여러 줄 코드 선택지는 `|` 블록으로 써서 들여쓰기가 보존된다. 코드 지문은 `type: code`다.
+- 백틱 쌍은 항상 인라인 코드로 렌더링되므로, 원본에 백틱 문자가 그대로 있으면 코드 지문이나 `cellFormat: code` 표에 넣는다. 표의 빈 칸은 `' '`(공백 한 칸)이다.
 - 선택지 순서를 섞어도 문제가 성립한다. 이미지·diagram 선택지는 `text: ''`다.
 - 다른 문항 번호를 참조하는 발문(`문제 15번 참조`)은 필요한 자료를 `passageRefs`로 함께 연결한다.
 
@@ -38,12 +39,13 @@
 ## 5. 메타데이터
 
 - `subjectId`, `sourceId`, `kind`, `year`가 catalog와 일치하고 catalog에 출처가 등록되어 있다.
-- ID 규칙(§4)을 따르고, syllabus가 있는 과목은 장 배정이 맞다(기출 `chapter`/`outdated`, 강의는 강 번호가 syllabus에 존재).
+- ID 규칙([data-schema.md §4](./data-schema.md))을 따르고, syllabus가 있는 과목은 장 배정이 맞다(기출 `chapter`/`outdated`, 강의는 강 번호가 syllabus에 존재).
+- ID 그룹이 장 번호가 아닌 워크북(C프로그래밍)이나 부록 장(시뮬레이션 워크북 10장)은 문제마다 `chapter`를 적는다.
 - 태그·연도 등 부가 필드가 원본과 맞다.
 
 ## 6. 마무리
 
-- `pnpm data:build`, `pnpm test`가 통과한다.
+- `pnpm data:build`, `pnpm test`, `pnpm format:check`가 통과한다.
 - 선택지 섞기를 켜고, 모바일 폭에서 이미지·코드·표가 들어간 문항을 몇 개 직접 확인한다.
 - 한 세트에서 정답 번호 분포가 지나치게 몰리지 않았는지 본다(입력 오류 신호).
 - [source-coverage.md](./source-coverage.md), `WORK.md` 작업 기록, 필요하면 [outdated.md](./outdated.md)를 갱신한다.

@@ -1,546 +1,222 @@
 # Data Schema
 
-문제 데이터의 포맷, 카탈로그 구조, 식별자 규칙, 공통 지문 처리, 정답 표현, 이미지 처리.
+문제 데이터의 포맷, 카탈로그, 식별자, 장 배정, 공통 지문·다이어그램, 정답, 해설, 이미지 규칙. 작성 절차와 예시는 [CONTRIBUTING.md](../CONTRIBUTING.md), 빌드 실패 조건 목록은 [architecture.md §3](./architecture.md).
 
-## 1. 포맷 결정 (YAML 저작 → JSON 런타임)
+## 1. 포맷 (YAML 저작 → JSON 런타임)
 
-문제 원본은 **YAML로 작성**하고, 빌드 시점에 **JSON으로 변환**하여 런타임에 사용한다.
-
-### YAML 채택 사유 (저작)
-
-- 멀티라인 문자열, 주석 지원 → 코드 지문/긴 해설에 유리
-- 따옴표·이스케이프 부담이 적어 입력 속도가 빠름
-- 작업자가 손으로 직접 작성·검토하는 비중이 높음
-
-### JSON 채택 사유 (런타임)
-
-- 브라우저에서 `fetch()` 후 즉시 파싱 가능 (런타임 의존성 0)
-- GitHub Pages 정적 배포와 완전 호환
-- TypeScript 타입과 직접 작성한 검증기로 빌드 시 검증 용이
-
-빌드 파이프라인 동작은 [architecture.md §3](./architecture.md) 참고.
+문제 원본은 손으로 쓰기 쉬운 YAML로 작성하고, 빌드가 브라우저용 JSON으로 변환한다. `public/data/`의 JSON은 직접 편집하지 않는다.
 
 ## 2. catalog.yaml
 
-현재 `data/catalog.yaml`에는 13개 과목이 등록되어 있다.
-
-| 학기  | 과목                                                                                                      |
-| ----- | --------------------------------------------------------------------------------------------------------- |
-| 1학기 | 운영체제, 이산수학, 알고리즘, 인공지능, Java프로그래밍                                                    |
-| 2학기 | 선형대수, 컴퓨터과학개론, C프로그래밍, UNIX시스템, 컴퓨터구조, 프로그래밍언어론, 컴파일러구성, 시뮬레이션 |
-
-카탈로그 항목 예:
+`data/catalog.yaml`이 과목·출처 목록이다. 등록 과목 현황은 [source-coverage.md](./source-coverage.md).
 
 ```yaml
-# data/catalog.yaml
 version: 1
 subjects:
-  - id: computer-architecture
-    title: 컴퓨터구조
+  - id: linear-algebra
+    title: 선형대수
     semester: 2
+    syllabus: subjects/linear-algebra/syllabus.json # 챕터별 풀이 과목만
     sources:
       - id: past-exams-2019
         title: 2019 기말
-        path: subjects/computer-architecture/past-exams-2019.json
+        path: subjects/linear-algebra/past-exams-2019.json
         kind: exam
         year: 2019
-      - id: past-exams-2018
-        title: 2018 기말
-        path: subjects/computer-architecture/past-exams-2018.json
-        kind: exam
-        year: 2018
-      - id: past-exams-2017
-        title: 2017 기말
-        path: subjects/computer-architecture/past-exams-2017.json
-        kind: exam
-        year: 2017
 ```
 
-런타임용 `public/data/catalog.json`에는 빌드 시 각 출처의 `questions.length`를 계산한 `questionCount`가 추가된다. 선택 화면과 모의 시험 설정 화면의 출처 목록은 이를 사용해 `2019 기말 (25문제)`처럼 표시한다. 원본 `catalog.yaml`에는 수동으로 문제 수를 적지 않는다.
+- `semester`는 과목마다 필수이고 `1` 또는 `2`만 허용한다. 출처·문제 파일에는 중복 저장하지 않는다.
+- 과목 `id`와 `source.id`는 사용자 데이터 키에 들어가므로 공개 후 바꾸지 않는다(§4).
+- `source.path`와 `syllabus`는 `.json`으로 끝나야 하며, 빌드는 같은 경로의 `.yaml`을 읽는다.
+- 문제 수는 적지 않는다. 빌드가 `catalog.json`에 출처별 `questionCount`를 채워 `2019 기말 (25문제)`처럼 표시한다.
+- `syllabus`가 있는 과목만 챕터별 풀이를 제공한다(§4.4).
 
-과목에 교재 목차 파일이 있으면 `subjects[].syllabus`에 `subjects/{subjectId}/syllabus.json` 경로를 적는다. 이 필드가 있는 과목만 챕터별 풀이를 제공한다(§4.4).
+`kind`와 화면 분류(큰 분류는 `기출 / 교재 / 강의` 3개, 출처명은 `kind`가 아니라 `title`을 그대로 표시):
 
-```yaml
-- id: linear-algebra
-  title: 선형대수
-  semester: 2
-  syllabus: subjects/linear-algebra/syllabus.json
-```
+| `kind`      | 분류 | 출처명 예                    | 비고                                                               |
+| ----------- | ---- | ---------------------------- | ------------------------------------------------------------------ |
+| `exam`      | 기출 | `2019 기말`, `2018 출석대체` | 출석대체도 `exam`                                                  |
+| `textbook`  | 교재 | `기본서 문제`                |                                                                    |
+| `workbook`  | 교재 | `워크북 문제`                |                                                                    |
+| `lecture`   | 강의 | `연습문제`                   | 이산수학 `기초특강`(`basic-intensive`)도 `lecture`와 `l` ID로 등록 |
+| `intensive` | 강의 | `특강 문제`                  | 현재 쓰는 출처 없음                                                |
 
-과목의 학기 정보는 `subjects[].semester`에 단일값으로 저장한다.
+`kind`는 출처 라벨, ID 검증(§4), 장 결정(§4.4), 모의시험 추출(§4.1)에 쓴다.
 
-- `semester: 1` → 1학기 과목
-- `semester: 2` → 2학기 과목
-- 모든 과목은 `semester`를 반드시 가져야 하며, 값은 `1` 또는 `2`만 허용한다.
-- 학기 정보는 과목 단위 메타데이터이므로 출처나 문제 파일에는 중복 저장하지 않는다.
-- `subjectId`는 북마크, 오답 기록, 풀이 세션 키에 쓰이므로 학기 구분을 위해 변경하지 않는다.
+## 3. 문제 파일 구조
 
-화면의 큰 분류는 `기출 / 교재 / 강의` 3개로 유지한다.
-
-- `kind: exam` → 기출 분류, 출처명은 `2019 기말`처럼 표시한다. 출석대체 시험도 `kind: exam`이며 `2018 출석대체`처럼 표시한다.
-- `kind: textbook` → 교재 분류, 출처명은 `기본서 문제`를 사용한다.
-- `kind: workbook` → 교재 분류, 출처명은 `워크북 문제`를 사용한다.
-- `kind: lecture` → 강의 분류, 출처명은 `연습문제`를 사용한다. 이산수학 `기초특강`(`basic-intensive`)도 현재 `kind: lecture`와 `l` ID로 등록되어 있다.
-- `kind: intensive` → 강의 분류, 출처명은 `특강 문제`를 사용한다. 현재 이 종류를 쓰는 출처는 없다.
-
-`kind` 값(`exam` | `textbook` | `workbook` | `lecture` | `intensive`)은 출처 라벨, ID 검증, 장 결정(§4.4), 모의시험 추출(§4.1)에 사용한다. 화면의 출처명은 `kind`가 아니라 각 출처의 `title`을 그대로 표시한다. 현재 UI는 탭이 아니라 선택된 과목의 출처 체크리스트를 표시한다.
-
-## 3. 문제 파일 구조 (YAML 저작 기준)
-
-문제 출처별 단일 YAML 파일로 관리한다.
-
-예: `data/subjects/operating-systems/past-exams-2019.yaml`
+출처마다 YAML 하나: `data/subjects/{subjectId}/{sourceId}.yaml`.
 
 ```yaml
-subjectId: operating-systems
-sourceId: past-exams-2019
+subjectId: operating-systems # catalog와 일치
+sourceId: past-exams-2019 # catalog와 일치
 title: 운영체제 2019 기말
-kind: exam
-year: 2019
+kind: exam # catalog와 일치
+year: 2019 # exam만
 
 passages:
   - id: g19-code-01
     type: code
     language: c
-    highlights: ['int main(void)'] # 선택. 코드 지문에서 강조할 문자열
+    highlights: ['int main(void)'] # 선택. 원본에서 굵게 표시된 문자열
     body: |
-      int main(void) {
-        int a = 1;
-        printf("%d\n", a);
-        return 0;
-      }
+      int main(void) { printf("%d\n", 1); return 0; }
 
 questions:
-  - id: e19-01
-    type: multiple-choice
-    prompt: 운영체제의 주된 역할로 가장 적절한 것은?
-    images: []
-    choices:
-      - id: '1'
-        text: 사용자와 하드웨어 사이의 인터페이스 제공
-      - id: '2'
-        text: 문서 편집 기능 제공
-      - id: '3'
-        text: 웹 검색 결과 제공
-      - id: '4'
-        text: 전자우편 송수신 전용 기능 제공
-    answers: ['1']
-    explanation: |
-      운영체제는 사용자와 하드웨어 사이에서 자원을 관리하고 인터페이스를 제공한다.
-    tags: [intro, role]
-
   - id: e19-02
-    type: multiple-choice
+    type: multiple-choice # multiple-choice | multi-answer | ox
     passageRefs: [g19-code-01]
     prompt: 위 코드의 출력 결과는?
+    images: [] # 선택
     choices:
       - { id: '1', text: '0' }
       - { id: '2', text: '1' }
-      - { id: '3', text: '2' }
-      - { id: '4', text: '컴파일 오류' }
     answers: ['2']
-    explanation: 변수 `a`의 값 1이 출력된다.
-
-  - id: e19-03
-    type: ox
-    prompt: 프로세스와 스레드는 동일한 개념이다.
-    choices:
-      - { id: 'O', text: 'O' }
-      - { id: 'X', text: 'X' }
-    answers: ['X']
-    explanation: 프로세스와 스레드는 자원 공유 범위와 독립성에서 다르다.
-
-  - id: e19-04
-    type: multi-answer # 복수정답 문제
-    prompt: 다음 중 운영체제의 기능으로 옳은 것을 모두 고르시오.
-    choices:
-      - { id: '1', text: '프로세스 관리' }
-      - { id: '2', text: '메모리 관리' }
-      - { id: '3', text: '전자결제 처리' }
-      - { id: '4', text: '장치 관리' }
-    answers: ['1', '2', '4']
-    answerKey: H # 출제표기 보존(선택)
-    explanation: 운영체제 핵심 기능은 프로세스/메모리/장치 관리이다.
+    answerKey: H # 선택. 출제 원본 표기 보존
+    explanation: 변수 값 1이 출력된다.
+    tags: [intro] # 선택
+    chapter: 4 # 선택. §4.4
 ```
 
-빌드 후 동일 구조의 JSON으로 변환된다. 파일의 `subjectId`, `sourceId`, `kind`, `year`는 `catalog.yaml`의 해당 과목·출처 항목과 일치해야 한다. 선택지에는 `id`, `text`, `image`, `diagram` 외의 키를 둘 수 없다(flow mapping에서 쉼표가 든 `text`를 따옴표 없이 쓰면 값이 잘려 새 키가 되므로 빌드가 실패한다). 문항도 `Question` 타입의 키(`id`, `type`, `passageRefs`, `prompt`, `images`, `choices`, `answers`, `answerKey`, `explanation`, `tags`, `chapter`, `outdated`)만 허용하므로 `passageRefs`를 `passages`로 잘못 쓰면 빌드가 실패한다.
+- 문항에는 `id`, `type`, `passageRefs`, `prompt`, `images`, `choices`, `answers`, `answerKey`, `explanation`, `tags`, `chapter`, `outdated`만, 선택지에는 `id`, `text`, `image`, `diagram`만 둘 수 있다. `passageRefs`를 `passages`로 쓰거나, flow mapping에서 쉼표가 든 `text`를 따옴표 없이 써서 값이 잘리면 모르는 키로 빌드가 실패한다.
+- 모르는 키 검사는 문항과 선택지에만 한다. `passages` 항목과 diagram 객체의 오타 필드는 오류 없이 조용히 무시된다.
+- `tags`는 선택 필드로, 현재 앱(검색 포함)에서는 쓰지 않는다. 교재 장은 태그가 아니라 `chapter`와 syllabus로 정한다.
 
 ## 4. 식별자 규칙
 
-문제 `id`는 파일 안에서 유일해야 한다. 출처 종류별 접두사를 명시적으로 둔다.
+문제 `id`는 파일 안에서 유일하고, 빌드가 출처 `kind`에 맞는 접두와 두 자리 숫자 두 그룹(`^t\d{2}-\d{2}$` 등)을 검사한다.
 
-- 기출: `e{yy}-{nn}` → `e17-01`, `e18-25`, `e19-23`
-- 기본서 문제: `t{chapter}-{nn}` → `t01-03`, `t07-08`
-- 워크북: `b{chapter}-{nn}` → `b01-03`, `b07-08`
-  - 예외: C프로그래밍 워크북(`c-programming/workbook.yaml`)은 장 구분 없는 연속 번호라 첫 숫자가 장이 아니다. 워크북 번호 n → `b{⌈n/10⌉:02}-{((n−1) mod 10)+1:02}`(25 → `b03-05`, 107 → `b11-07`)로 10문제씩 묶어 모의시험 분산(§4.1)에 쓴다. 이 과목은 syllabus가 없어 ID가 장 결정(§4.4)에 쓰이지 않는다.
-- 강의 문제: `l{lecture}-{nn}` → `l01-03`, `l07-08`
-- 특강 문제: `i{unit}-{nn}` → `i01-03`, `i07-08`
+| 출처        | 형식              | 예                 |
+| ----------- | ----------------- | ------------------ |
+| 기출        | `e{yy}-{nn}`      | `e17-01`, `e19-23` |
+| 기본서 문제 | `t{chapter}-{nn}` | `t01-03`, `t07-08` |
+| 워크북      | `b{chapter}-{nn}` | `b01-03`, `b07-08` |
+| 강의 문제   | `l{lecture}-{nn}` | `l01-03`, `l07-08` |
+| 특강 문제   | `i{unit}-{nn}`    | `i01-03`, `i07-08` |
 
-빌드는 출처 `kind`에 맞는 접두와 두 자리 숫자 두 그룹(`^t\d{2}-\d{2}$` 등)을 검사한다. 기출의 `{yy}`는 catalog 출처 `year`의 끝 두 자리와 같아야 한다(`attendance-exams-2018`도 `e18-…`).
-
-기출에 `e` 접두를 붙이는 이유:
-
-- 순수 숫자 ID(`17-01`)는 챕터 ID `b17-01`과 시각적으로 헷갈릴 수 있다.
-- URL, 검색, 로그에서 출처 종류를 즉시 식별하기 쉽다.
-- 향후 모의고사 등 새 출처가 생겨도 동일한 1글자 접두 컨벤션을 유지하기 쉽다.
-
-공통 지문(passage) ID는 `g` 접두를 사용한다. 빌드는 `g`로 시작하는지와 파일 안 유일성만 검사하며, 실제 데이터는 `g17-…`, `gb01-…`, `gl02-…`, `gt01-…`, `gcp006-…`, `gwba-…`처럼 `g` 뒤를 출처별로 다르게 쓴다.
-
-- 기출 코드 지문: `g19-code-01`
-- 교재 도식 지문: `gb03-fig-02`
-
-앱 내부에서 북마크와 풀이 기록을 저장할 때는 충돌 방지를 위해 다음 복합 키를 사용한다.
-
-```text
-{subjectId}:{sourceId}:{questionId}
-```
-
-예:
-
-```text
-operating-systems:past-exams-2019:e19-01
-algorithms:textbook:t03-07
-algorithms:workbook:b03-07
-```
+- 기출 `{yy}`는 catalog 출처 `year`의 끝 두 자리와 같아야 한다(`attendance-exams-2018`도 `e18-…`).
+- 기출 `{nn}`은 원본 문항 번호와 상관없이 세트마다 01부터 매긴다(예: UNIX시스템 원본 36~60번 → `e17-01`~`e17-25`).
+- 예외: C프로그래밍 워크북은 장 구분 없는 연속 번호 n을 `b{⌈n/10⌉:02}-{((n−1) mod 10)+1:02}`(25 → `b03-05`, 107 → `b11-07`)로 10문제씩 묶어 모의시험 분산(§4.1)에 쓴다. 첫 숫자가 장이 아니므로 모든 문제에 `chapter`를 적는다(§4.4). 이 워크북은 원본에 표시된 기출 출제 연도를 `tags`에 `y{yyyy}` 형식으로 적는다(예: `tags: [y2014, y2018]`).
+- 공통 지문 ID는 `g`로 시작하고 파일 안에서 유일해야 한다(빌드 검사는 이 두 가지뿐). 실제로는 `g19-code-01`, `gb03-fig-02`, `gl02-…`, `gcp006-…`처럼 `g` 뒤를 출처별로 다르게 쓴다.
+- 북마크·오답 기록(과 이를 모아 보여주는 학습 기록)의 키는 `{subjectId}:{sourceId}:{questionId}`다(예: `algorithms:workbook:b03-07`). 공개 후 출처 id를 바꾸거나 문제 ID 번호를 다시 매기면 기존 기록이 어떤 문제와도 연결되지 않으므로 세 값 모두 고정으로 취급한다.
 
 ## 4.1 모의시험 분산 기준
 
-모의시험은 과목별로 하나의 출처만 사용한다. 과목마다 문항 구성으로 `무작위 25문제`(기본)와 `전체 풀기` 중 하나를 고르며, 전체 풀기면 출처의 모든 문제를 그대로 쓴다. 무작위 25문제는 출처 종류에 따라 다르게 처리한다.
+모의시험은 과목별로 출처 하나를 쓰고, 문항 구성은 `무작위 25문제`(기본) 또는 `전체 풀기`다.
 
-- 공통: 출처가 25문항 이하이면 그대로 사용한다.
-- 기출(`kind: exam`): 25문항보다 많으면(예: 35문항) 무작위로 25문항을 추출한다.
-- 교재(`kind: textbook`), 워크북(`kind: workbook`), 강의(`kind: lecture`), 특강(`kind: intensive`): 문제 ID의 첫 숫자 그룹을 기준으로 전체 그룹 범위를 파악하고, 25문항을 가능한 균등하게 분산 추출한다.
+- 출처가 25문항 이하이면 그대로 쓴다.
+- 기출(`exam`): 25문항을 무작위로 뽑는다.
+- 교재·워크북·강의·특강: 문제 ID의 첫 숫자 그룹(`b07-12` → 07)을 기준으로, 1부터 최대 그룹까지 그룹마다 `floor(25 / 최대 그룹)`문항을 배정하고 나머지는 작은 그룹부터 1문항씩 더한다(최대 그룹 07 → 3~4문항, 15 → 1~2문항). 보유 문항이 모자란 그룹은 가능한 만큼 뽑고, 부족분은 남은 전체 후보에서 무작위로 채운다.
 
-ID 그룹 예:
+## 4.2 리치 텍스트 (수식·강조·인라인 코드)
 
-```text
-t03-08 -> 03
-b07-12 -> 07
-l11-04 -> 11
-i02-03 -> 02
-```
+문제 본문, 선택지, 텍스트 지문, 해설, `data-table` 셀에 적용한다.
 
-그룹 범위는 `1`부터 실제 존재하는 문제의 최대 그룹 번호까지다. 그룹마다 `floor(25 / 최대 그룹)`문항을 배정하고, 나머지는 번호가 작은 그룹부터 1문항씩 더한다. 최대 그룹이 `07`이면 각 그룹에서 3~4문항, 최대 그룹이 `11`이면 2~3문항, 최대 그룹이 `15`이면 1~2문항을 배정한다. 특정 그룹의 보유 문항이 배정량보다 적으면 가능한 만큼만 뽑고, 부족분은 아직 선택되지 않은 전체 후보에서 무작위로 채운다.
-
-## 4.2 수식 렌더링
-
-문제 본문, 선택지, 텍스트 지문, 해설은 KaTeX 문법의 인라인/블록 수식을 지원한다.
-
-- 인라인 수식: `$T(n)=O(n\log n)$`
-- 블록 수식: `$$ ... $$`
-- 수식이 없는 일반 텍스트는 HTML escape 후 그대로 표시한다.
-- 수식이 아닌 글자 그대로의 달러 기호(예: 입력 끝 표시 `$`)는 `\$`로 쓴다. 렌더러는 `\$`를 수식 구분자로 보지 않고 `$`로 표시한다. 한 문자열에 `$`가 두 개 이상 있으면 그 사이가 수식으로 해석되므로 반드시 이스케이프한다. 전각 `＄`로 대신하지 않는다.
-- YAML에서 `\$`의 백슬래시가 유지되도록 작은따옴표나 블록 문자열(`|`)을 쓴다. 큰따옴표 안에서는 `\\$`로 써야 한다.
-- 코드 지문(`type: code`)과 `cellFormat: code` 표는 수식 렌더링을 하지 않으므로 `$`를 그대로 쓴다.
-- 빌드는 인라인 코드 밖의 모든 수식 구간을 KaTeX로 파싱해 보고, 실패하면 빌드를 멈춘다. 해설은 줄 단위로 검사한다.
-- 런타임 수식 렌더링 실패 시 원문 수식 문자열을 안전하게 표시한다.
-- 긴 수식은 모바일에서 가로 스크롤될 수 있도록 UI에서 처리한다.
-- 원본 문제에서 굵게 표시된 핵심 문구는 문제 본문, 선택지, 텍스트 지문, 해설에서 `==강조==`로 감싸면 하이라이트로 렌더링한다.
-- 한 문자열 안에서 `==`가 두 번 나오면 그 사이가 강조로 해석되고 이스케이프 방법이 없다. 해설에 `if(i==4)`처럼 비교 연산자를 쓸 때는 아래 인라인 코드로 감싼다.
-- 인라인 코드: 문제 본문, 선택지, 텍스트 지문, 해설에서 `` `…` ``로 감싼 부분은 고정폭 인라인 코드로 표시한다. 안쪽은 HTML escape만 하고 KaTeX, `==강조==`, `\$` 처리를 하지 않으며 빌드 수식 검증도 건너뛴다. 짝이 없는 백틱 하나는 글자 그대로 표시한다. 인라인 코드 안에 백틱 글자는 넣을 수 없다.
-- 여러 줄 선택지: 수식 밖에 줄바꿈이 있는 선택지 `text`(코드 선택지를 `|` 블록으로 쓴 경우)는 고정폭 글꼴로 공백·들여쓰기를 보존해 표시한다. YAML `|`가 붙이는 끝 줄바꿈 하나는 버린다. `$$…$$` 수식만 있는 여러 줄 선택지는 수식으로 렌더링한다.
-
-수식 선택지 예:
-
-```yaml
-choices:
-  - id: '1'
-    text: '$T(n)=T(n/2)+\Theta(1),\ T(1)=\Theta(1)$'
-  - id: '2'
-    text: |
-      $$
-      LCS(i,j)=
-      \begin{cases}
-      0 & i=0 \text{ 또는 } j=0 \\
-      LCS(i-1,j-1)+1 & x_i=y_j \\
-      \max\{LCS(i,j-1), LCS(i-1,j)\} & x_i \ne y_j
-      \end{cases}
-      $$
-```
-
-YAML 큰따옴표 안에서는 `\` 이스케이프가 필요하므로, 복잡한 수식은 작은따옴표 또는 블록 문자열(`|`)을 우선 사용한다.
+- 수식: KaTeX 인라인 `$…$`, 블록 `$$…$$`. 빌드는 인라인 코드 밖 모든 수식 구간을 파싱해 보고 실패하면 멈춘다(해설은 줄 단위). 런타임 실패 시 원문을 그대로 보인다.
+- 글자 그대로의 `$`(입력 끝 표시 등)는 `\$`로 쓴다. 한 문자열에 `$`가 둘 이상이면 그 사이가 수식이 되므로 반드시 이스케이프하고, 전각 `＄`로 대신하지 않는다. 백슬래시가 유지되도록 작은따옴표나 `|` 블록을 쓴다(큰따옴표 안에서는 `\\$`). 코드 지문과 `cellFormat: code` 표에서는 `$`를 그대로 쓴다.
+- 복잡한 수식은 작은따옴표나 `|` 블록으로 쓴다(큰따옴표 안에서는 `\` 이스케이프 필요).
+- 강조: 원본에서 굵게 표시된 핵심 문구는 `==강조==`. 한 문자열에서 `==`가 두 번 나오면 그 사이가 강조가 되고 이스케이프 방법이 없으므로 `if(i==4)` 같은 코드는 인라인 코드로 감싼다.
+- 인라인 코드: `` `…` `` 안쪽은 HTML escape만 하고 수식·강조·`\$` 처리와 빌드 수식 검증을 하지 않는다. 짝 없는 백틱 하나는 글자 그대로 보인다. 백틱 글자 자체를 보여야 하면(셸 명령 치환 등) 코드 지문이나 `cellFormat: code` 표로 옮긴다.
+- 여러 줄 선택지: 수식 밖에 줄바꿈이 있는 `text`(`|` 블록 코드 선택지)는 고정폭으로 공백·들여쓰기를 보존하고, `|`가 붙이는 끝 줄바꿈 하나는 버린다. `$$…$$`만 있는 여러 줄 선택지는 수식으로 렌더링한다.
 
 ## 4.3 선택지 이미지/다이어그램
 
-선택지 자체가 그림인 문제도 도표화/코드화가 가능하면 `choices[].diagram`으로 작성한다. diagram으로 재현하기 어려운 경우에만 `choices[].image`에 선택지별 crop 이미지를 연결한다. 이미지·diagram 선택지는 `text: ''`로 비워 둔다. 화면 번호는 렌더러가 표시 순서로 매기므로, `①`처럼 번호를 텍스트로 적으면 선택지를 섞었을 때 `1번 ③`처럼 번호가 두 개 보인다. `alt`에는 `선택지 1`처럼 데이터상 선택지 식별자와 그림 종류만 적고, 정답 여부나 풀이의 핵심(예: 게이트 이름, 판정 조건)은 드러내지 않는다. 빈 `text`는 `image`나 `diagram`이 있는 선택지에만 허용된다.
-
-```yaml
-choices:
-  - id: '1'
-    text: ''
-    image:
-      path: images/subjects/algorithms/textbook/t04-07-choice-1.png
-      alt: 알고리즘 교재 4장 7번 선택지 1 그래프
-  - id: '2'
-    text: ''
-    image:
-      path: images/subjects/algorithms/textbook/t04-07-choice-2.png
-      alt: 알고리즘 교재 4장 7번 선택지 2 그래프
-```
-
-선택지 도표가 구조화 렌더링 가능한 형태라면 `choices[].diagram`을 사용한다. 예를 들어 자원할당 그래프 선택지는 crop 이미지 대신 `resource-allocation-graph` 데이터로 작성한다.
-
-```yaml
-choices:
-  - id: '1'
-    text: ''
-    diagram:
-      type: resource-allocation-graph
-      width: 260
-      height: 190
-      nodes:
-        - { id: p1, kind: process, label: p_1, x: 45, y: 95 }
-        - { id: r1, kind: resource, label: r_1, x: 88, y: 35 }
-      edges:
-        - { from: p1, to: r1 }
-```
-
-도표가 문제 본문에만 필요한 경우에는 `question.images`, `passages.type: image`, 또는 `passages.type: diagram`을 사용한다. 선택지마다 다른 그림을 골라야 하는 경우에는 `choices[].image`나 `choices[].diagram`을 사용한다.
+- 선택지 자체가 그림이면 가능한 한 `choices[].diagram`으로 코드화하고, 어려울 때만 `choices[].image`에 선택지별 crop 이미지를 연결한다.
+- 이미지·diagram 선택지는 `text: ''`로 비운다(빈 `text`는 이 경우에만 허용). `①`처럼 번호를 텍스트로 적으면 섞었을 때 번호가 두 개 보인다.
+- `alt`에는 `선택지 1`처럼 선택지 식별자와 그림 종류만 적고, 정답 여부나 풀이 핵심(게이트 이름, 판정 조건 등)은 드러내지 않는다.
+- 본문에만 필요한 도표는 `question.images` 또는 `passages`(`image`/`diagram`)를 쓴다.
 
 ## 4.4 교재 장(syllabus)과 챕터별 풀이
 
-챕터별 풀이는 문제를 새로 복사하지 않고, 기존 출처의 문제를 **교재 장** 기준으로 모아 보여준다. 기준 축은 교재 장이며, 강의는 장에 연결한다. 문제 하나는 **주 장 하나**에만 속한다. 절 단위 분류는 하지 않는다.
+챕터별 풀이는 문제를 복사하지 않고 기존 출처의 문제를 **교재 장** 기준으로 모은다. 강의는 장에 연결하고, 문제 하나는 **주 장 하나**에만 속하며 절 단위는 분류하지 않는다.
 
 ### syllabus 파일
 
-`data/subjects/{subjectId}/syllabus.yaml` (빌드 후 `public/data/subjects/{subjectId}/syllabus.json`)
+`data/subjects/{subjectId}/syllabus.yaml` (빌드 후 `syllabus.json`)
 
 ```yaml
-# data/subjects/introduction-to-computer-science/syllabus.yaml (발췌)
 subjectId: introduction-to-computer-science
 title: 컴퓨터과학개론
-textbook:
+textbook: # 선택. 사람이 참고
   authors: [이관용, 정광식]
   publisher: 한국방송통신대학교출판문화원
-  publishedAt: '2021-07-25' # 따옴표 필수 (없으면 YAML Date로 읽힘)
+  publishedAt: '2021-07-25' # 따옴표 필수 (없으면 YAML Date)
+parts: # 선택. 부 구분이 있는 교재(선형대수)
+  - { no: 1, title: 일차연립방정식과 행렬, chapters: [1, 2] }
 chapters:
   - no: 1
     title: 컴퓨터와 데이터
-    sections: # 참고용. 문제 분류에는 쓰지 않는다
+    sections: # 참고용. 분류에 쓰지 않음
       - { no: '1.1', title: 컴퓨터와 컴퓨터과학 }
 lectures:
   - { no: 1, title: '컴퓨터와 자료 (1)', chapters: [1] }
-  - { no: 2, title: '컴퓨터와 자료 (2)', chapters: [1] }
-```
-
-부 구분이 있는 교재(선형대수)는 `parts`를, 한 강이 여러 장을 다루는 과목(컴파일러구성)은 `chapters`에 여러 장을 적는다.
-
-```yaml
-# linear-algebra/syllabus.yaml (발췌)
-parts:
-  - { no: 1, title: 일차연립방정식과 행렬, chapters: [1, 2, 3, 4, 5, 6] }
-
-# compiler-construction/syllabus.yaml (발췌)
-lectures:
-  - { no: 14, title: 의미분석과 중간언어, chapters: [6, 7], note: '추정: …' } # 첫 장(6장)이 주 장
+  - { no: 14, title: 의미분석과 중간언어, chapters: [6, 7], note: '…' } # 첫 장이 주 장
 ```
 
 - `chapters[].no`, `lectures[].no`, `parts[].no`는 파일 안에서 유일한 양의 정수다.
-- `chapters`는 비어 있으면 안 된다. `parts[].chapters`, `lectures[].chapters`는 비어 있지 않아야 하고 존재하는 장 번호만 참조한다.
+- `chapters`는 비어 있으면 안 된다. `parts[].chapters`, `lectures[].chapters`는 비어 있지 않고 존재하는 장만 참조한다.
 - `parts`가 있으면 모든 장이 정확히 한 부에 속해야 한다.
-- `lectures[].sections`, `lectures[].note`는 사람이 참고하는 선택 필드다.
+- `lectures[].sections`, `lectures[].note`는 참고용 선택 필드다.
+- 교재 장이 없는 강은 `lectures`에서 뺀다(C프로그래밍 15강 C++ 개요). 강의 출처에서 빠진 강의 문제는 `chapter`를 적지 않으면 빌드가 실패한다.
 
 ### 문제의 장 결정 규칙
 
 | 출처 종류                            | 장 결정 방법                                             | 문제 파일에 적을 것                                  |
 | ------------------------------------ | -------------------------------------------------------- | ---------------------------------------------------- |
 | 기출 (`exam`)                        | `chapter` 필드                                           | `chapter: N` 또는 `outdated: true` (둘 중 하나 필수) |
-| 교재·워크북 (`textbook`, `workbook`) | ID 첫 숫자 그룹 = 장 (`b03-07` → 3장)                    | 없음                                                 |
+| 교재·워크북 (`textbook`, `workbook`) | ID 첫 숫자 그룹 = 장 (`b03-07` → 3장)                    | 없음 (ID 그룹이 장이 아니면 `chapter: N`)            |
 | 강의 (`lecture`)                     | ID 첫 숫자 그룹 = 강 → `syllabus.lectures[].chapters[0]` | 없음 (강이 syllabus에 있어야 함)                     |
 | 특강 (`intensive`)                   | `chapter` 필드 (특강 단원 번호는 교재 장·강과 무관)      | `chapter: N`                                         |
 
-- 어느 종류든 `chapter`를 명시하면 ID보다 우선한다. 강 하나가 여러 장을 다룰 때 특정 문제를 다른 장에 두고 싶으면 `chapter`를 적는다.
-- 여러 장에 걸친 문제는 문제가 실제로 묻는 핵심 개념이 속한 장 하나를 주 장으로 정한다.
-
-```yaml
-- id: e19-07
-  type: multiple-choice
-  chapter: 4
-  prompt: ...
-```
+- `chapter`를 적으면 어느 종류든 ID보다 우선한다. 다음 경우에 쓴다: ID 그룹이 장이 아닌 워크북(C프로그래밍), 교재 장과 다른 단위의 부록 장(시뮬레이션 워크북 10장 응용사례 → `chapter: 2`), 여러 장을 다루는 강의 특정 문제, 기출과 같은 유형인 강의 문제를 기출과 같은 장으로 맞출 때.
+- 여러 장에 걸친 문제는 실제로 묻는 핵심 개념의 장 하나를 주 장으로 정한다.
 
 ### outdated 문제
 
-현재 교재 목차에 해당 주제가 없는 기출(교재 개정으로 빠진 내용)은 `chapter` 대신 `outdated: true`를 적고, [outdated.md](./outdated.md)에 문제 키와 근거를 기록한다.
+현재 교재 목차에 주제가 없는 기출(교재 개정으로 빠진 내용)은 `chapter` 대신 `outdated: true`를 적고 [outdated.md](./outdated.md)에 ``- `{subjectId}:{sourceId}:{questionId}` — 주제 — 근거`` 형식으로 기록한다.
 
-- outdated 문제는 챕터별 풀이에서 제외한다. 연도별 풀이와 모의 시험에는 그대로 나온다.
-- `outdated`는 기출 문제에만 쓸 수 있다. 강의·교재 문제는 현재 교재 기준으로 만들어지므로 장이 없으면 데이터 오류로 본다.
-- 빌드는 `outdated: true`인 문제와 `docs/outdated.md`의 목록 항목(``- `{subjectId}:{sourceId}:{questionId}` — …``)에 적힌 문제 키가 정확히 일치하는지 검사한다.
+- 챕터별 풀이에서만 제외하고, 연도별 풀이와 모의 시험에는 그대로 나온다.
+- 기출에만 쓸 수 있다. 강의·교재 문제는 현재 교재 기준이므로 장이 없으면 데이터 오류다.
 
 ### 빌드 검증
 
-- syllabus가 있는 과목: 모든 문제의 장이 결정되어야 하고(outdated 제외), 그 장이 `syllabus.chapters`에 있어야 한다.
-- syllabus가 없는 과목: `chapter`, `outdated` 필드를 쓰면 빌드가 실패한다.
-- `chapter`와 `outdated`를 한 문제에 함께 쓰면 빌드가 실패한다.
+- syllabus가 있는 과목: 모든 문제(outdated 제외)의 장이 정해지고 `syllabus.chapters`에 있어야 한다. `outdated: true` 문제와 `docs/outdated.md` 목록이 정확히 일치해야 한다.
+- syllabus가 없는 과목: `chapter`, `outdated`를 쓰면 실패한다.
+- `chapter`와 `outdated`를 한 문제에 함께 쓰면 실패한다.
 
-## 5. 공통 지문 처리
+## 5. 공통 지문과 다이어그램
 
-공통 지문은 별도 `passages` 배열로 분리하고, 문제에서 `passageRefs` 배열로 참조한다.
+공통 지문은 `passages` 배열로 분리하고 문제에서 `passageRefs` 배열로 참조한다(중복 저장 방지, 한 문제에 코드 + 표처럼 여러 지문 연결 가능). `passageRefs`가 없으면 단독 문제다.
 
-이유:
+- `passages.type`: `text`(수식 가능), `code`(`language`, `body`, 선택 `highlights`), `image`(`image.path`, `image.alt`), `diagram`(`diagram`).
+- `passages.id`는 참조용이며 화면에 노출하지 않는다. 빌드는 참조 여부와 상관없이 모든 지문을 검사하지만(ID 접두, `type`, 수식, 이미지, diagram), 어떤 문제도 참조하지 않는 지문인지는 확인하지 않는다.
+- 도표·그래프·표처럼 시각 정보가 의미를 갖는 지문은 텍스트로 해석해 `body`에 옮기지 않는다. 구조적으로 그릴 수 있으면 `diagram`, 재현이 어렵거나 세부 시각 형태 자체가 문제 조건일 때만 crop `image`를 쓴다.
 
-- 같은 지문이 여러 문제에 반복 저장되는 것을 피할 수 있다.
-- 지문 수정 시 한 곳만 고치면 된다.
-- 코드 지문, 이미지 지문, 다이어그램 지문, 긴 설명을 구조화하기 쉽다.
-- 문제 1개에 여러 지문이 함께 묶이는 경우(코드 + 입출력 표)도 배열이라 자연스럽게 처리된다.
-- 도표, 그래프, 표처럼 원본 이미지가 의미를 갖는 공통 지문은 텍스트로 해석해 `body`에 옮기지 않는다.
-- 브라우저에서 구조적으로 그릴 수 있는 도표는 `type: diagram`과 `diagram` 필드를 사용해 이미지 대신 코드 렌더링한다.
-- diagram으로 재현하기 어렵거나 원본의 세부 시각 형태 자체가 문제 조건인 불가피한 경우에만 `type: image`와 `image.path`로 원본 crop 이미지를 참조한다.
-- 코드 지문에서 원본의 굵게 표시를 보존해야 하면 `highlights`에 강조할 원문 문자열을 기록한다.
-- `passages.id`는 데이터 참조용 식별자이며, 실제 문제 화면에는 노출하지 않는다.
+### diagram 타입
 
-`passageRefs`가 비어있거나 없으면 단독 문제로 취급한다.
+모든 SVG 타입은 `width`, `height`(viewBox 크기)를 가진다. "선택"은 필요할 때만 둔다.
 
-이미지 공통 지문 예:
+- SVG `<text>`에 들어가는 라벨(`simple-graph`·`resource-allocation-graph`의 노드·간선 라벨)에는 KaTeX 수식 문자열(`$v_1$`, `\(...\)`)을 넣지 않고 `v1`처럼 일반 텍스트를 쓴다. 수식이 꼭 필요하면 text 지문·발문·선택지·해설에 쓴다.
+- 노드 `label`은 비울 수 없다. 숨기려면 `hideLabel: true`.
 
-```yaml
-passages:
-  - id: g17-rag-01
-    type: image
-    image:
-      path: images/subjects/operating-systems/past-exams/2017/e17-rag.png
-      alt: 2017년 운영체제 기출 40번 자원할당 그래프
+| 타입                        | 필드                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| --------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `resource-allocation-graph` | `nodes[]`: `id`, `kind`(`process` 원 / `resource` 사각형), `label`(`p_1`처럼 `_1`~`_3`은 하첨자), `x`, `y`, 선택 `units`(단위자원 수). 빌드는 선택 `shape`(`circle`·`box`만), `hideLabel`, `hideNode`, `fontSize`, `radius`, `width`, `height`, `labelDx`/`labelDy`도 허용하지만 현재 렌더러는 이 값들을 쓰지 않는다. `edges[]`: `from`, `to`(노드 id), 선택 `style`(`solid` 기본·`dashed`), `label`, `labelDx`, `labelDy`                                                                                                          |
+| `simple-graph`              | 선택 `directed`(전체 기본 방향). `nodes[]`: `id`, `label`, `x`, `y`, 선택 `hideLabel`, `hideNode`(라벨만 표시), `shape`(`circle` 기본·`box`·`diamond`·`ellipse`; `diamond`·`ellipse`는 `width`·`height`로 크기를 정하고 간선이 윤곽선에서 끝남), `radius`/`width`/`height`, `underline`(E-R 키 속성), `labelDx`/`labelDy`, `fontSize`, `fillColor`, `strokeColor`, `strokeWidth`, `textColor`, `tone`(`filled`만). `edges[]`: `from`, `to`, 선택 `label`, `directed`, `curve`(자기 루프 `curve: 1`), `style`(`solid` 기본·`dashed`) |
+| `ui-window`                 | `title`, `components[]`(비어 있으면 안 됨): `kind`(`checkbox`·`radio`·`label`), `label`, `x`, `y`, 선택 `checked`, `focused`                                                                                                                                                                                                                                                                                                                                                                                                        |
+| `memory-free-list`          | `blocks[]`(위→아래): `id`(유일), `kind`(`os`·`allocated`·`free`), `label`, 선택 `size`(빈 공간 상대 높이, MB)                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| `data-table`                | `columns`(비어 있으면 안 됨), `rows`(비어 있으면 안 되고 행마다 셀 수 = `columns` 수), 선택 `cellFormat`(`text` 기본 / `code`)                                                                                                                                                                                                                                                                                                                                                                                                      |
+| `clock-page-replacement`    | `pointerIndex`(가리키는 `entries` 인덱스), `entries[]`(비어 있으면 안 됨): `page`, `referenceBit`(`0`/`1`)                                                                                                                                                                                                                                                                                                                                                                                                                          |
 
-questions:
-  - id: e17-05
-    passageRefs: [g17-rag-01]
-    prompt: 다음 자원할당 그래프에 대한 설명으로 바른 것은?
-```
+`data-table` 셀:
 
-다이어그램 공통 지문 예:
-
-```yaml
-passages:
-  - id: g07-avoidance-rag-04
-    type: diagram
-    diagram:
-      type: resource-allocation-graph
-      width: 520
-      height: 180
-      nodes:
-        - { id: p1, kind: process, label: p_1, x: 170, y: 90 }
-        - { id: p2, kind: process, label: p_2, x: 350, y: 90 }
-        - { id: r1, kind: resource, label: r_1, x: 260, y: 38 }
-        - { id: r2, kind: resource, label: r_2, x: 260, y: 142 }
-      edges:
-        - { from: r1, to: p1 }
-        - { from: p1, to: r2, style: dashed }
-        - { from: p2, to: r1, style: dashed }
-        - { from: p2, to: r2, style: dashed }
-
-questions:
-  - id: b07-04
-    passageRefs: [g07-avoidance-rag-04]
-    prompt: 변형된 자원할당 그래프에서 운영체제가 수용할 경우 불안전상태가 되는 요청은?
-```
-
-현재 지원하는 `diagram.type`:
-
-- `resource-allocation-graph`: 운영체제 자원할당 그래프
-- `simple-graph`: 일반 그래프, 방향 그래프, 트리, 오토마타 등 노드/간선 도표
-- `ui-window`: Java AWT/Swing 실행 화면처럼 창과 단순 컨트롤 배치가 필요한 도표
-- `memory-free-list`: 운영체제 빈 공간 리스트
-- `data-table`: 표 형태의 공통 지문
-- `clock-page-replacement`: 클럭 페이지 교체 알고리즘의 원형 큐
-
-SVG 기반 `diagram` 라벨 작성 규칙:
-
-- `simple-graph.nodes[].label`, `simple-graph.edges[].label`처럼 SVG `<text>` 안에 직접 들어가는 라벨에는 KaTeX 수식 문자열을 넣지 않는다.
-- 예를 들어 노드 라벨은 `$v_1$` 대신 `v1`, `v2`처럼 일반 텍스트를 사용한다.
-- SVG 내부 텍스트는 HTML 기반 KaTeX 렌더링 대상이 아니므로 `$...$`, `\(...\)`, `\begin{...}` 같은 수식 문자열이 그대로 보이거나 렌더링이 깨질 수 있다.
-- 수식 표기가 반드시 필요하면 diagram 라벨에 넣지 말고, `passages.type: text`의 `body`, 문제 `prompt`, 선택지 `text`, 해설에 별도로 작성한다.
-- `data-table` 셀은 SVG가 아니라 HTML 표로 렌더링하므로 KaTeX 인라인 수식을 사용할 수 있다.
-
-`resource-allocation-graph` 필드:
-
-- `width`, `height`: SVG `viewBox` 크기
-- `nodes`: 프로세스/자원 노드 배열
-- `nodes[].kind`: `process` 또는 `resource`
-- `nodes[].label`: 화면에 표시할 라벨. `p_1`, `r_2`처럼 `_1`, `_2`, `_3` 하첨자 표기를 사용할 수 있다.
-- `nodes[].x`, `nodes[].y`: 다이어그램 내부 좌표
-- `nodes[].units`: 자원 노드 위에 표시할 단위자원 개수. 필요할 때만 둔다.
-- `edges`: 방향 간선 배열
-- `edges[].from`, `edges[].to`: `nodes[].id`를 참조한다.
-- `edges[].style`: 생략하면 실선, `dashed`를 주면 점선으로 렌더링한다.
-- `edges[].label`: 간선 중점에 표시할 라벨. 필요할 때만 둔다.
-- `edges[].labelDx`, `edges[].labelDy`: 간선 라벨 위치를 보정한다. 필요할 때만 둔다.
-
-`simple-graph` 필드:
-
-- `width`, `height`: SVG `viewBox` 크기
-- `directed`: 전체 그래프의 기본 방향성. 필요할 때만 둔다.
-- `nodes`: 일반 노드 배열
-- `nodes[].id`: 간선 참조용 노드 ID
-- `nodes[].label`: 화면에 표시할 라벨. KaTeX 수식 문자열은 넣지 않는다.
-- `nodes[].x`, `nodes[].y`: 다이어그램 내부 좌표
-- `nodes[].hideLabel`: 라벨을 숨길 때 사용한다. 필요할 때만 둔다.
-- `nodes[].hideNode`: 노드 도형을 숨기고 라벨만 표시할 때 사용한다. 필요할 때만 둔다.
-- `nodes[].shape`: `circle`, `box`, `diamond`, `ellipse` 중 하나. 생략하면 `circle`. `diamond`·`ellipse`는 `width`, `height`로 크기를 정하고 간선이 윤곽선에서 끝난다(E-R 다이어그램의 관계·속성 등). 필요할 때만 둔다.
-- `nodes[].radius`, `nodes[].width`, `nodes[].height`: 노드 크기 보정. 필요할 때만 둔다.
-- `nodes[].underline`: 라벨에 밑줄을 긋는다(E-R 다이어그램의 키 속성 등). 필요할 때만 둔다.
-- `nodes[].labelDx`, `nodes[].labelDy`: 라벨 위치를 보정한다. 필요할 때만 둔다.
-- `nodes[].fontSize`, `nodes[].fillColor`, `nodes[].strokeColor`, `nodes[].strokeWidth`, `nodes[].textColor`, `nodes[].tone`(`filled`만 허용): 노드 표시 스타일 보정. 필요할 때만 둔다.
-- `edges`: 간선 배열
-- `edges[].from`, `edges[].to`: `nodes[].id`를 참조한다.
-- `edges[].label`: 간선 라벨. KaTeX 수식 문자열은 넣지 않는다. 필요할 때만 둔다.
-- `edges[].directed`: 개별 간선의 방향성을 지정한다. 필요할 때만 둔다.
-- `edges[].curve`: 간선 곡률을 조정한다. 필요할 때만 둔다.
-- `edges[].style`: 생략하면 실선, `dashed`를 주면 점선으로 렌더링한다. 필요할 때만 둔다.
-
-`ui-window` 필드:
-
-- `width`, `height`: SVG `viewBox` 크기
-- `title`: 창 제목
-- `components`: 창 내부에 표시할 컨트롤 배열. 비어 있으면 안 된다.
-- `components[].kind`: `checkbox`, `radio`, `label`
-- `components[].label`: 표시 텍스트
-- `components[].x`, `components[].y`: 컨트롤 좌표
-- `components[].checked`: 체크박스/라디오 선택 상태. 필요할 때만 둔다.
-- `components[].focused`: 키보드 포커스 표시. 필요할 때만 둔다.
-
-`memory-free-list` 필드:
-
-- `width`, `height`: SVG `viewBox` 크기
-- `blocks`: 위에서 아래 순서로 표시할 메모리 블록 배열
-- `blocks[].id`: 블록 ID. 다이어그램 안에서 유일해야 한다.
-- `blocks[].kind`: `os`, `allocated`, `free`
-- `blocks[].label`: 화면에 표시할 라벨
-- `blocks[].size`: 빈 공간 블록의 상대 높이를 계산할 때 사용하는 MB 크기. 필요할 때만 둔다.
-
-`data-table` 필드:
-
-- `columns`: 표 머리글 배열. 비어 있으면 안 된다.
-- `cellFormat`: 선택 필드. 기본값은 `text`이며, 코드형 표는 `code`를 사용한다.
-- `rows`: 행 배열. 비어 있으면 안 되며, 각 행의 셀 개수는 `columns` 개수와 같아야 한다.
-- 셀 문자열에는 일반 텍스트와 KaTeX 인라인 수식을 사용할 수 있다.
-- `cellFormat: code`일 때 셀 문자열은 공백과 줄바꿈을 보존하는 코드 블록으로 렌더링된다.
-
-`clock-page-replacement` 필드:
-
-- `width`, `height`: SVG `viewBox` 크기
-- `pointerIndex`: 포인터가 가리키는 `entries` 배열 인덱스
-- `entries`: 원형 큐 항목 배열. 비어 있으면 안 된다.
-- `entries[].page`: 페이지 라벨
-- `entries[].referenceBit`: 참조 비트. `0` 또는 `1`
-
-빌드 시 검증 규칙:
-
-- `passages.id`는 `g`로 시작하고 파일 안에서 유일해야 한다.
-- `passages.type`은 `text`, `code`, `image`, `diagram` 중 하나다.
-- `passageRefs`의 모든 ID가 동일 파일의 `passages.id`에 존재해야 한다.
-- 어떤 문제도 참조하지 않는 `passages` 항목이 있으면 경고만 출력한다 (작업 중 임시 보존 가능).
+- HTML 표라 리치 텍스트(수식·인라인 코드·`==강조==`)를 쓸 수 있고 빌드가 셀마다 수식을 검사한다.
+- 셀은 빈 문자열일 수 없다. 빈 칸은 `' '`(공백 한 칸).
+- `cellFormat: code`면 셀이 공백·줄바꿈을 보존하는 `<pre><code>`(끝 공백 제거)로 렌더링되고 리치 텍스트 처리와 수식 검증을 하지 않는다. 백틱이나 `$`를 글자 그대로 보일 때 쓴다. 머리글은 항상 리치 텍스트다.
 
 ## 6. 정답 표현
 
-정답은 항상 배열로 저장한다.
-
-```yaml
-answers: ["1"]            # 단일 정답
-answers: ["1", "3"]       # 복수 정답
-answers: ["O"]            # OX
-```
-
-문제 타입별 처리:
+정답은 항상 `choices.id` 배열이다: `['1']`(단일), `['1', '3']`(복수), `['O']`(OX).
 
 | `type`            | UI                      | 정답 판정                                                |
 | ----------------- | ----------------------- | -------------------------------------------------------- |
@@ -548,11 +224,7 @@ answers: ["O"]            # OX
 | `multi-answer`    | 체크박스                | 사용자 선택 집합이 `answers` 집합과 정확히 일치하면 정답 |
 | `ox`              | 라디오 버튼 (O/X 두 개) | `multiple-choice`와 동일                                 |
 
-`multi-answer`이거나 `answers.length > 1`이면 자동으로 체크박스 UI를 사용한다.
-
-`answerKey`(예: A, B, C, F)는 출제 원본 표기를 보존하기 위한 선택 필드이며, 채점에는 사용하지 않는다.
-
-중복정답 대조표에서 알파벳 표기가 사용되는 경우 `answerKey`는 원본 알파벳을 보존하고, `answers`에는 실제 선택지 ID 배열을 기록한다.
+`multi-answer`이거나 `answers.length > 1`이면 체크박스 UI를 쓴다. `answerKey`는 출제 원본의 알파벳 표기를 보존하는 선택 필드로 채점에 쓰지 않으며, `answers`에는 실제 선택지 ID를 적는다.
 
 | `answerKey` | `answers`              |
 | ----------- | ---------------------- |
@@ -568,67 +240,49 @@ answers: ["O"]            # OX
 | J           | `["2", "3", "4"]`      |
 | K           | `["1", "2", "3", "4"]` |
 
-콘텐츠 입력 단계에서 공식 정오표/정답표를 아직 확인하지 못한 경우에도 `answers`는 비워두지 않는다. 문제 이미지 또는 원문을 판독해 직접 풀이한 임시 정답을 기재하고, 풀이 근거를 `explanation`에 남긴다. 공식 정답표나 정답 대조표가 있는 기출은 세트 입력 완료 후 `answers` 문자열을 원본 정답과 대조한다.
+`answers`는 비워 두지 않는다. 공식 정답표를 확인하기 전이면 원문을 판독해 직접 푼 임시 정답과 근거를 적고, 정답표가 있는 기출은 세트 입력 후 `answers`를 원본 정답과 대조해 다르면 `answers`와 해설을 고친다.
 
 ## 7. 해설 작성
 
-`explanation`은 단순 정답 문장이 아니라 학습자가 다시 풀 때 판단 근거를 확인할 수 있는 형태로 작성한다.
-
-작성 기준:
-
-- 각 선택지별로 왜 정답 또는 오답인지 이유를 정리한다.
-- 정답 선택지는 핵심 판단 근거를 명확히 적는다.
-- 오답 선택지는 단순히 "틀렸다"가 아니라, 해당 선택지가 가리키는 개념이 무엇인지 설명하고 왜 문제의 조건 또는 질문과 맞지 않는지 적는다.
-- 문항의 핵심 개념에 대해 4~5줄 분량의 요약 설명을 함께 제공한다.
-- 공식 정답 검증 전 임시 해설도 같은 구조로 작성하고, 공식 정답 대조 후 필요한 경우 보정한다.
-
-권장 형식:
+`explanation`은 다시 풀 때 판단 근거를 확인할 수 있게 쓴다.
 
 ```yaml
 explanation: |
   선택지 1: ...
   선택지 2: ...
-  선택지 3: ...
-  선택지 4: ...
 
   핵심 개념:
   ...
 ```
 
+- 선택지마다 정답·오답 이유를 적는다. 오답은 "틀렸다"로 끝내지 않고 그 선택지가 가리키는 개념과 문제 조건에 맞지 않는 이유를 적는다.
+- 핵심 개념을 4~5줄로 요약한다.
+- 약어가 핵심 판단에 나오면 첫 설명에서 풀폼을 함께 적는다(예: `RTOS(Real-Time Operating System)`).
+- 임시 해설도 같은 구조로 쓰고, 공식 정답 대조 후 필요하면 보정한다.
+
 ### 원본 유지와 `※` 표시
 
-발문·선택지·지문은 원본(`origin/`의 스캔·PDF·캡처)을 글자 그대로 옮기고, 인쇄 정답(공식 정답표)을 우선한다. 원본에 문제가 있어도 이 부분은 고치지 않는다. 대신 해설에 `※` 줄로 따로 표시한다.
+발문·선택지·지문은 원본(`origin/`의 스캔·PDF·캡처)을 글자 그대로 옮기고 인쇄 정답(공식 정답표)을 우선한다. 원본에 문제가 있어도 이 부분은 고치지 않고 해설에 `※` 줄로 표시한다.
 
-- 오탈자·기호 오류처럼 풀이에 영향을 주는 원본 표기는 `※ 원본 표기: ...` 한 줄로 알린다. 풀이에 영향이 없으면 적지 않는다.
-- 원본 서술이 사실과 다르거나(예: 연도·명칭·기술 동작) 인쇄 정답이 표준·실제 동작 기준으로 논란이 있으면 `※` 줄에 원본 내용, 실제로 맞는 내용, 인쇄 정답을 유지한다는 점을 적는다.
-- 해설 문장(`선택지 N:` 줄, 핵심 개념)은 작성자가 쓰는 글이므로 원본 해설의 오류를 그대로 옮기지 않고 사실대로 쓴다. 인쇄 정답 선택지 해설이 `※` 내용과 부딪히면 그 줄에 `※ 참고`처럼 `※` 줄을 가리킨다.
-- 공통 지문 머리말의 원본 문항 범위(예: `(52~53)`)도 원본대로 두고, 앱 문항 번호와 다르면 해당 문항 해설에 `※` 줄로 대응 번호를 적는다.
-- `※` 줄은 핵심 개념 블록 뒤에 빈 줄을 두고 적는다. 렌더러는 `※`로 시작하는 줄을 위치와 상관없이 핵심 개념에서 분리해 해설 끝 별도 안내 블록에 한 줄씩 표시한다. 이어지는 줄은 묶이지 않으므로 `※` 항목 하나는 한 줄로 쓴다.
+- 풀이에 영향을 주는 오탈자·기호 오류는 `※ 원본 표기: ...` 한 줄로 알린다. 영향이 없으면 적지 않는다.
+- 원본 서술이 사실과 다르거나 인쇄 정답이 표준·실제 동작 기준으로 논란이 있으면 `※` 줄에 원본 내용, 실제로 맞는 내용, 인쇄 정답을 유지한다는 점을 적는다.
+- 해설 문장(`선택지 N:` 줄, 핵심 개념)은 작성자의 글이므로 원본 해설의 오류를 옮기지 않고 사실대로 쓴다. 인쇄 정답 선택지 해설이 `※` 내용과 부딪히면 그 줄에서 `※ 참고`처럼 `※` 줄을 가리킨다.
+- 공통 지문 머리말의 원본 문항 범위(예: `(52~53)`)는 원본대로 두고, 앱 문항 번호와 다르면 해설 `※` 줄에 대응 번호를 적는다.
+- `※` 줄은 핵심 개념 뒤에 빈 줄을 두고 적는다. 렌더러는 `※`로 시작하는 줄을 위치와 상관없이 해설 끝 안내 블록에 한 줄씩 표시하고 이어지는 줄은 묶지 않으므로, 항목 하나는 한 줄로 쓴다.
 - 데이터 작업 메모("그대로 옮겼다")나 추측("~로 보인다", "확인이 필요하다")은 해설에 쓰지 않는다.
 
 ### 선택지 지칭
 
-선택지 순서는 무작위로 섞일 수 있고, 화면 번호는 표시 순서로 매겨진다([ux.md §2](./ux.md)). 따라서 해설 본문과 `※` 줄에서는 선택지를 `①`, `선택지 3과 같은`, `①과 ④`처럼 번호로 가리키지 않고 내용으로 지칭한다(예: `"정수형 자료에 대해서만 가능하다" 선택지`). 줄 머리의 `선택지 N:`은 렌더러가 `choice.id`로 연결하므로 그대로 쓴다.
+선택지는 섞일 수 있고 화면 번호는 표시 순서로 매겨진다([ux.md §2](./ux.md)). 해설 본문과 `※` 줄에서는 선택지를 `①`, `선택지 3과 같은`처럼 번호로 가리키지 않고 내용으로 지칭한다(예: `"정수형 자료에 대해서만 가능하다" 선택지`). 줄 머리의 `선택지 N:`은 렌더러가 `choice.id`로 연결하므로 그대로 쓴다.
 
-같은 이유로 다른 문항을 번호로 참조하는 발문(예: `위의 문제 15번`)은 원본대로 두되, 필요한 표·지문을 `passageRefs`로 함께 연결해 단독으로 풀 수 있게 한다. `계속해서 $X_2$ 를 구하면?`처럼 앞 문항 발문에만 있는 조건(예: `$X_0 = 1$ 일 때`)이 필요한 문항은 그 조건 문구를 원문 그대로 떼어 작은 text 지문으로 만들고 뒤 문항에만 연결한다(앞 문항은 발문에 이미 있으므로 연결하지 않는다).
+다른 문항을 번호로 참조하는 발문(예: `위의 문제 15번`)은 원본대로 두되 필요한 표·지문을 `passageRefs`로 연결해 단독으로 풀 수 있게 한다. 앞 문항 발문에만 있는 조건(예: `$X_0 = 1$ 일 때`)이 필요한 뒤 문항은 그 문구를 원문 그대로 작은 text 지문으로 떼어 뒤 문항에만 연결한다.
 
 ## 8. 이미지 처리
 
-문제 이미지는 `public/images/subjects/{subjectId}/` 아래에 파일로 두고, 데이터에는 `public/` 기준 상대 경로(`images/subjects/...`)를 기록한다. 폴더는 기출이면 `past-exams/{year}/`, 그 외 출처는 `sourceId`(`workbook/`, `textbook/`, `lecture-exercises/`)를 쓴다. 문제 1개에만 붙는 이미지는 `questions[].images`에 두고, 여러 문제가 공유하는 도표/표 이미지는 `passages[].image`에 둔다.
-
-```yaml
-images:
-  - path: images/subjects/operating-systems/past-exams/2019/e19-01.png
-    alt: 2019년 1번 문제 참고 이미지
-```
-
-규칙:
-
-- 파일명에 문제 ID를 포함해 추적성을 확보한다 (`e19-01.png`, `b03-07-fig1.png`).
-- 빌드 단계에서 `path` 파일이 실제 존재하는지(`public/` 또는 저장소 루트 기준) 검증하고, `alt`가 비어 있으면 실패한다.
-- 시험지 전체 이미지는 공개 자산으로 쓰지 않는다.
-- 이미지 지문은 OCR/해석 텍스트로 대체하지 않는다.
-- 자원할당 그래프처럼 앱의 다이어그램 렌더러가 지원하는 구조화 도표는 `passages.type: diagram`으로 작성한다.
-- 도표화/코드화가 불가능하거나 원본 이미지의 세부 시각 정보 자체가 채점 단서인 불가피한 경우에만 crop 이미지 경로를 저장하고 앱에서 이미지를 렌더링한다.
-- `scripts/crop-png.mjs`는 원본 이미지에서 필요한 영역을 PNG로 잘라내는 보조 도구다.
-- 이미지 최적화는 초기에는 적용하지 않는다. 용량 이슈 발생 시 빌드 단계에서 WebP 변환을 추가한다.
+- 파일은 `public/images/subjects/{subjectId}/` 아래 두고 데이터에는 `public/` 기준 상대 경로(`images/subjects/...`)를 적는다. 폴더는 기출이면 `past-exams/{year}/`, 그 외는 `sourceId`(`workbook/`, `textbook/`, `lecture-exercises/`).
+- 문제 하나에만 붙는 이미지는 `questions[].images`, 여러 문제가 공유하면 `passages[].image`.
+- 파일명에 문제 ID를 넣는다(`e19-01.png`, `b03-07-fig1.png`).
+- 빌드는 `path` 파일 존재(`public/` 또는 저장소 루트 기준)와 비어 있지 않은 `alt`를 검사한다.
+- 시험지 전체 이미지는 공개 자산으로 쓰지 않고, 이미지 지문을 OCR/해석 텍스트로 대체하지 않는다.
+- 구조화 가능한 도표(자원할당 그래프, 빈 공간 리스트, 표, 클럭 큐 등)는 diagram으로 쓰고, 불가능하거나 세부 시각 정보 자체가 채점 단서일 때만 `pnpm image:crop`(`scripts/crop-png.mjs`)으로 잘라 쓴다.
+- 이미지 최적화(WebP)는 용량 문제가 생기면 빌드에 추가한다.

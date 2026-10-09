@@ -1,150 +1,149 @@
 # 문제 데이터 기여 가이드
 
-PASSture에 새 과목이나 문제 세트를 추가하는 방법을 설명합니다.
-
----
+PASSture에 새 과목이나 문제 세트를 추가하는 방법입니다. 필드·식별자·장 배정 규칙의 기준은 [docs/data-schema.md](docs/data-schema.md), 빌드 실패 조건은 [docs/architecture.md §3](docs/architecture.md)입니다.
 
 ## 목차
 
-1. [전체 흐름](#1-전체-흐름)
+1. [처음 기여할 때: 절차](#1-처음-기여할-때-절차)
 2. [새 과목 추가](#2-새-과목-추가)
-3. [새 출처(문제 파일) 추가](#3-새-출처문제-파일-추가)
-4. [문제 파일 작성법](#4-문제-파일-작성법) (4-9. 교재 장 배정)
-5. [지문(passage) 작성법](#5-지문passage-작성법)
-6. [다이어그램 타입 레퍼런스](#6-다이어그램-타입-레퍼런스)
-7. [식별자 규칙](#7-식별자-규칙)
-8. [해설 작성 기준](#8-해설-작성-기준)
-9. [이미지 처리](#9-이미지-처리)
-10. [빌드 및 검증](#10-빌드-및-검증)
-11. [체크리스트](#11-체크리스트)
+3. [새 출처 추가](#3-새-출처-추가)
+4. [문제 작성](#4-문제-작성)
+5. [지문 작성](#5-지문-작성)
+6. [다이어그램 예시](#6-다이어그램-예시)
+7. [이미지](#7-이미지)
+8. [빌드와 체크리스트](#8-빌드와-체크리스트)
+9. [자주 막히는 지점](#9-자주-막히는-지점)
 
----
+## 1. 처음 기여할 때: 절차
 
-## 1. 전체 흐름
+저장소를 처음 받은 사람이 문제 세트 하나를 추가해 PR을 내기까지의 순서다. 각 단계의 세부 규칙은 §2 이후와 [docs/data-schema.md](docs/data-schema.md)에 있다.
 
+### 1-1. 시작 전 확인
+
+- **원본 자료**: 기출·강의·교재·워크북 중 무엇인지, 인쇄 정답(정답표·LMS 정답 표시)이 있는지 확인한다. 정답이 없는 자료는 입력하지 않는다.
+- **권리**: 원본 PDF·스캔·캡처는 저장소에 올리지 않는다. 로컬 `origin/` 아래에 두면 gitignore로 제외된다.
+- **이미 있는지**: [docs/source-coverage.md](docs/source-coverage.md)에서 과목·출처 현황을 본다. `입력 완료`인 출처는 다시 입력하지 않는다. 컴퓨터구조는 기출만 유지하는 과목이라 추가 자료를 받지 않는다.
+
+### 1-2. 환경 준비
+
+```bash
+# Node 22 (.nvmrc), pnpm
+pnpm install
+pnpm data:build   # YAML → public/data JSON, 검증 포함
+pnpm dev          # http://localhost:5173
 ```
-data/catalog.yaml           ← 과목·출처 목록 관리
-data/subjects/{과목}/{출처}.yaml  ← 문제 원본
-       ↓  pnpm data:build
-public/data/catalog.json
-public/data/subjects/{과목}/{출처}.json
+
+`pnpm dev`는 catalog·문제·syllabus를 원본 YAML에서 **검증 없이** 직접 읽는다. 데이터를 고칠 때마다 `pnpm data:build`를 따로 돌려 오류를 확인한다.
+
+### 1-3. 어디에 무엇을 두는가
+
+| 경로                                 | 역할                                                  |
+| ------------------------------------ | ----------------------------------------------------- |
+| `data/catalog.yaml`                  | 과목·출처 목록. 여기에 없는 파일은 앱에 나오지 않는다 |
+| `data/subjects/{과목}/{출처}.yaml`   | 문제·지문 원본 (직접 작성)                            |
+| `data/subjects/{과목}/syllabus.yaml` | 교재 목차와 강→장 대응 (챕터별 풀이 과목만)           |
+| `public/images/subjects/{과목}/…`    | 문제에 쓰는 crop 이미지                               |
+| `public/data/**.json`                | 빌드 산출물. 직접 편집하지 않는다                     |
+| `origin/`                            | 원본 자료(비공개, gitignore)                          |
+
+### 1-4. 기여 유형별 순서
+
+**A. 기존 과목에 출처 추가** (가장 흔한 경우)
+
+1. `data/catalog.yaml`의 해당 과목 `sources`에 항목을 추가한다 (§3).
+2. `data/subjects/{과목}/{출처}.yaml`을 만들고 헤더(`subjectId`·`sourceId`·`kind`·`year`)를 catalog와 맞춘다 (§4).
+3. 문제를 입력한다. 원본 그대로 옮기고, 정답은 인쇄 정답을 따르며, 해설은 선택지별 이유 + `핵심 개념`으로 쓴다 (§4-1).
+4. 공유 지문·코드·표·그림은 `passages`로 분리한다 (§5, §6). 이미지는 마지막 수단이다 (§7).
+5. 과목에 `syllabus`가 있으면 장 배정을 한다 (§4-3). 빌드가 장이 없는 문제를 거부한다.
+6. 검증하고 문서를 갱신한 뒤 제출한다 (1-5, 1-6).
+
+**B. 새 과목 추가**
+
+1. `data/subjects/{과목-id}/` 디렉토리와 catalog 과목 항목을 만든다 (§2).
+2. 챕터별 풀이를 지원하려면 `syllabus.yaml`을 만들고 catalog에 `syllabus:`를 적는다 (§4-3). 교재 목차가 없거나 목차 없이 시작하면 `syllabus`를 생략한다. 이때는 문제에 `chapter`를 적을 수 없다.
+3. 2학기 과목이면 [docs/source-coverage.md](docs/source-coverage.md)에 행을 추가한다.
+4. 이후는 A와 같다.
+
+**C. 챕터별 풀이 과목에 추가할 때 주의**
+
+- 기출은 문제마다 `chapter: N`을 적는다. 현재 교재에 없는 주제는 `outdated: true`로 두고 [docs/outdated.md](docs/outdated.md)에 키와 근거를 적는다(빌드가 둘을 대조한다).
+- 워크북·기본서는 ID의 장 번호, 강의는 강 번호 → `syllabus.lectures`로 장이 정해진다. ID 번호가 장이 아닌 출처(예: C프로그래밍 워크북의 10문제 단위 순번)는 문제마다 `chapter`를 적는다.
+
+### 1-5. 검증
+
+```bash
+pnpm data:build    # 스키마·ID·정답·수식·이미지·장 배정 검증. 실패하면 메시지의 파일·필드를 고친다
+pnpm test
+pnpm format:check  # 실패하면 pnpm format
 ```
 
-- 문제는 **YAML로 작성**, 빌드 시 **JSON으로 변환**된다.
-- 런타임에는 JSON만 사용하므로 `public/data/` 안의 파일은 직접 편집하지 않는다.
-- 빌드 명령: `pnpm data:build` (개발·빌드 전 훅에서도 자동 실행됨)
+빌드가 통과한 뒤 [docs/review-checklist.md](docs/review-checklist.md)로 원본 대조를 한다. 최소한 문항 수, 정답 전부, 이미지·표가 든 문항 몇 개를 화면에서 확인한다. 오류 메시지별 원인은 §9.
 
----
+### 1-6. 문서 갱신과 제출
+
+- `docs/source-coverage.md`의 해당 칸을 `입력 완료 (…문제)`로 바꾼다. outdated가 있으면 `docs/outdated.md`에 추가한다. `WORK.md` 진행 기록에 한 줄을 남긴다.
+- 브랜치는 `feat/{과목-또는-출처}`, 커밋은 출처 하나를 한 단위로 한다. 스테이징은 파일을 이름으로 지정한다(`git add -A`를 쓰지 않는다). `origin/`·`.omc/`·`public/data/`는 올리지 않는다.
+- PR 본문에 출처·문제 수·정답 대조 결과(불일치 건수와 처리)를 적는다. CI는 `format:check`·`tsc`·`data:build`·`test`를 돌린다.
+
+### 1-7. 데이터 흐름
+
+```text
+data/catalog.yaml                  ← 과목·출처 목록
+data/subjects/{과목}/{출처}.yaml   ← 문제 원본
+data/subjects/{과목}/syllabus.yaml ← 교재 목차 (챕터별 풀이 과목만)
+       ↓  pnpm data:build (dev·build 전 자동 실행)
+public/data/**.json                ← 직접 편집하지 않음
+```
 
 ## 2. 새 과목 추가
 
-### 2-1. 디렉토리 생성
-
-```
-data/subjects/{새-과목-id}/
-```
-
-`{새-과목-id}`는 영어 소문자와 하이픈만 사용한다.  
-예: `computer-architecture`, `data-structures`
-
-### 2-2. catalog.yaml에 과목 등록
-
-`data/catalog.yaml`의 `subjects` 배열에 항목을 추가한다.
+`data/subjects/{과목-id}/`를 만들고(영어 소문자·하이픈, 예: `data-structures`) `data/catalog.yaml`의 `subjects`에 등록한다.
 
 ```yaml
-subjects:
-  # ... 기존 과목 ...
-  - id: computer-architecture # 디렉토리 이름과 일치해야 함
-    title: 컴퓨터구조 # 화면에 표시할 한글 제목
-    semester: 2 # 1학기=1, 2학기=2
-    sources:
-      - id: past-exams-2019
-        title: 2019 기말
-        path: subjects/computer-architecture/past-exams-2019.json
-        kind: exam
-        year: 2019
-```
-
-`id`는 저장소 전체에서 유일해야 한다. 기존 과목 ID와 중복되면 빌드가 실패한다.
-`semester`는 필수이며 값은 `1` 또는 `2`만 허용한다.
-
----
-
-## 3. 새 출처(문제 파일) 추가
-
-기존 과목에 새 출처를 추가하는 경우, catalog.yaml의 해당 과목 `sources` 배열에 항목을 추가한다.
-
-### 출처 종류(kind)
-
-| kind        | 의미          | 화면 분류 | 출처명 예시   |
-| ----------- | ------------- | --------- | ------------- |
-| `exam`      | 기출          | 기출      | `2019 기말`   |
-| `textbook`  | 기본서 문제   | 교재      | `기본서 문제` |
-| `workbook`  | 워크북 문제   | 교재      | `워크북 문제` |
-| `lecture`   | 강의 연습문제 | 강의      | `연습문제`    |
-| `intensive` | 특강 문제     | 강의      | `특강 문제`   |
-
-### catalog.yaml 예시
-
-```yaml
-- id: algorithms
-  title: 알고리즘
-  semester: 1
+- id: data-structures # 디렉토리 이름과 같게, 저장소 전체에서 유일
+  title: 자료구조 # 화면 표시 이름
+  semester: 2 # 필수, 1 또는 2
   sources:
-    - id: past-exams-2020 # 과목 안에서 유일한 ID
-      title: 2020 기말
-      path: subjects/algorithms/past-exams-2020.json # .json 확장자
+    - id: past-exams-2019
+      title: 2019 기말
+      path: subjects/data-structures/past-exams-2019.json
       kind: exam
-      year: 2020 # exam일 때만 필요
-    - id: workbook
-      title: 워크북 문제
-      path: subjects/algorithms/workbook.json
-      kind: workbook
-      # year: 생략 (exam이 아니므로)
+      year: 2019
 ```
 
-`path`는 `.json`으로 끝나야 한다. 빌드 스크립트가 같은 경로의 `.yaml` 파일을 자동으로 읽는다.
+2학기 과목이면 [docs/source-coverage.md](docs/source-coverage.md)에 행을 추가한다.
 
----
+## 3. 새 출처 추가
 
-## 4. 문제 파일 작성법
-
-파일 위치: `data/subjects/{과목}/{출처}.yaml`
-
-### 4-1. 파일 헤더
+과목의 `sources`에 항목을 추가한다. `id`는 과목 안에서 유일, `path`는 `.json`으로 끝나고(빌드가 같은 경로의 `.yaml`을 읽음), `year`는 `exam`만 적는다. `kind`별 분류와 출처명은 [data-schema.md §2](docs/data-schema.md)를 따른다.
 
 ```yaml
-subjectId: algorithms # catalog.yaml의 subject.id와 일치
-sourceId: past-exams-2020 # catalog.yaml의 source.id와 일치
-title: 알고리즘 2020 기말 # 파일 설명용 제목
-kind: exam # catalog.yaml의 source.kind와 일치
-year: 2020 # exam일 때만 작성
+- id: workbook
+  title: 워크북 문제
+  path: subjects/algorithms/workbook.json
+  kind: workbook
 ```
 
-### 4-2. 문제 타입
+## 4. 문제 작성
 
-| type              | UI           | 정답 판정                              |
-| ----------------- | ------------ | -------------------------------------- |
-| `multiple-choice` | 라디오 버튼  | `answers[0]`와 선택이 일치             |
-| `multi-answer`    | 체크박스     | 선택 집합이 `answers` 집합과 완전 일치 |
-| `ox`              | O / X 라디오 | `answers[0]`와 선택이 일치             |
-
-### 4-3. 기본 문제 예시 (multiple-choice)
+파일 `data/subjects/{과목}/{출처}.yaml`. 헤더의 `subjectId`/`sourceId`/`kind`/`year`는 catalog와 같아야 한다. ID 형식은 [data-schema.md §4](docs/data-schema.md)(기출 `e19-01`, 기본서 `t03-07`, 워크북 `b03-07`, 강의 `l07-08`, 특강 `i02-03`).
 
 ```yaml
+subjectId: algorithms
+sourceId: past-exams-2020
+title: 알고리즘 2020 기말
+kind: exam
+year: 2020
+
 questions:
   - id: e20-01
     type: multiple-choice
     prompt: 다음 중 분할 정복 알고리즘에 해당하지 않는 것은?
     choices:
-      - id: '1'
-        text: 퀵 정렬
-      - id: '2'
-        text: 병합 정렬
-      - id: '3'
-        text: 버블 정렬
-      - id: '4'
-        text: 이진 탐색
+      - { id: '1', text: '퀵 정렬' }
+      - { id: '2', text: '병합 정렬' }
+      - { id: '3', text: '버블 정렬' }
+      - { id: '4', text: '이진 탐색' }
     answers: ['3']
     explanation: |
       선택지 1: 퀵 정렬은 피벗 기준으로 분할 후 재귀 정렬하므로 분할 정복이다.
@@ -153,453 +152,196 @@ questions:
       선택지 4: 이진 탐색은 범위를 절반씩 줄여 탐색하므로 분할 정복 기법이다.
 
       핵심 개념:
-      분할 정복은 문제를 더 작은 부분으로 나누고(분할), 각각 재귀 해결 후(정복) 결합(병합)하는 패러다임이다.
-    tags: [divide-and-conquer, sorting]
+      분할 정복은 문제를 작은 부분으로 나누고(분할), 각각 재귀 해결 후(정복) 결합하는 패러다임이다.
+
+  - id: e20-02
+    type: ox
+    prompt: 퀵 정렬의 최악 시간 복잡도는 $O(n \log n)$이다.
+    choices:
+      - { id: 'O', text: 'O' }
+      - { id: 'X', text: 'X' }
+    answers: ['X']
+    explanation: 최악의 경우(피벗이 항상 최솟값·최댓값) $O(n^2)$이다.
+
+  - id: e20-03
+    type: multi-answer
+    prompt: 다음 중 안정 정렬을 모두 고르시오.
+    choices:
+      - { id: '1', text: '버블 정렬' }
+      - { id: '2', text: '선택 정렬' }
+      - { id: '3', text: '삽입 정렬' }
+    answers: ['1', '3']
+    answerKey: B # 원본 알파벳 표기 보존 (대응표: data-schema §6)
+    explanation: ...
 ```
 
-### 4-4. OX 문제
+### 4-1. 정답과 해설
 
-```yaml
-- id: e20-02
-  type: ox
-  prompt: 퀵 정렬의 최악 시간 복잡도는 $O(n \log n)$이다.
-  choices:
-    - { id: 'O', text: 'O' }
-    - { id: 'X', text: 'X' }
-  answers: ['X']
-  explanation: |
-    퀵 정렬의 평균은 $O(n \log n)$이지만, 피벗이 항상 최솟값이나 최댓값으로 선택되는 최악의 경우 $O(n^2)$이다.
-  tags: [quick-sort, time-complexity]
-```
+- `answers` 작성과 정답표 대조 규칙은 [data-schema.md §6](docs/data-schema.md).
+- 해설은 선택지별 이유 + `핵심 개념` 요약 구조로 쓰고, 약어는 첫 언급에 풀폼을 붙인다([data-schema.md §7](docs/data-schema.md)).
+- 원본은 고치지 않는다. 원본 표기 오류나 인쇄 정답 논란은 해설에 `※` 줄로 적고, 해설에서 선택지는 번호가 아니라 내용으로 지칭한다([data-schema.md §7](docs/data-schema.md)).
 
-### 4-5. 복수 정답 문제
+### 4-2. 리치 텍스트
 
-```yaml
-- id: e20-03
-  type: multi-answer
-  prompt: 다음 중 안정 정렬(stable sort)에 해당하는 것을 모두 고르시오.
-  choices:
-    - { id: '1', text: '버블 정렬' }
-    - { id: '2', text: '선택 정렬' }
-    - { id: '3', text: '삽입 정렬' }
-    - { id: '4', text: '병합 정렬' }
-  answers: ['1', '3', '4']
-  answerKey: G # 출제 원본의 알파벳 표기 보존(선택 필드)
-  explanation: |
-    안정 정렬은 동일한 키 값을 가진 원소의 상대 순서를 보존하는 정렬이다.
-    버블, 삽입, 병합 정렬은 안정 정렬이고 선택 정렬은 불안정 정렬이다.
-  tags: [stable-sort]
-```
+수식 `$…$`, 강조 `==…==`, 인라인 코드, 글자 그대로의 `\$`, 여러 줄 선택지, 쉼표가 든 flow 값 따옴표 규칙은 [data-schema.md §4.2](docs/data-schema.md)를 따른다.
 
-`answerKey` 알파벳 대응표 (출제 원본에서 복수정답을 알파벳으로 표기할 때 참고):
+### 4-3. 교재 장 배정 (챕터별 풀이)
 
-| 알파벳 | answers                |
-| ------ | ---------------------- |
-| A      | `["1", "2"]`           |
-| B      | `["1", "3"]`           |
-| C      | `["1", "4"]`           |
-| D      | `["2", "3"]`           |
-| E      | `["2", "4"]`           |
-| F      | `["3", "4"]`           |
-| G      | `["1", "2", "3"]`      |
-| H      | `["1", "2", "4"]`      |
-| I      | `["1", "3", "4"]`      |
-| J      | `["2", "3", "4"]`      |
-| K      | `["1", "2", "3", "4"]` |
+catalog에 `syllabus`가 있는 과목(대상: [docs/source-coverage.md](docs/source-coverage.md))은 모든 문제가 교재 장 하나에 배정되어야 한다. 규칙 전체는 [data-schema.md §4.4](docs/data-schema.md).
 
-### 4-6. 지문을 참조하는 문제
+1. `syllabus.yaml`에 `chapters`와 `lectures`(강 → 장)를 적고 catalog 과목에 `syllabus: subjects/{과목}/syllabus.json`을 추가한다. 교재 장이 없는 강은 `lectures`에서 뺀다.
+2. 기출은 `chapter: N`(주 장 하나, 절 단위 없음)을 적는다. 현재 교재에 없는 주제면 `outdated: true`를 적고 [docs/outdated.md](docs/outdated.md)에 키와 근거를 추가한다.
+3. 기본서·워크북은 ID 그룹(`b03-07` → 3장), 강의는 강 번호와 `syllabus.lectures`로 장이 정해진다. ID 그룹이 장이 아닌 출처(C프로그래밍 워크북)나 다른 장으로 옮길 문제는 `chapter`를 적는다(ID보다 우선).
 
-```yaml
-- id: e20-04
-  type: multiple-choice
-  passageRefs: [g20-code-01] # passages.id 배열로 참조
-  prompt: 위 코드의 시간 복잡도는?
-  choices:
-    - { id: '1', text: '$O(n)$' }
-    - { id: '2', text: '$O(n \log n)$' }
-    - { id: '3', text: '$O(n^2)$' }
-    - { id: '4', text: '$O(2^n)$' }
-  answers: ['3']
-  explanation: |
-    이중 루프로 n^2번 비교하므로 $O(n^2)$이다.
-  tags: [time-complexity]
-```
+## 5. 지문 작성
 
-### 4-7. 수식 작성
-
-- 인라인 수식: `$T(n) = O(n \log n)$`
-- 블록 수식: `$$ ... $$`
-- YAML 큰따옴표 안에서는 `\\`로 이스케이프 필요. **복잡한 수식은 작은따옴표(`'`)나 블록 문자열(`|`)을 사용**한다.
-- 강조: `==핵심 문구==` → 하이라이트 렌더링
-- 글자 그대로의 달러 기호(입력 끝 표시 등)는 `\$`로 쓴다: `FOLLOW(A) = { a, \$ }`. 코드 지문 안에서는 `$` 그대로 쓴다.
-
-### 4-8. 태그 규칙
-
-- `tags`는 검색/분류 보조용 선택 필드다.
-- 기출(`kind: exam`) 문제는 태그가 없어도 된다.
-- 교재·워크북·강의·특강 출처는 모의시험 분산 추출에서 문제 ID의 첫 숫자 그룹을 사용한다. 예: `b03-07`, `l11-04`.
-- 교재 장 정보는 태그가 아니라 `chapter` 필드와 syllabus로 관리한다(4-9 참고).
-
-### 4-9. 교재 장 배정 (챕터별 풀이)
-
-`catalog.yaml`에 `syllabus`가 등록된 과목은 모든 문제가 교재 장 하나에 배정되어야 챕터별 풀이에 나온다. 규칙 전체는 [docs/data-schema.md §4.4](docs/data-schema.md) 참고.
-
-1. `data/subjects/{과목}/syllabus.yaml`에 교재 장(`chapters`)과 강의 목록(`lectures`, 강 → 장 대응)을 적고, catalog 과목 항목에 `syllabus: subjects/{과목}/syllabus.json`을 추가한다.
-2. 기출 문제에는 `chapter: N`을 직접 적는다. 문제는 **주 장 하나**에만 배정하고, 절 단위는 적지 않는다.
-3. 현재 교재 목차에 없는 주제의 기출은 `chapter` 대신 `outdated: true`를 적고, [docs/outdated.md](docs/outdated.md)에 문제 키와 근거를 추가한다.
-4. 워크북·기본서 문제는 ID(`b03-07` → 3장), 강의 문제는 ID의 강 번호와 `syllabus.lectures`로 장이 정해지므로 따로 적지 않는다. 단, C프로그래밍 워크북처럼 ID 번호가 장이 아닌 순번인 출처는 문제마다 `chapter`를 적는다.
-
-```yaml
-- id: e19-07
-  type: multiple-choice
-  chapter: 4
-  prompt: 다음 행렬의 역행렬은?
-```
-
----
-
-## 5. 지문(passage) 작성법
-
-같은 지문을 여러 문제가 공유하거나, 코드·다이어그램·표 형태의 지문은 `passages` 배열로 분리한다.
+공유되거나 코드·표·그림인 지문은 `passages`로 분리하고 `passageRefs`로 참조한다. ID는 `g` 접두. 타입과 규칙은 [data-schema.md §5](docs/data-schema.md).
 
 ```yaml
 passages:
-  - id: g20-code-01 # 'g' 접두 + 고유 식별자
-    type: code
-    language: python
+  - id: g20-text-01
+    type: text
     body: |
-      def bubble_sort(arr):
-          n = len(arr)
-          for i in range(n):
-              for j in range(n - i - 1):
-                  if arr[j] > arr[j + 1]:
-                      arr[j], arr[j + 1] = arr[j + 1], arr[j]
-```
+      다음 재귀식을 보고 물음에 답하시오.
+      $T(n) = 2T(n/2) + \Theta(n)$
+  - id: g20-code-01
+    type: code
+    language: java # c, python, java, text 등
+    highlights: ['return'] # 원본에서 굵게 표시된 문자열 (선택)
+    body: |
+      if (arr[mid] == target) return mid;
+  - id: g20-img-01
+    type: image
+    image:
+      path: images/subjects/algorithms/past-exams/2020/g20-graph.png
+      alt: 2020년 알고리즘 기출 그래프 지문
 
-### passage 타입
-
-| type      | 용도                                              |
-| --------- | ------------------------------------------------- |
-| `text`    | 일반 텍스트 지문 (수식 가능)                      |
-| `code`    | 코드 지문 (`language`, `body` 필드 사용)          |
-| `image`   | 이미지 지문 (`image.path`, `image.alt` 필드 사용) |
-| `diagram` | 구조화 다이어그램 (`diagram` 필드 사용)           |
-
-#### text 지문
-
-```yaml
-- id: g20-text-01
-  type: text
-  body: |
-    다음 재귀식을 보고 물음에 답하시오.
-    $T(n) = 2T(n/2) + \Theta(n),\ T(1) = \Theta(1)$
-```
-
-#### code 지문
-
-```yaml
-- id: g20-code-02
-  type: code
-  language: java # c, python, java, text 등
-  highlights: ['return'] # 원본에서 굵게 표시된 문자열 (선택)
-  body: |
-    public static int binarySearch(int[] arr, int target) {
-        int left = 0, right = arr.length - 1;
-        while (left <= right) {
-            int mid = (left + right) / 2;
-            if (arr[mid] == target) return mid;
-            else if (arr[mid] < target) left = mid + 1;
-            else right = mid - 1;
-        }
-        return -1;
-    }
-```
-
-#### image 지문
-
-```yaml
-- id: g20-img-01
-  type: image
-  image:
-    path: images/subjects/algorithms/past-exams/2020/g20-graph.png
-    alt: 2020년 알고리즘 기출 그래프 지문
-```
-
----
-
-## 6. 다이어그램 타입 레퍼런스
-
-다이어그램은 `passages[].diagram` 또는 `choices[].diagram`에 작성한다.
-
-### simple-graph (일반 그래프·트리·방향 그래프)
-
-```yaml
-- id: g20-graph-01
-  type: diagram
-  diagram:
-    type: simple-graph
-    width: 400
-    height: 260
-    directed: true # 방향 그래프 전체 기본값 (선택)
-    nodes:
-      - { id: A, label: A, x: 200, y: 30 }
-      - { id: B, label: B, x: 100, y: 120 }
-      - { id: C, label: C, x: 300, y: 120 }
-    edges:
-      - { from: A, to: B }
-      - { from: A, to: C }
-      - { from: B, to: C, label: '5', directed: false } # 개별 간선 무방향
-      - { from: B, to: B, curve: 1 } # 자기 루프
-```
-
-**노드 필드:**
-
-| 필드                 | 필수 | 설명                                |
-| -------------------- | ---- | ----------------------------------- |
-| `id`                 | 필수 | 간선 참조용 ID                      |
-| `label`              | 필수 | 화면 표시 텍스트 (수식 문자열 불가) |
-| `x`, `y`             | 필수 | SVG 좌표                            |
-| `hideNode`           | 선택 | 노드 도형을 숨기고 라벨만 표시      |
-| `hideLabel`          | 선택 | 라벨을 숨김                         |
-| `labelDx`, `labelDy` | 선택 | 라벨 위치 보정                      |
-
-**간선 필드:**
-
-| 필드         | 필수 | 설명                                 |
-| ------------ | ---- | ------------------------------------ |
-| `from`, `to` | 필수 | 노드 id 참조                         |
-| `label`      | 선택 | 간선 라벨 (수식 불가)                |
-| `directed`   | 선택 | 개별 간선의 방향성 재정의            |
-| `curve`      | 선택 | 곡률 조정 (자기 루프에는 `curve: 1`) |
-| `style`      | 선택 | `dashed` = 점선                      |
-
-### resource-allocation-graph (자원할당 그래프)
-
-```yaml
-- id: g20-rag-01
-  type: diagram
-  diagram:
-    type: resource-allocation-graph
-    width: 400
-    height: 300
-    nodes:
-      - { id: p1, kind: process, label: p_1, x: 100, y: 150 }
-      - { id: p2, kind: process, label: p_2, x: 300, y: 150 }
-      - { id: r1, kind: resource, label: r_1, x: 200, y: 80, units: 2 }
-      - { id: r2, kind: resource, label: r_2, x: 200, y: 220, units: 1 }
-    edges:
-      - { from: p1, to: r1 } # 요청 간선
-      - { from: r1, to: p2 } # 할당 간선
-      - { from: p2, to: r2, style: dashed } # 선언 간선 (변형 RAG)
-```
-
-- `kind: process` → 원, `kind: resource` → 사각형으로 렌더링
-- `units`: 자원 노드 안에 표시할 단위자원 수 (선택)
-- 요청 간선: 프로세스 → 자원, 할당 간선: 자원 → 프로세스
-- 라벨 `p_1`, `r_2`처럼 `_숫자` 형식은 하첨자로 렌더링됨
-
-### memory-free-list (빈 공간 리스트)
-
-```yaml
-- id: g20-freelist-01
-  type: diagram
-  diagram:
-    type: memory-free-list
-    width: 620
-    height: 400
-    blocks:
-      - { id: os, kind: os, label: 운영체제 }
-      - { id: used1, kind: allocated, label: 사용 중 }
-      - { id: free1, kind: free, label: 공백 1 (40MB), size: 40 }
-      - { id: used2, kind: allocated, label: 사용 중 }
-      - { id: free2, kind: free, label: 공백 2 (20MB), size: 20 }
-```
-
-- `kind`: `os`, `allocated`, `free`
-- `size`: 빈 공간 블록의 상대 높이 (MB 단위)
-
-### data-table (표)
-
-```yaml
-- id: g20-table-01
-  type: diagram
-  diagram:
-    type: data-table
-    columns: ['프로세스', '도착시간', '버스트시간']
-    rows:
-      - ['P1', '0', '6']
-      - ['P2', '2', '4']
-      - ['P3', '4', '2']
-```
-
-- 셀에 KaTeX 인라인 수식 사용 가능: `'$O(n^2)$'`
-- `cellFormat: code` 지정 시 셀이 코드 블록으로 렌더링됨
-
-### clock-page-replacement (클럭 페이지 교체 원형 큐)
-
-```yaml
-- id: g20-clock-01
-  type: diagram
-  diagram:
-    type: clock-page-replacement
-    width: 300
-    height: 300
-    pointerIndex: 2 # 포인터가 가리키는 entries 인덱스
-    entries:
-      - { page: A, referenceBit: 1 }
-      - { page: B, referenceBit: 0 }
-      - { page: C, referenceBit: 1 }
-      - { page: D, referenceBit: 0 }
-```
-
-### ui-window (Java AWT/Swing 창 UI)
-
-```yaml
-- id: g20-ui-01
-  type: diagram
-  diagram:
-    type: ui-window
-    width: 300
-    height: 200
-    title: MyFrame
-    components:
-      - { kind: checkbox, label: '항목 1', x: 30, y: 60, checked: true }
-      - { kind: radio, label: '선택 A', x: 30, y: 100, checked: false }
-      - { kind: label, label: '라벨 텍스트', x: 30, y: 140 }
-```
-
----
-
-## 7. 식별자 규칙
-
-### 문제 ID
-
-| 출처      | 형식              | 예시               |
-| --------- | ----------------- | ------------------ |
-| 기출      | `e{yy}-{nn}`      | `e20-01`, `e20-25` |
-| 기본서    | `t{chapter}-{nn}` | `t03-07`, `t11-02` |
-| 워크북    | `b{chapter}-{nn}` | `b03-07`, `b11-02` |
-| 강의 문제 | `l{lecture}-{nn}` | `l07-08`, `l11-04` |
-| 특강 문제 | `i{unit}-{nn}`    | `i02-03`, `i05-01` |
-
-### 지문(passage) ID
-
-`g` 접두를 붙인다. 파일 안에서 유일해야 한다.
-
-```
-기출 지문:  g20-rag-01, g20-code-01
-교재 지문:  gb03-fig-02, gb07-table-01
-```
-
-### 파일 내 유일성
-
-- 문제 `id`는 같은 YAML 파일 안에서 중복되면 빌드가 실패한다.
-- `passages.id`도 같은 파일 안에서 유일해야 한다.
-
----
-
-## 8. 해설 작성 기준
-
-선택지마다 정답/오답 이유를 작성하고, 핵심 개념 요약을 함께 제공한다.
-
-```yaml
-explanation: |
-  선택지 1: 버블 정렬은 인접 원소를 반복 비교하므로 분할 정복이 아니다.
-  선택지 2: 퀵 정렬은 피벗 기준 분할 후 재귀하므로 분할 정복이다.
-  선택지 3: 병합 정렬은 반씩 나눠 재귀 정렬 후 병합하므로 분할 정복이다.
-  선택지 4: 이진 탐색은 범위를 절반씩 줄이므로 분할 정복 기법이다.
-
-  핵심 개념:
-  분할 정복은 문제를 작은 부분으로 나누고, 각각을 재귀 해결 후 결합하는 방식이다.
-  퀵 정렬 O(n log n) 평균, O(n²) 최악. 병합 정렬 항상 O(n log n).
-  버블/선택/삽입 정렬은 반복 비교·교환 방식으로 분할 정복과 구분된다.
-```
-
-- 오답 선택지는 "틀렸다"로 끝내지 않고, 그 개념이 무엇인지 설명하고 왜 문제 조건과 맞지 않는지 적는다.
-- 약어가 핵심 판단에 등장하면 첫 언급에서 풀폼을 함께 쓴다. 예: `FCFS(First-Come, First-Served)`
-- 공식 정답을 아직 확인하지 못한 경우에도 빈 칸으로 두지 말고 직접 풀이한 임시 정답과 해설을 기재한다.
-
----
-
-## 9. 이미지 처리
-
-### 이미지가 필요한 경우
-
-구조화 다이어그램(`diagram` 타입)으로 재현하기 어렵거나 원본의 시각 정보 자체가 채점 조건인 경우에만 이미지를 사용한다.
-
-```yaml
 questions:
-  - id: e20-05
-    type: multiple-choice
-    images:
-      - path: images/subjects/algorithms/past-exams/2020/e20-05.png
-        alt: 2020년 알고리즘 기출 5번 그래프
-    prompt: 위 그래프에서 최단 경로는?
+  - id: e20-04
+    passageRefs: [g20-code-01] # passages.id 배열
+    prompt: 위 코드에 대한 설명으로 옳은 것은?
 ```
 
-### 파일 경로 규칙
+## 6. 다이어그램 예시
 
+아래 각 항목은 `passages[].diagram` 또는 `choices[].diagram`의 값이다. 필드 목록은 [data-schema.md §5](docs/data-schema.md). SVG 라벨에는 수식 문자열을 넣지 않는다.
+
+```yaml
+# simple-graph: 일반 그래프·트리·오토마타·E-R
+- type: simple-graph
+  width: 400
+  height: 260
+  directed: true
+  nodes:
+    - { id: A, label: A, x: 200, y: 30 }
+    - { id: B, label: B, x: 100, y: 120, shape: box }
+  edges:
+    - { from: A, to: B, label: '5' }
+    - { from: B, to: B, curve: 1 } # 자기 루프
+
+# resource-allocation-graph: 요청 간선 프로세스→자원, 할당 간선 자원→프로세스
+- type: resource-allocation-graph
+  width: 400
+  height: 300
+  nodes:
+    - { id: p1, kind: process, label: p_1, x: 100, y: 150 }
+    - { id: r1, kind: resource, label: r_1, x: 200, y: 80, units: 2 }
+  edges:
+    - { from: p1, to: r1 }
+    - { from: r1, to: p1, style: dashed }
+
+# memory-free-list
+- type: memory-free-list
+  width: 620
+  height: 400
+  blocks:
+    - { id: os, kind: os, label: 운영체제 }
+    - { id: free1, kind: free, label: 공백 1 (40MB), size: 40 }
+
+# data-table: 빈 칸은 ' ', 백틱·$를 그대로 보이려면 cellFormat: code
+- type: data-table
+  columns: ['프로세스', '도착시간', '버스트시간']
+  rows:
+    - ['P1', '0', '6']
+    - ['P2', ' ', '$O(n^2)$']
+
+# clock-page-replacement
+- type: clock-page-replacement
+  width: 300
+  height: 300
+  pointerIndex: 1
+  entries:
+    - { page: A, referenceBit: 1 }
+    - { page: B, referenceBit: 0 }
+
+# ui-window: Java AWT/Swing 창
+- type: ui-window
+  width: 300
+  height: 200
+  title: MyFrame
+  components:
+    - { kind: checkbox, label: '항목 1', x: 30, y: 60, checked: true }
+    - { kind: label, label: '라벨 텍스트', x: 30, y: 140 }
 ```
-public/images/subjects/{과목}/{출처-유형}/{파일명}
+
+## 7. 이미지
+
+diagram으로 재현하기 어렵거나 원본 시각 정보 자체가 문제 조건일 때만 crop 이미지를 쓴다. 규칙은 [data-schema.md §8](docs/data-schema.md).
+
+```yaml
+images:
+  - path: images/subjects/algorithms/past-exams/2020/e20-05.png # public/ 기준
+    alt: 2020년 알고리즘 기출 5번 그래프
 ```
 
-예:
+- 경로: `public/images/subjects/{과목}/{past-exams/{year} | sourceId}/{문제 ID 포함 파일명}`
+- 자르기: `pnpm image:crop <input> <output> <x> <y> <width> <height>`
+- 이미지·diagram 선택지는 `text: ''`, `alt`에 정답 단서를 넣지 않는다([data-schema.md §4.3](docs/data-schema.md)).
 
-```
-public/images/subjects/algorithms/past-exams/2020/e20-05.png
-public/images/subjects/operating-systems/workbook/b07-fig1.png
-```
-
-- 파일명에 문제 ID를 포함해 추적성을 확보한다.
-- 빌드 단계에서 `path`의 파일이 실제 존재하는지 검증한다.
-- 이미지 crop 보조 도구: `pnpm image:crop <input> <output> <x> <y> <width> <height>`
-- 시험지 전체 이미지는 저장소에 올리지 않는다.
-
----
-
-## 10. 빌드 및 검증
+## 8. 빌드와 체크리스트
 
 ```bash
-# YAML → JSON 변환 및 검증
-pnpm data:build
-
-# 단위 테스트 (데이터 무결성 포함)
-pnpm test
-
-# 개발 서버 (public/data JSON이 없으면 YAML fallback 사용)
-pnpm dev
-
-# 프로덕션 빌드
-pnpm build
+pnpm data:build   # YAML → JSON 변환 및 검증
+pnpm test         # 단위 테스트
+pnpm format:check # Prettier 형식 검사 (CI와 같음)
+pnpm dev          # 개발 서버 (catalog·문제·syllabus를 원본 YAML에서 검증 없이 직접 읽음)
+pnpm build        # 프로덕션 빌드
 ```
 
-### 빌드 시 검증 항목
+오류가 나면 메시지의 파일과 필드를 고친 뒤 다시 빌드한다. `pnpm dev` 실행 중 고친 데이터는 검증되지 않으므로 `pnpm data:build`를 다시 돌린다. 새 출처를 입력한 뒤에는 [docs/review-checklist.md](docs/review-checklist.md) 기준으로 검증한다.
 
-- `catalog.yaml`의 `subject.id`, `source.id` 중복 검사
-- `source.path`가 `.json`으로 끝나는지 확인
-- `source.kind`가 유효한 값인지 확인 (`exam` | `textbook` | `workbook` | `lecture` | `intensive`)
-- `passageRefs`의 모든 ID가 동일 파일의 `passages.id`에 존재하는지 확인
-- `images[].path`의 파일 존재 여부 확인
-- 참조되지 않는 `passages` 항목은 경고만 출력 (작업 중 임시 보존 가능)
-- syllabus가 있는 과목: 모든 문제의 장이 결정되고 목차에 존재하는지, 기출에 `chapter`/`outdated` 누락이 없는지 확인
-- `outdated: true` 문제와 `docs/outdated.md` 목록 일치 확인
+- [ ] catalog에 과목·출처를 등록했고 파일 헤더가 catalog와 일치한다
+- [ ] 문제 ID가 출처 형식을 따르고 파일 안에서 유일하다
+- [ ] `passageRefs`가 실제 `passages`를 가리킨다
+- [ ] 해설이 선택지별 이유 + 핵심 개념 구조이고, 원본 문제는 `※` 줄로만 알린다
+- [ ] 이미지 파일이 `public/images/` 아래 있고 `alt`가 있다
+- [ ] (syllabus 과목) 모든 문제의 장이 정해지고, 기출은 `chapter` 또는 `outdated: true`이며 outdated는 `docs/outdated.md`에 기록했다
+- [ ] (2학기 과목) `docs/source-coverage.md`를 갱신했다
+- [ ] `pnpm data:build`, `pnpm test`, `pnpm format:check`가 통과한다
 
-오류 메시지가 나오면 해당 파일과 필드를 확인하고 수정한 뒤 다시 빌드한다.
+## 9. 자주 막히는 지점
 
----
+빌드 오류 메시지와 원인. 메시지 앞의 `questionFile.questions[3]` 같은 경로가 문제 위치다.
 
-## 11. 체크리스트
+| 메시지                                                                | 원인과 조치                                                                                                                    |
+| --------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| `has unknown keys (…)`                                                | 문제·선택지에 허용되지 않는 키. 오타(`passages` → `passageRefs`)이거나 flow mapping의 쉼표가 든 값을 따옴표로 감싸지 않은 경우 |
+| `must be a non-empty string`                                          | 빈 문자열. 표(`data-table`)의 빈 칸은 `' '`(공백 한 칸), 그래프 노드 `label`은 비울 수 없다(숨기려면 `hideLabel: true`)        |
+| `.text must be non-empty when image or diagram is missing`            | 선택지 `text: ''`는 `image`나 `diagram`이 있을 때만 허용                                                                       |
+| `.answers[…] does not match any choices.id`                           | 정답 id가 선택지 id와 다름. `'1'`처럼 문자열인지 확인                                                                          |
+| `answers must have exactly 1 answer …` / `duplicates answer`          | 유형별 정답 수: `multiple-choice` 1개, `multi-answer` 2개 이상, `ox` 선택지 2개·정답 1개. 중복 금지                            |
+| `.explanation references missing choice "…" in a 선택지 line`         | 해설의 `선택지 N:` 줄이 없는 선택지 id를 가리킴                                                                                |
+| `has no chapter`                                                      | syllabus 과목인데 장이 정해지지 않음. 기출은 `chapter`/`outdated`, 강의는 강 번호가 `syllabus.lectures`에 있어야 함            |
+| `uses chapter/outdated but the subject has no syllabus`               | catalog에 `syllabus:`가 없는 과목에는 `chapter`를 적을 수 없다                                                                 |
+| `docs/outdated.md is missing … / lists questions not marked outdated` | `outdated: true` 문제와 `docs/outdated.md`의 키 목록이 다름. 양쪽을 맞춘다                                                     |
+| `has invalid math`                                                    | `$…$` 안의 KaTeX 오류. 글자 그대로의 달러는 `\$`, 코드 지문·`cellFormat: code` 표에서는 `$`를 그대로 쓴다                      |
+| `.path file does not exist`                                           | 이미지 경로는 `public/` 기준(`images/subjects/…`). 파일을 함께 커밋했는지 확인                                                 |
+| `must end with .json`                                                 | catalog의 `path`·`syllabus`는 `.json`으로 적는다(빌드가 같은 경로의 `.yaml`을 읽는다)                                          |
 
-새 문제 파일을 추가할 때 아래 항목을 확인한다.
+빌드는 통과하지만 화면이 이상할 때:
 
-- [ ] `data/catalog.yaml`에 과목·출처가 등록되어 있다
-- [ ] `subjectId`/`sourceId`/`kind`가 catalog와 일치한다
-- [ ] 모든 문제 `id`가 파일 안에서 유일하다
-- [ ] `passageRefs`로 참조한 `id`가 `passages` 배열에 실제로 존재한다
-- [ ] `answers`가 비어있지 않다 (임시 정답이라도 반드시 기재)
-- [ ] 교재·워크북·강의·특강 문제 ID가 `b03-07`, `l11-04`처럼 그룹 번호를 포함한다
-- [ ] 해설이 선택지별 이유 + 핵심 개념 구조로 작성되어 있다
-- [ ] `images[].path`에 해당하는 파일이 `public/images/` 아래에 실제로 있다
-- [ ] (syllabus가 있는 과목) 기출 문제마다 `chapter` 또는 `outdated: true`가 있고, outdated 문제는 `docs/outdated.md`에 기록했다
-- [ ] `pnpm data:build`가 오류 없이 완료된다
-- [ ] `pnpm test`가 통과한다
+- **백틱이 사라진다**: 백틱 쌍은 항상 인라인 코드로 렌더링된다. 백틱 문자 자체를 보여야 하면 코드 지문이나 `cellFormat: code` 표에 넣는다.
+- **`==`가 강조로 바뀐다**: 한 문자열에 `==`가 두 번 이상 나오면 강조로 묶인다. 코드형 텍스트는 인라인 코드로 감싼다.
+- **`sections.no`가 숫자로 읽힌다**: syllabus의 절 번호는 `'1.1'`처럼 따옴표를 붙인다.
+- **문제가 혼자 풀리지 않는다**: 발문이 가리키는 그림·표·코드·조건이 모두 `passageRefs`로 연결되어야 한다. 선택지를 섞어도 성립하는지 본다.
+- **폰에서 표가 잘린다**: 열이 많은 표는 행·열을 바꾸거나(영역을 행으로) 선택지마다 작은 표로 나눈다.

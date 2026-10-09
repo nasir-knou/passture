@@ -12,48 +12,35 @@
 - 북마크 저장/해제, 학습 기록에서 북마크와 오답 문제 필터링 확인
 - 오답 기록 저장, 북마크만/오답만 다시 풀기
 - 데이터 관리: 사용자 데이터 JSON 내보내기/가져오기(병합/덮어쓰기), 풀이 상태/학습 기록 초기화
-- KaTeX 수식 렌더링, 이미지 지문, 구조화 다이어그램 지문 렌더링
-- 챕터별 풀이: 교재 목차가 있는 과목은 교재 장 단위로 강의·교재·기출 문제를 모아 풀기, 장별 결과
+- KaTeX 수식, 인라인 코드·`==강조==`, 코드 지문, 이미지 지문, 구조화 다이어그램(표·그래프 등) 지문 렌더링, 해설의 `※` 안내 블록
+- 챕터별 풀이: 교재 목차(syllabus)가 등록된 과목은 교재 장 단위로 강의·교재·기출 문제를 모아 풀기, 장별 결과(대상 과목: [docs/source-coverage.md](docs/source-coverage.md))
 - 모의 시험: 최대 3과목, 과목별 출처 선택, 과목당 25분 타이머, 시험형 풀이/결과 화면
 
 ## 로컬 개발
 
-### 사전 환경
+Node.js는 `.nvmrc`의 22 LTS, 패키지 매니저는 `package.json`의 `packageManager`에 맞춘 pnpm 10.11.0을 사용합니다.
 
 ```bash
-node --version  # .nvmrc 기준 Node 22
 corepack enable
 corepack prepare pnpm@10.11.0 --activate
-pnpm install
-```
-
-- Node.js는 `.nvmrc`의 22 LTS 버전을 사용합니다.
-- 패키지 매니저는 `package.json`의 `packageManager`에 맞춰 pnpm 10.11.0을 사용합니다.
-- 처음 실행하거나 의존성이 바뀐 뒤에는 `pnpm install`을 실행합니다.
-
-### 실행 및 검증
-
-```bash
-pnpm dev           # 로컬 개발 서버 실행
+pnpm install       # 처음 실행하거나 의존성이 바뀐 뒤
+pnpm dev           # 로컬 개발 서버 (기본 http://localhost:5173/)
 pnpm data:build    # YAML 문제 원본을 public/data JSON으로 변환 및 검증
 pnpm test          # 단위 테스트
 pnpm build         # 프로덕션 빌드
 pnpm preview       # 빌드 결과 로컬 확인
+pnpm format        # Prettier로 포맷
+pnpm format:check  # Prettier 형식 검사 (CI에서도 실행)
 ```
 
-`pnpm dev`와 `pnpm build`는 실행 전에 `pnpm data:build`를 자동으로 수행합니다. 개발 서버 주소는 Vite 출력에 표시되며, 기본값은 `http://localhost:5173/`입니다.
+`pnpm dev`와 `pnpm build`는 실행 전에 `pnpm data:build`를 자동으로 수행합니다. 개발 서버는 YAML을 검증 없이 직접 읽으므로, 실행 중 데이터를 고쳤다면 `pnpm data:build`로 다시 검증합니다.
 
 ## 콘텐츠
 
-- 문제 원본은 `data/**/*.yaml`에 작성하고 `pnpm data:build`로 `public/data/**/*.json`을 생성합니다. 개발/빌드 전 훅에서도 자동 실행됩니다.
-- 현재 카탈로그에는 1학기 5과목(운영체제, 이산수학, 알고리즘, 인공지능, Java프로그래밍)과 2학기 8과목(선형대수, 컴퓨터과학개론, 컴퓨터구조, 프로그래밍언어론, 컴파일러구성, 시뮬레이션, UNIX시스템, C프로그래밍)이 등록되어 있습니다.
-- 선형대수, 컴퓨터과학개론, 프로그래밍언어론, 컴파일러구성, 시뮬레이션, C프로그래밍, UNIX시스템은 교재 목차(`syllabus.yaml`)가 있어 챕터별 풀이를 지원합니다. 컴파일러구성은 워크북 문제(1~8장 315문제), 컴퓨터과학개론은 강의 연습문제(1~15강 65문제)·기본서 연습문제(1~8장 104문제)·워크북 문제(1~8장 162문제), 선형대수는 강의 연습문제(1~15강 30문제)까지 들어 있고, 나머지는 현재 기출만 있으며 강의·워크북 문제는 추후 추가합니다.
-- C프로그래밍은 기출 2017~2019와 워크북 연습문제 107문제(워크북 ID의 `b` 번호는 장이 아니라 10문제 단위 순번이라 문제마다 `chapter`를 적음), UNIX시스템은 기출 2017~2019가 장에 배정되어 있습니다. 2학기 과목별 출처 현황은 [docs/source-coverage.md](docs/source-coverage.md)에서 추적합니다.
-- `origin/`의 기출 이미지는 입력 참고용 원본이며, 앱에서 쓰는 이미지는 `public/images/subjects/**` 아래에 둡니다.
-- 시험지 전체 이미지는 공개 자산으로 쓰지 않습니다. 코드·도표·표 이미지는 도표화/코드화가 가능하면 `passages.type: diagram`으로 작성합니다.
-- 자원할당 그래프, 빈 공간 리스트, 표, 클럭 페이지 교체 큐처럼 구조화 가능한 도표는 이미지 crop 대신 diagram 코드 렌더링을 우선합니다.
-- diagram으로 재현하기 어렵거나 원본의 세부 시각 형태 자체가 문제 조건인 불가피한 경우에만 `pnpm image:crop <input> <output> <x> <y> <width> <height>`로 잘라 저장합니다.
-- 공식 정답표나 정답 대조표가 있는 기출은 데이터 입력 완료 후 `answers` 문자열을 원본 정답과 대조합니다. 별도의 audit 문서는 남기지 않습니다.
+- 문제 원본은 `data/**/*.yaml`에 작성하고 `pnpm data:build`가 `public/data/**/*.json`을 생성합니다. 작성법은 [CONTRIBUTING.md](CONTRIBUTING.md), 스키마는 [docs/data-schema.md](docs/data-schema.md)를 참고합니다.
+- 카탈로그에는 1학기 5과목과 2학기 8과목이 있습니다. 과목별 출처 현황과 챕터별 풀이 대상은 [docs/source-coverage.md](docs/source-coverage.md)에서 추적합니다.
+- 현행 교재에 없어 챕터별 풀이에서 빠진 기출은 [docs/outdated.md](docs/outdated.md)에 기록합니다.
+- `origin/`은 입력 참고용 원본(비공개)이며, 앱에서 쓰는 이미지는 `public/images/subjects/**`에 둡니다. 시험지 전체 이미지는 공개 자산으로 쓰지 않고, 도표는 가능하면 diagram으로 코드화합니다([docs/data-schema.md §8](docs/data-schema.md)).
 
 ## 라이선스와 권리
 
