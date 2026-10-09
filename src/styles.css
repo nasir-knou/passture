@@ -475,6 +475,7 @@ h1 {
 
 .compact-list {
   display: grid;
+  align-content: start;
   gap: 8px;
   margin: 0;
   padding-left: 18px;
@@ -2297,6 +2298,16 @@ h1 {
 
 .site-footer p + p {
   margin-top: 4px;
+}
+
+.site-footer a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.site-footer a:hover {
+  color: var(--field);
 }
 
 .sr-only {

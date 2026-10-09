@@ -72,7 +72,10 @@ export function renderFooter(): string {
       <p>모든 기출·교재·강의 관련 권리는 한국방송통신대학교 및 한국방송통신대학교 출판문화원에 있습니다.</p>
       <p>Passture는 비영리 학습 목적의 문제풀이 도구이며, 권리자 요청 시 관련 자료를 삭제합니다.</p>
       <p>Contact: nasir17.dev@gmail.com</p>
-      <p>Code MIT License.</p>
+      <p>
+        Code MIT License ·
+        <a href="https://github.com/nasir-knou/passture" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </p>
     </footer>
   `;
 }
